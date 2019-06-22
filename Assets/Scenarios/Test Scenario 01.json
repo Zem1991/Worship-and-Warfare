@@ -5,16 +5,16 @@
     "width": 10,
     "height": 10,
     "tiles": [
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 1, 1, 1, 0, 0, 1, 1, 0, 0,
-      0, 1, 1, 1, 0, 1, 1, 1, 1, 0,
-      0, 1, 1, 1, 1, 1, 1, 0, 1, 0,
-      0, 0, 0, 1, 1, 0, 1, 1, 1, 0,
-      0, 1, 1, 1, 0, 0, 0, 1, 0, 0,
-      0, 0, 1, 0, 1, 0, 1, 1, 1, 0,
-      0, 1, 1, 1, 1, 1, 1, 0, 1, 0,
-      0, 0, 1, 1, 0, 1, 1, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      Water, Water, Water, Water, Water, Water, Water, Water, Water, Water,
+      Water, Grassland, Grassland, Grassland, Water, Water, Grassland, Grassland, Water, Water,
+      Water, Grassland, Grassland, Grassland, Water, Grassland, Grassland, Grassland, Grassland, Water,
+      Water, Grassland, Grassland, Grassland, Grassland, Grassland, Grassland, Water, Grassland, Water,
+      Water, Water, Water, Grassland, Grassland, Water, Grassland, Grassland, Grassland, Water,
+      Water, Grassland, Grassland, Grassland, Water, Water, Water, Grassland, Water, Water,
+      Water, Water, Grassland, Water, Grassland, Water, Grassland, Grassland, Grassland, Water,
+      Water, Grassland, Grassland, Grassland, Grassland, Grassland, Grassland, Water, Grassland, Water,
+      Water, Water, Grassland, Grassland, Water, Grassland, Grassland, Water, Water, Water,
+      Water, Water, Water, Water, Water, Water, Water, Water, Water, Water
     ]
   },
   "pieces": [
