@@ -2,20 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerType
+{
+    HUMAN,
+    COMPUTER,
+    REMOTE,
+    INACTIVE
+}
+
 public class Player : MonoBehaviour
 {
-    public int id;
-    public new string name;
+    [Header("Identification")]
+    public PlayerType type;
+    public Color color;
+    public string playerName;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Header("Game Data")]
+    public DBHandler_Faction faction;
+    public long gold;
 }

@@ -4,39 +4,47 @@ using UnityEngine;
 
 public class DatabaseManager : MonoBehaviour
 {
-    public DBCM_Faction factions;
+    public static DatabaseManager Singleton;
 
-    public DBCM_Class classes;
-    public DBCM_Hero heroes;
-    public DBCM_Skill skills;
-
-    public DBCM_Animation animations;
-    public DBCM_Item items;
-    public DBCM_Spell spells;
-
-    public DBCM_Unit units;
-    public DBCM_Trait traits;
-
-    public DBCM_Element elements;
-    public DBCM_Status statuses;
-
-    public DBCM_Tileset tilesets;
-    public DBCM_Battleground battlegrounds;
+    [Header("Database Contents")]
+    public DBHandler_Faction factions;
+    public DBHandler_Class classes;
+    public DBHandler_Hero heroes;
+    public DBHandler_Skill skills;
+    public DBHandler_Animation animations;
+    public DBHandler_Item items;
+    public DBHandler_Spell spells;
+    public DBHandler_Unit units;
+    public DBHandler_Trait traits;
+    public DBHandler_Element elements;
+    public DBHandler_Status statuses;
+    public DBHandler_Tileset tilesets;
+    public DBHandler_Battleground battlegrounds;
 
     void Awake()
     {
-        factions = GetComponentInChildren<DBCM_Faction>();
-        classes = GetComponentInChildren<DBCM_Class>();
-        heroes = GetComponentInChildren<DBCM_Hero>();
-        skills = GetComponentInChildren<DBCM_Skill>();
-        animations = GetComponentInChildren<DBCM_Animation>();
-        items = GetComponentInChildren<DBCM_Item>();
-        spells = GetComponentInChildren<DBCM_Spell>();
-        units = GetComponentInChildren<DBCM_Unit>();
-        traits = GetComponentInChildren<DBCM_Trait>();
-        elements = GetComponentInChildren<DBCM_Element>();
-        statuses = GetComponentInChildren<DBCM_Status>();
-        tilesets = GetComponentInChildren<DBCM_Tileset>();
-        battlegrounds = GetComponentInChildren<DBCM_Battleground>();
+        if (Singleton != null)
+        {
+            Debug.LogWarning("Only one instance of DatabaseManager may exist! Deleting this extra one.");
+            Destroy(this);
+        }
+        else
+        {
+            Singleton = this;
+        }
+
+        factions = GetComponentInChildren<DBHandler_Faction>();
+        classes = GetComponentInChildren<DBHandler_Class>();
+        heroes = GetComponentInChildren<DBHandler_Hero>();
+        skills = GetComponentInChildren<DBHandler_Skill>();
+        animations = GetComponentInChildren<DBHandler_Animation>();
+        items = GetComponentInChildren<DBHandler_Item>();
+        spells = GetComponentInChildren<DBHandler_Spell>();
+        units = GetComponentInChildren<DBHandler_Unit>();
+        traits = GetComponentInChildren<DBHandler_Trait>();
+        elements = GetComponentInChildren<DBHandler_Element>();
+        statuses = GetComponentInChildren<DBHandler_Status>();
+        tilesets = GetComponentInChildren<DBHandler_Tileset>();
+        battlegrounds = GetComponentInChildren<DBHandler_Battleground>();
     }
 }

@@ -6,9 +6,8 @@ public class ScenarioManager : MonoBehaviour
 {
     public static ScenarioManager Singleton;
 
-    [Header("Scenario data")]
-    public string scenarioName = "Unnamed Scenario";
-    public string scenarioAuthor = "Anonymous Author";
+    [Header("Scenario")]
+    public Scenario scenario;
 
     void Awake()
     {
@@ -23,23 +22,21 @@ public class ScenarioManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void BootScenario(ScenarioFileData data)
     {
-        scenarioName = data.name;
-        scenarioAuthor = data.author;
-        MapManager.Singleton.CreateMap(data.map);
+        scenario.scenarioName = data.name;
+        scenario.scenarioAuthor = data.author;
+        scenario.scenarioSize = new Vector2Int(data.width, data.height);
+
+        PlayerManager.Singleton.InstantiatePlayers(data.players);
+
+        MapManager.Singleton.BuildMap(scenario.scenarioSize, data.map);
+        //if (data.extraMap != null)
+        //{
+        //    usesExtraMap = true;
+        //    MapManager.Singleton.BuildExtraMap(scenarioSize, data.extraMap);
+        //}
+
         PieceManager.Singleton.CreatePieces(data.pieces);
     }
 }

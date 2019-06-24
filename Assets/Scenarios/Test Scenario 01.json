@@ -1,30 +1,48 @@
 {
   "name": "Test Scenario 01",
   "author": "Zem",
+  "width": 10,
+  "height": 10,
+  "players": [
+    {
+      "colorId": 0,
+      "name": "Player 01"
+    },
+	{
+      "colorId": 1,
+      "name": "Player 02"
+    },
+  ],
   "map": {
-    "width": 10,
-    "height": 10,
     "tiles": [
-      Water, Water, Water, Water, Water, Water, Water, Water, Water, Water,
-      Water, Grassland, Grassland, Grassland, Water, Water, Grassland, Grassland, Water, Water,
-      Water, Grassland, Grassland, Grassland, Water, Grassland, Grassland, Grassland, Grassland, Water,
-      Water, Grassland, Grassland, Grassland, Grassland, Grassland, Grassland, Water, Grassland, Water,
-      Water, Water, Water, Grassland, Grassland, Water, Grassland, Grassland, Grassland, Water,
-      Water, Grassland, Grassland, Grassland, Water, Water, Water, Grassland, Water, Water,
-      Water, Water, Grassland, Water, Grassland, Water, Grassland, Grassland, Grassland, Water,
-      Water, Grassland, Grassland, Grassland, Grassland, Grassland, Grassland, Water, Grassland, Water,
-      Water, Water, Grassland, Grassland, Water, Grassland, Grassland, Water, Water, Water,
-      Water, Water, Water, Water, Water, Water, Water, Water, Water, Water
+      { "lowerLand": 1 }, { "lowerLand": 1 }, { "lowerLand": 1 }, { "lowerLand": 1 }, { "lowerLand": 1 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, 
+	  { "lowerLand": 1 }, { "lowerLand": 1 }, { "lowerLand": 1 }, { "lowerLand": 2 }, { "lowerLand": 2 }, { "lowerLand": 2 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, 
+	  { "lowerLand": 1 }, { "lowerLand": 1 }, { "lowerLand": 0 }, { "lowerLand": 2 }, { "lowerLand": 2 }, { "lowerLand": 2 }, { "lowerLand": 2 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, 
+	  { "lowerLand": 0 }, { "lowerLand": 1 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 2 }, { "lowerLand": 2 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, 
+	  { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, 
+	  { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, 
+	  { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, 
+	  { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, 
+	  { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, 
+	  { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }, { "lowerLand": 0 }
     ]
   },
   "pieces": [
     {
-      "name": "Piece 01",
-      "mapPosition": [ 2, 2 ]
+      "mapPosition": [ 2, 2 ],
+	  "ownerId": 0,
+	  "hero": {
+	    "heroId": 0,
+		"experience": 1000,
+	  }
     },
     {
-      "name": "Piece 02",
-      "mapPosition": [ 6, 7 ]
+      "mapPosition": [ 6, 7 ],
+      "ownerId": 1,
+	  "hero": {
+	    "heroId": 0,
+		"experience": 400,
+	  }
     }
   ]
 }
