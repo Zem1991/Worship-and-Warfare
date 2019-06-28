@@ -12,7 +12,7 @@ public class PieceManager : MonoBehaviour
     [Header("Prefabs")]
     public Piece prefabPiece;
 
-    [Header("Instances")]
+    [Header("Pieces")]
     public List<Piece> pieces;
 
     void Awake()
@@ -42,15 +42,18 @@ public class PieceManager : MonoBehaviour
         DeletePieces();
 
         DatabaseManager db = DatabaseManager.Singleton;
+        DBHandler_Hero dbHeroes = db.heroes;
+        DBHandler_Unit dbUnits = db.units;
+        MapManager mm = MapManager.Singleton;
         PlayerManager pm = PlayerManager.Singleton;
 
         pieces = new List<Piece>();
         foreach (var item in data)
         {
             int posX = item.mapPosition[0];
-            int posZ = item.mapPosition[1];
+            int posY = item.mapPosition[1];
 
-            Vector3 pos = new Vector3(posX, 0, posZ);
+            Vector3 pos = new Vector3(posX, 0, posY);
             Quaternion rot = Quaternion.identity;
 
             Piece newPiece = Instantiate(prefabPiece, pos, rot, transform);
@@ -61,8 +64,7 @@ public class PieceManager : MonoBehaviour
             HeroData hero = item.hero;
             if (hero != null)
             {
-                List<DBContent> heroes = db.heroes.content;
-                newPiece.hero = heroes[hero.heroId] as DB_Hero;
+                newPiece.hero = dbHeroes.Select(hero.heroId) as DB_Hero;
                 newPiece.heroExperience = hero.experience;
             }
 
@@ -73,17 +75,39 @@ public class PieceManager : MonoBehaviour
                     Debug.LogWarning("There are more units than the piece can store!");
                 }
 
-                List<DBContent> units = db.units.content;
                 newPiece.units = new DB_Unit[MAX_UNITS];
                 newPiece.stackSizes = new int[MAX_UNITS];
-
                 for (int i = 0; i < MAX_UNITS; i++)
                 {
                     UnitData unit = item.units[i];
-                    newPiece.units[i] = units[unit.unitId] as DB_Unit;
+                    newPiece.units[i] = dbUnits.Select(unit.unitId) as DB_Unit;
                     newPiece.stackSizes[i] = unit.stackSize;
                 }
             }
+
+            newPiece.currentTile = mm.map.tiles[posX, posY];
+
+            if (hero != null)
+            {
+                newPiece.ChangeSprite(newPiece.hero.classs.fieldPicture);
+                newPiece.name = newPiece.hero.heroName + "´s army";
+            }
+            else
+            {
+                DB_Unit relevantUnit = dbUnits.defaultContent as DB_Unit;
+                if (item.units != null)
+                {
+                    relevantUnit = newPiece.units[0];
+                }
+                newPiece.ChangeSprite(relevantUnit.fieldPicture);
+                newPiece.name = "Army of " + relevantUnit.unitName;
+            }
         }
+    }
+
+    public void Pathfind(Piece piece, Tile targetTile)
+    {
+        Pathfinder.FindPath(piece.currentTile, targetTile, out List<PathNode> result, out float size);
+        piece.SetPath(result, Mathf.CeilToInt(size), targetTile);
     }
 }

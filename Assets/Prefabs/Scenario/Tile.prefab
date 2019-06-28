@@ -45,7 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: {x: 0, y: 0}
-  type: 0
+  lowerLand: 0
+  upperLand: 0
+  water: 0
+  feature: 0
+  road: 0
   bl: {fileID: 0}
   b: {fileID: 0}
   br: {fileID: 0}
@@ -64,6 +68,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7506322657598895070}
   - component: {fileID: 7314382990190893281}
+  - component: {fileID: 3427240203148967380}
   m_Layer: 0
   m_Name: Terrain Sprite
   m_TagString: Untagged
@@ -133,3 +138,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &3427240203148967380
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5597947047115118063}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}

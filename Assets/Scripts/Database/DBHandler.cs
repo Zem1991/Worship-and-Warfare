@@ -5,15 +5,15 @@ using UnityEngine;
 
 public abstract class DBContentHandler : MonoBehaviour
 {
-    public DBContent defaultValue;
-    public List<DBContent> content = new List<DBContent>();
+    private List<DBContent> contents = new List<DBContent>();
+    public DBContent defaultContent;
 
     void Awake()
     {
         DBContent defaultValue = GetComponent<DBContent>();
         if (Validate(defaultValue))
         {
-            this.defaultValue = defaultValue;
+            this.defaultContent = defaultValue;
         }
 
         DBContent[] children = GetComponentsInChildren<DBContent>();
@@ -23,10 +23,18 @@ public abstract class DBContentHandler : MonoBehaviour
             {
                 if (Validate(item))
                 {
-                    content.Add(item);
+                    contents.Add(item);
                 }
             }
         }
+    }
+
+    public virtual DBContent Select(int id)
+    {
+        if (id >= 0 && id < contents.Count)
+            return contents[id];
+        else
+            return defaultContent;
     }
 
     private bool Validate(DBContent item)

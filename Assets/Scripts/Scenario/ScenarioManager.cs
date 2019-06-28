@@ -5,9 +5,13 @@ using UnityEngine;
 public class ScenarioManager : MonoBehaviour
 {
     public static ScenarioManager Singleton;
+    public readonly Vector2Int MIN_SIZE = Vector2Int.one * 10;
+    public readonly Vector2Int MAX_SIZE = Vector2Int.one * 80;
 
     [Header("Scenario")]
     public Scenario scenario;
+
+    private Bounds bounds;
 
     void Awake()
     {
@@ -38,5 +42,18 @@ public class ScenarioManager : MonoBehaviour
         //}
 
         PieceManager.Singleton.CreatePieces(data.pieces);
+
+        Vector3 boundsSize = new Vector3(scenario.scenarioSize.x, 0, scenario.scenarioSize.y);
+        bounds = new Bounds(boundsSize / 2F, boundsSize);
     }
+
+    public bool IsWithinBounds(Vector3 pos)
+    {
+        return bounds.Contains(pos);
+    }
+
+    //public Vector3 ClampToBounds(Vector3 pos)
+    //{
+    //    return bounds.ClosestPoint(pos);
+    //}
 }

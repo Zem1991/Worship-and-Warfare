@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5292258022523271957}
   - component: {fileID: 5292258022523271956}
+  - component: {fileID: 4869639974865101347}
   m_Layer: 0
   m_Name: Piece Sprite
   m_TagString: Untagged
@@ -68,7 +69,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 779e9758f2357a24384c4e794f4cdfe6, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -76,9 +77,22 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &4869639974865101347
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5292258022523271958}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5292258022845113595
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,5 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 904a2d7e53971b3419ce18fa41cc547e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Unnamed Piece
-  mapPosition: {x: 0, y: 0}
+  owner: {fileID: 0}
+  hero: {fileID: 0}
+  heroExperience: 0
+  units: []
+  stackSizes: 

@@ -11,7 +11,7 @@ public enum UnitMovementType
 
 public class DB_Unit : DBContent
 {
-    public new string name;
+    public string unitName;
 
     [Header("Stats")]
     public int goldCost;

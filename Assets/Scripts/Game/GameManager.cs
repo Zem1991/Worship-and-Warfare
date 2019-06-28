@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     public int currentDay;
     public Player currentPlayer;
 
+    [Header("Objects")]
+    public CameraController cameraController;
+
     void Awake()
     {
         if (Singleton != null)
@@ -29,6 +32,8 @@ public class GameManager : MonoBehaviour
         {
             Singleton = this;
         }
+
+        cameraController = GetComponentInChildren<CameraController>();
     }
 
     // Start is called before the first frame update

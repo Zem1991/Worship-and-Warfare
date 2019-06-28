@@ -46,6 +46,12 @@ public class PlayerManager : MonoBehaviour
         {
             InstantiatePlayer(item);
         }
+
+        if (!localPlayer)
+        {
+            Debug.LogWarning("The Local Player was set to the first player as a safety.");
+            localPlayer = allPlayers[0];
+        }
     }
 
     private void InstantiatePlayer(PlayerData data)

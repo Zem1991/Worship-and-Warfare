@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PathNode : MonoBehaviour
+public class PathNode
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // This node on the "visible" grid
+    public Tile tile;
 
-    // Update is called once per frame
-    void Update()
+    // Where this node came from during the pathfinding process
+    public PathNode previous;
+
+    public float gCost_DistFromStart;
+    public float hCost_DistFromTarget;
+    public float fCost_totalDistance { get { return gCost_DistFromStart + hCost_DistFromTarget; } }
+
+    public PathNode(Tile tile)
     {
-        
+        this.tile = tile;
     }
 }

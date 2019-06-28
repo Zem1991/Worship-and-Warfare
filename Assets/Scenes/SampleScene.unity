@@ -164,8 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dda61bd680d49654c8f11809ccc12a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultValue: {fileID: 0}
-  content: []
+  defaultContent: {fileID: 0}
 --- !u!114 &52499880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd0bf20103dbedb47b554856908a56ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Default Unit
+  unitName: 
   goldCost: 0
   leadershipCost: 0
   offense: 0
@@ -283,9 +282,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62424aa6ee5883f4281d0d2c4db93144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Cassius
+  heroName: Cassius
   classs: {fileID: 1536214179}
-  profilePicture: {fileID: 0}
+  profilePicture: {fileID: 21300000, guid: feb6e54b1a604804683cfb45551bd2da, type: 3}
 --- !u!1 &122198180
 GameObject:
   m_ObjectHideFlags: 0
@@ -721,8 +720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0a98d75a6470e46bfcd33f194f1107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultValue: {fileID: 0}
-  content: []
+  defaultContent: {fileID: 0}
 --- !u!114 &484480925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -735,7 +733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4631cf7fddea526478aac2544ff31100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Default Class
+  className: Default Class
   faction: {fileID: 648845224}
   command: 2
   offense: 2
@@ -886,8 +884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b695ef9d03f5442ade17ceaeeaa944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultValue: {fileID: 0}
-  content: []
+  defaultContent: {fileID: 0}
 --- !u!114 &587533046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -995,8 +992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c873c49b2af4b834884b982db08fe777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultValue: {fileID: 0}
-  content: []
+  defaultContent: {fileID: 0}
 --- !u!114 &648845224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1146,8 +1142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f13fdd220293c438b99760269be6a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultValue: {fileID: 0}
-  content: []
+  defaultContent: {fileID: 0}
 --- !u!114 &718205237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1302,7 +1297,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef547e3234ba59044a15318f2c7b5145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiles: []
 --- !u!1 &903424731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1432,8 +1426,8 @@ Transform:
   m_LocalPosition: {x: 5, y: 10, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1009103195}
-  m_RootOrder: 1
+  m_Father: {fileID: 1412288616}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1009103193
 GameObject:
@@ -1469,6 +1463,7 @@ MonoBehaviour:
   timeElapsedText: 
   currentDay: 0
   currentPlayer: {fileID: 0}
+  cameraController: {fileID: 0}
 --- !u!4 &1009103195
 Transform:
   m_ObjectHideFlags: 0
@@ -1481,7 +1476,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 705507995}
-  - {fileID: 963194228}
+  - {fileID: 1412288616}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1696,8 +1691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d0de7cfe3086946995e0b3fa7c61c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultValue: {fileID: 0}
-  content: []
+  defaultContent: {fileID: 0}
 --- !u!114 &1161256591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1805,8 +1799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5adb92ff7845d546b5d195e7f6f269e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultValue: {fileID: 0}
-  content: []
+  defaultContent: {fileID: 0}
 --- !u!114 &1190025194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1900,6 +1893,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1391922958}
   m_CullTransparentMesh: 0
+--- !u!1 &1412288615
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1412288616}
+  - component: {fileID: 1412288617}
+  m_Layer: 0
+  m_Name: Camera Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1412288616
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412288615}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 963194228}
+  m_Father: {fileID: 1009103195}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1412288617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412288615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23dee8efdab964641a6d83c79b7ea2aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraSpeed: 10
+  camera: {fileID: 0}
 --- !u!1 &1428424753
 GameObject:
   m_ObjectHideFlags: 0
@@ -1944,8 +1983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea4645d0e601b04199a04e352bc8842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultValue: {fileID: 0}
-  content: []
+  defaultContent: {fileID: 0}
 --- !u!114 &1428424756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1970,6 +2008,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1446143056}
   - component: {fileID: 1446143055}
+  - component: {fileID: 1446143057}
   - component: {fileID: 1446143054}
   m_Layer: 0
   m_Name: Input Manager
@@ -2008,10 +2047,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97781dd39cfa41545aaeb3635e7548a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorAxes: {x: 0, y: 0, z: 0}
-  cameraAxes: {x: 0, y: 0, z: 0}
-  selectionDown: 0
-  commandDown: 0
+  prefabHighlight: {fileID: 6205666536738310281, guid: 5b702608e16dadd4bbc44d29595780b2,
+    type: 3}
+  cursorHighlightSprite: {fileID: 21300000, guid: 1dc430b12b5edd743bb382e583862f65,
+    type: 3}
+  selectionHighlightSprite: {fileID: 21300000, guid: 37660c40ec7a3b648bfb302c2286bb39,
+    type: 3}
+  movementnHighlightSprite: {fileID: -3011494807137413604, guid: 241dc02df22604348ba2d4389051d846,
+    type: 3}
+  mouseScreenPos: {x: 0, y: 0, z: 0}
+  mouseWorldPos: {x: 0, y: 0, z: 0}
+  mouseAfterBorders: {x: 0, y: 0, z: 0}
+  cursorOnPlayArea: 0
+  cursorHighlight: {fileID: 0}
+  cursorPos: {x: 0, y: 0}
+  cursorTile: {fileID: 0}
+  cursorPiece: {fileID: 0}
+  selectionHighlight: {fileID: 0}
+  selectionPos: {x: 0, y: 0}
+  selectionTile: {fileID: 0}
+  selectionPiece: {fileID: 0}
+  canCommandSelectedPiece: 0
+  movementHighlightsRequireUpdate: 0
+  movementHighlights: []
 --- !u!4 &1446143056
 Transform:
   m_ObjectHideFlags: 0
@@ -2026,6 +2084,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1446143057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446143053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c6f5534b6cd5f04c861ea41652b58a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorAxes: {x: 0, y: 0, z: 0}
+  cameraAxes: {x: 0, y: 0, z: 0}
+  selectionDown: 0
+  commandDown: 0
 --- !u!1 &1446948817
 GameObject:
   m_ObjectHideFlags: 0
@@ -2119,8 +2193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d8fe36406cff49469f1ec8f77d2064c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultValue: {fileID: 0}
-  content: []
+  defaultContent: {fileID: 0}
 --- !u!114 &1460391489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2178,15 +2251,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4631cf7fddea526478aac2544ff31100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Judicator
-  faction: {fileID: 0}
+  className: Judicator
+  faction: {fileID: 648845224}
   command: 4
   offense: 2
   defense: 2
   power: 1
   knowledge: 1
-  fieldPicture: {fileID: 0}
-  combatPicture: {fileID: 0}
+  fieldPicture: {fileID: 21300000, guid: 158acc8909757714b8bdfa58344cb2b4, type: 3}
+  combatPicture: {fileID: 21300000, guid: 281665d1d9d07134bac896777aced8c1, type: 3}
 --- !u!1 &1540432247
 GameObject:
   m_ObjectHideFlags: 0
@@ -2231,8 +2304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b52f1e4123b4724d850b067f20bf0de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultValue: {fileID: 0}
-  content: []
+  defaultContent: {fileID: 0}
 --- !u!114 &1540432250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2438,8 +2510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72c77e8776037a74bab9061151b15ba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultValue: {fileID: 0}
-  content: []
+  defaultContent: {fileID: 0}
 --- !u!114 &1856570801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2452,7 +2523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62424aa6ee5883f4281d0d2c4db93144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Default Hero
+  heroName: Default Hero
   classs: {fileID: 484480925}
   profilePicture: {fileID: 21300000, guid: feb6e54b1a604804683cfb45551bd2da, type: 3}
 --- !u!1 &1894768175
@@ -2614,8 +2685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f02a7b2eaf3a4944784a2678c7db80b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultValue: {fileID: 0}
-  content: []
+  defaultContent: {fileID: 0}
 --- !u!114 &1934940663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2689,8 +2759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4d6a58c35468284a998119d61ff6930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultValue: {fileID: 0}
-  content: []
+  defaultContent: {fileID: 0}
 --- !u!114 &1957607059
 MonoBehaviour:
   m_ObjectHideFlags: 0

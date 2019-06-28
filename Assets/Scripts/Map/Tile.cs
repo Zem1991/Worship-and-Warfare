@@ -25,6 +25,9 @@ public class Tile : MonoBehaviour
     public Tile f;
     public Tile fr;
 
+    [Header("Other Objects")]
+    public Piece piece;
+
     void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
