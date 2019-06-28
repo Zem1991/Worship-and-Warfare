@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ZemDirections;
 
 public class InputManager : MonoBehaviour
 {
@@ -10,9 +11,10 @@ public class InputManager : MonoBehaviour
 
     [Header("Prefabs and Sprites")]
     public InputHighlight prefabHighlight;
-    public Sprite cursorHighlightSprite;
-    public Sprite selectionHighlightSprite;
-    public Sprite movementnHighlightSprite;
+    public Sprite cursorSprite;
+    public Sprite selectionSprite;
+    public Sprite[] movementArrowSprites = new Sprite[8];
+    public Sprite[] movementMarkerSprites = new Sprite[2];
 
     [Header("Mouse Position")]
     public Vector3 mouseScreenPos;
@@ -34,7 +36,8 @@ public class InputManager : MonoBehaviour
     public bool canCommandSelectedPiece;
 
     [Header("Movement Highlights")]
-    public bool movementHighlightsRequireUpdate;
+    public bool movementHighlightsUpdateFromCommand;
+    public bool movementHighlightsUpdateOnPieceStop;
     public List<InputHighlight> movementHighlights = new List<InputHighlight>();
 
     void Awake()
@@ -51,11 +54,11 @@ public class InputManager : MonoBehaviour
 
         cursorHighlight = Instantiate(prefabHighlight, transform);
         cursorHighlight.name = "Cursor Highlight";
-        cursorHighlight.ChangeSprite(cursorHighlightSprite);
+        cursorHighlight.ChangeSprite(cursorSprite);
 
         selectionHighlight = Instantiate(prefabHighlight, transform);
         selectionHighlight.name = "Selection Highlight";
-        selectionHighlight.ChangeSprite(selectionHighlightSprite);
+        selectionHighlight.ChangeSprite(selectionSprite);
     }
 
     // Start is called before the first frame update
@@ -162,7 +165,7 @@ public class InputManager : MonoBehaviour
     {
         if (recorder.selectionDown)
         {
-            movementHighlightsRequireUpdate = true;
+            movementHighlightsUpdateFromCommand = true;
 
             if (cursorOnPlayArea)
             {
@@ -208,15 +211,19 @@ public class InputManager : MonoBehaviour
             {
                 if (canCommandSelectedPiece)
                 {
-                    movementHighlightsRequireUpdate = true;
+                    movementHighlightsUpdateFromCommand = true;
 
-                    if (selectionPiece.HasPath(cursorTile))
+                    if (selectionPiece.inMovement)
                     {
-                        selectionPiece.MoveAlongPath();
+                        selectionPiece.Stop();
+                        movementHighlightsUpdateOnPieceStop = true;
                     }
                     else
                     {
-                        PieceManager.Singleton.Pathfind(selectionPiece, cursorTile);
+                        if (selectionPiece.HasPath(cursorTile))
+                            selectionPiece.Move();
+                        else
+                            PieceManager.Singleton.Pathfind(selectionPiece, cursorTile);
                     }
                 }
             }
@@ -229,37 +236,64 @@ public class InputManager : MonoBehaviour
 
     private void MovementHighlights()
     {
-        if (movementHighlightsRequireUpdate)
+        bool condition1 = 
+            movementHighlightsUpdateFromCommand;
+        bool condition2 = 
+            movementHighlightsUpdateOnPieceStop && 
+            selectionPiece && 
+            !selectionPiece.inMovement;
+        if (!condition1 && !condition2) return;
+
+        foreach (var item in movementHighlights)
         {
-            foreach (var item in movementHighlights)
-            {
-                Destroy(item.gameObject);
-            }
-            movementHighlights.Clear();
+            Destroy(item.gameObject);
+        }
+        movementHighlights.Clear();
 
-            if (canCommandSelectedPiece &&
-                !selectionPiece.inMovement)
-            {
-                movementHighlights = new List<InputHighlight>();
-                List<PathNode> path = selectionPiece.path;
+        if (canCommandSelectedPiece &&
+            !selectionPiece.inMovement)
+        {
+            List<PathNode> path = selectionPiece.path;
+            int totalNodes = path.Count;
 
-                for (int i = -1; i < path.Count - 1; i++)
+            movementHighlights = new List<InputHighlight>();
+
+            for (int i = -1; i < totalNodes - 1; i++)
+            {
+                int nextI = i + 1;
+
+                Tile currentTile = (i == -1 ? selectionPiece.currentTile : path[i].tile);
+                Tile nextTile = path[nextI].tile;
+
+                Vector3 fromPos = currentTile.transform.position;
+                Vector3 toPos = nextTile.transform.position;
+
+                Vector3 pos = Vector3.Lerp(fromPos, toPos, 0.5F);
+                Quaternion rot = Quaternion.identity;
+                OctoDirXZ dir = currentTile.GetNeighbourDirection(nextTile);
+
+                nextI++;
+
+                InputHighlight step = Instantiate(prefabHighlight, pos, rot, transform);
+                movementHighlights.Add(step);
+                step.name = "Step #" + nextI;
+                step.ChangeSprite(movementArrowSprites[(int)dir]);
+
+                InputHighlight marker = Instantiate(prefabHighlight, toPos, rot, transform);
+                movementHighlights.Add(marker);
+                if (nextI == totalNodes)
                 {
-                    Vector3 fromPos = (i == -1 ? selectionPiece.currentTile.transform.position : path[i].tile.transform.position);
-                    Vector3 toPos = path[i + 1].tile.transform.position;
-
-                    Vector3 pos = Vector3.Lerp(fromPos, toPos, 0.5F);
-                    Quaternion rot = Quaternion.identity;
-
-                    InputHighlight ih = Instantiate(prefabHighlight, pos, rot, transform);
-                    movementHighlights.Add(ih);
-
-                    ih.name = "Step #" + (i + 2);
-                    ih.ChangeSprite(movementnHighlightSprite);
+                    marker.name = "Final Marker";
+                    marker.ChangeSprite(movementMarkerSprites[1]);
+                }
+                else
+                {
+                    marker.name = "Marker #" + nextI;
+                    marker.ChangeSprite(movementMarkerSprites[0]);
                 }
             }
-
-            movementHighlightsRequireUpdate = false;
         }
+
+        movementHighlightsUpdateFromCommand = false;
     }
 }

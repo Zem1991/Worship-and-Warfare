@@ -23,6 +23,7 @@ public class Piece : MonoBehaviour
 
     [Header("Movement")]
     public bool inMovement;
+    public bool stopMovement;
     public Tile currentTile;
     public Tile targetTile;
     public Tile nextTile;
@@ -37,7 +38,7 @@ public class Piece : MonoBehaviour
 
     void Update()
     {
-        Move();
+        Movement();
     }
 
     public void ChangeSprite(Sprite s)
@@ -57,20 +58,27 @@ public class Piece : MonoBehaviour
         this.targetTile = targetTile;
     }
 
-    public void MoveAlongPath()
+    public void Move()
     {
         inMovement = true;
     }
 
-    private void Move()
+    public void Stop()
+    {
+        stopMovement = true;
+    }
+
+    private void Movement()
     {
         if (!inMovement) return;
 
         if (nextTile == null)
         {
-            if (path.Count <= 0)
+            if (stopMovement ||
+                path.Count <= 0)
             {
                 inMovement = false;
+                stopMovement = false;
 
                 nextPos = Vector3.zero;
                 direction = Vector3.zero;

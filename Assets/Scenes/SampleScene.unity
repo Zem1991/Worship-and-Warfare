@@ -2049,12 +2049,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabHighlight: {fileID: 6205666536738310281, guid: 5b702608e16dadd4bbc44d29595780b2,
     type: 3}
-  cursorHighlightSprite: {fileID: 21300000, guid: 1dc430b12b5edd743bb382e583862f65,
-    type: 3}
-  selectionHighlightSprite: {fileID: 21300000, guid: 37660c40ec7a3b648bfb302c2286bb39,
-    type: 3}
-  movementnHighlightSprite: {fileID: -3011494807137413604, guid: 241dc02df22604348ba2d4389051d846,
-    type: 3}
+  cursorSprite: {fileID: 21300000, guid: 1dc430b12b5edd743bb382e583862f65, type: 3}
+  selectionSprite: {fileID: 21300000, guid: 37660c40ec7a3b648bfb302c2286bb39, type: 3}
+  movementArrowSprites:
+  - {fileID: -3011494807137413604, guid: 241dc02df22604348ba2d4389051d846, type: 3}
+  - {fileID: -3011895399059424396, guid: 241dc02df22604348ba2d4389051d846, type: 3}
+  - {fileID: 8065461568050007341, guid: 241dc02df22604348ba2d4389051d846, type: 3}
+  - {fileID: 489804515281931848, guid: 241dc02df22604348ba2d4389051d846, type: 3}
+  - {fileID: -1769147326846735629, guid: 241dc02df22604348ba2d4389051d846, type: 3}
+  - {fileID: 7732202995327073791, guid: 241dc02df22604348ba2d4389051d846, type: 3}
+  - {fileID: -7946779441942993994, guid: 241dc02df22604348ba2d4389051d846, type: 3}
+  - {fileID: 7002214258062350472, guid: 241dc02df22604348ba2d4389051d846, type: 3}
+  movementMarkerSprites:
+  - {fileID: -5081753983647618156, guid: 241dc02df22604348ba2d4389051d846, type: 3}
+  - {fileID: 1385052058501580119, guid: 241dc02df22604348ba2d4389051d846, type: 3}
   mouseScreenPos: {x: 0, y: 0, z: 0}
   mouseWorldPos: {x: 0, y: 0, z: 0}
   mouseAfterBorders: {x: 0, y: 0, z: 0}

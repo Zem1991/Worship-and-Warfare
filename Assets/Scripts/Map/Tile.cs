@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ZemDirections;
 
 public class Tile : MonoBehaviour
 {
@@ -45,6 +46,19 @@ public class Tile : MonoBehaviour
         if (f) result.Add(f);
         if (fr) result.Add(fr);
         return result;
+    }
+
+    public OctoDirXZ GetNeighbourDirection(Tile t)
+    {
+        if (t == bl) return OctoDirXZ.BACK_LEFT;
+        if (t == b) return OctoDirXZ.BACK;
+        if (t == br) return OctoDirXZ.BACK_RIGHT;
+        if (t == l) return OctoDirXZ.LEFT;
+        if (t == r) return OctoDirXZ.RIGHT;
+        if (t == fl) return OctoDirXZ.FRONT_LEFT;
+        if (t == f) return OctoDirXZ.FRONT;
+        if (t == fr) return OctoDirXZ.FRONT_RIGHT;
+        return OctoDirXZ.NONE;
     }
 
     public void ChangeSprite(Sprite s)
