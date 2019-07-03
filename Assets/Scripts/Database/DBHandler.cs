@@ -10,16 +10,16 @@ public abstract class DBContentHandler : MonoBehaviour
 
     void Awake()
     {
-        DBContent defaultValue = GetComponent<DBContent>();
-        if (Validate(defaultValue))
+        DBContent defaultContent = GetComponent<DBContent>();
+        if (Validate(defaultContent))
         {
-            this.defaultContent = defaultValue;
+            this.defaultContent = defaultContent;
         }
 
         DBContent[] children = GetComponentsInChildren<DBContent>();
         foreach (var item in children)
         {
-            if (item.gameObject != defaultValue.gameObject)
+            if (item.gameObject != defaultContent.gameObject)
             {
                 if (Validate(item))
                 {
@@ -29,12 +29,29 @@ public abstract class DBContentHandler : MonoBehaviour
         }
     }
 
-    public virtual DBContent Select(int id)
+    public virtual DBContent Select(int index, bool returnDefault = true)
     {
-        if (id >= 0 && id < contents.Count)
-            return contents[id];
-        else
+        if (index >= 0 && index < contents.Count)
+            return contents[index];
+
+        if (returnDefault)
             return defaultContent;
+        else
+            return null;
+    }
+
+    public virtual DBContent Select(string id, bool returnDefault = true)
+    {
+        foreach (var item in contents)
+        {
+            if (item.id.Equals(id))
+                return item;
+        }
+
+        if (returnDefault)
+            return defaultContent;
+        else
+            return null;
     }
 
     private bool Validate(DBContent item)

@@ -107,7 +107,7 @@ public class PieceManager : MonoBehaviour
 
     public void Pathfind(Piece piece, Tile targetTile)
     {
-        Pathfinder.FindPath(piece.currentTile, targetTile, out List<PathNode> result, out float size);
-        piece.SetPath(result, Mathf.CeilToInt(size), targetTile);
+        Pathfinder.FindPath(piece.currentTile, targetTile, out List<PathNode> result, out float pathCost);
+        piece.SetPath(result, Mathf.CeilToInt(pathCost), targetTile);
     }
 }

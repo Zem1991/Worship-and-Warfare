@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd0bf20103dbedb47b554856908a56ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   unitName: 
   goldCost: 0
   leadershipCost: 0
@@ -214,11 +215,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 68528724}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1957607057}
+  m_Father: {fileID: 738488680}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &68528726
@@ -233,7 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fc6d2c9642aeb4fb13a5646fe4d76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Badlands
+  id: Badlands
   groundMovementCost: 150
   allowGroundMovement: 1
   allowWaterMovement: 0
@@ -282,9 +283,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62424aa6ee5883f4281d0d2c4db93144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   heroName: Cassius
   classs: {fileID: 1536214179}
   profilePicture: {fileID: 21300000, guid: feb6e54b1a604804683cfb45551bd2da, type: 3}
+--- !u!1 &120274622
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 120274623}
+  - component: {fileID: 120274624}
+  m_Layer: 0
+  m_Name: Trees
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &120274623
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120274622}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1211383262}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &120274624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120274622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56fc6d2c9642aeb4fb13a5646fe4d76a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Trees
+  groundMovementCost: 25
+  allowGroundMovement: 1
+  allowWaterMovement: 0
+  allowLavaMovement: 0
+  image: {fileID: 21300000, guid: 425eda0d4f05b9d4db97ce58cfd873a8, type: 3}
 --- !u!1 &122198180
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,6 +541,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &251117301
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 251117302}
+  m_Layer: 0
+  m_Name: Water
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &251117302
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251117301}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 845031834}
+  - {fileID: 903424732}
+  - {fileID: 1928968285}
+  m_Father: {fileID: 1957607057}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &254004730
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,6 +759,55 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fieldUI: {fileID: 122198185}
+--- !u!1 &461886818
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 461886819}
+  - component: {fileID: 461886820}
+  m_Layer: 0
+  m_Name: Mountains
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &461886819
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461886818}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1211383262}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &461886820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461886818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56fc6d2c9642aeb4fb13a5646fe4d76a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Mountains
+  groundMovementCost: 0
+  allowGroundMovement: 0
+  allowWaterMovement: 0
+  allowLavaMovement: 0
+  image: {fileID: 21300000, guid: 99724e9265e5b814eb647ecce47c6145, type: 3}
 --- !u!1 &484480922
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,6 +866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4631cf7fddea526478aac2544ff31100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   className: Default Class
   faction: {fileID: 648845224}
   command: 2
@@ -766,11 +900,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 485034157}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1957607057}
+  m_Father: {fileID: 738488680}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &485034159
@@ -785,7 +919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fc6d2c9642aeb4fb13a5646fe4d76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Meadow
+  id: Meadow
   groundMovementCost: 100
   allowGroundMovement: 1
   allowWaterMovement: 0
@@ -815,11 +949,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 504196550}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1957607057}
+  m_Father: {fileID: 738488680}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &504196552
@@ -834,7 +968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fc6d2c9642aeb4fb13a5646fe4d76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Taiga
+  id: Taiga
   groundMovementCost: 100
   allowGroundMovement: 1
   allowWaterMovement: 0
@@ -897,6 +1031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05bb451b577e7794aa8dd4db25cc18a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   name: Default Status
   image: {fileID: 0}
 --- !u!1 &611034074
@@ -923,11 +1058,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 611034074}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1957607057}
+  m_Father: {fileID: 738488680}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &611034076
@@ -942,7 +1077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fc6d2c9642aeb4fb13a5646fe4d76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Grassland
+  id: Grassland
   groundMovementCost: 100
   allowGroundMovement: 1
   allowWaterMovement: 0
@@ -1005,6 +1140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d5cc84ec6e36454e9cf1e43987b34a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   name: Default Faction
   image: {fileID: 0}
 --- !u!1 &705507993
@@ -1155,7 +1291,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8a52ee523ce96b459cd595b71f08d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   image: {fileID: 0}
+--- !u!1 &738488679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 738488680}
+  m_Layer: 0
+  m_Name: Land
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &738488680
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738488679}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 611034075}
+  - {fileID: 485034158}
+  - {fileID: 1168993049}
+  - {fileID: 504196551}
+  - {fileID: 1715259766}
+  - {fileID: 805997494}
+  - {fileID: 1446948818}
+  - {fileID: 1850063022}
+  - {fileID: 68528725}
+  - {fileID: 1058524660}
+  - {fileID: 1811143332}
+  - {fileID: 1120953694}
+  m_Father: {fileID: 1957607057}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &805997493
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,11 +1359,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 805997493}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1957607057}
+  m_Father: {fileID: 738488680}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &805997495
@@ -1199,7 +1378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fc6d2c9642aeb4fb13a5646fe4d76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Ash
+  id: Ash
   groundMovementCost: 100
   allowGroundMovement: 1
   allowWaterMovement: 0
@@ -1229,12 +1408,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 845031833}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1957607057}
-  m_RootOrder: 12
+  m_Father: {fileID: 251117302}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &845031835
 MonoBehaviour:
@@ -1248,7 +1427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fc6d2c9642aeb4fb13a5646fe4d76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Water
+  id: Water
   groundMovementCost: 100
   allowGroundMovement: 0
   allowWaterMovement: 1
@@ -1297,6 +1476,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef547e3234ba59044a15318f2c7b5145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &870770570
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 870770571}
+  m_Layer: 0
+  m_Name: Road
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &870770571
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870770570}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1957607057}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &903424731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1321,12 +1530,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 903424731}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1957607057}
-  m_RootOrder: 13
+  m_Father: {fileID: 251117302}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &903424733
 MonoBehaviour:
@@ -1340,7 +1549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fc6d2c9642aeb4fb13a5646fe4d76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Marsh
+  id: Marsh
   groundMovementCost: 100
   allowGroundMovement: 0
   allowWaterMovement: 1
@@ -1573,11 +1782,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1058524659}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1957607057}
+  m_Father: {fileID: 738488680}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1058524661
@@ -1592,7 +1801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fc6d2c9642aeb4fb13a5646fe4d76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Snowfield
+  id: Snowfield
   groundMovementCost: 150
   allowGroundMovement: 1
   allowWaterMovement: 0
@@ -1622,11 +1831,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1120953693}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1957607057}
+  m_Father: {fileID: 738488680}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1120953695
@@ -1641,7 +1850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fc6d2c9642aeb4fb13a5646fe4d76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Fungal
+  id: Fungal
   groundMovementCost: 150
   allowGroundMovement: 1
   allowWaterMovement: 0
@@ -1704,6 +1913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d9b1412866ae449a0b05b0fea597e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   name: Default Animation
   image: {fileID: 0}
 --- !u!1 &1168993048
@@ -1730,11 +1940,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1168993048}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1957607057}
+  m_Father: {fileID: 738488680}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1168993050
@@ -1749,7 +1959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fc6d2c9642aeb4fb13a5646fe4d76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Savanna
+  id: Savanna
   groundMovementCost: 100
   allowGroundMovement: 1
   allowWaterMovement: 0
@@ -1812,8 +2022,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11bb62f05cf9ed4eb6d0d60b74c11a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   name: Default Spell
   image: {fileID: 0}
+--- !u!1 &1211383261
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1211383262}
+  m_Layer: 0
+  m_Name: Feature
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1211383262
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211383261}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 120274623}
+  - {fileID: 1833730353}
+  - {fileID: 461886819}
+  m_Father: {fileID: 1957607057}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1391922958
 GameObject:
   m_ObjectHideFlags: 0
@@ -1996,6 +2240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45dfe7c95a000ff4f80fb5e2b8e4a369, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   name: Default Item
   image: {fileID: 0}
 --- !u!1 &1446143053
@@ -2076,7 +2321,8 @@ MonoBehaviour:
   selectionTile: {fileID: 0}
   selectionPiece: {fileID: 0}
   canCommandSelectedPiece: 0
-  movementHighlightsRequireUpdate: 0
+  movementHighlightsUpdateFromCommand: 0
+  movementHighlightsUpdateOnPieceStop: 0
   movementHighlights: []
 --- !u!4 &1446143056
 Transform:
@@ -2132,11 +2378,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1446948817}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1957607057}
+  m_Father: {fileID: 738488680}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1446948819
@@ -2151,7 +2397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fc6d2c9642aeb4fb13a5646fe4d76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Jungle
+  id: Jungle
   groundMovementCost: 150
   allowGroundMovement: 1
   allowWaterMovement: 0
@@ -2214,6 +2460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb8e340daac033c43aa18033ee4e67ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   name: Default Element
   image: {fileID: 0}
 --- !u!1 &1536214177
@@ -2259,6 +2506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4631cf7fddea526478aac2544ff31100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   className: Judicator
   faction: {fileID: 648845224}
   command: 4
@@ -2325,6 +2573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 363462281fd4ad841b600bb6953a52fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   name: Default Trait
 --- !u!1 &1715259765
 GameObject:
@@ -2350,11 +2599,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1715259765}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1957607057}
+  m_Father: {fileID: 738488680}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1715259767
@@ -2369,7 +2618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fc6d2c9642aeb4fb13a5646fe4d76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Dirt
+  id: Dirt
   groundMovementCost: 100
   allowGroundMovement: 1
   allowWaterMovement: 0
@@ -2399,11 +2648,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1811143331}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1957607057}
+  m_Father: {fileID: 738488680}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1811143333
@@ -2418,12 +2667,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fc6d2c9642aeb4fb13a5646fe4d76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Sand
+  id: Sand
   groundMovementCost: 150
   allowGroundMovement: 1
   allowWaterMovement: 0
   allowLavaMovement: 0
   image: {fileID: 21300000, guid: 10e2dcb69da7b3447a11450e0a0b1995, type: 3}
+--- !u!1 &1833730352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1833730353}
+  - component: {fileID: 1833730354}
+  m_Layer: 0
+  m_Name: Rocks
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1833730353
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833730352}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1211383262}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1833730354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833730352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56fc6d2c9642aeb4fb13a5646fe4d76a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Rocks
+  groundMovementCost: 25
+  allowGroundMovement: 1
+  allowWaterMovement: 0
+  allowLavaMovement: 0
+  image: {fileID: 21300000, guid: 2bc0cac108822b24e91d01688e9d59e1, type: 3}
 --- !u!1 &1850063021
 GameObject:
   m_ObjectHideFlags: 0
@@ -2448,11 +2746,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1850063021}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1957607057}
+  m_Father: {fileID: 738488680}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1850063023
@@ -2467,7 +2765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fc6d2c9642aeb4fb13a5646fe4d76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Swamp
+  id: Swamp
   groundMovementCost: 150
   allowGroundMovement: 1
   allowWaterMovement: 0
@@ -2531,6 +2829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62424aa6ee5883f4281d0d2c4db93144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   heroName: Default Hero
   classs: {fileID: 484480925}
   profilePicture: {fileID: 21300000, guid: feb6e54b1a604804683cfb45551bd2da, type: 3}
@@ -2624,12 +2923,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928968284}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1957607057}
-  m_RootOrder: 14
+  m_Father: {fileID: 251117302}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1928968286
 MonoBehaviour:
@@ -2643,7 +2942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fc6d2c9642aeb4fb13a5646fe4d76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Lava
+  id: Lava
   groundMovementCost: 100
   allowGroundMovement: 0
   allowWaterMovement: 0
@@ -2706,6 +3005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac592de682496440b4aaca67b21cdac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   name: Default Skill
   image: {fileID: 0}
 --- !u!1 &1957607056
@@ -2737,21 +3037,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 611034075}
-  - {fileID: 485034158}
-  - {fileID: 1168993049}
-  - {fileID: 504196551}
-  - {fileID: 1715259766}
-  - {fileID: 805997494}
-  - {fileID: 1446948818}
-  - {fileID: 1850063022}
-  - {fileID: 68528725}
-  - {fileID: 1058524660}
-  - {fileID: 1811143332}
-  - {fileID: 1120953694}
-  - {fileID: 845031834}
-  - {fileID: 903424732}
-  - {fileID: 1928968285}
+  - {fileID: 1211383262}
+  - {fileID: 738488680}
+  - {fileID: 870770571}
+  - {fileID: 2116761659}
+  - {fileID: 251117302}
   m_Father: {fileID: 1037067536}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2780,7 +3070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fc6d2c9642aeb4fb13a5646fe4d76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Default Tileset
+  id: 
   groundMovementCost: 100
   allowGroundMovement: 1
   allowWaterMovement: 0
@@ -2875,3 +3165,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yourColor: {fileID: 1391922960}
+--- !u!1 &2116761658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2116761659}
+  m_Layer: 0
+  m_Name: Transition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2116761659
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116761658}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1957607057}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

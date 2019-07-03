@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class DBContent : MonoBehaviour
 {
-    //public string id; //maybe will not be necessary
+    public string id;
 }

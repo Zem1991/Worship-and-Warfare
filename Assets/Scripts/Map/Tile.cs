@@ -5,16 +5,23 @@ using ZemDirections;
 
 public class Tile : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
+    [Header("Renderers")]
+    public SpriteRenderer landRenderer;
+    public SpriteRenderer featureRenderer;
 
+    [Header("Stats")]
     public Vector2Int id;
+    public int groundMovementCost;
+    public bool allowGroundMovement;
+    public bool allowWaterMovement;
+    public bool allowLavaMovement;
 
-    [Header("Tilesets")]
-    public int lowerLand;
-    public int upperLand;
-    public int water;
-    public int feature;
-    public int road;
+    [Header("Tilesets Used")]
+    public string lowerLandId;
+    public string upperLandId;
+    public string waterId;
+    public string featureId;
+    public string roadId;
 
     [Header("Neighbours")]
     public Tile bl;
@@ -29,22 +36,27 @@ public class Tile : MonoBehaviour
     [Header("Other Objects")]
     public Piece piece;
 
-    void Awake()
-    {
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-    }
+    //void Awake()
+    //{
+    //    landRenderer = GetComponentInChildren<SpriteRenderer>();
+    //}
 
-    public List<Tile> GetNeighbours()
+    public List<Tile> GetNeighbours(bool needGroundAccess = false, bool needWaterAccess = false, bool needLavaAccess = false)
     {
-        List<Tile> result = new List<Tile>();
-        if (bl) result.Add(bl);
-        if (b) result.Add(b);
-        if (br) result.Add(br);
-        if (l) result.Add(l);
-        if (r) result.Add(r);
-        if (fl) result.Add(fl);
-        if (f) result.Add(f);
-        if (fr) result.Add(fr);
+        List<Tile> result = GetNeighbours();
+        List<Tile> iterator = new List<Tile>(result);
+        foreach (var item in iterator)
+        {
+            if (needGroundAccess && !item.allowGroundMovement)
+                result.Remove(item);
+
+            if (needWaterAccess && !item.allowWaterMovement)
+                result.Remove(item);
+
+            if (needLavaAccess && !item.allowLavaMovement)
+                result.Remove(item);
+        }
+        result.TrimExcess();
         return result;
     }
 
@@ -61,8 +73,27 @@ public class Tile : MonoBehaviour
         return OctoDirXZ.NONE;
     }
 
-    public void ChangeSprite(Sprite s)
+    public void ChangeLandSprite(Sprite s)
     {
-        spriteRenderer.sprite = s;
+        landRenderer.sprite = s;
+    }
+
+    public void ChangeFeatureSprite(Sprite s)
+    {
+        featureRenderer.sprite = s;
+    }
+
+    private List<Tile> GetNeighbours()
+    {
+        List<Tile> result = new List<Tile>();
+        if (bl) result.Add(bl);
+        if (b) result.Add(b);
+        if (br) result.Add(br);
+        if (l) result.Add(l);
+        if (r) result.Add(r);
+        if (fl) result.Add(fl);
+        if (f) result.Add(f);
+        if (fr) result.Add(fr);
+        return result;
     }
 }

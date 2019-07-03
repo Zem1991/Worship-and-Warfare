@@ -56,6 +56,8 @@ public class Piece : MonoBehaviour
         this.path = path;
         this.pathCost = pathCost;
         this.targetTile = targetTile;
+
+        Debug.Log("PIECE " + name + " got a new path with size " + pathCost);
     }
 
     public void Move()

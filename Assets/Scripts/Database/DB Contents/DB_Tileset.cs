@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class DB_Tileset : DBContent
 {
-    public new string name;
-
     [Header("Stats")]
     public int groundMovementCost = 100;
     public bool allowGroundMovement = true;

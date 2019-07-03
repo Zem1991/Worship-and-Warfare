@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class TileData
 {
-    public int lowerLand;
-    public int upperLand;
-    public int water;
-    public int feature;
-    public int road;
+    public string lowerLandId;
+    public string upperLandId;
+    public string waterId;
+    public string featureId;
+    public string roadId;
 }

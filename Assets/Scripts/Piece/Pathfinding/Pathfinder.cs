@@ -5,10 +5,12 @@ using UnityEngine;
 
 public static class Pathfinder
 {
-    public static void FindPath(Tile startTile, Tile targetTile, out List<PathNode> result, out float size)
+    public const float DIAGONAL_MODIFIER = 0.7F;
+
+    public static void FindPath(Tile startTile, Tile targetTile, out List<PathNode> result, out float pathCost)
     {
         result = null;
-        size = 0;
+        pathCost = 0;
         float operations = 0;
 
         PathNode startPN = new PathNode(startTile);
@@ -39,12 +41,12 @@ public static class Pathfinder
             //Make path if the target node was found
             if (currentPN.tile.id == targetTile.id)
             {
-                MakePath(startPN, currentPN, out result, out size);
+                MakePath(startPN, currentPN, out result, out pathCost);
                 break;
             }
 
             //Identify and process accessible neighbouring nodes
-            foreach (Tile neighbour in currentPN.tile.GetNeighbours())
+            foreach (Tile neighbour in currentPN.tile.GetNeighbours(true))
             {
                 //Neighbour node cannot be on the closed set
                 PathNode neighbourPN = new PathNode(neighbour);
@@ -70,15 +72,15 @@ public static class Pathfinder
         }
     }
 
-    private static void MakePath(PathNode startNode, PathNode targetNode, out List<PathNode> result, out float size)
+    private static void MakePath(PathNode startNode, PathNode targetNode, out List<PathNode> result, out float pathCost)
     {
         result = new List<PathNode>();
-        size = 0;
+        pathCost = 0;
         PathNode currentNode = targetNode;
         while (currentNode != startNode)
         {
             result.Add(currentNode);
-            size += DistanceFromHeuristic(currentNode, currentNode.previous);
+            pathCost += DistanceFromHeuristic(currentNode, currentNode.previous);
             currentNode = currentNode.previous;
         }
         result.Reverse();
@@ -96,10 +98,28 @@ public static class Pathfinder
 
     private static float DistanceFromHeuristic(PathNode from, PathNode to)
     {
-        int distX = Mathf.Abs(from.tile.id.x - to.tile.id.x);
-        int distY = Mathf.Abs(from.tile.id.y - to.tile.id.y);
+        Vector2Int fromId = from.tile.id;
+        Vector2Int toId = to.tile.id;
+        int distX = Mathf.Abs(fromId.x - toId.x);
+        int distY = Mathf.Abs(fromId.y - toId.y);
+        bool isDiagonal = (distX != 0 && distY != 0);
+
+        int fromCost = from.tile.groundMovementCost;
+        int toCost = to.tile.groundMovementCost;
+        float combinedCosts = (fromCost + toCost) / 2F;
+
         float result = distX + distY;
-        if (distX != 0 && distY != 0) result *= 0.7F;
+        result *= combinedCosts;
+        if (isDiagonal) result *= DIAGONAL_MODIFIER;
         return result;
     }
+
+    //private static float DistanceFromHeuristic(PathNode from, PathNode to)
+    //{
+    //    int distX = Mathf.Abs(from.tile.id.x - to.tile.id.x);
+    //    int distY = Mathf.Abs(from.tile.id.y - to.tile.id.y);
+    //    float result = distX + distY;
+    //    if (distX != 0 && distY != 0) result *= 0.7F;
+    //    return result;
+    //}
 }

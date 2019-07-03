@@ -39,11 +39,11 @@ public class Map : MonoBehaviour
 
                 TileData tileData = mapData.tiles[current];
                 newTile.id = new Vector2Int(col, row);
-                newTile.lowerLand = tileData.lowerLand;
-                newTile.upperLand = tileData.upperLand;
-                newTile.water = tileData.water;
-                newTile.feature = tileData.feature;
-                newTile.road = tileData.road;
+                newTile.lowerLandId = tileData.lowerLandId;
+                newTile.upperLandId = tileData.upperLandId;
+                newTile.waterId = tileData.waterId;
+                newTile.featureId = tileData.featureId;
+                newTile.roadId = tileData.roadId;
 
                 newTile.name = newTile.id.ToString();
                 current++;
@@ -81,9 +81,26 @@ public class Map : MonoBehaviour
         DBHandler_Tileset tilesets = db.tilesets;
         foreach (var item in tiles)
         {
-            DB_Tileset lowerLand = tilesets.Select(item.lowerLand) as DB_Tileset;
+            DB_Tileset lowerLand = tilesets.Select(item.lowerLandId) as DB_Tileset;
             Sprite s = lowerLand.image;
-            item.ChangeSprite(s);
+            item.ChangeLandSprite(s);
+
+            item.groundMovementCost = lowerLand.groundMovementCost;
+            item.allowGroundMovement = lowerLand.allowGroundMovement;
+            item.allowWaterMovement = lowerLand.allowWaterMovement;
+            item.allowLavaMovement = lowerLand.allowLavaMovement;
+
+            DB_Tileset feature = tilesets.Select(item.featureId, false) as DB_Tileset;
+            if (feature)
+            {
+                s = feature.image;
+                item.ChangeFeatureSprite(s);
+
+                item.groundMovementCost += feature.groundMovementCost;
+                item.allowGroundMovement &= feature.allowGroundMovement;
+                item.allowWaterMovement &= feature.allowWaterMovement;
+                item.allowLavaMovement &= feature.allowLavaMovement;
+            }
         }
     }
 }
