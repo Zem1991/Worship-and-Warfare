@@ -86,6 +86,7 @@ public class PieceManager : MonoBehaviour
             }
 
             newPiece.currentTile = mm.map.tiles[posX, posY];
+            newPiece.currentTile.piece = newPiece;
 
             if (hero != null)
             {
@@ -105,9 +106,20 @@ public class PieceManager : MonoBehaviour
         }
     }
 
-    public void Pathfind(Piece piece, Tile targetTile)
+    public void Pathfind(Piece piece, Tile targetTile,
+        bool needGroundAccess = true, bool needWaterAccess = false, bool needLavaAccess = false)
     {
-        Pathfinder.FindPath(piece.currentTile, targetTile, out List<PathNode> result, out float pathCost);
+        Pathfinder.FindPath(piece.currentTile, targetTile, out List<PathNode> result, out float pathCost,
+            needGroundAccess, needWaterAccess, needLavaAccess);
         piece.SetPath(result, Mathf.CeilToInt(pathCost), targetTile);
+    }
+
+    public void PiecesAreInteracting(Piece sender, Piece receiver)
+    {
+        if (sender.owner == receiver.owner)
+        {
+            GameManager.Singleton.PerformExchange(sender, receiver);
+        }
+        GameManager.Singleton.PerformBattle(sender, receiver);
     }
 }

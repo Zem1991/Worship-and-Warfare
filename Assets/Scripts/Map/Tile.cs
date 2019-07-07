@@ -41,22 +41,22 @@ public class Tile : MonoBehaviour
     //    landRenderer = GetComponentInChildren<SpriteRenderer>();
     //}
 
-    public List<Tile> GetNeighbours(bool needGroundAccess = false, bool needWaterAccess = false, bool needLavaAccess = false)
+    public bool IsAcessible(bool needGroundAccess, bool needWaterAccess, bool needLavaAccess)
     {
-        List<Tile> result = GetNeighbours();
-        List<Tile> iterator = new List<Tile>(result);
-        foreach (var item in iterator)
+        if (needGroundAccess && !allowGroundMovement) return false;
+        if (needWaterAccess && !allowWaterMovement) return false;
+        if (needLavaAccess && !allowLavaMovement) return false;
+        return true;
+    }
+
+    public List<Tile> GetAccessibleNeighbours(bool needGroundAccess, bool needWaterAccess, bool needLavaAccess)
+    {
+        List<Tile> result = new List<Tile>();
+        foreach (var item in GetNeighbours())
         {
-            if (needGroundAccess && !item.allowGroundMovement)
-                result.Remove(item);
-
-            if (needWaterAccess && !item.allowWaterMovement)
-                result.Remove(item);
-
-            if (needLavaAccess && !item.allowLavaMovement)
-                result.Remove(item);
+            if (!item.IsAcessible(needGroundAccess, needWaterAccess, needLavaAccess)) continue;
+            result.Add(item);
         }
-        result.TrimExcess();
         return result;
     }
 

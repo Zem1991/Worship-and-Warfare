@@ -7,11 +7,13 @@ public static class Pathfinder
 {
     public const float DIAGONAL_MODIFIER = 0.7F;
 
-    public static void FindPath(Tile startTile, Tile targetTile, out List<PathNode> result, out float pathCost)
+    public static void FindPath(Tile startTile, Tile targetTile, out List<PathNode> result, out float pathCost,
+        bool needGroundAccess, bool needWaterAccess, bool needLavaAccess)
     {
         result = null;
         pathCost = 0;
         float operations = 0;
+        if (!targetTile.piece && !targetTile.IsAcessible(needGroundAccess, needWaterAccess, needLavaAccess)) return;
 
         PathNode startPN = new PathNode(startTile);
         PathNode targetPN = new PathNode(targetTile);
@@ -21,10 +23,10 @@ public static class Pathfinder
         openList.Add(startPN);
         while (openList.Count > 0)
         {
-            //New operation: process an PathNode
+            // New operation: process an PathNode
             operations++;
 
-            //Get the PathNode with the lowest totalDistance/fCost
+            // Get the PathNode with the lowest totalDistance/fCost
             PathNode currentPN = openList[0];
             for (int i = 0; i < openList.Count; i++)
             {
@@ -38,21 +40,27 @@ public static class Pathfinder
             openList.Remove(currentPN);
             closedList.Add(currentPN.tile.id);
 
-            //Make path if the target node was found
+            // Make path if the target node was found
             if (currentPN.tile.id == targetTile.id)
             {
                 MakePath(startPN, currentPN, out result, out pathCost);
-                break;
+                return;
             }
 
-            //Identify and process accessible neighbouring nodes
-            foreach (Tile neighbour in currentPN.tile.GetNeighbours(true))
+            // Identify and process accessible neighbouring nodes
+            foreach (Tile neighbour in currentPN.tile.GetAccessibleNeighbours(needGroundAccess, needWaterAccess, needLavaAccess))
             {
-                //Neighbour node cannot be on the closed set
+                // Neighbour node cannot have a piece over it, UNLESS it's the target node.
+                if (neighbour.piece)
+                {
+                    if (neighbour != targetTile) continue;
+                }
+
+                // Neighbour node cannot be on the closed set
                 PathNode neighbourPN = new PathNode(neighbour);
                 if (closedList.Contains(neighbour.id)) continue;
 
-                //Switch to existing node if possible
+                // Switch to existing node if possible
                 PathNode existingPN = ListContainsNodeId(openList, neighbour.id);
                 bool neighbourOnOpenList = (existingPN != null);
                 if (neighbourOnOpenList) neighbourPN = existingPN;
@@ -60,7 +68,7 @@ public static class Pathfinder
                 float moveCost = currentPN.gCost_DistFromStart + DistanceFromHeuristic(currentPN, neighbourPN);
                 if (!neighbourOnOpenList || moveCost < neighbourPN.gCost_DistFromStart)
                 {
-                    //New operation: create/update an PathNode
+                    // New operation: create/update an PathNode
                     operations++;
 
                     neighbourPN.gCost_DistFromStart = moveCost;

@@ -23,7 +23,7 @@ public class Piece : MonoBehaviour
 
     [Header("Movement")]
     public bool inMovement;
-    public bool stopMovement;
+    public bool stopWasCalled;
     public Tile currentTile;
     public Tile targetTile;
     public Tile nextTile;
@@ -67,30 +67,51 @@ public class Piece : MonoBehaviour
 
     public void Stop()
     {
-        stopMovement = true;
+        stopWasCalled = true;
     }
 
     private void Movement()
     {
         if (!inMovement) return;
 
+        bool clearData = false;
+        Piece pieceToInteract = null;
+
         if (nextTile == null)
         {
-            if (stopMovement ||
+
+            if (stopWasCalled ||
                 path.Count <= 0)
             {
-                inMovement = false;
-                stopMovement = false;
-
-                nextPos = Vector3.zero;
-                direction = Vector3.zero;
-                velocity = Vector3.zero;
+                stopWasCalled = false;
+                clearData = true;
             }
             else
             {
                 nextTile = path[0].tile;
                 path.RemoveAt(0);
+
+                // If the next tile is the target tile, and the target tile has a piece over it,
+                // then instead of performing one more move we perform an interaction between pieces.
+                if (nextTile == targetTile)
+                {
+                    pieceToInteract = nextTile.piece;
+                    if (pieceToInteract) clearData = true;
+                }
             }
+        }
+
+        if (clearData)
+        {
+            inMovement = false;
+            nextPos = Vector3.zero;
+            direction = Vector3.zero;
+            velocity = Vector3.zero;
+        }
+        if (pieceToInteract)
+        {
+            nextTile = null;
+            PieceManager.Singleton.PiecesAreInteracting(this, pieceToInteract);
         }
 
         if (inMovement)
@@ -112,6 +133,8 @@ public class Piece : MonoBehaviour
                 //Moving to the bottom or left edge of the grid without this fix may cause the Unit to be read as over a tile with coordinate equal to -1
                 transform.position = nextPos;
 
+                currentTile.piece = null;
+                nextTile.piece = this;
                 currentTile = nextTile;
                 nextTile = null;
             }

@@ -53,6 +53,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void PerformExchange(Piece sender, Piece receiver)
+    {
+        Debug.Log("PIECES ARE EXCHANGING STUFF");
+    }
+
+    public void PerformBattle(Piece sender, Piece receiver)
+    {
+        Debug.Log("PIECES ARE IN BATTLE");
+    }
+
     private void BootScenario()
     {
         Debug.Log("Booting scenario: " + scenarioToBoot);
