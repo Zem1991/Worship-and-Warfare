@@ -21,6 +21,9 @@ public class DatabaseManager : MonoBehaviour
     public DBHandler_Tileset tilesets;
     public DBHandler_Battleground battlegrounds;
 
+    [Header("Database status")]
+    public bool isLoaded;
+
     void Awake()
     {
         if (Singleton != null)
@@ -46,5 +49,8 @@ public class DatabaseManager : MonoBehaviour
         statuses = GetComponentInChildren<DBHandler_Status>();
         tilesets = GetComponentInChildren<DBHandler_Tileset>();
         battlegrounds = GetComponentInChildren<DBHandler_Battleground>();
+
+        isLoaded = true;
+        Debug.Log("DatabaseManager loaded!");
     }
 }

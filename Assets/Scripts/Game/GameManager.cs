@@ -2,24 +2,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public const string SCENE_DATABASE = "Database";
+    public const string SCENE_FIELD = "Game - Field";
+    public const string SCENE_COMBAT = "Game - Combat";
+    public const string SCENE_TOWN = "Game - Town";
+
     public static GameManager Singleton;
 
-    private TimeSpan timeElapsed = TimeSpan.Zero;
-
     [Header("Settings")]
-    public string scenarioToBoot = "Test Scenario 01";
-
-    [Header("Variables")]
-    public bool scenarioBooted;
-    public string timeElapsedText;
-    public int currentDay;
-    public Player currentPlayer;
+    public string scenarioFileToLoad = "Test Scenario 01";
 
     [Header("Objects")]
     public CameraController cameraController;
+
+    [Header("Scenes")]
+    public Scene sceneDatabase;
+    public Scene sceneField;
+    public Scene sceneTown;
+    public Scene sceneCombat;
+
+    [Header("Variables")]
+    public bool scenarioBooted;
+    public bool scenarioStarted;
+    public int currentDay;
+    public Player currentPlayer;
+    public string timeElapsedText;
+
+    private WaitForEndOfFrame waitEOF;
+    private ScenarioFileData scenarioFileData;
+    private TimeSpan timeElapsed;
 
     void Awake()
     {
@@ -34,13 +49,13 @@ public class GameManager : MonoBehaviour
         }
 
         cameraController = GetComponentInChildren<CameraController>();
+        waitEOF = new WaitForEndOfFrame();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        BootScenario();
-        StartMatch();
+        LoadScenarioFile(null);
     }
 
     // Update is called once per frame
@@ -58,58 +73,111 @@ public class GameManager : MonoBehaviour
         Debug.Log("PIECES ARE EXCHANGING STUFF");
     }
 
-    public void PerformBattle(Piece sender, Piece receiver)
+    public void GoToCombat(Piece attacker, Piece defender)
     {
         Debug.Log("PIECES ARE IN BATTLE");
+        StartCoroutine(LoadCombatScene(attacker, defender));
     }
 
-    private void BootScenario()
+    public void LoadScenarioFile(string scenarioFileName)
     {
-        Debug.Log("Booting scenario: " + scenarioToBoot);
-        ScenarioFileData data = ScenarioFileHandler.Load(scenarioToBoot);
-        if (data != null)
+        Debug.Log("Loading scenario file: " + scenarioFileToLoad);
+        scenarioFileData = ScenarioFileHandler.Load(scenarioFileToLoad);
+
+        if (scenarioFileData != null)
         {
-            ScenarioManager.Singleton.BootScenario(data);
-            Debug.Log("Scenario booted.");
+            Debug.Log("Scenario file loaded successfully. Initializing...");
+            scenarioBooted = false;
+            scenarioStarted = false;
+            StartCoroutine(InitializeScenario());
         }
-        else{
-            Debug.LogError("Could not boot the scenario");
+        else
+        {
+            Debug.LogError("Scenario file could not be loaded.");
         }
     }
 
-    private void StartMatch()
+    private IEnumerator InitializeScenario()
     {
-        scenarioBooted = true;
-        currentDay = 1;
+        yield return StartCoroutine(VerifyDatabaseScene());
+        yield return StartCoroutine(VerifyFieldScene());
+        Debug.Log("All required scenes are loaded. Can now boot the scenario.");
+
+        yield return StartCoroutine(BootScenario());
+        StartScenario();
     }
 
-    //public GameData GetGameData()
+    private IEnumerator VerifyDatabaseScene()
+    {
+        sceneDatabase = SceneManager.GetSceneByName(SCENE_DATABASE);
+        if (sceneDatabase.handle == 0)
+        {
+            yield return SceneManager.LoadSceneAsync(SCENE_DATABASE, LoadSceneMode.Additive);
+            sceneDatabase = SceneManager.GetSceneByName(SCENE_DATABASE);
+            Debug.Log("Scene " + SCENE_DATABASE + " created.");
+        }
+        else
+        {
+            Debug.Log("Scene " + SCENE_DATABASE + " being reused.");
+        }
+    }
+
+    private IEnumerator VerifyFieldScene()
+    {
+        sceneField = SceneManager.GetSceneByName(SCENE_FIELD);
+        if (sceneField.handle == 0)
+        {
+            yield return SceneManager.LoadSceneAsync(SCENE_FIELD, LoadSceneMode.Additive);
+            sceneField = SceneManager.GetSceneByName(SCENE_FIELD);
+            Debug.Log("Scene " + SCENE_FIELD + " created.");
+        }
+        else
+        {
+            Debug.Log("Scene " + SCENE_FIELD + " being reused.");
+        }
+    }
+
+    private IEnumerator BootScenario()
+    {
+        ScenarioManager.Singleton.BootScenario(scenarioFileData);
+        scenarioBooted = true;
+        Debug.Log("Scenario booted.");
+        yield return waitEOF;
+    }
+
+    private void StartScenario()
+    {
+        currentDay = 1;
+        currentPlayer = PlayerManager.Singleton.allPlayers[0];
+        timeElapsed = TimeSpan.Zero;
+
+        scenarioStarted = true;
+        Debug.Log("Scenario started.");
+    }
+
+    //          TODO:   DO THIS ONE LATER
+    //private IEnumerator VerifyTownScene()
     //{
-    //    return new GameData(timeElapsed, currentDay, currentPlayer.id);
+    //    sceneTown = SceneManager.GetSceneByName(SCENE_TOWN);
+    //    if (sceneTown.handle == 0)
+    //    {
+    //        yield return SceneManager.LoadSceneAsync(SCENE_TOWN, LoadSceneMode.Additive);
+    //        sceneTown = SceneManager.GetSceneByName(SCENE_TOWN);
+    //        Debug.Log("Scene " + SCENE_TOWN + " created.");
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("Scene " + SCENE_TOWN + " being reused.");
+    //    }
     //}
 
-    //public void SaveGame()
-    //{
-    //    ScenarioData scenario = ScenarioManager.Singleton.GetScenarioData();
-    //    GameData game = GetGameData();
-    //    SaveData data = new SaveData(scenario, game);
-    //    SaveLoadHandler.SaveGame(saveFileName, data);
-    //}
+    private IEnumerator LoadCombatScene(Piece attacker, Piece defender)
+    {
+        yield return SceneManager.LoadSceneAsync(SCENE_COMBAT, LoadSceneMode.Additive);
+        sceneCombat = SceneManager.GetSceneByName(SCENE_COMBAT);
+        Debug.Log("Scene " + SCENE_COMBAT + " created.");
 
-    //public void LoadGame()
-    //{
-    //    SaveData data = SaveLoadHandler.LoadGame(saveFileName);
-    //    UnloadData();
-    //    LoadData(data);
-    //}
-
-    //private void UnloadData()
-    //{
-    //    Debug.Log("Pretend level data was unloaded");
-    //}
-
-    //private void LoadData(SaveData data)
-    //{
-    //    Debug.Log("Pretend level data was loaded");
-    //}
+        DB_Battleground battleground = DatabaseManager.Singleton.battlegrounds.defaultContent as DB_Battleground;
+        CombatManager.Singleton.StartCombat(battleground, attacker, defender);
+    }
 }

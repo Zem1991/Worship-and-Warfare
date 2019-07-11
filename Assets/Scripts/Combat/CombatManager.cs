@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class CombatManager : MonoBehaviour
 {
+    public static CombatManager Singleton;
+
     [Header("Battleground")]
     public Sprite background;
 
@@ -24,7 +26,20 @@ public class CombatManager : MonoBehaviour
     public CombatUnit currentUnit;
     public List<CombatUnit> turnSequence;
 
-    void StartCombat(DB_Battleground battleground, Piece attackerPiece, Piece defenderPiece)
+    void Awake()
+    {
+        if (Singleton != null)
+        {
+            Debug.LogWarning("Only one instance of CombatManager may exist! Deleting this extra one.");
+            Destroy(this);
+        }
+        else
+        {
+            Singleton = this;
+        }
+    }
+
+    public void StartCombat(DB_Battleground battleground, Piece attackerPiece, Piece defenderPiece)
     {
         background = battleground.image;
 

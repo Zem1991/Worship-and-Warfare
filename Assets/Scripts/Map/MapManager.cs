@@ -13,6 +13,9 @@ public class MapManager : MonoBehaviour
     public Map map;
     //public Map extraMap;
 
+    [Header("Database status")]
+    public bool isLoaded;
+
     void Awake()
     {
         if (Singleton != null)
@@ -24,6 +27,9 @@ public class MapManager : MonoBehaviour
         {
             Singleton = this;
         }
+
+        isLoaded = true;
+        Debug.Log("MapManager loaded!");
     }
 
     public void BuildMap(Vector2Int size, MapData data)

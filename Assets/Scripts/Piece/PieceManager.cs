@@ -120,6 +120,6 @@ public class PieceManager : MonoBehaviour
         {
             GameManager.Singleton.PerformExchange(sender, receiver);
         }
-        GameManager.Singleton.PerformBattle(sender, receiver);
+        GameManager.Singleton.GoToCombat(sender, receiver);
     }
 }
