@@ -5,7 +5,7 @@ using UnityEngine;
 public class PathNode
 {
     // This node on the "visible" grid
-    public Tile tile;
+    public FieldTile tile;
 
     // Where this node came from during the pathfinding process
     public PathNode previous;
@@ -14,7 +14,7 @@ public class PathNode
     public float hCost_DistFromTarget;
     public float fCost_totalDistance { get { return gCost_DistFromStart + hCost_DistFromTarget; } }
 
-    public PathNode(Tile tile)
+    public PathNode(FieldTile tile)
     {
         this.tile = tile;
     }

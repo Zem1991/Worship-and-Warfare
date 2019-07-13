@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ZemDirections;
 
-public class Tile : MonoBehaviour
+public class FieldTile : MonoBehaviour
 {
     [Header("Renderers")]
     public SpriteRenderer landRenderer;
@@ -24,14 +24,14 @@ public class Tile : MonoBehaviour
     public string roadId;
 
     [Header("Neighbours")]
-    public Tile bl;
-    public Tile b;
-    public Tile br;
-    public Tile l;
-    public Tile r;
-    public Tile fl;
-    public Tile f;
-    public Tile fr;
+    public FieldTile bl;
+    public FieldTile b;
+    public FieldTile br;
+    public FieldTile l;
+    public FieldTile r;
+    public FieldTile fl;
+    public FieldTile f;
+    public FieldTile fr;
 
     [Header("Other Objects")]
     public Piece piece;
@@ -41,6 +41,11 @@ public class Tile : MonoBehaviour
     //    landRenderer = GetComponentInChildren<SpriteRenderer>();
     //}
 
+    public bool IsOccupied()
+    {
+        return piece;
+    }
+
     public bool IsAcessible(bool needGroundAccess, bool needWaterAccess, bool needLavaAccess)
     {
         if (needGroundAccess && !allowGroundMovement) return false;
@@ -49,9 +54,9 @@ public class Tile : MonoBehaviour
         return true;
     }
 
-    public List<Tile> GetAccessibleNeighbours(bool needGroundAccess, bool needWaterAccess, bool needLavaAccess)
+    public List<FieldTile> GetAccessibleNeighbours(bool needGroundAccess, bool needWaterAccess, bool needLavaAccess)
     {
-        List<Tile> result = new List<Tile>();
+        List<FieldTile> result = new List<FieldTile>();
         foreach (var item in GetNeighbours())
         {
             if (!item.IsAcessible(needGroundAccess, needWaterAccess, needLavaAccess)) continue;
@@ -60,7 +65,7 @@ public class Tile : MonoBehaviour
         return result;
     }
 
-    public OctoDirXZ GetNeighbourDirection(Tile t)
+    public OctoDirXZ GetNeighbourDirection(FieldTile t)
     {
         if (t == bl) return OctoDirXZ.BACK_LEFT;
         if (t == b) return OctoDirXZ.BACK;
@@ -83,9 +88,9 @@ public class Tile : MonoBehaviour
         featureRenderer.sprite = s;
     }
 
-    private List<Tile> GetNeighbours()
+    private List<FieldTile> GetNeighbours()
     {
-        List<Tile> result = new List<Tile>();
+        List<FieldTile> result = new List<FieldTile>();
         if (bl) result.Add(bl);
         if (b) result.Add(b);
         if (br) result.Add(br);

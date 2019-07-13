@@ -7,6 +7,12 @@ public class CombatManager : MonoBehaviour
 {
     public static CombatManager Singleton;
 
+    [Header("Prefabs")]
+    public CombatTile prefabTile;
+
+    [Header("Diorama")]
+    public Diorama diorama;
+
     [Header("Battleground")]
     public Sprite background;
 
@@ -53,6 +59,9 @@ public class CombatManager : MonoBehaviour
 
         combatStarted = true;
         NextTurn();
+
+        //TODO THIS IS JUST FOR TESTING!
+        diorama.Create(null);
     }
 
     public void NextUnit()

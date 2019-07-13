@@ -7,7 +7,7 @@ public static class Pathfinder
 {
     public const float DIAGONAL_MODIFIER = 0.7F;
 
-    public static void FindPath(Tile startTile, Tile targetTile, out List<PathNode> result, out float pathCost,
+    public static void FindPath(FieldTile startTile, FieldTile targetTile, out List<PathNode> result, out float pathCost,
         bool needGroundAccess, bool needWaterAccess, bool needLavaAccess)
     {
         result = null;
@@ -48,7 +48,7 @@ public static class Pathfinder
             }
 
             // Identify and process accessible neighbouring nodes
-            foreach (Tile neighbour in currentPN.tile.GetAccessibleNeighbours(needGroundAccess, needWaterAccess, needLavaAccess))
+            foreach (FieldTile neighbour in currentPN.tile.GetAccessibleNeighbours(needGroundAccess, needWaterAccess, needLavaAccess))
             {
                 // Neighbour node cannot have a piece over it, UNLESS it's the target node.
                 if (neighbour.piece)

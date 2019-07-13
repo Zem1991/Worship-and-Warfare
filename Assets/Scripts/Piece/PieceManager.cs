@@ -106,7 +106,7 @@ public class PieceManager : MonoBehaviour
         }
     }
 
-    public void Pathfind(Piece piece, Tile targetTile,
+    public void Pathfind(Piece piece, FieldTile targetTile,
         bool needGroundAccess = true, bool needWaterAccess = false, bool needLavaAccess = false)
     {
         Pathfinder.FindPath(piece.currentTile, targetTile, out List<PathNode> result, out float pathCost,

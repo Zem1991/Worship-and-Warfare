@@ -7,7 +7,7 @@ public class MapManager : MonoBehaviour
     public static MapManager Singleton;
 
     [Header("Prefabs")]
-    public Tile prefabTile;
+    public FieldTile prefabTile;
 
     [Header("Maps")]
     public Map map;

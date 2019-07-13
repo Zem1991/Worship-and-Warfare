@@ -25,13 +25,13 @@ public class InputManager : MonoBehaviour
     [Header("Cursor Data")]
     public InputHighlight cursorHighlight;
     public Vector2Int cursorPos;
-    public Tile cursorTile;
+    public FieldTile cursorTile;
     public Piece cursorPiece;
 
     [Header("Selection Data")]
     public InputHighlight selectionHighlight;
     public Vector2Int selectionPos;
-    public Tile selectionTile;
+    public FieldTile selectionTile;
     public Piece selectionPiece;
     public bool canCommandSelectedPiece;
 
@@ -146,7 +146,7 @@ public class InputManager : MonoBehaviour
             {
                 if (item.collider == null) continue;
 
-                Tile t = item.collider.GetComponentInParent<Tile>();
+                FieldTile t = item.collider.GetComponentInParent<FieldTile>();
                 Piece p = item.collider.GetComponentInParent<Piece>();
                 if (cursorTile == null && t) cursorTile = t;
                 if (cursorPiece == null && p) cursorPiece = p;
@@ -262,8 +262,8 @@ public class InputManager : MonoBehaviour
             {
                 int nextI = i + 1;
 
-                Tile currentTile = (i == -1 ? selectionPiece.currentTile : path[i].tile);
-                Tile nextTile = path[nextI].tile;
+                FieldTile currentTile = (i == -1 ? selectionPiece.currentTile : path[i].tile);
+                FieldTile nextTile = path[nextI].tile;
 
                 Vector3 fromPos = currentTile.transform.position;
                 Vector3 toPos = nextTile.transform.position;

@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Map : MonoBehaviour
 {
     [Header("Data")]
-    public Tile[,] tiles;
+    public FieldTile[,] tiles;
 
     public void Remove()
     {
@@ -23,18 +22,18 @@ public class Map : MonoBehaviour
     public void Create(Vector2Int size, MapData mapData)
     {
         Remove();
-        tiles = new Tile[size.x, size.y];
+        tiles = new FieldTile[size.x, size.y];
 
         int current = 0;
         for (int row = 0; row < size.y; row++)
         {
             for (int col = 0; col < size.x; col++)
             {
-                Tile prefab = MapManager.Singleton.prefabTile;
+                FieldTile prefab = MapManager.Singleton.prefabTile;
                 Vector3 pos = new Vector3(col, 0, row);
                 Quaternion rot = Quaternion.identity;
 
-                Tile newTile = Instantiate(prefab, pos, rot, transform);
+                FieldTile newTile = Instantiate(prefab, pos, rot, transform);
                 tiles[col, row] = newTile;
 
                 TileData tileData = mapData.tiles[current];

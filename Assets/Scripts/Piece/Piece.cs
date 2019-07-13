@@ -24,9 +24,9 @@ public class Piece : MonoBehaviour
     [Header("Movement")]
     public bool inMovement;
     public bool stopWasCalled;
-    public Tile currentTile;
-    public Tile targetTile;
-    public Tile nextTile;
+    public FieldTile currentTile;
+    public FieldTile targetTile;
+    public FieldTile nextTile;
     public Vector3 nextPos;
     public Vector3 direction;
     public Vector3 velocity;
@@ -46,12 +46,12 @@ public class Piece : MonoBehaviour
         spriteRenderer.sprite = s;
     }
 
-    public bool HasPath(Tile targetTile)
+    public bool HasPath(FieldTile targetTile)
     {
         return path?.Count > 0 && this.targetTile == targetTile;
     }
 
-    public void SetPath(List<PathNode> path, int pathCost, Tile targetTile)
+    public void SetPath(List<PathNode> path, int pathCost, FieldTile targetTile)
     {
         this.path = path;
         this.pathCost = pathCost;
