@@ -8,12 +8,12 @@ public class CameraController : MonoBehaviour
     public int cameraSpeed = 10;
 
     [Header("Objects")]
-    public new Camera camera;
+    public CameraHolder holder;
 
     // Start is called before the first frame update
     void Start()
     {
-        camera = GetComponentInChildren<Camera>();
+        holder = GetComponentInChildren<CameraHolder>();
     }
 
     // Update is called once per frame
@@ -24,7 +24,7 @@ public class CameraController : MonoBehaviour
 
     public void MoveCamera(Vector3 direction)
     {
-        ScenarioManager sm = ScenarioManager.Singleton;
+        ScenarioManager sm = ScenarioManager.Instance;
 
         Vector3 dir = direction * cameraSpeed * Time.deltaTime;
         transform.Translate(dir);

@@ -4,20 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public enum GameScheme
+{
+    FIELD,
+    TOWN,
+    COMBAT
+}
+
+public class GameManager : Singleton<GameManager>
 {
     public const string SCENE_DATABASE = "Database";
     public const string SCENE_FIELD = "Game - Field";
-    public const string SCENE_COMBAT = "Game - Combat";
     public const string SCENE_TOWN = "Game - Town";
-
-    public static GameManager Singleton;
+    public const string SCENE_COMBAT = "Game - Combat";
 
     [Header("Settings")]
     public string scenarioFileToLoad = "Test Scenario 01";
-
-    [Header("Objects")]
-    public CameraController cameraController;
 
     [Header("Scenes")]
     public Scene sceneDatabase;
@@ -31,25 +33,17 @@ public class GameManager : MonoBehaviour
     public int currentDay;
     public Player currentPlayer;
     public string timeElapsedText;
+    public GameScheme currentGameScheme;
 
-    private WaitForEndOfFrame waitEOF;
     private ScenarioFileData scenarioFileData;
     private TimeSpan timeElapsed;
 
-    void Awake()
-    {
-        if (Singleton != null)
-        {
-            Debug.LogWarning("Only one instance of GameManager may exist! Deleting this extra one.");
-            Destroy(this);
-        }
-        else
-        {
-            Singleton = this;
-        }
+    public Camera mainCamera { get; private set; }
 
-        cameraController = GetComponentInChildren<CameraController>();
-        waitEOF = new WaitForEndOfFrame();
+    public override void Awake()
+    {
+        mainCamera = GetComponentInChildren<Camera>();
+        base.Awake();
     }
 
     // Start is called before the first frame update
@@ -66,17 +60,6 @@ public class GameManager : MonoBehaviour
             timeElapsed += TimeSpan.FromSeconds(Time.deltaTime);
             timeElapsedText = timeElapsed.ToString();
         }
-    }
-
-    public void PerformExchange(Piece sender, Piece receiver)
-    {
-        Debug.Log("PIECES ARE EXCHANGING STUFF");
-    }
-
-    public void GoToCombat(Piece attacker, Piece defender)
-    {
-        Debug.Log("PIECES ARE IN BATTLE");
-        StartCoroutine(LoadCombatScene(attacker, defender));
     }
 
     public void LoadScenarioFile(string scenarioFileName)
@@ -97,87 +80,128 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void PerformExchange(Piece sender, Piece receiver)
+    {
+        Debug.Log("PIECES ARE EXCHANGING STUFF");
+    }
+
+    public void GoToTown(Piece piece, Town town)
+    {
+        Debug.Log("PIECE IS VISITING TOWN");
+        ChangeSchemes(GameScheme.TOWN);
+
+        FieldSC.Instance.HideObjects();
+        //TownManager.Instance.StartCombat(null, attacker, defender);
+        TownSC.Instance.ShowObjects();
+    }
+
+    public void ReturnFromTown(Piece piece, Town town)
+    {
+        Debug.Log("PIECE IS BACK FROM TOWN");
+        ChangeSchemes(GameScheme.FIELD);
+
+        TownSC.Instance.HideObjects();
+        //TownManager.Instance.StartCombat(null, attacker, defender);
+        FieldSC.Instance.ShowObjects();
+    }
+
+    public void GoToCombat(Piece attacker, Piece defender)
+    {
+        Debug.Log("PIECES ARE IN BATTLE");
+        ChangeSchemes(GameScheme.COMBAT);
+
+        FieldSC.Instance.HideObjects();
+        CombatManager.Instance.StartCombat(null, attacker, defender);
+        CombatSC.Instance.ShowObjects();
+    }
+
+    public void ReturnFromCombat(Piece attacker, Piece defender)
+    {
+        Debug.Log("PIECES FINISHED BATTLE");
+        ChangeSchemes(GameScheme.FIELD);
+
+        CombatSC.Instance.HideObjects();
+        //CombatManager.Instance.StartCombat(null, attacker, defender);
+        FieldSC.Instance.ShowObjects();
+    }
+
     private IEnumerator InitializeScenario()
     {
-        yield return StartCoroutine(VerifyDatabaseScene());
-        yield return StartCoroutine(VerifyFieldScene());
+        yield return StartCoroutine(GameSC.Instance.ConfirmSceneLoaded());
+        Debug.Log("The Game scene is fully loaded. Loading extra scenes...");
+
+        StartCoroutine(LoadExtraScene(SCENE_DATABASE));
+        StartCoroutine(LoadExtraScene(SCENE_FIELD));
+        StartCoroutine(LoadExtraScene(SCENE_TOWN));
+        StartCoroutine(LoadExtraScene(SCENE_COMBAT));
+
+        yield return StartCoroutine(ConfirmAllScenesLoaded());
         Debug.Log("All required scenes are loaded. Can now boot the scenario.");
 
+        TownSC.Instance.HideObjects();
+        CombatSC.Instance.HideObjects();
+
         yield return StartCoroutine(BootScenario());
+        ChangeSchemes(GameScheme.FIELD);
         StartScenario();
     }
 
-    private IEnumerator VerifyDatabaseScene()
+    private IEnumerator LoadExtraScene(string name)
     {
-        sceneDatabase = SceneManager.GetSceneByName(SCENE_DATABASE);
-        if (sceneDatabase.handle == 0)
+        Scene scene = SceneManager.GetSceneByName(name);
+        if (scene.handle == 0)
         {
-            yield return SceneManager.LoadSceneAsync(SCENE_DATABASE, LoadSceneMode.Additive);
-            sceneDatabase = SceneManager.GetSceneByName(SCENE_DATABASE);
-            Debug.Log("Scene " + SCENE_DATABASE + " created.");
+            yield return SceneManager.LoadSceneAsync(name, LoadSceneMode.Additive);
+            Debug.Log("Scene " + name + " created.");
         }
         else
         {
-            Debug.Log("Scene " + SCENE_DATABASE + " being reused.");
+            Debug.Log("Scene " + name + " being reused.");
         }
     }
 
-    private IEnumerator VerifyFieldScene()
+    private IEnumerator ConfirmAllScenesLoaded()
     {
-        sceneField = SceneManager.GetSceneByName(SCENE_FIELD);
-        if (sceneField.handle == 0)
+        while (!(DatabaseSC.Instance && FieldSC.Instance && TownSC.Instance && CombatSC.Instance))
         {
-            yield return SceneManager.LoadSceneAsync(SCENE_FIELD, LoadSceneMode.Additive);
-            sceneField = SceneManager.GetSceneByName(SCENE_FIELD);
-            Debug.Log("Scene " + SCENE_FIELD + " created.");
+            yield return null;
         }
-        else
-        {
-            Debug.Log("Scene " + SCENE_FIELD + " being reused.");
-        }
+
+        yield return DatabaseSC.Instance.ConfirmSceneLoaded();
+        yield return FieldSC.Instance.ConfirmSceneLoaded();
+        yield return TownSC.Instance.ConfirmSceneLoaded();
+        yield return CombatSC.Instance.ConfirmSceneLoaded();
     }
 
     private IEnumerator BootScenario()
     {
-        ScenarioManager.Singleton.BootScenario(scenarioFileData);
+        ScenarioManager.Instance.BootScenario(scenarioFileData);
         scenarioBooted = true;
         Debug.Log("Scenario booted.");
-        yield return waitEOF;
+        yield return null;
     }
 
     private void StartScenario()
     {
         currentDay = 1;
-        currentPlayer = PlayerManager.Singleton.allPlayers[0];
+        currentPlayer = PlayerManager.Instance.allPlayers[0];
         timeElapsed = TimeSpan.Zero;
 
         scenarioStarted = true;
         Debug.Log("Scenario started.");
     }
 
-    //          TODO:   DO THIS ONE LATER
-    //private IEnumerator VerifyTownScene()
-    //{
-    //    sceneTown = SceneManager.GetSceneByName(SCENE_TOWN);
-    //    if (sceneTown.handle == 0)
-    //    {
-    //        yield return SceneManager.LoadSceneAsync(SCENE_TOWN, LoadSceneMode.Additive);
-    //        sceneTown = SceneManager.GetSceneByName(SCENE_TOWN);
-    //        Debug.Log("Scene " + SCENE_TOWN + " created.");
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("Scene " + SCENE_TOWN + " being reused.");
-    //    }
-    //}
-
-    private IEnumerator LoadCombatScene(Piece attacker, Piece defender)
+    private void ChangeSchemes(GameScheme gs)
     {
-        yield return SceneManager.LoadSceneAsync(SCENE_COMBAT, LoadSceneMode.Additive);
-        sceneCombat = SceneManager.GetSceneByName(SCENE_COMBAT);
-        Debug.Log("Scene " + SCENE_COMBAT + " created.");
+        InputManager.Instance.ChangeScheme(gs);
+        UIManager.Instance.ChangeScheme(gs);
 
-        DB_Battleground battleground = DatabaseManager.Singleton.battlegrounds.defaultContent as DB_Battleground;
-        CombatManager.Singleton.StartCombat(battleground, attacker, defender);
+        IInputScheme inputScheme = InputManager.Instance.scheme;
+        if (inputScheme != null)
+            mainCamera.transform.parent = inputScheme.CameraController().holder.transform;
+        else
+            mainCamera.transform.parent = transform;
+        mainCamera.transform.localPosition = Vector3.zero;
+        mainCamera.transform.localRotation = Quaternion.identity;
     }
 }

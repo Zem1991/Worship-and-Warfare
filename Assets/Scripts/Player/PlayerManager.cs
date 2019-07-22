@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : Singleton<PlayerManager>
 {
-    public static PlayerManager Singleton;
-
     public readonly int MAX_PLAYERS = 2;
     public readonly Color[] PLAYER_COLORS =
     {
@@ -26,19 +24,6 @@ public class PlayerManager : MonoBehaviour
     [Header("Players")]
     public Player localPlayer;
     public List<Player> allPlayers;
-
-    void Awake()
-    {
-        if (Singleton != null)
-        {
-            Debug.LogWarning("Only one instance of PlayerManager may exist! Deleting this extra one.");
-            Destroy(this);
-        }
-        else
-        {
-            Singleton = this;
-        }
-    }
 
     public void InstantiatePlayers(PlayerData[] data)
     {

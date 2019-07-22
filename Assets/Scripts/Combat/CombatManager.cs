@@ -1,17 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class CombatManager : MonoBehaviour
+public class CombatManager : Singleton<CombatManager>
 {
-    public static CombatManager Singleton;
-
     [Header("Prefabs")]
     public CombatTile prefabTile;
 
-    [Header("Diorama")]
-    public Diorama diorama;
+    [Header("Combat Map")]
+    public CombatMap map;
 
     [Header("Battleground")]
     public Sprite background;
@@ -32,22 +29,9 @@ public class CombatManager : MonoBehaviour
     public CombatUnit currentUnit;
     public List<CombatUnit> turnSequence;
 
-    void Awake()
-    {
-        if (Singleton != null)
-        {
-            Debug.LogWarning("Only one instance of CombatManager may exist! Deleting this extra one.");
-            Destroy(this);
-        }
-        else
-        {
-            Singleton = this;
-        }
-    }
-
     public void StartCombat(DB_Battleground battleground, Piece attackerPiece, Piece defenderPiece)
     {
-        background = battleground.image;
+        //background = battleground.image;
 
         attacker = attackerPiece.owner;
         //attackerHero = attackerPiece.hero;
@@ -57,11 +41,11 @@ public class CombatManager : MonoBehaviour
         //defenderHero = defenderPiece.hero;
         //defenderUnits = defenderPiece.units;
 
+        Debug.LogWarning("No tile data for combat map!");
+        map.Create(null);
+
         combatStarted = true;
         NextTurn();
-
-        //TODO THIS IS JUST FOR TESTING!
-        diorama.Create(null);
     }
 
     public void NextUnit()

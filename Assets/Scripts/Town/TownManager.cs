@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TownManager : MonoBehaviour
+public class TownManager : Singleton<TownManager>
 {
     // Start is called before the first frame update
     void Start()

@@ -1,35 +1,45 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
+public class UIManager : Singleton<UIManager>
 {
-    public static UIManager Singleton;
-
-    public FieldUI fieldUI;
-
-    void Awake()
-    {
-        if (Singleton != null)
-        {
-            Debug.LogWarning("Only one instance of UIManager may exist! Deleting this extra one.");
-            Destroy(this);
-        }
-        else
-        {
-            Singleton = this;
-        }
-    }
+    [Header("Current Scheme")]
+    public IUIScheme scheme;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (scheme != null)
+        {
+            scheme.UpdatePanels();
+        }
+    }
+
+    public void ChangeScheme(GameScheme gs)
+    {
+        switch (gs)
+        {
+            case GameScheme.FIELD:
+                scheme = FieldUI.Instance;
+                break;
+            case GameScheme.TOWN:
+                scheme = TownUI.Instance;
+                break;
+            case GameScheme.COMBAT:
+                scheme = CombatUI.Instance;
+                break;
+            default:
+                Debug.LogWarning("No UI scheme found!");
+                scheme = null;
+                break;
+        }
     }
 }

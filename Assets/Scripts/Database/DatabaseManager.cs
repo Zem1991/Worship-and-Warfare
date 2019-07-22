@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DatabaseManager : MonoBehaviour
+public class DatabaseManager : Singleton<DatabaseManager>
 {
-    public static DatabaseManager Singleton;
-
     [Header("Database Contents")]
     public DBHandler_Faction factions;
     public DBHandler_Class classes;
@@ -21,21 +19,8 @@ public class DatabaseManager : MonoBehaviour
     public DBHandler_Tileset tilesets;
     public DBHandler_Battleground battlegrounds;
 
-    [Header("Database status")]
-    public bool isLoaded;
-
-    void Awake()
+    public override void Awake()
     {
-        if (Singleton != null)
-        {
-            Debug.LogWarning("Only one instance of DatabaseManager may exist! Deleting this extra one.");
-            Destroy(this);
-        }
-        else
-        {
-            Singleton = this;
-        }
-
         factions = GetComponentInChildren<DBHandler_Faction>();
         classes = GetComponentInChildren<DBHandler_Class>();
         heroes = GetComponentInChildren<DBHandler_Hero>();
@@ -50,7 +35,6 @@ public class DatabaseManager : MonoBehaviour
         tilesets = GetComponentInChildren<DBHandler_Tileset>();
         battlegrounds = GetComponentInChildren<DBHandler_Battleground>();
 
-        isLoaded = true;
-        Debug.Log("DatabaseManager loaded!");
+        base.Awake();
     }
 }
