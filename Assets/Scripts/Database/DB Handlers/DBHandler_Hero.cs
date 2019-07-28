@@ -3,16 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DBHandler_Hero : DBContentHandler
+public class DBHandler_Hero : DBContentHandler<DB_Hero>
 {
-    protected override Type ContentType()
+    protected override bool VerifyContent(DB_Hero item)
     {
-        return typeof(DB_Hero);
-    }
-
-    protected override bool VerifyContent(DBContent item)
-    {
-        Debug.LogWarning("No specific content verification was done!");
+        Debug.LogWarning(GetType() + " - No specific content verification was done!");
         return true;
     }
 }

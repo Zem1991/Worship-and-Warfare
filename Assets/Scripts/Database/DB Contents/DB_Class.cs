@@ -12,7 +12,7 @@ public class DB_Class : DBContent
     public int offense;
     public int defense;
     public int power;
-    public int knowledge;
+    public int focus;
     //public int logistics;     //really needed?
 
     [Header("Graphics")]

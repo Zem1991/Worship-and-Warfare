@@ -16,12 +16,12 @@ public class DB_Unit : DBContent
     [Header("Stats")]
     public int goldCost;
     public int leadershipCost;
-    public int offense;
-    public int defense;
     public int damageMin;
     public int damageMax;
-    public int initiative;
+    public int resistance;
     public int movementRange;
+    public int initiative;
+    public int hitPoints;
     public UnitMovementType movementType;
 
     [Header("Graphics")]

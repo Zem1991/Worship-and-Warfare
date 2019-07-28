@@ -19,7 +19,7 @@ public class CombatTile : MonoBehaviour
     public CombatTile fr;
 
     [Header("Objects")]
-    public CombatUnit unit;
+    public UnitCombat unit;
 
     public bool IsOccupied()
     {

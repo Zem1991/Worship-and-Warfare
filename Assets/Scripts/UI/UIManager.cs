@@ -8,6 +8,9 @@ public class UIManager : Singleton<UIManager>
     [Header("Current Scheme")]
     public IUIScheme scheme;
 
+    [Header("Focused Panel")]
+    public AUIPanel focusedPanel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,5 +44,15 @@ public class UIManager : Singleton<UIManager>
                 scheme = null;
                 break;
         }
+    }
+
+    public void PointerEnter(AUIPanel panel)
+    {
+        focusedPanel = panel;
+    }
+
+    public void PointerExit(AUIPanel panel)
+    {
+        if (focusedPanel == panel) focusedPanel = null;
     }
 }

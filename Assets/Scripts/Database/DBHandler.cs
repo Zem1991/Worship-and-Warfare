@@ -3,20 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class DBContentHandler : MonoBehaviour
+public abstract class DBContentHandler<T> : MonoBehaviour where T : DBContent
 {
-    private List<DBContent> contents = new List<DBContent>();
-    public DBContent defaultContent;
+    private List<T> contents = new List<T>();
+    public T defaultContent;
 
     void Awake()
     {
-        DBContent defaultContent = GetComponent<DBContent>();
+        T defaultContent = GetComponent<T>();
         if (Validate(defaultContent))
         {
             this.defaultContent = defaultContent;
         }
 
-        DBContent[] children = GetComponentsInChildren<DBContent>();
+        T[] children = GetComponentsInChildren<T>();
         foreach (var item in children)
         {
             if (item.gameObject != defaultContent.gameObject)
@@ -29,7 +29,7 @@ public abstract class DBContentHandler : MonoBehaviour
         }
     }
 
-    public virtual DBContent Select(int index, bool returnDefault = true)
+    public virtual T Select(int index, bool returnDefault = true)
     {
         if (index >= 0 && index < contents.Count)
             return contents[index];
@@ -40,7 +40,7 @@ public abstract class DBContentHandler : MonoBehaviour
             return null;
     }
 
-    public virtual DBContent Select(string id, bool returnDefault = true)
+    public virtual T Select(string id, bool returnDefault = true)
     {
         foreach (var item in contents)
         {
@@ -54,9 +54,9 @@ public abstract class DBContentHandler : MonoBehaviour
             return null;
     }
 
-    private bool Validate(DBContent item)
+    private bool Validate(T item)
     {
-        bool correctType = item.GetType() == ContentType();
+        bool correctType = item.GetType() == typeof(T);
         if (correctType && VerifyContent(item))
         {
             return true;
@@ -68,7 +68,5 @@ public abstract class DBContentHandler : MonoBehaviour
         }
     }
 
-    protected abstract Type ContentType();
-
-    protected abstract bool VerifyContent(DBContent item);
+    protected abstract bool VerifyContent(T item);
 }

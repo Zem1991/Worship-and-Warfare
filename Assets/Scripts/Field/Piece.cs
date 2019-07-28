@@ -12,10 +12,8 @@ public class Piece : MonoBehaviour
     public Player owner;
 
     [Header("Contents")]
-    public DB_Hero hero;
-    public int heroExperience;
-    public DB_Unit[] units;
-    public int[] stackSizes;
+    public Hero hero;
+    public Unit[] units;
 
     [Header("Pathfinding")]
     public List<PathNode> path = new List<PathNode>();

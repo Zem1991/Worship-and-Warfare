@@ -49,8 +49,9 @@ public class PieceManager : Singleton<PieceManager>
             HeroData hero = item.hero;
             if (hero != null)
             {
-                newPiece.hero = dbHeroes.Select(hero.heroId) as DB_Hero;
-                newPiece.heroExperience = hero.experience;
+                int dbId = hero.heroId;
+                DB_Hero dbData = dbHeroes.Select(dbId);
+                newPiece.hero = new Hero(dbId, dbData);
             }
 
             if (item.units != null)
@@ -60,13 +61,14 @@ public class PieceManager : Singleton<PieceManager>
                     Debug.LogWarning("There are more units than the piece can store!");
                 }
 
-                newPiece.units = new DB_Unit[MAX_UNITS];
-                newPiece.stackSizes = new int[MAX_UNITS];
+                newPiece.units = new Unit[MAX_UNITS];
                 for (int i = 0; i < MAX_UNITS; i++)
                 {
                     UnitData unit = item.units[i];
-                    newPiece.units[i] = dbUnits.Select(unit.unitId) as DB_Unit;
-                    newPiece.stackSizes[i] = unit.stackSize;
+                    int dbId = unit.unitId;
+                    DB_Unit dbData = dbUnits.Select(dbId);
+                    int stackSize = unit.stackSize;
+                    newPiece.units[i] = new Unit(dbId, dbData, stackSize);
                 }
             }
 
@@ -75,17 +77,13 @@ public class PieceManager : Singleton<PieceManager>
 
             if (hero != null)
             {
-                newPiece.ChangeSprite(newPiece.hero.classs.fieldPicture);
+                newPiece.ChangeSprite(newPiece.hero.imgField);
                 newPiece.name = newPiece.hero.heroName + "´s army";
             }
             else
             {
-                DB_Unit relevantUnit = dbUnits.defaultContent as DB_Unit;
-                if (item.units != null)
-                {
-                    relevantUnit = newPiece.units[0];
-                }
-                newPiece.ChangeSprite(relevantUnit.fieldPicture);
+                Unit relevantUnit = newPiece.units[0];
+                newPiece.ChangeSprite(relevantUnit.imgField);
                 newPiece.name = "Army of " + relevantUnit.unitName;
             }
         }

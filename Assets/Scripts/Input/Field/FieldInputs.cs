@@ -120,7 +120,8 @@ public class FieldInputs : Singleton<FieldInputs>, IInputScheme
 
     private void SelectionHighlight()
     {
-        if (recorder.selectionDown)
+        if (recorder.selectionDown && 
+            !UIManager.Instance.focusedPanel)
         {
             movementHighlightsUpdateFromCommand = true;
 
@@ -162,7 +163,8 @@ public class FieldInputs : Singleton<FieldInputs>, IInputScheme
 
     private void SelectionCommand()
     {
-        if (recorder.commandDown)
+        if (recorder.commandDown &&
+            !UIManager.Instance.focusedPanel)
         {
             if (im.cursorOnPlayArea && selectionPiece)
             {
@@ -193,11 +195,15 @@ public class FieldInputs : Singleton<FieldInputs>, IInputScheme
 
     private void MovementHighlights()
     {
+        if (!selectionPiece) return;
+
+        List<PathNode> path = selectionPiece.path;
+        if (path == null) return;
+
         bool condition1 =
             movementHighlightsUpdateFromCommand;
         bool condition2 =
             movementHighlightsUpdateOnPieceStop &&
-            selectionPiece &&
             !selectionPiece.inMovement;
         if (!condition1 && !condition2) return;
 
@@ -210,11 +216,8 @@ public class FieldInputs : Singleton<FieldInputs>, IInputScheme
         if (canCommandSelectedPiece &&
             !selectionPiece.inMovement)
         {
-            List<PathNode> path = selectionPiece.path;
-            int totalNodes = path.Count;
-
             movementHighlights = new List<InputHighlight>();
-
+            int totalNodes = path.Count;
             for (int i = -1; i < totalNodes - 1; i++)
             {
                 int nextI = i + 1;
