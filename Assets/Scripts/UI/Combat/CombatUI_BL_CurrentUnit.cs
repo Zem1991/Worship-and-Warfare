@@ -15,6 +15,8 @@ public class CombatUI_BL_CurrentUnit : MonoBehaviour
 
     public void UpdatePanel(UnitCombat uc)
     {
+        if (!uc) return;
+
         unitPortrait.sprite = uc.imgProfile;
         txtUnitName.text = uc.unitName;
 

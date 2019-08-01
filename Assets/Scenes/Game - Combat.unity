@@ -1057,6 +1057,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1483650916}
+  - {fileID: 1278185234}
   - {fileID: 1109195201}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -1075,7 +1076,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabTile: {fileID: 5048916349898391127, guid: 605b8679fefa758409107b55da35c471,
     type: 3}
+  prefabHero: {fileID: 966317409597583226, guid: 851fb86c48436eb47a54adfd66a2ee35,
+    type: 3}
+  prefabUnit: {fileID: 5357993667777133704, guid: 8239842256aec30439c82d0289a49e23,
+    type: 3}
   map: {fileID: 1483650917}
+  pieces: {fileID: 1278185235}
   background: {fileID: 0}
   attacker: {fileID: 0}
   attackerHero: {fileID: 0}
@@ -3984,7 +3990,7 @@ Transform:
   - {fileID: 1960254085}
   - {fileID: 1168550566}
   m_Father: {fileID: 368341121}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1109195202
 MonoBehaviour:
@@ -4199,6 +4205,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1233397673}
   m_CullTransparentMesh: 0
+--- !u!1 &1278185233
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1278185234}
+  - component: {fileID: 1278185235}
+  m_Layer: 0
+  m_Name: Combat Pieces
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1278185234
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278185233}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 368341121}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1278185235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278185233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99d6db0e13f5fd14faecf5d7e02d07b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackerHero: {fileID: 0}
+  attackerUnits: []
+  defenderHero: {fileID: 0}
+  defenderUnits: []
 --- !u!1 &1292762936
 GameObject:
   m_ObjectHideFlags: 0
@@ -5431,7 +5484,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aa90ebb97b378b489cb02cd4b541d5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiles: []
+  allTiles: []
+  attackerStartTiles: []
+  defenderStartTiles: []
+  attackerHeroTile: {fileID: 0}
+  defenderHeroTile: {fileID: 0}
 --- !u!1 &1491702777
 GameObject:
   m_ObjectHideFlags: 0

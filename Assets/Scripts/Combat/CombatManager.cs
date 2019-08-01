@@ -6,22 +6,15 @@ public class CombatManager : Singleton<CombatManager>
 {
     [Header("Prefabs")]
     public CombatTile prefabTile;
+    public HeroCombat prefabHero;
+    public UnitCombat prefabUnit;
 
-    [Header("Combat Map")]
+    [Header("Auxiliary Objects")]
     public CombatMap map;
+    public CombatPieces pieces;
 
     [Header("Battleground")]
     public Sprite background;
-
-    [Header("Attacker")]
-    public Player attacker;
-    public HeroCombat attackerHero;
-    public List<UnitCombat> attackerUnits;
-
-    [Header("Defender")]
-    public Player defender;
-    public HeroCombat defenderHero;
-    public List<UnitCombat> defenderUnits;
 
     [Header("Combat Flow")]
     public bool combatStarted;
@@ -35,16 +28,11 @@ public class CombatManager : Singleton<CombatManager>
 
         //TODO INSTANTIATE COMBAT PIECES (HeroCombat and UnitCombat) USING DATA FROM RECEIVED PIECES!
 
-        attacker = attackerPiece.owner;
-        attackerHero = attackerPiece.hero;
-        attackerUnits = attackerPiece.units;
-
-        defender = defenderPiece.owner;
-        defenderHero = defenderPiece.hero;
-        defenderUnits = defenderPiece.units;
-
         Debug.LogWarning("No tile data for combat map!");
         map.Create(null);
+        pieces.Create(attackerPiece, defenderPiece);
+        pieces.InitialHeroPositions(map.attackerHeroTile, map.defenderHeroTile);
+        pieces.InitialUnitPositions(map.attackerStartTiles, map.defenderStartTiles);
 
         combatStarted = true;
         NextTurn();
@@ -73,8 +61,8 @@ public class CombatManager : Singleton<CombatManager>
     public void CalculateFullTurnSequence()
     {
         List<UnitCombat> newSequence = new List<UnitCombat>();
-        newSequence.AddRange(GetActiveUnits(attackerUnits));
-        newSequence.AddRange(GetActiveUnits(defenderUnits));
+        newSequence.AddRange(pieces.GetActiveUnits(pieces.attackerUnits));
+        newSequence.AddRange(pieces.GetActiveUnits(pieces.defenderUnits));
         turnSequence = newSequence;
         UpdateTurnSequence();
     }
@@ -95,15 +83,5 @@ public class CombatManager : Singleton<CombatManager>
         turnSequence.Remove(uc);
         turnSequence.TrimExcess();
         UpdateTurnSequence();
-    }
-
-    public List<UnitCombat> GetActiveUnits(List<UnitCombat> units)
-    {
-        List<UnitCombat> result = new List<UnitCombat>();
-        foreach (var item in units)
-        {
-            if (item.hitPointsCurrent > 0) result.Add(item);
-        }
-        return result;
     }
 }

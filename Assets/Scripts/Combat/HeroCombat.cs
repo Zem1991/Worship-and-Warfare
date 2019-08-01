@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeroCombat : MonoBehaviour
+public class HeroCombat : ACombatPiece
 {
     public string heroName;
     public string className;
@@ -41,5 +41,7 @@ public class HeroCombat : MonoBehaviour
 
         imgProfile = hero.imgProfile;
         imgCombat = hero.imgCombat;
+
+        ChangeSprite(imgCombat);
     }
 }

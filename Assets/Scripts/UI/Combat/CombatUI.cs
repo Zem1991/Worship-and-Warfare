@@ -17,8 +17,8 @@ public class CombatUI : Singleton<CombatUI>, IUIScheme
         CombatManager cm = CombatManager.Instance;
 
         coreButtons.UpdatePanel();
-        attackerParty.UpdatePanel(cm.attackerHero);
-        defenderParty.UpdatePanel(cm.defenderHero);
+        attackerParty.UpdatePanel(cm.pieces.attackerHero);
+        defenderParty.UpdatePanel(cm.pieces.defenderHero);
         timers.UpdatePanel();
         currentUnit.UpdatePanel(cm.currentUnit);
         turnSequence.UpdatePanel();

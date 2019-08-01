@@ -19,11 +19,11 @@ public class CombatTile : MonoBehaviour
     public CombatTile fr;
 
     [Header("Objects")]
-    public UnitCombat unit;
+    public ACombatPiece piece;
 
     public bool IsOccupied()
     {
-        return unit;
+        return piece != null;
     }
 
     public List<CombatTile> GetNeighbours()

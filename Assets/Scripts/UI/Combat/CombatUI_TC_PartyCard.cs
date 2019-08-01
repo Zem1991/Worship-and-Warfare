@@ -20,6 +20,8 @@ public class CombatUI_TC_PartyCard : MonoBehaviour
 
     public void UpdatePanel(HeroCombat hc)
     {
+        if (!hc) return;
+
         heroPortrait.sprite = hc.imgProfile;
         txtHeroName.text = hc.heroName;
         txtLevelAndClass.text = "Level ?? " + hc.className;

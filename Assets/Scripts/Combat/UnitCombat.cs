@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitCombat : MonoBehaviour
+public class UnitCombat : ACombatPiece
 {
     //public bool didMove;
     //public bool didAttack;
@@ -40,5 +40,7 @@ public class UnitCombat : MonoBehaviour
 
         imgProfile = unit.imgProfile;
         imgCombat = unit.imgCombat;
+
+        ChangeSprite(imgCombat);
     }
 }

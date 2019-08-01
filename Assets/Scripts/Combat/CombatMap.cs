@@ -7,25 +7,53 @@ public class CombatMap : MonoBehaviour
     public const int WIDTH = 15;
     public const int HEIGHT = 9;
 
-    [Header("Data")]
-    public List<CombatTile> tiles;
+    [Header("Common Tiles")]
+    public List<CombatTile> allTiles;
+    public List<CombatTile> attackerStartTiles;
+    public List<CombatTile> defenderStartTiles;
+
+    [Header("Special Tiles")]
+    public CombatTile attackerHeroTile;
+    public CombatTile defenderHeroTile;
 
     public void Remove()
     {
-        if (tiles != null)
+        if (allTiles != null)
         {
-            foreach (var item in tiles)
+            foreach (var item in allTiles)
             {
                 Destroy(item);
             }
-            tiles = null;
+            allTiles = null;
+        }
+
+        if (attackerStartTiles != null)
+        {
+            foreach (var item in attackerStartTiles)
+            {
+                Destroy(item);
+            }
+            attackerStartTiles = null;
+        }
+
+        if (defenderStartTiles != null)
+        {
+            foreach (var item in defenderStartTiles)
+            {
+                Destroy(item);
+            }
+            defenderStartTiles = null;
         }
     }
 
     public void Create(TileData tileData)
     {
         Remove();
-        tiles = new List<CombatTile>();
+
+        allTiles = new List<CombatTile>();
+        attackerStartTiles = new List<CombatTile>();
+        defenderStartTiles = new List<CombatTile>();
+        CombatTile prefabTile = CombatManager.Instance.prefabTile;
 
         Vector3 startPos = new Vector3();
         startPos.x = (WIDTH - 1) / -2F;
@@ -50,14 +78,13 @@ public class CombatMap : MonoBehaviour
 
             for (int col = 0; col < maxCol; col++)
             {
-                CombatTile prefab = CombatManager.Instance.prefabTile;
                 Vector3 pos = startPos;
                 pos.x += col + colPosAdjust;
                 pos.z += row;
                 Quaternion rot = Quaternion.identity;
 
-                CombatTile newTile = Instantiate(prefab, pos, rot, transform);
-                tiles.Add(newTile);
+                CombatTile newTile = Instantiate(prefabTile, pos, rot, transform);
+                allTiles.Add(newTile);
 
                 newTile.id = current;
                 newTile.rowId = row;
@@ -100,12 +127,27 @@ public class CombatMap : MonoBehaviour
 
                 previousInCurrentRow = newTile;
 
-                if (col == maxCol - 1)
+                int lastCol = maxCol - 1;
+                if (col == lastCol)
                 {
                     previousRowReference = firstOfCurrentRow;
                     previousRowReferenceLeft = firstOfCurrentRow.l;
                 }
+
+                //Set attacker's start tiles
+                if (col == 0) attackerStartTiles.Add(newTile);
+                //Set defender's start tiles
+                if (col == lastCol) defenderStartTiles.Add(newTile);
             }
         }
+
+        Vector3 heroTilePos = startPos;
+        heroTilePos.x -= 2.5F;
+        heroTilePos.z += 6.5F;
+        Quaternion heroTileRot = Quaternion.identity;
+        attackerHeroTile = Instantiate(prefabTile, heroTilePos, heroTileRot, transform);
+
+        heroTilePos.x *= -1;
+        defenderHeroTile = Instantiate(prefabTile, heroTilePos, heroTileRot, transform);
     }
 }
