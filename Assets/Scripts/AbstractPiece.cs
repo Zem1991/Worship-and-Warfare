@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Piece : MonoBehaviour
+public abstract class AbstractPiece : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
+
     public static readonly float movementSpeed = 5F;
 
     [Header("Identification")]
     public Player owner;
-
-    [Header("Contents")]
-    public Hero hero;
-    public Unit[] units;
 
     [Header("Pathfinding")]
     public List<PathNode> path = new List<PathNode>();
@@ -22,14 +18,14 @@ public class Piece : MonoBehaviour
     [Header("Movement")]
     public bool inMovement;
     public bool stopWasCalled;
-    public FieldTile currentTile;
-    public FieldTile targetTile;
-    public FieldTile nextTile;
+    public AbstractTile currentTile;
+    public AbstractTile targetTile;
+    public AbstractTile nextTile;
     public Vector3 nextPos;
     public Vector3 direction;
     public Vector3 velocity;
 
-    void Awake()
+    public virtual void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
@@ -41,15 +37,16 @@ public class Piece : MonoBehaviour
 
     public void ChangeSprite(Sprite s)
     {
+        if (!spriteRenderer) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         spriteRenderer.sprite = s;
     }
 
-    public bool HasPath(FieldTile targetTile)
+    public bool HasPath(AbstractTile targetTile)
     {
         return path?.Count > 0 && this.targetTile == targetTile;
     }
 
-    public void SetPath(List<PathNode> path, int pathCost, FieldTile targetTile)
+    public void SetPath(List<PathNode> path, int pathCost, AbstractTile targetTile)
     {
         this.path = path;
         this.pathCost = pathCost;
@@ -73,7 +70,7 @@ public class Piece : MonoBehaviour
         if (!inMovement) return;
 
         bool clearData = false;
-        Piece pieceToInteract = null;
+        AbstractPiece pieceToInteract = null;
 
         if (nextTile == null)
         {
@@ -93,7 +90,7 @@ public class Piece : MonoBehaviour
                 // then instead of performing one more move we perform an interaction between pieces.
                 if (nextTile == targetTile)
                 {
-                    pieceToInteract = nextTile.piece;
+                    pieceToInteract = nextTile.occupantPiece;
                     if (pieceToInteract) clearData = true;
                 }
             }
@@ -109,7 +106,7 @@ public class Piece : MonoBehaviour
         if (pieceToInteract)
         {
             nextTile = null;
-            PieceManager.Instance.PiecesAreInteracting(this, pieceToInteract);
+            InteractWithPiece(pieceToInteract);
         }
 
         if (inMovement)
@@ -131,11 +128,13 @@ public class Piece : MonoBehaviour
                 //Moving to the bottom or left edge of the grid without this fix may cause the Unit to be read as over a tile with coordinate equal to -1
                 transform.position = nextPos;
 
-                currentTile.piece = null;
-                nextTile.piece = this;
+                currentTile.occupantPiece = null;
+                nextTile.occupantPiece = this;
                 currentTile = nextTile;
                 nextTile = null;
             }
         }
     }
+
+    public abstract void InteractWithPiece(AbstractPiece target);
 }

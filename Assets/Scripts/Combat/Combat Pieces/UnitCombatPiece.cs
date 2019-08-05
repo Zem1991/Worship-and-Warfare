@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitCombat : ACombatPiece
+public class UnitCombatPiece : AbstractCombatPiece
 {
     //public bool didMove;
     //public bool didAttack;
@@ -42,5 +42,10 @@ public class UnitCombat : ACombatPiece
         imgCombat = unit.imgCombat;
 
         ChangeSprite(imgCombat);
+    }
+
+    public override void InteractWithPiece(AbstractPiece target)
+    {
+        //CombatPieceManager.Instance.UnitsAreInteracting(this, target as UnitCombat);
     }
 }

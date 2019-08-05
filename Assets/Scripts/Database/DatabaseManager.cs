@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DatabaseManager : Singleton<DatabaseManager>
+public class DatabaseManager : AbstractSingleton<DatabaseManager>
 {
     [Header("Database Contents")]
     public DBHandler_Faction factions;

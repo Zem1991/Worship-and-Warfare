@@ -18,7 +18,7 @@ public class CombatUI_TC_PartyCard : MonoBehaviour
     public Image commandBar;
     public Image manaBar;
 
-    public void UpdatePanel(HeroCombat hc)
+    public void UpdatePanel(HeroCombatPiece hc)
     {
         if (!hc) return;
 

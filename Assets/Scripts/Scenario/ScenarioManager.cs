@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScenarioManager : Singleton<ScenarioManager>
+public class ScenarioManager : AbstractSingleton<ScenarioManager>
 {
     public readonly Vector2Int MIN_SIZE = Vector2Int.one * 10;
     public readonly Vector2Int MAX_SIZE = Vector2Int.one * 80;
@@ -20,14 +20,12 @@ public class ScenarioManager : Singleton<ScenarioManager>
 
         PlayerManager.Instance.InstantiatePlayers(data.players);
 
-        MapManager.Instance.BuildMap(scenario.scenarioSize, data.map);
+        FieldManager.Instance.BootField(scenario.scenarioSize, data.map, data.pieces);
         //if (data.extraMap != null)
         //{
         //    usesExtraMap = true;
         //    MapManager.Singleton.BuildExtraMap(scenarioSize, data.extraMap);
         //}
-
-        PieceManager.Instance.CreatePieces(data.pieces);
 
         Vector3 boundsSize = new Vector3(scenario.scenarioSize.x, 0, scenario.scenarioSize.y);
         bounds = new Bounds(boundsSize / 2F, boundsSize);

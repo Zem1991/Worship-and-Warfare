@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TownManager : Singleton<TownManager>
+public class TownManager : AbstractSingleton<TownManager>, IShowableHideable
 {
     // Start is called before the first frame update
     void Start()
@@ -14,5 +14,15 @@ public class TownManager : Singleton<TownManager>
     void Update()
     {
         
+    }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
     }
 }

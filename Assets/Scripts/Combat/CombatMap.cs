@@ -2,13 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CombatMap : MonoBehaviour
+public class CombatMap : AbstractMap<CombatTile>
 {
-    public const int WIDTH = 15;
-    public const int HEIGHT = 9;
-
     [Header("Common Tiles")]
-    public List<CombatTile> allTiles;
     public List<CombatTile> attackerStartTiles;
     public List<CombatTile> defenderStartTiles;
 
@@ -16,16 +12,9 @@ public class CombatMap : MonoBehaviour
     public CombatTile attackerHeroTile;
     public CombatTile defenderHeroTile;
 
-    public void Remove()
+    public override void Remove()
     {
-        if (allTiles != null)
-        {
-            foreach (var item in allTiles)
-            {
-                Destroy(item);
-            }
-            allTiles = null;
-        }
+        base.Remove();
 
         if (attackerStartTiles != null)
         {
@@ -33,8 +22,8 @@ public class CombatMap : MonoBehaviour
             {
                 Destroy(item);
             }
-            attackerStartTiles = null;
         }
+        attackerStartTiles = new List<CombatTile>();
 
         if (defenderStartTiles != null)
         {
@@ -42,32 +31,32 @@ public class CombatMap : MonoBehaviour
             {
                 Destroy(item);
             }
-            defenderStartTiles = null;
         }
+        defenderStartTiles = new List<CombatTile>();
     }
 
-    public void Create(TileData tileData)
+    public override void Create(Vector2Int size)
     {
         Remove();
-
-        allTiles = new List<CombatTile>();
-        attackerStartTiles = new List<CombatTile>();
-        defenderStartTiles = new List<CombatTile>();
+        mapSize = size;
         CombatTile prefabTile = CombatManager.Instance.prefabTile;
 
+        int width = mapSize.x;
+        int height = mapSize.y;
+
         Vector3 startPos = new Vector3();
-        startPos.x = (WIDTH - 1) / -2F;
-        startPos.z = (HEIGHT - 1) / -2F;
+        startPos.x = (width - 1) / -2F;
+        startPos.z = (height - 1) / -2F;
 
         int current = 0;
         CombatTile previousRowReference = null;
         CombatTile previousRowReferenceLeft = null;
-        for (int row = 0; row < HEIGHT; row++)
+        for (int row = 0; row < height; row++)
         {
             CombatTile firstOfCurrentRow = null;
             CombatTile previousInCurrentRow = null;
 
-            int maxCol = WIDTH;
+            int maxCol = width;
             float colPosAdjust = 0;
             bool oddCol = row % 2 == 1;
             if (oddCol)
@@ -83,13 +72,13 @@ public class CombatMap : MonoBehaviour
                 pos.z += row;
                 Quaternion rot = Quaternion.identity;
 
+                Vector2Int tileId = new Vector2Int(col, row);
                 CombatTile newTile = Instantiate(prefabTile, pos, rot, transform);
-                allTiles.Add(newTile);
+                tiles.Add(tileId, newTile);
 
                 newTile.id = current;
-                newTile.rowId = row;
-                newTile.colId = col;
-                newTile.name = "Tile #" + newTile.id + " (" + newTile.colId + "; " + newTile.rowId + ")";
+                newTile.posId = tileId;
+                newTile.name = "Tile #" + current + tileId.ToString();
                 current++;
 
                 if (!firstOfCurrentRow)
@@ -117,7 +106,7 @@ public class CombatMap : MonoBehaviour
                         newTile.br.fl = newTile;
                     }
                     previousRowReferenceLeft = previousRowReference;
-                    previousRowReference = previousRowReference.r;
+                    previousRowReference = previousRowReference.r as CombatTile;
                 }
                 else if (previousRowReferenceLeft)
                 {
@@ -131,7 +120,7 @@ public class CombatMap : MonoBehaviour
                 if (col == lastCol)
                 {
                     previousRowReference = firstOfCurrentRow;
-                    previousRowReferenceLeft = firstOfCurrentRow.l;
+                    previousRowReferenceLeft = firstOfCurrentRow.l as CombatTile;
                 }
 
                 //Set attacker's start tiles

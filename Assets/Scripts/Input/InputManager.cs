@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputManager : Singleton<InputManager>
+public class InputManager : AbstractSingleton<InputManager>
 {
     [Header("Current Scheme")]
     public IInputScheme scheme;

@@ -13,7 +13,7 @@ public class CombatUI_BL_CurrentUnit : MonoBehaviour
     public Text txtSpeed;
     public Text txtInitiative;
 
-    public void UpdatePanel(UnitCombat uc)
+    public void UpdatePanel(UnitCombatPiece uc)
     {
         if (!uc) return;
 

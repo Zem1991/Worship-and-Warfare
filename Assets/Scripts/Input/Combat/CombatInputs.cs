@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ZemDirections;
 
-public class CombatInputs : Singleton<CombatInputs>, IInputScheme
+public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme
 {
     [Header("Prefabs and Sprites")]
     public InputHighlight prefabHighlight;
@@ -16,13 +16,13 @@ public class CombatInputs : Singleton<CombatInputs>, IInputScheme
     public InputHighlight cursorHighlight;
     public Vector2Int cursorPos;
     public FieldTile cursorTile;
-    public Piece cursorPiece;
+    public FieldPiece cursorPiece;
 
     [Header("Selection Data")]
     public InputHighlight selectionHighlight;
     public Vector2Int selectionPos;
     public FieldTile selectionTile;
-    public Piece selectionPiece;
+    public FieldPiece selectionPiece;
     public bool canCommandSelectedPiece;
 
     [Header("Movement Highlights")]
@@ -54,6 +54,16 @@ public class CombatInputs : Singleton<CombatInputs>, IInputScheme
         im = InputManager.Instance;
         recorder = GetComponent<CombatInputRecorder>();
         cameraController = GetComponentInChildren<CameraController>();
+    }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
     }
 
     public CameraController CameraController()

@@ -2,104 +2,103 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FieldMap : MonoBehaviour
+public class FieldMap : AbstractMap<FieldTile>
 {
-    [Header("Data")]
-    public FieldTile[,] tiles;
-
-    public void Remove()
-    {
-        if (tiles != null)
-        {
-            foreach (var item in tiles)
-            {
-                Destroy(item);
-            }
-            tiles = null;
-        }
-    }
-
-    public void Create(Vector2Int size, MapData mapData)
+    public override void Create(Vector2Int size)
     {
         Remove();
-        tiles = new FieldTile[size.x, size.y];
+        mapSize = size;
+        FieldTile prefabTile = FieldManager.Instance.prefabTile;
 
         int current = 0;
-        for (int row = 0; row < size.y; row++)
+        for (int row = 0; row < mapSize.y; row++)
         {
-            for (int col = 0; col < size.x; col++)
+            for (int col = 0; col < mapSize.x; col++)
             {
-                FieldTile prefab = MapManager.Instance.prefabTile;
                 Vector3 pos = new Vector3(col, 0, row);
                 Quaternion rot = Quaternion.identity;
+                Vector2Int id = new Vector2Int(col, row);
 
-                FieldTile newTile = Instantiate(prefab, pos, rot, transform);
-                tiles[col, row] = newTile;
+                FieldTile tile = Instantiate(prefabTile, pos, rot, transform);
+                tiles.Add(id, tile);
 
-                TileData tileData = mapData.tiles[current];
-                newTile.id = new Vector2Int(col, row);
-                newTile.lowerLandId = tileData.lowerLandId;
-                newTile.upperLandId = tileData.upperLandId;
-                newTile.waterId = tileData.waterId;
-                newTile.featureId = tileData.featureId;
-                newTile.roadId = tileData.roadId;
+                tile.id = current;
+                tile.posId = id;
+                tile.name = id.ToString();
 
-                newTile.name = newTile.id.ToString();
-                current++;
-
+                Vector2Int neighbourId;
+                FieldTile neighbour;
                 if (col > 0)
                 {
-                    newTile.l = tiles[col - 1, row];
-                    tiles[col - 1, row].r = newTile;
+                    neighbourId = new Vector2Int(col - 1, row);
+                    neighbour = tiles[neighbourId];
+                    tile.l = neighbour;
+                    neighbour.r = tile;
                 }
                 if (row > 0)
                 {
-                    newTile.b = tiles[col, row - 1];
-                    tiles[col, row - 1].f = newTile;
+                    neighbourId = new Vector2Int(col, row - 1);
+                    neighbour = tiles[neighbourId];
+                    tile.b = neighbour;
+                    neighbour.f = tile;
                 }
                 if (col > 0 && row > 0)
                 {
-                    newTile.bl = tiles[col - 1, row - 1];
-                    tiles[col - 1, row - 1].fr = newTile;
+                    neighbourId = new Vector2Int(col - 1, row - 1);
+                    neighbour = tiles[neighbourId];
+                    tile.bl = neighbour;
+                    neighbour.fr = tile;
                 }
-                if (col < size.x - 1 && row > 0)
+                if (col < mapSize.x - 1 && row > 0)
                 {
-                    newTile.br = tiles[col + 1, row - 1];
-                    tiles[col + 1, row - 1].fl = newTile;
+                    neighbourId = new Vector2Int(col + 1, row - 1);
+                    neighbour = tiles[neighbourId];
+                    tile.br = neighbour;
+                    neighbour.fl = tile;
                 }
+
+                current++;
             }
         }
-
-        TileSprites();
     }
 
-    private void TileSprites()
+    public void ApplyMapData(MapData mapData)
     {
         DatabaseManager db = DatabaseManager.Instance;
-
         DBHandler_Tileset tilesets = db.tilesets;
-        foreach (var item in tiles)
+
+        int current = 0;
+        foreach (var tile in tiles.Values)
         {
-            DB_Tileset lowerLand = tilesets.Select(item.lowerLandId) as DB_Tileset;
+            TileData tileData = mapData.tiles[current];
+            tile.lowerLandId = tileData.lowerLandId;
+            tile.upperLandId = tileData.upperLandId;
+            tile.waterId = tileData.waterId;
+            tile.featureId = tileData.featureId;
+            tile.roadId = tileData.roadId;
+
+            DB_Tileset lowerLand = tilesets.Select(tile.lowerLandId) as DB_Tileset;
             Sprite s = lowerLand.image;
-            item.ChangeLandSprite(s);
+            tile.ChangeLandSprite(s);
 
-            item.groundMovementCost = lowerLand.groundMovementCost;
-            item.allowGroundMovement = lowerLand.allowGroundMovement;
-            item.allowWaterMovement = lowerLand.allowWaterMovement;
-            item.allowLavaMovement = lowerLand.allowLavaMovement;
+            tile.groundMovementCost = lowerLand.groundMovementCost;
+            tile.allowGroundMovement = lowerLand.allowGroundMovement;
+            tile.allowWaterMovement = lowerLand.allowWaterMovement;
+            tile.allowLavaMovement = lowerLand.allowLavaMovement;
 
-            DB_Tileset feature = tilesets.Select(item.featureId, false) as DB_Tileset;
+            DB_Tileset feature = tilesets.Select(tile.featureId, false) as DB_Tileset;
             if (feature)
             {
                 s = feature.image;
-                item.ChangeFeatureSprite(s);
+                tile.ChangeFeatureSprite(s);
 
-                item.groundMovementCost += feature.groundMovementCost;
-                item.allowGroundMovement &= feature.allowGroundMovement;
-                item.allowWaterMovement &= feature.allowWaterMovement;
-                item.allowLavaMovement &= feature.allowLavaMovement;
+                tile.groundMovementCost += feature.groundMovementCost;
+                tile.allowGroundMovement &= feature.allowGroundMovement;
+                tile.allowWaterMovement &= feature.allowWaterMovement;
+                tile.allowLavaMovement &= feature.allowLavaMovement;
             }
+
+            current++;
         }
     }
 }

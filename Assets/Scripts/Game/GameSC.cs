@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameSC : Singleton<GameSC>, ISceneController
+public class GameSC : AbstractSingleton<GameSC>, ISceneController
 {
     public IEnumerator ConfirmSceneLoaded()
     {

@@ -27,7 +27,7 @@ public class FieldUI_BR_PartyCard : AUIPanel
     public Image u5Portrait;
     public Text u5StackSize;
 
-    public void UpdatePanel(Piece p)
+    public void UpdatePanel(FieldPiece p)
     {
         heroPortrait.sprite = p.hero.imgProfile;
         txtHeroName.text = p.hero.heroName;

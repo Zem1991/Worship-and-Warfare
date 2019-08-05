@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ZemDirections;
 
-public class FieldInputs : Singleton<FieldInputs>, IInputScheme
+public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowableHideable
 {
     [Header("Prefabs and Sprites")]
     public InputHighlight prefabHighlight;
@@ -16,13 +16,13 @@ public class FieldInputs : Singleton<FieldInputs>, IInputScheme
     public InputHighlight cursorHighlight;
     public Vector2Int cursorPos;
     public FieldTile cursorTile;
-    public Piece cursorPiece;
+    public FieldPiece cursorPiece;
 
     [Header("Selection Data")]
     public InputHighlight selectionHighlight;
     public Vector2Int selectionPos;
     public FieldTile selectionTile;
-    public Piece selectionPiece;
+    public FieldPiece selectionPiece;
     public bool canCommandSelectedPiece;
 
     [Header("Movement Highlights")]
@@ -54,6 +54,16 @@ public class FieldInputs : Singleton<FieldInputs>, IInputScheme
         im = InputManager.Instance;
         recorder = GetComponent<FieldInputRecorder>();
         cameraController = GetComponentInChildren<CameraController>();
+    }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
     }
 
     public CameraController CameraController()
@@ -104,7 +114,7 @@ public class FieldInputs : Singleton<FieldInputs>, IInputScheme
                 if (item.collider == null) continue;
 
                 FieldTile t = item.collider.GetComponentInParent<FieldTile>();
-                Piece p = item.collider.GetComponentInParent<Piece>();
+                FieldPiece p = item.collider.GetComponentInParent<FieldPiece>();
                 if (cursorTile == null && t) cursorTile = t;
                 if (cursorPiece == null && p) cursorPiece = p;
             }
@@ -145,8 +155,8 @@ public class FieldInputs : Singleton<FieldInputs>, IInputScheme
         {
             if (selectionPiece.inMovement)
             {
-                selectionTile = selectionPiece.currentTile;
-                selectionPos = selectionTile.id;
+                selectionTile = selectionPiece.currentTile as FieldTile;
+                selectionPos = selectionTile.posId;
 
                 selectionHighlight.transform.position = selectionPiece.transform.position;
             }
@@ -182,7 +192,7 @@ public class FieldInputs : Singleton<FieldInputs>, IInputScheme
                         if (selectionPiece.HasPath(cursorTile))
                             selectionPiece.Move();
                         else
-                            PieceManager.Instance.Pathfind(selectionPiece, cursorTile);
+                            FieldManager.Instance.pieceHandler.Pathfind(selectionPiece, cursorTile);
                     }
                 }
             }
@@ -222,8 +232,8 @@ public class FieldInputs : Singleton<FieldInputs>, IInputScheme
             {
                 int nextI = i + 1;
 
-                FieldTile currentTile = (i == -1 ? selectionPiece.currentTile : path[i].tile);
-                FieldTile nextTile = path[nextI].tile;
+                FieldTile currentTile = (i == -1 ? selectionPiece.currentTile : path[i].tile) as FieldTile;
+                FieldTile nextTile = path[nextI].tile as FieldTile;
 
                 Vector3 fromPos = currentTile.transform.position;
                 Vector3 toPos = nextTile.transform.position;

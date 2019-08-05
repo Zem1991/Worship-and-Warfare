@@ -11,7 +11,7 @@ public enum GameScheme
     COMBAT
 }
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : AbstractSingleton<GameManager>
 {
     public const string SCENE_DATABASE = "Database";
     public const string SCENE_FIELD = "Game - Field";
@@ -80,12 +80,12 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void PerformExchange(Piece sender, Piece receiver)
+    public void PerformExchange(FieldPiece sender, FieldPiece receiver)
     {
         Debug.Log("PIECES ARE EXCHANGING STUFF");
     }
 
-    public void GoToTown(Piece piece, Town town)
+    public void GoToTown(FieldPiece piece, Town town)
     {
         Debug.Log("PIECE IS VISITING TOWN");
         ChangeSchemes(GameScheme.TOWN);
@@ -95,7 +95,7 @@ public class GameManager : Singleton<GameManager>
         TownSC.Instance.ShowObjects();
     }
 
-    public void ReturnFromTown(Piece piece, Town town)
+    public void ReturnFromTown(FieldPiece piece, Town town)
     {
         Debug.Log("PIECE IS BACK FROM TOWN");
         ChangeSchemes(GameScheme.FIELD);
@@ -105,17 +105,17 @@ public class GameManager : Singleton<GameManager>
         FieldSC.Instance.ShowObjects();
     }
 
-    public void GoToCombat(Piece attacker, Piece defender)
+    public void GoToCombat(FieldPiece attacker, FieldPiece defender)
     {
         Debug.Log("PIECES ARE IN BATTLE");
         ChangeSchemes(GameScheme.COMBAT);
 
         FieldSC.Instance.HideObjects();
-        CombatManager.Instance.StartCombat(null, attacker, defender);
+        CombatManager.Instance.BootCombat(attacker, defender);
         CombatSC.Instance.ShowObjects();
     }
 
-    public void ReturnFromCombat(Piece attacker, Piece defender)
+    public void ReturnFromCombat(FieldPiece attacker, FieldPiece defender)
     {
         Debug.Log("PIECES FINISHED BATTLE");
         ChangeSchemes(GameScheme.FIELD);

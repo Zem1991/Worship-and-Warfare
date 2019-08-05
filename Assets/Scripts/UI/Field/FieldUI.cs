@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FieldUI : Singleton<FieldUI>, IUIScheme
+public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
 {
     public FieldUI_TL_CoreButtons coreButtons;
     public FieldUI_TC_Resources resources;
@@ -12,6 +12,16 @@ public class FieldUI : Singleton<FieldUI>, IUIScheme
     public FieldUI_BR_FactionCrest factionCrest;
     public FieldUI_BR_PartyCard partyCard;
 
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
+    }
+
     public void UpdatePanels()
     {
         coreButtons.UpdatePanel();
@@ -20,12 +30,12 @@ public class FieldUI : Singleton<FieldUI>, IUIScheme
         minimap.UpdatePanel();
         coreButtons.UpdatePanel();
 
-        Piece p = FieldInputs.Instance.selectionPiece;
+        FieldPiece p = FieldInputs.Instance.selectionPiece;
         if (p) UpdateWithSelection(p);
         else UpdateWithoutSelection();
     }
 
-    private void UpdateWithSelection(Piece p)
+    private void UpdateWithSelection(FieldPiece p)
     {
         factionCrest.Hide();
         partyCard.UpdatePanel(p);

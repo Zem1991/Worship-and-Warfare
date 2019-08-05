@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ZemDirections;
 
-public class CombatTile : AbstractTile
+public interface IShowableHideable
 {
-    
+    void Hide();
+    void Show();
 }

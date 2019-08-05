@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ZemDirections;
 
-public class TownInputs : Singleton<TownInputs>, IInputScheme
+public class TownInputs : AbstractSingleton<TownInputs>, IInputScheme, IShowableHideable
 {
     //[Header("Prefabs and Sprites")]
     //public InputHighlight prefabHighlight;
@@ -54,6 +54,16 @@ public class TownInputs : Singleton<TownInputs>, IInputScheme
         im = InputManager.Instance;
         recorder = GetComponent<TownInputRecorder>();
         cameraController = GetComponentInChildren<CameraController>();
+    }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
     }
 
     public CameraController CameraController()

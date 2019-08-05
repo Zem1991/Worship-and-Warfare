@@ -7,13 +7,13 @@ public static class Pathfinder
 {
     public const float DIAGONAL_MODIFIER = 0.7F;
 
-    public static void FindPath(FieldTile startTile, FieldTile targetTile, out List<PathNode> result, out float pathCost,
+    public static void FindPath(AbstractTile startTile, AbstractTile targetTile, out List<PathNode> result, out float pathCost,
         bool needGroundAccess, bool needWaterAccess, bool needLavaAccess)
     {
         result = null;
         pathCost = 0;
         float operations = 0;
-        if (!targetTile.piece && !targetTile.IsAcessible(needGroundAccess, needWaterAccess, needLavaAccess)) return;
+        if (!targetTile.occupantPiece && !targetTile.IsAcessible(needGroundAccess, needWaterAccess, needLavaAccess)) return;
 
         PathNode startPN = new PathNode(startTile);
         PathNode targetPN = new PathNode(targetTile);
@@ -38,7 +38,7 @@ public static class Pathfinder
             }
 
             openList.Remove(currentPN);
-            closedList.Add(currentPN.tile.id);
+            closedList.Add(currentPN.tile.posId);
 
             // Make path if the target node was found
             if (currentPN.tile.id == targetTile.id)
@@ -51,17 +51,17 @@ public static class Pathfinder
             foreach (FieldTile neighbour in currentPN.tile.GetAccessibleNeighbours(needGroundAccess, needWaterAccess, needLavaAccess))
             {
                 // Neighbour node cannot have a piece over it, UNLESS it's the target node.
-                if (neighbour.piece)
+                if (neighbour.occupantPiece)
                 {
                     if (neighbour != targetTile) continue;
                 }
 
                 // Neighbour node cannot be on the closed set
                 PathNode neighbourPN = new PathNode(neighbour);
-                if (closedList.Contains(neighbour.id)) continue;
+                if (closedList.Contains(neighbour.posId)) continue;
 
                 // Switch to existing node if possible
-                PathNode existingPN = ListContainsNodeId(openList, neighbour.id);
+                PathNode existingPN = ListContainsNodeId(openList, neighbour.posId);
                 bool neighbourOnOpenList = (existingPN != null);
                 if (neighbourOnOpenList) neighbourPN = existingPN;
 
@@ -98,7 +98,7 @@ public static class Pathfinder
     {
         foreach (PathNode item in list)
         {
-            if (item.tile.id == id)
+            if (item.tile.posId == id)
                 return item;
         }
         return null;
@@ -106,8 +106,8 @@ public static class Pathfinder
 
     private static float DistanceFromHeuristic(PathNode from, PathNode to)
     {
-        Vector2Int fromId = from.tile.id;
-        Vector2Int toId = to.tile.id;
+        Vector2Int fromId = from.tile.posId;
+        Vector2Int toId = to.tile.posId;
         int distX = Mathf.Abs(fromId.x - toId.x);
         int distY = Mathf.Abs(fromId.y - toId.y);
         bool isDiagonal = (distX != 0 && distY != 0);

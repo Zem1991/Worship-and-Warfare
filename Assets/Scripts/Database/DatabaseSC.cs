@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DatabaseSC : Singleton<DatabaseSC>, ISceneController
+public class DatabaseSC : AbstractSingleton<DatabaseSC>, ISceneController
 {
     public IEnumerator ConfirmSceneLoaded()
     {

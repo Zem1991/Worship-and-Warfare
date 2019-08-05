@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : Singleton<PlayerManager>
+public class PlayerManager : AbstractSingleton<PlayerManager>
 {
     public readonly int MAX_PLAYERS = 2;
     public readonly Color[] PLAYER_COLORS =

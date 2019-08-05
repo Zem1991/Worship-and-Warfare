@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeroCombat : ACombatPiece
+public class HeroCombatPiece : AbstractCombatPiece
 {
     public string heroName;
     public string className;
@@ -43,5 +43,10 @@ public class HeroCombat : ACombatPiece
         imgCombat = hero.imgCombat;
 
         ChangeSprite(imgCombat);
+    }
+
+    public override void InteractWithPiece(AbstractPiece target)
+    {
+        throw new System.NotImplementedException();
     }
 }

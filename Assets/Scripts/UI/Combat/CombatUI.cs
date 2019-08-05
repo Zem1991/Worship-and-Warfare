@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CombatUI : Singleton<CombatUI>, IUIScheme
+public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideable
 {
     public CombatUI_TL_CoreButtons coreButtons;
     public CombatUI_TC_PartyCard attackerParty;
@@ -12,13 +12,23 @@ public class CombatUI : Singleton<CombatUI>, IUIScheme
     public CombatUI_BC_TurnSequence turnSequence;
     public CombatUI_BR_CombatLogs combatLogs;
 
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
+    }
+
     public void UpdatePanels()
     {
         CombatManager cm = CombatManager.Instance;
 
         coreButtons.UpdatePanel();
-        attackerParty.UpdatePanel(cm.pieces.attackerHero);
-        defenderParty.UpdatePanel(cm.pieces.defenderHero);
+        attackerParty.UpdatePanel(cm.pieceHandler.attackerHero);
+        defenderParty.UpdatePanel(cm.pieceHandler.defenderHero);
         timers.UpdatePanel();
         currentUnit.UpdatePanel(cm.currentUnit);
         turnSequence.UpdatePanel();

@@ -3,15 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PieceManager : Singleton<PieceManager>
+public class FieldPieceHandler : MonoBehaviour
 {
     public readonly int MAX_UNITS = 5;
 
-    [Header("Prefabs")]
-    public Piece prefabPiece;
-
     [Header("Pieces")]
-    public List<Piece> pieces;
+    public List<FieldPiece> pieces;
 
     public void DeletePieces()
     {
@@ -29,10 +26,11 @@ public class PieceManager : Singleton<PieceManager>
         DatabaseManager db = DatabaseManager.Instance;
         DBHandler_Hero dbHeroes = db.heroes;
         DBHandler_Unit dbUnits = db.units;
-        MapManager mm = MapManager.Instance;
         PlayerManager pm = PlayerManager.Instance;
 
-        pieces = new List<Piece>();
+        pieces = new List<FieldPiece>();
+        FieldManager fm = FieldManager.Instance;
+
         foreach (var item in data)
         {
             int posX = item.mapPosition[0];
@@ -41,7 +39,7 @@ public class PieceManager : Singleton<PieceManager>
             Vector3 pos = new Vector3(posX, 0, posY);
             Quaternion rot = Quaternion.identity;
 
-            Piece newPiece = Instantiate(prefabPiece, pos, rot, transform);
+            FieldPiece newPiece = Instantiate(fm.prefabPiece, pos, rot, transform);
             pieces.Add(newPiece);
 
             newPiece.owner = pm.allPlayers[item.ownerId];
@@ -72,8 +70,11 @@ public class PieceManager : Singleton<PieceManager>
                 }
             }
 
-            newPiece.currentTile = mm.map.tiles[posX, posY];
-            newPiece.currentTile.piece = newPiece;
+            FieldMap fieldMap = FieldManager.Instance.mapHandler.map;
+
+            Vector2Int id = new Vector2Int(posX, posY);
+            newPiece.currentTile = fieldMap.tiles[id];
+            newPiece.currentTile.occupantPiece = newPiece;
 
             if (hero != null)
             {
@@ -89,7 +90,7 @@ public class PieceManager : Singleton<PieceManager>
         }
     }
 
-    public void Pathfind(Piece piece, FieldTile targetTile,
+    public void Pathfind(FieldPiece piece, FieldTile targetTile,
         bool needGroundAccess = true, bool needWaterAccess = false, bool needLavaAccess = false)
     {
         Pathfinder.FindPath(piece.currentTile, targetTile, out List<PathNode> result, out float pathCost,
@@ -97,7 +98,7 @@ public class PieceManager : Singleton<PieceManager>
         piece.SetPath(result, Mathf.CeilToInt(pathCost), targetTile);
     }
 
-    public void PiecesAreInteracting(Piece sender, Piece receiver)
+    public void PiecesAreInteracting(FieldPiece sender, FieldPiece receiver)
     {
         if (sender.owner == receiver.owner)
         {

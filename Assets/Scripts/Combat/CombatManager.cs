@@ -2,37 +2,36 @@
 using System.Linq;
 using UnityEngine;
 
-public class CombatManager : Singleton<CombatManager>
+public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 {
+    public readonly Vector2Int MAP_SIZE = new Vector2Int(15, 9);
+
     [Header("Prefabs")]
     public CombatTile prefabTile;
-    public HeroCombat prefabHero;
-    public UnitCombat prefabUnit;
+    public HeroCombatPiece prefabHero;
+    public UnitCombatPiece prefabUnit;
 
     [Header("Auxiliary Objects")]
-    public CombatMap map;
-    public CombatPieces pieces;
-
-    [Header("Battleground")]
-    public Sprite background;
+    public CombatMapHandler mapHandler;
+    public CombatPieceHandler pieceHandler;
 
     [Header("Combat Flow")]
     public bool combatStarted;
     public int currentTurn;
-    public UnitCombat currentUnit;
-    public List<UnitCombat> turnSequence;
+    public UnitCombatPiece currentUnit;
+    public List<UnitCombatPiece> turnSequence;
 
-    public void StartCombat(DB_Battleground battleground, Piece attackerPiece, Piece defenderPiece)
+    public void BootCombat(FieldPiece attackerPiece, FieldPiece defenderPiece)
     {
         //background = battleground.image;
 
         //TODO INSTANTIATE COMBAT PIECES (HeroCombat and UnitCombat) USING DATA FROM RECEIVED PIECES!
 
         Debug.LogWarning("No tile data for combat map!");
-        map.Create(null);
-        pieces.Create(attackerPiece, defenderPiece);
-        pieces.InitialHeroPositions(map.attackerHeroTile, map.defenderHeroTile);
-        pieces.InitialUnitPositions(map.attackerStartTiles, map.defenderStartTiles);
+        mapHandler.BuildMap(MAP_SIZE);
+        pieceHandler.Create(attackerPiece, defenderPiece);
+        pieceHandler.InitialHeroPositions(mapHandler.map);
+        pieceHandler.InitialUnitPositions(mapHandler.map);
 
         combatStarted = true;
         NextTurn();
@@ -60,9 +59,9 @@ public class CombatManager : Singleton<CombatManager>
 
     public void CalculateFullTurnSequence()
     {
-        List<UnitCombat> newSequence = new List<UnitCombat>();
-        newSequence.AddRange(pieces.GetActiveUnits(pieces.attackerUnits));
-        newSequence.AddRange(pieces.GetActiveUnits(pieces.defenderUnits));
+        List<UnitCombatPiece> newSequence = new List<UnitCombatPiece>();
+        newSequence.AddRange(pieceHandler.GetActiveUnits(pieceHandler.attackerUnits));
+        newSequence.AddRange(pieceHandler.GetActiveUnits(pieceHandler.defenderUnits));
         turnSequence = newSequence;
         UpdateTurnSequence();
     }
@@ -72,16 +71,30 @@ public class CombatManager : Singleton<CombatManager>
         turnSequence.OrderByDescending(a => a.initiative);
     }
 
-    public void AddUnitToTurnSequence(UnitCombat uc)
+    public void AddUnitToTurnSequence(UnitCombatPiece uc)
     {
         turnSequence.Add(uc);
         UpdateTurnSequence();
     }
 
-    public void RemoveUnitFromTurnSequence(UnitCombat uc)
+    public void RemoveUnitFromTurnSequence(UnitCombatPiece uc)
     {
         turnSequence.Remove(uc);
         turnSequence.TrimExcess();
         UpdateTurnSequence();
+    }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+        mapHandler.gameObject.SetActive(false);
+        pieceHandler.gameObject.SetActive(false);
+    }
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
+        mapHandler.gameObject.SetActive(true);
+        pieceHandler.gameObject.SetActive(true);
     }
 }

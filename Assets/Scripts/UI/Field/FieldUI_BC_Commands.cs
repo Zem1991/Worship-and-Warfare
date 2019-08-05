@@ -11,7 +11,7 @@ public class FieldUI_BC_Commands : AUIPanel
     public Button btnSpellBook;
     public Text txtManaPoints;
 
-    public void UpdatePanel(Piece p)
+    public void UpdatePanel(FieldPiece p)
     {
 
     }
