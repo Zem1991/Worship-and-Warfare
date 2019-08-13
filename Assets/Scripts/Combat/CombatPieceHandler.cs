@@ -46,12 +46,14 @@ public class CombatPieceHandler : MonoBehaviour
         {
             attackerHero = Instantiate(cm.prefabHero, transform);
             attackerHero.Initialize(attackerPiece.hero);
+            attackerHero.owner = attackerPiece.owner;
         }
 
         if (defenderPiece.hero != null)
         {
             defenderHero = Instantiate(cm.prefabHero, transform);
             defenderHero.Initialize(defenderPiece.hero);
+            defenderHero.owner = defenderPiece.owner;
         }
 
         if (attackerPiece.units != null)
@@ -60,6 +62,7 @@ public class CombatPieceHandler : MonoBehaviour
             {
                 UnitCombatPiece uc = Instantiate(cm.prefabUnit, transform);
                 uc.Initialize(item);
+                uc.owner = attackerPiece.owner;
                 attackerUnits.Add(uc);
             }
         }
@@ -70,6 +73,7 @@ public class CombatPieceHandler : MonoBehaviour
             {
                 UnitCombatPiece uc = Instantiate(cm.prefabUnit, transform);
                 uc.Initialize(item);
+                uc.owner = defenderPiece.owner;
                 defenderUnits.Add(uc);
             }
         }
@@ -129,5 +133,14 @@ public class CombatPieceHandler : MonoBehaviour
             if (item.hitPointsCurrent > 0) result.Add(item);
         }
         return result;
+    }
+
+    public void Pathfind(AbstractCombatPiece piece, CombatTile targetTile,
+        bool needGroundAccess = true, bool needWaterAccess = false, bool needLavaAccess = false)
+    {
+        Pathfinder.FindPath(piece.currentTile, targetTile, Pathfinder.HexHeuristic,
+            needGroundAccess, needWaterAccess, needLavaAccess,
+            out List<PathNode> result, out float pathCost);
+        piece.SetPath(result, Mathf.CeilToInt(pathCost), targetTile);
     }
 }

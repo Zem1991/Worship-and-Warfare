@@ -37,6 +37,20 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         NextTurn();
     }
 
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+        mapHandler.gameObject.SetActive(false);
+        pieceHandler.gameObject.SetActive(false);
+    }
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
+        mapHandler.gameObject.SetActive(true);
+        pieceHandler.gameObject.SetActive(true);
+    }
+
     public void NextUnit()
     {
         if (turnSequence.Count > 0)
@@ -82,19 +96,5 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         turnSequence.Remove(uc);
         turnSequence.TrimExcess();
         UpdateTurnSequence();
-    }
-
-    public void Hide()
-    {
-        gameObject.SetActive(false);
-        mapHandler.gameObject.SetActive(false);
-        pieceHandler.gameObject.SetActive(false);
-    }
-
-    public void Show()
-    {
-        gameObject.SetActive(true);
-        mapHandler.gameObject.SetActive(true);
-        pieceHandler.gameObject.SetActive(true);
     }
 }

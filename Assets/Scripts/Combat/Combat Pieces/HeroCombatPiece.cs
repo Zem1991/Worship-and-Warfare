@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class HeroCombatPiece : AbstractCombatPiece
 {
+    [Header("Hero identification")]
     public string heroName;
     public string className;
     public int level;
 
+    [Header("Hero attributes")]
     public int atrCommand;
     public int atrOffense;
     public int atrDefense;
     public int atrPower;
     public int atrFocus;
 
+    [Header("Hero resources")]
     public int commandMax;
     public int commandUsed;
     public int manaMax;
     public int manaCurrent;
-
-    public Sprite imgProfile;
-    public Sprite imgCombat;
 
     public void Initialize(Hero hero)
     {
@@ -47,6 +47,7 @@ public class HeroCombatPiece : AbstractCombatPiece
 
     public override void InteractWithPiece(AbstractPiece target)
     {
-        throw new System.NotImplementedException();
+        Debug.LogWarning("THIS HERO DOESN'T KNOW HOW TO HANDLE OTHER PIECES!");
+        //CombatPieceManager.Instance.UnitsAreInteracting(this, target as HeroCombatPiece);
     }
 }

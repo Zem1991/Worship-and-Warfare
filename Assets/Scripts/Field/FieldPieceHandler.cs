@@ -19,7 +19,7 @@ public class FieldPieceHandler : MonoBehaviour
         pieces.Clear();
     }
 
-    public void CreatePieces(PieceData[] data)
+    public void CreatePieces(PieceData[] pieceData)
     {
         DeletePieces();
 
@@ -31,7 +31,7 @@ public class FieldPieceHandler : MonoBehaviour
         pieces = new List<FieldPiece>();
         FieldManager fm = FieldManager.Instance;
 
-        foreach (var item in data)
+        foreach (var item in pieceData)
         {
             int posX = item.mapPosition[0];
             int posY = item.mapPosition[1];
@@ -54,13 +54,11 @@ public class FieldPieceHandler : MonoBehaviour
 
             if (item.units != null)
             {
-                if (item.units.Length > MAX_UNITS)
-                {
-                    Debug.LogWarning("There are more units than the piece can store!");
-                }
+                if (item.units.Length > MAX_UNITS) Debug.LogWarning("There are more units than the piece can store!");
+                int totalUnits = Mathf.Min(item.units.Length, MAX_UNITS);
 
-                newPiece.units = new Unit[MAX_UNITS];
-                for (int i = 0; i < MAX_UNITS; i++)
+                newPiece.units = new Unit[totalUnits];
+                for (int i = 0; i < totalUnits; i++)
                 {
                     UnitData unit = item.units[i];
                     int dbId = unit.unitId;
@@ -93,12 +91,13 @@ public class FieldPieceHandler : MonoBehaviour
     public void Pathfind(FieldPiece piece, FieldTile targetTile,
         bool needGroundAccess = true, bool needWaterAccess = false, bool needLavaAccess = false)
     {
-        Pathfinder.FindPath(piece.currentTile, targetTile, out List<PathNode> result, out float pathCost,
-            needGroundAccess, needWaterAccess, needLavaAccess);
+        Pathfinder.FindPath(piece.currentTile, targetTile, Pathfinder.OctoHeuristic,
+            needGroundAccess, needWaterAccess, needLavaAccess,
+            out List<PathNode> result, out float pathCost);
         piece.SetPath(result, Mathf.CeilToInt(pathCost), targetTile);
     }
 
-    public void PiecesAreInteracting(FieldPiece sender, FieldPiece receiver)
+    public void PartiesAreInteracting(FieldPiece sender, FieldPiece receiver)
     {
         if (sender.owner == receiver.owner)
         {

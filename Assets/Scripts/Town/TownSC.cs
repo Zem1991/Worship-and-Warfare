@@ -6,7 +6,10 @@ public class TownSC : AbstractSingleton<TownSC>, ISceneController
 {
     public IEnumerator ConfirmSceneLoaded()
     {
-        yield return TownManager.Instance;
+        yield return
+            TownInputs.Instance &&
+            TownUI.Instance &&
+            TownManager.Instance;
     }
 
     public void HideObjects()

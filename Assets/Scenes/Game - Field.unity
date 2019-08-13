@@ -1416,7 +1416,7 @@ GameObject:
   - component: {fileID: 278326406}
   - component: {fileID: 278326407}
   m_Layer: 0
-  m_Name: Field Pieces
+  m_Name: Field Piece Handler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3502,9 +3502,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d333a1f37c57b83408ad24de05c115f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabTile: {fileID: 4873459312200916663, guid: 9c74900f3a4946947894798d230e9005,
+  prefabTile: {fileID: 8671262855878196691, guid: 9c74900f3a4946947894798d230e9005,
     type: 3}
-  prefabPiece: {fileID: 5292258022845113594, guid: 3a5786de7131a584e883254e93133465,
+  prefabPiece: {fileID: 1317082670439789998, guid: 3a5786de7131a584e883254e93133465,
     type: 3}
   mapHandler: {fileID: 254004732}
   pieceHandler: {fileID: 278326407}

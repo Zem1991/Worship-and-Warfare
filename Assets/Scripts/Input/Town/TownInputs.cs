@@ -5,31 +5,6 @@ using ZemDirections;
 
 public class TownInputs : AbstractSingleton<TownInputs>, IInputScheme, IShowableHideable
 {
-    //[Header("Prefabs and Sprites")]
-    //public InputHighlight prefabHighlight;
-    //public Sprite cursorSprite;
-    //public Sprite selectionSprite;
-    //public Sprite[] movementArrowSprites = new Sprite[8];
-    //public Sprite[] movementMarkerSprites = new Sprite[2];
-
-    //[Header("Cursor Data")]
-    //public InputHighlight cursorHighlight;
-    //public Vector2Int cursorPos;
-    //public FieldTile cursorTile;
-    //public Piece cursorPiece;
-
-    //[Header("Selection Data")]
-    //public InputHighlight selectionHighlight;
-    //public Vector2Int selectionPos;
-    //public FieldTile selectionTile;
-    //public Piece selectionPiece;
-    //public bool canCommandSelectedPiece;
-
-    //[Header("Movement Highlights")]
-    //public bool movementHighlightsUpdateFromCommand;
-    //public bool movementHighlightsUpdateOnPieceStop;
-    //public List<InputHighlight> movementHighlights = new List<InputHighlight>();
-
     [Header("Required Objects")]
     public InputManager im;
     public TownInputRecorder recorder;
@@ -37,14 +12,6 @@ public class TownInputs : AbstractSingleton<TownInputs>, IInputScheme, IShowable
 
     public override void Awake()
     {
-        //cursorHighlight = Instantiate(prefabHighlight, transform);
-        //cursorHighlight.name = "Cursor Highlight";
-        //cursorHighlight.ChangeSprite(cursorSprite);
-
-        //selectionHighlight = Instantiate(prefabHighlight, transform);
-        //selectionHighlight.name = "Selection Highlight";
-        //selectionHighlight.ChangeSprite(selectionSprite);
-
         base.Awake();
     }
 

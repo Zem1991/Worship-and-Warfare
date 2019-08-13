@@ -40,13 +40,15 @@ public class CombatMap : AbstractMap<CombatTile>
         Remove();
         mapSize = size;
         CombatTile prefabTile = CombatManager.Instance.prefabTile;
+        prefabTile.groundMovementCost = 100;    //TODO GET MOVEMENT COSTS LATER
+        prefabTile.allowGroundMovement = true;  //TODO GET MOVEMENT TYPES LATER
 
         int width = mapSize.x;
         int height = mapSize.y;
 
         Vector3 startPos = new Vector3();
-        startPos.x = (width - 1) / -2F;
-        startPos.z = (height - 1) / -2F;
+        startPos.x = 0; // (width - 1) / -2F;
+        startPos.z = 0; // (height - 1) / -2F;
 
         int current = 0;
         CombatTile previousRowReference = null;
@@ -78,7 +80,7 @@ public class CombatMap : AbstractMap<CombatTile>
 
                 newTile.id = current;
                 newTile.posId = tileId;
-                newTile.name = "Tile #" + current + tileId.ToString();
+                newTile.name = "Tile #" + current + " " + tileId.ToString();
                 current++;
 
                 if (!firstOfCurrentRow)
@@ -130,13 +132,14 @@ public class CombatMap : AbstractMap<CombatTile>
             }
         }
 
-        Vector3 heroTilePos = startPos;
-        heroTilePos.x -= 2.5F;
-        heroTilePos.z += 6.5F;
+        Vector3 heroTilePos = new Vector3();
+        heroTilePos.x += -1.5F;
+        heroTilePos.z += size.y / 2;
         Quaternion heroTileRot = Quaternion.identity;
         attackerHeroTile = Instantiate(prefabTile, heroTilePos, heroTileRot, transform);
 
         heroTilePos.x *= -1;
+        heroTilePos.x += size.x - 1;
         defenderHeroTile = Instantiate(prefabTile, heroTilePos, heroTileRot, transform);
     }
 }

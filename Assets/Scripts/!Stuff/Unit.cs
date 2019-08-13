@@ -23,7 +23,7 @@ public class Unit
     public Unit(int dbId, DB_Unit dbData, int stackSize)
     {
         this.dbId = dbId;
-        unitName = dbData.name;
+        unitName = dbData.unitName;
 
         hitPoints = dbData.hitPoints;
         this.stackSize = stackSize;

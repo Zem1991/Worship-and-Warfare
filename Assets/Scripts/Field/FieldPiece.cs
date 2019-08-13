@@ -11,6 +11,6 @@ public class FieldPiece : AbstractPiece
 
     public override void InteractWithPiece(AbstractPiece target)
     {
-        FieldManager.Instance.pieceHandler.PiecesAreInteracting(this, target as FieldPiece);
+        FieldManager.Instance.pieceHandler.PartiesAreInteracting(this, target as FieldPiece);
     }
 }

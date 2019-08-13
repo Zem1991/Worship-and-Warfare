@@ -6,7 +6,10 @@ public class FieldSC : AbstractSingleton<FieldSC>, ISceneController
 {
     public IEnumerator ConfirmSceneLoaded()
     {
-        yield return FieldManager.Instance;
+        yield return
+            FieldInputs.Instance &&
+            FieldUI.Instance &&
+            FieldManager.Instance;
     }
 
     public void HideObjects()

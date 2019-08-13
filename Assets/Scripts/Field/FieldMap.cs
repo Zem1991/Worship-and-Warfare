@@ -17,14 +17,15 @@ public class FieldMap : AbstractMap<FieldTile>
             {
                 Vector3 pos = new Vector3(col, 0, row);
                 Quaternion rot = Quaternion.identity;
-                Vector2Int id = new Vector2Int(col, row);
 
+                Vector2Int tileId = new Vector2Int(col, row);
                 FieldTile tile = Instantiate(prefabTile, pos, rot, transform);
-                tiles.Add(id, tile);
+                tiles.Add(tileId, tile);
 
                 tile.id = current;
-                tile.posId = id;
-                tile.name = id.ToString();
+                tile.posId = tileId;
+                tile.name = "Tile #" + current + " " + tileId.ToString();
+                current++;
 
                 Vector2Int neighbourId;
                 FieldTile neighbour;
@@ -56,8 +57,6 @@ public class FieldMap : AbstractMap<FieldTile>
                     tile.br = neighbour;
                     neighbour.fl = tile;
                 }
-
-                current++;
             }
         }
     }

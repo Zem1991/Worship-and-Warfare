@@ -96,7 +96,7 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
         cursorTile = null;
         cursorPiece = null;
 
-        if (im.cursorOnPlayArea)
+        if (true)   //(im.cursorOnPlayArea)
         {
             Vector3 pos = im.mouseWorldPos;
             pos.x = Mathf.Floor(pos.x);
@@ -119,8 +119,15 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
                 if (cursorPiece == null && p) cursorPiece = p;
             }
 
-            cursorHighlight.transform.position = pos;
-            cursorHighlight.gameObject.SetActive(true);
+            if (cursorTile)
+            {
+                cursorHighlight.transform.position = cursorTile.transform.position;
+                cursorHighlight.gameObject.SetActive(true);
+            }
+            else
+            {
+                cursorHighlight.gameObject.SetActive(false);
+            }
         }
         else
         {
@@ -135,7 +142,7 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
         {
             movementHighlightsUpdateFromCommand = true;
 
-            if (im.cursorOnPlayArea)
+            if (true)   //(im.cursorOnPlayArea)
             {
                 selectionPos = cursorPos;
                 selectionTile = cursorTile;

@@ -221,15 +221,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
-  unitName: 
-  goldCost: 0
-  leadershipCost: 0
-  offense: 0
-  defense: 0
-  damageMin: 0
-  damageMax: 0
-  initiative: 0
-  movementRange: 0
+  unitName: Default Unit
+  goldCost: 10
+  leadershipCost: 10
+  hitPoints: 10
+  damageMin: 3
+  damageMax: 5
+  resistance: 0
+  movementRange: 7
+  initiative: 7
   movementType: 0
   profilePicture: {fileID: 21300000, guid: 4dbc5a32b0b03a04b9160f4c1e4308c2, type: 3}
   fieldPicture: {fileID: 21300000, guid: a6c418dfef20cfd4c973dc28c0161971, type: 3}
@@ -526,7 +526,7 @@ MonoBehaviour:
   offense: 2
   defense: 2
   power: 2
-  knowledge: 2
+  focus: 0
   fieldPicture: {fileID: 21300000, guid: 158acc8909757714b8bdfa58344cb2b4, type: 3}
   combatPicture: {fileID: 21300000, guid: 281665d1d9d07134bac896777aced8c1, type: 3}
 --- !u!1 &485034157
@@ -1662,7 +1662,7 @@ MonoBehaviour:
   offense: 2
   defense: 2
   power: 1
-  knowledge: 1
+  focus: 0
   fieldPicture: {fileID: 21300000, guid: 158acc8909757714b8bdfa58344cb2b4, type: 3}
   combatPicture: {fileID: 21300000, guid: 281665d1d9d07134bac896777aced8c1, type: 3}
 --- !u!1 &1540432247

@@ -29,14 +29,29 @@ public class FieldUI_BR_PartyCard : AUIPanel
 
     public void UpdatePanel(FieldPiece p)
     {
-        heroPortrait.sprite = p.hero.imgProfile;
-        txtHeroName.text = p.hero.heroName;
-        txtLevelAndClass.text = "Level ?? " + p.hero.className;
+        if (p.hero != null)
+        {
+            heroPortrait.sprite = p.hero.imgProfile;
+            txtHeroName.text = p.hero.heroName;
+            txtLevelAndClass.text = "Level ?? " + p.hero.className;
 
-        txtCommand.text = p.hero.atrCommand.ToString();
-        txtOffense.text = p.hero.atrOffense.ToString();
-        txtDefense.text = p.hero.atrDefense.ToString();
-        txtPower.text = p.hero.atrPower.ToString();
-        txtFocus.text = p.hero.atrFocus.ToString();
+            txtCommand.text = p.hero.atrCommand.ToString();
+            txtOffense.text = p.hero.atrOffense.ToString();
+            txtDefense.text = p.hero.atrDefense.ToString();
+            txtPower.text = p.hero.atrPower.ToString();
+            txtFocus.text = p.hero.atrFocus.ToString();
+        }
+        else
+        {
+            heroPortrait.sprite = p.units[0].imgProfile;
+            txtHeroName.text = p.units[0].unitName;
+            txtLevelAndClass.text = "Unit";
+
+            txtCommand.text = "--";
+            txtOffense.text = "--";
+            txtDefense.text = "--";
+            txtPower.text = "--";
+            txtFocus.text = "--";
+        }
     }
 }

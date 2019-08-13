@@ -6,7 +6,10 @@ public class CombatSC : AbstractSingleton<CombatSC>, ISceneController
 {
     public IEnumerator ConfirmSceneLoaded()
     {
-        yield return CombatManager.Instance;
+        yield return
+            CombatInputs.Instance &&
+            CombatUI.Instance &&
+            CombatManager.Instance;
     }
 
     public void HideObjects()
