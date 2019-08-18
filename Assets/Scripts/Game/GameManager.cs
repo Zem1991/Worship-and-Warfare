@@ -18,6 +18,9 @@ public class GameManager : AbstractSingleton<GameManager>
     public const string SCENE_TOWN = "Game - Town";
     public const string SCENE_COMBAT = "Game - Combat";
 
+    public const float SPEED_MIN = 0.25F;
+    public const float SPEED_MAX = 2F;
+
     [Header("Settings")]
     public string scenarioFileToLoad = "Test Scenario 01";
 
@@ -27,13 +30,17 @@ public class GameManager : AbstractSingleton<GameManager>
     public Scene sceneTown;
     public Scene sceneCombat;
 
-    [Header("Variables")]
+    [Header("Game Flow")]
     public bool scenarioBooted;
     public bool scenarioStarted;
     public int currentDay;
     public Player currentPlayer;
     public string timeElapsedText;
     public GameScheme currentGameScheme;
+
+    [Header("Game Speed")]
+    public float gameSpeed;
+    public bool isPaused;
 
     private ScenarioFileData scenarioFileData;
     private TimeSpan timeElapsed;
@@ -42,6 +49,7 @@ public class GameManager : AbstractSingleton<GameManager>
 
     public override void Awake()
     {
+        gameSpeed = Time.timeScale;
         mainCamera = GetComponentInChildren<Camera>();
         base.Awake();
     }
@@ -62,22 +70,32 @@ public class GameManager : AbstractSingleton<GameManager>
         }
     }
 
-    public void LoadScenarioFile(string scenarioFileName)
+    public float SetGameSpeed(float speed)
     {
-        Debug.Log("Loading scenario file: " + scenarioFileToLoad);
-        scenarioFileData = ScenarioFileHandler.Load(scenarioFileToLoad);
+        gameSpeed = Mathf.Clamp(speed, SPEED_MIN, SPEED_MAX);
+        if (!isPaused) Time.timeScale = gameSpeed;
+        return gameSpeed;
+    }
 
-        if (scenarioFileData != null)
+    public bool PauseUnpause()
+    {
+        if (!isPaused)
         {
-            Debug.Log("Scenario file loaded successfully. Initializing...");
-            scenarioBooted = false;
-            scenarioStarted = false;
-            StartCoroutine(InitializeScenario());
+            Time.timeScale = 0;
+            isPaused = true;
         }
         else
         {
-            Debug.LogError("Scenario file could not be loaded.");
+            Time.timeScale = gameSpeed;
+            isPaused = false;
         }
+        return isPaused;
+    }
+
+    public bool PauseUnpause(bool pause)
+    {
+        isPaused = !pause;
+        return PauseUnpause();
     }
 
     public void PerformExchange(FieldPiece sender, FieldPiece receiver)
@@ -111,7 +129,8 @@ public class GameManager : AbstractSingleton<GameManager>
         ChangeSchemes(GameScheme.COMBAT);
 
         FieldSC.Instance.HideObjects();
-        CombatManager.Instance.BootCombat(attacker, defender);
+        FieldTile fieldTile = defender.currentTile as FieldTile;
+        CombatManager.Instance.BootCombat(attacker, defender, fieldTile.db_tileset_lowerLand);
         CombatSC.Instance.ShowObjects();
     }
 
@@ -134,6 +153,25 @@ public class GameManager : AbstractSingleton<GameManager>
                 attacker.currentTile.occupantPiece = null;
                 Destroy(attacker.gameObject);
                 break;
+        }
+    }
+
+    public void LoadScenarioFile(string scenarioFileName)
+    {
+        Debug.LogWarning("NOT READING ANY SCENARIO FILE BY NAME!");
+        Debug.Log("Loading scenario file: " + scenarioFileToLoad);
+        scenarioFileData = ScenarioFileHandler.Load(scenarioFileToLoad);
+
+        if (scenarioFileData != null)
+        {
+            Debug.Log("Scenario file loaded successfully. Initializing...");
+            scenarioBooted = false;
+            scenarioStarted = false;
+            StartCoroutine(InitializeScenario());
+        }
+        else
+        {
+            Debug.LogError("Scenario file could not be loaded.");
         }
     }
 

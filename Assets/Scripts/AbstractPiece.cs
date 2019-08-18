@@ -65,7 +65,7 @@ public abstract class AbstractPiece : MonoBehaviour
         stopWasCalled = true;
     }
 
-    private void Movement()
+    protected virtual void Movement()
     {
         if (!inMovement) return;
 

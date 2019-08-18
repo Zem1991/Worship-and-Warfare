@@ -73,7 +73,7 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
 
     public bool IsGamePaused()
     {
-        return false;
+        return GameManager.Instance.isPaused;
     }
 
     public bool IsCursorValid()
@@ -83,6 +83,7 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
 
     public void UpdateInputs()
     {
+        EscapeMenu();
         if (IsGamePaused())
         {
 
@@ -96,6 +97,11 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
             SelectionCommand();
         }
         MovementHighlights();
+    }
+
+    private void EscapeMenu()
+    {
+        if (recorder.escapeMenuDown) FieldManager.Instance.EscapeMenu();
     }
 
     private void CameraControls()

@@ -78,6 +78,7 @@ public class FieldMap : AbstractMap<FieldTile>
 
             DB_Tileset lowerLand = tilesets.Select(tile.lowerLandId) as DB_Tileset;
             Sprite s = lowerLand.image;
+            tile.db_tileset_lowerLand = lowerLand;
             tile.ChangeLandSprite(s);
 
             tile.groundMovementCost = lowerLand.groundMovementCost;
@@ -89,6 +90,7 @@ public class FieldMap : AbstractMap<FieldTile>
             if (feature)
             {
                 s = feature.image;
+                tile.db_tileset_feature = feature;
                 tile.ChangeFeatureSprite(s);
 
                 tile.groundMovementCost += feature.groundMovementCost;

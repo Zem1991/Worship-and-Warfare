@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
 {
+    [Header("Static panels")]
     public FieldUI_TL_CoreButtons coreButtons;
     public FieldUI_TC_Resources resources;
     public FieldUI_TR_Timers timers;
@@ -11,6 +12,9 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
     public FieldUI_BC_Commands commands;
     public FieldUI_BR_FactionCrest factionCrest;
     public FieldUI_BR_PartyCard partyCard;
+
+    [Header("Dynamic panels")]
+    public FieldUI_CC_EscapeMenu escapeMenu;
 
     public void Hide()
     {
@@ -49,5 +53,16 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
         partyCard.Hide();
         commands.Hide();
         factionCrest.Show();
+    }
+
+    public void EscapeMenuHide()
+    {
+        escapeMenu.Hide();
+        UIManager.Instance.PointerExit(escapeMenu);
+    }
+
+    public void EscapeMenuShow()
+    {
+        escapeMenu.Show();
     }
 }

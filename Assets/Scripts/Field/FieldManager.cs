@@ -15,6 +15,8 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
 
     public void BootField(Vector2Int scenarioSize, MapData map, PieceData[] pieces)
     {
+        FieldUI.Instance.EscapeMenuHide();
+
         mapHandler.BuildMap(scenarioSize, map);
         pieceHandler.CreatePieces(pieces);
     }
@@ -31,5 +33,20 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         gameObject.SetActive(true);
         mapHandler.gameObject.SetActive(true);
         pieceHandler.gameObject.SetActive(true);
+    }
+
+    public void EscapeMenu()
+    {
+        bool pauseStatus = GameManager.Instance.PauseUnpause();
+        if (pauseStatus) FieldUI.Instance.EscapeMenuShow();
+        else FieldUI.Instance.EscapeMenuHide();
+    }
+
+    public void Restart()
+    {
+        GameManager.Instance.PauseUnpause(false);
+        FieldUI.Instance.EscapeMenuHide();
+
+        GameManager.Instance.LoadScenarioFile(null);
     }
 }

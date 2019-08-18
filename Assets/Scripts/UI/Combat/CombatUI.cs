@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideabl
     public CombatUI_BR_CombatLogs combatLogs;
 
     [Header("Dynamic panels")]
+    public CombatUI_CC_EscapeMenu escapeMenu;
     public CombatUI_CC_ResultPopup resultPopup;
 
     public void Hide()
@@ -39,9 +41,21 @@ public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideabl
         combatLogs.UpdatePanel();
     }
 
+    public void EscapeMenuHide()
+    {
+        escapeMenu.Hide();
+        UIManager.Instance.PointerExit(escapeMenu);
+    }
+
+    public void EscapeMenuShow()
+    {
+        escapeMenu.Show();
+    }
+
     public void ResultPopupHide()
     {
         resultPopup.Hide();
+        UIManager.Instance.PointerExit(resultPopup);
     }
 
     public void ResultPopupShow(string message)

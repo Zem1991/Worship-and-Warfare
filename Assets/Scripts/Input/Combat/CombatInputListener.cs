@@ -8,6 +8,7 @@ public class CombatInputListener : MonoBehaviour
     public string axis_cursorZ = "Mouse Y";
     public string axis_cameraX = "Horizontal";
     public string axis_cameraZ = "Vertical";
+    public KeyCode kbm_escapeMenu = KeyCode.Escape;
     public KeyCode kbm_selection = KeyCode.Mouse0;
     public KeyCode kbm_command = KeyCode.Mouse1;
 
@@ -34,6 +35,12 @@ public class CombatInputListener : MonoBehaviour
     public bool SelectionDown()
     {
         bool kbm = Input.GetKeyDown(kbm_selection);
+        return kbm;
+    }
+
+    public bool EscapeMenuDown()
+    {
+        bool kbm = Input.GetKeyDown(kbm_escapeMenu);
         return kbm;
     }
 

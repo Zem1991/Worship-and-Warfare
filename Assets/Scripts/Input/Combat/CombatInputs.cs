@@ -73,7 +73,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
 
     public bool IsGamePaused()
     {
-        return CombatManager.Instance.result != CombatResult.NOT_FINISHED;
+        return GameManager.Instance.isPaused;
     }
 
     public bool IsCursorValid()
@@ -83,19 +83,31 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
 
     public void UpdateInputs()
     {
+        EscapeMenu();
         if (IsGamePaused())
         {
 
         }
         else
         {
-            //CameraControls();
-            CursorHighlight();
+            if (CombatManager.Instance.IsCombatRunning())
+            {
+                //CameraControls();
+                CursorHighlight();
 
-            SelectionHighlight();
-            SelectionCommand();
+                SelectionHighlight();
+                SelectionCommand();
+            }
         }
         MovementHighlights();
+    }
+
+    private void EscapeMenu()
+    {
+        if (recorder.escapeMenuDown && CombatManager.Instance.IsCombatRunning())
+        {
+            CombatManager.Instance.EscapeMenu();
+        }
     }
 
     //private void CameraControls()

@@ -9,6 +9,7 @@ public class FieldInputRecorder : MonoBehaviour
     [Header("Inputs")]
     public Vector3 cursorAxes;
     public Vector3 cameraAxes;
+    public bool escapeMenuDown;
     public bool selectionDown;
     public bool commandDown;
 
@@ -23,6 +24,7 @@ public class FieldInputRecorder : MonoBehaviour
     {
         cursorAxes = listener.CursorAxes();
         cameraAxes = listener.CameraAxes();
+        escapeMenuDown = listener.EscapeMenuDown();
         selectionDown = listener.SelectionDown();
         commandDown = listener.CommandDown();
     }

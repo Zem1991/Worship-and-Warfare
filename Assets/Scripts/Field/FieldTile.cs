@@ -5,6 +5,10 @@ using ZemDirections;
 
 public class FieldTile : AbstractTile
 {
+    [Header("Database References")]
+    public DB_Tileset db_tileset_lowerLand;
+    public DB_Tileset db_tileset_feature;
+
     [Header("Tilesets Used")]
     public string lowerLandId;
     public string upperLandId;

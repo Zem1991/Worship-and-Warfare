@@ -142,4 +142,18 @@ public class CombatMap : AbstractMap<CombatTile>
         heroTilePos.x += size.x - 1;
         defenderHeroTile = Instantiate(prefabTile, heroTilePos, heroTileRot, transform);
     }
+
+    public void ApplyTileset(DB_Tileset tileset)
+    {
+        Sprite s = tileset.image;
+        foreach (var tile in tiles.Values)
+        {
+            tile.db_tileset_battleground = tileset;
+            tile.ChangeLandSprite(s);
+        }
+        attackerHeroTile.db_tileset_battleground = tileset;
+        attackerHeroTile.ChangeLandSprite(s);
+        defenderHeroTile.db_tileset_battleground = tileset;
+        defenderHeroTile.ChangeLandSprite(s);
+    }
 }

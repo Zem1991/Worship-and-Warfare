@@ -37,8 +37,9 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     public List<UnitCombatPiece> turnSequence;
     public CombatResult result;
 
-    public void BootCombat(FieldPiece attackerPiece, FieldPiece defenderPiece)
+    public void BootCombat(FieldPiece attackerPiece, FieldPiece defenderPiece, DB_Tileset tileset)
     {
+        CombatUI.Instance.EscapeMenuHide();
         CombatUI.Instance.ResultPopupHide();
 
         //background = battleground.image;
@@ -49,7 +50,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         this.defenderPiece = defenderPiece;
 
         Debug.LogWarning("No tile data for combat map!");
-        mapHandler.BuildMap(MAP_SIZE);
+        mapHandler.BuildMap(MAP_SIZE, tileset);
         pieceHandler.Create(attackerPiece, defenderPiece);
         pieceHandler.InitialHeroPositions(mapHandler.map);
         pieceHandler.InitialUnitPositions(mapHandler.map);
@@ -70,6 +71,11 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         gameObject.SetActive(true);
         mapHandler.gameObject.SetActive(true);
         pieceHandler.gameObject.SetActive(true);
+    }
+
+    public bool IsCombatRunning()
+    {
+        return result == CombatResult.NOT_FINISHED;
     }
 
     public void NextUnit()
@@ -119,10 +125,21 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         UpdateTurnSequence();
     }
 
+    public void EscapeMenu()
+    {
+        bool pauseStatus = GameManager.Instance.PauseUnpause();
+        if (pauseStatus) CombatUI.Instance.EscapeMenuShow();
+        else CombatUI.Instance.EscapeMenuHide();
+    }
+
     public void CombatEnd(CombatResult result)
     {
+        GameManager.Instance.PauseUnpause(false);
+        CombatUI.Instance.EscapeMenuHide();
+
         this.result = result;
         Player localPlayer = PlayerManager.Instance.localPlayer;
+
         string resultMsg;
         if ((result == CombatResult.ATTACKER_WON) && (attacker == localPlayer) ||
             (result == CombatResult.DEFENDER_WON) && (defender == localPlayer))
@@ -133,13 +150,20 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         {
             resultMsg = localPlayerDefeatMsg;
         }
-
         CombatUI.Instance.ResultPopupShow(resultMsg);
+    }
+
+    public void CombatEndForceDefeat()
+    {
+        Player localPlayer = PlayerManager.Instance.localPlayer;
+        if (attacker == localPlayer) CombatEnd(CombatResult.DEFENDER_WON);
+        else if (defender == localPlayer) CombatEnd(CombatResult.ATTACKER_WON);
     }
 
     public void CombatEndConfirm()
     {
         //TODO CHANGE PIECES BEFORE SENDING THEM BACK.
+        CombatUI.Instance.ResultPopupHide();
         GameManager.Instance.ReturnFromCombat(result, attackerPiece, defenderPiece);
     }
 }
