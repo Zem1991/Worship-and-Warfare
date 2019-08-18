@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CombatUI_TL_CoreButtons : MonoBehaviour
+public class CombatUI_TL_CoreButtons : AUIPanel
 {
     public Button btnMenu;
     public Button btnHelp;

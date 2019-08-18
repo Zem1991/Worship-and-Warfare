@@ -71,14 +71,30 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         return cameraController;
     }
 
+    public bool IsGamePaused()
+    {
+        return CombatManager.Instance.result != CombatResult.NOT_FINISHED;
+    }
+
+    public bool IsCursorValid()
+    {
+        return !UIManager.Instance.focusedPanel;
+    }
+
     public void UpdateInputs()
     {
-        //CameraControls();
-        CursorHighlight();
+        if (IsGamePaused())
+        {
 
-        SelectionHighlight();
-        SelectionCommand();
+        }
+        else
+        {
+            //CameraControls();
+            CursorHighlight();
 
+            SelectionHighlight();
+            SelectionCommand();
+        }
         MovementHighlights();
     }
 
@@ -138,7 +154,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
     private void SelectionHighlight()
     {
         if (recorder.selectionDown &&
-            !UIManager.Instance.focusedPanel)
+            IsCursorValid())
         {
             movementHighlightsUpdateFromCommand = true;
 
@@ -181,7 +197,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
     private void SelectionCommand()
     {
         if (recorder.commandDown &&
-            !UIManager.Instance.focusedPanel)
+            IsCursorValid())
         {
             //if (im.cursorOnPlayArea && selectionPiece)
             if (selectionPiece)

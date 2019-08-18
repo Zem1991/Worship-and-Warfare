@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CombatUI_BC_TurnSequence : MonoBehaviour
+public class CombatUI_BC_TurnSequence : AUIPanel
 {
     [Header("Prefab")]
     public TurnSequenceItem prefabTSItem;

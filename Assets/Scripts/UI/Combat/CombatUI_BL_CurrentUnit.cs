@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CombatUI_BL_CurrentUnit : MonoBehaviour
+public class CombatUI_BL_CurrentUnit : AUIPanel
 {
     public Image unitPortrait;
     public Text txtUnitName;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CombatUI_TC_PartyCard : MonoBehaviour
+public class CombatUI_TC_PartyCard : AUIPanel
 {
     public Image heroPortrait;
     public Text txtHeroName;

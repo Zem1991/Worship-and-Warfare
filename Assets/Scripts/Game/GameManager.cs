@@ -115,14 +115,26 @@ public class GameManager : AbstractSingleton<GameManager>
         CombatSC.Instance.ShowObjects();
     }
 
-    public void ReturnFromCombat(FieldPiece attacker, FieldPiece defender)
+    public void ReturnFromCombat(CombatResult result, FieldPiece attacker, FieldPiece defender)
     {
         Debug.Log("PIECES FINISHED BATTLE");
         ChangeSchemes(GameScheme.FIELD);
 
         CombatSC.Instance.HideObjects();
         //CombatManager.Instance.StartCombat(null, attacker, defender);
+
         FieldSC.Instance.ShowObjects();
+        switch (result)
+        {
+            case CombatResult.ATTACKER_WON:
+                defender.currentTile.occupantPiece = null;
+                Destroy(defender.gameObject);
+                break;
+            case CombatResult.DEFENDER_WON:
+                attacker.currentTile.occupantPiece = null;
+                Destroy(attacker.gameObject);
+                break;
+        }
     }
 
     private IEnumerator InitializeScenario()
@@ -193,6 +205,7 @@ public class GameManager : AbstractSingleton<GameManager>
 
     private void ChangeSchemes(GameScheme gs)
     {
+        currentGameScheme = gs;
         InputManager.Instance.ChangeScheme(gs);
         UIManager.Instance.ChangeScheme(gs);
 

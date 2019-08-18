@@ -41,7 +41,16 @@ public class UnitCombatPiece : AbstractCombatPiece
 
     public override void InteractWithPiece(AbstractPiece target)
     {
-        Debug.LogWarning("THIS UNIT DOESN'T KNOW HOW TO HANDLE OTHER PIECES!");
-        //CombatPieceManager.Instance.UnitsAreInteracting(this, target as UnitCombatPiece);
+        UnitCombatPiece targetUnit = target as UnitCombatPiece;
+        if (targetUnit)
+        {
+            Debug.LogWarning("InteractWithPiece insta-killed the target!");
+            targetUnit.hitPointsCurrent = 0;
+        }
+        else
+        {
+            Debug.LogWarning("InteractWithPiece IS DESTROYING PIECES!");
+            Destroy(target.gameObject);
+        }
     }
 }

@@ -71,14 +71,30 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
         return cameraController;
     }
 
+    public bool IsGamePaused()
+    {
+        return false;
+    }
+
+    public bool IsCursorValid()
+    {
+        return !UIManager.Instance.focusedPanel;
+    }
+
     public void UpdateInputs()
     {
-        CameraControls();
-        CursorHighlight();
+        if (IsGamePaused())
+        {
 
-        SelectionHighlight();
-        SelectionCommand();
+        }
+        else
+        {
+            CameraControls();
+            CursorHighlight();
 
+            SelectionHighlight();
+            SelectionCommand();
+        }
         MovementHighlights();
     }
 
@@ -137,8 +153,8 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
 
     private void SelectionHighlight()
     {
-        if (recorder.selectionDown && 
-            !UIManager.Instance.focusedPanel)
+        if (recorder.selectionDown &&
+            IsCursorValid())
         {
             movementHighlightsUpdateFromCommand = true;
 
@@ -181,7 +197,7 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
     private void SelectionCommand()
     {
         if (recorder.commandDown &&
-            !UIManager.Instance.focusedPanel)
+            IsCursorValid())
         {
             if (im.cursorOnPlayArea && selectionPiece)
             {

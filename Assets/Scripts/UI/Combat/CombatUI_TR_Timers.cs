@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CombatUI_TR_Timers : MonoBehaviour
+public class CombatUI_TR_Timers : AUIPanel
 {
     public Text txtTurns;
     public Text txtTimer;

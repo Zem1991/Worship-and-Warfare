@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideable
 {
+    [Header("Static panels")]
     public CombatUI_TL_CoreButtons coreButtons;
     public CombatUI_TC_PartyCard attackerParty;
     public CombatUI_TC_PartyCard defenderParty;
@@ -11,6 +12,9 @@ public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideabl
     public CombatUI_BL_CurrentUnit currentUnit;
     public CombatUI_BC_TurnSequence turnSequence;
     public CombatUI_BR_CombatLogs combatLogs;
+
+    [Header("Dynamic panels")]
+    public CombatUI_CC_ResultPopup resultPopup;
 
     public void Hide()
     {
@@ -33,5 +37,16 @@ public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideabl
         currentUnit.UpdatePanel(cm.currentUnit);
         turnSequence.UpdatePanel();
         combatLogs.UpdatePanel();
+    }
+
+    public void ResultPopupHide()
+    {
+        resultPopup.Hide();
+    }
+
+    public void ResultPopupShow(string message)
+    {
+        resultPopup.txtMessage.text = message;
+        resultPopup.Show();
     }
 }

@@ -13,6 +13,14 @@ public class CombatPieceHandler : MonoBehaviour
     public HeroCombatPiece defenderHero;
     public List<UnitCombatPiece> defenderUnits;
 
+    void Update()
+    {
+        if (CombatManager.Instance.combatStarted)
+        {
+            CheckBattleEnd();
+        }
+    }
+
     public void Remove()
     {
         if (attackerUnits != null)
@@ -142,5 +150,14 @@ public class CombatPieceHandler : MonoBehaviour
             needGroundAccess, needWaterAccess, needLavaAccess,
             out List<PathNode> result, out float pathCost);
         piece.SetPath(result, Mathf.CeilToInt(pathCost), targetTile);
+    }
+
+    private void CheckBattleEnd()
+    {
+        bool attackerActive = GetActiveUnits(attackerUnits).Count > 0;
+        bool defenderActive = GetActiveUnits(defenderUnits).Count > 0;
+
+        if (attackerActive && !defenderActive) CombatManager.Instance.CombatEnd(CombatResult.ATTACKER_WON);
+        else if (!attackerActive && defenderActive) CombatManager.Instance.CombatEnd(CombatResult.DEFENDER_WON);
     }
 }

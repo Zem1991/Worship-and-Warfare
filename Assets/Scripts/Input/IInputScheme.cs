@@ -5,5 +5,7 @@ using UnityEngine;
 public interface IInputScheme
 {
     CameraController CameraController();
+    bool IsGamePaused();
+    bool IsCursorValid();
     void UpdateInputs();
 }

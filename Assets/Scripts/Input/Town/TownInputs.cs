@@ -38,12 +38,29 @@ public class TownInputs : AbstractSingleton<TownInputs>, IInputScheme, IShowable
         return cameraController;
     }
 
+    public bool IsGamePaused()
+    {
+        return false;
+    }
+
+    public bool IsCursorValid()
+    {
+        return !UIManager.Instance.focusedPanel;
+    }
+
     public void UpdateInputs()
     {
-        //CameraControls();
-        //CursorHighlight();
+        //if (IsGamePaused())
+        //{
 
-        //SelectionHighlight();
-        //SelectionCommand();
+        //}
+        //else
+        //{
+        //    CameraControls();
+        //    CursorHighlight();
+
+        //    SelectionHighlight();
+        //    SelectionCommand();
+        //}
     }
 }
