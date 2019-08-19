@@ -13,12 +13,23 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
     public FieldMapHandler mapHandler;
     public FieldPieceHandler pieceHandler;
 
+    public void TerminateField()
+    {
+        mapHandler.ClearMap();
+        pieceHandler.Remove();
+    }
+
     public void BootField(Vector2Int scenarioSize, MapData map, PieceData[] pieces)
     {
         FieldUI.Instance.EscapeMenuHide();
 
         mapHandler.BuildMap(scenarioSize, map);
-        pieceHandler.CreatePieces(pieces);
+        pieceHandler.Create(pieces);
+    }
+
+    public void RemovePiece(FieldPiece piece)
+    {
+        pieceHandler.RemovePiece(piece);
     }
 
     public void Hide()
@@ -47,6 +58,6 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         GameManager.Instance.PauseUnpause(false);
         FieldUI.Instance.EscapeMenuHide();
 
-        GameManager.Instance.LoadScenarioFile(null);
+        GameManager.Instance.Restart();
     }
 }

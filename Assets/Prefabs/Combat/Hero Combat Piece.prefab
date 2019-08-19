@@ -54,6 +54,8 @@ MonoBehaviour:
   nextPos: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
+  imgProfile: {fileID: 0}
+  imgCombat: {fileID: 0}
   heroName: 
   className: 
   level: 0
@@ -66,8 +68,6 @@ MonoBehaviour:
   commandUsed: 0
   manaMax: 0
   manaCurrent: 0
-  imgProfile: {fileID: 0}
-  imgCombat: {fileID: 0}
 --- !u!1 &6481890484422662304
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +167,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

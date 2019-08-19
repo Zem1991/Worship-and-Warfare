@@ -37,6 +37,18 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     public List<UnitCombatPiece> turnSequence;
     public CombatResult result;
 
+    public void TerminateCombat()
+    {
+        mapHandler.ClearMap();
+        pieceHandler.Remove();
+
+        combatStarted = false;
+        currentTurn = 0;
+        currentUnit = null;
+        turnSequence.Clear();
+        result = CombatResult.NOT_FINISHED;
+    }
+
     public void BootCombat(FieldPiece attackerPiece, FieldPiece defenderPiece, DB_Tileset tileset)
     {
         CombatUI.Instance.EscapeMenuHide();
@@ -84,7 +96,6 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         {
             currentUnit = turnSequence[0];
             turnSequence.RemoveAt(0);
-            turnSequence.TrimExcess();
         }
         else
         {
@@ -121,7 +132,6 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     public void RemoveUnitFromTurnSequence(UnitCombatPiece uc)
     {
         turnSequence.Remove(uc);
-        turnSequence.TrimExcess();
         UpdateTurnSequence();
     }
 

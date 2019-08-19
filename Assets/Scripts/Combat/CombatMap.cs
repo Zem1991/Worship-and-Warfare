@@ -20,7 +20,7 @@ public class CombatMap : AbstractMap<CombatTile>
         {
             foreach (var item in attackerStartTiles)
             {
-                Destroy(item);
+                Destroy(item.gameObject);
             }
         }
         attackerStartTiles = new List<CombatTile>();
@@ -29,16 +29,20 @@ public class CombatMap : AbstractMap<CombatTile>
         {
             foreach (var item in defenderStartTiles)
             {
-                Destroy(item);
+                Destroy(item.gameObject);
             }
         }
         defenderStartTiles = new List<CombatTile>();
+
+        if (attackerHeroTile) Destroy(attackerHeroTile.gameObject);
+        if (defenderHeroTile) Destroy(defenderHeroTile.gameObject);
     }
 
     public override void Create(Vector2Int size)
     {
         Remove();
         mapSize = size;
+
         CombatTile prefabTile = CombatManager.Instance.prefabTile;
         prefabTile.groundMovementCost = 100;    //TODO GET MOVEMENT COSTS LATER
         prefabTile.allowGroundMovement = true;  //TODO GET MOVEMENT TYPES LATER

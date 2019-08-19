@@ -23,32 +23,32 @@ public class CombatPieceHandler : MonoBehaviour
 
     public void Remove()
     {
+        if (attackerHero) Destroy(attackerHero.gameObject);
+        if (defenderHero) Destroy(defenderHero.gameObject);
+
         if (attackerUnits != null)
         {
             foreach (var item in attackerUnits)
             {
-                Destroy(item);
+                Destroy(item.gameObject);
             }
-            attackerUnits = null;
         }
+        attackerUnits = new List<UnitCombatPiece>();
 
         if (defenderUnits != null)
         {
             foreach (var item in defenderUnits)
             {
-                Destroy(item);
+                Destroy(item.gameObject);
             }
-            defenderUnits = null;
         }
+        defenderUnits = new List<UnitCombatPiece>();
     }
 
     public void Create(FieldPiece attackerPiece, FieldPiece defenderPiece)
     {
         Remove();
-
         CombatManager cm = CombatManager.Instance;
-        attackerUnits = new List<UnitCombatPiece>();
-        defenderUnits = new List<UnitCombatPiece>();
 
         if (attackerPiece.hero != null)
         {
@@ -86,6 +86,11 @@ public class CombatPieceHandler : MonoBehaviour
             }
         }
     }
+
+    //public void RemovePiece(FieldPiece piece)
+    //{
+    //    throw new NotImplementedException();
+    //}
 
     public void InitialHeroPositions(CombatMap map)
     {

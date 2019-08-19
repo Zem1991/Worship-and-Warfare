@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,11 @@ public class FieldMapHandler : MonoBehaviour
     [Header("Maps")]
     public FieldMap map;
     //public FieldMap extraMap;
+
+    public void ClearMap()
+    {
+        map.Remove();
+    }
 
     public void BuildMap(Vector2Int size, MapData surfaceMap)
     {

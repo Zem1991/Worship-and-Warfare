@@ -10,18 +10,21 @@ public class FieldPieceHandler : MonoBehaviour
     [Header("Pieces")]
     public List<FieldPiece> pieces;
 
-    public void DeletePieces()
+    public void Remove()
     {
-        foreach (var item in pieces)
+        if (pieces != null)
         {
-            Destroy(item);
+            foreach (var item in pieces)
+            {
+                Destroy(item.gameObject);
+            }
         }
-        pieces.Clear();
+        pieces = new List<FieldPiece>();
     }
 
-    public void CreatePieces(PieceData[] pieceData)
+    public void Create(PieceData[] pieceData)
     {
-        DeletePieces();
+        Remove();
 
         DatabaseManager db = DatabaseManager.Instance;
         DBHandler_Hero dbHeroes = db.heroes;
@@ -86,6 +89,13 @@ public class FieldPieceHandler : MonoBehaviour
                 newPiece.name = "Army of " + relevantUnit.unitName;
             }
         }
+    }
+
+    public void RemovePiece(FieldPiece piece)
+    {
+        pieces.Remove(piece);
+        piece.currentTile.occupantPiece = null;
+        Destroy(piece.gameObject);
     }
 
     public void Pathfind(FieldPiece piece, FieldTile targetTile,

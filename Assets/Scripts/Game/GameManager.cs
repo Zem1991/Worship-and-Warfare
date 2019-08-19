@@ -140,20 +140,24 @@ public class GameManager : AbstractSingleton<GameManager>
         ChangeSchemes(GameScheme.FIELD);
 
         CombatSC.Instance.HideObjects();
-        //CombatManager.Instance.StartCombat(null, attacker, defender);
+        CombatManager.Instance.TerminateCombat();
 
         FieldSC.Instance.ShowObjects();
         switch (result)
         {
             case CombatResult.ATTACKER_WON:
-                defender.currentTile.occupantPiece = null;
-                Destroy(defender.gameObject);
+                FieldManager.Instance.RemovePiece(defender);
                 break;
             case CombatResult.DEFENDER_WON:
-                attacker.currentTile.occupantPiece = null;
-                Destroy(attacker.gameObject);
+                FieldManager.Instance.RemovePiece(attacker);
                 break;
         }
+    }
+
+    public void Restart()
+    {
+        FieldManager.Instance.TerminateField();
+        LoadScenarioFile(null);
     }
 
     public void LoadScenarioFile(string scenarioFileName)
