@@ -280,8 +280,8 @@ MonoBehaviour:
   initiative: 7
   movementType: 0
   profilePicture: {fileID: 21300000, guid: 4dbc5a32b0b03a04b9160f4c1e4308c2, type: 3}
-  fieldPicture: {fileID: 21300000, guid: a6c418dfef20cfd4c973dc28c0161971, type: 3}
-  combatPicture: {fileID: 21300000, guid: 326911ee527618a469ce65603959a598, type: 3}
+  animatorField: {fileID: 22100000, guid: 6e1ef4cba0109c54f8afd22be7a1f7d5, type: 2}
+  animatorCombat: {fileID: 22100000, guid: 724bd014c968db0439404c1bef496e75, type: 2}
 --- !u!1 &68528724
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,53 +331,6 @@ MonoBehaviour:
   allowWaterMovement: 0
   allowLavaMovement: 0
   image: {fileID: 21300000, guid: 94577bcaf7ce4a2409b74e6e59d047ab, type: 3}
---- !u!1 &85799217
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 85799218}
-  - component: {fileID: 85799219}
-  m_Layer: 0
-  m_Name: Cassius
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &85799218
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 85799217}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1856570799}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &85799219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 85799217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62424aa6ee5883f4281d0d2c4db93144, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 
-  heroName: Cassius
-  classs: {fileID: 1536214179}
-  profilePicture: {fileID: 21300000, guid: feb6e54b1a604804683cfb45551bd2da, type: 3}
 --- !u!1 &120274622
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,8 +490,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1536214178}
+  m_Children: []
   m_Father: {fileID: 1037067536}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -575,8 +527,8 @@ MonoBehaviour:
   defense: 2
   power: 2
   focus: 0
-  fieldPicture: {fileID: 21300000, guid: 158acc8909757714b8bdfa58344cb2b4, type: 3}
-  combatPicture: {fileID: 21300000, guid: 281665d1d9d07134bac896777aced8c1, type: 3}
+  animatorField: {fileID: 22100000, guid: 6e1ef4cba0109c54f8afd22be7a1f7d5, type: 2}
+  animatorCombat: {fileID: 22100000, guid: 724bd014c968db0439404c1bef496e75, type: 2}
 --- !u!1 &485034157
 GameObject:
   m_ObjectHideFlags: 0
@@ -1348,8 +1300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
-  name: Default Animation
-  image: {fileID: 0}
+  clip: {fileID: 0}
 --- !u!1 &1168993048
 GameObject:
   m_ObjectHideFlags: 0
@@ -1661,59 +1612,6 @@ MonoBehaviour:
   id: 
   name: Default Element
   image: {fileID: 0}
---- !u!1 &1536214177
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1536214178}
-  - component: {fileID: 1536214179}
-  m_Layer: 0
-  m_Name: Judicator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1536214178
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1536214177}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 484480923}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1536214179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1536214177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4631cf7fddea526478aac2544ff31100, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 
-  className: Judicator
-  faction: {fileID: 648845224}
-  command: 4
-  offense: 2
-  defense: 2
-  power: 1
-  focus: 0
-  fieldPicture: {fileID: 21300000, guid: 158acc8909757714b8bdfa58344cb2b4, type: 3}
-  combatPicture: {fileID: 21300000, guid: 281665d1d9d07134bac896777aced8c1, type: 3}
 --- !u!1 &1540432247
 GameObject:
   m_ObjectHideFlags: 0
@@ -2108,8 +2006,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 85799218}
+  m_Children: []
   m_Father: {fileID: 1037067536}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -1,0 +1,2201 @@
+fileFormatVersion: 2
+guid: 715d886f54dd8834a9977a841b70d401
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8114435892521154895
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_0
+  - first:
+      213: -6304973718307894172
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_1
+  - first:
+      213: -6731239302098511289
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_2
+  - first:
+      213: 4863648776017186207
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_3
+  - first:
+      213: -5212232014298419825
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_4
+  - first:
+      213: 5185819355479446569
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_5
+  - first:
+      213: 1309947277055651236
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_6
+  - first:
+      213: -3225132137268403969
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_7
+  - first:
+      213: 3815981619448837111
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_8
+  - first:
+      213: 4379819288808735165
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_9
+  - first:
+      213: -2989791377407516927
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_10
+  - first:
+      213: -3990941890545457454
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_11
+  - first:
+      213: -2363692933243012332
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_12
+  - first:
+      213: 4741584239494642765
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_13
+  - first:
+      213: -3428839269519704756
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_14
+  - first:
+      213: 2957496831888394373
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_15
+  - first:
+      213: 1980616790081551772
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_16
+  - first:
+      213: -307236939061393779
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_17
+  - first:
+      213: 6629210560498707269
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_18
+  - first:
+      213: -670737344878191067
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_19
+  - first:
+      213: -7071043161506035259
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_20
+  - first:
+      213: -3831302546278712349
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_21
+  - first:
+      213: 7566653090247167304
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_22
+  - first:
+      213: -6504484220086589622
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_23
+  - first:
+      213: -4869093265059349850
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_24
+  - first:
+      213: 4146006069197937376
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_25
+  - first:
+      213: -2696669871396021944
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_26
+  - first:
+      213: 6829514615752438943
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_27
+  - first:
+      213: 8742141803335090584
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_28
+  - first:
+      213: -8929443049170459179
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_29
+  - first:
+      213: -7186745625821683451
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_30
+  - first:
+      213: -4851693662924302121
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_31
+  - first:
+      213: -4696974508006900524
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_32
+  - first:
+      213: -3952925800812288300
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_33
+  - first:
+      213: -5916092225750088032
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_34
+  - first:
+      213: -6721056744618904505
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_35
+  - first:
+      213: -6439905364938815064
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_36
+  - first:
+      213: -8197807775489246673
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_37
+  - first:
+      213: 5935123075837794963
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_38
+  - first:
+      213: -995983793642250277
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_39
+  - first:
+      213: 9168616083977279385
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_40
+  - first:
+      213: -2743499090061359146
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_41
+  - first:
+      213: 2666533577883118159
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_42
+  - first:
+      213: -2059436113285633063
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_43
+  - first:
+      213: 2042129697854906470
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_44
+  - first:
+      213: -2244677884455132076
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_45
+  - first:
+      213: 5072964829437795001
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_46
+  - first:
+      213: 8155804060882773855
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_47
+  - first:
+      213: -850224963372836765
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_48
+  - first:
+      213: 6072849934618216683
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_49
+  - first:
+      213: -2057816656659209686
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_50
+  - first:
+      213: -1594842844733103629
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_51
+  - first:
+      213: -348915393151995014
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_52
+  - first:
+      213: 9003352994732519707
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_53
+  - first:
+      213: -5446472878870744500
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_54
+  - first:
+      213: 3109105988263984996
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_55
+  - first:
+      213: 6380431664313010932
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_56
+  - first:
+      213: -7089544030406039479
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_57
+  - first:
+      213: 2757616862368728201
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_58
+  - first:
+      213: -6739305366398130952
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_59
+  - first:
+      213: -4510924368649361116
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_60
+  - first:
+      213: -2378734951397376766
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_61
+  - first:
+      213: 8415598868031403198
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_62
+  - first:
+      213: 8000289470874655616
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_63
+  - first:
+      213: -1535519878202014452
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_64
+  - first:
+      213: -1272391770237963111
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_65
+  - first:
+      213: 4542549329072291902
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_66
+  - first:
+      213: -8527244795367627640
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_67
+  - first:
+      213: -4968738706200760629
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_68
+  - first:
+      213: -8134582950511833521
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_69
+  - first:
+      213: 1907375473071100464
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_70
+  - first:
+      213: 5891471906264147018
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_71
+  - first:
+      213: 4579421477575085482
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_72
+  - first:
+      213: 5929351890579222784
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_73
+  - first:
+      213: 6254155479819274045
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_74
+  - first:
+      213: -5511532617669101812
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_75
+  - first:
+      213: 7182858544372671637
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_76
+  - first:
+      213: 6056506942317834410
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_77
+  - first:
+      213: 1341859363871236629
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_78
+  - first:
+      213: -2223271940306072950
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_79
+  - first:
+      213: 1623869428992309173
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_80
+  - first:
+      213: 9101346906148213041
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_81
+  - first:
+      213: -8720222155730077648
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_82
+  - first:
+      213: -3281863115331156815
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_83
+  - first:
+      213: -5428994414813249992
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_84
+  - first:
+      213: 4231277283155749225
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_85
+  - first:
+      213: 6190816797782328603
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_86
+  - first:
+      213: 2011312374823263475
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_87
+  - first:
+      213: -7510307279869641525
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_88
+  - first:
+      213: -663835718386956600
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_89
+  - first:
+      213: 2561013535953033255
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_90
+  - first:
+      213: -2974129726607346636
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_91
+  - first:
+      213: 6277568265678733596
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_92
+  - first:
+      213: 8223905108624811100
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_93
+  - first:
+      213: -1239997064638656630
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_94
+  - first:
+      213: 1776178294755249812
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_95
+  - first:
+      213: 6173083724367729395
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_96
+  - first:
+      213: 3414377581144475414
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_97
+  - first:
+      213: -5861682613887164056
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_98
+  - first:
+      213: 5068365761170649984
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_99
+  - first:
+      213: 4140707903569307995
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_100
+  - first:
+      213: -8271405297396840890
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_101
+  - first:
+      213: -1430103250322659861
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_102
+  - first:
+      213: 5326990861642544436
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_103
+  - first:
+      213: -4608872337757964774
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_104
+  - first:
+      213: -5438293966634302252
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_105
+  - first:
+      213: -6920096061239468720
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_106
+  - first:
+      213: 7546640855250249054
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_107
+  - first:
+      213: 6839218813345498634
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_108
+  - first:
+      213: 234606149431231235
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_109
+  - first:
+      213: -8748083454165863186
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_110
+  - first:
+      213: 87569218238060102
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_111
+  - first:
+      213: 5979904839823981515
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_112
+  - first:
+      213: -774940749185834973
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_113
+  - first:
+      213: -6067126008509363901
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_114
+  - first:
+      213: 7724945129331882594
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_115
+  - first:
+      213: -8771069561462965289
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_116
+  - first:
+      213: -2531419326492193690
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_117
+  - first:
+      213: -5532703074331652111
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_118
+  - first:
+      213: -4415460330362122550
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_119
+  - first:
+      213: -992841464747050454
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_120
+  - first:
+      213: -6213557048425589085
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_121
+  - first:
+      213: -3008689496186853908
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_122
+  - first:
+      213: -8352659744585087830
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_123
+  - first:
+      213: -2387595334432242636
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_124
+  - first:
+      213: -3045435474735983343
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_125
+  - first:
+      213: 8166337619043571172
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_126
+  - first:
+      213: -2239370892965843568
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_127
+  - first:
+      213: 3336040313205083239
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_128
+  - first:
+      213: -4312156041326328786
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_129
+  - first:
+      213: 100272347757540476
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_130
+  - first:
+      213: -8450350293648291213
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_131
+  - first:
+      213: -4069390567553294015
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_132
+  - first:
+      213: 2172282678640120216
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_133
+  - first:
+      213: -3993489459911899517
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_134
+  - first:
+      213: -8748844712435398905
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_135
+  - first:
+      213: -82893756832094881
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_136
+  - first:
+      213: -3513581459264673077
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_137
+  - first:
+      213: -9219029546508471947
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_138
+  - first:
+      213: 287490843970332566
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_139
+  - first:
+      213: -1666456115884314380
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_140
+  - first:
+      213: 720404544355178161
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_141
+  - first:
+      213: -2087997474717800335
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_142
+  - first:
+      213: -2452391172732671958
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_143
+  - first:
+      213: -8543266834607041402
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_144
+  - first:
+      213: -785234185626902907
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_145
+  - first:
+      213: 4740231366093593466
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_146
+  - first:
+      213: 1349155159254988364
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_147
+  - first:
+      213: -2093055439290229066
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_148
+  - first:
+      213: 1591795487455080187
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_149
+  - first:
+      213: -1177729681241046615
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_150
+  - first:
+      213: -6731473170160751389
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_151
+  - first:
+      213: -2930513945505236894
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_152
+  - first:
+      213: -5575974167790947002
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_153
+  - first:
+      213: -228370994967253823
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_154
+  - first:
+      213: 5176277701489101936
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_155
+  - first:
+      213: 6469766910395458667
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_156
+  - first:
+      213: 2148710852261977105
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_157
+  - first:
+      213: -1670142386960976568
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_158
+  - first:
+      213: 1706190369756541656
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_159
+  - first:
+      213: -840794472223080250
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_160
+  - first:
+      213: 7980967223713175451
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_161
+  - first:
+      213: -881303493066137748
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_162
+  - first:
+      213: -317853164026161783
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_163
+  - first:
+      213: 6662518789548299152
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_164
+  - first:
+      213: 4948839130964248316
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_165
+  - first:
+      213: 4292447244941819492
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_166
+  - first:
+      213: -4384135005838590701
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_167
+  - first:
+      213: -419591784110742832
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_168
+  - first:
+      213: -1368384536228251445
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_169
+  - first:
+      213: -4673409130999632931
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_170
+  - first:
+      213: -7498279067590987419
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_171
+  - first:
+      213: 5830012583805143491
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_172
+  - first:
+      213: 1273552380129934078
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_173
+  - first:
+      213: -1307260273685215371
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_174
+  - first:
+      213: 1144637581816072838
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_175
+  - first:
+      213: 9042955210218167769
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_176
+  - first:
+      213: -3191653295290425161
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_177
+  - first:
+      213: 3368463129955355797
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_178
+  - first:
+      213: 3995744264787838183
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_179
+  - first:
+      213: 6114219287556987396
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_180
+  - first:
+      213: 7187337644365205268
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_181
+  - first:
+      213: 2856990125342708566
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_182
+  - first:
+      213: -4050698208354898353
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_183
+  - first:
+      213: -5109240362165447629
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_184
+  - first:
+      213: -2419990645397982025
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_185
+  - first:
+      213: 7674054780310146993
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_186
+  - first:
+      213: -1752993912858514268
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_187
+  - first:
+      213: 3484137956842773798
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_188
+  - first:
+      213: -5123271887036356739
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_189
+  - first:
+      213: 446413912557918197
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_190
+  - first:
+      213: -8049324901713123653
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_191
+  - first:
+      213: 5326873904016221332
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_192
+  - first:
+      213: 4730465833575884955
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_193
+  - first:
+      213: 6618184297607832661
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_194
+  - first:
+      213: 4306925791925469564
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_195
+  - first:
+      213: -4168378853692076742
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_196
+  - first:
+      213: -1456887303492157521
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_197
+  - first:
+      213: 6928992869650693489
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_198
+  - first:
+      213: -2283344693071147141
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_199
+  - first:
+      213: 4156440097427633978
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_200
+  - first:
+      213: 6373946168105568755
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_201
+  - first:
+      213: -864777979340980493
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_202
+  - first:
+      213: 2155141350000688603
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_203
+  - first:
+      213: -5245826511802373349
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_204
+  - first:
+      213: -3194567949119172860
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_205
+  - first:
+      213: -5445373715274314552
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_206
+  - first:
+      213: -7545746145314480349
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_207
+  - first:
+      213: -9147527520299332729
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_208
+  - first:
+      213: -663407355768279793
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_209
+  - first:
+      213: 2467999006579984993
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_210
+  - first:
+      213: 2047843399571938063
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_211
+  - first:
+      213: -7459682518974202955
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_212
+  - first:
+      213: -3322094794486476677
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_213
+  - first:
+      213: -2577762633727580583
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_214
+  - first:
+      213: 4555709181331854466
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_215
+  - first:
+      213: 3907016676008307447
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_216
+  - first:
+      213: -5135677083004713671
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_217
+  - first:
+      213: -2269582297022775299
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_218
+  - first:
+      213: -8412691185317741315
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_219
+  - first:
+      213: 3933959720854354588
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_220
+  - first:
+      213: -8304096920455922662
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_221
+  - first:
+      213: -3579980834790233011
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_222
+  - first:
+      213: -6209640458632845037
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_223
+  - first:
+      213: 7688679600206563176
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_224
+  - first:
+      213: 5483522339124748257
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_225
+  - first:
+      213: -7828605993858089589
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_226
+  - first:
+      213: 8330924472330368465
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_227
+  - first:
+      213: -3617557509195806097
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_228
+  - first:
+      213: -6830182156266359957
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_229
+  - first:
+      213: -6933079044982153282
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_230
+  - first:
+      213: -9179861222812125179
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_231
+  - first:
+      213: 1165228343540359744
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_232
+  - first:
+      213: 9151608140588807685
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_233
+  - first:
+      213: -3271671891576506992
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_234
+  - first:
+      213: 879104873792605995
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_235
+  - first:
+      213: 356722550546123111
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_236
+  - first:
+      213: 1685814605112667438
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_237
+  - first:
+      213: 5123054724969944037
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_238
+  - first:
+      213: -6467566683370218880
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_239
+  - first:
+      213: 636434424359148535
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_240
+  - first:
+      213: 7615827079271804055
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_241
+  - first:
+      213: 7424761940465330215
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_242
+  - first:
+      213: 2407153921636997409
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_243
+  - first:
+      213: 5373274359839719720
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_244
+  - first:
+      213: 8190200144321004331
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_245
+  - first:
+      213: 5353326043000699857
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_246
+  - first:
+      213: 5700333825705253252
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_247
+  - first:
+      213: 3592761503843580061
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_248
+  - first:
+      213: -9037247250455037009
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_249
+  - first:
+      213: 3880628585026973188
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_250
+  - first:
+      213: 2497802724561303216
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_251
+  - first:
+      213: 2848483206806002645
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_252
+  - first:
+      213: -1364221231246285494
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_253
+  - first:
+      213: -4039751389577018951
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_254
+  - first:
+      213: 4043169142863298087
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_255
+  - first:
+      213: -6768883731476298359
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_256
+  - first:
+      213: -168960861789714737
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_257
+  - first:
+      213: -4533073478049896029
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_258
+  - first:
+      213: 5263106702009313157
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_259
+  - first:
+      213: -5778349712361067474
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_260
+  - first:
+      213: 2052274784058767184
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_261
+  - first:
+      213: 4086728589160655714
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_262
+  - first:
+      213: -3363840993484608409
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_263
+  - first:
+      213: -6444700558765933164
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_264
+  - first:
+      213: -8471564533079667180
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_265
+  - first:
+      213: -3792777678942036351
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_266
+  - first:
+      213: 7588778013190878104
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_267
+  - first:
+      213: -4514844401424601977
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_268
+  - first:
+      213: 492333818337126273
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_269
+  - first:
+      213: 1346828719004719643
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_270
+  - first:
+      213: -2926131674038710996
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_271
+  - first:
+      213: -5464433554506071972
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_272
+  - first:
+      213: 6601929531971232211
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_273
+  - first:
+      213: 6785725923186833105
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_274
+  - first:
+      213: 1001779305423182581
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_275
+  - first:
+      213: -2731515087580447703
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_276
+  - first:
+      213: -7764537245041173996
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_277
+  - first:
+      213: 1723975416679840418
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_278
+  - first:
+      213: 6808105040778207546
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_279
+  - first:
+      213: 2512293516516459427
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_280
+  - first:
+      213: -9012015587777766969
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_281
+  - first:
+      213: 3117139824997733993
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_282
+  - first:
+      213: 4786423915457565727
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_283
+  - first:
+      213: 3862449461319585788
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_284
+  - first:
+      213: 1718253406377045126
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_285
+  - first:
+      213: -833728148895305770
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_286
+  - first:
+      213: 7057773550853986466
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_287
+  - first:
+      213: 1499634318706337836
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_288
+  - first:
+      213: -7503417511254224014
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_289
+  - first:
+      213: -1424604676611791124
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_290
+  - first:
+      213: -8286217505069151650
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_291
+  - first:
+      213: -6161719516235235490
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_292
+  - first:
+      213: -7544927548460673694
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_293
+  - first:
+      213: -8837011797263087546
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_294
+  - first:
+      213: 6633647618369298519
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_295
+  - first:
+      213: 5585676210102178199
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_296
+  - first:
+      213: -6473964946767191640
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_297
+  - first:
+      213: -7311345631903077417
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_298
+  - first:
+      213: -145830519673941457
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_299
+  - first:
+      213: -6692797622517149018
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_300
+  - first:
+      213: 8486388268573884789
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_301
+  - first:
+      213: 1293412535651807487
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_302
+  - first:
+      213: 5828034295655166205
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_303
+  - first:
+      213: 1150238090880337471
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_304
+  - first:
+      213: 3288983805611175910
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_305
+  - first:
+      213: 1394908850908942605
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_306
+  - first:
+      213: 39693461630214738
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_307
+  - first:
+      213: 4741487665517268504
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_308
+  - first:
+      213: -552422621053533949
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_309
+  - first:
+      213: 6889754009535538822
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_310
+  - first:
+      213: 5399291714609116793
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_311
+  - first:
+      213: -5441998556529116012
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_312
+  - first:
+      213: -1270239565511541647
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_313
+  - first:
+      213: -4240062222103125758
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_314
+  - first:
+      213: 5596573230541346119
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_315
+  - first:
+      213: -5154386147343073015
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_316
+  - first:
+      213: -4142232465015388802
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_317
+  - first:
+      213: -4817198424267673786
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_318
+  - first:
+      213: 5517916840291048299
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_319
+  - first:
+      213: -2239100967134982338
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_320
+  - first:
+      213: -594682509827230827
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_321
+  - first:
+      213: -5677737144463199641
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_322
+  - first:
+      213: -5321541264314489236
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_323
+  - first:
+      213: -5730274703381784904
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_324
+  - first:
+      213: -4564718578107840039
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_325
+  - first:
+      213: -5264491310821498571
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_326
+  - first:
+      213: 7611449642988105866
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_327
+  - first:
+      213: 4323661226186273358
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_328
+  - first:
+      213: 3942938364220801277
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_329
+  - first:
+      213: 1853672089968016465
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_330
+  - first:
+      213: 7650721642032752370
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_331
+  - first:
+      213: -6060295717450438123
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_332
+  - first:
+      213: 2691761309088684222
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_333
+  - first:
+      213: -35190928616219091
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_334
+  - first:
+      213: 4138736395226804390
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_335
+  - first:
+      213: 815370265792341691
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_336
+  - first:
+      213: 7553196027497961032
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_337
+  - first:
+      213: 7305783047559710113
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_338
+  - first:
+      213: -1466947469949642669
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_339
+  - first:
+      213: -7864582947472230296
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_340
+  - first:
+      213: -2788244742357899720
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_341
+  - first:
+      213: -550860641500528880
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_342
+  - first:
+      213: 4524635424933476918
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_343
+  - first:
+      213: -5859208423263619805
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_344
+  - first:
+      213: 4777558278234393128
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_345
+  - first:
+      213: -5461428231376136345
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_346
+  - first:
+      213: -1287590681327149069
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_347
+  - first:
+      213: 2840810044822676377
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_348
+  - first:
+      213: -135152773093387773
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_349
+  - first:
+      213: 2663117139871993792
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_350
+  - first:
+      213: -1916701692783864167
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_351
+  - first:
+      213: 3833429523904613019
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_352
+  - first:
+      213: 5254852134106120930
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_353
+  - first:
+      213: -3664979143319861607
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_354
+  - first:
+      213: 5889793586778194095
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_355
+  - first:
+      213: -1643242204978279441
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_356
+  - first:
+      213: 7697456417067911447
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_357
+  - first:
+      213: 6952140786547370315
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_358
+  - first:
+      213: -5734911862895374718
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_359
+  - first:
+      213: 5037899175891220710
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_360
+  - first:
+      213: 8651984939721666541
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_361
+  - first:
+      213: -4637628509462131199
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_362
+  - first:
+      213: -7043305458311182476
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_363
+  - first:
+      213: -8294440297633720555
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_364
+  - first:
+      213: -8553236218783828494
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_365
+  - first:
+      213: -1963224937344918750
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_366
+  - first:
+      213: 4974308994102132793
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_367
+  - first:
+      213: 1358675228478767885
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_368
+  - first:
+      213: -8862922914477971051
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_369
+  - first:
+      213: -3699112579755267597
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_370
+  - first:
+      213: -3080662364277627252
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_371
+  - first:
+      213: -6179614218883751917
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_372
+  - first:
+      213: 4158471121168689470
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_373
+  - first:
+      213: -1108587331905532850
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_374
+  - first:
+      213: 4649477440890627078
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_375
+  - first:
+      213: -2221956274190525937
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_376
+  - first:
+      213: 5895296870980089546
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_377
+  - first:
+      213: -2973695434005231819
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_378
+  - first:
+      213: 8995164887161998120
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_379
+  - first:
+      213: 1052193400131787044
+    second: Default Class_0
+  - first:
+      213: 6487816681436595545
+    second: Default Class_1
+  - first:
+      213: -2616383760500371928
+    second: Default Class_2
+  - first:
+      213: 7228935181964457895
+    second: Default Class_3
+  - first:
+      213: -6698212349655545955
+    second: Default Class_4
+  - first:
+      213: -6630209464611928604
+    second: Default Class_5
+  - first:
+      213: 5027570866420097491
+    second: Default Class_6
+  - first:
+      213: -53291415090193390
+    second: Default Class_7
+  - first:
+      213: 8272994897542279245
+    second: Default Class_8
+  - first:
+      213: 2866183409572322833
+    second: Default Class_9
+  - first:
+      213: -5384078398599947821
+    second: Default Class_10
+  - first:
+      213: 7550108372609855497
+    second: Default Class_11
+  - first:
+      213: 6844185393659038602
+    second: Default Class_12
+  - first:
+      213: 91765091481019567
+    second: Default Class_13
+  - first:
+      213: 742151755502733648
+    second: Default Class_14
+  - first:
+      213: 8166538091079725043
+    second: Default Class_15
+  - first:
+      213: 2098091478828155524
+    second: Default Class_16
+  - first:
+      213: -3821325521380877949
+    second: Default Class_17
+  - first:
+      213: 4034730282356271387
+    second: Default Class_18
+  - first:
+      213: -3849079345572466295
+    second: Default Class_19
+  - first:
+      213: -3793513907163936994
+    second: Default Class_20
+  - first:
+      213: 4763843539516234452
+    second: Default Class_21
+  - first:
+      213: 5769945991727113337
+    second: Default Class_22
+  - first:
+      213: 850543262757582484
+    second: Default Class_23
+  - first:
+      213: -4453061257018430711
+    second: Default Class_24
+  - first:
+      213: 6123046149737334430
+    second: Default Class_25
+  - first:
+      213: 2297136110683112831
+    second: Default Class_26
+  - first:
+      213: 9086123339518566822
+    second: Default Class_27
+  - first:
+      213: -4723827780430222736
+    second: Default Class_28
+  - first:
+      213: 6372313091755669270
+    second: Default Class_29
+  - first:
+      213: 1814743388958529862
+    second: Default Class_30
+  - first:
+      213: 418618108675742050
+    second: Default Class_31
+  - first:
+      213: -6591760625340936706
+    second: Default Class_32
+  - first:
+      213: -7408146864842877172
+    second: Default Class_33
+  - first:
+      213: 7697986434128222637
+    second: Default Class_34
+  - first:
+      213: 6185680058660217463
+    second: Default Class_35
+  - first:
+      213: -784373346096609258
+    second: Default Class_36
+  - first:
+      213: 4162015002593887056
+    second: Default Class_37
+  - first:
+      213: -7895903697267341139
+    second: Default Class_38
+  - first:
+      213: -435507636083129827
+    second: Default Class_39
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Default Class_0
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 189
+        width: 62
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66346a02fc42e76419c7519aaa6157f1
+      internalID: 1052193400131787044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_1
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 189
+        width: 63
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1c3f860a1fd8aa40b5545eac0299ed8
+      internalID: 6487816681436595545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_2
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 189
+        width: 62
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac00664b87068994b8b328ab4704261b
+      internalID: -2616383760500371928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_3
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 189
+        width: 61
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03cd9b392be1a424ca42c8da8a04d5d9
+      internalID: 7228935181964457895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_4
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 189
+        width: 61
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 889e959cf328e80428daae28a3c90d5e
+      internalID: -6698212349655545955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_5
+      rect:
+        serializedVersion: 2
+        x: 791
+        y: 189
+        width: 63
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 099a5ef11169f00439878e734b6c04ed
+      internalID: -6630209464611928604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_6
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 189
+        width: 63
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: deb3c3394b856e64aaeac3ebcfd4cdb8
+      internalID: 5027570866420097491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_7
+      rect:
+        serializedVersion: 2
+        x: 1091
+        y: 189
+        width: 62
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87cb30948ddc84240942e6dfef1f6a02
+      internalID: -53291415090193390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_8
+      rect:
+        serializedVersion: 2
+        x: 1241
+        y: 189
+        width: 63
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6b3a9b966f992b489278cf447d59360
+      internalID: 8272994897542279245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_9
+      rect:
+        serializedVersion: 2
+        x: 1390
+        y: 189
+        width: 65
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 636ab61cd1fc3524aa641dd1e2c213bf
+      internalID: 2866183409572322833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_10
+      rect:
+        serializedVersion: 2
+        x: 1537
+        y: 189
+        width: 67
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b8ffef7234bc564e86273cbb28827a3
+      internalID: -5384078398599947821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_11
+      rect:
+        serializedVersion: 2
+        x: 1688
+        y: 189
+        width: 67
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a788f7c83fe7d1b41a8d7c12cdbb6d3e
+      internalID: 7550108372609855497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_12
+      rect:
+        serializedVersion: 2
+        x: 1840
+        y: 189
+        width: 64
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 103bdc41fff44f445b7b2b8a6382a4b7
+      internalID: 6844185393659038602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_13
+      rect:
+        serializedVersion: 2
+        x: 1978
+        y: 189
+        width: 76
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04eeaae703a891145889208d9361396c
+      internalID: 91765091481019567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_14
+      rect:
+        serializedVersion: 2
+        x: 2128
+        y: 192
+        width: 74
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbaa2f4cd1a705e41b4dc09a6ae70c21
+      internalID: 742151755502733648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_15
+      rect:
+        serializedVersion: 2
+        x: 2290
+        y: 188
+        width: 65
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce662f2df6b18264fb6420cf8c96c0b0
+      internalID: 8166538091079725043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_16
+      rect:
+        serializedVersion: 2
+        x: 2438
+        y: 189
+        width: 68
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00ad74cd19b79c14f8fa135d9a1c1734
+      internalID: 2098091478828155524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_17
+      rect:
+        serializedVersion: 2
+        x: 2591
+        y: 189
+        width: 63
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6723a26328a2f6144a105b79da7788b9
+      internalID: -3821325521380877949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_18
+      rect:
+        serializedVersion: 2
+        x: 2741
+        y: 189
+        width: 61
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cfb1d3c9302dde4ebe7296a583db11c
+      internalID: 4034730282356271387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_19
+      rect:
+        serializedVersion: 2
+        x: 2892
+        y: 189
+        width: 61
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 167ae055d6447ea468bcdc5eda66abab
+      internalID: -3849079345572466295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_20
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 13
+        width: 62
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60846283dd1a48b40bc2737aeaa23125
+      internalID: -3793513907163936994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_21
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 13
+        width: 61
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06aea6b6da5deea459644807afe128f6
+      internalID: 4763843539516234452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_22
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 13
+        width: 62
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2143461a4cd72a3468fa7c6c21e72147
+      internalID: 5769945991727113337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_23
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 13
+        width: 64
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcb051bac6ce33e4691a435e2b57b452
+      internalID: 850543262757582484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_24
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 13
+        width: 63
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3b819117bd741b4a9ed3b0d4d1ed406
+      internalID: -4453061257018430711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_25
+      rect:
+        serializedVersion: 2
+        x: 791
+        y: 13
+        width: 62
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9e8f3047388d094884c1b935876d716
+      internalID: 6123046149737334430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_26
+      rect:
+        serializedVersion: 2
+        x: 942
+        y: 13
+        width: 61
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b19626e30f0ae3944bf6addb517d4662
+      internalID: 2297136110683112831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_27
+      rect:
+        serializedVersion: 2
+        x: 1091
+        y: 13
+        width: 62
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e78cda7d5a8ba34cbd4d4b877ea3c87
+      internalID: 9086123339518566822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_28
+      rect:
+        serializedVersion: 2
+        x: 1241
+        y: 13
+        width: 61
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efd99874a045c9344aab04862ebf1178
+      internalID: -4723827780430222736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_29
+      rect:
+        serializedVersion: 2
+        x: 1392
+        y: 15
+        width: 61
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a09a1b6d0c9cf8341bea547d96ed8e0b
+      internalID: 6372313091755669270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_30
+      rect:
+        serializedVersion: 2
+        x: 1541
+        y: 15
+        width: 62
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77d67931761842b4597ecb3233734c58
+      internalID: 1814743388958529862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_31
+      rect:
+        serializedVersion: 2
+        x: 1690
+        y: 15
+        width: 62
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bad128c0ba4647948bc57d32bd2da8b4
+      internalID: 418618108675742050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_32
+      rect:
+        serializedVersion: 2
+        x: 1841
+        y: 13
+        width: 63
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b582c0deb9f4ecf4b883cd1a72ebc4d8
+      internalID: -6591760625340936706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_33
+      rect:
+        serializedVersion: 2
+        x: 1985
+        y: 13
+        width: 69
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84c843606a9e7344e9ee5dcf87fa2b5e
+      internalID: -7408146864842877172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_34
+      rect:
+        serializedVersion: 2
+        x: 2140
+        y: 18
+        width: 62
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65185812a7f9df0429ac9cd839a52309
+      internalID: 7697986434128222637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_35
+      rect:
+        serializedVersion: 2
+        x: 2290
+        y: 13
+        width: 65
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22a8227178e38914fb3f92c0c307f6f2
+      internalID: 6185680058660217463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_36
+      rect:
+        serializedVersion: 2
+        x: 2438
+        y: 13
+        width: 68
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2eb4eb1fe82e1e142933163daead62e4
+      internalID: -784373346096609258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_37
+      rect:
+        serializedVersion: 2
+        x: 2591
+        y: 13
+        width: 63
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cc52f9a04e5a8f43875edf521bad3ea
+      internalID: 4162015002593887056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_38
+      rect:
+        serializedVersion: 2
+        x: 2741
+        y: 13
+        width: 61
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7f1759e4b90b4546b198beeee9df5c6
+      internalID: -7895903697267341139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Class_39
+      rect:
+        serializedVersion: 2
+        x: 2892
+        y: 13
+        width: 61
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01b532c7e516b33408410fca1b562607
+      internalID: -435507636083129827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: e13f7b6d9e74f8448bb4696d752c8135
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

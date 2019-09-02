@@ -54,6 +54,9 @@ MonoBehaviour:
   nextPos: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
+  anim_movement: 0
+  anim_directionX: 0
+  anim_directionY: 0
 --- !u!1 &3326219280932499402
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,8 +146,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7778792358705408655}
   - component: {fileID: 7778792358705408654}
+  - component: {fileID: 7708170594173062277}
   m_Layer: 0
-  m_Name: Piece Sprite
+  m_Name: Piece Animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -212,6 +216,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &7708170594173062277
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7778792358705408648}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5205be880cdaafc459999d9b94f39567, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7778792359028244858
 GameObject:
   m_ObjectHideFlags: 0

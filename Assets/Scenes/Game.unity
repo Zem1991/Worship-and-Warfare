@@ -436,6 +436,8 @@ MonoBehaviour:
   currentPlayer: {fileID: 0}
   timeElapsedText: 
   currentGameScheme: 0
+  gameSpeed: 0
+  isPaused: 0
 --- !u!4 &1009103195
 Transform:
   m_ObjectHideFlags: 0
