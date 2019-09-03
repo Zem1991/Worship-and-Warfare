@@ -16,21 +16,18 @@ public class FieldPiece : AbstractPiece
 
     public override void AnimatorVariables()
     {
-        animator.SetFloat("Direction X", anim_directionX);
-        animator.SetFloat("Direction Z", anim_directionZ);
-
         anim_movement = inMovement;
         animator.SetBool("Movement", anim_movement);
 
-        if (anim_movement)
-        {
-            anim_directionX = 0;
-            if (direction.x < 0) anim_directionX = -1;
-            if (direction.x > 0) anim_directionX = 1;
-            anim_directionZ = 0;
-            if (direction.z < 0) anim_directionZ = -1;
-            if (direction.z > 0) anim_directionZ = 1;
-        }
+        anim_directionX = 0;
+        if (direction.x < 0) anim_directionX = -1;
+        if (direction.x > 0) anim_directionX = 1;
+        animator.SetFloat("Direction X", anim_directionX);
+
+        anim_directionZ = 0;
+        if (direction.z < 0) anim_directionZ = -1;
+        if (direction.z > 0) anim_directionZ = 1;
+        animator.SetFloat("Direction Z", anim_directionZ);
     }
 
     public override void InteractWithPiece(AbstractPiece target)

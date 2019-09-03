@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ZemDirections;
 
 public abstract class AbstractPiece : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public abstract class AbstractPiece : MonoBehaviour
     public virtual void Awake()
     {
         animator = GetComponentInChildren<Animator>();
+        LookAtDirection(OctoDirXZ.BACK);
     }
 
     void Update()
@@ -53,7 +55,50 @@ public abstract class AbstractPiece : MonoBehaviour
         this.pathCost = pathCost;
         this.targetTile = targetTile;
 
-        Debug.Log("PIECE " + name + " got a new path with size " + pathCost);
+        if (path.Count > 1)
+        {
+            Debug.Log("PIECE " + name + " got a new path with size " + pathCost);
+            AbstractTile from = path[0].tile;
+            AbstractTile to = path[1].tile;
+            OctoDirXZ dir = from.GetNeighbourDirection(to);
+            LookAtDirection(dir);
+        }
+    }
+
+    public void LookAtDirection(OctoDirXZ dir)
+    {
+        direction = Vector3.zero;
+        switch (dir)
+        {
+            case OctoDirXZ.BACK_LEFT:
+                direction.x = -1;
+                direction.z = -1;
+                break;
+            case OctoDirXZ.BACK:
+                direction.z = -1;
+                break;
+            case OctoDirXZ.BACK_RIGHT:
+                direction.x = 1;
+                direction.z = -1;
+                break;
+            case OctoDirXZ.LEFT:
+                direction.x = -1;
+                break;
+            case OctoDirXZ.RIGHT:
+                direction.x = 1;
+                break;
+            case OctoDirXZ.FRONT_LEFT:
+                direction.x = -1;
+                direction.z = 1;
+                break;
+            case OctoDirXZ.FRONT:
+                direction.z = 1;
+                break;
+            case OctoDirXZ.FRONT_RIGHT:
+                direction.x = 1;
+                direction.z = 1;
+                break;
+        }
     }
 
     public void Move()
@@ -70,17 +115,29 @@ public abstract class AbstractPiece : MonoBehaviour
     {
         if (!inMovement) return;
 
-        bool clearData = false;
+        Vector3 currentPos = transform.position;
+        bool doStop = false;
         AbstractPiece pieceToInteract = null;
+
+        if (nextTile && currentPos == nextPos)
+        {
+            //Doing this may seem redundant, but it actually fixes some floating point issues that can cause movement overshooting
+            //Moving to the bottom or left edge of the grid without this fix may cause the Unit to be read as over a tile with coordinate equal to -1
+            transform.position = nextPos;
+
+            currentTile.occupantPiece = null;
+            nextTile.occupantPiece = this;
+            currentTile = nextTile;
+            nextTile = null;
+        }
 
         if (nextTile == null)
         {
-
             if (stopWasCalled ||
                 path.Count <= 0)
             {
                 stopWasCalled = false;
-                clearData = true;
+                doStop = true;
             }
             else
             {
@@ -92,18 +149,22 @@ public abstract class AbstractPiece : MonoBehaviour
                 if (nextTile == targetTile)
                 {
                     pieceToInteract = nextTile.occupantPiece;
-                    if (pieceToInteract) clearData = true;
+                    if (pieceToInteract) doStop = true;
                 }
             }
         }
 
-        if (clearData)
+        if (doStop)
         {
             inMovement = false;
             nextPos = Vector3.zero;
-            direction = Vector3.zero;
             velocity = Vector3.zero;
         }
+        else
+        {
+            nextPos = nextTile.transform.position;
+        }
+
         if (pieceToInteract)
         {
             nextTile = null;
@@ -112,9 +173,6 @@ public abstract class AbstractPiece : MonoBehaviour
 
         if (inMovement)
         {
-            Vector3 currentPos = transform.position;
-            nextPos = nextTile.transform.position;
-
             direction = (nextPos - currentPos).normalized;
             velocity = direction * movementSpeed;
 
@@ -122,18 +180,6 @@ public abstract class AbstractPiece : MonoBehaviour
             float distance = Vector3.Distance(currentPos, nextPos);
             if (frameVelocity.magnitude > distance) frameVelocity = Vector3.ClampMagnitude(frameVelocity, distance);
             transform.Translate(frameVelocity, Space.World);
-
-            if (currentPos == nextPos)
-            {
-                //Doing this may seem redundant, but it actually fixes some floating point issues that can cause movement overshooting
-                //Moving to the bottom or left edge of the grid without this fix may cause the Unit to be read as over a tile with coordinate equal to -1
-                transform.position = nextPos;
-
-                currentTile.occupantPiece = null;
-                nextTile.occupantPiece = this;
-                currentTile = nextTile;
-                nextTile = null;
-            }
         }
     }
 
