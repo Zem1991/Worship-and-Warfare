@@ -14,7 +14,7 @@ public class FieldPiece : AbstractPiece
     public float anim_directionX;
     public float anim_directionZ = -1;
 
-    public override void AnimatorVariables()
+    protected override void AnimatorVariables()
     {
         anim_movement = inMovement;
         animator.SetBool("Movement", anim_movement);
@@ -30,7 +30,7 @@ public class FieldPiece : AbstractPiece
         animator.SetFloat("Direction Z", anim_directionZ);
     }
 
-    public override void InteractWithPiece(AbstractPiece target)
+    protected override void InteractWithPiece(AbstractPiece target)
     {
         FieldManager.Instance.pieceHandler.PartiesAreInteracting(this, target as FieldPiece);
     }

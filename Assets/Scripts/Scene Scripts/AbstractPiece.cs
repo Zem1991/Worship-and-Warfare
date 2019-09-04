@@ -41,6 +41,7 @@ public abstract class AbstractPiece : MonoBehaviour
 
     public void SetAnimatorOverrideController(AnimatorOverrideController aoc)
     {
+        if (!animator) animator = GetComponentInChildren<Animator>();
         animator.runtimeAnimatorController = aoc;
     }
 
@@ -54,10 +55,10 @@ public abstract class AbstractPiece : MonoBehaviour
         this.path = path;
         this.pathCost = pathCost;
         this.targetTile = targetTile;
+        Debug.Log("PIECE " + name + " got a new path with size " + pathCost);
 
-        if (path.Count > 1)
+        if (path != null && path.Count > 1)
         {
-            Debug.Log("PIECE " + name + " got a new path with size " + pathCost);
             AbstractTile from = path[0].tile;
             AbstractTile to = path[1].tile;
             OctoDirXZ dir = from.GetNeighbourDirection(to);
@@ -183,6 +184,6 @@ public abstract class AbstractPiece : MonoBehaviour
         }
     }
 
-    public abstract void AnimatorVariables();
-    public abstract void InteractWithPiece(AbstractPiece target);
+    protected abstract void AnimatorVariables();
+    protected abstract void InteractWithPiece(AbstractPiece target);
 }

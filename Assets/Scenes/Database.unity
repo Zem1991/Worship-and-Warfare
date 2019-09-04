@@ -528,7 +528,7 @@ MonoBehaviour:
   power: 2
   focus: 0
   animatorField: {fileID: 22100000, guid: 6e1ef4cba0109c54f8afd22be7a1f7d5, type: 2}
-  animatorCombat: {fileID: 22100000, guid: 724bd014c968db0439404c1bef496e75, type: 2}
+  animatorCombat: {fileID: 22100000, guid: f6c787254bbe5094f87725f24314bd04, type: 2}
 --- !u!1 &485034157
 GameObject:
   m_ObjectHideFlags: 0

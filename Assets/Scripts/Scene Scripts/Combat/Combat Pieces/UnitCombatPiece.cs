@@ -37,12 +37,7 @@ public class UnitCombatPiece : AbstractCombatPiece
         SetAnimatorOverrideController(unit.animatorCombat);
     }
 
-    public override void AnimatorVariables()
-    {
-        //TODO DO THIS LATER
-    }
-
-    public override void InteractWithPiece(AbstractPiece target)
+    protected override void InteractWithPiece(AbstractPiece target)
     {
         UnitCombatPiece targetUnit = target as UnitCombatPiece;
         if (targetUnit)

@@ -1,0 +1,5345 @@
+fileFormatVersion: 2
+guid: 715d886f54dd8834a9977a841b70d401
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8114435892521154895
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_0
+  - first:
+      213: -6304973718307894172
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_1
+  - first:
+      213: -6731239302098511289
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_2
+  - first:
+      213: 4863648776017186207
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_3
+  - first:
+      213: -5212232014298419825
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_4
+  - first:
+      213: 5185819355479446569
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_5
+  - first:
+      213: 1309947277055651236
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_6
+  - first:
+      213: -3225132137268403969
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_7
+  - first:
+      213: 3815981619448837111
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_8
+  - first:
+      213: 4379819288808735165
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_9
+  - first:
+      213: -2989791377407516927
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_10
+  - first:
+      213: -3990941890545457454
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_11
+  - first:
+      213: -2363692933243012332
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_12
+  - first:
+      213: 4741584239494642765
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_13
+  - first:
+      213: -3428839269519704756
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_14
+  - first:
+      213: 2957496831888394373
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_15
+  - first:
+      213: 1980616790081551772
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_16
+  - first:
+      213: -307236939061393779
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_17
+  - first:
+      213: 6629210560498707269
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_18
+  - first:
+      213: -670737344878191067
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_19
+  - first:
+      213: -7071043161506035259
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_20
+  - first:
+      213: -3831302546278712349
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_21
+  - first:
+      213: 7566653090247167304
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_22
+  - first:
+      213: -6504484220086589622
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_23
+  - first:
+      213: -4869093265059349850
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_24
+  - first:
+      213: 4146006069197937376
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_25
+  - first:
+      213: -2696669871396021944
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_26
+  - first:
+      213: 6829514615752438943
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_27
+  - first:
+      213: 8742141803335090584
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_28
+  - first:
+      213: -8929443049170459179
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_29
+  - first:
+      213: -7186745625821683451
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_30
+  - first:
+      213: -4851693662924302121
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_31
+  - first:
+      213: -4696974508006900524
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_32
+  - first:
+      213: -3952925800812288300
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_33
+  - first:
+      213: -5916092225750088032
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_34
+  - first:
+      213: -6721056744618904505
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_35
+  - first:
+      213: -6439905364938815064
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_36
+  - first:
+      213: -8197807775489246673
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_37
+  - first:
+      213: 5935123075837794963
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_38
+  - first:
+      213: -995983793642250277
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_39
+  - first:
+      213: 9168616083977279385
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_40
+  - first:
+      213: -2743499090061359146
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_41
+  - first:
+      213: 2666533577883118159
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_42
+  - first:
+      213: -2059436113285633063
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_43
+  - first:
+      213: 2042129697854906470
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_44
+  - first:
+      213: -2244677884455132076
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_45
+  - first:
+      213: 5072964829437795001
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_46
+  - first:
+      213: 8155804060882773855
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_47
+  - first:
+      213: -850224963372836765
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_48
+  - first:
+      213: 6072849934618216683
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_49
+  - first:
+      213: -2057816656659209686
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_50
+  - first:
+      213: -1594842844733103629
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_51
+  - first:
+      213: -348915393151995014
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_52
+  - first:
+      213: 9003352994732519707
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_53
+  - first:
+      213: -5446472878870744500
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_54
+  - first:
+      213: 3109105988263984996
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_55
+  - first:
+      213: 6380431664313010932
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_56
+  - first:
+      213: -7089544030406039479
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_57
+  - first:
+      213: 2757616862368728201
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_58
+  - first:
+      213: -6739305366398130952
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_59
+  - first:
+      213: -4510924368649361116
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_60
+  - first:
+      213: -2378734951397376766
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_61
+  - first:
+      213: 8415598868031403198
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_62
+  - first:
+      213: 8000289470874655616
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_63
+  - first:
+      213: -1535519878202014452
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_64
+  - first:
+      213: -1272391770237963111
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_65
+  - first:
+      213: 4542549329072291902
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_66
+  - first:
+      213: -8527244795367627640
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_67
+  - first:
+      213: -4968738706200760629
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_68
+  - first:
+      213: -8134582950511833521
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_69
+  - first:
+      213: 1907375473071100464
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_70
+  - first:
+      213: 5891471906264147018
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_71
+  - first:
+      213: 4579421477575085482
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_72
+  - first:
+      213: 5929351890579222784
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_73
+  - first:
+      213: 6254155479819274045
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_74
+  - first:
+      213: -5511532617669101812
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_75
+  - first:
+      213: 7182858544372671637
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_76
+  - first:
+      213: 6056506942317834410
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_77
+  - first:
+      213: 1341859363871236629
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_78
+  - first:
+      213: -2223271940306072950
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_79
+  - first:
+      213: 1623869428992309173
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_80
+  - first:
+      213: 9101346906148213041
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_81
+  - first:
+      213: -8720222155730077648
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_82
+  - first:
+      213: -3281863115331156815
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_83
+  - first:
+      213: -5428994414813249992
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_84
+  - first:
+      213: 4231277283155749225
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_85
+  - first:
+      213: 6190816797782328603
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_86
+  - first:
+      213: 2011312374823263475
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_87
+  - first:
+      213: -7510307279869641525
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_88
+  - first:
+      213: -663835718386956600
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_89
+  - first:
+      213: 2561013535953033255
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_90
+  - first:
+      213: -2974129726607346636
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_91
+  - first:
+      213: 6277568265678733596
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_92
+  - first:
+      213: 8223905108624811100
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_93
+  - first:
+      213: -1239997064638656630
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_94
+  - first:
+      213: 1776178294755249812
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_95
+  - first:
+      213: 6173083724367729395
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_96
+  - first:
+      213: 3414377581144475414
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_97
+  - first:
+      213: -5861682613887164056
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_98
+  - first:
+      213: 5068365761170649984
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_99
+  - first:
+      213: 4140707903569307995
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_100
+  - first:
+      213: -8271405297396840890
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_101
+  - first:
+      213: -1430103250322659861
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_102
+  - first:
+      213: 5326990861642544436
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_103
+  - first:
+      213: -4608872337757964774
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_104
+  - first:
+      213: -5438293966634302252
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_105
+  - first:
+      213: -6920096061239468720
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_106
+  - first:
+      213: 7546640855250249054
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_107
+  - first:
+      213: 6839218813345498634
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_108
+  - first:
+      213: 234606149431231235
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_109
+  - first:
+      213: -8748083454165863186
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_110
+  - first:
+      213: 87569218238060102
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_111
+  - first:
+      213: 5979904839823981515
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_112
+  - first:
+      213: -774940749185834973
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_113
+  - first:
+      213: -6067126008509363901
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_114
+  - first:
+      213: 7724945129331882594
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_115
+  - first:
+      213: -8771069561462965289
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_116
+  - first:
+      213: -2531419326492193690
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_117
+  - first:
+      213: -5532703074331652111
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_118
+  - first:
+      213: -4415460330362122550
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_119
+  - first:
+      213: -992841464747050454
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_120
+  - first:
+      213: -6213557048425589085
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_121
+  - first:
+      213: -3008689496186853908
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_122
+  - first:
+      213: -8352659744585087830
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_123
+  - first:
+      213: -2387595334432242636
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_124
+  - first:
+      213: -3045435474735983343
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_125
+  - first:
+      213: 8166337619043571172
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_126
+  - first:
+      213: -2239370892965843568
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_127
+  - first:
+      213: 3336040313205083239
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_128
+  - first:
+      213: -4312156041326328786
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_129
+  - first:
+      213: 100272347757540476
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_130
+  - first:
+      213: -8450350293648291213
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_131
+  - first:
+      213: -4069390567553294015
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_132
+  - first:
+      213: 2172282678640120216
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_133
+  - first:
+      213: -3993489459911899517
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_134
+  - first:
+      213: -8748844712435398905
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_135
+  - first:
+      213: -82893756832094881
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_136
+  - first:
+      213: -3513581459264673077
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_137
+  - first:
+      213: -9219029546508471947
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_138
+  - first:
+      213: 287490843970332566
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_139
+  - first:
+      213: -1666456115884314380
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_140
+  - first:
+      213: 720404544355178161
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_141
+  - first:
+      213: -2087997474717800335
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_142
+  - first:
+      213: -2452391172732671958
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_143
+  - first:
+      213: -8543266834607041402
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_144
+  - first:
+      213: -785234185626902907
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_145
+  - first:
+      213: 4740231366093593466
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_146
+  - first:
+      213: 1349155159254988364
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_147
+  - first:
+      213: -2093055439290229066
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_148
+  - first:
+      213: 1591795487455080187
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_149
+  - first:
+      213: -1177729681241046615
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_150
+  - first:
+      213: -6731473170160751389
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_151
+  - first:
+      213: -2930513945505236894
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_152
+  - first:
+      213: -5575974167790947002
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_153
+  - first:
+      213: -228370994967253823
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_154
+  - first:
+      213: 5176277701489101936
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_155
+  - first:
+      213: 6469766910395458667
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_156
+  - first:
+      213: 2148710852261977105
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_157
+  - first:
+      213: -1670142386960976568
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_158
+  - first:
+      213: 1706190369756541656
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_159
+  - first:
+      213: -840794472223080250
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_160
+  - first:
+      213: 7980967223713175451
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_161
+  - first:
+      213: -881303493066137748
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_162
+  - first:
+      213: -317853164026161783
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_163
+  - first:
+      213: 6662518789548299152
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_164
+  - first:
+      213: 4948839130964248316
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_165
+  - first:
+      213: 4292447244941819492
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_166
+  - first:
+      213: -4384135005838590701
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_167
+  - first:
+      213: -419591784110742832
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_168
+  - first:
+      213: -1368384536228251445
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_169
+  - first:
+      213: -4673409130999632931
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_170
+  - first:
+      213: -7498279067590987419
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_171
+  - first:
+      213: 5830012583805143491
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_172
+  - first:
+      213: 1273552380129934078
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_173
+  - first:
+      213: -1307260273685215371
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_174
+  - first:
+      213: 1144637581816072838
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_175
+  - first:
+      213: 9042955210218167769
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_176
+  - first:
+      213: -3191653295290425161
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_177
+  - first:
+      213: 3368463129955355797
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_178
+  - first:
+      213: 3995744264787838183
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_179
+  - first:
+      213: 6114219287556987396
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_180
+  - first:
+      213: 7187337644365205268
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_181
+  - first:
+      213: 2856990125342708566
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_182
+  - first:
+      213: -4050698208354898353
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_183
+  - first:
+      213: -5109240362165447629
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_184
+  - first:
+      213: -2419990645397982025
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_185
+  - first:
+      213: 7674054780310146993
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_186
+  - first:
+      213: -1752993912858514268
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_187
+  - first:
+      213: 3484137956842773798
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_188
+  - first:
+      213: -5123271887036356739
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_189
+  - first:
+      213: 446413912557918197
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_190
+  - first:
+      213: -8049324901713123653
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_191
+  - first:
+      213: 5326873904016221332
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_192
+  - first:
+      213: 4730465833575884955
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_193
+  - first:
+      213: 6618184297607832661
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_194
+  - first:
+      213: 4306925791925469564
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_195
+  - first:
+      213: -4168378853692076742
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_196
+  - first:
+      213: -1456887303492157521
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_197
+  - first:
+      213: 6928992869650693489
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_198
+  - first:
+      213: -2283344693071147141
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_199
+  - first:
+      213: 4156440097427633978
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_200
+  - first:
+      213: 6373946168105568755
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_201
+  - first:
+      213: -864777979340980493
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_202
+  - first:
+      213: 2155141350000688603
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_203
+  - first:
+      213: -5245826511802373349
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_204
+  - first:
+      213: -3194567949119172860
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_205
+  - first:
+      213: -5445373715274314552
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_206
+  - first:
+      213: -7545746145314480349
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_207
+  - first:
+      213: -9147527520299332729
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_208
+  - first:
+      213: -663407355768279793
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_209
+  - first:
+      213: 2467999006579984993
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_210
+  - first:
+      213: 2047843399571938063
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_211
+  - first:
+      213: -7459682518974202955
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_212
+  - first:
+      213: -3322094794486476677
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_213
+  - first:
+      213: -2577762633727580583
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_214
+  - first:
+      213: 4555709181331854466
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_215
+  - first:
+      213: 3907016676008307447
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_216
+  - first:
+      213: -5135677083004713671
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_217
+  - first:
+      213: -2269582297022775299
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_218
+  - first:
+      213: -8412691185317741315
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_219
+  - first:
+      213: 3933959720854354588
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_220
+  - first:
+      213: -8304096920455922662
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_221
+  - first:
+      213: -3579980834790233011
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_222
+  - first:
+      213: -6209640458632845037
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_223
+  - first:
+      213: 7688679600206563176
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_224
+  - first:
+      213: 5483522339124748257
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_225
+  - first:
+      213: -7828605993858089589
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_226
+  - first:
+      213: 8330924472330368465
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_227
+  - first:
+      213: -3617557509195806097
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_228
+  - first:
+      213: -6830182156266359957
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_229
+  - first:
+      213: -6933079044982153282
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_230
+  - first:
+      213: -9179861222812125179
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_231
+  - first:
+      213: 1165228343540359744
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_232
+  - first:
+      213: 9151608140588807685
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_233
+  - first:
+      213: -3271671891576506992
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_234
+  - first:
+      213: 879104873792605995
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_235
+  - first:
+      213: 356722550546123111
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_236
+  - first:
+      213: 1685814605112667438
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_237
+  - first:
+      213: 5123054724969944037
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_238
+  - first:
+      213: -6467566683370218880
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_239
+  - first:
+      213: 636434424359148535
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_240
+  - first:
+      213: 7615827079271804055
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_241
+  - first:
+      213: 7424761940465330215
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_242
+  - first:
+      213: 2407153921636997409
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_243
+  - first:
+      213: 5373274359839719720
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_244
+  - first:
+      213: 8190200144321004331
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_245
+  - first:
+      213: 5353326043000699857
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_246
+  - first:
+      213: 5700333825705253252
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_247
+  - first:
+      213: 3592761503843580061
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_248
+  - first:
+      213: -9037247250455037009
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_249
+  - first:
+      213: 3880628585026973188
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_250
+  - first:
+      213: 2497802724561303216
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_251
+  - first:
+      213: 2848483206806002645
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_252
+  - first:
+      213: -1364221231246285494
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_253
+  - first:
+      213: -4039751389577018951
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_254
+  - first:
+      213: 4043169142863298087
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_255
+  - first:
+      213: -6768883731476298359
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_256
+  - first:
+      213: -168960861789714737
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_257
+  - first:
+      213: -4533073478049896029
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_258
+  - first:
+      213: 5263106702009313157
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_259
+  - first:
+      213: -5778349712361067474
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_260
+  - first:
+      213: 2052274784058767184
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_261
+  - first:
+      213: 4086728589160655714
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_262
+  - first:
+      213: -3363840993484608409
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_263
+  - first:
+      213: -6444700558765933164
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_264
+  - first:
+      213: -8471564533079667180
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_265
+  - first:
+      213: -3792777678942036351
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_266
+  - first:
+      213: 7588778013190878104
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_267
+  - first:
+      213: -4514844401424601977
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_268
+  - first:
+      213: 492333818337126273
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_269
+  - first:
+      213: 1346828719004719643
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_270
+  - first:
+      213: -2926131674038710996
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_271
+  - first:
+      213: -5464433554506071972
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_272
+  - first:
+      213: 6601929531971232211
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_273
+  - first:
+      213: 6785725923186833105
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_274
+  - first:
+      213: 1001779305423182581
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_275
+  - first:
+      213: -2731515087580447703
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_276
+  - first:
+      213: -7764537245041173996
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_277
+  - first:
+      213: 1723975416679840418
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_278
+  - first:
+      213: 6808105040778207546
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_279
+  - first:
+      213: 2512293516516459427
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_280
+  - first:
+      213: -9012015587777766969
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_281
+  - first:
+      213: 3117139824997733993
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_282
+  - first:
+      213: 4786423915457565727
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_283
+  - first:
+      213: 3862449461319585788
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_284
+  - first:
+      213: 1718253406377045126
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_285
+  - first:
+      213: -833728148895305770
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_286
+  - first:
+      213: 7057773550853986466
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_287
+  - first:
+      213: 1499634318706337836
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_288
+  - first:
+      213: -7503417511254224014
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_289
+  - first:
+      213: -1424604676611791124
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_290
+  - first:
+      213: -8286217505069151650
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_291
+  - first:
+      213: -6161719516235235490
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_292
+  - first:
+      213: -7544927548460673694
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_293
+  - first:
+      213: -8837011797263087546
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_294
+  - first:
+      213: 6633647618369298519
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_295
+  - first:
+      213: 5585676210102178199
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_296
+  - first:
+      213: -6473964946767191640
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_297
+  - first:
+      213: -7311345631903077417
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_298
+  - first:
+      213: -145830519673941457
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_299
+  - first:
+      213: -6692797622517149018
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_300
+  - first:
+      213: 8486388268573884789
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_301
+  - first:
+      213: 1293412535651807487
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_302
+  - first:
+      213: 5828034295655166205
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_303
+  - first:
+      213: 1150238090880337471
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_304
+  - first:
+      213: 3288983805611175910
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_305
+  - first:
+      213: 1394908850908942605
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_306
+  - first:
+      213: 39693461630214738
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_307
+  - first:
+      213: 4741487665517268504
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_308
+  - first:
+      213: -552422621053533949
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_309
+  - first:
+      213: 6889754009535538822
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_310
+  - first:
+      213: 5399291714609116793
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_311
+  - first:
+      213: -5441998556529116012
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_312
+  - first:
+      213: -1270239565511541647
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_313
+  - first:
+      213: -4240062222103125758
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_314
+  - first:
+      213: 5596573230541346119
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_315
+  - first:
+      213: -5154386147343073015
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_316
+  - first:
+      213: -4142232465015388802
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_317
+  - first:
+      213: -4817198424267673786
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_318
+  - first:
+      213: 5517916840291048299
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_319
+  - first:
+      213: -2239100967134982338
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_320
+  - first:
+      213: -594682509827230827
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_321
+  - first:
+      213: -5677737144463199641
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_322
+  - first:
+      213: -5321541264314489236
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_323
+  - first:
+      213: -5730274703381784904
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_324
+  - first:
+      213: -4564718578107840039
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_325
+  - first:
+      213: -5264491310821498571
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_326
+  - first:
+      213: 7611449642988105866
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_327
+  - first:
+      213: 4323661226186273358
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_328
+  - first:
+      213: 3942938364220801277
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_329
+  - first:
+      213: 1853672089968016465
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_330
+  - first:
+      213: 7650721642032752370
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_331
+  - first:
+      213: -6060295717450438123
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_332
+  - first:
+      213: 2691761309088684222
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_333
+  - first:
+      213: -35190928616219091
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_334
+  - first:
+      213: 4138736395226804390
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_335
+  - first:
+      213: 815370265792341691
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_336
+  - first:
+      213: 7553196027497961032
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_337
+  - first:
+      213: 7305783047559710113
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_338
+  - first:
+      213: -1466947469949642669
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_339
+  - first:
+      213: -7864582947472230296
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_340
+  - first:
+      213: -2788244742357899720
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_341
+  - first:
+      213: -550860641500528880
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_342
+  - first:
+      213: 4524635424933476918
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_343
+  - first:
+      213: -5859208423263619805
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_344
+  - first:
+      213: 4777558278234393128
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_345
+  - first:
+      213: -5461428231376136345
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_346
+  - first:
+      213: -1287590681327149069
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_347
+  - first:
+      213: 2840810044822676377
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_348
+  - first:
+      213: -135152773093387773
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_349
+  - first:
+      213: 2663117139871993792
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_350
+  - first:
+      213: -1916701692783864167
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_351
+  - first:
+      213: 3833429523904613019
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_352
+  - first:
+      213: 5254852134106120930
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_353
+  - first:
+      213: -3664979143319861607
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_354
+  - first:
+      213: 5889793586778194095
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_355
+  - first:
+      213: -1643242204978279441
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_356
+  - first:
+      213: 7697456417067911447
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_357
+  - first:
+      213: 6952140786547370315
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_358
+  - first:
+      213: -5734911862895374718
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_359
+  - first:
+      213: 5037899175891220710
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_360
+  - first:
+      213: 8651984939721666541
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_361
+  - first:
+      213: -4637628509462131199
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_362
+  - first:
+      213: -7043305458311182476
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_363
+  - first:
+      213: -8294440297633720555
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_364
+  - first:
+      213: -8553236218783828494
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_365
+  - first:
+      213: -1963224937344918750
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_366
+  - first:
+      213: 4974308994102132793
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_367
+  - first:
+      213: 1358675228478767885
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_368
+  - first:
+      213: -8862922914477971051
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_369
+  - first:
+      213: -3699112579755267597
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_370
+  - first:
+      213: -3080662364277627252
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_371
+  - first:
+      213: -6179614218883751917
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_372
+  - first:
+      213: 4158471121168689470
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_373
+  - first:
+      213: -1108587331905532850
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_374
+  - first:
+      213: 4649477440890627078
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_375
+  - first:
+      213: -2221956274190525937
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_376
+  - first:
+      213: 5895296870980089546
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_377
+  - first:
+      213: -2973695434005231819
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_378
+  - first:
+      213: 8995164887161998120
+    second: Heroes of Might and Magic 3 - Heroes - Heroes Battle_379
+  - first:
+      213: 1052193400131787044
+    second: Default Class_0
+  - first:
+      213: 6487816681436595545
+    second: Default Class_1
+  - first:
+      213: -2616383760500371928
+    second: Default Class_2
+  - first:
+      213: 7228935181964457895
+    second: Default Class_3
+  - first:
+      213: -6698212349655545955
+    second: Default Class_4
+  - first:
+      213: -6630209464611928604
+    second: Default Class_5
+  - first:
+      213: 5027570866420097491
+    second: Default Class_6
+  - first:
+      213: -53291415090193390
+    second: Default Class_7
+  - first:
+      213: 8272994897542279245
+    second: Default Class_8
+  - first:
+      213: 2866183409572322833
+    second: Default Class_9
+  - first:
+      213: -5384078398599947821
+    second: Default Class_10
+  - first:
+      213: 7550108372609855497
+    second: Default Class_11
+  - first:
+      213: 6844185393659038602
+    second: Default Class_12
+  - first:
+      213: 91765091481019567
+    second: Default Class_13
+  - first:
+      213: 742151755502733648
+    second: Default Class_14
+  - first:
+      213: 8166538091079725043
+    second: Default Class_15
+  - first:
+      213: 2098091478828155524
+    second: Default Class_16
+  - first:
+      213: -3821325521380877949
+    second: Default Class_17
+  - first:
+      213: 4034730282356271387
+    second: Default Class_18
+  - first:
+      213: -3849079345572466295
+    second: Default Class_19
+  - first:
+      213: -3793513907163936994
+    second: Default Class_20
+  - first:
+      213: 4763843539516234452
+    second: Default Class_21
+  - first:
+      213: 5769945991727113337
+    second: Default Class_22
+  - first:
+      213: 850543262757582484
+    second: Default Class_23
+  - first:
+      213: -4453061257018430711
+    second: Default Class_24
+  - first:
+      213: 6123046149737334430
+    second: Default Class_25
+  - first:
+      213: 2297136110683112831
+    second: Default Class_26
+  - first:
+      213: 9086123339518566822
+    second: Default Class_27
+  - first:
+      213: -4723827780430222736
+    second: Default Class_28
+  - first:
+      213: 6372313091755669270
+    second: Default Class_29
+  - first:
+      213: 1814743388958529862
+    second: Default Class_30
+  - first:
+      213: 418618108675742050
+    second: Default Class_31
+  - first:
+      213: -6591760625340936706
+    second: Default Class_32
+  - first:
+      213: -7408146864842877172
+    second: Default Class_33
+  - first:
+      213: 7697986434128222637
+    second: Default Class_34
+  - first:
+      213: 6185680058660217463
+    second: Default Class_35
+  - first:
+      213: -784373346096609258
+    second: Default Class_36
+  - first:
+      213: 4162015002593887056
+    second: Default Class_37
+  - first:
+      213: -7895903697267341139
+    second: Default Class_38
+  - first:
+      213: -435507636083129827
+    second: Default Class_39
+  - first:
+      213: 9015386053879165526
+    second: Default Hero Class_0
+  - first:
+      213: 4478479273738756938
+    second: Default Hero Class_1
+  - first:
+      213: 6672029298494823349
+    second: Default Hero Class_2
+  - first:
+      213: -7369356220066370525
+    second: Default Hero Class_3
+  - first:
+      213: 7582398332728089473
+    second: Default Hero Class_4
+  - first:
+      213: -6233413195831103462
+    second: Default Hero Class_5
+  - first:
+      213: -7995619608892915151
+    second: Default Hero Class_6
+  - first:
+      213: -3436751296973950474
+    second: Default Hero Class_7
+  - first:
+      213: 5031620684713874969
+    second: Default Hero Class_8
+  - first:
+      213: -3601336242384358651
+    second: Default Hero Class_9
+  - first:
+      213: 7808566505081234298
+    second: Default Hero Class_10
+  - first:
+      213: -3354420624315820471
+    second: Default Hero Class_11
+  - first:
+      213: 4630093929651609746
+    second: Default Hero Class_12
+  - first:
+      213: 4857881411220784928
+    second: Default Hero Class_13
+  - first:
+      213: -4028765145604868785
+    second: Default Hero Class_14
+  - first:
+      213: -8149200117577433272
+    second: Default Hero Class_15
+  - first:
+      213: -402825646639803879
+    second: Default Hero Class_16
+  - first:
+      213: -3079261638937094410
+    second: Default Hero Class_17
+  - first:
+      213: 5753850990078525955
+    second: Default Hero Class_18
+  - first:
+      213: 1011864213709127552
+    second: Default Hero Class_19
+  - first:
+      213: -220563993708727334
+    second: Default Hero Class_20
+  - first:
+      213: 3435039831672110714
+    second: Default Hero Class_21
+  - first:
+      213: -5772281603592464645
+    second: Default Hero Class_22
+  - first:
+      213: -6696105474958982132
+    second: Default Hero Class_23
+  - first:
+      213: -1519096847334347900
+    second: Default Hero Class_24
+  - first:
+      213: 255299321129736982
+    second: Default Hero Class_25
+  - first:
+      213: -8506416932819830311
+    second: Default Hero Class_26
+  - first:
+      213: -1054291484260366090
+    second: Default Hero Class_27
+  - first:
+      213: 8262369459961393861
+    second: Default Hero Class_28
+  - first:
+      213: -735392591905711077
+    second: Default Hero Class_29
+  - first:
+      213: -2002379794895244168
+    second: Default Hero Class_30
+  - first:
+      213: 2048302708339593182
+    second: Default Hero Class_31
+  - first:
+      213: 6102144321047101614
+    second: Default Hero Class_32
+  - first:
+      213: 8913851195462238991
+    second: Default Hero Class_33
+  - first:
+      213: 3451234869242184696
+    second: Default Hero Class_34
+  - first:
+      213: -1131628081544650735
+    second: Default Hero Class_35
+  - first:
+      213: 2873558906654166784
+    second: Default Hero Class_36
+  - first:
+      213: -7119386187893550294
+    second: Default Hero Class_37
+  - first:
+      213: -1817495426589425138
+    second: Default Hero Class_38
+  - first:
+      213: 4143909569358523510
+    second: Default Hero Class_39
+  - first:
+      213: 7431662799202444480
+    second: Default Hero Class_40
+  - first:
+      213: 4525755359470153691
+    second: Default Hero Class_41
+  - first:
+      213: 8588509862065201732
+    second: Default Hero Class_42
+  - first:
+      213: 1925820016614814123
+    second: Default Hero Class_43
+  - first:
+      213: 7053887472106936884
+    second: Default Hero Class_44
+  - first:
+      213: -8931904357840661888
+    second: Default Hero Class_45
+  - first:
+      213: 5514225383646292474
+    second: Default Hero Class_46
+  - first:
+      213: 1638997240070369093
+    second: Default Hero Class_47
+  - first:
+      213: -4975642356023486520
+    second: Default Hero Class_48
+  - first:
+      213: 554534066769433663
+    second: Default Hero Class_49
+  - first:
+      213: 7956209886372833999
+    second: Default Hero Class_50
+  - first:
+      213: -8349269224883021902
+    second: Default Hero Class_51
+  - first:
+      213: -469903893002223197
+    second: Default Hero Class_52
+  - first:
+      213: 6022881807187233385
+    second: Default Hero Class_53
+  - first:
+      213: 8594021766378822518
+    second: Default Hero Class_54
+  - first:
+      213: -547446499976251845
+    second: Default Hero Class_55
+  - first:
+      213: -7162514243163217006
+    second: Default Hero Class_56
+  - first:
+      213: -8366994477600957213
+    second: Default Hero Class_57
+  - first:
+      213: -6609415918537655948
+    second: Default Hero Class_58
+  - first:
+      213: 6295277235178626790
+    second: Default Hero Class_59
+  - first:
+      213: -5126729959906691218
+    second: Default Hero Class_60
+  - first:
+      213: -8002015379248867540
+    second: Default Hero Class_61
+  - first:
+      213: -4965709181173511733
+    second: Default Hero Class_62
+  - first:
+      213: -694576173448223002
+    second: Default Hero Class_63
+  - first:
+      213: -1895132238696637947
+    second: Default Hero Class_64
+  - first:
+      213: -530680197400937470
+    second: Default Hero Class_65
+  - first:
+      213: -6877139704554213110
+    second: Default Hero Class_66
+  - first:
+      213: 8934977297741033262
+    second: Default Hero Class_67
+  - first:
+      213: 4548084345966495576
+    second: Default Hero Class_68
+  - first:
+      213: 5103483178253271493
+    second: Default Hero Class_69
+  - first:
+      213: 7312994300276457035
+    second: Default Hero Class_70
+  - first:
+      213: 1288930392860818190
+    second: Default Hero Class_71
+  - first:
+      213: -4258891143154361200
+    second: Default Hero Class_72
+  - first:
+      213: -2803795868663219270
+    second: Default Hero Class_73
+  - first:
+      213: -6610266091955380197
+    second: Default Hero Class_74
+  - first:
+      213: 7587002077671306358
+    second: Default Hero Class_75
+  - first:
+      213: -2591846684729294360
+    second: Default Hero Class_76
+  - first:
+      213: 497871062082450460
+    second: Default Hero Class_77
+  - first:
+      213: 8990594426215498443
+    second: Default Hero Class_78
+  - first:
+      213: -4056527347208217458
+    second: Default Hero Class_79
+  - first:
+      213: 2239793135108198935
+    second: Default Hero Class_80
+  - first:
+      213: -6750811486606233870
+    second: Default Hero Class_81
+  - first:
+      213: -1395771644050804517
+    second: Default Hero Class_82
+  - first:
+      213: 5529191509857882120
+    second: Default Hero Class_83
+  - first:
+      213: 7745949851656480021
+    second: Default Hero Class_84
+  - first:
+      213: -7750549940772280135
+    second: Default Hero Class_85
+  - first:
+      213: 7436780592077414745
+    second: Default Hero Class_86
+  - first:
+      213: -7100731328367950522
+    second: Default Hero Class_87
+  - first:
+      213: 1677575124806427865
+    second: Default Hero Class_88
+  - first:
+      213: -3779913099317970565
+    second: Default Hero Class_89
+  - first:
+      213: 8441483356541251461
+    second: Default Hero Class_90
+  - first:
+      213: 4423714629636251967
+    second: Default Hero Class_91
+  - first:
+      213: 4900181379527716421
+    second: Default Hero Class_92
+  - first:
+      213: -2036473477522280337
+    second: Default Hero Class_93
+  - first:
+      213: 3573469775681142276
+    second: Default Hero Class_94
+  - first:
+      213: -529100304184376429
+    second: Default Hero Class_95
+  - first:
+      213: 4012075139464807988
+    second: Default Hero Class_96
+  - first:
+      213: -2126269753945972823
+    second: Default Hero Class_97
+  - first:
+      213: -3808347320929180890
+    second: Default Hero Class_98
+  - first:
+      213: 845221213462137151
+    second: Default Hero Class_99
+  - first:
+      213: -7388371469281680053
+    second: Default Hero Class_100
+  - first:
+      213: 2571022129938210872
+    second: Default Hero Class_101
+  - first:
+      213: 3493734171621469720
+    second: Default Hero Class_102
+  - first:
+      213: 5243185522009715161
+    second: Default Hero Class_103
+  - first:
+      213: 2328214204318867325
+    second: Default Hero Class_104
+  - first:
+      213: -2358127177501272415
+    second: Default Hero Class_105
+  - first:
+      213: -8986495967371082674
+    second: Default Hero Class_106
+  - first:
+      213: -5398649082182691444
+    second: Default Hero Class_107
+  - first:
+      213: -5578323322461162169
+    second: Default Hero Class_108
+  - first:
+      213: -4454566887736325889
+    second: Default Hero Class_109
+  - first:
+      213: -8708069705542133117
+    second: Default Hero Class_110
+  - first:
+      213: -8052370870590150631
+    second: Default Hero Class_111
+  - first:
+      213: 3835692448076804264
+    second: Default Hero Class_112
+  - first:
+      213: 2220716788448848273
+    second: Default Hero Class_113
+  - first:
+      213: -1233934722781103767
+    second: Default Hero Class_114
+  - first:
+      213: 6817333399360062948
+    second: Default Hero Class_115
+  - first:
+      213: -5802119202590164430
+    second: Default Hero Class_116
+  - first:
+      213: 7192534688135003739
+    second: Default Hero Class_117
+  - first:
+      213: 6296121767749197187
+    second: Default Hero Class_118
+  - first:
+      213: 6382800601577753456
+    second: Default Hero Class_119
+  - first:
+      213: 5726991780359825815
+    second: Default Hero Class_120
+  - first:
+      213: -6214262595721447988
+    second: Default Hero Class_121
+  - first:
+      213: 8676864567841027346
+    second: Default Hero Class_122
+  - first:
+      213: -1124835202177639072
+    second: Default Hero Class_123
+  - first:
+      213: -238722634088875630
+    second: Default Hero Class_124
+  - first:
+      213: 2959615486342368489
+    second: Default Hero Class_125
+  - first:
+      213: 3483210740716059261
+    second: Default Hero Class_126
+  - first:
+      213: -9157290503945437618
+    second: Default Hero Class_127
+  - first:
+      213: -6334300680378624972
+    second: Default Hero Class_128
+  - first:
+      213: 2004275805956808133
+    second: Default Hero Class_129
+  - first:
+      213: -7205236484168549707
+    second: Default Hero Class_130
+  - first:
+      213: -3834452049387220595
+    second: Default Hero Class_131
+  - first:
+      213: -1408242132788089341
+    second: Default Hero Class_132
+  - first:
+      213: 3698625762855386726
+    second: Default Hero Class_133
+  - first:
+      213: 4111183668508390229
+    second: Default Hero Class_134
+  - first:
+      213: -7823438531112455342
+    second: Default Hero Class_135
+  - first:
+      213: -9104105241862521511
+    second: Default Hero Class_136
+  - first:
+      213: 3426650863540462006
+    second: Default Hero Class_137
+  - first:
+      213: 3018813631773464321
+    second: Default Hero Class_138
+  - first:
+      213: -6604860747125440977
+    second: Default Hero Class_139
+  - first:
+      213: 4325344985675191892
+    second: Default Hero Class_140
+  - first:
+      213: -1101690105669774626
+    second: Default Hero Class_141
+  - first:
+      213: 3009964854237514232
+    second: Default Hero Class_142
+  - first:
+      213: -559703121915455035
+    second: Default Hero Class_143
+  - first:
+      213: -7374574954099630585
+    second: Default Hero Class_144
+  - first:
+      213: 5605446717824607183
+    second: Default Hero Class_145
+  - first:
+      213: 5368484957667478256
+    second: Default Hero Class_146
+  - first:
+      213: -649276759865399099
+    second: Default Hero Class_147
+  - first:
+      213: -6868550862706567541
+    second: Default Hero Class_148
+  - first:
+      213: 2731400709774958156
+    second: Default Hero Class_149
+  - first:
+      213: -2317317630183558270
+    second: Default Hero Class_150
+  - first:
+      213: 8436767813733626997
+    second: Default Hero Class_151
+  - first:
+      213: 6577083356511988413
+    second: Default Hero Class_152
+  - first:
+      213: 1455532360407785249
+    second: Default Hero Class_153
+  - first:
+      213: -4196571254866935853
+    second: Default Hero Class_154
+  - first:
+      213: 4394373093803727313
+    second: Default Hero Class_155
+  - first:
+      213: -5485058528551937346
+    second: Default Hero Class_156
+  - first:
+      213: 5500860882912809279
+    second: Default Hero Class_157
+  - first:
+      213: -155371771479426578
+    second: Default Hero Class_158
+  - first:
+      213: -9055650426297578467
+    second: Default Hero Class_159
+  - first:
+      213: -6682094944105373441
+    second: Default Hero Class_160
+  - first:
+      213: 7621071778519916875
+    second: Default Hero Class_161
+  - first:
+      213: 4264834749395462653
+    second: Default Hero Class_162
+  - first:
+      213: 1026628059041240135
+    second: Default Hero Class_163
+  - first:
+      213: -5781777626922970964
+    second: Default Hero Class_164
+  - first:
+      213: -6807734520089828393
+    second: Default Hero Class_165
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Default Hero Class_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 890
+        width: 33
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53428fc23cb817d4594624737d99802a
+      internalID: 9015386053879165526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_1
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 890
+        width: 33
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd8212cbec93e5247ad142087aa4cfec
+      internalID: 4478479273738756938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 890
+        width: 33
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e97c0342fbef27489d0b45c5fb3cf8d
+      internalID: 6672029298494823349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_3
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 890
+        width: 42
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd8a0f6571e212146ae77bbbe60a2274
+      internalID: -7369356220066370525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_4
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 890
+        width: 32
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ce445869c5015648be8885123fca846
+      internalID: 7582398332728089473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_5
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 890
+        width: 32
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afb2929a164a7ec48a1780fe6e344b80
+      internalID: -6233413195831103462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_6
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 890
+        width: 32
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b55109d5ef7cd14fb1dd411ef829684
+      internalID: -7995619608892915151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_7
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 890
+        width: 33
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 222780cb7f098a441ac52b45fca05804
+      internalID: -3436751296973950474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_8
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 890
+        width: 33
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f563c0e392b272b42b28c82b56825240
+      internalID: 5031620684713874969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_9
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 890
+        width: 33
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6135b72022a72c499e3be0b4463ec0d
+      internalID: -3601336242384358651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_10
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 890
+        width: 37
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e91179328a98684e9ddbda7a3595b48
+      internalID: 7808566505081234298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_11
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 890
+        width: 37
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b64035abc2eacc946ab4f2aebe0cdc0f
+      internalID: -3354420624315820471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_12
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 890
+        width: 45
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ffbea256b89a454f8f32da888e0b372
+      internalID: 4630093929651609746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_13
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 890
+        width: 34
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b19d5ab48b9a56e4480bb1faaa5ed7be
+      internalID: 4857881411220784928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_14
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 890
+        width: 32
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf08dd0a3bb4b6b4d8853a9745c2052a
+      internalID: -4028765145604868785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_15
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 890
+        width: 32
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4007b221927cf3419e0e84e3006ce63
+      internalID: -8149200117577433272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_16
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 890
+        width: 38
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ca4c447fb1eb5d4e863c86ddc20ea2a
+      internalID: -402825646639803879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_17
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 890
+        width: 38
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9ccd0d1368d48e4dac039924e17c26a
+      internalID: -3079261638937094410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_18
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 890
+        width: 37
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 215b781856c5c904eadc874d013e2da8
+      internalID: 5753850990078525955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_19
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 950
+        width: 90
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18a025b3328c2194885fc0b938fd24d3
+      internalID: 1011864213709127552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_20
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 791
+        width: 33
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52fc846b3a68b90418b79e25c14a4372
+      internalID: -220563993708727334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_21
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 791
+        width: 33
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e73b5d2164e0164cb18f4c279e0f10b
+      internalID: 3435039831672110714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_22
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 791
+        width: 38
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e46c3cd96c4e134cbfb95600c6096b6
+      internalID: -5772281603592464645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_23
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 791
+        width: 42
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9247727c5463ed6438f4193b1ab9908d
+      internalID: -6696105474958982132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_24
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 791
+        width: 31
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5310cd2c901d1f749b13de768c693c8d
+      internalID: -1519096847334347900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_25
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 791
+        width: 28
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 982b0985377cf8d47a0ef60161ad328d
+      internalID: 255299321129736982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_26
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 791
+        width: 28
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cf8e5945af8d124fb79c2cc3c1ce134
+      internalID: -8506416932819830311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_27
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 791
+        width: 33
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c6a4c6f6c4614b4d81943df1d077bd9
+      internalID: -1054291484260366090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_28
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 791
+        width: 33
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8168dc10948a74b449b05b1254d56c59
+      internalID: 8262369459961393861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_29
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 791
+        width: 33
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f022224858221a48970eec2e3275884
+      internalID: -735392591905711077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_30
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 791
+        width: 31
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10434352b9258bc42b520463727d79dd
+      internalID: -2002379794895244168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_31
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 791
+        width: 31
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fff4b574926a124ab785f74e2e88810
+      internalID: 2048302708339593182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_32
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 791
+        width: 35
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b63c50a09b15a2744a2c4e856ce9b662
+      internalID: 6102144321047101614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_33
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 791
+        width: 40
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25fd45385acbb9244a8ec6ef649bd454
+      internalID: 8913851195462238991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_34
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 791
+        width: 31
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbca5cd83e139a04c9e1cea442925a54
+      internalID: 3451234869242184696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_35
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 791
+        width: 31
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f4909eb00ce17a4a9f67d0555c99c61
+      internalID: -1131628081544650735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_36
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 791
+        width: 31
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3687d0c184ea7794598d814bb7f2b73e
+      internalID: 2873558906654166784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_37
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 791
+        width: 31
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ccb3e2b8175d6845a1c9ded7c4934a3
+      internalID: -7119386187893550294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_38
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 791
+        width: 31
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03856b9bb9a4a534483ed567080937d8
+      internalID: -1817495426589425138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_39
+      rect:
+        serializedVersion: 2
+        x: 755
+        y: 791
+        width: 31
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd6fb287eeb88644287db10c14347f5c
+      internalID: 4143909569358523510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_40
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 689
+        width: 31
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a6caba5a363678449f1edd6e5fd9d4c
+      internalID: 7431662799202444480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_41
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 689
+        width: 33
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcbe1da4f9255f947812befc78e1973a
+      internalID: 4525755359470153691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_42
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 689
+        width: 39
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55f55ce0022747a429af8d19e824de9c
+      internalID: 8588509862065201732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_43
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 689
+        width: 44
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f089a91cc567a54cb9e5469ea97f6fe
+      internalID: 1925820016614814123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_44
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 689
+        width: 32
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cb97d8a51205f549b5229bc6e7badbc
+      internalID: 7053887472106936884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_45
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 689
+        width: 30
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 528f91e7828bb87408bc221428b9af68
+      internalID: -8931904357840661888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_46
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 689
+        width: 30
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c57dbb3c2ad47744adde20e5952cf63
+      internalID: 5514225383646292474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_47
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 689
+        width: 31
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfb53812e1781b3459a22c34f6647da0
+      internalID: 1638997240070369093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_48
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 689
+        width: 32
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a65c9e3482e77f648b62549417e37ac3
+      internalID: -4975642356023486520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_49
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 689
+        width: 32
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08a68c60e68ae2346b66b81ebf5aabd5
+      internalID: 554534066769433663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_50
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 689
+        width: 31
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e89e8bd7bb77bc4aa53772a594a55d8
+      internalID: 7956209886372833999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_51
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 689
+        width: 32
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72933aacba92b32419a5c65be8cdcd38
+      internalID: -8349269224883021902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_52
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 689
+        width: 37
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 976168313ae7146479acb7352c157160
+      internalID: -469903893002223197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_53
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 689
+        width: 42
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea7f19b74c7e82a41a538123fdd0c451
+      internalID: 6022881807187233385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_54
+      rect:
+        serializedVersion: 2
+        x: 573
+        y: 689
+        width: 32
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d91e4ee1c1ae326479ac7890ded8f947
+      internalID: 8594021766378822518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_55
+      rect:
+        serializedVersion: 2
+        x: 610
+        y: 689
+        width: 31
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 298a710ebb3658d4f977e3e89d689752
+      internalID: -547446499976251845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_56
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 689
+        width: 31
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcce0dd45daef5f48b3f4e5e805cdf4f
+      internalID: -7162514243163217006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_57
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 689
+        width: 32
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b32c5e4844163c64fa08b54af602f920
+      internalID: -8366994477600957213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_58
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 689
+        width: 32
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4f9239eacfbd2e47a74437d225bb321
+      internalID: -6609415918537655948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_59
+      rect:
+        serializedVersion: 2
+        x: 753
+        y: 689
+        width: 32
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69afc168e65e1c841b20fca48f268f51
+      internalID: 6295277235178626790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_60
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 577
+        width: 57
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fabc6f336f701034dbe99166ba174863
+      internalID: -5126729959906691218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_61
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 576
+        width: 57
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1611cdae33a4b8143a3811b46e077d25
+      internalID: -8002015379248867540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_62
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 577
+        width: 57
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec1ded2cf886a8f4da8d9a1910fee05b
+      internalID: -4965709181173511733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_63
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 577
+        width: 57
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2675a1c610da15e43ba2a9aa9c3a6afc
+      internalID: -694576173448223002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_64
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 577
+        width: 57
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa8872ade52bfc34da1deb8068a86184
+      internalID: -1895132238696637947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_65
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 577
+        width: 57
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccb32b322594d6e4ea49bb2d12f6426c
+      internalID: -530680197400937470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_66
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 577
+        width: 57
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07f585c54cab7664491f7af13e43eaa6
+      internalID: -6877139704554213110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_67
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 577
+        width: 57
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d89866ea684da5147aeb264346c48912
+      internalID: 8934977297741033262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_68
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 577
+        width: 57
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e59effe1698a7a349921944f7d5d5601
+      internalID: 4548084345966495576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_69
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 577
+        width: 57
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62a2bf2cecca5fc44a0f33d02d2e3d9a
+      internalID: 5103483178253271493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_70
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 577
+        width: 57
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f1159668de93864b9786fb83f0c7b79
+      internalID: 7312994300276457035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_71
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 577
+        width: 57
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f5f830567d2e2041837e2f3adbd9406
+      internalID: 1288930392860818190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_72
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 577
+        width: 57
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ea10022231cbbb4a83b9300dd3970df
+      internalID: -4258891143154361200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_73
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 577
+        width: 57
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 086b52c0f83d27d49b24b3d7c1087c82
+      internalID: -2803795868663219270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_74
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 577
+        width: 58
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27c8ca16c683a654b99c471b8cce0081
+      internalID: -6610266091955380197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_75
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 577
+        width: 58
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbae4ca9447802748a7ef23455ef6ebf
+      internalID: 7587002077671306358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_76
+      rect:
+        serializedVersion: 2
+        x: 973
+        y: 577
+        width: 57
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 667b70eb6e1a7d644b6392ff6fe7f03d
+      internalID: -2591846684729294360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_77
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 577
+        width: 57
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ae97a4a1092a344f81a8f6b0c3dadd1
+      internalID: 497871062082450460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_78
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 462
+        width: 58
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad5be306f1be5ff40921a8c29594a8ce
+      internalID: 8990594426215498443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_79
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 462
+        width: 58
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b374e12352454849851b0bade77f23a
+      internalID: -4056527347208217458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_80
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 462
+        width: 58
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5643743d6f9ac094299b5a89f9c9da03
+      internalID: 2239793135108198935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_81
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 462
+        width: 58
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eea54b18d6286a14ca631df780bb76a5
+      internalID: -6750811486606233870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_82
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 462
+        width: 58
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90f9bcda64563604fa7471bb11ed4389
+      internalID: -1395771644050804517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_83
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 462
+        width: 58
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2e2eab5e3c250f4183b22f17b8d4047
+      internalID: 5529191509857882120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_84
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 462
+        width: 58
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bdf2a7e187725c47acc95243cc39229
+      internalID: 7745949851656480021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_85
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 462
+        width: 58
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d1149339b2ffd347bdbfbde52827694
+      internalID: -7750549940772280135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_86
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 462
+        width: 58
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8219f7af628c84d4c894499ca0750dc6
+      internalID: 7436780592077414745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_87
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 462
+        width: 58
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98da1e233da1efb46afbcabfefc3fd5c
+      internalID: -7100731328367950522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_88
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 462
+        width: 58
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b122fe61a34551429de6b5823cd9227
+      internalID: 1677575124806427865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_89
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 462
+        width: 58
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1720b4a8b85f4f4d8f83e04ecf6825d
+      internalID: -3779913099317970565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_90
+      rect:
+        serializedVersion: 2
+        x: 735
+        y: 462
+        width: 58
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06ab7cf2c17e81048b58613d9485ad3f
+      internalID: 8441483356541251461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_91
+      rect:
+        serializedVersion: 2
+        x: 794
+        y: 462
+        width: 58
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4997ee031e57194f803182dd711aaf4
+      internalID: 4423714629636251967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_92
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 462
+        width: 58
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f368938026e43264398634e61155cc90
+      internalID: 4900181379527716421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_93
+      rect:
+        serializedVersion: 2
+        x: 914
+        y: 462
+        width: 58
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98a3a8ac77cffc64f8a46d2467d22fb1
+      internalID: -2036473477522280337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_94
+      rect:
+        serializedVersion: 2
+        x: 974
+        y: 462
+        width: 59
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 791a6d24b5f5e104eb3d5da8977d9d0e
+      internalID: 3573469775681142276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_95
+      rect:
+        serializedVersion: 2
+        x: 1036
+        y: 462
+        width: 59
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08d00c6dc81c5374f95c932278a22cdd
+      internalID: -529100304184376429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_96
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 462
+        width: 58
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5305dfab1846e3348ab461183f10c1da
+      internalID: 4012075139464807988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_97
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 348
+        width: 59
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25040f5a9311866428086c2256b70771
+      internalID: -2126269753945972823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_98
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 348
+        width: 59
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25fb296868d7588449ce019cdc4f6d6f
+      internalID: -3808347320929180890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_99
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 348
+        width: 59
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 998e5c6017badfc42b022346670f9ed5
+      internalID: 845221213462137151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_100
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 348
+        width: 59
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2fc14829dfccd7468b1c05efa39a8ea
+      internalID: -7388371469281680053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_101
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 348
+        width: 59
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e43df837103a5ae448776cec24d8b31c
+      internalID: 2571022129938210872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_102
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 348
+        width: 59
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00d9020dcd2cd3547bece4d536383008
+      internalID: 3493734171621469720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_103
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 348
+        width: 59
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17dea16f8955bb04cb69f9bfc7bbb8f9
+      internalID: 5243185522009715161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_104
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 348
+        width: 59
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a2da7a55493fc8439e11017a234a79c
+      internalID: 2328214204318867325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_105
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 348
+        width: 59
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2fafe4b7d3540d48a2ed289a954ef00
+      internalID: -2358127177501272415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_106
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 348
+        width: 59
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 186c3d3fe7e843245ab9b0d329571f8e
+      internalID: -8986495967371082674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_107
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 348
+        width: 59
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1ee95f9fc00f374299bad70e5610373
+      internalID: -5398649082182691444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_108
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 348
+        width: 59
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a93dd7f49ee3830448fac8353f0f6b2e
+      internalID: -5578323322461162169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_109
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 348
+        width: 59
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b583719dde5ff2d4bae038cb4532d7db
+      internalID: -4454566887736325889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_110
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 348
+        width: 59
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: beba6514e6f26394885f4f634a457b0c
+      internalID: -8708069705542133117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_111
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 348
+        width: 59
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dec07920e3d02ff44909d719e4de2072
+      internalID: -8052370870590150631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_112
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 348
+        width: 59
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdddcb64c802f2b49a2f7d73557658fb
+      internalID: 3835692448076804264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_113
+      rect:
+        serializedVersion: 2
+        x: 973
+        y: 348
+        width: 59
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6690126819135d54ca6ab2bdce83baee
+      internalID: 2220716788448848273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_114
+      rect:
+        serializedVersion: 2
+        x: 1035
+        y: 348
+        width: 60
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7df76076b54f8d546805d558697038ea
+      internalID: -1233934722781103767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_115
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 348
+        width: 59
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a85d41223250c0c4c875d51a34d23543
+      internalID: 6817333399360062948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_116
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 235
+        width: 55
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dda57cfd12f60246afa4ac60b0203df
+      internalID: -5802119202590164430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_117
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 235
+        width: 55
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb30933deb1d1904382aa11ee1e7bd42
+      internalID: 7192534688135003739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_118
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 235
+        width: 55
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7c3195cb809fa34f9f73c0dcbcc0a99
+      internalID: 6296121767749197187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_119
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 235
+        width: 55
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05db38c10fddb3041b14d2748902d6c2
+      internalID: 6382800601577753456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_120
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 235
+        width: 55
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb7786a49c4dc3f4f8c0910e9500ea8f
+      internalID: 5726991780359825815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_121
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 235
+        width: 55
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d820b2e26046024faad46ad0a06b0f3
+      internalID: -6214262595721447988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_122
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 235
+        width: 55
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5aaea138e1d4b9f41adbcd7d332e04e5
+      internalID: 8676864567841027346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_123
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 235
+        width: 55
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d57d811019b51814597eca94b5745074
+      internalID: -1124835202177639072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_124
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 235
+        width: 55
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58208a8fcf9d721419a4692896c0804a
+      internalID: -238722634088875630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_125
+      rect:
+        serializedVersion: 2
+        x: 559
+        y: 235
+        width: 55
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb46bf861e56dc445af05b928bd4f70f
+      internalID: 2959615486342368489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_126
+      rect:
+        serializedVersion: 2
+        x: 618
+        y: 235
+        width: 55
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 279f02e7f2778ce498a44c84966addd6
+      internalID: 3483210740716059261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_127
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 235
+        width: 55
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6082e620c398d4a4786da4c7c092d48b
+      internalID: -9157290503945437618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_128
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 235
+        width: 55
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43a8e32cc5c0d6d44a2f0a6dafd7a8d4
+      internalID: -6334300680378624972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_129
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 235
+        width: 56
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 071a45f2e50813a4eb8964623fdc74ae
+      internalID: 2004275805956808133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_130
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 235
+        width: 56
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc2dd60b10af8984cb321fda1fb87049
+      internalID: -7205236484168549707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_131
+      rect:
+        serializedVersion: 2
+        x: 918
+        y: 235
+        width: 55
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9dbc5411b3994c4db1462f1cfd3b26d
+      internalID: -3834452049387220595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_132
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 123
+        width: 56
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c53176165b584e459b22fc16a52f281
+      internalID: -1408242132788089341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_133
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 123
+        width: 56
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6211238ffa55294f811accb2afe2f40
+      internalID: 3698625762855386726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_134
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 123
+        width: 56
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7f650d995b5a3940941ede89999e238
+      internalID: 4111183668508390229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_135
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 123
+        width: 56
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fc34eafe535bd24e98fe2447fe15dbb
+      internalID: -7823438531112455342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_136
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 123
+        width: 56
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ef92e25d6e95b64ebbc959cc4373c23
+      internalID: -9104105241862521511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_137
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 123
+        width: 56
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27082cbdf8abd0d499abc05ab3cb7aea
+      internalID: 3426650863540462006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_138
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 123
+        width: 56
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 547d74438411b25459874ed0627f46ae
+      internalID: 3018813631773464321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_139
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 123
+        width: 56
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1a01931bceca09469dac8864b3cbd6e
+      internalID: -6604860747125440977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_140
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 123
+        width: 56
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdc41991ae4593147a31b3689e7ad629
+      internalID: 4325344985675191892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_141
+      rect:
+        serializedVersion: 2
+        x: 556
+        y: 123
+        width: 56
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 042f47ec1d95e744b800f514dc383435
+      internalID: -1101690105669774626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_142
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 123
+        width: 56
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 662f04dd70e953e4ebc85eeae0a61b8b
+      internalID: 3009964854237514232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_143
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 123
+        width: 56
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e4cfa7402df4ab4daacf66df2bbfe2b
+      internalID: -559703121915455035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_144
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 123
+        width: 56
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a60177defdd7a3747a91585b014efea9
+      internalID: -7374574954099630585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_145
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 123
+        width: 56
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3775db1afe2aafc4bba9311595bbb220
+      internalID: 5605446717824607183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_146
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 123
+        width: 57
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b60c645d337400a4f88b178e6471eda3
+      internalID: 5368484957667478256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_147
+      rect:
+        serializedVersion: 2
+        x: 915
+        y: 123
+        width: 57
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 101b514398f748c45b6d9e2a1f95ca29
+      internalID: -649276759865399099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_148
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 7
+        width: 57
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b4f8299c013a5f40b7ba0eb63812c77
+      internalID: -6868550862706567541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_149
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 7
+        width: 57
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ca75757442d17641b0a6a264c0d1be2
+      internalID: 2731400709774958156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_150
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 7
+        width: 57
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b6e33557c6d397409be033f4a8cba53
+      internalID: -2317317630183558270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_151
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 7
+        width: 57
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9a8f62ee9fade14486ad4146115518b
+      internalID: 8436767813733626997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_152
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 7
+        width: 57
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d662bbc7fb999244e95b16cf4e52ce0c
+      internalID: 6577083356511988413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_153
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 7
+        width: 57
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd216866f01c96e449c2ea22d352a0fa
+      internalID: 1455532360407785249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_154
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 7
+        width: 57
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58826daf621bd4e4084ce2a6a0e29b6e
+      internalID: -4196571254866935853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_155
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 7
+        width: 57
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b63a25de1a6e12d469f95bbfa1ee985b
+      internalID: 4394373093803727313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_156
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 6
+        width: 57
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d60a87b059b9d134c8cc9dd31e476e9e
+      internalID: -5485058528551937346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_157
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 7
+        width: 57
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c5c953a1b1bbe946b0861cb070b7ebb
+      internalID: 5500860882912809279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_158
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 7
+        width: 57
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff0b5e19359bae4439cff42860965fbe
+      internalID: -155371771479426578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_159
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 7
+        width: 57
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbe68efd69c06a443a9cdddfa17ab63d
+      internalID: -9055650426297578467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_160
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 7
+        width: 57
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 468750598149e614298baa8214bb8dca
+      internalID: -6682094944105373441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_161
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 7
+        width: 57
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7ec57c9d027eeb49bb83b8c8a02ce08
+      internalID: 7621071778519916875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_162
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 7
+        width: 57
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 282cf2a8bc0fb6746b01fd311b538abb
+      internalID: 4264834749395462653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_163
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 7
+        width: 56
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee7d3b8bab6257249be0d3164c827b3b
+      internalID: 1026628059041240135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_164
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 7
+        width: 56
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2eec3e79c82277847bdce5e9b3b57759
+      internalID: -5781777626922970964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Default Hero Class_165
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 7
+        width: 57
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 208c161ba10fef449b79978feafb54e2
+      internalID: -6807734520089828393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: e13f7b6d9e74f8448bb4696d752c8135
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
