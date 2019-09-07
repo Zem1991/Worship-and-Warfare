@@ -46,6 +46,9 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         pieceHandler.gameObject.SetActive(true);
     }
 
+    /*
+     * Begin: UI Top Left buttons
+     */
     public void EscapeMenu()
     {
         bool pauseStatus = GameManager.Instance.PauseUnpause();
@@ -60,4 +63,29 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
 
         GameManager.Instance.Restart();
     }
+    /*
+     * End: UI Top Left buttons
+     */
+
+    /*
+     * Begin: UI Top Right buttons
+     */
+    public void EndTurnForCurrentPlayer()
+    {
+        GameManager.Instance.EndTurnForCurrentPlayer();
+    }
+    /*
+     * End: UI Top Right buttons
+     */
+
+    /*
+     * Begin: UI Bottom Center buttons
+     */
+    public void MakeSelectedPieceMove()
+    {
+        FieldInputs.Instance.MakeSelectedPieceMove(false);
+    }
+    /*
+     * End: UI Bottom Center buttons
+     */
 }

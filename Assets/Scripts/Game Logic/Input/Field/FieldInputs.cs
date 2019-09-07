@@ -205,29 +205,39 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
         if (recorder.commandDown &&
             IsCursorValid())
         {
-            if (im.cursorOnPlayArea && selectionPiece)
+            if (im.cursorOnPlayArea)
             {
-                if (canCommandSelectedPiece)
-                {
-                    movementHighlightsUpdateFromCommand = true;
+                MakeSelectedPieceMove(true);
+            }
+            //else
+            //{
+            //    canCommandSelectedPiece = false;
+            //}
+        }
+    }
 
-                    if (selectionPiece.inMovement)
-                    {
-                        selectionPiece.Stop();
-                        movementHighlightsUpdateOnPieceStop = true;
-                    }
-                    else
-                    {
-                        if (selectionPiece.HasPath(cursorTile))
-                            selectionPiece.Move();
-                        else
-                            FieldManager.Instance.pieceHandler.Pathfind(selectionPiece, cursorTile);
-                    }
-                }
+    public void MakeSelectedPieceMove(bool canPathfind)
+    {
+        if (selectionPiece && canCommandSelectedPiece)
+        {
+            movementHighlightsUpdateFromCommand = true;
+
+            if (selectionPiece.inMovement)
+            {
+                selectionPiece.Stop();
+                movementHighlightsUpdateOnPieceStop = true;
             }
             else
             {
-                canCommandSelectedPiece = false;
+                if (canPathfind)
+                {
+                    if (selectionPiece.HasPath(cursorTile)) selectionPiece.Move();
+                    else FieldManager.Instance.pieceHandler.Pathfind(selectionPiece, cursorTile);
+                }
+                else
+                {
+                    if (selectionPiece.HasPath()) selectionPiece.Move();
+                }
             }
         }
     }

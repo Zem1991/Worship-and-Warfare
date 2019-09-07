@@ -24,6 +24,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     [Header("Players")]
     public Player localPlayer;
     public List<Player> allPlayers;
+    public List<Player> activePlayers;
 
     public void InstantiatePlayers(PlayerData[] data)
     {
@@ -32,10 +33,12 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             InstantiatePlayer(item);
         }
 
+        activePlayers = new List<Player>(allPlayers);
+
         if (!localPlayer)
         {
             Debug.LogWarning("The Local Player was set to the first player as a safety.");
-            localPlayer = allPlayers[0];
+            localPlayer = activePlayers[0];
         }
     }
 
@@ -54,6 +57,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     //{
     //    p.type = PlayerType.INACTIVE;
     //    p.color = INACTIVE_COLOR;
+    //      p.EndTurn();
+    //      allActivePlayers.remove(p);
     //    Debug.Log("Player " + p.name + " is now inactive!");
     //}
 
@@ -66,4 +71,22 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     //    }
     //    return result;
     //}
+
+    public Player EndTurnForPlayer(Player player)
+    {
+        player.EndTurn();
+        foreach (Player pl in activePlayers)
+        {
+            if (pl.HasTurn()) return pl;
+        }
+        return null;
+    }
+
+    public void RefreshTurnForActivePlayers(int currentTurn)
+    {
+        foreach (var pl in activePlayers)
+        {
+            pl.RefreshTurn(currentTurn);
+        }
+    }
 }

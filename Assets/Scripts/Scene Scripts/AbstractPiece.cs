@@ -45,9 +45,14 @@ public abstract class AbstractPiece : MonoBehaviour
         animator.runtimeAnimatorController = aoc;
     }
 
+    public bool HasPath()
+    {
+        return path?.Count > 0;
+    }
+
     public bool HasPath(AbstractTile targetTile)
     {
-        return path?.Count > 0 && this.targetTile == targetTile;
+        return HasPath() && this.targetTile == targetTile;
     }
 
     public void SetPath(List<PathNode> path, int pathCost, AbstractTile targetTile)

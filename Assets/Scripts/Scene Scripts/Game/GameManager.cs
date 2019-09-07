@@ -30,17 +30,22 @@ public class GameManager : AbstractSingleton<GameManager>
     public Scene sceneTown;
     public Scene sceneCombat;
 
-    [Header("Game Flow")]
+    [Header("Match initialization")]
     public bool scenarioBooted;
     public bool scenarioStarted;
-    public int currentDay;
-    public Player currentPlayer;
-    public string timeElapsedText;
-    public GameScheme currentGameScheme;
 
-    [Header("Game Speed")]
+    [Header("Match flow")]
     public float gameSpeed;
     public bool isPaused;
+    public int currentTurn;
+    public Player currentPlayer;
+    public GameScheme currentGameScheme;
+    public string timeElapsedText;
+
+    [Header("Day/Week/Month")]
+    public int day;
+    public int week;
+    public int month;
 
     private ScenarioFileData scenarioFileData;
     private TimeSpan timeElapsed;
@@ -154,6 +159,32 @@ public class GameManager : AbstractSingleton<GameManager>
         }
     }
 
+    public void EndTurnForCurrentPlayer()
+    {
+        Player next = PlayerManager.Instance.EndTurnForPlayer(currentPlayer);
+        if (!next) NextTurnForAll();
+        else currentPlayer = next;
+    }
+
+    private void NextTurnForAll()
+    {
+        currentTurn++;
+        PlayerManager.Instance.RefreshTurnForActivePlayers(currentTurn);
+        currentPlayer = PlayerManager.Instance.activePlayers[0];
+
+        NextDayWeekMonth();
+    }
+
+    private void NextDayWeekMonth()
+    {
+        int turnsAdjusted = currentTurn - 1;
+        month = (turnsAdjusted / 28) + 1;
+        int monthDayDif = turnsAdjusted % 28;
+        week = (monthDayDif / 7) + 1;
+        int weekDayDif = monthDayDif % 7;
+        day = (weekDayDif % 7) + 1;
+    }
+
     public void Restart()
     {
         FieldManager.Instance.TerminateField();
@@ -237,8 +268,8 @@ public class GameManager : AbstractSingleton<GameManager>
 
     private void StartScenario()
     {
-        currentDay = 1;
-        currentPlayer = PlayerManager.Instance.allPlayers[0];
+        currentTurn = 0;
+        NextTurnForAll();
         timeElapsed = TimeSpan.Zero;
 
         scenarioStarted = true;

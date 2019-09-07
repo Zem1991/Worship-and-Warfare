@@ -12,12 +12,7 @@ public class FieldUI_TR_Timers : AUIPanel
     public void UpdatePanel()
     {
         GameManager gm = GameManager.Instance;
-
-        int day = gm.currentDay % 7;
-        if (day == 0) day = 7;
-        int week = (gm.currentDay / 7) + 1;
-
-        txtTurns.text = "Day " + day + ", week " + week;
+        txtTurns.text = "Day " + gm.day + ", week " + gm.week + ", month " + gm.month;
         txtTimer.text = gm.timeElapsedText;
     }
 }

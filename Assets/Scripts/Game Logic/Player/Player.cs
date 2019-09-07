@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,4 +21,24 @@ public class Player : MonoBehaviour
     [Header("Game Data")]
     public DBHandler_Faction faction;
     public long gold;
+
+    [Header("Game Flow")]
+    public int currentTurn;
+    public bool currentTurnAvailable;
+
+    public bool HasTurn()
+    {
+        return currentTurnAvailable;
+    }
+
+    public void EndTurn()
+    {
+        currentTurnAvailable = false;
+    }
+
+    public void RefreshTurn(int currentTurn)
+    {
+        this.currentTurn = currentTurn;
+        currentTurnAvailable = true;
+    }
 }
