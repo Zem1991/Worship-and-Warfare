@@ -5,7 +5,7 @@ using ZemDirections;
 
 public abstract class AbstractPiece : MonoBehaviour
 {
-    //private SpriteRenderer spriteRenderer;
+    //protected SpriteRenderer spriteRenderer;
     protected Animator animator;
 
     public static readonly float movementSpeed = 5F;
@@ -29,11 +29,12 @@ public abstract class AbstractPiece : MonoBehaviour
 
     public virtual void Awake()
     {
+        //spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
         LookAtDirection(OctoDirXZ.BACK);
     }
 
-    void Update()
+    public virtual void Update()
     {
         AnimatorVariables();
         Movement();

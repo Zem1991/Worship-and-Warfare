@@ -7,18 +7,17 @@ public abstract class AbstractCombatPiece : AbstractPiece
     [Header("Sprites")]
     public Sprite imgProfile;
 
-    [Header("Animator Variables")]
+    [Header("Combat actions")]
+    public bool isAttacking;
+    public bool isHurt;
+    public bool isDead;
+
+    [Header("Animator variables")]
     public bool anim_movement;
     public float anim_directionX;
-    public float anim_directionZ = -1;
-
-    protected override void Movement()
-    {
-        if (CombatManager.Instance.IsCombatRunning())
-        {
-            base.Movement();
-        }
-    }
+    public bool anim_attacking;
+    public bool anim_hurt;
+    public bool anim_dead;
 
     protected override void AnimatorVariables()
     {
@@ -30,9 +29,21 @@ public abstract class AbstractCombatPiece : AbstractPiece
         //if (direction.x > 0) anim_directionX = 1;
         //animator.SetFloat("Direction X", anim_directionX);
 
-        //anim_directionZ = 0;
-        //if (direction.z < 0) anim_directionZ = -1;
-        //if (direction.z > 0) anim_directionZ = 1;
-        //animator.SetFloat("Direction Z", anim_directionZ);
+        anim_attacking = isAttacking;
+        animator.SetBool("Attacking", anim_attacking);
+
+        anim_hurt = isHurt;
+        animator.SetBool("Hurt", anim_hurt);
+
+        anim_dead = isDead;
+        animator.SetBool("Dead", anim_dead);
+    }
+
+    protected override void Movement()
+    {
+        if (CombatManager.Instance.IsCombatRunning())
+        {
+            base.Movement();
+        }
     }
 }

@@ -19,6 +19,12 @@ public class UnitCombatPiece : AbstractCombatPiece
     public int speed;
     public int initiative;
 
+    public override void Update()
+    {
+        base.Update();
+        Attack();
+    }
+
     public void Initialize(Unit unit)
     {
         unitName = unit.unitName;
@@ -42,6 +48,7 @@ public class UnitCombatPiece : AbstractCombatPiece
         UnitCombatPiece targetUnit = target as UnitCombatPiece;
         if (targetUnit)
         {
+            isAttacking = true;
             Debug.LogWarning("InteractWithPiece insta-killed the target!");
             targetUnit.hitPointsCurrent = 0;
         }
@@ -49,6 +56,18 @@ public class UnitCombatPiece : AbstractCombatPiece
         {
             Debug.LogWarning("InteractWithPiece IS DESTROYING PIECES!");
             Destroy(target.gameObject);
+        }
+    }
+
+    protected void Attack()
+    {
+        if (!isAttacking) return;
+
+        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+        if (state.IsName("Attack Start") &&
+            state.normalizedTime >= 1)
+        {
+            isAttacking = false;
         }
     }
 }
