@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ZemDirections;
 
-public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShowableHideable
+public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowableHideable
 {
     [Header("Prefabs and Sprites")]
     public InputHighlight prefabHighlight;
@@ -15,14 +15,14 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
     [Header("Cursor Data")]
     public InputHighlight cursorHighlight;
     public Vector2Int cursorPos;
-    public CombatTile cursorTile;
-    public AbstractCombatPiece cursorPiece;
+    public FieldTile cursorTile;
+    public FieldPiece cursorPiece;
 
     [Header("Selection Data")]
     public InputHighlight selectionHighlight;
     public Vector2Int selectionPos;
-    public CombatTile selectionTile;
-    public AbstractCombatPiece selectionPiece;
+    public FieldTile selectionTile;
+    public FieldPiece selectionPiece;
     public bool canCommandSelectedPiece;
 
     [Header("Movement Highlights")]
@@ -32,7 +32,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
 
     [Header("Required Objects")]
     public InputManager im;
-    public CombatInputRecorder recorder;
+    public FieldInputRecorder recorder;
     public CameraController cameraController;
 
     public override void Awake()
@@ -52,7 +52,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
     void Start()
     {
         im = InputManager.Instance;
-        recorder = GetComponent<CombatInputRecorder>();
+        recorder = GetComponent<FieldInputRecorder>();
         cameraController = GetComponentInChildren<CameraController>();
     }
 
@@ -90,33 +90,27 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         }
         else
         {
-            if (CombatManager.Instance.IsCombatRunning())
-            {
-                //CameraControls();
-                CursorHighlight();
+            CameraControls();
+            CursorHighlight();
 
-                SelectionHighlight();
-                SelectionCommand();
-            }
+            SelectionHighlight();
+            SelectionCommand();
         }
         MovementHighlights();
     }
 
     private void EscapeMenu()
     {
-        if (recorder.escapeMenuDown && CombatManager.Instance.IsCombatRunning())
-        {
-            CombatManager.Instance.EscapeMenu();
-        }
+        if (recorder.escapeMenuDown) FieldManager.Instance.EscapeMenu();
     }
 
-    //private void CameraControls()
-    //{
-    //    float x = im.mouseAfterBorders.x + recorder.cameraAxes.x;
-    //    float z = im.mouseAfterBorders.y + recorder.cameraAxes.z;
-    //    Vector3 direction = new Vector3(x, 0, z);
-    //    cameraController.MoveCamera(direction);
-    //}
+    private void CameraControls()
+    {
+        float x = im.mouseAfterBorders.x + recorder.cameraAxes.x;
+        float z = im.mouseAfterBorders.y + recorder.cameraAxes.z;
+        Vector3 direction = new Vector3(x, 0, z);
+        cameraController.MoveCamera(direction);
+    }
 
     private void CursorHighlight()
     {
@@ -141,8 +135,8 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
             {
                 if (item.collider == null) continue;
 
-                CombatTile t = item.collider.GetComponentInParent<CombatTile>();
-                AbstractCombatPiece p = item.collider.GetComponentInParent<AbstractCombatPiece>();
+                FieldTile t = item.collider.GetComponentInParent<FieldTile>();
+                FieldPiece p = item.collider.GetComponentInParent<FieldPiece>();
                 if (cursorTile == null && t) cursorTile = t;
                 if (cursorPiece == null && p) cursorPiece = p;
             }
@@ -190,7 +184,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         {
             if (selectionPiece.inMovement)
             {
-                selectionTile = selectionPiece.currentTile as CombatTile;
+                selectionTile = selectionPiece.currentTile as FieldTile;
                 selectionPos = selectionTile.posId;
 
                 selectionHighlight.transform.position = selectionPiece.transform.position;
@@ -211,30 +205,39 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         if (recorder.commandDown &&
             IsCursorValid())
         {
-            //if (im.cursorOnPlayArea && selectionPiece)
-            if (selectionPiece)
+            if (cursorTile)
             {
-                if (canCommandSelectedPiece)
-                {
-                    movementHighlightsUpdateFromCommand = true;
+                MakeSelectedPieceMove(true);
+            }
+            //else
+            //{
+            //    canCommandSelectedPiece = false;
+            //}
+        }
+    }
 
-                    if (selectionPiece.inMovement)
-                    {
-                        selectionPiece.Stop();
-                        movementHighlightsUpdateOnPieceStop = true;
-                    }
-                    else
-                    {
-                        if (selectionPiece.HasPath(cursorTile))
-                            selectionPiece.Move();
-                        else
-                            CombatManager.Instance.pieceHandler.Pathfind(selectionPiece, cursorTile);
-                    }
-                }
+    public void MakeSelectedPieceMove(bool canPathfind)
+    {
+        if (selectionPiece && canCommandSelectedPiece)
+        {
+            movementHighlightsUpdateFromCommand = true;
+
+            if (selectionPiece.inMovement)
+            {
+                selectionPiece.Stop();
+                movementHighlightsUpdateOnPieceStop = true;
             }
             else
             {
-                canCommandSelectedPiece = false;
+                if (canPathfind)
+                {
+                    if (selectionPiece.HasPath(cursorTile)) selectionPiece.Move();
+                    else FieldManager.Instance.pieceHandler.Pathfind(selectionPiece, cursorTile);
+                }
+                else
+                {
+                    if (selectionPiece.HasPath()) selectionPiece.Move();
+                }
             }
         }
     }
@@ -268,8 +271,8 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
             {
                 int nextI = i + 1;
 
-                CombatTile currentTile = (i == -1 ? selectionPiece.currentTile : path[i].tile) as CombatTile;
-                CombatTile nextTile = path[nextI].tile as CombatTile;
+                FieldTile currentTile = (i == -1 ? selectionPiece.currentTile : path[i].tile) as FieldTile;
+                FieldTile nextTile = path[nextI].tile as FieldTile;
 
                 Vector3 fromPos = currentTile.transform.position;
                 Vector3 toPos = nextTile.transform.position;

@@ -43,6 +43,16 @@ public class HeroCombatPiece : AbstractCombatPiece
         SetAnimatorOverrideController(hero.animatorCombat);
     }
 
+    public override int CalculateDamage()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override bool TakeDamage(float amount)
+    {
+        throw new System.NotImplementedException();
+    }
+
     protected override void InteractWithPiece(AbstractPiece target)
     {
         Debug.LogWarning("THIS HERO DOESN'T KNOW HOW TO HANDLE OTHER PIECES!");

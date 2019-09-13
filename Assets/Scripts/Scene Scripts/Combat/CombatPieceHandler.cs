@@ -143,7 +143,7 @@ public class CombatPieceHandler : MonoBehaviour
         List<UnitCombatPiece> result = new List<UnitCombatPiece>();
         foreach (var item in units)
         {
-            if (item.hitPointsCurrent > 0) result.Add(item);
+            if (!item.isDead) result.Add(item);
         }
         return result;
     }

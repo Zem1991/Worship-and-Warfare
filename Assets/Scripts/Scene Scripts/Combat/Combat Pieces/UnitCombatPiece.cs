@@ -23,6 +23,7 @@ public class UnitCombatPiece : AbstractCombatPiece
     {
         base.Update();
         Attack();
+        Hurt();
     }
 
     public void Initialize(Unit unit)
@@ -43,14 +44,39 @@ public class UnitCombatPiece : AbstractCombatPiece
         SetAnimatorOverrideController(unit.animatorCombat);
     }
 
+    public override int CalculateDamage()
+    {
+        UnitCombatPiece targetUnit = actionTarget as UnitCombatPiece;
+        CombatPieceHandler cph = CombatManager.Instance.pieceHandler;
+        return CombatLogic.DamageCalculation(this, targetUnit, cph.attackerHero, cph.defenderHero);
+    }
+
+    public override bool TakeDamage(float amount)
+    {
+        hitPoints -= Mathf.CeilToInt(amount);
+        hitPoints = Mathf.Max(hitPoints, 0);
+        Debug.Log("Unit " + unitName + " took " + amount + " damage, and now has " + hitPoints + " hit points.");
+        if (hitPoints > 0)
+        {
+            isHurt = true;
+            return false;
+        }
+        else
+        {
+            isDead = true;
+            return true;
+        }
+    }
+
     protected override void InteractWithPiece(AbstractPiece target)
     {
         UnitCombatPiece targetUnit = target as UnitCombatPiece;
         if (targetUnit)
         {
-            isAttacking = true;
-            Debug.LogWarning("InteractWithPiece insta-killed the target!");
-            targetUnit.hitPointsCurrent = 0;
+            isAttacking_Start = true;
+            actionTarget = targetUnit;
+            //Debug.LogWarning("InteractWithPiece insta-killed the target!");
+            //targetUnit.hitPointsCurrent = 0;
         }
         else
         {
@@ -61,13 +87,39 @@ public class UnitCombatPiece : AbstractCombatPiece
 
     protected void Attack()
     {
-        if (!isAttacking) return;
+        if (!isAttacking_Start && !isAttacking_End) return;
 
         AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
-        if (state.IsName("Attack Start") &&
-            state.normalizedTime >= 1)
+        if (state.normalizedTime >= 1)
         {
-            isAttacking = false;
+            if (isAttacking_Start &&
+                state.IsName("Attack Start"))
+            {
+                isAttacking_Start = false;
+                isAttacking_End = true;
+                float dmg = CalculateDamage();
+                actionTarget.TakeDamage(dmg);
+            }
+            if (isAttacking_End &&
+                state.IsName("Attack End"))
+            {
+                isAttacking_End = false;
+                actionTarget = null;
+            }
+        }
+    }
+
+    protected void Hurt()
+    {
+        if (!isHurt) return;
+
+        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+        if (state.normalizedTime >= 1)
+        {
+            if (state.IsName("Hurt"))
+            {
+                isHurt = false;
+            }
         }
     }
 }

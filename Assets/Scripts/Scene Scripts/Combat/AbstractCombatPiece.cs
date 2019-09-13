@@ -4,20 +4,26 @@ using UnityEngine;
 
 public abstract class AbstractCombatPiece : AbstractPiece
 {
+    [Header("Party")]
+    public FieldPiece party;
+
     [Header("Sprites")]
     public Sprite imgProfile;
 
     [Header("Combat actions")]
-    public bool isAttacking;
+    public AbstractCombatPiece actionTarget;
+    public bool isAttacking_Start;
+    public bool isAttacking_End;
     public bool isHurt;
     public bool isDead;
 
     [Header("Animator variables")]
-    public bool anim_movement;
-    public float anim_directionX;
-    public bool anim_attacking;
-    public bool anim_hurt;
-    public bool anim_dead;
+    private bool anim_movement;
+    private float anim_directionX;
+    private bool anim_attacking_start;
+    private bool anim_attacking_end;
+    private bool anim_hurt;
+    private bool anim_dead;
 
     protected override void AnimatorVariables()
     {
@@ -29,8 +35,11 @@ public abstract class AbstractCombatPiece : AbstractPiece
         //if (direction.x > 0) anim_directionX = 1;
         //animator.SetFloat("Direction X", anim_directionX);
 
-        anim_attacking = isAttacking;
-        animator.SetBool("Attacking", anim_attacking);
+        anim_attacking_start = isAttacking_Start;
+        animator.SetBool("Attack Start", anim_attacking_start);
+
+        anim_attacking_end = isAttacking_End;
+        animator.SetBool("Attack End", anim_attacking_end);
 
         anim_hurt = isHurt;
         animator.SetBool("Hurt", anim_hurt);
@@ -46,4 +55,7 @@ public abstract class AbstractCombatPiece : AbstractPiece
             base.Movement();
         }
     }
+
+    public abstract int CalculateDamage();
+    public abstract bool TakeDamage(float amount);
 }

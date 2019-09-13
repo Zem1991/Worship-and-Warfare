@@ -10,7 +10,7 @@ public class ScenarioManager : AbstractSingleton<ScenarioManager>
     [Header("Scenario")]
     public Scenario scenario;
 
-    private Bounds bounds;
+    private Bounds scenarioBounds;
 
     public void BootScenario(ScenarioFileData data)
     {
@@ -28,12 +28,12 @@ public class ScenarioManager : AbstractSingleton<ScenarioManager>
         //}
 
         Vector3 boundsSize = new Vector3(scenario.scenarioSize.x, 0, scenario.scenarioSize.y);
-        bounds = new Bounds(boundsSize / 2F, boundsSize);
+        scenarioBounds = new Bounds(boundsSize / 2F, boundsSize);
     }
 
     public bool IsWithinBounds(Vector3 pos)
     {
-        return bounds.Contains(pos);
+        return scenarioBounds.Contains(pos);
     }
 
     //public Vector3 ClampToBounds(Vector3 pos)
