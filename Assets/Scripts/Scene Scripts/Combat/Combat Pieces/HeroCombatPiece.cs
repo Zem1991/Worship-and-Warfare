@@ -43,6 +43,12 @@ public class HeroCombatPiece : AbstractCombatPiece
         SetAnimatorOverrideController(hero.animatorCombat);
     }
 
+    protected override void InteractWithPiece(AbstractPiece target)
+    {
+        Debug.LogWarning("THIS HERO DOESN'T KNOW HOW TO HANDLE OTHER PIECES!");
+        //CombatPieceManager.Instance.UnitsAreInteracting(this, target as HeroCombatPiece);
+    }
+
     public override int CalculateDamage()
     {
         throw new System.NotImplementedException();
@@ -53,9 +59,8 @@ public class HeroCombatPiece : AbstractCombatPiece
         throw new System.NotImplementedException();
     }
 
-    protected override void InteractWithPiece(AbstractPiece target)
+    public override void Die()
     {
-        Debug.LogWarning("THIS HERO DOESN'T KNOW HOW TO HANDLE OTHER PIECES!");
-        //CombatPieceManager.Instance.UnitsAreInteracting(this, target as HeroCombatPiece);
+        throw new System.NotImplementedException();
     }
 }

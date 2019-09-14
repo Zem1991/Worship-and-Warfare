@@ -211,14 +211,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         if (recorder.commandDown &&
             IsCursorValid())
         {
-            if (cursorTile)
-            {
-                MakeSelectedPieceMove(true);
-            }
-            //else
-            //{
-            //    canCommandSelectedPiece = false;
-            //}
+            MakeSelectedPieceMove(true);
         }
     }
 
@@ -233,17 +226,17 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
                 selectionPiece.Stop();
                 movementHighlightsUpdateOnPieceStop = true;
             }
-            else
+            else if (canPathfind)
             {
-                if (canPathfind)
+                if (cursorTile)
                 {
                     if (selectionPiece.HasPath(cursorTile)) selectionPiece.Move();
                     else CombatManager.Instance.pieceHandler.Pathfind(selectionPiece, cursorTile);
                 }
-                else
-                {
-                    if (selectionPiece.HasPath()) selectionPiece.Move();
-                }
+            }
+            else
+            {
+                if (selectionPiece.HasPath()) selectionPiece.Move();
             }
         }
     }

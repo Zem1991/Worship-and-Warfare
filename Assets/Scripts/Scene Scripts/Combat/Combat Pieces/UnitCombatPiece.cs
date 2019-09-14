@@ -44,48 +44,7 @@ public class UnitCombatPiece : AbstractCombatPiece
         SetAnimatorOverrideController(unit.animatorCombat);
     }
 
-    public override int CalculateDamage()
-    {
-        UnitCombatPiece targetUnit = actionTarget as UnitCombatPiece;
-        CombatPieceHandler cph = CombatManager.Instance.pieceHandler;
-        return CombatLogic.DamageCalculation(this, targetUnit, cph.attackerHero, cph.defenderHero);
-    }
-
-    public override bool TakeDamage(float amount)
-    {
-        hitPoints -= Mathf.CeilToInt(amount);
-        hitPoints = Mathf.Max(hitPoints, 0);
-        Debug.Log("Unit " + unitName + " took " + amount + " damage, and now has " + hitPoints + " hit points.");
-        if (hitPoints > 0)
-        {
-            isHurt = true;
-            return false;
-        }
-        else
-        {
-            isDead = true;
-            return true;
-        }
-    }
-
-    protected override void InteractWithPiece(AbstractPiece target)
-    {
-        UnitCombatPiece targetUnit = target as UnitCombatPiece;
-        if (targetUnit)
-        {
-            isAttacking_Start = true;
-            actionTarget = targetUnit;
-            //Debug.LogWarning("InteractWithPiece insta-killed the target!");
-            //targetUnit.hitPointsCurrent = 0;
-        }
-        else
-        {
-            Debug.LogWarning("InteractWithPiece IS DESTROYING PIECES!");
-            Destroy(target.gameObject);
-        }
-    }
-
-    protected void Attack()
+    private void Attack()
     {
         if (!isAttacking_Start && !isAttacking_End) return;
 
@@ -109,7 +68,7 @@ public class UnitCombatPiece : AbstractCombatPiece
         }
     }
 
-    protected void Hurt()
+    private void Hurt()
     {
         if (!isHurt) return;
 
@@ -121,5 +80,53 @@ public class UnitCombatPiece : AbstractCombatPiece
                 isHurt = false;
             }
         }
+    }
+
+    protected override void InteractWithPiece(AbstractPiece target)
+    {
+        UnitCombatPiece targetUnit = target as UnitCombatPiece;
+        if (targetUnit)
+        {
+            isAttacking_Start = true;
+            actionTarget = targetUnit;
+            //Debug.LogWarning("InteractWithPiece insta-killed the target!");
+            //targetUnit.hitPointsCurrent = 0;
+        }
+        else
+        {
+            Debug.LogWarning("InteractWithPiece IS DESTROYING PIECES!");
+            Destroy(target.gameObject);
+        }
+    }
+
+    public override int CalculateDamage()
+    {
+        UnitCombatPiece targetUnit = actionTarget as UnitCombatPiece;
+        CombatPieceHandler cph = CombatManager.Instance.pieceHandler;
+        return CombatLogic.DamageCalculation(this, targetUnit, cph.attackerHero, cph.defenderHero);
+    }
+
+    public override bool TakeDamage(float amount)
+    {
+        hitPoints -= Mathf.CeilToInt(amount);
+        hitPoints = Mathf.Max(hitPoints, 0);
+        Debug.Log("Unit " + unitName + " took " + amount + " damage, and now has " + hitPoints + " hit points.");
+        if (hitPoints > 0)
+        {
+            isHurt = true;
+            return false;
+        }
+        else
+        {
+            Die();
+            return true;
+        }
+    }
+
+    public override void Die()
+    {
+        isDead = true;
+        currentTile.occupantPiece = null;
+        (currentTile as CombatTile).deadPieces.Add(this);
     }
 }

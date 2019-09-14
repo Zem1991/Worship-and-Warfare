@@ -25,6 +25,14 @@ public abstract class AbstractCombatPiece : AbstractPiece
     private bool anim_hurt;
     private bool anim_dead;
 
+    protected override void Movement()
+    {
+        if (CombatManager.Instance.IsCombatRunning())
+        {
+            base.Movement();
+        }
+    }
+
     protected override void AnimatorVariables()
     {
         anim_movement = inMovement;
@@ -48,14 +56,7 @@ public abstract class AbstractCombatPiece : AbstractPiece
         animator.SetBool("Dead", anim_dead);
     }
 
-    protected override void Movement()
-    {
-        if (CombatManager.Instance.IsCombatRunning())
-        {
-            base.Movement();
-        }
-    }
-
     public abstract int CalculateDamage();
     public abstract bool TakeDamage(float amount);
+    public abstract void Die();
 }

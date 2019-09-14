@@ -32,6 +32,7 @@ public class FieldPiece : AbstractPiece
 
     protected override void InteractWithPiece(AbstractPiece target)
     {
+        nextTile = null;
         FieldManager.Instance.pieceHandler.PartiesAreInteracting(this, target as FieldPiece);
     }
 }
