@@ -36,8 +36,8 @@
         "experience": 1000,
       },
 	  "units": [
-	    { "unitId": -1, "stackSize": 1 },
-		{ "unitId": -1, "stackSize": 1 },
+	    { "unitId": -1, "stackSize": 5 },
+		{ "unitId": -1, "stackSize": 2 },
 		{ "unitId": -1, "stackSize": 1 }
 	  ]
     },
@@ -45,8 +45,8 @@
       "mapPosition": [ 6, 7 ],
       "ownerId": 1,
       "units": [
-	    { "unitId": -1, "stackSize": 1 },
-		{ "unitId": -1, "stackSize": 1 },
+	    { "unitId": -1, "stackSize": 5 },
+		{ "unitId": -1, "stackSize": 2 },
 		{ "unitId": -1, "stackSize": 1 }
 	  ]
     }

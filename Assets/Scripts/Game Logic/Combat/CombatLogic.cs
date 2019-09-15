@@ -18,7 +18,7 @@ public static class CombatLogic
     public static float UnitDamage(UnitCombatPiece unit)
     {
         float result = 0;
-        for (int i = 0; i < unit.stackSize; i++)
+        for (int i = 0; i < unit.stackSizeStart; i++)
         {
             result += Random.Range(unit.damageMin, unit.damageMax + 1);
         }

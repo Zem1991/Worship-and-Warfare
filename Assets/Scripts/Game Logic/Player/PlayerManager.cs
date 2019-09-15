@@ -26,8 +26,21 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     public List<Player> allPlayers;
     public List<Player> activePlayers;
 
+    public void RemovePlayers()
+    {
+        foreach (Player item in allPlayers)
+        {
+            Destroy(item.gameObject);
+        }
+        localPlayer = null;
+        allPlayers.Clear();
+        activePlayers.Clear();
+    }
+
     public void InstantiatePlayers(PlayerData[] data)
     {
+        RemovePlayers();
+
         foreach (var item in data)
         {
             InstantiatePlayer(item);

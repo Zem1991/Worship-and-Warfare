@@ -237,28 +237,30 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
 
     private void MovementHighlights()
     {
-        if (!selectionPiece) return;
-
-        List<PathNode> path = selectionPiece.path;
-        if (path == null) return;
-
-        bool condition1 =
-            movementHighlightsUpdateFromCommand;
-        bool condition2 =
-            movementHighlightsUpdateOnPieceStop &&
-            !selectionPiece.inMovement;
-        if (!condition1 && !condition2) return;
+        bool justClearAndReturn = false;
+        if (!selectionPiece)
+        {
+            if (movementHighlights.Count > 0) justClearAndReturn = true;
+        }
+        else
+        {
+            bool condition1 = movementHighlightsUpdateFromCommand;
+            bool condition2 = movementHighlightsUpdateOnPieceStop && !selectionPiece.inMovement;
+            if (!condition1 && !condition2) return;
+        }
 
         foreach (var item in movementHighlights)
         {
             Destroy(item.gameObject);
         }
         movementHighlights.Clear();
+        if (justClearAndReturn) return;
 
         if (canCommandSelectedPiece &&
             !selectionPiece.inMovement)
         {
             movementHighlights = new List<InputHighlight>();
+            List<PathNode> path = selectionPiece.path;
             int totalNodes = path.Count;
             for (int i = -1; i < totalNodes - 1; i++)
             {

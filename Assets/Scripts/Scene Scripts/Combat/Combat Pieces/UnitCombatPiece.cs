@@ -9,9 +9,9 @@ public class UnitCombatPiece : AbstractCombatPiece
 
     [Header("Unit combat stats")]
     public string unitName;
-    public int hitPoints;
+    public int hitPointsMax;
     public int hitPointsCurrent;
-    public int stackSize;
+    public int stackSizeStart;
     public int stackSizeCurrent;
     public int damageMin;
     public int damageMax;
@@ -29,10 +29,10 @@ public class UnitCombatPiece : AbstractCombatPiece
     public void Initialize(Unit unit)
     {
         unitName = unit.unitName;
-        hitPoints = unit.hitPoints;
-        hitPointsCurrent = hitPoints;
-        stackSize = unit.stackSize;
-        stackSizeCurrent = stackSize;
+        hitPointsMax = unit.hitPoints;
+        hitPointsCurrent = hitPointsMax;
+        stackSizeStart = unit.stackSize;
+        stackSizeCurrent = stackSizeStart;
 
         damageMin = unit.damageMin;
         damageMax = unit.damageMax;
@@ -87,10 +87,13 @@ public class UnitCombatPiece : AbstractCombatPiece
         UnitCombatPiece targetUnit = target as UnitCombatPiece;
         if (targetUnit)
         {
-            isAttacking_Start = true;
-            actionTarget = targetUnit;
-            //Debug.LogWarning("InteractWithPiece insta-killed the target!");
-            //targetUnit.hitPointsCurrent = 0;
+            if (targetUnit.owner != owner)
+            {
+                isAttacking_Start = true;
+                actionTarget = targetUnit;
+                //Debug.LogWarning("InteractWithPiece insta-killed the target!");
+                //targetUnit.hitPointsCurrent = 0;
+            }
         }
         else
         {
@@ -108,10 +111,19 @@ public class UnitCombatPiece : AbstractCombatPiece
 
     public override bool TakeDamage(float amount)
     {
-        hitPoints -= Mathf.CeilToInt(amount);
-        hitPoints = Mathf.Max(hitPoints, 0);
-        Debug.Log("Unit " + unitName + " took " + amount + " damage, and now has " + hitPoints + " hit points.");
-        if (hitPoints > 0)
+        int amountExact = Mathf.CeilToInt(amount);
+        stackSizeCurrent -= (amountExact / hitPointsMax);
+        hitPointsCurrent -= (amountExact % hitPointsMax);
+
+        if (hitPointsCurrent <= 0)
+        {
+            stackSizeCurrent--;
+            hitPointsCurrent += hitPointsMax;
+        }
+        Debug.Log("Unit " + unitName + " took " + amountExact + " damage, and now has " + stackSizeCurrent + "/" + stackSizeStart + " stacks.");
+        Debug.Log("Unit " + unitName + " took " + amountExact + " damage, and now has " + hitPointsCurrent + "/" + hitPointsMax + " hit points.");
+
+        if (stackSizeCurrent > 0)
         {
             isHurt = true;
             return false;
@@ -125,6 +137,8 @@ public class UnitCombatPiece : AbstractCombatPiece
 
     public override void Die()
     {
+        stackSizeCurrent = 0;
+        hitPointsCurrent = 0;
         isDead = true;
         currentTile.occupantPiece = null;
         (currentTile as CombatTile).deadPieces.Add(this);
