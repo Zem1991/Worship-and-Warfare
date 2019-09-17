@@ -118,6 +118,11 @@ public abstract class AbstractPiece : MonoBehaviour
         stopWasCalled = true;
     }
 
+    public virtual bool IsIdle()
+    {
+        return !inMovement;
+    }
+
     protected virtual void Movement()
     {
         if (!inMovement) return;

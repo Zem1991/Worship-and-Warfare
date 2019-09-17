@@ -41,6 +41,7 @@ public class GameManager : AbstractSingleton<GameManager>
     public Player currentPlayer;
     public GameScheme currentGameScheme;
     public string timeElapsedText;
+    public string currentDateTime;
 
     [Header("Day/Week/Month")]
     public int day;
@@ -73,6 +74,9 @@ public class GameManager : AbstractSingleton<GameManager>
             timeElapsed += TimeSpan.FromSeconds(Time.deltaTime);
             timeElapsedText = timeElapsed.ToString();
         }
+
+        DateTime now = DateTime.Now;
+        currentDateTime = now.ToShortDateString() + " " + now.ToShortTimeString();
     }
 
     public float SetGameSpeed(float speed)

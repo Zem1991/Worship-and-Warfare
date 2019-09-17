@@ -5,7 +5,8 @@ using UnityEngine;
 public class Unit
 {
     public int dbId;
-    public string unitName;
+    public string nameSingular;
+    public string namePlural;
 
     public int hitPoints;
     public int stackSize;
@@ -23,7 +24,8 @@ public class Unit
     public Unit(int dbId, DB_Unit dbData, int stackSize)
     {
         this.dbId = dbId;
-        unitName = dbData.unitName;
+        nameSingular = dbData.nameSingular;
+        namePlural = dbData.namePlural;
 
         hitPoints = dbData.hitPoints;
         this.stackSize = stackSize;

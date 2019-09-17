@@ -44,7 +44,7 @@ public class FieldUI_BR_PartyCard : AUIPanel
         else
         {
             heroPortrait.sprite = p.units[0].imgProfile;
-            txtHeroName.text = p.units[0].unitName;
+            txtHeroName.text = p.units[0].nameSingular;
             txtLevelAndClass.text = "Unit";
 
             txtCommand.text = "--";

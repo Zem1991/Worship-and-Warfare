@@ -34,7 +34,8 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     public bool combatStarted;
     public int currentTurn;
     public UnitCombatPiece currentUnit;
-    public List<UnitCombatPiece> turnSequence;
+    public List<UnitCombatPiece> turnSequence = new List<UnitCombatPiece>();
+    public List<string> combatLog = new List<string>();
     public CombatResult result;
 
     public void TerminateCombat()
@@ -175,5 +176,24 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         //TODO CHANGE PIECES BEFORE SENDING THEM BACK.
         CombatUI.Instance.ResultPopupHide();
         GameManager.Instance.ReturnFromCombat(result, attackerPiece, defenderPiece);
+    }
+
+    public void AddEntryToLog(string entry)
+    {
+        string currentDT = GameManager.Instance.currentDateTime;
+        string fullEntry = "[Turn #" + currentTurn + "]" + "[" + currentDT + "]" + " " + entry;
+        combatLog.Add(fullEntry);
+    }
+
+    public List<string> GetLastLogs(int entries)
+    {
+        List<string> result = new List<string>();
+        entries = Mathf.Min(entries, combatLog.Count);
+        for (int i = 0; i < entries; i++)
+        {
+            int index = combatLog.Count - 1 - i;
+            result.Add(combatLog[index]);
+        }
+        return result;
     }
 }

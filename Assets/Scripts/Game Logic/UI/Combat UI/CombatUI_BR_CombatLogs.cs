@@ -7,8 +7,14 @@ public class CombatUI_BR_CombatLogs : AUIPanel
 {
     public Text logs;
 
-    public void UpdatePanel()
+    public void UpdatePanel(List<string> entries)
     {
-
+        logs.text = "";
+        for (int i = entries.Count; i > 0; i--)
+        {
+            string line = entries[i - 1];
+            if (i > 1) line += "\n";
+            logs.text += line;
+        }
     }
 }

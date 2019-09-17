@@ -38,7 +38,7 @@ public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideabl
         timers.UpdatePanel();
         currentUnit.UpdatePanel(cm.currentUnit);
         turnSequence.UpdatePanel();
-        combatLogs.UpdatePanel();
+        combatLogs.UpdatePanel(cm.GetLastLogs(5));
     }
 
     public void EscapeMenuHide()

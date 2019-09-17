@@ -86,7 +86,7 @@ public class FieldPieceHandler : MonoBehaviour
             {
                 Unit relevantUnit = newPiece.units[0];
                 newPiece.SetAnimatorOverrideController(relevantUnit.animatorField);
-                newPiece.name = "Army of " + relevantUnit.unitName;
+                newPiece.name = "Army of " + relevantUnit.namePlural;
             }
         }
     }

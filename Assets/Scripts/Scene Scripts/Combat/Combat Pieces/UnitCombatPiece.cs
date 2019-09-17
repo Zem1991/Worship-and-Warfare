@@ -8,7 +8,8 @@ public class UnitCombatPiece : AbstractCombatPiece
     //public bool didAttack;
 
     [Header("Unit combat stats")]
-    public string unitName;
+    public string nameSingular;
+    public string namePlural;
     public int hitPointsMax;
     public int hitPointsCurrent;
     public int stackSizeStart;
@@ -28,7 +29,8 @@ public class UnitCombatPiece : AbstractCombatPiece
 
     public void Initialize(Unit unit)
     {
-        unitName = unit.unitName;
+        nameSingular = unit.nameSingular;
+        namePlural = unit.namePlural;
         hitPointsMax = unit.hitPoints;
         hitPointsCurrent = hitPointsMax;
         stackSizeStart = unit.stackSize;
@@ -42,6 +44,12 @@ public class UnitCombatPiece : AbstractCombatPiece
 
         imgProfile = unit.imgProfile;
         SetAnimatorOverrideController(unit.animatorCombat);
+    }
+
+    public string GetName()
+    {
+        if (stackSizeCurrent == 1) return nameSingular;
+        return namePlural;
     }
 
     private void Attack()
@@ -111,17 +119,19 @@ public class UnitCombatPiece : AbstractCombatPiece
 
     public override bool TakeDamage(float amount)
     {
-        int amountExact = Mathf.CeilToInt(amount);
-        stackSizeCurrent -= (amountExact / hitPointsMax);
-        hitPointsCurrent -= (amountExact % hitPointsMax);
+        int amountFixed = Mathf.CeilToInt(amount);
+        int stackLost = amountFixed / hitPointsMax;
+        int hpLost = amountFixed % hitPointsMax;
+        stackSizeCurrent -= stackLost;
+        hitPointsCurrent -= hpLost;
 
         if (hitPointsCurrent <= 0)
         {
             stackSizeCurrent--;
             hitPointsCurrent += hitPointsMax;
         }
-        Debug.Log("Unit " + unitName + " took " + amountExact + " damage, and now has " + stackSizeCurrent + "/" + stackSizeStart + " stacks.");
-        Debug.Log("Unit " + unitName + " took " + amountExact + " damage, and now has " + hitPointsCurrent + "/" + hitPointsMax + " hit points.");
+        string log = GetName() + " took " + amountFixed + " damage. " + stackLost + " units died.";
+        CombatManager.Instance.AddEntryToLog(log);
 
         if (stackSizeCurrent > 0)
         {

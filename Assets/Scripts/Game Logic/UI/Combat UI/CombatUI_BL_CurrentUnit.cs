@@ -18,7 +18,7 @@ public class CombatUI_BL_CurrentUnit : AUIPanel
         if (!uc) return;
 
         unitPortrait.sprite = uc.imgProfile;
-        txtUnitName.text = uc.unitName;
+        txtUnitName.text = uc.GetName();
 
         txtDamage.text = uc.damageMin.ToString() + " - " + uc.damageMax.ToString();
         txtResistance.text = uc.resistance.ToString();

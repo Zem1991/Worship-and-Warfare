@@ -25,6 +25,15 @@ public abstract class AbstractCombatPiece : AbstractPiece
     private bool anim_hurt;
     private bool anim_dead;
 
+    public override bool IsIdle()
+    {
+        return base.IsIdle()
+            && !isAttacking_Start
+            && !isAttacking_End
+            && !isHurt
+            && !isDead;
+    }
+
     protected override void Movement()
     {
         if (CombatManager.Instance.IsCombatRunning())

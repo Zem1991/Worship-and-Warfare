@@ -148,6 +148,16 @@ public class CombatPieceHandler : MonoBehaviour
         return result;
     }
 
+    public List<UnitCombatPiece> GetIdleUnits(List<UnitCombatPiece> units)
+    {
+        List<UnitCombatPiece> result = new List<UnitCombatPiece>();
+        foreach (var item in units)
+        {
+            if (item.IsIdle()) result.Add(item);
+        }
+        return result;
+    }
+
     public void Pathfind(AbstractCombatPiece piece, CombatTile targetTile,
         bool needGroundAccess = true, bool needWaterAccess = false, bool needLavaAccess = false)
     {
@@ -159,10 +169,18 @@ public class CombatPieceHandler : MonoBehaviour
 
     private void CheckBattleEnd()
     {
-        bool attackerActive = GetActiveUnits(attackerUnits).Count > 0;
-        bool defenderActive = GetActiveUnits(defenderUnits).Count > 0;
+        int attackerActive = GetActiveUnits(attackerUnits).Count;
+        int defenderActive = GetActiveUnits(defenderUnits).Count;
 
-        if (attackerActive && !defenderActive) CombatManager.Instance.CombatEnd(CombatResult.ATTACKER_WON);
-        else if (!attackerActive && defenderActive) CombatManager.Instance.CombatEnd(CombatResult.DEFENDER_WON);
+        if (attackerActive > 0 && defenderActive <= 0)
+        {
+            int attackerIdle = GetIdleUnits(attackerUnits).Count;
+            if (attackerIdle >= attackerActive) CombatManager.Instance.CombatEnd(CombatResult.ATTACKER_WON);
+        }
+        else if (defenderActive > 0 && attackerActive <= 0)
+        {
+            int defenderIdle = GetIdleUnits(defenderUnits).Count;
+            if (defenderIdle >= defenderActive) CombatManager.Instance.CombatEnd(CombatResult.DEFENDER_WON);
+        }
     }
 }
