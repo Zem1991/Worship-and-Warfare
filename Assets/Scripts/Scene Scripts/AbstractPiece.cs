@@ -5,7 +5,7 @@ using ZemDirections;
 
 public abstract class AbstractPiece : MonoBehaviour
 {
-    //protected SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer;
     protected Animator animator;
 
     public static readonly float movementSpeed = 5F;
@@ -29,7 +29,7 @@ public abstract class AbstractPiece : MonoBehaviour
 
     public virtual void Awake()
     {
-        //spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
         LookAtDirection(OctoDirXZ.BACK);
     }
@@ -38,6 +38,12 @@ public abstract class AbstractPiece : MonoBehaviour
     {
         AnimatorVariables();
         Movement();
+    }
+
+    public void FlipSpriteHorizontally(bool flip)
+    {
+        if (!spriteRenderer) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        spriteRenderer.flipX = flip;
     }
 
     public void SetAnimatorOverrideController(AnimatorOverrideController aoc)
@@ -196,5 +202,5 @@ public abstract class AbstractPiece : MonoBehaviour
     }
 
     protected abstract void AnimatorVariables();
-    protected abstract void InteractWithPiece(AbstractPiece target);
+    public abstract void InteractWithPiece(AbstractPiece target);
 }

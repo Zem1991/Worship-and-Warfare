@@ -210,6 +210,7 @@ MonoBehaviour:
     type: 3}
   localPlayer: {fileID: 0}
   allPlayers: []
+  activePlayers: []
 --- !u!1 &236298824
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,12 +433,16 @@ MonoBehaviour:
     m_Handle: 0
   scenarioBooted: 0
   scenarioStarted: 0
-  currentDay: 0
-  currentPlayer: {fileID: 0}
-  timeElapsedText: 
-  currentGameScheme: 0
   gameSpeed: 0
   isPaused: 0
+  currentTurn: 0
+  currentPlayer: {fileID: 0}
+  currentGameScheme: 0
+  timeElapsedText: 
+  currentDateTime: 
+  day: 0
+  week: 0
+  month: 0
 --- !u!4 &1009103195
 Transform:
   m_ObjectHideFlags: 0

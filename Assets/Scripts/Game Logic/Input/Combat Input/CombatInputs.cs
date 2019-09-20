@@ -211,42 +211,53 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         if (recorder.commandDown &&
             IsCursorValid())
         {
-            MakeSelectedPieceMove(true);
+            if (selectionPiece && canCommandSelectedPiece)
+            {
+                if (cursorPiece &&
+                    !cursorPiece.isDead &&
+                    selectionPiece.owner != cursorPiece.owner &&
+                    selectionPiece.hasRangedAttack)
+                {
+                    selectionPiece.InteractWithPiece(cursorPiece);
+                }
+                else
+                {
+                    MakeSelectedPieceMove(true);
+                }
+            }
         }
     }
 
     public void MakeSelectedPieceMove(bool canPathfind)
     {
-        if (selectionPiece && canCommandSelectedPiece)
-        {
-            movementHighlightsUpdateFromCommand = true;
+        movementHighlightsUpdateFromCommand = true;
 
-            if (selectionPiece.inMovement)
+        if (selectionPiece.inMovement)
+        {
+            selectionPiece.Stop();
+            movementHighlightsUpdateOnPieceStop = true;
+        }
+        else if (canPathfind)
+        {
+            if (cursorTile)
             {
-                selectionPiece.Stop();
-                movementHighlightsUpdateOnPieceStop = true;
+                if (selectionPiece.HasPath(cursorTile)) selectionPiece.Move();
+                else CombatManager.Instance.pieceHandler.Pathfind(selectionPiece, cursorTile);
             }
-            else if (canPathfind)
-            {
-                if (cursorTile)
-                {
-                    if (selectionPiece.HasPath(cursorTile)) selectionPiece.Move();
-                    else CombatManager.Instance.pieceHandler.Pathfind(selectionPiece, cursorTile);
-                }
-            }
-            else
-            {
-                if (selectionPiece.HasPath()) selectionPiece.Move();
-            }
+        }
+        else
+        {
+            if (selectionPiece.HasPath()) selectionPiece.Move();
         }
     }
 
     private void MovementHighlights()
     {
-        bool justClearAndReturn = false;
+        bool clearThenReturn = false;
         if (!selectionPiece)
         {
-            if (movementHighlights.Count > 0) justClearAndReturn = true;
+            if (movementHighlights.Count > 0) clearThenReturn = true;
+            else return;
         }
         else
         {
@@ -260,13 +271,14 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
             Destroy(item.gameObject);
         }
         movementHighlights.Clear();
-        if (justClearAndReturn) return;
+        if (clearThenReturn) return;
 
+        List<PathNode> path = selectionPiece.path;
         if (canCommandSelectedPiece &&
-            !selectionPiece.inMovement)
+            !selectionPiece.inMovement &&
+            path != null)
         {
             movementHighlights = new List<InputHighlight>();
-            List<PathNode> path = selectionPiece.path;
             int totalNodes = path.Count;
             for (int i = -1; i < totalNodes - 1; i++)
             {

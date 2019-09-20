@@ -237,10 +237,11 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
 
     private void MovementHighlights()
     {
-        bool justClearAndReturn = false;
+        bool clearThenReturn = false;
         if (!selectionPiece)
         {
-            if (movementHighlights.Count > 0) justClearAndReturn = true;
+            if (movementHighlights.Count > 0) clearThenReturn = true;
+            else return;
         }
         else
         {
@@ -254,13 +255,14 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
             Destroy(item.gameObject);
         }
         movementHighlights.Clear();
-        if (justClearAndReturn) return;
+        if (clearThenReturn) return;
 
+        List<PathNode> path = selectionPiece.path;
         if (canCommandSelectedPiece &&
-            !selectionPiece.inMovement)
+            !selectionPiece.inMovement &&
+            path != null)
         {
             movementHighlights = new List<InputHighlight>();
-            List<PathNode> path = selectionPiece.path;
             int totalNodes = path.Count;
             for (int i = -1; i < totalNodes - 1; i++)
             {

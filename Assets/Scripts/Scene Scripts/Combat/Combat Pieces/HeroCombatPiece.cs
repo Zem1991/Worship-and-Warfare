@@ -43,7 +43,7 @@ public class HeroCombatPiece : AbstractCombatPiece
         SetAnimatorOverrideController(hero.animatorCombat);
     }
 
-    protected override void InteractWithPiece(AbstractPiece target)
+    public override void InteractWithPiece(AbstractPiece target)
     {
         Debug.LogWarning("THIS HERO DOESN'T KNOW HOW TO HANDLE OTHER PIECES!");
         //CombatPieceManager.Instance.UnitsAreInteracting(this, target as HeroCombatPiece);

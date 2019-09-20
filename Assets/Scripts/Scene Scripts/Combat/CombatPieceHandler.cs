@@ -80,7 +80,7 @@ public class CombatPieceHandler : MonoBehaviour
             foreach (var item in defenderPiece.units)
             {
                 UnitCombatPiece uc = Instantiate(cm.prefabUnit, transform);
-                uc.Initialize(item);
+                uc.Initialize(item, true);
                 uc.owner = defenderPiece.owner;
                 defenderUnits.Add(uc);
             }

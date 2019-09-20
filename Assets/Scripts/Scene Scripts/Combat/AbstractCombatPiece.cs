@@ -10,6 +10,9 @@ public abstract class AbstractCombatPiece : AbstractPiece
     [Header("Sprites")]
     public Sprite imgProfile;
 
+    [Header("Settings")]
+    public bool hasRangedAttack;
+
     [Header("Combat actions")]
     public AbstractCombatPiece actionTarget;
     public bool isAttacking_Start;

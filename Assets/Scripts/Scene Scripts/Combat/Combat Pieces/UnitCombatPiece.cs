@@ -27,7 +27,7 @@ public class UnitCombatPiece : AbstractCombatPiece
         Hurt();
     }
 
-    public void Initialize(Unit unit)
+    public void Initialize(Unit unit, bool defenderSide = false)
     {
         nameSingular = unit.nameSingular;
         namePlural = unit.namePlural;
@@ -38,11 +38,14 @@ public class UnitCombatPiece : AbstractCombatPiece
 
         damageMin = unit.damageMin;
         damageMax = unit.damageMax;
+        hasRangedAttack = unit.hasRangedAttack;
         resistance = unit.resistance;
         speed = unit.speed;
         initiative = unit.initiative;
 
         imgProfile = unit.imgProfile;
+
+        FlipSpriteHorizontally(defenderSide);
         SetAnimatorOverrideController(unit.animatorCombat);
     }
 
@@ -90,7 +93,7 @@ public class UnitCombatPiece : AbstractCombatPiece
         }
     }
 
-    protected override void InteractWithPiece(AbstractPiece target)
+    public override void InteractWithPiece(AbstractPiece target)
     {
         UnitCombatPiece targetUnit = target as UnitCombatPiece;
         if (targetUnit)
@@ -150,6 +153,9 @@ public class UnitCombatPiece : AbstractCombatPiece
         stackSizeCurrent = 0;
         hitPointsCurrent = 0;
         isDead = true;
+
+        spriteRenderer.sortingOrder--;
+
         currentTile.occupantPiece = null;
         (currentTile as CombatTile).deadPieces.Add(this);
     }

@@ -20,6 +20,7 @@ public class DB_Unit : DBContent
     public int hitPoints;
     public int damageMin;
     public int damageMax;
+    public bool hasRangedAttack;
     public int resistance;
     public int movementRange;
     public int initiative;

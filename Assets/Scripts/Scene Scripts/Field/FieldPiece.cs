@@ -30,7 +30,7 @@ public class FieldPiece : AbstractPiece
         animator.SetFloat("Direction Z", anim_directionZ);
     }
 
-    protected override void InteractWithPiece(AbstractPiece target)
+    public override void InteractWithPiece(AbstractPiece target)
     {
         nextTile = null;
         FieldManager.Instance.pieceHandler.PartiesAreInteracting(this, target as FieldPiece);

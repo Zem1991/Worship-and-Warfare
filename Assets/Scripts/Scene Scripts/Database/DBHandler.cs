@@ -31,6 +31,7 @@ public abstract class DBContentHandler<T> : MonoBehaviour where T : DBContent
 
     public virtual T Select(int index, bool returnDefault = true)
     {
+        index--;
         if (index >= 0 && index < contents.Count)
             return contents[index];
 

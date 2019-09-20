@@ -13,6 +13,7 @@ public class Unit
 
     public int damageMin;
     public int damageMax;
+    public bool hasRangedAttack;
     public int resistance;
     public int speed;
     public int initiative;
@@ -32,6 +33,7 @@ public class Unit
 
         damageMin = dbData.damageMin;
         damageMax = dbData.damageMax;
+        hasRangedAttack = dbData.hasRangedAttack;
         resistance = dbData.resistance;
         speed = dbData.movementRange;
         initiative = dbData.initiative;
