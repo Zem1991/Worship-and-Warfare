@@ -45,6 +45,41 @@ public abstract class AbstractCombatPiece : AbstractPiece
         }
     }
 
+    public override void InteractWithTile(AbstractTile targetTile, bool canPathfind)
+    {
+        if (canPathfind)
+        {
+            if (targetTile)
+            {
+                bool interactWithPieceInstead = false;
+                AbstractCombatPiece targetPiece = targetTile.occupantPiece as AbstractCombatPiece;
+                if (targetPiece &&
+                    !targetPiece.isDead &&
+                    owner != targetPiece.owner &&
+                    hasRangedAttack)
+                {
+                    //TODO add check if we are not in melee range
+                    //TODO maybe add cases for ally ranged interactions ?
+                    interactWithPieceInstead = true;
+                }
+
+                if (HasPath(targetTile))
+                {
+                    if (interactWithPieceInstead) InteractWithPiece(targetPiece);
+                    else Move();
+                }
+                else
+                {
+                    CombatManager.Instance.pieceHandler.Pathfind(this, targetTile as CombatTile);
+                }
+            }
+        }
+        else
+        {
+            if (HasPath()) Move();
+        }
+    }
+
     protected override void AnimatorVariables()
     {
         anim_movement = inMovement;

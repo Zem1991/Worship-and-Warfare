@@ -30,9 +30,30 @@ public class FieldPiece : AbstractPiece
         animator.SetFloat("Direction Z", anim_directionZ);
     }
 
+    public override void InteractWithTile(AbstractTile targetTile, bool canPathfind)
+    {
+        if (canPathfind)
+        {
+            if (targetTile)
+            {
+                if (HasPath(targetTile))
+                {
+                    Move();
+                }
+                else
+                {
+                    FieldManager.Instance.pieceHandler.Pathfind(this, targetTile as FieldTile);
+                }
+            }
+        }
+        else
+        {
+            if (HasPath()) Move();
+        }
+    }
+
     public override void InteractWithPiece(AbstractPiece target)
     {
-        nextTile = null;
         FieldManager.Instance.pieceHandler.PartiesAreInteracting(this, target as FieldPiece);
     }
 }

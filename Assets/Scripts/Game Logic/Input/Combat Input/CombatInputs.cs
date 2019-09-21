@@ -211,43 +211,25 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         if (recorder.commandDown &&
             IsCursorValid())
         {
-            if (selectionPiece && canCommandSelectedPiece)
-            {
-                if (cursorPiece &&
-                    !cursorPiece.isDead &&
-                    selectionPiece.owner != cursorPiece.owner &&
-                    selectionPiece.hasRangedAttack)
-                {
-                    selectionPiece.InteractWithPiece(cursorPiece);
-                }
-                else
-                {
-                    MakeSelectedPieceMove(true);
-                }
-            }
+            MakeSelectedPieceInteract(true);
         }
     }
 
-    public void MakeSelectedPieceMove(bool canPathfind)
+    public void MakeSelectedPieceInteract(bool canPathfind)
     {
-        movementHighlightsUpdateFromCommand = true;
+        if (selectionPiece && canCommandSelectedPiece)
+        {
+            movementHighlightsUpdateFromCommand = true;
 
-        if (selectionPiece.inMovement)
-        {
-            selectionPiece.Stop();
-            movementHighlightsUpdateOnPieceStop = true;
-        }
-        else if (canPathfind)
-        {
-            if (cursorTile)
+            if (selectionPiece.inMovement)
             {
-                if (selectionPiece.HasPath(cursorTile)) selectionPiece.Move();
-                else CombatManager.Instance.pieceHandler.Pathfind(selectionPiece, cursorTile);
+                selectionPiece.Stop();
+                movementHighlightsUpdateOnPieceStop = true;
             }
-        }
-        else
-        {
-            if (selectionPiece.HasPath()) selectionPiece.Move();
+            else
+            {
+                selectionPiece.InteractWithTile(cursorTile, canPathfind);
+            }
         }
     }
 
@@ -275,7 +257,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
 
         List<PathNode> path = selectionPiece.path;
         if (canCommandSelectedPiece &&
-            !selectionPiece.inMovement &&
+            selectionPiece.IsIdle() &&
             path != null)
         {
             movementHighlights = new List<InputHighlight>();

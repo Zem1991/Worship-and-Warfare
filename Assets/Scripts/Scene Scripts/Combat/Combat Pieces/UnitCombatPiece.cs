@@ -125,12 +125,11 @@ public class UnitCombatPiece : AbstractCombatPiece
         int amountFixed = Mathf.CeilToInt(amount);
         int stackLost = amountFixed / hitPointsMax;
         int hpLost = amountFixed % hitPointsMax;
-        stackSizeCurrent -= stackLost;
         hitPointsCurrent -= hpLost;
-
         if (hitPointsCurrent <= 0)
         {
-            stackSizeCurrent--;
+            stackLost++;
+            stackSizeCurrent -= stackLost;
             hitPointsCurrent += hitPointsMax;
         }
         string log = GetName() + " took " + amountFixed + " damage. " + stackLost + " units died.";

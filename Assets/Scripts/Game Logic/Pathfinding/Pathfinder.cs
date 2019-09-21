@@ -5,7 +5,8 @@ using UnityEngine;
 
 public static class Pathfinder
 {
-    public const float DIAGONAL_MODIFIER = 0.7F;
+    public const float DIAGONAL_MODIFIER_OCTO = 0.71F;
+    public const float DIAGONAL_MODIFIER_HEX = 0.87F;
 
     public static void FindPath(AbstractTile startTile, AbstractTile targetTile, Func<PathNode, PathNode, float> heuristic,
         bool needGroundAccess, bool needWaterAccess, bool needLavaAccess,
@@ -95,16 +96,31 @@ public static class Pathfinder
 
         float result = distX + distY;
         result *= combinedCosts;
-        if (isDiagonal) result *= DIAGONAL_MODIFIER;
+        if (isDiagonal) result *= DIAGONAL_MODIFIER_OCTO;
         return result;
     }
 
     public static float HexHeuristic(PathNode from, PathNode to)
     {
+        Vector2Int fromId = from.tile.posId;
+        Vector2Int toId = to.tile.posId;
+        int distX = Mathf.Abs(fromId.x - toId.x);
+        int distY = Mathf.Abs(fromId.y - toId.y);
+        bool isDiagonal = (distX != 0 && distY != 0);
+
         int fromCost = from.tile.groundMovementCost;
         int toCost = to.tile.groundMovementCost;
-        float result = (fromCost + toCost) / 2F;
+        float combinedCosts = (fromCost + toCost) / 2F;
+
+        float result = distX + distY;
+        result *= combinedCosts;
+        if (isDiagonal) result *= DIAGONAL_MODIFIER_HEX;
         return result;
+
+        //int fromCost = from.tile.groundMovementCost;
+        //int toCost = to.tile.groundMovementCost;
+        //float result = (fromCost + toCost) / 2F;
+        //return result;
     }
 
     private static PathNode ListContainsNodeId(IList<PathNode> list, Vector2Int id)

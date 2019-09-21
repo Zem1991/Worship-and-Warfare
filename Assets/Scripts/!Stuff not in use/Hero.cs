@@ -33,7 +33,7 @@ public class Hero
         DB_Class classs = dbData.classs;
 
         this.dbId = dbId;
-        heroName = dbData.name;
+        heroName = dbData.heroName;
         className = classs.className;
 
         this.level = level;

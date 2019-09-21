@@ -205,11 +205,11 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
         if (recorder.commandDown &&
             IsCursorValid())
         {
-            MakeSelectedPieceMove(true);
+            MakeSelectedPieceInteract(true);
         }
     }
 
-    public void MakeSelectedPieceMove(bool canPathfind)
+    public void MakeSelectedPieceInteract(bool canPathfind)
     {
         if (selectionPiece && canCommandSelectedPiece)
         {
@@ -220,17 +220,9 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
                 selectionPiece.Stop();
                 movementHighlightsUpdateOnPieceStop = true;
             }
-            else if (canPathfind)
-            {
-                if (cursorTile)
-                {
-                    if (selectionPiece.HasPath(cursorTile)) selectionPiece.Move();
-                    else FieldManager.Instance.pieceHandler.Pathfind(selectionPiece, cursorTile);
-                }
-            }
             else
             {
-                if (selectionPiece.HasPath()) selectionPiece.Move();
+                selectionPiece.InteractWithTile(cursorTile, canPathfind);
             }
         }
     }
@@ -259,7 +251,7 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
 
         List<PathNode> path = selectionPiece.path;
         if (canCommandSelectedPiece &&
-            !selectionPiece.inMovement &&
+            selectionPiece.IsIdle() &&
             path != null)
         {
             movementHighlights = new List<InputHighlight>();

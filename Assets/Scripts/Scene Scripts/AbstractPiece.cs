@@ -27,7 +27,7 @@ public abstract class AbstractPiece : MonoBehaviour
     public Vector3 direction;
     public Vector3 velocity;
 
-    public virtual void Awake()
+    public void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
@@ -67,7 +67,7 @@ public abstract class AbstractPiece : MonoBehaviour
         this.path = path;
         this.pathCost = pathCost;
         this.targetTile = targetTile;
-        Debug.Log("PIECE " + name + " got a new path with size " + pathCost);
+        //Debug.Log("PIECE " + name + " got a new path with size " + pathCost);
 
         if (path != null && path.Count > 1)
         {
@@ -112,6 +112,8 @@ public abstract class AbstractPiece : MonoBehaviour
                 direction.z = 1;
                 break;
         }
+        if (direction.x == -1) FlipSpriteHorizontally(true);
+        if (direction.x == 1) FlipSpriteHorizontally(false);
     }
 
     public void Move()
@@ -162,6 +164,9 @@ public abstract class AbstractPiece : MonoBehaviour
                 nextTile = path[0].tile;
                 path.RemoveAt(0);
 
+                OctoDirXZ dirToLook = currentTile.GetNeighbourDirection(nextTile);
+                LookAtDirection(dirToLook);
+
                 // If the next tile is the target tile, and the target tile has a piece over it,
                 // then instead of performing one more move we perform an interaction between pieces.
                 if (nextTile == targetTile)
@@ -201,6 +206,7 @@ public abstract class AbstractPiece : MonoBehaviour
         }
     }
 
-    protected abstract void AnimatorVariables();
+    public abstract void InteractWithTile(AbstractTile target, bool canPathfind);
     public abstract void InteractWithPiece(AbstractPiece target);
+    protected abstract void AnimatorVariables();
 }

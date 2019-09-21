@@ -32,11 +32,14 @@ public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideabl
     {
         CombatManager cm = CombatManager.Instance;
 
+        UnitCombatPiece ucm = cm.currentUnit;
+        if (!ucm) ucm = CombatInputs.Instance.selectionPiece as UnitCombatPiece;
+
         coreButtons.UpdatePanel();
         attackerParty.UpdatePanel(cm.pieceHandler.attackerHero);
         defenderParty.UpdatePanel(cm.pieceHandler.defenderHero);
         timers.UpdatePanel();
-        currentUnit.UpdatePanel(cm.currentUnit);
+        currentUnit.UpdatePanel(ucm);
         turnSequence.UpdatePanel();
         combatLogs.UpdatePanel(cm.GetLastLogs(5));
     }

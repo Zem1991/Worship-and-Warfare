@@ -83,7 +83,7 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
      */
     public void MakeSelectedPieceMove()
     {
-        FieldInputs.Instance.MakeSelectedPieceMove(false);
+        FieldInputs.Instance.MakeSelectedPieceInteract(false);
     }
     /*
      * End: UI Bottom Center buttons
