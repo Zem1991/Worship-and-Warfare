@@ -129,9 +129,9 @@ public class UnitCombatPiece : AbstractCombatPiece
         if (hitPointsCurrent <= 0)
         {
             stackLost++;
-            stackSizeCurrent -= stackLost;
             hitPointsCurrent += hitPointsMax;
         }
+        stackSizeCurrent -= stackLost;
         string log = GetName() + " took " + amountFixed + " damage. " + stackLost + " units died.";
         CombatManager.Instance.AddEntryToLog(log);
 

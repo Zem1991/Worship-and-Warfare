@@ -176,13 +176,8 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         //TODO CHANGE PIECES BEFORE SENDING THEM BACK.
         CombatUI.Instance.ResultPopupHide();
         GameManager.Instance.ReturnFromCombat(result, attackerPiece, defenderPiece);
-    }
 
-    public void AddEntryToLog(string entry)
-    {
-        string currentDT = GameManager.Instance.currentDateTime;
-        string fullEntry = "[Turn #" + currentTurn + "]" + "[" + currentDT + "]" + " " + entry;
-        combatLog.Add(fullEntry);
+        ClearLogs();
     }
 
     public List<string> GetLastLogs(int entries)
@@ -195,5 +190,17 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
             result.Add(combatLog[index]);
         }
         return result;
+    }
+
+    public void AddEntryToLog(string entry)
+    {
+        string currentDT = GameManager.Instance.currentDateTime;
+        string fullEntry = "[Turn #" + currentTurn + "]" + "[" + currentDT + "]" + " " + entry;
+        combatLog.Add(fullEntry);
+    }
+
+    public void ClearLogs()
+    {
+        combatLog.Clear();
     }
 }
