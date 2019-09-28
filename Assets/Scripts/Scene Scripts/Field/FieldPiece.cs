@@ -7,12 +7,30 @@ public class FieldPiece : AbstractPiece
 {
     [Header("Party Contents")]
     public Hero hero;
-    public Unit[] units;
+    public List<Unit> units;
 
     [Header("Animator Variables")]
     public bool anim_movement;
     public float anim_directionX;
     public float anim_directionZ = -1;
+
+    public void Initialize(Hero hero, List<Unit> units)
+    {
+        this.hero = hero;
+        this.units = units;
+
+        if (hero != null)
+        {
+            SetAnimatorOverrideController(hero.animatorField);
+            name = hero.heroName + "´s army";
+        }
+        else
+        {
+            Unit relevantUnit = units[0];
+            SetAnimatorOverrideController(relevantUnit.animatorField);
+            name = "Army of " + relevantUnit.namePlural;
+        }
+    }
 
     protected override void AnimatorVariables()
     {

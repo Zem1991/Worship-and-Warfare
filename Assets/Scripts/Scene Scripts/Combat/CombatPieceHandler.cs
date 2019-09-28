@@ -6,12 +6,12 @@ using UnityEngine;
 public class CombatPieceHandler : MonoBehaviour
 {
     [Header("Attacker")]
-    public HeroCombatPiece attackerHero;
-    public List<UnitCombatPiece> attackerUnits;
+    public CombatHeroPiece attackerHero;
+    public List<CombatUnitPiece> attackerUnits;
 
     [Header("Defender")]
-    public HeroCombatPiece defenderHero;
-    public List<UnitCombatPiece> defenderUnits;
+    public CombatHeroPiece defenderHero;
+    public List<CombatUnitPiece> defenderUnits;
 
     void Update()
     {
@@ -33,7 +33,7 @@ public class CombatPieceHandler : MonoBehaviour
                 Destroy(item.gameObject);
             }
         }
-        attackerUnits = new List<UnitCombatPiece>();
+        attackerUnits = new List<CombatUnitPiece>();
 
         if (defenderUnits != null)
         {
@@ -42,24 +42,25 @@ public class CombatPieceHandler : MonoBehaviour
                 Destroy(item.gameObject);
             }
         }
-        defenderUnits = new List<UnitCombatPiece>();
+        defenderUnits = new List<CombatUnitPiece>();
     }
 
     public void Create(FieldPiece attackerPiece, FieldPiece defenderPiece)
     {
         Remove();
-        CombatManager cm = CombatManager.Instance;
+        CombatHeroPiece prefabHero = AllPrefabs.Instance.combatHeroPiece;
+        CombatUnitPiece prefabUnit = AllPrefabs.Instance.combatUnitPiece;
 
         if (attackerPiece.hero != null)
         {
-            attackerHero = Instantiate(cm.prefabHero, transform);
+            attackerHero = Instantiate(prefabHero, transform);
             attackerHero.Initialize(attackerPiece.hero);
             attackerHero.owner = attackerPiece.owner;
         }
 
         if (defenderPiece.hero != null)
         {
-            defenderHero = Instantiate(cm.prefabHero, transform);
+            defenderHero = Instantiate(prefabHero, transform);
             defenderHero.Initialize(defenderPiece.hero);
             defenderHero.owner = defenderPiece.owner;
         }
@@ -68,7 +69,7 @@ public class CombatPieceHandler : MonoBehaviour
         {
             foreach (var item in attackerPiece.units)
             {
-                UnitCombatPiece uc = Instantiate(cm.prefabUnit, transform);
+                CombatUnitPiece uc = Instantiate(prefabUnit, transform);
                 uc.Initialize(item);
                 uc.owner = attackerPiece.owner;
                 attackerUnits.Add(uc);
@@ -79,7 +80,7 @@ public class CombatPieceHandler : MonoBehaviour
         {
             foreach (var item in defenderPiece.units)
             {
-                UnitCombatPiece uc = Instantiate(cm.prefabUnit, transform);
+                CombatUnitPiece uc = Instantiate(prefabUnit, transform);
                 uc.Initialize(item, true);
                 uc.owner = defenderPiece.owner;
                 defenderUnits.Add(uc);
@@ -138,9 +139,9 @@ public class CombatPieceHandler : MonoBehaviour
         }
     }
 
-    public List<UnitCombatPiece> GetActiveUnits(List<UnitCombatPiece> units)
+    public List<CombatUnitPiece> GetActiveUnits(List<CombatUnitPiece> units)
     {
-        List<UnitCombatPiece> result = new List<UnitCombatPiece>();
+        List<CombatUnitPiece> result = new List<CombatUnitPiece>();
         foreach (var item in units)
         {
             if (!item.isDead) result.Add(item);
@@ -148,9 +149,9 @@ public class CombatPieceHandler : MonoBehaviour
         return result;
     }
 
-    public List<UnitCombatPiece> GetIdleUnits(List<UnitCombatPiece> units)
+    public List<CombatUnitPiece> GetIdleUnits(List<CombatUnitPiece> units)
     {
-        List<UnitCombatPiece> result = new List<UnitCombatPiece>();
+        List<CombatUnitPiece> result = new List<CombatUnitPiece>();
         foreach (var item in units)
         {
             if (item.IsIdle()) result.Add(item);

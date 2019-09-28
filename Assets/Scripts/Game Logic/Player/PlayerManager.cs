@@ -18,9 +18,6 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     };
     public readonly Color INACTIVE_COLOR = Color.gray;
 
-    [Header("Prefabs")]
-    public Player prefabPlayer;
-
     [Header("Players")]
     public Player localPlayer;
     public List<Player> allPlayers;
@@ -57,7 +54,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     private void InstantiatePlayer(PlayerData data)
     {
-        Player newPlayer = Instantiate(prefabPlayer, transform);
+        Player prefab = AllPrefabs.Instance.player;
+
+        Player newPlayer = Instantiate(prefab, transform);
         allPlayers.Add(newPlayer);
 
         newPlayer.color = PLAYER_COLORS[data.colorId];

@@ -29,10 +29,19 @@ public class FieldPieceHandler : MonoBehaviour
         DatabaseManager db = DatabaseManager.Instance;
         DBHandler_Hero dbHeroes = db.heroes;
         DBHandler_Unit dbUnits = db.units;
+
         PlayerManager pm = PlayerManager.Instance;
 
-        pieces = new List<FieldPiece>();
         FieldManager fm = FieldManager.Instance;
+        FieldMap fieldMap = fm.mapHandler.map;
+        FieldPiece prefabPiece = AllPrefabs.Instance.fieldPiece;
+
+        Hero prefabHero = AllPrefabs.Instance.hero;
+        Unit prefabUnit = AllPrefabs.Instance.unit;
+        Inventory prefabInventory = AllPrefabs.Instance.inventory;
+        InventorySlot prefabInventorySlot = AllPrefabs.Instance.inventorySlot;
+
+        pieces = new List<FieldPiece>();
 
         foreach (var item in pieceData)
         {
@@ -42,52 +51,44 @@ public class FieldPieceHandler : MonoBehaviour
             Vector3 pos = new Vector3(posX, 0, posY);
             Quaternion rot = Quaternion.identity;
 
-            FieldPiece newPiece = Instantiate(fm.prefabPiece, pos, rot, transform);
+            FieldPiece newPiece = Instantiate(prefabPiece, pos, rot, transform);
             pieces.Add(newPiece);
 
             newPiece.owner = pm.allPlayers[item.ownerId];
 
-            HeroData hero = item.hero;
-            if (hero != null)
+            Hero hero = null;
+            if (item.hero != null)
             {
-                int dbId = hero.heroId;
+                int dbId = item.hero.heroId;
                 DB_Hero dbData = dbHeroes.Select(dbId);
-                newPiece.hero = new Hero(dbId, dbData);
+
+                hero = Instantiate(prefabHero, transform);
+                hero.Initialize(dbId, dbData, prefabInventory, prefabInventorySlot);
             }
 
+            List<Unit> units = new List<Unit>();
             if (item.units != null)
             {
                 if (item.units.Length > MAX_UNITS) Debug.LogWarning("There are more units than the piece can store!");
                 int totalUnits = Mathf.Min(item.units.Length, MAX_UNITS);
 
-                newPiece.units = new Unit[totalUnits];
                 for (int i = 0; i < totalUnits; i++)
                 {
-                    UnitData unit = item.units[i];
-                    int dbId = unit.unitId;
+                    UnitData unitData = item.units[i];
+                    int dbId = unitData.unitId;
                     DB_Unit dbData = dbUnits.Select(dbId);
-                    int stackSize = unit.stackSize;
-                    newPiece.units[i] = new Unit(dbId, dbData, stackSize);
+                    int stackSize = unitData.stackSize;
+
+                    Unit unit = Instantiate(prefabUnit, transform);
+                    unit.Initialize(dbId, dbData, stackSize);
+                    units.Add(unit);
                 }
             }
-
-            FieldMap fieldMap = FieldManager.Instance.mapHandler.map;
-
+            
             Vector2Int id = new Vector2Int(posX, posY);
             newPiece.currentTile = fieldMap.tiles[id];
             newPiece.currentTile.occupantPiece = newPiece;
-
-            if (hero != null)
-            {
-                newPiece.SetAnimatorOverrideController(newPiece.hero.animatorField);
-                newPiece.name = newPiece.hero.heroName + "´s army";
-            }
-            else
-            {
-                Unit relevantUnit = newPiece.units[0];
-                newPiece.SetAnimatorOverrideController(relevantUnit.animatorField);
-                newPiece.name = "Army of " + relevantUnit.namePlural;
-            }
+            newPiece.Initialize(hero, units);
         }
     }
 

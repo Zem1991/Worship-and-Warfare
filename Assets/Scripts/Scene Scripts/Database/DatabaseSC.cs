@@ -6,7 +6,9 @@ public class DatabaseSC : AbstractSingleton<DatabaseSC>, ISceneController
 {
     public IEnumerator ConfirmSceneLoaded()
     {
-        yield return DatabaseManager.Instance;
+        yield return 
+            DatabaseManager.Instance &&
+            AllPrefabs.Instance;
     }
 
     public void HideObjects()

@@ -8,7 +8,7 @@ public class FieldMap : AbstractMap<FieldTile>
     {
         Remove();
         mapSize = size;
-        FieldTile prefabTile = FieldManager.Instance.prefabTile;
+        FieldTile prefabTile = AllPrefabs.Instance.fieldTile;
 
         int current = 0;
         for (int row = 0; row < mapSize.y; row++)

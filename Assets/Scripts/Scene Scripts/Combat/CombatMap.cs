@@ -42,8 +42,8 @@ public class CombatMap : AbstractMap<CombatTile>
     {
         Remove();
         mapSize = size;
+        CombatTile prefabTile = AllPrefabs.Instance.combatTile;
 
-        CombatTile prefabTile = CombatManager.Instance.prefabTile;
         prefabTile.groundMovementCost = 100;    //TODO GET MOVEMENT COSTS LATER
         prefabTile.allowGroundMovement = true;  //TODO GET MOVEMENT TYPES LATER
 

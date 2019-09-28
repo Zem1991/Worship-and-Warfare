@@ -15,11 +15,6 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     private const string localPlayerDefeatMsg = "You lost the battle!";
     public readonly Vector2Int MAP_SIZE = new Vector2Int(15, 9);
 
-    [Header("Prefabs")]
-    public CombatTile prefabTile;
-    public HeroCombatPiece prefabHero;
-    public UnitCombatPiece prefabUnit;
-
     [Header("Auxiliary Objects")]
     public CombatMapHandler mapHandler;
     public CombatPieceHandler pieceHandler;
@@ -33,8 +28,8 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     [Header("Combat Flow")]
     public bool combatStarted;
     public int currentTurn;
-    public UnitCombatPiece currentUnit;
-    public List<UnitCombatPiece> turnSequence = new List<UnitCombatPiece>();
+    public CombatUnitPiece currentUnit;
+    public List<CombatUnitPiece> turnSequence = new List<CombatUnitPiece>();
     public List<string> combatLog = new List<string>();
     public CombatResult result;
 
@@ -52,9 +47,6 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
     public void BootCombat(FieldPiece attackerPiece, FieldPiece defenderPiece, DB_Tileset tileset)
     {
-        CombatUI.Instance.EscapeMenuHide();
-        CombatUI.Instance.ResultPopupHide();
-
         //background = battleground.image;
 
         attacker = attackerPiece.owner;
@@ -112,7 +104,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
     public void CalculateFullTurnSequence()
     {
-        List<UnitCombatPiece> newSequence = new List<UnitCombatPiece>();
+        List<CombatUnitPiece> newSequence = new List<CombatUnitPiece>();
         newSequence.AddRange(pieceHandler.GetActiveUnits(pieceHandler.attackerUnits));
         newSequence.AddRange(pieceHandler.GetActiveUnits(pieceHandler.defenderUnits));
         turnSequence = newSequence;
@@ -121,16 +113,16 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
     public void UpdateTurnSequence()
     {
-        turnSequence.OrderByDescending(a => a.initiative);
+        turnSequence.OrderByDescending(a => a.unit.initiative);
     }
 
-    public void AddUnitToTurnSequence(UnitCombatPiece uc)
+    public void AddUnitToTurnSequence(CombatUnitPiece uc)
     {
         turnSequence.Add(uc);
         UpdateTurnSequence();
     }
 
-    public void RemoveUnitFromTurnSequence(UnitCombatPiece uc)
+    public void RemoveUnitFromTurnSequence(CombatUnitPiece uc)
     {
         turnSequence.Remove(uc);
         UpdateTurnSequence();
@@ -138,6 +130,14 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
     public void EscapeMenu()
     {
+        bool isPaused = GameManager.Instance.isPaused;
+        AUIPanel currentWindow = CombatUI.Instance.currentWindow;
+        if (!isPaused && currentWindow)
+        {
+            CombatUI.Instance.CloseCurrentWindow();
+            return;
+        }
+
         bool pauseStatus = GameManager.Instance.PauseUnpause();
         if (pauseStatus) CombatUI.Instance.EscapeMenuShow();
         else CombatUI.Instance.EscapeMenuHide();

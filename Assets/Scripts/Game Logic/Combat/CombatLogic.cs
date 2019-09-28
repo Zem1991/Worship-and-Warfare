@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class CombatLogic
 {
-    public static int DamageCalculation(UnitCombatPiece attackerUnit, UnitCombatPiece defenderUnit, HeroCombatPiece attackerHero, HeroCombatPiece defenderHero)
+    public static int DamageCalculation(Unit attackerUnit, Unit defenderUnit, Hero attackerHero, Hero defenderHero)
     {
         float dmgBase = UnitDamage(attackerUnit);
         float increments = Increments(attackerHero, defenderHero);
@@ -15,7 +15,7 @@ public static class CombatLogic
         return Mathf.Max(result, 1);
     }
 
-    public static float UnitDamage(UnitCombatPiece unit)
+    public static float UnitDamage(Unit unit)
     {
         float result = 0;
         for (int i = 0; i < unit.stackSizeStart; i++)
@@ -25,13 +25,13 @@ public static class CombatLogic
         return result;
     }
 
-    public static float Increments(HeroCombatPiece attackerHero, HeroCombatPiece defenderHero)
+    public static float Increments(Hero attackerHero, Hero defenderHero)
     {
         return 1
             + I1_AttackerOffense(attackerHero, defenderHero);
     }
 
-    public static float I1_AttackerOffense(HeroCombatPiece attackerHero, HeroCombatPiece defenderHero)
+    public static float I1_AttackerOffense(Hero attackerHero, Hero defenderHero)
     {
         float result = 0;
         if (attackerHero == null) return result;
@@ -47,13 +47,13 @@ public static class CombatLogic
         return result;
     }
 
-    public static float Reductions(HeroCombatPiece attackerHero, HeroCombatPiece defenderHero)
+    public static float Reductions(Hero attackerHero, Hero defenderHero)
     {
         return 1
             - R1_DefenderDefense(attackerHero, defenderHero);
     }
 
-    public static float R1_DefenderDefense(HeroCombatPiece attackerHero, HeroCombatPiece defenderHero)
+    public static float R1_DefenderDefense(Hero attackerHero, Hero defenderHero)
     {
         float result = 0;
         if (defenderHero == null) return result;

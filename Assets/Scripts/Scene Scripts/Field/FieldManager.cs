@@ -5,10 +5,6 @@ using UnityEngine;
 
 public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
 {
-    [Header("Prefabs")]
-    public FieldTile prefabTile;
-    public FieldPiece prefabPiece;
-
     [Header("Auxiliary Objects")]
     public FieldMapHandler mapHandler;
     public FieldPieceHandler pieceHandler;
@@ -21,8 +17,6 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
 
     public void BootField(Vector2Int scenarioSize, MapData map, PieceData[] pieces)
     {
-        FieldUI.Instance.EscapeMenuHide();
-
         mapHandler.BuildMap(scenarioSize, map);
         pieceHandler.Create(pieces);
     }
@@ -51,6 +45,14 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
      */
     public void EscapeMenu()
     {
+        bool isPaused = GameManager.Instance.isPaused;
+        AUIPanel currentWindow = FieldUI.Instance.currentWindow;
+        if (!isPaused && currentWindow)
+        {
+            FieldUI.Instance.CloseCurrentWindow();
+            return;
+        }
+
         bool pauseStatus = GameManager.Instance.PauseUnpause();
         if (pauseStatus) FieldUI.Instance.EscapeMenuShow();
         else FieldUI.Instance.EscapeMenuHide();
@@ -85,7 +87,19 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
     {
         FieldInputs.Instance.MakeSelectedPieceInteract(false);
     }
+
+    public void Inventory()
+    {
+        FieldPiece selectionPiece = FieldInputs.Instance.selectionPiece;
+        bool canCommandSelectedPiece = FieldInputs.Instance.canCommandSelectedPiece;
+
+        if (selectionPiece && canCommandSelectedPiece)
+        {
+            if (FieldUI.Instance.currentWindow == FieldUI.Instance.inventory) FieldUI.Instance.InventoryHide();
+            else if (FieldUI.Instance.currentWindow == null) FieldUI.Instance.InventoryShow(selectionPiece);
+        }
+    }
     /*
-     * End: UI Bottom Center buttons
-     */
+    * End: UI Bottom Center buttons
+    */
 }
