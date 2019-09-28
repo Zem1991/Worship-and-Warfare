@@ -28,6 +28,8 @@ public class Hero
     public AnimatorOverrideController animatorField;
     public AnimatorOverrideController animatorCombat;
 
+    public Inventory inventory;
+
     public Hero(int dbId, DB_Hero dbData, int level = 1)
     {
         DB_Class classs = dbData.classs;
