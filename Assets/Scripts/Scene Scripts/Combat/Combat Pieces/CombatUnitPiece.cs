@@ -17,6 +17,7 @@ public class CombatUnitPiece : AbstractCombatPiece
     public void Initialize(Unit unit, bool defenderSide = false)
     {
         this.unit = unit;
+        hasRangedAttack = unit.hasRangedAttack;
         FlipSpriteHorizontally(defenderSide);
         SetAnimatorOverrideController(unit.animatorCombat);
     }
@@ -83,7 +84,7 @@ public class CombatUnitPiece : AbstractCombatPiece
     {
         CombatUnitPiece targetUnit = actionTarget as CombatUnitPiece;
         CombatPieceHandler cph = CombatManager.Instance.pieceHandler;
-        return CombatLogic.DamageCalculation(unit, targetUnit.unit, cph.attackerHero.hero, cph.defenderHero.hero);
+        return CombatLogic.DamageCalculation(unit, targetUnit.unit, cph.attackerHero?.hero, cph.defenderHero?.hero);
     }
 
     public override bool TakeDamage(float amount)

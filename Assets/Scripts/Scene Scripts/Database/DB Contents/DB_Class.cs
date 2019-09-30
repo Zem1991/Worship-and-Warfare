@@ -8,11 +8,11 @@ public class DB_Class : DBContent
     public DB_Faction faction;
 
     [Header("Stats")]
-    public int command;
-    public int offense;
-    public int defense;
-    public int power;
-    public int focus;
+    public int atrCommand;
+    public int atrOffense;
+    public int atrDefense;
+    public int atrPower;
+    public int atrFocus;
     //public int logistics;     //really needed?
 
     [Header("Animations")]

@@ -4,18 +4,33 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class FUI_InventorySlot_Front : MonoBehaviour, IDragHandler, IEndDragHandler
+public class FUI_InventorySlot_Front : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [Header("Edit mode stuff")]
     public Image slotImg;
 
+    [Header("Runtime stuff")]
+    public FUI_InventorySlot_Back invSlotBack;
+
     private FieldUI_CC_Inventory invWindow;
-    private FUI_InventorySlot_Back invSlotBack;
 
     void Awake()
     {
-        invWindow = GetComponentInParent<FieldUI_CC_Inventory>();
         invSlotBack = GetComponentInParent<FUI_InventorySlot_Back>();
+        invWindow = GetComponentInParent<FieldUI_CC_Inventory>();
+    }
+
+    public void ChangeImage(Sprite img)
+    {
+        Color color = Color.white;
+        if (!img) color.a = 0;
+        slotImg.color = color;
+        slotImg.sprite = img;
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        if (invSlotBack.invSlot.artifact) invWindow.InvSlotBeginDrag(this);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -25,6 +40,6 @@ public class FUI_InventorySlot_Front : MonoBehaviour, IDragHandler, IEndDragHand
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        invWindow.InvSlotDragEnd(this);
+        invWindow.InvSlotEndDrag(this);
     }
 }

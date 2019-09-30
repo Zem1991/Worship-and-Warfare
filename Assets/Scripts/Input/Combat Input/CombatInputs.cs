@@ -86,11 +86,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
     {
         ManageWindows();
 
-        if (IsGamePaused())
-        {
-
-        }
-        else
+        if (!IsGamePaused() && CombatUI.Instance.currentWindow)
         {
             if (CombatManager.Instance.IsCombatRunning())
             {
@@ -225,7 +221,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
 
     public void MakeSelectedPieceInteract(bool canPathfind)
     {
-        if (selectionPiece && canCommandSelectedPiece)
+        if (selectionPiece && canCommandSelectedPiece && selectionPiece.IsIdle())
         {
             movementHighlightsUpdateFromCommand = true;
 

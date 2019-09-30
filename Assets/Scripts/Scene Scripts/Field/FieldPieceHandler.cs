@@ -38,8 +38,6 @@ public class FieldPieceHandler : MonoBehaviour
 
         Hero prefabHero = AllPrefabs.Instance.hero;
         Unit prefabUnit = AllPrefabs.Instance.unit;
-        Inventory prefabInventory = AllPrefabs.Instance.inventory;
-        InventorySlot prefabInventorySlot = AllPrefabs.Instance.inventorySlot;
 
         pieces = new List<FieldPiece>();
 
@@ -59,11 +57,13 @@ public class FieldPieceHandler : MonoBehaviour
             Hero hero = null;
             if (item.hero != null)
             {
-                int dbId = item.hero.heroId;
+                HeroData heroData = item.hero;
+
+                int dbId = heroData.heroId;
                 DB_Hero dbData = dbHeroes.Select(dbId);
 
-                hero = Instantiate(prefabHero, transform);
-                hero.Initialize(dbId, dbData, prefabInventory, prefabInventorySlot);
+                hero = Instantiate(prefabHero, newPiece.transform);
+                hero.Initialize(heroData, dbData);
             }
 
             List<Unit> units = new List<Unit>();
@@ -75,12 +75,12 @@ public class FieldPieceHandler : MonoBehaviour
                 for (int i = 0; i < totalUnits; i++)
                 {
                     UnitData unitData = item.units[i];
+
                     int dbId = unitData.unitId;
                     DB_Unit dbData = dbUnits.Select(dbId);
-                    int stackSize = unitData.stackSize;
 
-                    Unit unit = Instantiate(prefabUnit, transform);
-                    unit.Initialize(dbId, dbData, stackSize);
+                    Unit unit = Instantiate(prefabUnit, newPiece.transform);
+                    unit.Initialize(unitData, dbData);
                     units.Add(unit);
                 }
             }

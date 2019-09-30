@@ -4,17 +4,39 @@ using UnityEngine;
 
 public class InventorySlot : MonoBehaviour
 {
+    [Header("Slot data")]
     public Inventory inventory;
     public ArtifactType type;
     public string slotName;
-    public Artifact artifact;
 
-    public void Initialize(Inventory inventory, ArtifactType type, string appendId = null)
+    [Header("Artifact data")]
+    public Artifact artifact;
+    public bool beingDragged;
+
+    public void Initialize(Inventory inventory, ArtifactType type, DB_Artifact dbArtifact = null, string appendId = null)
     {
         this.inventory = inventory;
         this.type = type;
         slotName = type.ToString();
-        if (appendId != null) slotName += " " + appendId;
+
+        if (dbArtifact != null)
+        {
+            Artifact prefab = AllPrefabs.Instance.artifact;
+            Artifact item = Instantiate(prefab, transform);
+            item.Initialize(dbArtifact);
+
+            AddArtifact(item);
+            if (!HasArtifact(item))
+            {
+                Debug.LogWarning("Created artifact was destroyed due to slot rejection.");
+                Destroy(item.gameObject);
+            }
+        }
+
+        if (appendId != null)
+        {
+            slotName += " " + appendId;
+        }
     }
 
     public bool HasArtifact()
@@ -22,19 +44,39 @@ public class InventorySlot : MonoBehaviour
         return artifact != null;
     }
 
+    public bool HasArtifact(Artifact item)
+    {
+        return artifact == item;
+    }
+
     public bool CheckType(ArtifactType type)
     {
-        return this.type == type;
+        bool typeCheck = this.type == type;
+        bool anyCheck = this.type == ArtifactType.ANY;
+        return typeCheck || anyCheck;
     }
 
     public bool AddArtifact(Artifact item)
     {
+        if (artifact == item)
+        {
+            Debug.LogWarning("Artifact rejected! DBArtifact " + item.artifactName + " already exists on slot type " + type);
+            return false;
+        }
+
+        if (!CheckType(item.type))
+        {
+            Debug.LogWarning("Artifact rejected! DBArtifact " + item.artifactName + " over slot type " + type);
+            return false;
+        }
+
         if (HasArtifact())
         {
             if (!RemoveArtifact())
                 return false;
         }
         artifact = item;
+        artifact.transform.parent = transform;
         return true;
     }
 

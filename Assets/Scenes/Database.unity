@@ -243,7 +243,7 @@ Transform:
   - {fileID: 507399651}
   - {fileID: 1623956595}
   m_Father: {fileID: 1037067536}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &52499879
 MonoBehaviour:
@@ -335,6 +335,59 @@ MonoBehaviour:
   allowWaterMovement: 0
   allowLavaMovement: 0
   image: {fileID: 21300000, guid: 94577bcaf7ce4a2409b74e6e59d047ab, type: 3}
+--- !u!1 &100158528
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 100158529}
+  - component: {fileID: 100158530}
+  m_Layer: 0
+  m_Name: Shield of the Dwarven Lords
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &100158529
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100158528}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1428424754}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &100158530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100158528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45dfe7c95a000ff4f80fb5e2b8e4a369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  name: Shield of the Dwarven Lords
+  type: 2
+  rarity: 0
+  image: {fileID: 21300000, guid: 753080b89d2796f44a125bb23163cc50, type: 3}
+  atrCommand: 0
+  atrOffense: 0
+  atrDefense: 2
+  atrPower: 0
+  atrFocus: 0
 --- !u!1 &120274622
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,11 +646,11 @@ MonoBehaviour:
   id: 
   className: Default Class
   faction: {fileID: 648845224}
-  command: 2
-  offense: 2
-  defense: 2
-  power: 2
-  focus: 0
+  atrCommand: 2
+  atrOffense: 2
+  atrDefense: 2
+  atrPower: 2
+  atrFocus: 2
   animatorField: {fileID: 22100000, guid: 6e1ef4cba0109c54f8afd22be7a1f7d5, type: 2}
   animatorCombat: {fileID: 22100000, guid: f6c787254bbe5094f87725f24314bd04, type: 2}
 --- !u!1 &485034157
@@ -787,7 +840,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1037067536}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &587533045
 MonoBehaviour:
@@ -956,7 +1009,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1037067536}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &718205236
 MonoBehaviour:
@@ -1237,7 +1290,6 @@ Transform:
   - {fileID: 484480923}
   - {fileID: 1856570799}
   - {fileID: 1934940661}
-  - {fileID: 1161256589}
   - {fileID: 1428424754}
   - {fileID: 1190025192}
   - {fileID: 52499878}
@@ -1246,6 +1298,7 @@ Transform:
   - {fileID: 587533044}
   - {fileID: 1957607057}
   - {fileID: 718205235}
+  - {fileID: 1161256589}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1266,7 +1319,7 @@ MonoBehaviour:
   heroes: {fileID: 0}
   skills: {fileID: 0}
   animations: {fileID: 0}
-  items: {fileID: 0}
+  artifacts: {fileID: 0}
   spells: {fileID: 0}
   units: {fileID: 0}
   traits: {fileID: 0}
@@ -1402,7 +1455,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1037067536}
-  m_RootOrder: 5
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1161256590
 MonoBehaviour:
@@ -1510,7 +1563,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1037067536}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1190025193
 MonoBehaviour:
@@ -1585,7 +1638,7 @@ GameObject:
   - component: {fileID: 1428424755}
   - component: {fileID: 1428424756}
   m_Layer: 0
-  m_Name: Items
+  m_Name: Artifacts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1601,9 +1654,11 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2062295096}
+  - {fileID: 100158529}
   m_Father: {fileID: 1037067536}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1428424755
 MonoBehaviour:
@@ -1631,8 +1686,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
-  name: Default Item
+  name: Default Artifact
+  type: 0
+  rarity: 0
   image: {fileID: 0}
+  atrCommand: 0
+  atrOffense: 0
+  atrDefense: 0
+  atrPower: 0
+  atrFocus: 0
 --- !u!1 &1446948817
 GameObject:
   m_ObjectHideFlags: 0
@@ -1712,7 +1774,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1037067536}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1460391488
 MonoBehaviour:
@@ -1754,7 +1816,7 @@ GameObject:
   - component: {fileID: 1540432249}
   - component: {fileID: 1540432250}
   m_Layer: 0
-  m_Name: Traits
+  m_Name: Abilities
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1772,7 +1834,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1037067536}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1540432249
 MonoBehaviour:
@@ -1800,7 +1862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
-  name: Default Trait
+  name: Default Ability
 --- !u!1 &1623956594
 GameObject:
   m_ObjectHideFlags: 0
@@ -2372,7 +2434,7 @@ Transform:
   - {fileID: 2116761659}
   - {fileID: 251117302}
   m_Father: {fileID: 1037067536}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1957607058
 MonoBehaviour:
@@ -2405,6 +2467,59 @@ MonoBehaviour:
   allowWaterMovement: 0
   allowLavaMovement: 0
   image: {fileID: 21300000, guid: 1fc67f86258d68f458f71dbb431b4eff, type: 3}
+--- !u!1 &2062295095
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2062295096}
+  - component: {fileID: 2062295097}
+  m_Layer: 0
+  m_Name: Centaur's Ax
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2062295096
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062295095}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1428424754}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2062295097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062295095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45dfe7c95a000ff4f80fb5e2b8e4a369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  name: Centaur's Ax
+  type: 1
+  rarity: 0
+  image: {fileID: 21300000, guid: 69259dca5d8c2af47bf9b5848333427c, type: 3}
+  atrCommand: 0
+  atrOffense: 2
+  atrDefense: 0
+  atrPower: 0
+  atrFocus: 0
 --- !u!1 &2116761658
 GameObject:
   m_ObjectHideFlags: 0

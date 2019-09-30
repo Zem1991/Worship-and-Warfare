@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DB_Trait : DBContent
+public class DB_Ability : DBContent
 {
     public new string name;
 }

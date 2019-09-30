@@ -86,11 +86,7 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
     {
         ManageWindows();
 
-        if (IsGamePaused())
-        {
-
-        }
-        else
+        if (!IsGamePaused() && !FieldUI.Instance.currentWindow)
         {
             CameraControls();
             CursorHighlight();

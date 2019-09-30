@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Hero : MonoBehaviour
 {
-    public int dbId;
+    public DB_Hero dbData;
+
     public string heroName;
     public string className;
 
@@ -30,35 +31,49 @@ public class Hero : MonoBehaviour
 
     public Inventory inventory;
 
-    public void Initialize(int dbId, DB_Hero dbData, Inventory prefabInventory, InventorySlot prefabInventorySlot, int level = 1)
+    public void Initialize(HeroData heroData, DB_Hero dbData)
     {
+        this.dbData = dbData;
         DB_Class classs = dbData.classs;
 
-        this.dbId = dbId;
+        Inventory prefabInventory = AllPrefabs.Instance.inventory;
+
         heroName = dbData.heroName;
         className = classs.className;
 
-        this.level = level;
+        int level = heroData.level;
+        this.level = Mathf.Clamp(level, 1, 20);
         //this.experience = experience; //TODO add automatic experience calculator
 
-        atrCommand = classs.command;
-        atrOffense = classs.offense;
-        atrDefense = classs.defense;
-        atrPower = classs.power;
-        atrFocus = classs.focus;
+        //atrCommand = classs.atrCommand;
+        //atrOffense = classs.atrOffense;
+        //atrDefense = classs.atrDefense;
+        //atrPower = classs.atrPower;
+        //atrFocus = classs.atrFocus;
 
-        commandMax = DBFormulas.CommandMax(atrCommand);
-        //this.commandUsed = commandUsed;   //TODO set commandUsed in the piece, with automatic calculator
-        manaMax = DBFormulas.ManaMax(atrFocus);
-        manaCurrent = manaMax;
-        moveMax = DBFormulas.MoveMax();
-        moveCurrent = moveMax;
+        //commandMax = DBFormulas.CommandMax(atrCommand);
+        ////this.commandUsed = commandUsed;   //TODO set commandUsed in the piece, with automatic calculator
+        //manaMax = DBFormulas.ManaMax(atrFocus);
+        //manaCurrent = manaMax;
+        //moveMax = DBFormulas.MoveMax();
+        //moveCurrent = moveMax;
 
         imgProfile = dbData.profilePicture;
         animatorField = classs.animatorField;
         animatorCombat = classs.animatorCombat;
 
         inventory = Instantiate(prefabInventory, transform);
-        inventory.Initialize(this, prefabInventorySlot);
+        inventory.Initialize(heroData.inventory, this);
+    }
+
+    public void RecalculateParameters()
+    {
+        DB_Class classs = dbData.classs;
+
+        atrCommand = classs.atrCommand + inventory.atrCommand;
+        atrOffense = classs.atrCommand + inventory.atrOffense;
+        atrDefense = classs.atrCommand + inventory.atrDefense;
+        atrPower = classs.atrCommand + inventory.atrPower;
+        atrFocus = classs.atrCommand + inventory.atrFocus;
     }
 }

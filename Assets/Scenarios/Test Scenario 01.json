@@ -33,7 +33,9 @@
       "ownerId": 0,
       "hero": {
         "heroId": 0,
-        "experience": 1000,
+        "inventory": {
+          "offHand":  2
+        }
       },
 	  "units": [
 	    { "unitId": 1, "stackSize": 5 },

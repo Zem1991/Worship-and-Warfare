@@ -284,8 +284,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccbc5f56d0fd1d544b504d5259eb4637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabTSItem: {fileID: 5768570643077589919, guid: 0a01e91148905bf4b8cd8d6c58c7d5a8,
-    type: 3}
   sequenceBar: {fileID: 690603958}
   tsItems: []
 --- !u!1 &5719616
@@ -492,8 +490,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc9b13cfd6dda1408f19ec002e5c6ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabHighlight: {fileID: 6205666536738310281, guid: 5b702608e16dadd4bbc44d29595780b2,
-    type: 3}
   cursorSprite: {fileID: 21300000, guid: 1dc430b12b5edd743bb382e583862f65, type: 3}
   selectionSprite: {fileID: 21300000, guid: 37660c40ec7a3b648bfb302c2286bb39, type: 3}
   movementArrowSprites:
@@ -755,7 +751,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 142965025}
   m_OnClick:
     m_PersistentCalls:
@@ -1605,12 +1601,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 734c8f00eaf6e784cbccfab733423383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabTile: {fileID: 9123833009311177861, guid: 605b8679fefa758409107b55da35c471,
-    type: 3}
-  prefabHero: {fileID: 1999095044441610844, guid: f567798ced8827241949ba9a84b35a76,
-    type: 3}
-  prefabUnit: {fileID: 6036333515219936309, guid: ad7735426d24fa44d822fe6499eaae6d,
-    type: 3}
   mapHandler: {fileID: 1781131099}
   pieceHandler: {fileID: 952644559}
   attacker: {fileID: 0}
@@ -2396,7 +2386,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 612462531}
   m_OnClick:
     m_PersistentCalls:
@@ -4887,7 +4877,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1233397676}
   m_OnClick:
     m_PersistentCalls:
@@ -6588,7 +6578,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1443521575}
   m_OnClick:
     m_PersistentCalls:
@@ -7795,7 +7785,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1646764083}
   m_OnClick:
     m_PersistentCalls:

@@ -10,10 +10,10 @@ public class DatabaseManager : AbstractSingleton<DatabaseManager>
     public DBHandler_Hero heroes;
     public DBHandler_Skill skills;
     public DBHandler_Animation animations;
-    public DBHandler_Item items;
+    public DBHandler_Artifact artifacts;
     public DBHandler_Spell spells;
     public DBHandler_Unit units;
-    public DBHandler_Trait traits;
+    public DBHandler_Ability traits;
     public DBHandler_Element elements;
     public DBHandler_Status statuses;
     public DBHandler_Tileset tilesets;
@@ -26,10 +26,10 @@ public class DatabaseManager : AbstractSingleton<DatabaseManager>
         heroes = GetComponentInChildren<DBHandler_Hero>();
         skills = GetComponentInChildren<DBHandler_Skill>();
         animations = GetComponentInChildren<DBHandler_Animation>();
-        items = GetComponentInChildren<DBHandler_Item>();
+        artifacts = GetComponentInChildren<DBHandler_Artifact>();
         spells = GetComponentInChildren<DBHandler_Spell>();
         units = GetComponentInChildren<DBHandler_Unit>();
-        traits = GetComponentInChildren<DBHandler_Trait>();
+        traits = GetComponentInChildren<DBHandler_Ability>();
         elements = GetComponentInChildren<DBHandler_Element>();
         statuses = GetComponentInChildren<DBHandler_Status>();
         tilesets = GetComponentInChildren<DBHandler_Tileset>();

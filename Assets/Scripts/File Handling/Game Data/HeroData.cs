@@ -5,5 +5,6 @@ using UnityEngine;
 public class HeroData
 {
     public int heroId;
-    public int experience;
+    public int level;
+    public InventoryData inventory;
 }

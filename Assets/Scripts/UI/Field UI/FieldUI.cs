@@ -97,6 +97,7 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
 
     public void InventoryHide()
     {
+        inventory.InvSlotEndDrag(null);
         inventory.Hide();
         currentWindow = null;
         UIManager.Instance.PointerExit(inventory);

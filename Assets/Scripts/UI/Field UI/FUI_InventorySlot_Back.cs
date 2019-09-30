@@ -12,14 +12,23 @@ public class FUI_InventorySlot_Back : MonoBehaviour, IDropHandler
     [Header("Runtime stuff")]
     public InventorySlot invSlot;
     public string slotName;
+    public FUI_InventorySlot_Front invSlotFront;
 
     private FieldUI_CC_Inventory invWindow;
-    private FUI_InventorySlot_Front invSlotFront;
 
     void Awake()
     {
-        invWindow = GetComponentInParent<FieldUI_CC_Inventory>();
         invSlotFront = GetComponentInChildren<FUI_InventorySlot_Front>();
+        invWindow = GetComponentInParent<FieldUI_CC_Inventory>();
+    }
+
+    public void UpdateSlot(InventorySlot invSlot)
+    {
+        this.invSlot = invSlot;
+        slotName = invSlot.slotName;
+
+        Artifact artifact = invSlot.artifact;
+        invSlotFront.ChangeImage(artifact?.image);
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -27,7 +36,6 @@ public class FUI_InventorySlot_Back : MonoBehaviour, IDropHandler
         RectTransform invPanel = transform as RectTransform;
         if (RectTransformUtility.RectangleContainsScreenPoint(invPanel, InputManager.Instance.mouseScreenPos))
         {
-            Debug.Log("Item dropped over slot " + slotName);
             invWindow.InvSlotDrop(this);
         }
     }

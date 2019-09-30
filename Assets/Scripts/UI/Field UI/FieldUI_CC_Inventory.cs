@@ -28,42 +28,67 @@ public class FieldUI_CC_Inventory : AUIPanel
     public Button btnClose;
 
     [Header("Other")]
-    public Image invSlotDragImg;
+    public AUI_Draggable invSlotDraggable;
 
-    private bool draggingInvSlot = false;
-    private FUI_InventorySlot_Front invSlotDragged = null;
+    public bool isDraggingInvSlot = false;
+    public FUI_InventorySlot_Front fuiInvSlotFrontDragged = null;
 
     public void UpdatePanel(FieldPiece p)
     {
         Hero hero = p.hero;
         heroInfo.UpdatePanel(p.hero);
 
-        mainHand.invSlot = hero.inventory.mainHand;
-        offHand.invSlot = hero.inventory.offHand;
-        helmet.invSlot = hero.inventory.helmet;
-        armor.invSlot = hero.inventory.armor;
-        trinket1.invSlot = hero.inventory.trinket1;
-        trinket2.invSlot = hero.inventory.trinket2;
-        trinket3.invSlot = hero.inventory.trinket3;
-        trinket4.invSlot = hero.inventory.trinket4;
+        mainHand.UpdateSlot(hero.inventory.mainHand);
+        offHand.UpdateSlot(hero.inventory.offHand);
+        helmet.UpdateSlot(hero.inventory.helmet);
+        armor.UpdateSlot(hero.inventory.armor);
+        trinket1.UpdateSlot(hero.inventory.trinket1);
+        trinket2.UpdateSlot(hero.inventory.trinket2);
+        trinket3.UpdateSlot(hero.inventory.trinket3);
+        trinket4.UpdateSlot(hero.inventory.trinket4);
+    }
+
+    public void InvSlotBeginDrag(FUI_InventorySlot_Front invSlotFront)
+    {
+        InventorySlot invSlot = invSlotFront.invSlotBack.invSlot;
+        invSlot.beingDragged = true;
+        invSlot.inventory.RecalculateParameters();
+
+        isDraggingInvSlot = true;
+        fuiInvSlotFrontDragged = invSlotFront;
     }
 
     public void InvSlotDrag(FUI_InventorySlot_Front invSlotFront)
     {
-        draggingInvSlot = true;
-        invSlotDragged = invSlotFront;
-
-        invSlotDragImg.transform.position = InputManager.Instance.mouseScreenPos;
-    }
-
-    public void InvSlotDragEnd(FUI_InventorySlot_Front invSlotFront)
-    {
-        invSlotDragImg.transform.localPosition = Vector3.zero;
+        invSlotDraggable.Drag(invSlotFront.slotImg.sprite);
     }
 
     public void InvSlotDrop(FUI_InventorySlot_Back invSlotBack)
     {
-        draggingInvSlot = false;
-        invSlotDragged = null;
+        if (fuiInvSlotFrontDragged)
+        {
+            InventorySlot actualInvSlot = fuiInvSlotFrontDragged.invSlotBack.invSlot;
+
+            if (invSlotBack)
+            {
+                Artifact item = actualInvSlot.artifact;
+                if (item && invSlotBack.invSlot.AddArtifact(item))
+                {
+                    actualInvSlot.artifact = null;
+                }
+            }
+
+            actualInvSlot.beingDragged = false;
+            actualInvSlot.inventory.RecalculateParameters();
+        }
+
+        isDraggingInvSlot = false;
+        fuiInvSlotFrontDragged = null;
+    }
+
+    public void InvSlotEndDrag(FUI_InventorySlot_Front invSlotFront)
+    {
+        if (isDraggingInvSlot) InvSlotDrop(null);
+        invSlotDraggable.EndDrag();
     }
 }

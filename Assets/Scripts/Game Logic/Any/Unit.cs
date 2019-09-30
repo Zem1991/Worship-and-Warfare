@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    public int dbId;
+    public DB_Unit dbData;
+
     public string nameSingular;
     public string namePlural;
 
@@ -24,15 +25,16 @@ public class Unit : MonoBehaviour
     public AnimatorOverrideController animatorField;
     public AnimatorOverrideController animatorCombat;
 
-    public void Initialize(int dbId, DB_Unit dbData, int stackSize)
+    public void Initialize(UnitData unitData, DB_Unit dbData)
     {
-        this.dbId = dbId;
+        this.dbData = dbData;
+
         nameSingular = dbData.nameSingular;
         namePlural = dbData.namePlural;
 
         hitPointsMax = dbData.hitPoints;
         hitPointsCurrent = hitPointsMax;
-        stackSizeStart = stackSize;
+        stackSizeStart = unitData.stackSize;
         stackSizeCurrent = stackSizeStart;
 
         damageMin = dbData.damageMin;

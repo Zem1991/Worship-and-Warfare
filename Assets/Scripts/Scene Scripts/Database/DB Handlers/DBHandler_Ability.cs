@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DBHandler_Trait : DBContentHandler<DB_Trait>
+public class DBHandler_Ability : DBContentHandler<DB_Ability>
 {
-    protected override bool VerifyContent(DB_Trait item)
+    protected override bool VerifyContent(DB_Ability item)
     {
         Debug.LogWarning(GetType() + " - No specific content verification was done!");
         return true;
