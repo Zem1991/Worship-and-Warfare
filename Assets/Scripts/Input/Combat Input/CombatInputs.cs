@@ -86,7 +86,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
     {
         ManageWindows();
 
-        if (!IsGamePaused() && CombatUI.Instance.currentWindow)
+        if (!IsGamePaused() && !CombatUI.Instance.currentWindow)
         {
             if (CombatManager.Instance.IsCombatRunning())
             {
@@ -172,22 +172,24 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         if (recorder.selectionDown &&
             IsCursorValid())
         {
-            movementHighlightsUpdateFromCommand = true;
+            Debug.LogError("SelectionHighlight() is not available in combat!");
 
-            if (true)   //(im.cursorOnPlayArea)
-            {
-                selectionPos = cursorPos;
-                selectionTile = cursorTile;
-                selectionPiece = cursorPiece;
+            //movementHighlightsUpdateFromCommand = true;
 
-                selectionHighlight.transform.position = cursorHighlight.transform.position;
-            }
-            else
-            {
-                selectionPos = Vector2Int.one * -1;
-                selectionTile = null;
-                selectionPiece = null;
-            }
+            //if (true)   //(im.cursorOnPlayArea)
+            //{
+            //    selectionPos = cursorPos;
+            //    selectionTile = cursorTile;
+            //    selectionPiece = cursorPiece;
+
+            //    selectionHighlight.transform.position = cursorHighlight.transform.position;
+            //}
+            //else
+            //{
+            //    selectionPos = Vector2Int.one * -1;
+            //    selectionTile = null;
+            //    selectionPiece = null;
+            //}
         }
 
         if (selectionPiece)

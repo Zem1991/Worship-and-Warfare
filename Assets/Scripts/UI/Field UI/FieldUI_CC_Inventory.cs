@@ -36,7 +36,7 @@ public class FieldUI_CC_Inventory : AUIPanel
     public void UpdatePanel(FieldPiece p)
     {
         Hero hero = p.hero;
-        heroInfo.UpdatePanel(p.hero);
+        heroInfo.RefreshInfo(p.hero);
 
         mainHand.UpdateSlot(hero.inventory.mainHand);
         offHand.UpdateSlot(hero.inventory.offHand);

@@ -21,7 +21,7 @@ public class CombatUI_TC_PartyCard : AUIPanel
         Hero hero = hc.hero;
         if (hero)
         {
-            heroInfo.UpdatePanel(hero);
+            heroInfo.RefreshInfo(hero);
             heroInfo.Show();
         }
         else

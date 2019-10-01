@@ -56,7 +56,6 @@ public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideabl
         combatLogs.UpdatePanel(cm.GetLastLogs(5));
 
         CombatUnitPiece ucm = cm.currentUnit;
-        if (!ucm) ucm = ci.selectionPiece as CombatUnitPiece;
         bool canCommandSelectedPiece = ci.canCommandSelectedPiece;
 
         if (ucm) UpdateWithSelection(ucm, canCommandSelectedPiece);

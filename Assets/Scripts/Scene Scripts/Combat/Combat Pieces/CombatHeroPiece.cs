@@ -7,9 +7,16 @@ public class CombatHeroPiece : AbstractCombatPiece
     [Header("Hero data")]
     public Hero hero;
 
-    public void Initialize(Hero hero, bool defenderSide = false)
+    public void Initialize(Hero hero, Player owner, int spawnId, bool defenderSide = false)
     {
         this.hero = hero;
+        imgProfile = hero.imgProfile;
+        //hasRangedAttack = hero.hasRangedAttack;
+
+        this.owner = owner;
+        this.spawnId = spawnId;
+        this.defenderSide = defenderSide;
+
         FlipSpriteHorizontally(defenderSide);
         SetAnimatorOverrideController(hero.animatorCombat);
     }

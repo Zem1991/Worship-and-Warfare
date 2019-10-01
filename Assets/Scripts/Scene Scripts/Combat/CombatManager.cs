@@ -88,7 +88,18 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         if (turnSequence.Count > 0)
         {
             currentUnit = turnSequence[0];
+            Vector3 pos = currentUnit.transform.position;
+
+            CombatInputs ci = CombatInputs.Instance;
+            ci.selectionPos = new Vector2Int((int)pos.x, (int)pos.z);
+            ci.selectionTile = currentUnit.currentTile as CombatTile;
+            ci.selectionPiece = currentUnit;
+
+            ci.selectionHighlight.transform.position = currentUnit.transform.position;
+            ci.canCommandSelectedPiece = currentUnit.owner == PlayerManager.Instance.localPlayer;
+
             turnSequence.RemoveAt(0);
+            CombatUI.Instance.turnSequence.RemoveFirstFromTurnSequence();
         }
         else
         {
@@ -98,35 +109,43 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
     public void NextTurn()
     {
-        CalculateFullTurnSequence();
-        currentTurn++;
+        if (CalculateFullTurnSequence())
+        {
+            NextUnit();
+            currentTurn++;
+        }
     }
 
-    public void CalculateFullTurnSequence()
+    public bool CalculateFullTurnSequence()
     {
         List<CombatUnitPiece> newSequence = new List<CombatUnitPiece>();
         newSequence.AddRange(pieceHandler.GetActiveUnits(pieceHandler.attackerUnits));
         newSequence.AddRange(pieceHandler.GetActiveUnits(pieceHandler.defenderUnits));
+        if (newSequence.Count <= 0) return false;
+
         turnSequence = newSequence;
         UpdateTurnSequence();
+        return true;
     }
 
     public void UpdateTurnSequence()
     {
-        turnSequence.OrderByDescending(a => a.unit.initiative);
+        turnSequence = turnSequence.OrderBy(a => a.spawnId).ToList();
+        turnSequence = turnSequence.OrderByDescending(a => a.unit.initiative).ToList();
+        CombatUI.Instance.turnSequence.CreateTurnSequence(turnSequence);
     }
 
-    public void AddUnitToTurnSequence(CombatUnitPiece uc)
-    {
-        turnSequence.Add(uc);
-        UpdateTurnSequence();
-    }
+    //public void AddUnitToTurnSequence(CombatUnitPiece uc)
+    //{
+    //    turnSequence.Add(uc);
+    //    UpdateTurnSequence();
+    //}
 
-    public void RemoveUnitFromTurnSequence(CombatUnitPiece uc)
-    {
-        turnSequence.Remove(uc);
-        UpdateTurnSequence();
-    }
+    //public void RemoveUnitFromTurnSequence(CombatUnitPiece uc)
+    //{
+    //    turnSequence.Remove(uc);
+    //    UpdateTurnSequence();
+    //}
 
     public void EscapeMenu()
     {

@@ -51,39 +51,43 @@ public class CombatPieceHandler : MonoBehaviour
         CombatHeroPiece prefabHero = AllPrefabs.Instance.combatHeroPiece;
         CombatUnitPiece prefabUnit = AllPrefabs.Instance.combatUnitPiece;
 
+        int spawnId = 0;
         if (attackerPiece.hero != null)
         {
             attackerHero = Instantiate(prefabHero, transform);
-            attackerHero.Initialize(attackerPiece.hero);
-            attackerHero.owner = attackerPiece.owner;
+            attackerHero.Initialize(attackerPiece.hero, attackerPiece.owner, spawnId);
         }
 
+        spawnId = 1;
         if (defenderPiece.hero != null)
         {
             defenderHero = Instantiate(prefabHero, transform);
-            defenderHero.Initialize(defenderPiece.hero);
-            defenderHero.owner = defenderPiece.owner;
+            defenderHero.Initialize(defenderPiece.hero, defenderPiece.owner, spawnId);
         }
 
+        spawnId = 2;
         if (attackerPiece.units != null)
         {
             foreach (var item in attackerPiece.units)
             {
                 CombatUnitPiece uc = Instantiate(prefabUnit, transform);
-                uc.Initialize(item);
-                uc.owner = attackerPiece.owner;
+                uc.Initialize(item, attackerPiece.owner, spawnId);
                 attackerUnits.Add(uc);
+
+                spawnId += 2;
             }
         }
 
+        spawnId = 3;
         if (defenderPiece.units != null)
         {
             foreach (var item in defenderPiece.units)
             {
                 CombatUnitPiece uc = Instantiate(prefabUnit, transform);
-                uc.Initialize(item, true);
-                uc.owner = defenderPiece.owner;
+                uc.Initialize(item, defenderPiece.owner, spawnId, true);
                 defenderUnits.Add(uc);
+
+                spawnId += 2;
             }
         }
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AnyUI_HeroInfo : AUIPanel
+public class AnyUI_HeroInfo : MonoBehaviour, IShowableHideable
 {
     public Image heroPortrait;
     public Text txtHeroName;
@@ -15,7 +15,17 @@ public class AnyUI_HeroInfo : AUIPanel
     public Text txtPower;
     public Text txtFocus;
 
-    public void UpdatePanel(Hero hero)
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void RefreshInfo(Hero hero)
     {
         if (hero != null)
         {

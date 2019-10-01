@@ -36,7 +36,7 @@ public class FieldUI_BR_PartyCard : AUIPanel
         Hero hero = p.hero;
         if (hero)
         {
-            heroInfo.UpdatePanel(p.hero);
+            heroInfo.RefreshInfo(p.hero);
             heroInfo.Show();
         }
         else

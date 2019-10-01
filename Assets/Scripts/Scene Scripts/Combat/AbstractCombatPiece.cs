@@ -4,8 +4,9 @@ using UnityEngine;
 
 public abstract class AbstractCombatPiece : AbstractPiece
 {
-    [Header("Party")]
-    public FieldPiece party;
+    [Header("Identification")]
+    public int spawnId;
+    public bool defenderSide;
 
     [Header("Sprites")]
     public Sprite imgProfile;

@@ -14,10 +14,16 @@ public class CombatUnitPiece : AbstractCombatPiece
         Hurt();
     }
 
-    public void Initialize(Unit unit, bool defenderSide = false)
+    public void Initialize(Unit unit, Player owner, int spawnId, bool defenderSide = false)
     {
         this.unit = unit;
+        imgProfile = unit.imgProfile;
         hasRangedAttack = unit.hasRangedAttack;
+
+        this.owner = owner;
+        this.spawnId = spawnId;
+        this.defenderSide = defenderSide;
+
         FlipSpriteHorizontally(defenderSide);
         SetAnimatorOverrideController(unit.animatorCombat);
     }

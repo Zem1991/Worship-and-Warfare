@@ -24,13 +24,18 @@ public class FUI_InventorySlot_Front : MonoBehaviour, IBeginDragHandler, IDragHa
     {
         Color color = Color.white;
         if (!img) color.a = 0;
+        else if (invSlotBack.invSlot.beingDragged) color.a = 0.5F;
         slotImg.color = color;
         slotImg.sprite = img;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (invSlotBack.invSlot.artifact) invWindow.InvSlotBeginDrag(this);
+        if (invSlotBack.invSlot.artifact)
+        {
+            ChangeImage(slotImg.sprite);
+            invWindow.InvSlotBeginDrag(this);
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
