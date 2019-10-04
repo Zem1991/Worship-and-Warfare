@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1317082670439789999}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 904a2d7e53971b3419ce18fa41cc547e, type: 3}
+  m_Script: {fileID: 11500000, guid: a365a3d3b27534c43a822681a440fd6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
@@ -54,9 +54,12 @@ MonoBehaviour:
   nextPos: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
+  targetPiece: {fileID: 0}
+  hero: {fileID: 0}
+  units: []
   anim_movement: 0
   anim_directionX: 0
-  anim_directionY: 0
+  anim_directionZ: -1
 --- !u!1 &3326219280932499402
 GameObject:
   m_ObjectHideFlags: 0

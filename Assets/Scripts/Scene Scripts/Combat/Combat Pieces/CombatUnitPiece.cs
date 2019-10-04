@@ -7,20 +7,10 @@ public class CombatUnitPiece : AbstractCombatPiece
     [Header("Unit data")]
     public Unit unit;
 
-    public override void Update()
+    public void Initialize(Player owner, Unit unit, int spawnId, bool defenderSide = false)
     {
-        base.Update();
-        Attack();
-        Hurt();
-    }
-
-    public void Initialize(Unit unit, Player owner, int spawnId, bool defenderSide = false)
-    {
-        this.unit = unit;
-        imgProfile = unit.imgProfile;
-        hasRangedAttack = unit.hasRangedAttack;
-
         this.owner = owner;
+        this.unit = unit;
         this.spawnId = spawnId;
         this.defenderSide = defenderSide;
 
@@ -28,31 +18,48 @@ public class CombatUnitPiece : AbstractCombatPiece
         SetAnimatorOverrideController(unit.animatorCombat);
     }
 
-    private void Attack()
+    public override void PerformPieceInteraction()
+    {
+        if (targetPiece)
+        {
+            if (targetPiece.owner != owner)
+            {
+                //TODO check ranged interaction
+                Attack(false);
+            }
+        }
+    }
+
+    public override void MakeAttack()
     {
         if (!isAttacking_Start && !isAttacking_End) return;
 
         AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
         if (state.normalizedTime >= 1)
         {
+            AbstractCombatPiece acp = targetPiece as AbstractCombatPiece;
             if (isAttacking_Start &&
                 state.IsName("Attack Start"))
             {
                 isAttacking_Start = false;
                 isAttacking_End = true;
                 float dmg = CalculateDamage();
-                actionTarget.TakeDamage(dmg);
+                acp.TakeDamage(dmg);
             }
             if (isAttacking_End &&
                 state.IsName("Attack End"))
             {
                 isAttacking_End = false;
-                actionTarget = null;
+                if (acp.retaliationTarget)
+                {
+                    acp.Retaliate();
+                }
+                targetPiece = null;
             }
         }
     }
 
-    private void Hurt()
+    public override void MakeHurt()
     {
         if (!isHurt) return;
 
@@ -66,31 +73,20 @@ public class CombatUnitPiece : AbstractCombatPiece
         }
     }
 
-    public override void InteractWithPiece(AbstractPiece target)
-    {
-        CombatUnitPiece targetUnit = target as CombatUnitPiece;
-        if (targetUnit)
-        {
-            if (targetUnit.owner != owner)
-            {
-                isAttacking_Start = true;
-                actionTarget = targetUnit;
-                //Debug.LogWarning("InteractWithPiece insta-killed the target!");
-                //targetUnit.hitPointsCurrent = 0;
-            }
-        }
-        else
-        {
-            Debug.LogWarning("InteractWithPiece IS DESTROYING PIECES!");
-            Destroy(target.gameObject);
-        }
-    }
-
     public override int CalculateDamage()
     {
-        CombatUnitPiece targetUnit = actionTarget as CombatUnitPiece;
+        CombatUnitPiece targetUnit = targetPiece as CombatUnitPiece;
         CombatPieceHandler cph = CombatManager.Instance.pieceHandler;
         return CombatLogic.DamageCalculation(unit, targetUnit.unit, cph.attackerHero?.hero, cph.defenderHero?.hero);
+    }
+
+    public override void Attack(bool ranged)
+    {
+        AbstractCombatPiece acp = targetPiece as AbstractCombatPiece;
+        acp.retaliationTarget = this;
+        isAttacking_Start = true;
+        //Debug.LogWarning("InteractWithPiece insta-killed the target!");
+        //targetUnit.hitPointsCurrent = 0;
     }
 
     public override bool TakeDamage(float amount)
@@ -118,6 +114,13 @@ public class CombatUnitPiece : AbstractCombatPiece
             Die();
             return true;
         }
+    }
+
+    public override void Retaliate()
+    {
+        targetPiece = retaliationTarget;
+        retaliationTarget = null;
+        isAttacking_Start = true;
     }
 
     public override void Die()

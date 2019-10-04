@@ -10,7 +10,6 @@ public class CombatHeroPiece : AbstractCombatPiece
     public void Initialize(Hero hero, Player owner, int spawnId, bool defenderSide = false)
     {
         this.hero = hero;
-        imgProfile = hero.imgProfile;
         //hasRangedAttack = hero.hasRangedAttack;
 
         this.owner = owner;
@@ -21,10 +20,22 @@ public class CombatHeroPiece : AbstractCombatPiece
         SetAnimatorOverrideController(hero.animatorCombat);
     }
 
-    public override void InteractWithPiece(AbstractPiece target)
+    public override void PerformPieceInteraction()
     {
         Debug.LogWarning("THIS HERO DOESN'T KNOW HOW TO HANDLE OTHER PIECES!");
         //CombatPieceManager.Instance.UnitsAreInteracting(this, target as HeroCombatPiece);
+    }
+
+    public override void MakeAttack()
+    {
+        return;
+        throw new System.NotImplementedException();
+    }
+
+    public override void MakeHurt()
+    {
+        return;
+        throw new System.NotImplementedException();
     }
 
     public override int CalculateDamage()
@@ -32,7 +43,17 @@ public class CombatHeroPiece : AbstractCombatPiece
         throw new System.NotImplementedException();
     }
 
+    public override void Attack(bool ranged)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override bool TakeDamage(float amount)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void Retaliate()
     {
         throw new System.NotImplementedException();
     }

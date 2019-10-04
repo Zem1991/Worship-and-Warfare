@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1999095044441610847}
   - component: {fileID: 1999095044441610844}
   m_Layer: 0
-  m_Name: Hero Combat Piece
+  m_Name: Combat Hero Piece
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1999095044441610846}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21446dac578780940b8d4a99cd483b3f, type: 3}
+  m_Script: {fileID: 11500000, guid: b907ebd95bc4c6648bac02c62da2e81f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
@@ -54,20 +54,17 @@ MonoBehaviour:
   nextPos: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
-  imgProfile: {fileID: 0}
-  imgCombat: {fileID: 0}
-  heroName: 
-  className: 
-  level: 0
-  atrCommand: 0
-  atrOffense: 0
-  atrDefense: 0
-  atrPower: 0
-  atrFocus: 0
-  commandMax: 0
-  commandUsed: 0
-  manaMax: 0
-  manaCurrent: 0
+  targetPiece: {fileID: 0}
+  spawnId: 0
+  defenderSide: 0
+  hasRangedAttack: 0
+  actionTarget: {fileID: 0}
+  retaliationTarget: {fileID: 0}
+  isAttacking_Start: 0
+  isAttacking_End: 0
+  isHurt: 0
+  isDead: 0
+  hero: {fileID: 0}
 --- !u!1 &6481890484422662304
 GameObject:
   m_ObjectHideFlags: 0

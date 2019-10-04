@@ -5,17 +5,18 @@ using UnityEngine;
 
 public class FieldPiece : AbstractPiece
 {
-    [Header("Party Contents")]
+    [Header("Party contents")]
     public Hero hero;
     public List<Unit> units;
 
-    [Header("Animator Variables")]
+    [Header("Animator parameters")]
     public bool anim_movement;
     public float anim_directionX;
     public float anim_directionZ = -1;
 
-    public void Initialize(Hero hero, List<Unit> units)
+    public void Initialize(Player owner, Hero hero, List<Unit> units)
     {
+        this.owner = owner;
         this.hero = hero;
         this.units = units;
 
@@ -32,7 +33,7 @@ public class FieldPiece : AbstractPiece
         }
     }
 
-    protected override void AnimatorVariables()
+    protected override void AnimatorParameters()
     {
         anim_movement = inMovement;
         animator.SetBool("Movement", anim_movement);
@@ -48,20 +49,14 @@ public class FieldPiece : AbstractPiece
         animator.SetFloat("Direction Z", anim_directionZ);
     }
 
-    public override void InteractWithTile(AbstractTile targetTile, bool canPathfind)
+    public override void InteractWithTile(AbstractTile target, bool canPathfind)
     {
         if (canPathfind)
         {
-            if (targetTile)
+            if (target)
             {
-                if (HasPath(targetTile))
-                {
-                    Move();
-                }
-                else
-                {
-                    FieldManager.Instance.pieceHandler.Pathfind(this, targetTile as FieldTile);
-                }
+                if (HasPath(target)) Move();
+                else FieldManager.Instance.pieceHandler.Pathfind(this, target as FieldTile);
             }
         }
         else
@@ -70,8 +65,13 @@ public class FieldPiece : AbstractPiece
         }
     }
 
-    public override void InteractWithPiece(AbstractPiece target)
+    public override void InteractWithPiece(AbstractPiece target, bool canPathfind)
     {
-        FieldManager.Instance.pieceHandler.PartiesAreInteracting(this, target as FieldPiece);
+        InteractWithTile(target.targetTile, canPathfind);
+    }
+
+    public override void PerformPieceInteraction()
+    {
+        FieldManager.Instance.pieceHandler.PartiesAreInteracting(this, targetPiece as FieldPiece);
     }
 }

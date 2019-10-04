@@ -27,6 +27,9 @@ public abstract class AbstractPiece : MonoBehaviour
     public Vector3 direction;
     public Vector3 velocity;
 
+    [Header("Targeting")]
+    public AbstractPiece targetPiece;
+
     public void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -36,46 +39,8 @@ public abstract class AbstractPiece : MonoBehaviour
 
     public virtual void Update()
     {
-        AnimatorVariables();
-        Movement();
-    }
-
-    public void FlipSpriteHorizontally(bool flip)
-    {
-        if (!spriteRenderer) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        spriteRenderer.flipX = flip;
-    }
-
-    public void SetAnimatorOverrideController(AnimatorOverrideController aoc)
-    {
-        if (!animator) animator = GetComponentInChildren<Animator>();
-        animator.runtimeAnimatorController = aoc;
-    }
-
-    public bool HasPath()
-    {
-        return path?.Count > 0;
-    }
-
-    public bool HasPath(AbstractTile targetTile)
-    {
-        return HasPath() && this.targetTile == targetTile;
-    }
-
-    public void SetPath(List<PathNode> path, int pathCost, AbstractTile targetTile)
-    {
-        this.path = path;
-        this.pathCost = pathCost;
-        this.targetTile = targetTile;
-        //Debug.Log("PIECE " + name + " got a new path with size " + pathCost);
-
-        if (path != null && path.Count > 1)
-        {
-            AbstractTile from = path[0].tile;
-            AbstractTile to = path[1].tile;
-            OctoDirXZ dir = from.GetNeighbourDirection(to);
-            LookAtDirection(dir);
-        }
+        AnimatorParameters();
+        MakeMove();
     }
 
     public void LookAtDirection(OctoDirXZ dir)
@@ -116,6 +81,44 @@ public abstract class AbstractPiece : MonoBehaviour
         if (direction.x == 1) FlipSpriteHorizontally(false);
     }
 
+    public void FlipSpriteHorizontally(bool flip)
+    {
+        if (!spriteRenderer) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        spriteRenderer.flipX = flip;
+    }
+
+    public void SetAnimatorOverrideController(AnimatorOverrideController aoc)
+    {
+        if (!animator) animator = GetComponentInChildren<Animator>();
+        animator.runtimeAnimatorController = aoc;
+    }
+
+    public bool HasPath()
+    {
+        return path?.Count > 0;
+    }
+
+    public bool HasPath(AbstractTile targetTile)
+    {
+        return HasPath() && this.targetTile == targetTile;
+    }
+
+    public void SetPath(List<PathNode> path, int pathCost, AbstractTile targetTile)
+    {
+        this.path = path;
+        this.pathCost = pathCost;
+        this.targetTile = targetTile;
+        //Debug.Log("PIECE " + name + " got a new path with size " + pathCost);
+
+        if (path != null && path.Count > 1)
+        {
+            AbstractTile from = path[0].tile;
+            AbstractTile to = path[1].tile;
+            OctoDirXZ dir = from.GetNeighbourDirection(to);
+            LookAtDirection(dir);
+        }
+    }
+
     public void Move()
     {
         inMovement = true;
@@ -131,13 +134,12 @@ public abstract class AbstractPiece : MonoBehaviour
         return !inMovement;
     }
 
-    protected virtual void Movement()
+    protected virtual void MakeMove()
     {
         if (!inMovement) return;
 
         Vector3 currentPos = transform.position;
         bool doStop = false;
-        AbstractPiece pieceToInteract = null;
 
         if (nextTile && currentPos == nextPos)
         {
@@ -171,8 +173,8 @@ public abstract class AbstractPiece : MonoBehaviour
                 // then instead of performing one more move we perform an interaction between pieces.
                 if (nextTile == targetTile)
                 {
-                    pieceToInteract = nextTile.occupantPiece;
-                    if (pieceToInteract) doStop = true;
+                    targetPiece = nextTile.occupantPiece;
+                    if (targetPiece) doStop = true;
                 }
             }
         }
@@ -188,10 +190,10 @@ public abstract class AbstractPiece : MonoBehaviour
             nextPos = nextTile.transform.position;
         }
 
-        if (pieceToInteract)
+        if (targetPiece)
         {
-            nextTile = null;
-            InteractWithPiece(pieceToInteract);
+            //nextTile = null;
+            PerformPieceInteraction();
         }
 
         if (inMovement)
@@ -206,7 +208,8 @@ public abstract class AbstractPiece : MonoBehaviour
         }
     }
 
+    protected abstract void AnimatorParameters();
     public abstract void InteractWithTile(AbstractTile target, bool canPathfind);
-    public abstract void InteractWithPiece(AbstractPiece target);
-    protected abstract void AnimatorVariables();
+    public abstract void InteractWithPiece(AbstractPiece target, bool canPathfind);
+    public abstract void PerformPieceInteraction();
 }

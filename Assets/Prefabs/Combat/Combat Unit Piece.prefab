@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6036333515219936308}
   - component: {fileID: 6036333515219936309}
   m_Layer: 0
-  m_Name: Unit Combat Piece
+  m_Name: Combat Unit Piece
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6036333515219936311}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d1070ff7340c904fa4086cb80d0d578, type: 3}
+  m_Script: {fileID: 11500000, guid: d9a52118c4038e34b807564265b8c694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
@@ -54,18 +54,17 @@ MonoBehaviour:
   nextPos: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
-  imgProfile: {fileID: 0}
-  imgCombat: {fileID: 0}
-  unitName: 
-  hitPoints: 0
-  hitPointsCurrent: 0
-  stackSize: 0
-  stackSizeCurrent: 0
-  damageMin: 0
-  damageMax: 0
-  resistance: 0
-  speed: 0
-  initiative: 0
+  targetPiece: {fileID: 0}
+  spawnId: 0
+  defenderSide: 0
+  hasRangedAttack: 0
+  actionTarget: {fileID: 0}
+  retaliationTarget: {fileID: 0}
+  isAttacking_Start: 0
+  isAttacking_End: 0
+  isHurt: 0
+  isDead: 0
+  unit: {fileID: 0}
 --- !u!1 &6661559027028567187
 GameObject:
   m_ObjectHideFlags: 0

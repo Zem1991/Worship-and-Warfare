@@ -71,7 +71,7 @@ public class CombatPieceHandler : MonoBehaviour
             foreach (var item in attackerPiece.units)
             {
                 CombatUnitPiece uc = Instantiate(prefabUnit, transform);
-                uc.Initialize(item, attackerPiece.owner, spawnId);
+                uc.Initialize(attackerPiece.owner, item, spawnId);
                 attackerUnits.Add(uc);
 
                 spawnId += 2;
@@ -84,7 +84,7 @@ public class CombatPieceHandler : MonoBehaviour
             foreach (var item in defenderPiece.units)
             {
                 CombatUnitPiece uc = Instantiate(prefabUnit, transform);
-                uc.Initialize(item, defenderPiece.owner, spawnId, true);
+                uc.Initialize(defenderPiece.owner, item, spawnId, true);
                 defenderUnits.Add(uc);
 
                 spawnId += 2;

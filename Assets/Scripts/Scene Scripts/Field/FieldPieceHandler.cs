@@ -52,7 +52,7 @@ public class FieldPieceHandler : MonoBehaviour
             FieldPiece newPiece = Instantiate(prefabPiece, pos, rot, transform);
             pieces.Add(newPiece);
 
-            newPiece.owner = pm.allPlayers[item.ownerId];
+            Player owner = pm.allPlayers[item.ownerId];
 
             Hero hero = null;
             if (item.hero != null)
@@ -88,7 +88,7 @@ public class FieldPieceHandler : MonoBehaviour
             Vector2Int id = new Vector2Int(posX, posY);
             newPiece.currentTile = fieldMap.tiles[id];
             newPiece.currentTile.occupantPiece = newPiece;
-            newPiece.Initialize(hero, units);
+            newPiece.Initialize(owner, hero, units);
         }
     }
 

@@ -172,7 +172,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         if (recorder.selectionDown &&
             IsCursorValid())
         {
-            Debug.LogError("SelectionHighlight() is not available in combat!");
+            Debug.LogWarning("SelectionHighlight() is not available in combat!");
 
             //movementHighlightsUpdateFromCommand = true;
 
