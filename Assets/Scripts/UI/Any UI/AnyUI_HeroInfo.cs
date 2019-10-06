@@ -29,9 +29,9 @@ public class AnyUI_HeroInfo : MonoBehaviour, IShowableHideable
     {
         if (hero != null)
         {
-            heroPortrait.sprite = hero.imgProfile;
-            txtHeroName.text = hero.heroName;
-            txtLevelAndClass.text = "Level ?? " + hero.className;
+            heroPortrait.sprite = hero.dbData.profilePicture;
+            txtHeroName.text = hero.dbData.heroName;
+            txtLevelAndClass.text = "Level " + hero.level + " " + hero.dbData.classs.className;
 
             txtCommand.text = hero.atrCommand.ToString();
             txtOffense.text = hero.atrOffense.ToString();

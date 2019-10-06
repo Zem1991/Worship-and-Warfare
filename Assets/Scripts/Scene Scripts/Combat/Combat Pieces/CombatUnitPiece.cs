@@ -14,8 +14,13 @@ public class CombatUnitPiece : AbstractCombatPiece
         this.spawnId = spawnId;
         this.defenderSide = defenderSide;
 
+        hasRangedAttack = unit.hasRangedAttack;
+
         FlipSpriteHorizontally(defenderSide);
-        SetAnimatorOverrideController(unit.animatorCombat);
+        SetAnimatorOverrideController(unit.dbData.animatorCombat);
+
+        name = "P" + owner.id + " - Stack of " + unit.GetName();
+        //name = "P" + owner.id + " - Stack of " + unit.stackSizeCurrent + " " + unit.GetName();
     }
 
     public override void PerformPieceInteraction()
@@ -25,7 +30,7 @@ public class CombatUnitPiece : AbstractCombatPiece
             if (targetPiece.owner != owner)
             {
                 //TODO check ranged interaction
-                Attack(false);
+                Attack(hasRangedAttack);
             }
         }
     }
@@ -50,11 +55,15 @@ public class CombatUnitPiece : AbstractCombatPiece
                 state.IsName("Attack End"))
             {
                 isAttacking_End = false;
+                targetPiece = null;
                 if (acp.retaliationTarget)
                 {
                     acp.Retaliate();
                 }
-                targetPiece = null;
+                else
+                {
+                    EndTurn();
+                }
             }
         }
     }
@@ -83,7 +92,7 @@ public class CombatUnitPiece : AbstractCombatPiece
     public override void Attack(bool ranged)
     {
         AbstractCombatPiece acp = targetPiece as AbstractCombatPiece;
-        acp.retaliationTarget = this;
+        if (!ranged) acp.retaliationTarget = this;
         isAttacking_Start = true;
         //Debug.LogWarning("InteractWithPiece insta-killed the target!");
         //targetUnit.hitPointsCurrent = 0;

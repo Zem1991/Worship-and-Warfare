@@ -22,14 +22,16 @@ public class FieldPiece : AbstractPiece
 
         if (hero != null)
         {
-            SetAnimatorOverrideController(hero.animatorField);
-            name = hero.heroName + "´s army";
+            SetAnimatorOverrideController(hero.dbData.classs.animatorField);
+            name = "P" + owner.id + " - " + hero.dbData.heroName + ", " + hero.dbData.classs.className;
+            //name = hero.dbData.heroName + "´s army";
         }
         else
         {
             Unit relevantUnit = units[0];
-            SetAnimatorOverrideController(relevantUnit.animatorField);
-            name = "Army of " + relevantUnit.namePlural;
+            SetAnimatorOverrideController(relevantUnit.dbData.animatorField);
+            name = "P" + owner.id + " - Stack of " + relevantUnit.GetName();
+            //name = "Army of " + relevantUnit.dbData.namePlural;
         }
     }
 

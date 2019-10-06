@@ -11,7 +11,7 @@ public abstract class AbstractCombatPiece : AbstractPiece
     [Header("Combat settings")]
     public bool hasRangedAttack;
 
-    [Header("Combat actions")]
+    [Header("Combat states")]
     public AbstractCombatPiece retaliationTarget;
     public bool isAttacking_Start;
     public bool isAttacking_End;
@@ -87,8 +87,10 @@ public abstract class AbstractCombatPiece : AbstractPiece
                 }
                 else
                 {
-                    if (!HasPath(cTile)) CombatManager.Instance.pieceHandler.Pathfind(this, cTile);
-                    Move();
+                    if (HasPath(cTile)) Move();
+                    else CombatManager.Instance.pieceHandler.Pathfind(this, cTile);
+                    //if (!HasPath(cTile)) CombatManager.Instance.pieceHandler.Pathfind(this, cTile);
+                    //Move();
                 }
             }
         }
@@ -100,7 +102,7 @@ public abstract class AbstractCombatPiece : AbstractPiece
 
     public override void InteractWithPiece(AbstractPiece target, bool canPathfind)
     {
-        bool interactWithPieceInstead = false;
+        bool justInteract = false;
 
         AbstractCombatPiece targetACP = target as AbstractCombatPiece;
         if (targetACP &&
@@ -110,19 +112,26 @@ public abstract class AbstractCombatPiece : AbstractPiece
         {
             //TODO add check if we are not in melee range
             //TODO maybe add cases for ally ranged interactions ?
-            interactWithPieceInstead = true;
+            justInteract = true;
+        }
+
+        if (justInteract)
+        {
+            targetPiece = targetACP;
+            PerformPieceInteraction();
+            return;
         }
 
         CombatTile cTile = target.currentTile as CombatTile;
-        if (HasPath(cTile))
-        {
-            if (interactWithPieceInstead) PerformPieceInteraction();
-            else Move();
-        }
-        else
-        {
-            CombatManager.Instance.pieceHandler.Pathfind(this, cTile);
-        }
+        if (HasPath(cTile)) Move();
+        else CombatManager.Instance.pieceHandler.Pathfind(this, cTile);
+    }
+
+    public virtual void EndTurn()
+    {
+        CombatManager cm = CombatManager.Instance;
+        if (cm.currentUnit == this) cm.NextUnit();
+        else if (cm.currentUnit.retaliationTarget == this) cm.NextUnit();
     }
 
     public abstract void MakeAttack();

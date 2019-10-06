@@ -31,7 +31,7 @@ public class CombatUI_BC_TurnSequence : AUIPanel
         {
             CUI_TurnSequenceItem newCUI = Instantiate(prefab, sequenceBar.transform);
             newCUI.border.color = forCUP.owner.color;
-            newCUI.portrait.sprite = forCUP.unit.imgProfile;
+            newCUI.portrait.sprite = forCUP.unit.dbData.profilePicture;
             newCUI.unit = forCUP;
             tsItems.Add(newCUI);
         }

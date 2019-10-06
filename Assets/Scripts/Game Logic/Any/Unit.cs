@@ -6,9 +6,6 @@ public class Unit : MonoBehaviour
 {
     public DB_Unit dbData;
 
-    public string nameSingular;
-    public string namePlural;
-
     public int hitPointsMax;
     public int hitPointsCurrent;
     public int stackSizeStart;
@@ -21,16 +18,9 @@ public class Unit : MonoBehaviour
     public int speed;
     public int initiative;
 
-    public Sprite imgProfile;
-    public AnimatorOverrideController animatorField;
-    public AnimatorOverrideController animatorCombat;
-
     public void Initialize(UnitData unitData, DB_Unit dbData)
     {
         this.dbData = dbData;
-
-        nameSingular = dbData.nameSingular;
-        namePlural = dbData.namePlural;
 
         hitPointsMax = dbData.hitPoints;
         hitPointsCurrent = hitPointsMax;
@@ -44,14 +34,12 @@ public class Unit : MonoBehaviour
         speed = dbData.movementRange;
         initiative = dbData.initiative;
 
-        imgProfile = dbData.profilePicture;
-        animatorField = dbData.animatorField;
-        animatorCombat = dbData.animatorCombat;
+        name = GetName();
     }
 
     public string GetName()
     {
-        if (stackSizeCurrent <= 1) return nameSingular;
-        return namePlural;
+        if (stackSizeCurrent <= 1) return dbData.nameSingular;
+        return dbData.namePlural;
     }
 }

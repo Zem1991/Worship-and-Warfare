@@ -6,9 +6,6 @@ public class Hero : MonoBehaviour
 {
     public DB_Hero dbData;
 
-    public string heroName;
-    public string className;
-
     public int level;
     public long experience;
 
@@ -25,10 +22,6 @@ public class Hero : MonoBehaviour
     public int moveMax;
     public int moveCurrent;
 
-    public Sprite imgProfile;
-    public AnimatorOverrideController animatorField;
-    public AnimatorOverrideController animatorCombat;
-
     public Inventory inventory;
 
     public void Initialize(HeroData heroData, DB_Hero dbData)
@@ -38,11 +31,8 @@ public class Hero : MonoBehaviour
 
         Inventory prefabInventory = AllPrefabs.Instance.inventory;
 
-        heroName = dbData.heroName;
-        className = classs.className;
-
-        int level = heroData.level;
-        this.level = Mathf.Clamp(level, 1, 20);
+        int lvl = heroData.level;
+        level = Mathf.Clamp(lvl, 1, 20);
         //this.experience = experience; //TODO add automatic experience calculator
 
         //atrCommand = classs.atrCommand;
@@ -58,12 +48,10 @@ public class Hero : MonoBehaviour
         //moveMax = DBFormulas.MoveMax();
         //moveCurrent = moveMax;
 
-        imgProfile = dbData.profilePicture;
-        animatorField = classs.animatorField;
-        animatorCombat = classs.animatorCombat;
-
         inventory = Instantiate(prefabInventory, transform);
         inventory.Initialize(heroData.inventory, this);
+
+        name = dbData.heroName;
     }
 
     public void RecalculateParameters()

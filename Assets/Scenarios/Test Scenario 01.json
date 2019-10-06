@@ -5,13 +5,15 @@
   "height": 10,
   "players": [
     {
+      "playerType": "Human",
       "colorId": 0,
-      "name": "Player 01"
+      "name": "Human"
     },
     {
+      "playerType": "Computer",
       "colorId": 1,
-      "name": "Player 02"
-    },
+      "name": "Computer"
+    }
   ],
   "map": {
     "tiles": [

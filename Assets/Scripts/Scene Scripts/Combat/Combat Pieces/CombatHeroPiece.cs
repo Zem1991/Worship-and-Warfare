@@ -17,7 +17,10 @@ public class CombatHeroPiece : AbstractCombatPiece
         this.defenderSide = defenderSide;
 
         FlipSpriteHorizontally(defenderSide);
-        SetAnimatorOverrideController(hero.animatorCombat);
+        SetAnimatorOverrideController(hero.dbData.classs.animatorCombat);
+
+        name = "P" + owner.id + " - " + hero.dbData.heroName + ", " + hero.dbData.classs.className;
+        //name = "P" + owner.id + " - " + hero.dbData.heroName + ", level " + hero.level + " " + hero.dbData.classs.className;
     }
 
     public override void PerformPieceInteraction()

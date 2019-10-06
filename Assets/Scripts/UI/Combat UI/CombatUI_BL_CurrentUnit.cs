@@ -20,7 +20,7 @@ public class CombatUI_BL_CurrentUnit : AUIPanel
     {
         if (unit == null) return;
 
-        unitPortrait.sprite = unit.imgProfile;
+        unitPortrait.sprite = unit.dbData.profilePicture;
         txtUnitName.text = unit.GetName();
 
         txtUnitHitPoints.text = unit.hitPointsCurrent + "/" + unit.hitPointsMax;

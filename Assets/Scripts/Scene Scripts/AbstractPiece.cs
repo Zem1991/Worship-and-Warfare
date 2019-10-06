@@ -112,6 +112,8 @@ public abstract class AbstractPiece : MonoBehaviour
 
         if (path != null && path.Count > 1)
         {
+            nextTile = null;
+
             AbstractTile from = path[0].tile;
             AbstractTile to = path[1].tile;
             OctoDirXZ dir = from.GetNeighbourDirection(to);
@@ -192,7 +194,6 @@ public abstract class AbstractPiece : MonoBehaviour
 
         if (targetPiece)
         {
-            //nextTile = null;
             PerformPieceInteraction();
         }
 

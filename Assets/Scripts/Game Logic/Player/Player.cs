@@ -14,6 +14,7 @@ public enum PlayerType
 public class Player : MonoBehaviour
 {
     [Header("Identification")]
+    public int id;
     public PlayerType type;
     public Color color;
     public string playerName;
@@ -25,6 +26,17 @@ public class Player : MonoBehaviour
     [Header("Game Flow")]
     public int currentTurn;
     public bool currentTurnAvailable;
+
+    public void Initialize(PlayerData data, int id)
+    {
+        this.id = id;
+
+        type = data.playerType;
+        color = PlayerManager.PLAYER_COLORS[data.colorId];
+        playerName = data.name;
+
+        name = "P" + id + " - " + playerName;
+    }
 
     public bool HasTurn()
     {

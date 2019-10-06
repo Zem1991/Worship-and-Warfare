@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerManager : AbstractSingleton<PlayerManager>
 {
-    public readonly int MAX_PLAYERS = 2;
-    public readonly Color[] PLAYER_COLORS =
+    public static readonly int MAX_PLAYERS = 2;
+    public static readonly Color[] PLAYER_COLORS =
     {
         Color.red,
         Color.blue,
@@ -38,9 +38,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         RemovePlayers();
 
-        foreach (var item in data)
+        for (int i = 0; i < data.Length; i++)
         {
-            InstantiatePlayer(item);
+            InstantiatePlayer(data[i], i);
         }
 
         activePlayers = new List<Player>(allPlayers);
@@ -52,17 +52,13 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
     }
 
-    private void InstantiatePlayer(PlayerData data)
+    private void InstantiatePlayer(PlayerData data, int id)
     {
         Player prefab = AllPrefabs.Instance.player;
 
         Player newPlayer = Instantiate(prefab, transform);
+        newPlayer.Initialize(data, id);
         allPlayers.Add(newPlayer);
-
-        newPlayer.color = PLAYER_COLORS[data.colorId];
-        newPlayer.playerName = data.name;
-
-        newPlayer.name = newPlayer.playerName;
     }
 
     //public void InactivatePlayer(Player p)
