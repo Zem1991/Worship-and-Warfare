@@ -103,10 +103,10 @@ public abstract class AbstractPiece : MonoBehaviour
         return HasPath() && this.targetTile == targetTile;
     }
 
-    public void SetPath(List<PathNode> path, int pathCost, AbstractTile targetTile)
+    public void SetPath(PathfindResults pathfindResults, AbstractTile targetTile)
     {
-        this.path = path;
-        this.pathCost = pathCost;
+        path = pathfindResults.path;
+        pathCost = Mathf.CeilToInt(pathfindResults.pathCost);
         this.targetTile = targetTile;
         //Debug.Log("PIECE " + name + " got a new path with size " + pathCost);
 

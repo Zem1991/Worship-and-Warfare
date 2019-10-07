@@ -64,7 +64,7 @@ public static class CombatLogic
         if (atrDif > 0)
         {
             float perDif = 0.025F * atrDif;
-            result -= perDif;
+            result += perDif;
         }
         return result;
     }

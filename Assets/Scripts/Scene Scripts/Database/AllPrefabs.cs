@@ -8,6 +8,7 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
     public InputHighlight inputHighlight;
 
     [Header("Player")]
+    public AIPersonality aiPersonality;
     public Player player;
 
     [Header("Any")]

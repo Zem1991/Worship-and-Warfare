@@ -4,13 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum GameScheme
-{
-    FIELD,
-    TOWN,
-    COMBAT
-}
-
 public class GameManager : AbstractSingleton<GameManager>
 {
     public const string SCENE_DATABASE = "Database";
@@ -275,6 +268,8 @@ public class GameManager : AbstractSingleton<GameManager>
         currentTurn = 0;
         NextTurnForAll();
         timeElapsed = TimeSpan.Zero;
+
+        PlayerManager.Instance.RunAIPlayers();
 
         scenarioStarted = true;
         Debug.Log("Scenario started.");

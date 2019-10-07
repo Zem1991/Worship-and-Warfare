@@ -104,8 +104,8 @@ public class FieldPieceHandler : MonoBehaviour
     {
         Pathfinder.FindPath(piece.currentTile, targetTile, Pathfinder.OctoHeuristic,
             needGroundAccess, needWaterAccess, needLavaAccess,
-            out List<PathNode> result, out float pathCost);
-        piece.SetPath(result, Mathf.CeilToInt(pathCost), targetTile);
+            out PathfindResults pathfindResults);
+        piece.SetPath(pathfindResults, targetTile);
     }
 
     public void PartiesAreInteracting(FieldPiece sender, FieldPiece receiver)

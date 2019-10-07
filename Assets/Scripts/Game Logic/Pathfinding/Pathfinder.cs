@@ -3,19 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public struct PathfindResults
+{
+    public List<PathNode> path;
+    public float pathCost;
+    public int operations;
+
+    public PathfindResults(List<PathNode> path, float pathCost, int operations)
+    {
+        this.path = path;
+        this.pathCost = pathCost;
+        this.operations = operations;
+    }
+}
+
 public static class Pathfinder
 {
     public const float DIAGONAL_MODIFIER_OCTO = 0.71F;
     public const float DIAGONAL_MODIFIER_HEX = 0.87F;
 
-    public static void FindPath(AbstractTile startTile, AbstractTile targetTile, Func<PathNode, PathNode, float> heuristic,
+    public static bool FindPath(AbstractTile startTile, AbstractTile targetTile, Func<PathNode, PathNode, float> heuristic,
         bool needGroundAccess, bool needWaterAccess, bool needLavaAccess,
-        out List<PathNode> result, out float pathCost)
+        out PathfindResults pathfindResults)
     {
-        result = null;
-        pathCost = 0;
-        float operations = 0;
-        if (!targetTile.occupantPiece && !targetTile.IsAcessible(needGroundAccess, needWaterAccess, needLavaAccess)) return;
+        pathfindResults = new PathfindResults(new List<PathNode>(), 0, 0);
+        if (!targetTile.occupantPiece && !targetTile.IsAcessible(needGroundAccess, needWaterAccess, needLavaAccess)) return false;
 
         PathNode startPN = new PathNode(startTile);
         PathNode targetPN = new PathNode(targetTile);
@@ -25,8 +37,8 @@ public static class Pathfinder
         openList.Add(startPN);
         while (openList.Count > 0)
         {
-            // New operation: process an PathNode
-            operations++;
+            // New operation: process an new PathNode
+            pathfindResults.operations++;
 
             // Get the PathNode with the lowest totalDistance/fCost
             PathNode currentPN = openList[0];
@@ -45,8 +57,8 @@ public static class Pathfinder
             // Make path if the target node was found
             if (currentPN.tile.id == targetTile.id)
             {
-                MakePath(startPN, currentPN, heuristic, out result, out pathCost);
-                return;
+                MakePath(pathfindResults, startPN, currentPN, heuristic);
+                return true;
             }
 
             // Identify and process accessible neighbouring nodes
@@ -70,9 +82,6 @@ public static class Pathfinder
                 float moveCost = currentPN.gCost_DistFromStart + heuristic(currentPN, neighbourPN);
                 if (!neighbourOnOpenList || moveCost < neighbourPN.gCost_DistFromStart)
                 {
-                    // New operation: create/update an PathNode
-                    operations++;
-
                     neighbourPN.gCost_DistFromStart = moveCost;
                     neighbourPN.hCost_DistFromTarget = heuristic(neighbourPN, targetPN);
                     neighbourPN.previous = currentPN;
@@ -80,6 +89,8 @@ public static class Pathfinder
                 }
             }
         }
+
+        return false;
     }
 
     public static float OctoHeuristic(PathNode from, PathNode to)
@@ -138,18 +149,15 @@ public static class Pathfinder
         return heuristic(from, to);
     }
 
-    private static void MakePath(PathNode startNode, PathNode targetNode, Func<PathNode, PathNode, float> heuristic,
-        out List<PathNode> result, out float pathCost)
+    private static void MakePath(PathfindResults pathfindResults, PathNode startNode, PathNode targetNode, Func<PathNode, PathNode, float> heuristic)
     {
-        result = new List<PathNode>();
-        pathCost = 0;
         PathNode currentNode = targetNode;
         while (currentNode != startNode)
         {
-            result.Add(currentNode);
-            pathCost += heuristic(currentNode, currentNode.previous);
+            pathfindResults.path.Add(currentNode);
+            pathfindResults.pathCost += heuristic(currentNode, currentNode.previous);
             currentNode = currentNode.previous;
         }
-        result.Reverse();
+        pathfindResults.path.Reverse();
     }
 }

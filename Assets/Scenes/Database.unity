@@ -515,6 +515,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputHighlight: {fileID: 6205666536738310281, guid: 5b702608e16dadd4bbc44d29595780b2,
     type: 3}
+  aiPersonality: {fileID: 5587727669011322607, guid: 1638d96d6c2ca5442afdfb1df085412a,
+    type: 3}
   player: {fileID: 7763124464079871161, guid: 269613eb47fcca74cb8d7b50b6195412, type: 3}
   hero: {fileID: 8507488037947193599, guid: 96895e799d8318f409f080a41f243636, type: 3}
   unit: {fileID: 1485436908184088651, guid: a9ff8d2df2ae55046a37b63525e48252, type: 3}

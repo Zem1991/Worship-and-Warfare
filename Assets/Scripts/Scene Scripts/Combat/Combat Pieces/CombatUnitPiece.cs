@@ -86,7 +86,9 @@ public class CombatUnitPiece : AbstractCombatPiece
     {
         CombatUnitPiece targetUnit = targetPiece as CombatUnitPiece;
         CombatPieceHandler cph = CombatManager.Instance.pieceHandler;
-        return CombatLogic.DamageCalculation(unit, targetUnit.unit, cph.attackerHero?.hero, cph.defenderHero?.hero);
+        Hero attackerHero = cph.GetHero(owner);
+        Hero defenderHero = cph.GetHero(targetUnit.owner);
+        return CombatLogic.DamageCalculation(unit, targetUnit.unit, attackerHero, defenderHero);
     }
 
     public override void Attack(bool ranged)

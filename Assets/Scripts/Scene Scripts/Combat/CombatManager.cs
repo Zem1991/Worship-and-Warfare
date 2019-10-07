@@ -2,13 +2,6 @@
 using System.Linq;
 using UnityEngine;
 
-public enum CombatResult
-{
-    NOT_FINISHED,
-    ATTACKER_WON,
-    DEFENDER_WON
-}
-
 public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 {
     private const string localPlayerVictoryMsg = "You won the battle!";
@@ -100,6 +93,12 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
             turnSequence.RemoveAt(0);
             CombatUI.Instance.turnSequence.RemoveFirstFromTurnSequence();
+
+            Player owner = currentUnit.owner;
+            if (owner.type == PlayerType.COMPUTER)
+            {
+                owner.aiPersonality.CombatRoutine();
+            }
         }
         else
         {

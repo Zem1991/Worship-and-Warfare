@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -48,17 +49,25 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         if (!localPlayer)
         {
             Debug.LogWarning("The Local Player was set to the first player as a safety.");
-            localPlayer = activePlayers[0];
+            localPlayer = allPlayers[0];
         }
     }
 
-    private void InstantiatePlayer(PlayerData data, int id)
+    public void InstantiatePlayer(PlayerData data, int id)
     {
         Player prefab = AllPrefabs.Instance.player;
 
         Player newPlayer = Instantiate(prefab, transform);
         newPlayer.Initialize(data, id);
         allPlayers.Add(newPlayer);
+    }
+
+    public void RunAIPlayers()
+    {
+        foreach (Player p in allPlayers)
+        {
+            p.aiPersonality?.RunAI();
+        }
     }
 
     //public void InactivatePlayer(Player p)

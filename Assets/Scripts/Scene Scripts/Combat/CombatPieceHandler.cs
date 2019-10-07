@@ -168,8 +168,33 @@ public class CombatPieceHandler : MonoBehaviour
     {
         Pathfinder.FindPath(piece.currentTile, targetTile, Pathfinder.HexHeuristic,
             needGroundAccess, needWaterAccess, needLavaAccess,
-            out List<PathNode> result, out float pathCost);
-        piece.SetPath(result, Mathf.CeilToInt(pathCost), targetTile);
+            out PathfindResults pathfindResults);
+        piece.SetPath(pathfindResults, targetTile);
+    }
+
+    public Hero GetHero(Player player)
+    {
+        CombatManager cm = CombatManager.Instance;
+        if (player == cm.attacker) return attackerHero?.hero;
+        if (player == cm.defender) return defenderHero?.hero;
+        return null;
+    }
+
+    public bool GetPieceList(Player owner, bool enemyPieces, out List<CombatUnitPiece> list)
+    {
+        list = null;
+        CombatManager cm = CombatManager.Instance;
+        if (owner == cm.attacker)
+        {
+            if (enemyPieces) list = defenderUnits;
+            else list = attackerUnits;
+        }
+        else if (owner == cm.defender)
+        {
+            if (enemyPieces) list = attackerUnits;
+            else list = defenderUnits;
+        }
+        return list != null;
     }
 
     private void CheckBattleEnd()
