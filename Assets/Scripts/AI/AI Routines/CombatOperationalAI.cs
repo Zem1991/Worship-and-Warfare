@@ -6,7 +6,7 @@ using UnityEngine;
 public class CombatOperationalAI : AbstractAIRoutine
 {
     [Header("Readings")]
-    public CombatUnitPiece currentUnit;
+    public AbstractCombatPiece currentUnit;
 
     [Header("Skill calculations")]
     public int skill;
@@ -15,7 +15,7 @@ public class CombatOperationalAI : AbstractAIRoutine
 
     [Header("Attack calculations")]
     public int attack;
-    public CombatUnitPiece attackTarget;
+    public AbstractCombatPiece attackTarget;
 
     [Header("Other calculations")]
     public int defend;
@@ -48,7 +48,7 @@ public class CombatOperationalAI : AbstractAIRoutine
 
     private void ReadCurrentUnit()
     {
-        CombatUnitPiece current = CombatManager.Instance.currentUnit;
+        AbstractCombatPiece current = CombatManager.Instance.currentPiece;
         currentUnit = current.owner == aiPersonality.player ? current : null;
     }
 
@@ -67,7 +67,6 @@ public class CombatOperationalAI : AbstractAIRoutine
         if (!cph.GetPieceList(aiPersonality.player, true, out unitList)) return;
         unitList = cph.GetActiveUnits(unitList);
 
-        attack = 100;   //for now, we can only attack the enemy
         if (currentUnit.hasRangedAttack)
         {
             Dictionary<CombatUnitPiece, float> mapUnitDistance = new Dictionary<CombatUnitPiece, float>();
@@ -77,7 +76,7 @@ public class CombatOperationalAI : AbstractAIRoutine
                 mapUnitDistance.Add(unit, distance);
             }
             mapUnitDistance = mapUnitDistance.OrderBy(a => a.Value).ToDictionary(a => a.Key, a => a.Value);
-            attackTarget = mapUnitDistance.First().Key;
+            if (mapUnitDistance.Count > 0) attackTarget = mapUnitDistance.First().Key;
         }
         else
         {
@@ -89,9 +88,11 @@ public class CombatOperationalAI : AbstractAIRoutine
                     out PathfindResults path);
                 mapUnitPath.Add(unit, path);
             }
-            mapUnitPath = mapUnitPath.OrderBy(a => a.Value.pathCost).ToDictionary(a => a.Key, a => a.Value);
-            attackTarget = mapUnitPath.First().Key;
+            mapUnitPath = mapUnitPath.OrderBy(a => a.Value.pathTotalCost).ToDictionary(a => a.Key, a => a.Value);
+            if (mapUnitPath.Count > 0) attackTarget = mapUnitPath.First().Key;
         }
+
+        if (attackTarget) attack = 100;   //for now, we can only attack the enemy
     }
 
     private void CalculateDefendPriority()
@@ -170,8 +171,7 @@ public class CombatOperationalAI : AbstractAIRoutine
             case CombatOperationalDecision.SKILL:
                 break;
             case CombatOperationalDecision.ATTACK:
-                currentUnit.targetPiece = attackTarget;
-                currentUnit.PerformPieceInteraction();
+                currentUnit.InteractWithPiece(attackTarget, false);
                 break;
             case CombatOperationalDecision.DEFEND:
                 break;

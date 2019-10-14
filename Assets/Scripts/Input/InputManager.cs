@@ -13,6 +13,11 @@ public class InputManager : AbstractSingleton<InputManager>
     public Vector3 mouseAfterBorders;
     public bool cursorOnPlayArea;
 
+    [Header("Highlight Colors")]
+    public Color highlightDefault = Color.white;
+    public Color highlightAllowed = Color.green;
+    public Color highlightDenied = Color.red;
+
     // Start is called before the first frame update
     void Start()
     {

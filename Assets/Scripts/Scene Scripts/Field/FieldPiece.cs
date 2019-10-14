@@ -33,6 +33,8 @@ public class FieldPiece : AbstractPiece
             name = "P" + owner.id + " - Stack of " + relevantUnit.GetName();
             //name = "Army of " + relevantUnit.dbData.namePlural;
         }
+
+        CalculateMovementPoints();
     }
 
     protected override void AnimatorParameters()
@@ -49,6 +51,22 @@ public class FieldPiece : AbstractPiece
         if (direction.z < 0) anim_directionZ = -1;
         if (direction.z > 0) anim_directionZ = 1;
         animator.SetFloat("Direction Z", anim_directionZ);
+    }
+
+    public override void CalculateMovementPoints()
+    {
+        //TODO ACTUAL CALCULATIONS
+        movementPoints = 1000;
+    }
+
+    public override void StartTurn()
+    {
+        CalculateMovementPoints();
+    }
+
+    public override void EndTurn()
+    {
+        throw new System.NotImplementedException();
     }
 
     public override void InteractWithTile(AbstractTile target, bool canPathfind)

@@ -13,14 +13,6 @@ public class CombatPieceHandler : MonoBehaviour
     public CombatHeroPiece defenderHero;
     public List<CombatUnitPiece> defenderUnits;
 
-    void Update()
-    {
-        if (CombatManager.Instance.combatStarted)
-        {
-            CheckBattleEnd();
-        }
-    }
-
     public void Remove()
     {
         if (attackerHero) Destroy(attackerHero.gameObject);
@@ -195,22 +187,5 @@ public class CombatPieceHandler : MonoBehaviour
             else list = defenderUnits;
         }
         return list != null;
-    }
-
-    private void CheckBattleEnd()
-    {
-        int attackerActive = GetActiveUnits(attackerUnits).Count;
-        int defenderActive = GetActiveUnits(defenderUnits).Count;
-
-        if (attackerActive > 0 && defenderActive <= 0)
-        {
-            int attackerIdle = GetIdleUnits(attackerUnits).Count;
-            if (attackerIdle >= attackerActive) CombatManager.Instance.CombatEnd(CombatResult.ATTACKER_WON);
-        }
-        else if (defenderActive > 0 && attackerActive <= 0)
-        {
-            int defenderIdle = GetIdleUnits(defenderUnits).Count;
-            if (defenderIdle >= defenderActive) CombatManager.Instance.CombatEnd(CombatResult.DEFENDER_WON);
-        }
     }
 }

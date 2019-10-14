@@ -15,7 +15,7 @@ public class Unit : MonoBehaviour
     public int damageMax;
     public bool hasRangedAttack;
     public int resistance;
-    public int speed;
+    public int movementRange;
     public int initiative;
 
     public void Initialize(UnitData unitData, DB_Unit dbData)
@@ -31,7 +31,7 @@ public class Unit : MonoBehaviour
         damageMax = dbData.damageMax;
         hasRangedAttack = dbData.hasRangedAttack;
         resistance = dbData.resistance;
-        speed = dbData.movementRange;
+        movementRange = dbData.movementRange;
         initiative = dbData.initiative;
 
         name = GetName();

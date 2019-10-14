@@ -9,6 +9,7 @@ public class PathNode
 
     // Where this node came from during the pathfinding process
     public PathNode previous;
+    public int moveCost;
 
     public float gCost_DistFromStart;
     public float hCost_DistFromTarget;

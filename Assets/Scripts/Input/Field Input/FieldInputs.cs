@@ -36,15 +36,16 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
 
     public override void Awake()
     {
+        InputManager im = InputManager.Instance;
         InputHighlight prefabHighlight = AllPrefabs.Instance.inputHighlight;
 
         cursorHighlight = Instantiate(prefabHighlight, transform);
         cursorHighlight.name = "Cursor Highlight";
-        cursorHighlight.ChangeSprite(cursorSprite);
+        cursorHighlight.ChangeSprite(cursorSprite, im.highlightDefault);
 
         selectionHighlight = Instantiate(prefabHighlight, transform);
         selectionHighlight.name = "Selection Highlight";
-        selectionHighlight.ChangeSprite(selectionSprite);
+        selectionHighlight.ChangeSprite(selectionSprite, im.highlightDefault);
 
         base.Awake();
     }
@@ -265,13 +266,19 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
         movementHighlights.Clear();
         if (clearThenReturn) return;
 
-        InputHighlight prefabHighlight = AllPrefabs.Instance.inputHighlight;
         List<PathNode> path = selectionPiece.path;
         if (canCommandSelectedPiece &&
             selectionPiece.IsIdle() &&
             path != null)
         {
+            InputManager im = InputManager.Instance;
+            InputHighlight prefabHighlight = AllPrefabs.Instance.inputHighlight;
+
             movementHighlights = new List<InputHighlight>();
+            int movePoints = selectionPiece.movementPoints;
+            int moveCost = 0;
+            Color moveColor;
+
             int totalNodes = path.Count;
             for (int i = -1; i < totalNodes - 1; i++)
             {
@@ -279,6 +286,9 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
 
                 FieldTile currentTile = (i == -1 ? selectionPiece.currentTile : path[i].tile) as FieldTile;
                 FieldTile nextTile = path[nextI].tile as FieldTile;
+
+                moveCost += path[nextI].moveCost;
+                moveColor = moveCost > movePoints ? im.highlightDenied : im.highlightAllowed;
 
                 Vector3 fromPos = currentTile.transform.position;
                 Vector3 toPos = nextTile.transform.position;
@@ -292,19 +302,19 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
                 InputHighlight step = Instantiate(prefabHighlight, pos, rot, transform);
                 movementHighlights.Add(step);
                 step.name = "Step #" + nextI;
-                step.ChangeSprite(movementArrowSprites[(int)dir]);
+                step.ChangeSprite(movementArrowSprites[(int)dir], moveColor);
 
                 InputHighlight marker = Instantiate(prefabHighlight, toPos, rot, transform);
                 movementHighlights.Add(marker);
                 if (nextI == totalNodes)
                 {
                     marker.name = "Final Marker";
-                    marker.ChangeSprite(movementMarkerSprites[1]);
+                    marker.ChangeSprite(movementMarkerSprites[1], moveColor);
                 }
                 else
                 {
                     marker.name = "Marker #" + nextI;
-                    marker.ChangeSprite(movementMarkerSprites[0]);
+                    marker.ChangeSprite(movementMarkerSprites[0], moveColor);
                 }
             }
         }

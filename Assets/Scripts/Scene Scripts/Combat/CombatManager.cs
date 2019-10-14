@@ -21,10 +21,19 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     [Header("Combat Flow")]
     public bool combatStarted;
     public int currentTurn;
-    public CombatUnitPiece currentUnit;
+    public AbstractCombatPiece currentPiece;
+    public AbstractCombatPiece retaliatorPiece;
     public List<CombatUnitPiece> turnSequence = new List<CombatUnitPiece>();
     public List<string> combatLog = new List<string>();
     public CombatResult result;
+
+    void Update()
+    {
+        if (combatStarted)
+        {
+            CheckBattleEnd();
+        }
+    }
 
     public void TerminateCombat()
     {
@@ -33,7 +42,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
         combatStarted = false;
         currentTurn = 0;
-        currentUnit = null;
+        currentPiece = null;
         turnSequence.Clear();
         result = CombatResult.NOT_FINISHED;
     }
@@ -78,23 +87,27 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
     public void NextUnit()
     {
+        retaliatorPiece = null;
+
+        if (CheckBattleEnd()) return;
+
         if (turnSequence.Count > 0)
         {
-            currentUnit = turnSequence[0];
-            Vector3 pos = currentUnit.transform.position;
+            currentPiece = turnSequence[0];
+            Vector3 pos = currentPiece.transform.position;
 
             CombatInputs ci = CombatInputs.Instance;
             ci.selectionPos = new Vector2Int((int)pos.x, (int)pos.z);
-            ci.selectionTile = currentUnit.currentTile as CombatTile;
-            ci.selectionPiece = currentUnit;
+            ci.selectionTile = currentPiece.currentTile as CombatTile;
+            ci.selectionPiece = currentPiece;
 
-            ci.selectionHighlight.transform.position = currentUnit.transform.position;
-            ci.canCommandSelectedPiece = currentUnit.owner == PlayerManager.Instance.localPlayer;
+            ci.selectionHighlight.transform.position = currentPiece.transform.position;
+            ci.canCommandSelectedPiece = currentPiece.owner == PlayerManager.Instance.localPlayer;
 
             turnSequence.RemoveAt(0);
             CombatUI.Instance.turnSequence.RemoveFirstFromTurnSequence();
 
-            Player owner = currentUnit.owner;
+            Player owner = currentPiece.owner;
             if (owner.type == PlayerType.COMPUTER)
             {
                 owner.aiPersonality.CombatRoutine();
@@ -110,6 +123,8 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     {
         if (CalculateFullTurnSequence())
         {
+            foreach (CombatUnitPiece cup in turnSequence) cup.StartTurn();
+
             NextUnit();
             currentTurn++;
         }
@@ -134,17 +149,17 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         CombatUI.Instance.turnSequence.CreateTurnSequence(turnSequence);
     }
 
-    //public void AddUnitToTurnSequence(CombatUnitPiece uc)
-    //{
-    //    turnSequence.Add(uc);
-    //    UpdateTurnSequence();
-    //}
+    public void AddUnitToTurnSequence(CombatUnitPiece uc)
+    {
+        turnSequence.Add(uc);
+        UpdateTurnSequence();
+    }
 
-    //public void RemoveUnitFromTurnSequence(CombatUnitPiece uc)
-    //{
-    //    turnSequence.Remove(uc);
-    //    UpdateTurnSequence();
-    //}
+    public void RemoveUnitFromTurnSequence(CombatUnitPiece uc)
+    {
+        turnSequence.Remove(uc);
+        UpdateTurnSequence();
+    }
 
     public void EscapeMenu()
     {
@@ -220,5 +235,25 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     public void ClearLogs()
     {
         combatLog.Clear();
+    }
+
+    private bool CheckBattleEnd()
+    {
+        int attackerActive = pieceHandler.GetActiveUnits(pieceHandler.attackerUnits).Count;
+        int defenderActive = pieceHandler.GetActiveUnits(pieceHandler.defenderUnits).Count;
+
+        if (attackerActive > 0 && defenderActive <= 0)
+        {
+            int attackerIdle = pieceHandler.GetIdleUnits(pieceHandler.attackerUnits).Count;
+            if (attackerIdle >= attackerActive) CombatEnd(CombatResult.ATTACKER_WON);
+            return true;
+        }
+        else if (defenderActive > 0 && attackerActive <= 0)
+        {
+            int defenderIdle = pieceHandler.GetIdleUnits(pieceHandler.defenderUnits).Count;
+            if (defenderIdle >= defenderActive) CombatEnd(CombatResult.DEFENDER_WON);
+            return true;
+        }
+        return false;
     }
 }

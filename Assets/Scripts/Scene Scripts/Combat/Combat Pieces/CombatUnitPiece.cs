@@ -11,16 +11,22 @@ public class CombatUnitPiece : AbstractCombatPiece
     {
         this.owner = owner;
         this.unit = unit;
+
         this.spawnId = spawnId;
         this.defenderSide = defenderSide;
-
         hasRangedAttack = unit.hasRangedAttack;
 
+        CalculateMovementPoints();
         FlipSpriteHorizontally(defenderSide);
         SetAnimatorOverrideController(unit.dbData.animatorCombat);
 
         name = "P" + owner.id + " - Stack of " + unit.GetName();
         //name = "P" + owner.id + " - Stack of " + unit.stackSizeCurrent + " " + unit.GetName();
+    }
+
+    public override void CalculateMovementPoints()
+    {
+        movementPoints = unit.movementRange * 100;
     }
 
     public override void PerformPieceInteraction()
@@ -56,7 +62,7 @@ public class CombatUnitPiece : AbstractCombatPiece
             {
                 isAttacking_End = false;
                 targetPiece = null;
-                if (acp.retaliationTarget)
+                if (acp.retaliationTarget && !acp.isDead)
                 {
                     acp.Retaliate();
                 }
@@ -94,7 +100,12 @@ public class CombatUnitPiece : AbstractCombatPiece
     public override void Attack(bool ranged)
     {
         AbstractCombatPiece acp = targetPiece as AbstractCombatPiece;
-        if (!ranged) acp.retaliationTarget = this;
+
+        if (!ranged)
+        {
+            CombatManager.Instance.retaliatorPiece = acp;
+            acp.retaliationTarget = this;
+        }
         isAttacking_Start = true;
         //Debug.LogWarning("InteractWithPiece insta-killed the target!");
         //targetUnit.hitPointsCurrent = 0;
@@ -144,5 +155,7 @@ public class CombatUnitPiece : AbstractCombatPiece
 
         currentTile.occupantPiece = null;
         (currentTile as CombatTile).deadPieces.Add(this);
+
+        CombatManager.Instance.RemoveUnitFromTurnSequence(this);
     }
 }

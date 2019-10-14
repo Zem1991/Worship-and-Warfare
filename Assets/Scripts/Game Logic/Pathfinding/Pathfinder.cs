@@ -6,13 +6,13 @@ using UnityEngine;
 public struct PathfindResults
 {
     public List<PathNode> path;
-    public float pathCost;
+    public float pathTotalCost;
     public int operations;
 
-    public PathfindResults(List<PathNode> path, float pathCost, int operations)
+    public PathfindResults(List<PathNode> path, float pathTotalCost, int operations)
     {
         this.path = path;
-        this.pathCost = pathCost;
+        this.pathTotalCost = pathTotalCost;
         this.operations = operations;
     }
 }
@@ -57,7 +57,7 @@ public static class Pathfinder
             // Make path if the target node was found
             if (currentPN.tile.id == targetTile.id)
             {
-                MakePath(pathfindResults, startPN, currentPN, heuristic);
+                pathfindResults = MakePath(pathfindResults, startPN, currentPN);
                 return true;
             }
 
@@ -79,10 +79,12 @@ public static class Pathfinder
                 bool neighbourOnOpenList = (existingPN != null);
                 if (neighbourOnOpenList) neighbourPN = existingPN;
 
-                float moveCost = currentPN.gCost_DistFromStart + heuristic(currentPN, neighbourPN);
-                if (!neighbourOnOpenList || moveCost < neighbourPN.gCost_DistFromStart)
+                int moveCost = Mathf.CeilToInt(heuristic(currentPN, neighbourPN));
+                float gCost = currentPN.gCost_DistFromStart + moveCost;
+                if (!neighbourOnOpenList || gCost < neighbourPN.gCost_DistFromStart)
                 {
-                    neighbourPN.gCost_DistFromStart = moveCost;
+                    neighbourPN.moveCost = moveCost;
+                    neighbourPN.gCost_DistFromStart = gCost;
                     neighbourPN.hCost_DistFromTarget = heuristic(neighbourPN, targetPN);
                     neighbourPN.previous = currentPN;
                     if (!neighbourOnOpenList) openList.Add(neighbourPN);
@@ -113,25 +115,26 @@ public static class Pathfinder
 
     public static float HexHeuristic(PathNode from, PathNode to)
     {
-        Vector2Int fromId = from.tile.posId;
-        Vector2Int toId = to.tile.posId;
-        int distX = Mathf.Abs(fromId.x - toId.x);
-        int distY = Mathf.Abs(fromId.y - toId.y);
-        bool isDiagonal = (distX != 0 && distY != 0);
-
-        int fromCost = from.tile.groundMovementCost;
-        int toCost = to.tile.groundMovementCost;
-        float combinedCosts = (fromCost + toCost) / 2F;
-
-        float result = distX + distY;
-        result *= combinedCosts;
-        if (isDiagonal) result *= DIAGONAL_MODIFIER_HEX;
-        return result;
+        //Vector2Int fromId = from.tile.posId;
+        //Vector2Int toId = to.tile.posId;
+        //int distX = Mathf.Abs(fromId.x - toId.x);
+        //int distY = Mathf.Abs(fromId.y - toId.y);
+        //bool isDiagonal = (distX != 0 && distY != 0);
 
         //int fromCost = from.tile.groundMovementCost;
         //int toCost = to.tile.groundMovementCost;
-        //float result = (fromCost + toCost) / 2F;
+        //float combinedCosts = (fromCost + toCost) / 2F;
+        //return combinedCosts;
+
+        //float result = distX + distY;
+        //result *= combinedCosts;
+        //if (isDiagonal) result *= DIAGONAL_MODIFIER_HEX;      //TODO IDK
         //return result;
+
+        int fromCost = from.tile.groundMovementCost;
+        int toCost = to.tile.groundMovementCost;
+        float result = (fromCost + toCost) / 2F;
+        return result;
     }
 
     private static PathNode ListContainsNodeId(IList<PathNode> list, Vector2Int id)
@@ -144,20 +147,22 @@ public static class Pathfinder
         return null;
     }
 
-    private static float DistanceCalcs(PathNode from, PathNode to, Func<PathNode, PathNode, float> heuristic)
-    {
-        return heuristic(from, to);
-    }
+    //private static float DistanceCalcs(PathNode from, PathNode to, Func<PathNode, PathNode, float> heuristic)
+    //{
+    //    return heuristic(from, to);
+    //}
 
-    private static void MakePath(PathfindResults pathfindResults, PathNode startNode, PathNode targetNode, Func<PathNode, PathNode, float> heuristic)
+    private static PathfindResults MakePath(PathfindResults pathfindResults, PathNode startNode, PathNode targetNode)
     {
         PathNode currentNode = targetNode;
         while (currentNode != startNode)
         {
             pathfindResults.path.Add(currentNode);
-            pathfindResults.pathCost += heuristic(currentNode, currentNode.previous);
+            pathfindResults.pathTotalCost += currentNode.moveCost;
+            //pathfindResults.pathCost += heuristic(currentNode, currentNode.previous);
             currentNode = currentNode.previous;
         }
         pathfindResults.path.Reverse();
+        return pathfindResults;
     }
 }

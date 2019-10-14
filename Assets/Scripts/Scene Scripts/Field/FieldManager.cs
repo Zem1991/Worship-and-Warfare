@@ -26,6 +26,14 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         pieceHandler.RemovePiece(piece);
     }
 
+    public void NextTurnForAll()
+    {
+        foreach (var item in pieceHandler.pieces)
+        {
+            item.StartTurn();
+        }
+    }
+
     public void Hide()
     {
         gameObject.SetActive(false);

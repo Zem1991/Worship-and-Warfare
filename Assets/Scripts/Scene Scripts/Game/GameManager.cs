@@ -169,6 +169,8 @@ public class GameManager : AbstractSingleton<GameManager>
         PlayerManager.Instance.RefreshTurnForActivePlayers(currentTurn);
         currentPlayer = PlayerManager.Instance.activePlayers[0];
 
+        FieldManager.Instance.NextTurnForAll();
+
         NextDayWeekMonth();
     }
 

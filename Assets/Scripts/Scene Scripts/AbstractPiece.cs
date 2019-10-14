@@ -13,11 +13,10 @@ public abstract class AbstractPiece : MonoBehaviour
     [Header("Identification")]
     public Player owner;
 
-    [Header("Pathfinding")]
-    public List<PathNode> path = new List<PathNode>();
-    public int pathCost;
-
     [Header("Movement")]
+    public List<PathNode> path = new List<PathNode>();
+    public int pathTotalCost;
+    public int movementPoints;
     public bool inMovement;
     public bool stopWasCalled;
     public AbstractTile currentTile;
@@ -106,7 +105,7 @@ public abstract class AbstractPiece : MonoBehaviour
     public void SetPath(PathfindResults pathfindResults, AbstractTile targetTile)
     {
         path = pathfindResults.path;
-        pathCost = Mathf.CeilToInt(pathfindResults.pathCost);
+        pathTotalCost = Mathf.CeilToInt(pathfindResults.pathTotalCost);
         this.targetTile = targetTile;
         //Debug.Log("PIECE " + name + " got a new path with size " + pathCost);
 
@@ -157,17 +156,15 @@ public abstract class AbstractPiece : MonoBehaviour
 
         if (nextTile == null)
         {
-            if (stopWasCalled ||
-                path.Count <= 0)
+            if (!stopWasCalled &&
+                path.Count > 0 &&
+                path[0].moveCost <= movementPoints)
             {
-                stopWasCalled = false;
-                doStop = true;
-            }
-            else
-            {
-                nextTile = path[0].tile;
+                PathNode pNode = path[0];
+                movementPoints -= pNode.moveCost;
                 path.RemoveAt(0);
 
+                nextTile = pNode.tile;
                 OctoDirXZ dirToLook = currentTile.GetNeighbourDirection(nextTile);
                 LookAtDirection(dirToLook);
 
@@ -178,6 +175,11 @@ public abstract class AbstractPiece : MonoBehaviour
                     targetPiece = nextTile.occupantPiece;
                     if (targetPiece) doStop = true;
                 }
+            }
+            else
+            {
+                stopWasCalled = false;
+                doStop = true;
             }
         }
 
@@ -194,6 +196,7 @@ public abstract class AbstractPiece : MonoBehaviour
 
         if (targetPiece)
         {
+            nextTile = null;    //Doing this here prevents that a piece walks over the spot of another removed piece.
             PerformPieceInteraction();
         }
 
@@ -210,6 +213,9 @@ public abstract class AbstractPiece : MonoBehaviour
     }
 
     protected abstract void AnimatorParameters();
+    public abstract void CalculateMovementPoints();
+    public abstract void StartTurn();
+    public abstract void EndTurn();
     public abstract void InteractWithTile(AbstractTile target, bool canPathfind);
     public abstract void InteractWithPiece(AbstractPiece target, bool canPathfind);
     public abstract void PerformPieceInteraction();

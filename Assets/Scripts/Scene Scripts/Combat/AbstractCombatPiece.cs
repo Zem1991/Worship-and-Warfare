@@ -46,7 +46,9 @@ public abstract class AbstractCombatPiece : AbstractPiece
     {
         if (CombatManager.Instance.IsCombatRunning())
         {
+            bool inMove = inMovement;
             base.MakeMove();
+            if (inMove && IsIdle()) EndTurn();
         }
     }
 
@@ -71,6 +73,18 @@ public abstract class AbstractCombatPiece : AbstractPiece
 
         anim_dead = isDead;
         animator.SetBool("Dead", anim_dead);
+    }
+
+    public override void StartTurn()
+    {
+        CalculateMovementPoints();
+    }
+
+    public override void EndTurn()
+    {
+        CombatManager cm = CombatManager.Instance;
+        if (cm.currentPiece == this) cm.NextUnit();
+        else if (cm.retaliatorPiece == this) cm.NextUnit();
     }
 
     public override void InteractWithTile(AbstractTile target, bool canPathfind)
@@ -123,15 +137,16 @@ public abstract class AbstractCombatPiece : AbstractPiece
         }
 
         CombatTile cTile = target.currentTile as CombatTile;
-        if (HasPath(cTile)) Move();
-        else CombatManager.Instance.pieceHandler.Pathfind(this, cTile);
-    }
-
-    public virtual void EndTurn()
-    {
-        CombatManager cm = CombatManager.Instance;
-        if (cm.currentUnit == this) cm.NextUnit();
-        else if (cm.currentUnit.retaliationTarget == this) cm.NextUnit();
+        if (canPathfind)
+        {
+            if (HasPath(cTile)) Move();
+            else CombatManager.Instance.pieceHandler.Pathfind(this, cTile);
+        }
+        else
+        {
+            CombatManager.Instance.pieceHandler.Pathfind(this, cTile);
+            if (HasPath(cTile)) Move();
+        }
     }
 
     public abstract void MakeAttack();

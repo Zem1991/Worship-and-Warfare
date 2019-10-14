@@ -28,7 +28,7 @@ public class CombatUI_BL_CurrentUnit : AUIPanel
 
         txtDamage.text = unit.damageMin.ToString() + " - " + unit.damageMax.ToString();
         txtResistance.text = unit.resistance.ToString();
-        txtSpeed.text = unit.speed.ToString();
+        txtSpeed.text = unit.movementRange.ToString();
         txtInitiative.text = unit.initiative.ToString();
     }
 }

@@ -9,18 +9,25 @@ public class CombatHeroPiece : AbstractCombatPiece
 
     public void Initialize(Hero hero, Player owner, int spawnId, bool defenderSide = false)
     {
-        this.hero = hero;
-        //hasRangedAttack = hero.hasRangedAttack;
-
         this.owner = owner;
+        this.hero = hero;
+
         this.spawnId = spawnId;
         this.defenderSide = defenderSide;
+        //hasRangedAttack = hero.hasRangedAttack;   //TODO LATER ?
 
+        CalculateMovementPoints();
         FlipSpriteHorizontally(defenderSide);
         SetAnimatorOverrideController(hero.dbData.classs.animatorCombat);
 
         name = "P" + owner.id + " - " + hero.dbData.heroName + ", " + hero.dbData.classs.className;
         //name = "P" + owner.id + " - " + hero.dbData.heroName + ", level " + hero.level + " " + hero.dbData.classs.className;
+    }
+
+    public override void CalculateMovementPoints()
+    {
+        //TODO THIS LATER
+        //throw new System.NotImplementedException();
     }
 
     public override void PerformPieceInteraction()
