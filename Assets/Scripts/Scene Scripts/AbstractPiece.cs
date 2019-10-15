@@ -13,12 +13,15 @@ public abstract class AbstractPiece : MonoBehaviour
     [Header("Identification")]
     public Player owner;
 
-    [Header("Movement")]
+    [Header("Movement variables")]
     public List<PathNode> path = new List<PathNode>();
     public int pathTotalCost;
-    public int movementPoints;
+    public int movementPointsCurrent;
+    public int movementPointsMax;
     public bool inMovement;
     public bool stopWasCalled;
+
+    [Header("Movement references")]
     public AbstractTile currentTile;
     public AbstractTile targetTile;
     public AbstractTile nextTile;
@@ -158,10 +161,10 @@ public abstract class AbstractPiece : MonoBehaviour
         {
             if (!stopWasCalled &&
                 path.Count > 0 &&
-                path[0].moveCost <= movementPoints)
+                path[0].moveCost <= movementPointsCurrent)
             {
                 PathNode pNode = path[0];
-                movementPoints -= pNode.moveCost;
+                movementPointsCurrent -= pNode.moveCost;
                 path.RemoveAt(0);
 
                 nextTile = pNode.tile;
@@ -213,7 +216,7 @@ public abstract class AbstractPiece : MonoBehaviour
     }
 
     protected abstract void AnimatorParameters();
-    public abstract void CalculateMovementPoints();
+    public abstract void ResetMovementPoints();
     public abstract void StartTurn();
     public abstract void EndTurn();
     public abstract void InteractWithTile(AbstractTile target, bool canPathfind);

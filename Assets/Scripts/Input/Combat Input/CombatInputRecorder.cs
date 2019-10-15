@@ -12,6 +12,7 @@ public class CombatInputRecorder : MonoBehaviour
     public bool escapeMenuDown;
     public bool selectionDown;
     public bool commandDown;
+    public bool endTurnDown;
 
     // Start is called before the first frame update
     void Start()
@@ -27,5 +28,6 @@ public class CombatInputRecorder : MonoBehaviour
         escapeMenuDown = listener.EscapeMenuDown();
         selectionDown = listener.SelectionDown();
         commandDown = listener.CommandDown();
+        endTurnDown = listener.EndTurnDown();
     }
 }

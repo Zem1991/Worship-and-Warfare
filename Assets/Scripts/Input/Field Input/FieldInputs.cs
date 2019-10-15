@@ -96,6 +96,8 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
             SelectionCommand();
 
             StopOrResumeCommand();
+
+            EndTurn();
         }
         MovementHighlights();
     }
@@ -244,6 +246,16 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
         if (recorder.stopOrResumeCommandDown) FieldManager.Instance.MakeSelectedPieceMove();
     }
 
+    private void EndTurn()
+    {
+        if (recorder.endTurnDown)
+        {
+            GameManager gm = GameManager.Instance;
+            PlayerManager pm = PlayerManager.Instance;
+            if (gm.currentPlayer == pm.localPlayer) FieldManager.Instance.EndTurnForCurrentPlayer();
+        }
+    }
+
     private void MovementHighlights()
     {
         bool clearThenReturn = false;
@@ -275,7 +287,7 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
             InputHighlight prefabHighlight = AllPrefabs.Instance.inputHighlight;
 
             movementHighlights = new List<InputHighlight>();
-            int movePoints = selectionPiece.movementPoints;
+            int movePoints = selectionPiece.movementPointsCurrent;
             int moveCost = 0;
             Color moveColor;
 

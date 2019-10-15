@@ -19,8 +19,8 @@ public struct PathfindResults
 
 public static class Pathfinder
 {
-    public const float DIAGONAL_MODIFIER_OCTO = 0.71F;
-    public const float DIAGONAL_MODIFIER_HEX = 0.87F;
+    public const float DIAGONAL_MODIFIER_OCTO = 0.7F;
+    //public const float DIAGONAL_MODIFIER_HEX = 0.87F;
 
     public static bool FindPath(AbstractTile startTile, AbstractTile targetTile, Func<PathNode, PathNode, float> heuristic,
         bool needGroundAccess, bool needWaterAccess, bool needLavaAccess,
@@ -97,18 +97,19 @@ public static class Pathfinder
 
     public static float OctoHeuristic(PathNode from, PathNode to)
     {
+        //int fromCost = from.tile.groundMovementCost;
+        //int toCost = to.tile.groundMovementCost;
+        //float fromToCost = (fromCost + toCost) / 2F;
+        float fromToCost = to.tile.groundMovementCost;
+
         Vector2Int fromId = from.tile.posId;
         Vector2Int toId = to.tile.posId;
         int distX = Mathf.Abs(fromId.x - toId.x);
         int distY = Mathf.Abs(fromId.y - toId.y);
         bool isDiagonal = (distX != 0 && distY != 0);
 
-        int fromCost = from.tile.groundMovementCost;
-        int toCost = to.tile.groundMovementCost;
-        float combinedCosts = (fromCost + toCost) / 2F;
-
         float result = distX + distY;
-        result *= combinedCosts;
+        result *= fromToCost;
         if (isDiagonal) result *= DIAGONAL_MODIFIER_OCTO;
         return result;
     }
@@ -131,9 +132,11 @@ public static class Pathfinder
         //if (isDiagonal) result *= DIAGONAL_MODIFIER_HEX;      //TODO IDK
         //return result;
 
-        int fromCost = from.tile.groundMovementCost;
-        int toCost = to.tile.groundMovementCost;
-        float result = (fromCost + toCost) / 2F;
+        //int fromCost = from.tile.groundMovementCost;
+        //int toCost = to.tile.groundMovementCost;
+        //float fromToCost = (fromCost + toCost) / 2F;
+        float fromToCost = to.tile.groundMovementCost;
+        float result = fromToCost;
         return result;
     }
 

@@ -11,6 +11,7 @@ public class CombatInputListener : MonoBehaviour
     public KeyCode kbm_escapeMenu = KeyCode.Escape;
     public KeyCode kbm_selection = KeyCode.Mouse0;
     public KeyCode kbm_command = KeyCode.Mouse1;
+    public KeyCode kbm_endTurn = KeyCode.Backspace;
 
     public Vector3 CursorAxes()
     {
@@ -47,6 +48,12 @@ public class CombatInputListener : MonoBehaviour
     public bool CommandDown()
     {
         bool kbm = Input.GetKeyDown(kbm_command);
+        return kbm;
+    }
+
+    public bool EndTurnDown()
+    {
+        bool kbm = Input.GetKeyDown(kbm_endTurn);
         return kbm;
     }
 }

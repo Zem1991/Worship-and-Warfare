@@ -34,7 +34,7 @@ public class FieldPiece : AbstractPiece
             //name = "Army of " + relevantUnit.dbData.namePlural;
         }
 
-        CalculateMovementPoints();
+        ResetMovementPoints();
     }
 
     protected override void AnimatorParameters()
@@ -53,15 +53,16 @@ public class FieldPiece : AbstractPiece
         animator.SetFloat("Direction Z", anim_directionZ);
     }
 
-    public override void CalculateMovementPoints()
+    public override void ResetMovementPoints()
     {
         //TODO ACTUAL CALCULATIONS
-        movementPoints = 1000;
+        movementPointsMax = 1000;
+        movementPointsCurrent = movementPointsMax;
     }
 
     public override void StartTurn()
     {
-        CalculateMovementPoints();
+        ResetMovementPoints();
     }
 
     public override void EndTurn()

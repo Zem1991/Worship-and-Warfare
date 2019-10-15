@@ -16,7 +16,7 @@ public class CombatHeroPiece : AbstractCombatPiece
         this.defenderSide = defenderSide;
         //hasRangedAttack = hero.hasRangedAttack;   //TODO LATER ?
 
-        CalculateMovementPoints();
+        ResetMovementPoints();
         FlipSpriteHorizontally(defenderSide);
         SetAnimatorOverrideController(hero.dbData.classs.animatorCombat);
 
@@ -24,7 +24,7 @@ public class CombatHeroPiece : AbstractCombatPiece
         //name = "P" + owner.id + " - " + hero.dbData.heroName + ", level " + hero.level + " " + hero.dbData.classs.className;
     }
 
-    public override void CalculateMovementPoints()
+    public override void ResetMovementPoints()
     {
         //TODO THIS LATER
         //throw new System.NotImplementedException();

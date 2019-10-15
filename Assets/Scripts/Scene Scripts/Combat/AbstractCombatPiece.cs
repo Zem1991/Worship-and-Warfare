@@ -77,7 +77,7 @@ public abstract class AbstractCombatPiece : AbstractPiece
 
     public override void StartTurn()
     {
-        CalculateMovementPoints();
+        ResetMovementPoints();
     }
 
     public override void EndTurn()

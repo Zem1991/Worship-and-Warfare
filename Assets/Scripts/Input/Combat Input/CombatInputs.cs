@@ -96,6 +96,8 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
 
                 SelectionHighlight();
                 SelectionCommand();
+
+                EndTurn();
             }
         }
         MovementHighlights();
@@ -240,6 +242,16 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         }
     }
 
+    private void EndTurn()
+    {
+        if (recorder.endTurnDown)
+        {
+            AbstractCombatPiece acp = CombatManager.Instance.currentPiece;
+            PlayerManager pm = PlayerManager.Instance;
+            if (acp.owner == pm.localPlayer) acp.EndTurn();
+        }
+    }
+
     private void MovementHighlights()
     {
         bool clearThenReturn = false;
@@ -271,7 +283,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
             InputHighlight prefabHighlight = AllPrefabs.Instance.inputHighlight;
 
             movementHighlights = new List<InputHighlight>();
-            int movePoints = selectionPiece.movementPoints;
+            int movePoints = selectionPiece.movementPointsCurrent;
             int moveCost = 0;
             Color moveColor;
 

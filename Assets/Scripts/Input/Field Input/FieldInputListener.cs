@@ -13,6 +13,7 @@ public class FieldInputListener : MonoBehaviour
     public KeyCode kbm_selection = KeyCode.Mouse0;
     public KeyCode kbm_command = KeyCode.Mouse1;
     public KeyCode kbm_stopOrResumeCommand = KeyCode.Space;
+    public KeyCode kbm_endTurn = KeyCode.Backspace;
 
     public Vector3 CursorAxes()
     {
@@ -61,6 +62,12 @@ public class FieldInputListener : MonoBehaviour
     public bool StopOrResumeCommandDown()
     {
         bool kbm = Input.GetKeyDown(kbm_stopOrResumeCommand);
+        return kbm;
+    }
+
+    public bool EndTurnDown()
+    {
+        bool kbm = Input.GetKeyDown(kbm_endTurn);
         return kbm;
     }
 }

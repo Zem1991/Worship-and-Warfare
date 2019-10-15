@@ -158,9 +158,22 @@ public class GameManager : AbstractSingleton<GameManager>
 
     public void EndTurnForCurrentPlayer()
     {
-        Player next = PlayerManager.Instance.EndTurnForPlayer(currentPlayer);
+        PlayerManager pm = PlayerManager.Instance;
+        FieldUI fUI = FieldUI.Instance;
+        fUI.timers.LockButtons();
+
+        Player next = pm.EndTurnForPlayer(currentPlayer);
         if (!next) NextTurnForAll();
         else currentPlayer = next;
+
+        if (currentPlayer == pm.localPlayer)
+        {
+            fUI.timers.UnlockButtons();
+        }
+        else if (currentPlayer.type == PlayerType.COMPUTER)
+        {
+            currentPlayer.aiPersonality.FieldRoutine();
+        }
     }
 
     private void NextTurnForAll()

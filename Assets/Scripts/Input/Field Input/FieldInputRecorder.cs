@@ -14,6 +14,7 @@ public class FieldInputRecorder : MonoBehaviour
     public bool selectionDown;
     public bool commandDown;
     public bool stopOrResumeCommandDown;
+    public bool endTurnDown;
 
     // Start is called before the first frame update
     void Start()
@@ -31,5 +32,6 @@ public class FieldInputRecorder : MonoBehaviour
         selectionDown = listener.SelectionDown();
         commandDown = listener.CommandDown();
         stopOrResumeCommandDown = listener.StopOrResumeCommandDown();
+        endTurnDown = listener.EndTurnDown();
     }
 }

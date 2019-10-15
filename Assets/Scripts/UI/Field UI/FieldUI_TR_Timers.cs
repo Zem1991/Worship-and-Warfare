@@ -15,4 +15,14 @@ public class FieldUI_TR_Timers : AUIPanel
         txtTurns.text = "Day " + gm.day + ", week " + gm.week + ", month " + gm.month;
         txtTimer.text = gm.timeElapsedText;
     }
+
+    public void LockButtons()
+    {
+        btnNextTurn.interactable = false;
+    }
+
+    public void UnlockButtons()
+    {
+        btnNextTurn.interactable = true;
+    }
 }

@@ -16,7 +16,7 @@ public class CombatUnitPiece : AbstractCombatPiece
         this.defenderSide = defenderSide;
         hasRangedAttack = unit.hasRangedAttack;
 
-        CalculateMovementPoints();
+        ResetMovementPoints();
         FlipSpriteHorizontally(defenderSide);
         SetAnimatorOverrideController(unit.dbData.animatorCombat);
 
@@ -24,9 +24,10 @@ public class CombatUnitPiece : AbstractCombatPiece
         //name = "P" + owner.id + " - Stack of " + unit.stackSizeCurrent + " " + unit.GetName();
     }
 
-    public override void CalculateMovementPoints()
+    public override void ResetMovementPoints()
     {
-        movementPoints = unit.movementRange * 100;
+        movementPointsMax = unit.movementRange * 100;
+        movementPointsCurrent = movementPointsMax;
     }
 
     public override void PerformPieceInteraction()

@@ -13,6 +13,6 @@ public class FieldUI_BC_Commands : AUIPanel
 
     public void UpdatePanel(FieldPiece p)
     {
-
+        txtMovePoints.text = p.movementPointsCurrent + "/" + p.movementPointsMax;
     }
 }
