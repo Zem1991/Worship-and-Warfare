@@ -80,9 +80,9 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
     /*
      * Begin: UI Top Right buttons
      */
-    public void EndTurnForCurrentPlayer()
+    public void EndTurn()
     {
-        GameManager.Instance.EndTurnForCurrentPlayer();
+        GameManager.Instance.EndTurn();
     }
     /*
      * End: UI Top Right buttons

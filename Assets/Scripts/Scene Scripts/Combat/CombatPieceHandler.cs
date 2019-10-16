@@ -135,26 +135,6 @@ public class CombatPieceHandler : MonoBehaviour
         }
     }
 
-    public List<CombatUnitPiece> GetActiveUnits(List<CombatUnitPiece> units)
-    {
-        List<CombatUnitPiece> result = new List<CombatUnitPiece>();
-        foreach (var item in units)
-        {
-            if (!item.isDead) result.Add(item);
-        }
-        return result;
-    }
-
-    public List<CombatUnitPiece> GetIdleUnits(List<CombatUnitPiece> units)
-    {
-        List<CombatUnitPiece> result = new List<CombatUnitPiece>();
-        foreach (var item in units)
-        {
-            if (item.IsIdle()) result.Add(item);
-        }
-        return result;
-    }
-
     public void Pathfind(AbstractCombatPiece piece, CombatTile targetTile,
         bool needGroundAccess = true, bool needWaterAccess = false, bool needLavaAccess = false)
     {
@@ -187,5 +167,25 @@ public class CombatPieceHandler : MonoBehaviour
             else list = defenderUnits;
         }
         return list != null;
+    }
+
+    public List<CombatUnitPiece> GetIdlePieces(List<CombatUnitPiece> pieces)
+    {
+        List<CombatUnitPiece> result = new List<CombatUnitPiece>();
+        foreach (var item in pieces)
+        {
+            if (item.IsIdle()) result.Add(item);
+        }
+        return result;
+    }
+
+    public List<CombatUnitPiece> GetActivePieces(List<CombatUnitPiece> pieces)
+    {
+        List<CombatUnitPiece> result = new List<CombatUnitPiece>();
+        foreach (var item in pieces)
+        {
+            if (!item.isDead) result.Add(item);
+        }
+        return result;
     }
 }

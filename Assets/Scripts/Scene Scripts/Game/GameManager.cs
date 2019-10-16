@@ -156,11 +156,20 @@ public class GameManager : AbstractSingleton<GameManager>
         }
     }
 
-    public void EndTurnForCurrentPlayer()
+    public void EndTurn()
+    {
+        FieldUI.Instance.timers.LockButtons();
+        StartCoroutine(EndTurnForCurrentPlayer());
+    }
+
+    private IEnumerator EndTurnForCurrentPlayer()
     {
         PlayerManager pm = PlayerManager.Instance;
-        FieldUI fUI = FieldUI.Instance;
-        fUI.timers.LockButtons();
+        FieldPieceHandler fPH = FieldManager.Instance.pieceHandler;
+        FieldInputs fInputs = FieldInputs.Instance;
+
+        List<FieldPiece> playerFieldPieces = fPH.GetPlayerPieces(currentPlayer);
+        yield return StartCoroutine(fPH.YieldForIdlePieces(playerFieldPieces));
 
         Player next = pm.EndTurnForPlayer(currentPlayer);
         if (!next) NextTurnForAll();
@@ -168,7 +177,8 @@ public class GameManager : AbstractSingleton<GameManager>
 
         if (currentPlayer == pm.localPlayer)
         {
-            fUI.timers.UnlockButtons();
+            FieldUI.Instance.timers.UnlockButtons();
+            fInputs.CreateMovementHighlights();
         }
         else if (currentPlayer.type == PlayerType.COMPUTER)
         {

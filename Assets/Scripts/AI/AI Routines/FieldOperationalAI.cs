@@ -17,6 +17,6 @@ public class FieldOperationalAI : AbstractAIRoutine
     public override void TakeDecision()
     {
         //TODO ACTUAL DECISIONS
-        GameManager.Instance.EndTurnForCurrentPlayer();
+        GameManager.Instance.EndTurn();
     }
 }

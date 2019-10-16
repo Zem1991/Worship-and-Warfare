@@ -8038,7 +8038,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 952644559}
-        m_MethodName: EndTurnForCurrentPlayer
+        m_MethodName: EndTurn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10774,8 +10774,8 @@ MonoBehaviour:
   backpack4: {fileID: 520045331}
   btnClose: {fileID: 640713980}
   invSlotDraggable: {fileID: 873163506}
-  draggingInvSlot: 0
-  invSlotDragged: {fileID: 0}
+  isDraggingInvSlot: 0
+  fuiInvSlotFrontDragged: {fileID: 0}
 --- !u!114 &1688173983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11972,6 +11972,7 @@ MonoBehaviour:
   kbm_selection: 323
   kbm_command: 324
   kbm_stopOrResumeCommand: 32
+  kbm_endTurn: 8
 --- !u!114 &1977747650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11991,6 +11992,7 @@ MonoBehaviour:
   selectionDown: 0
   commandDown: 0
   stopOrResumeCommandDown: 0
+  endTurnDown: 0
 --- !u!114 &1977747651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12028,6 +12030,7 @@ MonoBehaviour:
   canCommandSelectedPiece: 0
   movementHighlightsUpdateFromCommand: 0
   movementHighlightsUpdateOnPieceStop: 0
+  movementHighlightsUpdateOnMethodCall: 0
   movementHighlights: []
   im: {fileID: 0}
   recorder: {fileID: 0}

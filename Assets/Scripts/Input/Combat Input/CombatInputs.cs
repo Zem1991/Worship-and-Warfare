@@ -27,6 +27,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
     [Header("Movement Highlights")]
     public bool movementHighlightsUpdateFromCommand;
     public bool movementHighlightsUpdateOnPieceStop;
+    public bool movementHighlightsUpdateOnMethodCall;
     public List<InputHighlight> movementHighlights = new List<InputHighlight>();
 
     [Header("Required Objects")]
@@ -252,6 +253,20 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         }
     }
 
+    public void RemoveMovementHighlights()
+    {
+        foreach (var item in movementHighlights)
+        {
+            Destroy(item.gameObject);
+        }
+        movementHighlights.Clear();
+    }
+
+    public void CreateMovementHighlights()
+    {
+        movementHighlightsUpdateOnMethodCall = true;
+    }
+
     private void MovementHighlights()
     {
         bool clearThenReturn = false;
@@ -264,14 +279,13 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         {
             bool condition1 = movementHighlightsUpdateFromCommand;
             bool condition2 = movementHighlightsUpdateOnPieceStop && !selectionPiece.inMovement;
-            if (!condition1 && !condition2) return;
+            bool condition3 = movementHighlightsUpdateOnMethodCall;
+            if (!condition1 && 
+                !condition2 &&
+                !condition3) return;
         }
 
-        foreach (var item in movementHighlights)
-        {
-            Destroy(item.gameObject);
-        }
-        movementHighlights.Clear();
+        RemoveMovementHighlights();
         if (clearThenReturn) return;
 
         List<PathNode> path = selectionPiece.path;
@@ -328,5 +342,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         }
 
         movementHighlightsUpdateFromCommand = false;
+        movementHighlightsUpdateOnPieceStop = false;
+        movementHighlightsUpdateOnMethodCall = false;
     }
 }

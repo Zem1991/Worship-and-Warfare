@@ -119,4 +119,32 @@ public class FieldPieceHandler : MonoBehaviour
             GameManager.Instance.GoToCombat(sender, receiver);
         }
     }
+
+    public List<FieldPiece> GetIdlePieces(List<FieldPiece> pieces)
+    {
+        List<FieldPiece> result = new List<FieldPiece>();
+        foreach (var item in pieces)
+        {
+            if (item.IsIdle()) result.Add(item);
+        }
+        return result;
+    }
+
+    public List<FieldPiece> GetPlayerPieces(Player player)
+    {
+        List<FieldPiece> result = new List<FieldPiece>();
+        foreach (var item in pieces)
+        {
+            if (item.owner == player) result.Add(item);
+        }
+        return result;
+    }
+
+    public IEnumerator YieldForIdlePieces(List<FieldPiece> pieces)
+    {
+        while (GetIdlePieces(pieces).Count != pieces.Count)
+        {
+            yield return null;
+        }
+    }
 }

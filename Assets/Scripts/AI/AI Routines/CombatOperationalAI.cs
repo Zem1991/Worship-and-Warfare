@@ -65,7 +65,7 @@ public class CombatOperationalAI : AbstractAIRoutine
         CombatPieceHandler cph = CombatManager.Instance.pieceHandler;
         List<CombatUnitPiece> unitList;
         if (!cph.GetPieceList(aiPersonality.player, true, out unitList)) return;
-        unitList = cph.GetActiveUnits(unitList);
+        unitList = cph.GetActivePieces(unitList);
 
         if (currentUnit.hasRangedAttack)
         {

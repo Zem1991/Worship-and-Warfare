@@ -27,6 +27,7 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
     [Header("Movement Highlights")]
     public bool movementHighlightsUpdateFromCommand;
     public bool movementHighlightsUpdateOnPieceStop;
+    public bool movementHighlightsUpdateOnMethodCall;
     public List<InputHighlight> movementHighlights = new List<InputHighlight>();
 
     [Header("Required Objects")]
@@ -252,8 +253,22 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
         {
             GameManager gm = GameManager.Instance;
             PlayerManager pm = PlayerManager.Instance;
-            if (gm.currentPlayer == pm.localPlayer) FieldManager.Instance.EndTurnForCurrentPlayer();
+            if (gm.currentPlayer == pm.localPlayer) FieldManager.Instance.EndTurn();
         }
+    }
+
+    public void RemoveMovementHighlights()
+    {
+        foreach (var item in movementHighlights)
+        {
+            Destroy(item.gameObject);
+        }
+        movementHighlights.Clear();
+    }
+
+    public void CreateMovementHighlights()
+    {
+        movementHighlightsUpdateOnMethodCall = true;
     }
 
     private void MovementHighlights()
@@ -268,14 +283,13 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
         {
             bool condition1 = movementHighlightsUpdateFromCommand;
             bool condition2 = movementHighlightsUpdateOnPieceStop && !selectionPiece.inMovement;
-            if (!condition1 && !condition2) return;
+            bool condition3 = movementHighlightsUpdateOnMethodCall;
+            if (!condition1 &&
+                !condition2 &&
+                !condition3) return;
         }
 
-        foreach (var item in movementHighlights)
-        {
-            Destroy(item.gameObject);
-        }
-        movementHighlights.Clear();
+        RemoveMovementHighlights();
         if (clearThenReturn) return;
 
         List<PathNode> path = selectionPiece.path;
@@ -332,5 +346,7 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
         }
 
         movementHighlightsUpdateFromCommand = false;
+        movementHighlightsUpdateOnPieceStop = false;
+        movementHighlightsUpdateOnMethodCall = false;
     }
 }

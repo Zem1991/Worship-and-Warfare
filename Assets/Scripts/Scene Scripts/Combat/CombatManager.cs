@@ -133,8 +133,8 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     public bool CalculateFullTurnSequence()
     {
         List<CombatUnitPiece> newSequence = new List<CombatUnitPiece>();
-        newSequence.AddRange(pieceHandler.GetActiveUnits(pieceHandler.attackerUnits));
-        newSequence.AddRange(pieceHandler.GetActiveUnits(pieceHandler.defenderUnits));
+        newSequence.AddRange(pieceHandler.GetActivePieces(pieceHandler.attackerUnits));
+        newSequence.AddRange(pieceHandler.GetActivePieces(pieceHandler.defenderUnits));
         if (newSequence.Count <= 0) return false;
 
         turnSequence = newSequence;
@@ -239,18 +239,18 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
     private bool CheckBattleEnd()
     {
-        int attackerActive = pieceHandler.GetActiveUnits(pieceHandler.attackerUnits).Count;
-        int defenderActive = pieceHandler.GetActiveUnits(pieceHandler.defenderUnits).Count;
+        int attackerActive = pieceHandler.GetActivePieces(pieceHandler.attackerUnits).Count;
+        int defenderActive = pieceHandler.GetActivePieces(pieceHandler.defenderUnits).Count;
 
         if (attackerActive > 0 && defenderActive <= 0)
         {
-            int attackerIdle = pieceHandler.GetIdleUnits(pieceHandler.attackerUnits).Count;
+            int attackerIdle = pieceHandler.GetIdlePieces(pieceHandler.attackerUnits).Count;
             if (attackerIdle >= attackerActive) CombatEnd(CombatResult.ATTACKER_WON);
             return true;
         }
         else if (defenderActive > 0 && attackerActive <= 0)
         {
-            int defenderIdle = pieceHandler.GetIdleUnits(pieceHandler.defenderUnits).Count;
+            int defenderIdle = pieceHandler.GetIdlePieces(pieceHandler.defenderUnits).Count;
             if (defenderIdle >= defenderActive) CombatEnd(CombatResult.DEFENDER_WON);
             return true;
         }
