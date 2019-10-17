@@ -10,8 +10,11 @@ public class FieldMap : AbstractMap<FieldTile>
         mapSize = size;
         FieldTile prefabTile = AllPrefabs.Instance.fieldTile;
 
+        int maxX = mapSize.x - 1;
+        int maxY = mapSize.y - 1;
         int current = 0;
-        for (int row = 0; row < mapSize.y; row++)
+        //for (int row = 0; row < mapSize.y; row++)
+        for (int row = maxY; row >= 0; row--)
         {
             for (int col = 0; col < mapSize.x; col++)
             {
@@ -36,26 +39,26 @@ public class FieldMap : AbstractMap<FieldTile>
                     tile.l = neighbour;
                     neighbour.r = tile;
                 }
-                if (row > 0)
+                if (row < maxY)
                 {
-                    neighbourId = new Vector2Int(col, row - 1);
+                    neighbourId = new Vector2Int(col, row + 1);
                     neighbour = tiles[neighbourId];
-                    tile.b = neighbour;
-                    neighbour.f = tile;
+                    tile.f = neighbour;
+                    neighbour.b = tile;
                 }
-                if (col > 0 && row > 0)
+                if (col > 0 && row < maxY)
                 {
-                    neighbourId = new Vector2Int(col - 1, row - 1);
+                    neighbourId = new Vector2Int(col - 1, row + 1);
                     neighbour = tiles[neighbourId];
-                    tile.bl = neighbour;
-                    neighbour.fr = tile;
+                    tile.fl = neighbour;
+                    neighbour.br = tile;
                 }
-                if (col < mapSize.x - 1 && row > 0)
+                if (col < maxX && row < maxY)
                 {
-                    neighbourId = new Vector2Int(col + 1, row - 1);
+                    neighbourId = new Vector2Int(col + 1, row + 1);
                     neighbour = tiles[neighbourId];
-                    tile.br = neighbour;
-                    neighbour.fl = tile;
+                    tile.fr = neighbour;
+                    neighbour.bl = tile;
                 }
             }
         }
@@ -85,6 +88,19 @@ public class FieldMap : AbstractMap<FieldTile>
             tile.allowGroundMovement = lowerLand.allowGroundMovement;
             tile.allowWaterMovement = lowerLand.allowWaterMovement;
             tile.allowLavaMovement = lowerLand.allowLavaMovement;
+
+            DB_Tileset water = tilesets.Select(tile.waterId, false) as DB_Tileset;
+            if (water)
+            {
+                s = water.image;
+                tile.db_tileset_feature = water;
+                tile.ChangeFeatureSprite(s);
+
+                tile.groundMovementCost += water.groundMovementCost;
+                tile.allowGroundMovement &= water.allowGroundMovement;
+                tile.allowWaterMovement &= water.allowWaterMovement;
+                tile.allowLavaMovement &= water.allowLavaMovement;
+            }
 
             DB_Tileset feature = tilesets.Select(tile.featureId, false) as DB_Tileset;
             if (feature)

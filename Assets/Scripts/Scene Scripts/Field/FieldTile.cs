@@ -7,6 +7,7 @@ public class FieldTile : AbstractTile
 {
     [Header("Database References")]
     public DB_Tileset db_tileset_lowerLand;
+    public DB_Tileset db_tileset_water;
     public DB_Tileset db_tileset_feature;
 
     [Header("Tilesets Used")]
@@ -18,11 +19,17 @@ public class FieldTile : AbstractTile
 
     [Header("Renderers")]
     public SpriteRenderer landRenderer;
+    public SpriteRenderer waterRenderer;
     public SpriteRenderer featureRenderer;
 
     public void ChangeLandSprite(Sprite s)
     {
         landRenderer.sprite = s;
+    }
+
+    public void ChangeWaterSprite(Sprite s)
+    {
+        waterRenderer.sprite = s;
     }
 
     public void ChangeFeatureSprite(Sprite s)
