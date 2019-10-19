@@ -11,7 +11,7 @@ public class FieldUI_BC_Commands : AUIPanel
     public Button btnSpellBook;
     public Text txtManaPoints;
 
-    public void UpdatePanel(FieldPiece p)
+    public void UpdatePanel(AbstractFieldPiece p)
     {
         txtMovePoints.text = p.movementPointsCurrent + "/" + p.movementPointsMax;
     }

@@ -15,13 +15,13 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
     public InputHighlight cursorHighlight;
     public Vector2Int cursorPos;
     public FieldTile cursorTile;
-    public FieldPiece cursorPiece;
+    public AbstractFieldPiece cursorPiece;
 
     [Header("Selection Data")]
     public InputHighlight selectionHighlight;
     public Vector2Int selectionPos;
     public FieldTile selectionTile;
-    public FieldPiece selectionPiece;
+    public AbstractFieldPiece selectionPiece;
     public bool canCommandSelectedPiece;
 
     [Header("Movement Highlights")]
@@ -151,7 +151,7 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
                 if (item.collider == null) continue;
 
                 FieldTile t = item.collider.GetComponentInParent<FieldTile>();
-                FieldPiece p = item.collider.GetComponentInParent<FieldPiece>();
+                AbstractFieldPiece p = item.collider.GetComponentInParent<AbstractFieldPiece>();
                 if (cursorTile == null && t) cursorTile = t;
                 if (cursorPiece == null && p) cursorPiece = p;
             }

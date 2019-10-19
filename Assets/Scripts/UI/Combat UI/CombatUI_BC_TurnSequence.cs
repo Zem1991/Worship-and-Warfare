@@ -21,17 +21,17 @@ public class CombatUI_BC_TurnSequence : AUIPanel
         tsItems.Clear();
     }
 
-    public void CreateTurnSequence(List<CombatUnitPiece> turnSequence)
+    public void CreateTurnSequence(List<AbstractCombatantPiece2> turnSequence)
     {
         DestroyTurnSequence();
 
         CUI_TurnSequenceItem prefab = AllPrefabs.Instance.cuiTurnSequenceItem;
 
-        foreach (CombatUnitPiece forCUP in turnSequence)
+        foreach (AbstractCombatantPiece2 forCUP in turnSequence)
         {
             CUI_TurnSequenceItem newCUI = Instantiate(prefab, sequenceBar.transform);
             newCUI.border.color = forCUP.owner.color;
-            newCUI.portrait.sprite = forCUP.unit.dbData.profilePicture;
+            newCUI.portrait.sprite = forCUP.profilePicture;
             newCUI.unit = forCUP;
             tsItems.Add(newCUI);
         }

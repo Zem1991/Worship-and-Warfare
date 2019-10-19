@@ -52,7 +52,7 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
         minimap.UpdatePanel();
         coreButtons.UpdatePanel();
 
-        FieldPiece p = fi.selectionPiece;
+        FieldPartyPiece p = fi.selectionPiece as FieldPartyPiece;
         bool canCommandSelectedPiece = fi.canCommandSelectedPiece;
 
         if (p) UpdateWithSelection(p, canCommandSelectedPiece);
@@ -61,7 +61,7 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
         if (currentWindow == inventory) inventory.UpdatePanel(p);
     }
 
-    private void UpdateWithSelection(FieldPiece p, bool canCommandSelectedPiece)
+    private void UpdateWithSelection(FieldPartyPiece p, bool canCommandSelectedPiece)
     {
         partyCard.UpdatePanel(p);
 
@@ -103,7 +103,7 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
         UIManager.Instance.PointerExit(inventory);
     }
 
-    public void InventoryShow(FieldPiece selectionPiece)
+    public void InventoryShow(AbstractFieldPiece selectionPiece)
     {
         inventory.Show();
         currentWindow = inventory;

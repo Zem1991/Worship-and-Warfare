@@ -20,15 +20,15 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
 
     [Header("Field Scene")]
     public FieldTile fieldTile;
-    public FieldPiece fieldPiece;
+    public PartyPiece2 fieldPartyPiece;
 
     [Header("Field UI")]
     public FUI_InventorySlot_Back fuiInvSlot;
 
     [Header("Combat Scene")]
     public CombatTile combatTile;
-    public CombatHeroPiece combatHeroPiece;
-    public CombatUnitPiece combatUnitPiece;
+    //public CombatHeroPiece combatHeroPiece;
+    public CombatantUnitPiece2 combatUnitPiece;
 
     [Header("Field UI")]
     public CUI_TurnSequenceItem cuiTurnSequenceItem;

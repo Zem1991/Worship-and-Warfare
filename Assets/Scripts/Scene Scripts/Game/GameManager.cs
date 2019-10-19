@@ -100,12 +100,12 @@ public class GameManager : AbstractSingleton<GameManager>
         return PauseUnpause();
     }
 
-    public void PerformExchange(FieldPiece sender, FieldPiece receiver)
+    public void PerformExchange(AbstractFieldPiece2 sender, AbstractFieldPiece2 receiver)
     {
         Debug.Log("PIECES ARE EXCHANGING STUFF");
     }
 
-    public void GoToTown(FieldPiece piece, Town town)
+    public void GoToTown(AbstractFieldPiece2 piece, Town town)
     {
         Debug.Log("PIECE IS VISITING TOWN");
         ChangeSchemes(GameScheme.TOWN);
@@ -115,7 +115,7 @@ public class GameManager : AbstractSingleton<GameManager>
         TownSC.Instance.ShowObjects();
     }
 
-    public void ReturnFromTown(FieldPiece piece, Town town)
+    public void ReturnFromTown(AbstractFieldPiece2 piece, Town town)
     {
         Debug.Log("PIECE IS BACK FROM TOWN");
         ChangeSchemes(GameScheme.FIELD);
@@ -125,7 +125,7 @@ public class GameManager : AbstractSingleton<GameManager>
         FieldSC.Instance.ShowObjects();
     }
 
-    public void GoToCombat(FieldPiece attacker, FieldPiece defender)
+    public void GoToCombat(PartyPiece2 attacker, PartyPiece2 defender)
     {
         Debug.Log("PIECES ARE IN BATTLE");
         ChangeSchemes(GameScheme.COMBAT);
@@ -136,7 +136,7 @@ public class GameManager : AbstractSingleton<GameManager>
         CombatSC.Instance.ShowObjects();
     }
 
-    public void ReturnFromCombat(CombatResult result, FieldPiece attacker, FieldPiece defender)
+    public void ReturnFromCombat(CombatResult result, FieldPartyPiece attacker, FieldPartyPiece defender)
     {
         Debug.Log("PIECES FINISHED BATTLE");
         ChangeSchemes(GameScheme.FIELD);
@@ -168,7 +168,7 @@ public class GameManager : AbstractSingleton<GameManager>
         FieldPieceHandler fPH = FieldManager.Instance.pieceHandler;
         FieldInputs fInputs = FieldInputs.Instance;
 
-        List<FieldPiece> playerFieldPieces = fPH.GetPlayerPieces(currentPlayer);
+        List<AbstractFieldPiece> playerFieldPieces = fPH.GetPlayerPieces(currentPlayer);
         yield return StartCoroutine(fPH.YieldForIdlePieces(playerFieldPieces));
 
         Player next = pm.EndTurnForPlayer(currentPlayer);

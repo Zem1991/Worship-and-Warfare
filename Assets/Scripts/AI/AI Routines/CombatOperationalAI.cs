@@ -6,7 +6,7 @@ using UnityEngine;
 public class CombatOperationalAI : AbstractAIRoutine
 {
     [Header("Readings")]
-    public AbstractCombatPiece currentUnit;
+    public AbstractCombatPiece2 currentUnit;
 
     [Header("Skill calculations")]
     public int skill;
@@ -15,7 +15,7 @@ public class CombatOperationalAI : AbstractAIRoutine
 
     [Header("Attack calculations")]
     public int attack;
-    public AbstractCombatPiece attackTarget;
+    public AbstractCombatPiece2 attackTarget;
 
     [Header("Other calculations")]
     public int defend;
@@ -48,7 +48,7 @@ public class CombatOperationalAI : AbstractAIRoutine
 
     private void ReadCurrentUnit()
     {
-        AbstractCombatPiece current = CombatManager.Instance.currentPiece;
+        AbstractCombatPiece2 current = CombatManager.Instance.currentPiece;
         currentUnit = current.owner == aiPersonality.player ? current : null;
     }
 
@@ -63,14 +63,14 @@ public class CombatOperationalAI : AbstractAIRoutine
         attackTarget = null;
 
         CombatPieceHandler cph = CombatManager.Instance.pieceHandler;
-        List<CombatUnitPiece> unitList;
+        List<AbstractCombatPiece2> unitList;
         if (!cph.GetPieceList(aiPersonality.player, true, out unitList)) return;
         unitList = cph.GetActivePieces(unitList);
 
         if (currentUnit.hasRangedAttack)
         {
-            Dictionary<CombatUnitPiece, float> mapUnitDistance = new Dictionary<CombatUnitPiece, float>();
-            foreach (CombatUnitPiece unit in unitList)
+            Dictionary<AbstractCombatPiece2, float> mapUnitDistance = new Dictionary<AbstractCombatPiece2, float>();
+            foreach (AbstractCombatPiece2 unit in unitList)
             {
                 float distance = Vector3.Distance(currentUnit.transform.position, unit.transform.position);
                 mapUnitDistance.Add(unit, distance);

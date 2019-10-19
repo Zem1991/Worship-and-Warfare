@@ -527,7 +527,7 @@ MonoBehaviour:
   artifact: {fileID: 208367886873617183, guid: 3d0f41dcc6135f64cb0c648762f34959, type: 3}
   fieldTile: {fileID: 8671262855878196691, guid: 9c74900f3a4946947894798d230e9005,
     type: 3}
-  fieldPiece: {fileID: 1317082670439789998, guid: 3a5786de7131a584e883254e93133465,
+  fieldPartyPiece: {fileID: 1317082670439789998, guid: 3a5786de7131a584e883254e93133465,
     type: 3}
   fuiInvSlot: {fileID: 4757467102435365897, guid: 838362ac4bc2bdc43b97c6ad293b0ec1,
     type: 3}

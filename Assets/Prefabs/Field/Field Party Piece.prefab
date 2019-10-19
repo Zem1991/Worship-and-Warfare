@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1317082670439789997}
   - component: {fileID: 1317082670439789998}
   m_Layer: 0
-  m_Name: Field Piece
+  m_Name: Field Party Piece
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,11 +41,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1317082670439789999}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a365a3d3b27534c43a822681a440fd6b, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c7d28eb71ec3684796dc8a22675d36a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
-  pathCost: 0
+  pathTotalCost: 0
+  movementPointsCurrent: 0
+  movementPointsMax: 0
   inMovement: 0
   stopWasCalled: 0
   currentTile: {fileID: 0}

@@ -22,7 +22,7 @@ public class FieldUI_BR_PartyCard : AUIPanel
     public Image u5Portrait;
     public Text u5StackSize;
 
-    public void UpdatePanel(FieldPiece p)
+    public void UpdatePanel(FieldPartyPiece p)
     {
         if (!p)
         {

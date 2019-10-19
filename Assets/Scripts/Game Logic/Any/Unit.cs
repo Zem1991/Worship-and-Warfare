@@ -7,8 +7,6 @@ public class Unit : MonoBehaviour
     public DB_Unit dbData;
 
     public int hitPointsMax;
-    public int hitPointsCurrent;
-    public int stackSizeStart;
     public int stackSizeCurrent;
 
     public int damageMin;
@@ -23,9 +21,7 @@ public class Unit : MonoBehaviour
         this.dbData = dbData;
 
         hitPointsMax = dbData.hitPoints;
-        hitPointsCurrent = hitPointsMax;
-        stackSizeStart = unitData.stackSize;
-        stackSizeCurrent = stackSizeStart;
+        stackSizeCurrent = unitData.stackSize;
 
         damageMin = dbData.damageMin;
         damageMax = dbData.damageMax;

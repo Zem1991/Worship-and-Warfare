@@ -8,18 +8,18 @@ public class FieldPieceHandler : MonoBehaviour
     public readonly int MAX_UNITS = 5;
 
     [Header("Pieces")]
-    public List<FieldPiece> pieces;
+    public List<FieldPartyPiece> partyPieces;
 
     public void Remove()
     {
-        if (pieces != null)
+        if (partyPieces != null)
         {
-            foreach (var item in pieces)
+            foreach (var item in partyPieces)
             {
                 Destroy(item.gameObject);
             }
         }
-        pieces = new List<FieldPiece>();
+        partyPieces = new List<FieldPartyPiece>();
     }
 
     public void Create(PieceData[] pieceData)
@@ -34,12 +34,12 @@ public class FieldPieceHandler : MonoBehaviour
 
         FieldManager fm = FieldManager.Instance;
         FieldMap fieldMap = fm.mapHandler.map;
-        FieldPiece prefabPiece = AllPrefabs.Instance.fieldPiece;
+        FieldPartyPiece prefabPiece = AllPrefabs.Instance.fieldPartyPiece;
 
         Hero prefabHero = AllPrefabs.Instance.hero;
         Unit prefabUnit = AllPrefabs.Instance.unit;
 
-        pieces = new List<FieldPiece>();
+        partyPieces = new List<FieldPartyPiece>();
 
         foreach (var item in pieceData)
         {
@@ -49,8 +49,8 @@ public class FieldPieceHandler : MonoBehaviour
             Vector3 pos = new Vector3(posX, 0, posY);
             Quaternion rot = Quaternion.identity;
 
-            FieldPiece newPiece = Instantiate(prefabPiece, pos, rot, transform);
-            pieces.Add(newPiece);
+            FieldPartyPiece newPiece = Instantiate(prefabPiece, pos, rot, transform);
+            partyPieces.Add(newPiece);
 
             Player owner = pm.allPlayers[item.ownerId];
 
@@ -92,14 +92,14 @@ public class FieldPieceHandler : MonoBehaviour
         }
     }
 
-    public void RemovePiece(FieldPiece piece)
+    public void RemovePiece(FieldPartyPiece piece)
     {
-        pieces.Remove(piece);
+        partyPieces.Remove(piece);
         piece.currentTile.occupantPiece = null;
         Destroy(piece.gameObject);
     }
 
-    public void Pathfind(FieldPiece piece, FieldTile targetTile,
+    public void Pathfind(PartyPiece2 piece, FieldTile targetTile,
         bool needGroundAccess = true, bool needWaterAccess = false, bool needLavaAccess = false)
     {
         Pathfinder.FindPath(piece.currentTile, targetTile, Pathfinder.OctoHeuristic,
@@ -108,7 +108,7 @@ public class FieldPieceHandler : MonoBehaviour
         piece.SetPath(pathfindResults, targetTile);
     }
 
-    public void PartiesAreInteracting(FieldPiece sender, FieldPiece receiver)
+    public void PartiesAreInteracting(PartyPiece2 sender, PartyPiece2 receiver)
     {
         if (sender.owner == receiver.owner)
         {
@@ -120,9 +120,9 @@ public class FieldPieceHandler : MonoBehaviour
         }
     }
 
-    public List<FieldPiece> GetIdlePieces(List<FieldPiece> pieces)
+    public List<AbstractFieldPiece> GetIdlePieces(List<AbstractFieldPiece> pieces)
     {
-        List<FieldPiece> result = new List<FieldPiece>();
+        List<AbstractFieldPiece> result = new List<AbstractFieldPiece>();
         foreach (var item in pieces)
         {
             if (item.IsIdle()) result.Add(item);
@@ -130,17 +130,17 @@ public class FieldPieceHandler : MonoBehaviour
         return result;
     }
 
-    public List<FieldPiece> GetPlayerPieces(Player player)
+    public List<AbstractFieldPiece> GetPlayerPieces(Player player)
     {
-        List<FieldPiece> result = new List<FieldPiece>();
-        foreach (var item in pieces)
+        List<AbstractFieldPiece> result = new List<AbstractFieldPiece>();
+        foreach (var item in partyPieces)
         {
             if (item.owner == player) result.Add(item);
         }
         return result;
     }
 
-    public IEnumerator YieldForIdlePieces(List<FieldPiece> pieces)
+    public IEnumerator YieldForIdlePieces(List<AbstractFieldPiece> pieces)
     {
         while (GetIdlePieces(pieces).Count != pieces.Count)
         {

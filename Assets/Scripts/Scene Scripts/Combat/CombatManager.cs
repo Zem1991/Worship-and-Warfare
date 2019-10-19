@@ -14,16 +14,16 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
     [Header("Teams")]
     public Player attacker;
-    public FieldPiece attackerPiece;
+    public PartyPiece2 attackerPiece;
     public Player defender;
-    public FieldPiece defenderPiece;
+    public PartyPiece2 defenderPiece;
 
     [Header("Combat Flow")]
     public bool combatStarted;
     public int currentTurn;
-    public AbstractCombatPiece currentPiece;
-    public AbstractCombatPiece retaliatorPiece;
-    public List<CombatUnitPiece> turnSequence = new List<CombatUnitPiece>();
+    public AbstractCombatantPiece2 currentPiece;
+    public AbstractCombatantPiece2 retaliatorPiece;
+    public List<AbstractCombatantPiece2> turnSequence = new List<AbstractCombatantPiece2>();
     public List<string> combatLog = new List<string>();
     public CombatResult result;
 
@@ -47,7 +47,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         result = CombatResult.NOT_FINISHED;
     }
 
-    public void BootCombat(FieldPiece attackerPiece, FieldPiece defenderPiece, DB_Tileset tileset)
+    public void BootCombat(PartyPiece2 attackerPiece, PartyPiece2 defenderPiece, DB_Tileset tileset)
     {
         //background = battleground.image;
 
@@ -149,13 +149,13 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         CombatUI.Instance.turnSequence.CreateTurnSequence(turnSequence);
     }
 
-    public void AddUnitToTurnSequence(CombatUnitPiece uc)
+    public void AddUnitToTurnSequence(AbstractCombatantPiece2 uc)
     {
         turnSequence.Add(uc);
         UpdateTurnSequence();
     }
 
-    public void RemoveUnitFromTurnSequence(CombatUnitPiece uc)
+    public void RemoveUnitFromTurnSequence(AbstractCombatantPiece2 uc)
     {
         turnSequence.Remove(uc);
         UpdateTurnSequence();
