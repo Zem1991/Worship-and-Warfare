@@ -24,13 +24,16 @@ public static class ScenarioFileHandler
     public static ScenarioFileData Load(string fileName)
     {
         string path = GetFilePath(fileName);
+        Debug.Log("Loading from path: " + path);
         if (File.Exists(path))
         {
             ScenarioFileData data;
+            //data = JsonUtility.FromJson<ScenarioFileData>(File.ReadAllText(path));
             using (StreamReader reader = File.OpenText(path))
             {
                 using (JsonTextReader file = new JsonTextReader(reader))
                 {
+                    Debug.Log("Activating JsonSerializer...");
                     JsonSerializer serializer = new JsonSerializer();
                     data = serializer.Deserialize<ScenarioFileData>(file);
                 }
@@ -47,12 +50,16 @@ public static class ScenarioFileHandler
     private static string GetFolderPath()
     {
         char separator = Path.DirectorySeparatorChar;
-        return Application.dataPath + separator + FOLDER_NAME;
+        string path = Application.streamingAssetsPath + separator + FOLDER_NAME;
+        if (separator == '\\') path = path.Replace('/', separator);
+        return path;
     }
 
     private static string GetFilePath(string fileName)
     {
         char separator = Path.DirectorySeparatorChar;
-        return GetFolderPath() + separator + fileName + EXTENSION;
+        string path = GetFolderPath() + separator + fileName + EXTENSION;
+        if (separator == '\\') path = path.Replace('/', separator);
+        return path;
     }
 }
