@@ -21,7 +21,7 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         pieceHandler.Create(pieces);
     }
 
-    public void RemovePiece(FieldPartyPiece piece)
+    public void RemovePiece(PartyPiece2 piece)
     {
         pieceHandler.RemovePiece(piece);
     }
@@ -30,7 +30,7 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
     {
         foreach (var item in pieceHandler.partyPieces)
         {
-            item.StartTurn();
+            item.ICP_StartTurn();
         }
     }
 
@@ -98,7 +98,7 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
 
     public void Inventory()
     {
-        AbstractFieldPiece selectionPiece = FieldInputs.Instance.selectionPiece;
+        AbstractFieldPiece2 selectionPiece = FieldInputs.Instance.selectionPiece;
         bool canCommandSelectedPiece = FieldInputs.Instance.canCommandSelectedPiece;
 
         if (selectionPiece && canCommandSelectedPiece)

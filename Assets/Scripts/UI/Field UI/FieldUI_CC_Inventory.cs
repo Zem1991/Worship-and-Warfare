@@ -33,10 +33,10 @@ public class FieldUI_CC_Inventory : AUIPanel
     public bool isDraggingInvSlot = false;
     public FUI_InventorySlot_Front fuiInvSlotFrontDragged = null;
 
-    public void UpdatePanel(FieldPartyPiece p)
+    public void UpdatePanel(PartyPiece2 p)
     {
-        Hero hero = p.hero;
-        heroInfo.RefreshInfo(p.hero);
+        Hero hero = p.partyHero;
+        heroInfo.RefreshInfo(p.partyHero);
 
         mainHand.UpdateSlot(hero.inventory.mainHand);
         offHand.UpdateSlot(hero.inventory.offHand);

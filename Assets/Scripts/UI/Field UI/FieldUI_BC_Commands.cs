@@ -11,8 +11,14 @@ public class FieldUI_BC_Commands : AUIPanel
     public Button btnSpellBook;
     public Text txtManaPoints;
 
-    public void UpdatePanel(AbstractFieldPiece p)
+    public void UpdatePanel(AbstractFieldPiece2 p)
     {
-        txtMovePoints.text = p.movementPointsCurrent + "/" + p.movementPointsMax;
+        PartyPiece2 pp = p as PartyPiece2;
+
+        if (pp)
+        {
+            PieceMovement pm = pp.IMP_GetPieceMovement();
+            txtMovePoints.text = pm.movementPointsCurrent + "/" + pm.movementPointsMax;
+        }
     }
 }

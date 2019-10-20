@@ -16,19 +16,24 @@ public class CombatUI_BL_CurrentUnit : AUIPanel
     public Text txtSpeed;
     public Text txtInitiative;
 
-    public void UpdatePanel(Unit unit)
+    public void UpdatePanel(AbstractCombatPiece2 unit)
     {
         if (unit == null) return;
 
-        unitPortrait.sprite = unit.dbData.profilePicture;
-        txtUnitName.text = unit.GetName();
+        CombatantUnitPiece2 cup = unit as CombatantUnitPiece2;
+        if (cup)
+        {
+            unitPortrait.sprite = cup.profilePicture;
+            txtUnitName.text = cup.unit.GetName();
 
-        txtUnitHitPoints.text = unit.hitPointsCurrent + "/" + unit.hitPointsMax;
-        txtUnitStackCount.text = unit.stackSizeCurrent + "/" + unit.stackSizeStart;
+            txtUnitHitPoints.text = cup.hitPointsCurrent + "/" + cup.hitPointsMax;
+            txtUnitStackCount.text = cup.stackSizeCurrent + "/" + cup.stackSizeStart;
 
-        txtDamage.text = unit.damageMin.ToString() + " - " + unit.damageMax.ToString();
-        txtResistance.text = unit.resistance.ToString();
-        txtSpeed.text = unit.movementRange.ToString();
-        txtInitiative.text = unit.initiative.ToString();
+            txtDamage.text = cup.unit.damageMin.ToString() + " - " + cup.unit.damageMax.ToString();
+            txtResistance.text = cup.unit.resistance.ToString();
+            txtSpeed.text = cup.unit.movementRange.ToString();
+            txtInitiative.text = cup.unit.initiative.ToString();
+        }
+
     }
 }

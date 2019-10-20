@@ -136,7 +136,7 @@ public class GameManager : AbstractSingleton<GameManager>
         CombatSC.Instance.ShowObjects();
     }
 
-    public void ReturnFromCombat(CombatResult result, FieldPartyPiece attacker, FieldPartyPiece defender)
+    public void ReturnFromCombat(CombatResult result, PartyPiece2 attacker, PartyPiece2 defender)
     {
         Debug.Log("PIECES FINISHED BATTLE");
         ChangeSchemes(GameScheme.FIELD);
@@ -168,7 +168,7 @@ public class GameManager : AbstractSingleton<GameManager>
         FieldPieceHandler fPH = FieldManager.Instance.pieceHandler;
         FieldInputs fInputs = FieldInputs.Instance;
 
-        List<AbstractFieldPiece> playerFieldPieces = fPH.GetPlayerPieces(currentPlayer);
+        List<PartyPiece2> playerFieldPieces = fPH.GetPlayerPieces(currentPlayer);
         yield return StartCoroutine(fPH.YieldForIdlePieces(playerFieldPieces));
 
         Player next = pm.EndTurnForPlayer(currentPlayer);

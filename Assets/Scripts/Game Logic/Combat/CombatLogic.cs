@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class CombatLogic
 {
-    public static int DamageCalculation(Unit attackerUnit, Unit defenderUnit, Hero attackerHero, Hero defenderHero)
+    public static int DamageCalculation(CombatantUnitPiece2 attackerUnit, CombatantUnitPiece2 defenderUnit, CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
     {
         float dmgBase = UnitDamage(attackerUnit);
         float increments = Increments(attackerHero, defenderHero);
@@ -15,29 +15,29 @@ public static class CombatLogic
         return Mathf.Max(result, 1);
     }
 
-    public static float UnitDamage(Unit unit)
+    public static float UnitDamage(CombatantUnitPiece2 unit)
     {
         float result = 0;
-        for (int i = 0; i < unit.stackSizeStart; i++)
+        for (int i = 0; i < unit.stackSizeCurrent; i++)
         {
-            result += Random.Range(unit.damageMin, unit.damageMax + 1);
+            result += Random.Range(unit.unit.damageMin, unit.unit.damageMax + 1);
         }
         return result;
     }
 
-    public static float Increments(Hero attackerHero, Hero defenderHero)
+    public static float Increments(CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
     {
         return 1
             + I1_AttackerOffense(attackerHero, defenderHero);
     }
 
-    public static float I1_AttackerOffense(Hero attackerHero, Hero defenderHero)
+    public static float I1_AttackerOffense(CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
     {
         float result = 0;
         if (attackerHero == null) return result;
 
-        float atrDif = attackerHero.atrOffense;
-        if (defenderHero != null) atrDif -= defenderHero.atrDefense;
+        float atrDif = attackerHero.hero.atrOffense;
+        if (defenderHero != null) atrDif -= defenderHero.hero.atrDefense;
 
         if (atrDif > 0)
         {
@@ -47,19 +47,19 @@ public static class CombatLogic
         return result;
     }
 
-    public static float Reductions(Hero attackerHero, Hero defenderHero)
+    public static float Reductions(CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
     {
         return 1
             - R1_DefenderDefense(attackerHero, defenderHero);
     }
 
-    public static float R1_DefenderDefense(Hero attackerHero, Hero defenderHero)
+    public static float R1_DefenderDefense(CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
     {
         float result = 0;
         if (defenderHero == null) return result;
 
-        float atrDif = defenderHero.atrDefense;
-        if (attackerHero != null) atrDif -= attackerHero.atrOffense;
+        float atrDif = defenderHero.hero.atrDefense;
+        if (attackerHero != null) atrDif -= attackerHero.hero.atrOffense;
 
         if (atrDif > 0)
         {

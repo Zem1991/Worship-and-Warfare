@@ -15,13 +15,13 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
     public InputHighlight cursorHighlight;
     public Vector2Int cursorPos;
     public FieldTile cursorTile;
-    public AbstractFieldPiece cursorPiece;
+    public AbstractFieldPiece2 cursorPiece;
 
     [Header("Selection Data")]
     public InputHighlight selectionHighlight;
     public Vector2Int selectionPos;
     public FieldTile selectionTile;
-    public AbstractFieldPiece selectionPiece;
+    public AbstractFieldPiece2 selectionPiece;
     public bool canCommandSelectedPiece;
 
     [Header("Movement Highlights")]
@@ -151,7 +151,7 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
                 if (item.collider == null) continue;
 
                 FieldTile t = item.collider.GetComponentInParent<FieldTile>();
-                AbstractFieldPiece p = item.collider.GetComponentInParent<AbstractFieldPiece>();
+                AbstractFieldPiece2 p = item.collider.GetComponentInParent<AbstractFieldPiece2>();
                 if (cursorTile == null && t) cursorTile = t;
                 if (cursorPiece == null && p) cursorPiece = p;
             }
@@ -195,18 +195,19 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
             }
         }
 
-        if (selectionPiece)
+        PartyPiece2 pp = selectionPiece as PartyPiece2;
+        if (pp)
         {
-            if (selectionPiece.inMovement)
+            if (pp.IMP_GetPieceMovement().inMovement)
             {
-                selectionTile = selectionPiece.currentTile as FieldTile;
+                selectionTile = pp.currentTile as FieldTile;
                 selectionPos = selectionTile.posId;
 
-                selectionHighlight.transform.position = selectionPiece.transform.position;
+                selectionHighlight.transform.position = pp.transform.position;
             }
 
             selectionHighlight.gameObject.SetActive(true);
-            canCommandSelectedPiece = selectionPiece.owner == PlayerManager.Instance.localPlayer;
+            canCommandSelectedPiece = pp.IPO_GetOwner() == PlayerManager.Instance.localPlayer;
         }
         else
         {
@@ -226,18 +227,19 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
 
     public void MakeSelectedPieceInteract(bool canPathfind)
     {
-        if (selectionPiece && canCommandSelectedPiece)
+        PartyPiece2 pp = selectionPiece as PartyPiece2;
+        if (pp && canCommandSelectedPiece)
         {
             movementHighlightsUpdateFromCommand = true;
 
-            if (selectionPiece.inMovement)
+            if (pp.IMP_GetPieceMovement().inMovement)
             {
-                selectionPiece.Stop();
+                pp.IMP_Stop();
                 movementHighlightsUpdateOnPieceStop = true;
             }
             else
             {
-                selectionPiece.InteractWithTile(cursorTile, canPathfind);
+                pp.ICP_InteractWithTile(cursorTile, canPathfind);
             }
         }
     }
@@ -273,7 +275,9 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
 
     private void MovementHighlights()
     {
+        PartyPiece2 pp = selectionPiece as PartyPiece2;
         bool clearThenReturn = false;
+
         if (!selectionPiece)
         {
             if (movementHighlights.Count > 0) clearThenReturn = true;
@@ -282,7 +286,7 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
         else
         {
             bool condition1 = movementHighlightsUpdateFromCommand;
-            bool condition2 = movementHighlightsUpdateOnPieceStop && !selectionPiece.inMovement;
+            bool condition2 = movementHighlightsUpdateOnPieceStop && !pp.IMP_GetPieceMovement().inMovement;
             bool condition3 = movementHighlightsUpdateOnMethodCall;
             if (!condition1 &&
                 !condition2 &&
@@ -292,16 +296,16 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
         RemoveMovementHighlights();
         if (clearThenReturn) return;
 
-        List<PathNode> path = selectionPiece.path;
+        List<PathNode> path = pp.IMP_GetPieceMovement().path;
         if (canCommandSelectedPiece &&
-            selectionPiece.IsIdle() &&
+            pp.ICP_IsIdle() &&
             path != null)
         {
             InputManager im = InputManager.Instance;
             InputHighlight prefabHighlight = AllPrefabs.Instance.inputHighlight;
 
             movementHighlights = new List<InputHighlight>();
-            int movePoints = selectionPiece.movementPointsCurrent;
+            int movePoints = pp.IMP_GetPieceMovement().movementPointsCurrent;
             int moveCost = 0;
             Color moveColor;
 

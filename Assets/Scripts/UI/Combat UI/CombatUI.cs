@@ -55,17 +55,16 @@ public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideabl
         turnSequence.UpdatePanel();
         combatLogs.UpdatePanel(cm.GetLastLogs(5));
 
-        AbstractCombatPiece ucm = cm.currentPiece;
+        AbstractCombatPiece2 acp = cm.currentPiece;
         bool canCommandSelectedPiece = ci.canCommandSelectedPiece;
 
-        if (ucm) UpdateWithSelection(ucm, canCommandSelectedPiece);
+        if (acp) UpdateWithSelection(acp, canCommandSelectedPiece);
         else UpdateWithoutSelection();
     }
 
-    private void UpdateWithSelection(AbstractCombatPiece acp, bool canCommandSelectedPiece)
+    private void UpdateWithSelection(AbstractCombatPiece2 acp, bool canCommandSelectedPiece)
     {
-        CombatUnitPiece cup = acp as CombatUnitPiece;
-        currentUnit.UpdatePanel(cup.unit);
+        currentUnit.UpdatePanel(acp);
     }
 
     private void UpdateWithoutSelection()

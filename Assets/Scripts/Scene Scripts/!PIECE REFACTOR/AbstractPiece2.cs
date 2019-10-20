@@ -45,18 +45,6 @@ public abstract class AbstractPiece2 : MonoBehaviour
         animator.runtimeAnimatorController = aoc;
     }
 
-    public bool FindOwner(out Player owner)
-    {
-        owner = this.owner;
-        return canBeOwned;
-    }
-
-    public bool FindController(out Player owner)
-    {
-        owner = this.owner;
-        return canBeControlled;
-    }
-
     public abstract void AP2_AnimatorParameters();
     public abstract void AP2_PieceInteraction();
 }

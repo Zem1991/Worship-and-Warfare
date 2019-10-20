@@ -30,9 +30,9 @@ public class CombatUI_BC_TurnSequence : AUIPanel
         foreach (AbstractCombatantPiece2 forCUP in turnSequence)
         {
             CUI_TurnSequenceItem newCUI = Instantiate(prefab, sequenceBar.transform);
-            newCUI.border.color = forCUP.owner.color;
+            newCUI.border.color = forCUP.IPO_GetOwner().color;
             newCUI.portrait.sprite = forCUP.profilePicture;
-            newCUI.unit = forCUP;
+            newCUI.combatPiece = forCUP;
             tsItems.Add(newCUI);
         }
     }

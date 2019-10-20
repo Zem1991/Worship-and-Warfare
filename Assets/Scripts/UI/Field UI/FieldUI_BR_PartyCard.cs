@@ -10,19 +10,9 @@ public class FieldUI_BR_PartyCard : AUIPanel
     public AnyUI_HeroInfo heroInfo;
     public AnyUI_UnitsInfo unitsInfo;
 
-    public Image commandBar;
-    public Image u1Portrait;
-    public Text u1StackSize;
-    public Image u2Portrait;
-    public Text u2StackSize;
-    public Image u3Portrait;
-    public Text u3StackSize;
-    public Image u4Portrait;
-    public Text u4StackSize;
-    public Image u5Portrait;
-    public Text u5StackSize;
+    //public Image commandBar;
 
-    public void UpdatePanel(FieldPartyPiece p)
+    public void UpdatePanel(PartyPiece2 p)
     {
         if (!p)
         {
@@ -31,17 +21,26 @@ public class FieldUI_BR_PartyCard : AUIPanel
             return;
         }
 
-        unitsInfo.Show();
-
-        Hero hero = p.hero;
+        Hero hero = p.partyHero;
         if (hero)
         {
-            heroInfo.RefreshInfo(p.hero);
+            heroInfo.RefreshInfo(hero);
             heroInfo.Show();
         }
         else
         {
             heroInfo.Hide();
+        }
+
+        List<Unit> units = p.partyUnits;
+        if (units != null)
+        {
+            unitsInfo.RefreshInfo(units);
+            unitsInfo.Show();
+        }
+        else
+        {
+            unitsInfo.Hide();
         }
     }
 }

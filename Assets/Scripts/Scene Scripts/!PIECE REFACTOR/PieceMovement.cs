@@ -8,7 +8,7 @@ public class PieceMovement : MonoBehaviour
     public static readonly float movementSpeed = 5F;
 
     [Header("Variables")]
-    [SerializeField] private List<PathNode> path = new List<PathNode>();
+    public List<PathNode> path = new List<PathNode>();
     public int pathTotalCost;
     public int movementPointsCurrent;
     public int movementPointsMax;
@@ -16,7 +16,7 @@ public class PieceMovement : MonoBehaviour
     public bool stopWasCalled;
 
     [Header("References")]
-    [SerializeField] private AbstractTile currentTile;
+    public AbstractTile currentTile;
     public AbstractTile targetTile;
     public AbstractTile nextTile;
     public Vector3 nextPos;
@@ -36,7 +36,6 @@ public class PieceMovement : MonoBehaviour
 
     private void Update()
     {
-        MakeMove();
         currentTile = piece.currentTile;
     }
 
@@ -106,7 +105,7 @@ public class PieceMovement : MonoBehaviour
         }
     }
 
-    private void MakeMove()
+    public void MakeMove()
     {
         if (!inMovement) return;
 
@@ -136,7 +135,7 @@ public class PieceMovement : MonoBehaviour
                 path.RemoveAt(0);
 
                 nextTile = pNode.tile;
-                OctoDirXZ dirToLook = currentTile.GetNeighbourDirection(nextTile);
+                OctoDirXZ dirToLook = piece.currentTile.GetNeighbourDirection(nextTile);
                 LookAtDirection(dirToLook);
 
                 // If the next tile is the target tile, and the target tile has a piece over it,

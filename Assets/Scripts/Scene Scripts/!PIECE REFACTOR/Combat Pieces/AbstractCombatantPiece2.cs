@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PieceMovement))]
-public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, ICommandablePiece, IMovablePiece
+public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, IPlayerOwnable, IPlayerControllable, ICommandablePiece, IMovablePiece
 {
     protected PieceMovement pieceMovement;
 
     [Header("Combat identification")]
     public int spawnId;
     public bool defenderSide;
+
+    [Header("Combat stats")]
+    public int initiative;
 
     [Header("Combat settings")]
     public bool hasRangedAttack;
@@ -31,12 +34,15 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, ICommandab
     protected override void Awake()
     {
         base.Awake();
+        canBeOwned = true;
+        canBeControlled = true;
         pieceMovement = GetComponent<PieceMovement>();
     }
 
     protected override void Update()
     {
         base.Update();
+        IMP_MakeMove();
         ACtP_MakeAttack();
         ACtP_MakeHurt();
     }
@@ -68,13 +74,51 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, ICommandab
     {
         if (pieceMovement.targetPiece)
         {
-            Player ownerFound;
-            if (pieceMovement.targetPiece.FindOwner(out ownerFound) && ownerFound != owner)
+            AbstractCombatantPiece2 acp = pieceMovement.targetPiece as AbstractCombatantPiece2;
+            if (acp.IPO_HasOwner() && acp.IPO_GetOwner() != owner)
             {
                 //TODO check ranged interaction
                 ACtP_Attack(hasRangedAttack);
             }
         }
+    }
+
+    public override bool ACP_TakeDamage(float amount)
+    {
+        bool result = base.ACP_TakeDamage(amount);
+        if (!result) isHurt = true;
+        return result;
+    }
+
+    public override void ACP_Die()
+    {
+        base.ACP_Die();
+        CombatManager.Instance.RemoveUnitFromTurnSequence(this);
+    }
+
+    public bool IPO_HasOwner()
+    {
+        return canBeOwned && owner;
+    }
+
+    public Player IPO_GetOwner()
+    {
+        return owner;
+    }
+
+    public bool IPC_HasController()
+    {
+        return canBeControlled && controller;
+    }
+
+    public Player IPC_GetController()
+    {
+        return controller;
+    }
+
+    public void IPC_SetController(Player player)
+    {
+        controller = player;
     }
 
     public void ICP_StartTurn()
@@ -173,6 +217,21 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, ICommandab
     public void IMP_Stop()
     {
         pieceMovement.stopWasCalled = true;
+    }
+
+    public void IMP_MakeMove()
+    {
+        if (CombatManager.Instance.IsCombatRunning())
+        {
+            bool inMove = pieceMovement.inMovement;
+            pieceMovement.MakeMove();
+            if (inMove && ICP_IsIdle()) ICP_EndTurn();
+        }
+    }
+
+    public PieceMovement IMP_GetPieceMovement()
+    {
+        return pieceMovement;
     }
 
     public abstract void ACtP_ResetMovementPoints();

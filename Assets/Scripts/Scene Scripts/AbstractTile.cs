@@ -24,7 +24,7 @@ public abstract class AbstractTile : MonoBehaviour
     public AbstractTile fl;
     public AbstractTile f;
     public AbstractTile fr;
-    public AbstractPiece occupantPiece;
+    public AbstractPiece2 occupantPiece;
 
     public bool IsAcessible(bool needGroundAccess, bool needWaterAccess, bool needLavaAccess)
     {

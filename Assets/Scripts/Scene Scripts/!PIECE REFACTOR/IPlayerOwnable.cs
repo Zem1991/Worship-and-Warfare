@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IPlayerOwnable
 {
-    Player playerOwner { get; set; }
+    bool IPO_HasOwner();
+    Player IPO_GetOwner();
 }

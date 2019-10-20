@@ -7,7 +7,7 @@ public class Unit : MonoBehaviour
     public DB_Unit dbData;
 
     public int hitPointsMax;
-    public int stackSizeCurrent;
+    public int stackSize;
 
     public int damageMin;
     public int damageMax;
@@ -21,7 +21,7 @@ public class Unit : MonoBehaviour
         this.dbData = dbData;
 
         hitPointsMax = dbData.hitPoints;
-        stackSizeCurrent = unitData.stackSize;
+        stackSize = unitData.stackSize;
 
         damageMin = dbData.damageMin;
         damageMax = dbData.damageMax;
@@ -35,7 +35,7 @@ public class Unit : MonoBehaviour
 
     public string GetName()
     {
-        if (stackSizeCurrent <= 1) return dbData.nameSingular;
+        if (stackSize <= 1) return dbData.nameSingular;
         return dbData.namePlural;
     }
 }

@@ -10,7 +10,7 @@ public class CombatUI_TC_PartyCard : AUIPanel
     public Image commandBar;
     public Image manaBar;
 
-    public void UpdatePanel(CombatHeroPiece hc)
+    public void UpdatePanel(CombatantHeroPiece2 hc)
     {
         if (!hc)
         {

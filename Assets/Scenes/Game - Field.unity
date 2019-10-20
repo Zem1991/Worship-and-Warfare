@@ -2683,7 +2683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49fa722278e078a48a2db19d12b6a021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pieces: []
+  partyPieces: []
 --- !u!1 &288368545
 GameObject:
   m_ObjectHideFlags: 0
@@ -6970,17 +6970,6 @@ MonoBehaviour:
   crest: {fileID: 1166638766}
   heroInfo: {fileID: 1436794801}
   unitsInfo: {fileID: 1095137755}
-  commandBar: {fileID: 2114881901}
-  u1Portrait: {fileID: 96471562}
-  u1StackSize: {fileID: 42400976}
-  u2Portrait: {fileID: 157875565}
-  u2StackSize: {fileID: 1925912727}
-  u3Portrait: {fileID: 771703476}
-  u3StackSize: {fileID: 360219545}
-  u4Portrait: {fileID: 445253265}
-  u4StackSize: {fileID: 1291387217}
-  u5Portrait: {fileID: 651436670}
-  u5StackSize: {fileID: 82611041}
 --- !u!1 &1082435011
 GameObject:
   m_ObjectHideFlags: 0
@@ -7258,6 +7247,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80a41e5ad0edb114ab82c8d6d9127aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  u1Portrait: {fileID: 96471562}
+  u1StackSize: {fileID: 42400976}
+  u2Portrait: {fileID: 157875565}
+  u2StackSize: {fileID: 1925912727}
+  u3Portrait: {fileID: 771703476}
+  u3StackSize: {fileID: 360219545}
+  u4Portrait: {fileID: 445253265}
+  u4StackSize: {fileID: 1291387217}
+  u5Portrait: {fileID: 651436670}
+  u5StackSize: {fileID: 82611041}
 --- !u!1 &1103045319
 GameObject:
   m_ObjectHideFlags: 0

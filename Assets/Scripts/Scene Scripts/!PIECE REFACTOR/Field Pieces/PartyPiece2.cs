@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PieceMovement))]
-public class PartyPiece2 : AbstractFieldPiece2, ICommandablePiece, IMovablePiece
+public class PartyPiece2 : AbstractFieldPiece2, IPlayerOwnable, IPlayerControllable, ICommandablePiece, IMovablePiece
 {
     protected PieceMovement pieceMovement;
 
@@ -19,7 +19,15 @@ public class PartyPiece2 : AbstractFieldPiece2, ICommandablePiece, IMovablePiece
     protected override void Awake()
     {
         base.Awake();
+        canBeOwned = true;
+        canBeControlled = true;
         pieceMovement = GetComponent<PieceMovement>();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        IMP_MakeMove();
     }
 
     public void Initialize(Player owner, Hero hero, List<Unit> units)
@@ -64,6 +72,31 @@ public class PartyPiece2 : AbstractFieldPiece2, ICommandablePiece, IMovablePiece
     public override void AP2_PieceInteraction()
     {
         FieldManager.Instance.pieceHandler.PartiesAreInteracting(this, pieceMovement.targetPiece as PartyPiece2);
+    }
+
+    public bool IPO_HasOwner()
+    {
+        return canBeOwned && owner;
+    }
+
+    public Player IPO_GetOwner()
+    {
+        return owner;
+    }
+
+    public bool IPC_HasController()
+    {
+        return canBeControlled && controller;
+    }
+
+    public Player IPC_GetController()
+    {
+        return controller;
+    }
+
+    public void IPC_SetController(Player player)
+    {
+        controller = player;
     }
 
     public void ICP_StartTurn()
@@ -117,5 +150,15 @@ public class PartyPiece2 : AbstractFieldPiece2, ICommandablePiece, IMovablePiece
     public void IMP_Stop()
     {
         pieceMovement.stopWasCalled = true;
+    }
+
+    public void IMP_MakeMove()
+    {
+        pieceMovement.MakeMove();
+    }
+
+    public PieceMovement IMP_GetPieceMovement()
+    {
+        return pieceMovement;
     }
 }

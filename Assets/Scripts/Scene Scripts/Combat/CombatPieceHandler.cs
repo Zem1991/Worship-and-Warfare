@@ -6,12 +6,14 @@ using UnityEngine;
 public class CombatPieceHandler : MonoBehaviour
 {
     [Header("Attacker")]
-    public CombatHeroPiece attackerHero;
+    public CombatantHeroPiece2 attackerHero;
     public List<CombatantUnitPiece2> attackerUnits;
+    public List<AbstractCombatantPiece2> attackerPieces;
 
     [Header("Defender")]
-    public CombatHeroPiece defenderHero;
+    public CombatantHeroPiece2 defenderHero;
     public List<CombatantUnitPiece2> defenderUnits;
+    public List<AbstractCombatantPiece2> defenderPieces;
 
     public void Remove()
     {
@@ -26,6 +28,7 @@ public class CombatPieceHandler : MonoBehaviour
             }
         }
         attackerUnits = new List<CombatantUnitPiece2>();
+        attackerPieces = new List<AbstractCombatantPiece2>();
 
         if (defenderUnits != null)
         {
@@ -35,26 +38,29 @@ public class CombatPieceHandler : MonoBehaviour
             }
         }
         defenderUnits = new List<CombatantUnitPiece2>();
+        defenderPieces = new List<AbstractCombatantPiece2>();
     }
 
     public void Create(PartyPiece2 attackerPiece, PartyPiece2 defenderPiece)
     {
         Remove();
-        CombatHeroPiece prefabHero = AllPrefabs.Instance.combatHeroPiece;
+        CombatantHeroPiece2 prefabHero = AllPrefabs.Instance.combatHeroPiece;
         CombatantUnitPiece2 prefabUnit = AllPrefabs.Instance.combatUnitPiece;
 
         int spawnId = 0;
         if (attackerPiece.partyHero != null)
         {
             attackerHero = Instantiate(prefabHero, transform);
-            attackerHero.Initialize(attackerPiece.partyHero, attackerPiece.owner, spawnId);
+            attackerHero.Initialize(attackerPiece.partyHero, attackerPiece.IPO_GetOwner(), spawnId);
+            //attackerPieces.Add(attackerHero); //TODO THIS LATER
         }
 
         spawnId = 1;
         if (defenderPiece.partyHero != null)
         {
             defenderHero = Instantiate(prefabHero, transform);
-            defenderHero.Initialize(defenderPiece.partyHero, defenderPiece.owner, spawnId);
+            defenderHero.Initialize(defenderPiece.partyHero, defenderPiece.IPO_GetOwner(), spawnId);
+            //defenderPieces.Add(defenderHero); //TODO THIS LATER
         }
 
         spawnId = 2;
@@ -63,8 +69,9 @@ public class CombatPieceHandler : MonoBehaviour
             foreach (var item in attackerPiece.partyUnits)
             {
                 CombatantUnitPiece2 uc = Instantiate(prefabUnit, transform);
-                uc.Initialize(attackerPiece.owner, item, spawnId);
+                uc.Initialize(attackerPiece.IPO_GetOwner(), item, spawnId);
                 attackerUnits.Add(uc);
+                attackerPieces.Add(uc);
 
                 spawnId += 2;
             }
@@ -76,8 +83,9 @@ public class CombatPieceHandler : MonoBehaviour
             foreach (var item in defenderPiece.partyUnits)
             {
                 CombatantUnitPiece2 uc = Instantiate(prefabUnit, transform);
-                uc.Initialize(defenderPiece.owner, item, spawnId, true);
+                uc.Initialize(defenderPiece.IPO_GetOwner(), item, spawnId, true);
                 defenderUnits.Add(uc);
+                defenderPieces.Add(uc);
 
                 spawnId += 2;
             }
@@ -141,37 +149,37 @@ public class CombatPieceHandler : MonoBehaviour
         Pathfinder.FindPath(piece.currentTile, targetTile, Pathfinder.HexHeuristic,
             needGroundAccess, needWaterAccess, needLavaAccess,
             out PathfindResults pathfindResults);
-        piece.SetPath(pathfindResults, targetTile);
+        piece.IMP_GetPieceMovement().SetPath(pathfindResults, targetTile);
     }
 
-    public Hero GetHero(Player player)
+    public CombatantHeroPiece2 GetHero(Player player)
     {
         CombatManager cm = CombatManager.Instance;
-        if (player == cm.attacker) return attackerHero?.hero;
-        if (player == cm.defender) return defenderHero?.hero;
+        if (player == cm.attacker) return attackerHero;
+        if (player == cm.defender) return defenderHero;
         return null;
     }
 
-    public bool GetPieceList(Player owner, bool enemyPieces, out List<CombatantUnitPiece2> list)
+    public bool GetPieceList(Player owner, bool enemyPieces, out List<AbstractCombatantPiece2> list)
     {
         list = null;
         CombatManager cm = CombatManager.Instance;
         if (owner == cm.attacker)
         {
-            if (enemyPieces) list = defenderUnits;
-            else list = attackerUnits;
+            if (enemyPieces) list = defenderPieces;
+            else list = attackerPieces;
         }
         else if (owner == cm.defender)
         {
-            if (enemyPieces) list = attackerUnits;
-            else list = defenderUnits;
+            if (enemyPieces) list = attackerPieces;
+            else list = defenderPieces;
         }
         return list != null;
     }
 
-    public List<CombatantUnitPiece2> GetIdlePieces(List<CombatantUnitPiece2> pieces)
+    public List<AbstractCombatantPiece2> GetIdlePieces(List<AbstractCombatantPiece2> pieces)
     {
-        List<CombatantUnitPiece2> result = new List<CombatantUnitPiece2>();
+        List<AbstractCombatantPiece2> result = new List<AbstractCombatantPiece2>();
         foreach (var item in pieces)
         {
             if (item.ICP_IsIdle()) result.Add(item);
@@ -179,9 +187,9 @@ public class CombatPieceHandler : MonoBehaviour
         return result;
     }
 
-    public List<CombatantUnitPiece2> GetActivePieces(List<CombatantUnitPiece2> pieces)
+    public List<AbstractCombatantPiece2> GetActivePieces(List<AbstractCombatantPiece2> pieces)
     {
-        List<CombatantUnitPiece2> result = new List<CombatantUnitPiece2>();
+        List<AbstractCombatantPiece2> result = new List<AbstractCombatantPiece2>();
         foreach (var item in pieces)
         {
             if (!item.isDead) result.Add(item);

@@ -4,5 +4,7 @@ using UnityEngine;
 
 public interface IPlayerControllable
 {
-    Player playerController { get; set; }
+    bool IPC_HasController();
+    Player IPC_GetController();
+    void IPC_SetController(Player player);
 }

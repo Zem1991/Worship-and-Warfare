@@ -51,9 +51,9 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     {
         //background = battleground.image;
 
-        attacker = attackerPiece.owner;
+        attacker = attackerPiece.IPO_GetOwner();
         this.attackerPiece = attackerPiece;
-        defender = defenderPiece.owner;
+        defender = defenderPiece.IPO_GetOwner();
         this.defenderPiece = defenderPiece;
 
         Debug.LogWarning("No tile data for combat map!");
@@ -102,12 +102,12 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
             ci.selectionPiece = currentPiece;
 
             ci.selectionHighlight.transform.position = currentPiece.transform.position;
-            ci.canCommandSelectedPiece = currentPiece.owner == PlayerManager.Instance.localPlayer;
+            ci.canCommandSelectedPiece = currentPiece.IPO_GetOwner() == PlayerManager.Instance.localPlayer;
 
             turnSequence.RemoveAt(0);
             CombatUI.Instance.turnSequence.RemoveFirstFromTurnSequence();
 
-            Player owner = currentPiece.owner;
+            Player owner = currentPiece.IPO_GetOwner();
             if (owner.type == PlayerType.COMPUTER)
             {
                 owner.aiPersonality.CombatRoutine();
@@ -123,7 +123,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     {
         if (CalculateFullTurnSequence())
         {
-            foreach (CombatUnitPiece cup in turnSequence) cup.StartTurn();
+            foreach (AbstractCombatantPiece2 cup in turnSequence) cup.ICP_StartTurn();
 
             NextUnit();
             currentTurn++;
@@ -132,9 +132,9 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
     public bool CalculateFullTurnSequence()
     {
-        List<CombatUnitPiece> newSequence = new List<CombatUnitPiece>();
-        newSequence.AddRange(pieceHandler.GetActivePieces(pieceHandler.attackerUnits));
-        newSequence.AddRange(pieceHandler.GetActivePieces(pieceHandler.defenderUnits));
+        List<AbstractCombatantPiece2> newSequence = new List<AbstractCombatantPiece2>();
+        newSequence.AddRange(pieceHandler.GetActivePieces(pieceHandler.attackerPieces));
+        newSequence.AddRange(pieceHandler.GetActivePieces(pieceHandler.defenderPieces));
         if (newSequence.Count <= 0) return false;
 
         turnSequence = newSequence;
@@ -145,7 +145,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     public void UpdateTurnSequence()
     {
         turnSequence = turnSequence.OrderBy(a => a.spawnId).ToList();
-        turnSequence = turnSequence.OrderByDescending(a => a.unit.initiative).ToList();
+        turnSequence = turnSequence.OrderByDescending(a => a.initiative).ToList();
         CombatUI.Instance.turnSequence.CreateTurnSequence(turnSequence);
     }
 
@@ -239,18 +239,18 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
     private bool CheckBattleEnd()
     {
-        int attackerActive = pieceHandler.GetActivePieces(pieceHandler.attackerUnits).Count;
-        int defenderActive = pieceHandler.GetActivePieces(pieceHandler.defenderUnits).Count;
+        int attackerActive = pieceHandler.GetActivePieces(pieceHandler.attackerPieces).Count;
+        int defenderActive = pieceHandler.GetActivePieces(pieceHandler.defenderPieces).Count;
 
         if (attackerActive > 0 && defenderActive <= 0)
         {
-            int attackerIdle = pieceHandler.GetIdlePieces(pieceHandler.attackerUnits).Count;
+            int attackerIdle = pieceHandler.GetIdlePieces(pieceHandler.attackerPieces).Count;
             if (attackerIdle >= attackerActive) CombatEnd(CombatResult.ATTACKER_WON);
             return true;
         }
         else if (defenderActive > 0 && attackerActive <= 0)
         {
-            int defenderIdle = pieceHandler.GetIdlePieces(pieceHandler.defenderUnits).Count;
+            int defenderIdle = pieceHandler.GetIdlePieces(pieceHandler.defenderPieces).Count;
             if (defenderIdle >= defenderActive) CombatEnd(CombatResult.DEFENDER_WON);
             return true;
         }

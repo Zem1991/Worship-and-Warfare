@@ -9,7 +9,7 @@ public class CombatUI_CC_EscapeMenu : AUIPanel
     public Button btnResume;
     public Button btnSurrender;
 
-    public void UpdatePanel(CombatHeroPiece hc)
+    public void UpdatePanel(CombatantHeroPiece2 hc)
     {
 
     }

@@ -8,7 +8,7 @@ public class CombatUI_CC_ResultPopup : AUIPanel
     public Text txtMessage;
     public Button btnOk;
 
-    public void UpdatePanel(CombatHeroPiece hc)
+    public void UpdatePanel(CombatantHeroPiece2 hc)
     {
 
     }

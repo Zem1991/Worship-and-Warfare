@@ -23,10 +23,11 @@ public class CombatantUnitPiece2 : AbstractCombatantPiece2
 
         this.spawnId = spawnId;
         this.defenderSide = defenderSide;
+        initiative = unit.initiative;
         hasRangedAttack = unit.hasRangedAttack;
 
-        stackSizeStart = unit.stackSizeCurrent;
-        hitPointsCurrent = stackSizeStart;
+        stackSizeStart = unit.stackSize;
+        stackSizeCurrent = stackSizeStart;
 
         ACtP_ResetMovementPoints();
         FlipSpriteHorizontally(defenderSide);
@@ -66,17 +67,12 @@ public class CombatantUnitPiece2 : AbstractCombatantPiece2
     public override void ACP_Die()
     {
         stackSizeCurrent = 0;
-        hitPointsCurrent = 0;
-        isDead = true;
-        spriteRenderer.sortingOrder--;
-
-        currentTile.occupantPiece = null;
-        (currentTile as CombatTile).deadPieces.Add(this);
-        CombatManager.Instance.RemoveUnitFromTurnSequence(this);
+        base.ACP_Die();
     }
 
     public override void ACtP_ResetMovementPoints()
     {
+        if (!pieceMovement) pieceMovement = GetComponent<PieceMovement>();
         pieceMovement.movementPointsMax = unit.movementRange * 100;
         pieceMovement.movementPointsCurrent = pieceMovement.movementPointsMax;
     }
@@ -134,9 +130,9 @@ public class CombatantUnitPiece2 : AbstractCombatantPiece2
     {
         CombatantUnitPiece2 targetUnit = pieceMovement.targetPiece as CombatantUnitPiece2;
         CombatPieceHandler cph = CombatManager.Instance.pieceHandler;
-        Hero attackerHero = cph.GetHero(owner);
-        Hero defenderHero = cph.GetHero(targetUnit.owner);
-        return CombatLogic.DamageCalculation(unit, targetUnit.unit, attackerHero, defenderHero);
+        CombatantHeroPiece2 attackerHero = cph.GetHero(owner);
+        CombatantHeroPiece2 defenderHero = cph.GetHero(targetUnit.owner);
+        return CombatLogic.DamageCalculation(this, targetUnit, attackerHero, defenderHero);
     }
 
     public override void ACtP_Attack(bool ranged)

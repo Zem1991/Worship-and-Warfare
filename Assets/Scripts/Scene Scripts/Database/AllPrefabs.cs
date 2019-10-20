@@ -27,7 +27,7 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
 
     [Header("Combat Scene")]
     public CombatTile combatTile;
-    //public CombatHeroPiece combatHeroPiece;
+    public CombatantHeroPiece2 combatHeroPiece;
     public CombatantUnitPiece2 combatUnitPiece;
 
     [Header("Field UI")]
