@@ -10,7 +10,7 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
     public FieldUI_TR_Timers timers;
     public FieldUI_BL_Minimap minimap;
     public FieldUI_BC_Commands commands;
-    public FieldUI_BR_PartyCard partyCard;
+    public FieldUI_BR_SelectionCard selectionCard;
 
     [Header("Windows")]
     public FieldUI_CC_EscapeMenu escapeMenu;
@@ -52,22 +52,25 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
         minimap.UpdatePanel();
         coreButtons.UpdatePanel();
 
-        PartyPiece2 p = fi.selectionPiece as PartyPiece2;
+        PartyPiece2 party = fi.selectionPiece as PartyPiece2;
         bool canCommandSelectedPiece = fi.canCommandSelectedPiece;
 
-        if (p) UpdateWithSelection(p, canCommandSelectedPiece);
+        PickupPiece2 pickup = fi.selectionPiece as PickupPiece2;
+
+        if (party) UpdateWithSelection(party, canCommandSelectedPiece);
+        else if (pickup) UpdateWithSelection(pickup);
         else UpdateWithoutSelection();
 
-        if (currentWindow == inventory) inventory.UpdatePanel(p);
+        if (currentWindow == inventory) inventory.UpdatePanel(party);
     }
 
-    private void UpdateWithSelection(PartyPiece2 p, bool canCommandSelectedPiece)
+    private void UpdateWithSelection(PartyPiece2 party, bool canCommandSelectedPiece)
     {
-        partyCard.UpdatePanel(p);
+        selectionCard.UpdatePanel(party);
 
         if (canCommandSelectedPiece)
         {
-            commands.UpdatePanel(p);
+            commands.UpdatePanel(party);
             commands.Show();
         }
         else
@@ -76,9 +79,15 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
         }
     }
 
+    private void UpdateWithSelection(PickupPiece2 pickup)
+    {
+        selectionCard.UpdatePanel(pickup);
+        commands.Hide();
+    }
+
     private void UpdateWithoutSelection()
     {
-        partyCard.UpdatePanel(null);
+        selectionCard.HidePanel();
         commands.Hide();
     }
 

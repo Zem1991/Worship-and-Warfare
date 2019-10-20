@@ -28,7 +28,7 @@ public class FUI_InventorySlot_Back : MonoBehaviour, IDropHandler
         slotName = invSlot.slotName;
 
         Artifact artifact = invSlot.artifact;
-        invSlotFront.ChangeImage(artifact?.image);
+        invSlotFront.ChangeImage(artifact?.dbData.image);
     }
 
     public void OnDrop(PointerEventData eventData)

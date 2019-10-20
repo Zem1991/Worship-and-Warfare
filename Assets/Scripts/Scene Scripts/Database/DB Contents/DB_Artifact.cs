@@ -5,10 +5,11 @@ using UnityEngine;
 public class DB_Artifact : DBContent
 {
     [Header("Artifact identification")]
-    public new string name;
-    public ArtifactType type;
-    public ArtifactRarity rarity;
+    public string artifactName;
+    public ArtifactType artifactType;
+    public ArtifactRarity artifactRarity;
     public Sprite image;
+    public string artifactDescription;
 
     [Header("Artifact parameters")]
     public int atrCommand;

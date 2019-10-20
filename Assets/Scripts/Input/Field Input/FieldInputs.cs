@@ -195,19 +195,27 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
             }
         }
 
-        PartyPiece2 pp = selectionPiece as PartyPiece2;
-        if (pp)
+        if (selectionPiece)
         {
-            if (pp.IMP_GetPieceMovement().inMovement)
+            selectionPos = selectionTile.posId;
+            selectionTile = selectionPiece.currentTile as FieldTile;
+            selectionHighlight.transform.position = selectionPiece.transform.position;
+
+            PartyPiece2 pp = selectionPiece as PartyPiece2;
+            if (pp)
             {
-                selectionTile = pp.currentTile as FieldTile;
-                selectionPos = selectionTile.posId;
+                if (pp.IMP_GetPieceMovement().inMovement)
+                {
 
-                selectionHighlight.transform.position = pp.transform.position;
+                }
+
+                selectionHighlight.gameObject.SetActive(true);
+                canCommandSelectedPiece = pp.IPO_GetOwner() == PlayerManager.Instance.localPlayer;
             }
-
-            selectionHighlight.gameObject.SetActive(true);
-            canCommandSelectedPiece = pp.IPO_GetOwner() == PlayerManager.Instance.localPlayer;
+            else
+            {
+                canCommandSelectedPiece = false;
+            }
         }
         else
         {
@@ -275,10 +283,10 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
 
     private void MovementHighlights()
     {
-        PartyPiece2 pp = selectionPiece as PartyPiece2;
         bool clearThenReturn = false;
 
-        if (!selectionPiece)
+        PartyPiece2 pp = selectionPiece as PartyPiece2;
+        if (!pp)
         {
             if (movementHighlights.Count > 0) clearThenReturn = true;
             else return;

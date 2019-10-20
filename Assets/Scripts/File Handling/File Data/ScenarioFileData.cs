@@ -10,8 +10,9 @@ public class ScenarioFileData
     public int width;
     public int height;
 
-    public PlayerData[] players;
+    public List<PlayerData> players;
     public MapData map;
     //public MapData extraMap;
-    public PieceData[] pieces;
+    public List<PartyData> parties;
+    public List<PickupData> pickups;
 }

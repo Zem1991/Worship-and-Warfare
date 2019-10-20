@@ -6,18 +6,18 @@ using UnityEngine;
 public class PlayerManager : AbstractSingleton<PlayerManager>
 {
     public static readonly int MAX_PLAYERS = 2;
-    public static readonly Color[] PLAYER_COLORS =
-    {
-        Color.red,
-        Color.blue,
-        Color.yellow,
-        Color.green,
-        Color.magenta,
-        Color.cyan,
-        Color.white,
-        Color.black
-    };
-    public readonly Color INACTIVE_COLOR = Color.gray;
+    //public static readonly Color[] PLAYER_COLORS =
+    //{
+    //    Color.red,
+    //    Color.blue,
+    //    Color.yellow,
+    //    Color.green,
+    //    Color.magenta,
+    //    Color.cyan,
+    //    Color.white,
+    //    Color.black
+    //};
+    //public readonly Color INACTIVE_COLOR = Color.gray;
 
     [Header("Players")]
     public Player localPlayer;
@@ -35,13 +35,13 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         activePlayers.Clear();
     }
 
-    public void InstantiatePlayers(PlayerData[] data)
+    public void InstantiatePlayers(List<PlayerData> data)
     {
         RemovePlayers();
 
-        for (int i = 0; i < data.Length; i++)
+        for (int i = 0; i < data.Count; i++)
         {
-            InstantiatePlayer(data[i], i);
+            InstantiatePlayer(data[i], i + 1);
         }
 
         activePlayers = new List<Player>(allPlayers);
@@ -55,10 +55,12 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     public void InstantiatePlayer(PlayerData data, int id)
     {
+        DBHandler_Color dbColors = DatabaseManager.Instance.colors;
+
         Player prefab = AllPrefabs.Instance.player;
 
         Player newPlayer = Instantiate(prefab, transform);
-        newPlayer.Initialize(data, id);
+        newPlayer.Initialize(data, id, dbColors.Select(data.colorId));
         allPlayers.Add(newPlayer);
     }
 

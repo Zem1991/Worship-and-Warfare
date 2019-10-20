@@ -4,8 +4,9 @@ using UnityEngine;
 
 public abstract class AbstractPiece2 : MonoBehaviour
 {
-    protected SpriteRenderer spriteRenderer;
     protected Animator animator;
+    protected SpriteRenderer mainSpriteRenderer;
+    protected SpriteRenderer flagSpriteRenderer;
 
     [Header("Player owner/controller")]
     [SerializeField] protected bool canBeOwned;
@@ -19,8 +20,11 @@ public abstract class AbstractPiece2 : MonoBehaviour
 
     protected virtual void Awake()
     {
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
+
+        SpriteRenderer[] renderers = GetComponentsInChildren<SpriteRenderer>();
+        if (renderers.Length > 0) mainSpriteRenderer = renderers[0];
+        if (renderers.Length > 1) flagSpriteRenderer = renderers[1];
     }
 
     protected virtual void Start()
@@ -33,16 +37,28 @@ public abstract class AbstractPiece2 : MonoBehaviour
         AP2_AnimatorParameters();
     }
 
-    public void FlipSpriteHorizontally(bool flip)
-    {
-        if (!spriteRenderer) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        spriteRenderer.flipX = flip;
-    }
-
     public void SetAnimatorOverrideController(AnimatorOverrideController aoc)
     {
         if (!animator) animator = GetComponentInChildren<Animator>();
         animator.runtimeAnimatorController = aoc;
+    }
+
+    public void FlipSpriteHorizontally(bool flip)
+    {
+        if (!mainSpriteRenderer) mainSpriteRenderer = GetComponentsInChildren<SpriteRenderer>()[0];
+        mainSpriteRenderer.flipX = flip;
+    }
+
+    public void SetMainSprite(Sprite flag)
+    {
+        if (!mainSpriteRenderer) mainSpriteRenderer = GetComponentsInChildren<SpriteRenderer>()[0];
+        mainSpriteRenderer.sprite = flag;
+    }
+
+    public void SetFlagSprite(Sprite flag)
+    {
+        if (!flagSpriteRenderer) flagSpriteRenderer = GetComponentsInChildren<SpriteRenderer>()[1];
+        flagSpriteRenderer.sprite = flag;
     }
 
     public abstract void AP2_AnimatorParameters();

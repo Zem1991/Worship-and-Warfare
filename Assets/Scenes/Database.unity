@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
-  colorName: Red
+  colorName: Blue
   mainColor: {r: 0, g: 0, b: 1, a: 1}
   imgFlag: {fileID: -4797151895372747443, guid: 1ee836adadebaa7408716eb7b8f6d0ee,
     type: 3}
@@ -379,10 +379,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
-  name: Shield of the Dwarven Lords
-  type: 2
-  rarity: 0
-  image: {fileID: 21300000, guid: 753080b89d2796f44a125bb23163cc50, type: 3}
+  artifactName: Shield of the Dwarven Lords
+  artifactType: 2
+  artifactRarity: 0
+  image: {fileID: 21300000, guid: c5cb9fb6236604845b90e195bd0fd3e0, type: 3}
+  artifactDescription: Adds 2 to the hero's Defense.
   atrCommand: 0
   atrOffense: 0
   atrDefense: 2
@@ -470,6 +471,60 @@ Transform:
   m_Father: {fileID: 1957607057}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &401762873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 401762874}
+  - component: {fileID: 401762875}
+  m_Layer: 0
+  m_Name: Helm of Heavenly Enlightenment
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &401762874
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401762873}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1428424754}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &401762875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401762873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45dfe7c95a000ff4f80fb5e2b8e4a369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  artifactName: Helm of Heavenly Enlightenment
+  artifactType: 3
+  artifactRarity: 0
+  image: {fileID: 21300000, guid: 8b8c2444ed0bde148a883fd569df405f, type: 3}
+  artifactDescription: Adds 6 to all attributes.
+  atrCommand: 6
+  atrOffense: 6
+  atrDefense: 6
+  atrPower: 6
+  atrFocus: 6
 --- !u!1 &441683125
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,6 +583,8 @@ MonoBehaviour:
   fieldTile: {fileID: 8671262855878196691, guid: 9c74900f3a4946947894798d230e9005,
     type: 3}
   fieldPartyPiece: {fileID: 1317082670439789998, guid: 3a5786de7131a584e883254e93133465,
+    type: 3}
+  fieldPickupPiece: {fileID: -4379598809724792539, guid: 9636c308433c1254fb7a32629bf6e787,
     type: 3}
   fuiInvSlot: {fileID: 4757467102435365897, guid: 838362ac4bc2bdc43b97c6ad293b0ec1,
     type: 3}
@@ -616,7 +673,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1476942289}
+  - {fileID: 960977122}
   m_Father: {fileID: 1037067536}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -812,6 +871,60 @@ MonoBehaviour:
   profilePicture: {fileID: 21300000, guid: 4dbc5a32b0b03a04b9160f4c1e4308c2, type: 3}
   animatorField: {fileID: 22100000, guid: 6e1ef4cba0109c54f8afd22be7a1f7d5, type: 2}
   animatorCombat: {fileID: 22100000, guid: 724bd014c968db0439404c1bef496e75, type: 2}
+--- !u!1 &538693374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 538693375}
+  - component: {fileID: 538693376}
+  m_Layer: 0
+  m_Name: Dragon Scale Armor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &538693375
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538693374}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1428424754}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &538693376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538693374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45dfe7c95a000ff4f80fb5e2b8e4a369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  artifactName: Dragon Scale Armor
+  artifactType: 4
+  artifactRarity: 0
+  image: {fileID: 21300000, guid: e719187434700e543a0dfcc4dc5b3fa3, type: 3}
+  artifactDescription: Adds 4 to Offense and Defense.
+  atrCommand: 0
+  atrOffense: 4
+  atrDefense: 4
+  atrPower: 0
+  atrFocus: 0
 --- !u!1 &587533043
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,6 +1244,53 @@ MonoBehaviour:
   allowWaterMovement: 0
   allowLavaMovement: 0
   image: {fileID: 21300000, guid: ff5602d6bab3d2a4ba316e76901a051f, type: 3}
+--- !u!1 &818039188
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 818039189}
+  - component: {fileID: 818039190}
+  m_Layer: 0
+  m_Name: Ingham
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &818039189
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818039188}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1856570799}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &818039190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818039188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62424aa6ee5883f4281d0d2c4db93144, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  heroName: Ingham
+  classs: {fileID: 960977123}
+  profilePicture: {fileID: 21300000, guid: 0a6d295fa3bc09b44bb2661ea3c33282, type: 3}
 --- !u!1 &845031833
 GameObject:
   m_ObjectHideFlags: 0
@@ -1259,6 +1419,59 @@ MonoBehaviour:
   allowWaterMovement: 1
   allowLavaMovement: 0
   image: {fileID: -2891162888192440980, guid: 976a4890a96712e4d84da9aa122a188f, type: 3}
+--- !u!1 &960977121
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 960977122}
+  - component: {fileID: 960977123}
+  m_Layer: 0
+  m_Name: Cleric
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &960977122
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 960977121}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 484480923}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &960977123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 960977121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4631cf7fddea526478aac2544ff31100, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  className: Cleric
+  faction: {fileID: 648845224}
+  atrCommand: 3
+  atrOffense: 1
+  atrDefense: 0
+  atrPower: 2
+  atrFocus: 2
+  animatorField: {fileID: 22100000, guid: 6e1ef4cba0109c54f8afd22be7a1f7d5, type: 2}
+  animatorCombat: {fileID: 22100000, guid: f6c787254bbe5094f87725f24314bd04, type: 2}
 --- !u!1 &1037067535
 GameObject:
   m_ObjectHideFlags: 0
@@ -1316,6 +1529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17b21958334fe274e96c8fb8ee4ec87e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colors: {fileID: 0}
   factions: {fileID: 0}
   classes: {fileID: 0}
   heroes: {fileID: 0}
@@ -1427,6 +1641,60 @@ MonoBehaviour:
   allowWaterMovement: 0
   allowLavaMovement: 0
   image: {fileID: 21300000, guid: d116127223341c74984eb992de55738e, type: 3}
+--- !u!1 &1123742728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1123742729}
+  - component: {fileID: 1123742730}
+  m_Layer: 0
+  m_Name: Quiet Eye of the Dragon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1123742729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123742728}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1428424754}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1123742730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123742728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45dfe7c95a000ff4f80fb5e2b8e4a369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  artifactName: Quiet Eye of the Dragon
+  artifactType: 5
+  artifactRarity: 0
+  image: {fileID: 21300000, guid: 2fcd58137408ee94092112c0d04261b9, type: 3}
+  artifactDescription: Adds 1 to Offense and Defense.
+  atrCommand: 0
+  atrOffense: 1
+  atrDefense: 1
+  atrPower: 0
+  atrFocus: 0
 --- !u!1 &1161256588
 GameObject:
   m_ObjectHideFlags: 0
@@ -1659,6 +1927,13 @@ Transform:
   m_Children:
   - {fileID: 2062295096}
   - {fileID: 100158529}
+  - {fileID: 1593754787}
+  - {fileID: 1438321878}
+  - {fileID: 1583233678}
+  - {fileID: 401762874}
+  - {fileID: 538693375}
+  - {fileID: 1123742729}
+  - {fileID: 1445933927}
   m_Father: {fileID: 1037067536}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1688,13 +1963,122 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
-  name: Default Artifact
-  type: 0
-  rarity: 0
+  artifactName: 
+  artifactType: 0
+  artifactRarity: 0
   image: {fileID: 0}
+  artifactDescription: 
   atrCommand: 0
   atrOffense: 0
   atrDefense: 0
+  atrPower: 0
+  atrFocus: 0
+--- !u!1 &1438321877
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1438321878}
+  - component: {fileID: 1438321879}
+  m_Layer: 0
+  m_Name: Targe of the Rampaging Ogre
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1438321878
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438321877}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1428424754}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1438321879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438321877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45dfe7c95a000ff4f80fb5e2b8e4a369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  artifactName: Targe of the Rampaging Ogre
+  artifactType: 2
+  artifactRarity: 0
+  image: {fileID: 21300000, guid: 8a89219d838cb5c45a01bc469ce20fd9, type: 3}
+  artifactDescription: Adds 5 to the hero's Defense.
+  atrCommand: 0
+  atrOffense: 0
+  atrDefense: 5
+  atrPower: 0
+  atrFocus: 0
+--- !u!1 &1445933926
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1445933927}
+  - component: {fileID: 1445933928}
+  m_Layer: 0
+  m_Name: Titan's Gladius
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1445933927
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445933926}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1428424754}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1445933928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445933926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45dfe7c95a000ff4f80fb5e2b8e4a369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  artifactName: Titan's Gladius
+  artifactType: 1
+  artifactRarity: 0
+  image: {fileID: 21300000, guid: 33d6d90dca94b0c45ba555fcb9285c89, type: 3}
+  artifactDescription: Adds 12 to Offense but removes 3 from Defense.
+  atrCommand: 0
+  atrOffense: 12
+  atrDefense: -3
   atrPower: 0
   atrFocus: 0
 --- !u!1 &1446948817
@@ -1806,6 +2190,59 @@ MonoBehaviour:
   id: 
   name: Default Element
   image: {fileID: 0}
+--- !u!1 &1476942288
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1476942289}
+  - component: {fileID: 1476942290}
+  m_Layer: 0
+  m_Name: Knight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1476942289
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476942288}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 484480923}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1476942290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476942288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4631cf7fddea526478aac2544ff31100, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  className: Knight
+  faction: {fileID: 648845224}
+  atrCommand: 2
+  atrOffense: 2
+  atrDefense: 2
+  atrPower: 1
+  atrFocus: 1
+  animatorField: {fileID: 22100000, guid: 6e1ef4cba0109c54f8afd22be7a1f7d5, type: 2}
+  animatorCombat: {fileID: 22100000, guid: f6c787254bbe5094f87725f24314bd04, type: 2}
 --- !u!1 &1540432247
 GameObject:
   m_ObjectHideFlags: 0
@@ -1865,6 +2302,114 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 
   name: Default Ability
+--- !u!1 &1583233677
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1583233678}
+  - component: {fileID: 1583233679}
+  m_Layer: 0
+  m_Name: Celestial Necklace of Bliss
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1583233678
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583233677}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1428424754}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1583233679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583233677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45dfe7c95a000ff4f80fb5e2b8e4a369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  artifactName: Celestial Necklace of Bliss
+  artifactType: 5
+  artifactRarity: 0
+  image: {fileID: 21300000, guid: a344d1373c7ab9c4cb20de01bc1d75db, type: 3}
+  artifactDescription: Adds 3 to all attributes.
+  atrCommand: 3
+  atrOffense: 3
+  atrDefense: 3
+  atrPower: 3
+  atrFocus: 3
+--- !u!1 &1593754786
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1593754787}
+  - component: {fileID: 1593754788}
+  m_Layer: 0
+  m_Name: Ogre's Club of Havoc
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1593754787
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593754786}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1428424754}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1593754788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593754786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45dfe7c95a000ff4f80fb5e2b8e4a369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  artifactName: Ogre's Club of Havoc
+  artifactType: 1
+  artifactRarity: 0
+  image: {fileID: 21300000, guid: 13e294dcf414313429ea2b69287340a8, type: 3}
+  artifactDescription: Adds 5 to the hero's Offense.
+  atrCommand: 0
+  atrOffense: 5
+  atrDefense: 0
+  atrPower: 0
+  atrFocus: 0
 --- !u!1 &1623956594
 GameObject:
   m_ObjectHideFlags: 0
@@ -2133,6 +2678,53 @@ MonoBehaviour:
   allowWaterMovement: 0
   allowLavaMovement: 0
   image: {fileID: 21300000, guid: 10e2dcb69da7b3447a11450e0a0b1995, type: 3}
+--- !u!1 &1819187274
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1819187275}
+  - component: {fileID: 1819187276}
+  m_Layer: 0
+  m_Name: Christian
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1819187275
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819187274}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1856570799}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1819187276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819187274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62424aa6ee5883f4281d0d2c4db93144, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  heroName: Christian
+  classs: {fileID: 1476942290}
+  profilePicture: {fileID: 21300000, guid: feb6e54b1a604804683cfb45551bd2da, type: 3}
 --- !u!1 &1833730352
 GameObject:
   m_ObjectHideFlags: 0
@@ -2259,7 +2851,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1819187275}
+  - {fileID: 818039189}
   m_Father: {fileID: 1037067536}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2480,7 +3074,7 @@ GameObject:
   - component: {fileID: 2062295096}
   - component: {fileID: 2062295097}
   m_Layer: 0
-  m_Name: Centaur's Ax
+  m_Name: Centaur's Axe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2513,10 +3107,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
-  name: Centaur's Ax
-  type: 1
-  rarity: 0
-  image: {fileID: 21300000, guid: 69259dca5d8c2af47bf9b5848333427c, type: 3}
+  artifactName: Centaur's Axe
+  artifactType: 1
+  artifactRarity: 0
+  image: {fileID: 21300000, guid: 746691c349ff9864f8293738d3a279c3, type: 3}
+  artifactDescription: Adds 2 to the hero's Offense.
   atrCommand: 0
   atrOffense: 2
   atrDefense: 0

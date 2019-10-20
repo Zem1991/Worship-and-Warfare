@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PieceData
+public class PartyData
 {
     public int[] mapPosition;
     public int ownerId;

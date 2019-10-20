@@ -6,12 +6,12 @@
   "players": [
     {
       "playerType": "Human",
-      "colorId": 0,
+      "colorId": 1,
       "name": "Human"
     },
     {
       "playerType": "Computer",
-      "colorId": 1,
+      "colorId": 2,
       "name": "Computer"
     }
   ],
@@ -1406,15 +1406,15 @@
       }
     ]
   },
-  "pieces": [
+  "parties": [
     {
       "mapPosition": [
         2,
-        2
+        17
       ],
-      "ownerId": 0,
+      "ownerId": 1,
       "hero": {
-        "heroId": 0,
+        "heroId": 1,
         "inventory": {
           "offHand": 2
         }
@@ -1422,38 +1422,173 @@
       "units": [
         {
           "unitId": 1,
-          "stackSize": 5
-        },
-        {
-          "unitId": 1,
-          "stackSize": 2
+          "stackSize": 35
         },
         {
           "unitId": 2,
-          "stackSize": 3
+          "stackSize": 25
+        },
+        {
+          "unitId": 1,
+          "stackSize": 35
+        }
+      ]
+    },
+    {
+      "mapPosition": [
+        11,
+        10
+      ],
+      "ownerId": 2,
+      "units": [
+        {
+          "unitId": 2,
+          "stackSize": 7
+        },
+        {
+          "unitId": 2,
+          "stackSize": 7
+        }
+      ]
+    },
+    {
+      "mapPosition": [
+        3,
+        7
+      ],
+      "ownerId": 2,
+      "units": [
+        {
+          "unitId": 1,
+          "stackSize": 15
+        },
+        {
+          "unitId": 1,
+          "stackSize": 10
         }
       ]
     },
     {
       "mapPosition": [
         6,
-        7
+        2
       ],
-      "ownerId": 1,
+      "ownerId": 2,
+      "units": [
+        {
+          "unitId": 2,
+          "stackSize": 12
+        },
+        {
+          "unitId": 1,
+          "stackSize": 10
+        },
+        {
+          "unitId": 2,
+          "stackSize": 12
+        }
+      ]
+    },
+    {
+      "mapPosition": [
+        18,
+        12
+      ],
+      "ownerId": 2,
       "units": [
         {
           "unitId": 1,
           "stackSize": 5
         },
         {
+          "unitId": 2,
+          "stackSize": 5
+        }
+      ]
+    },
+    {
+      "mapPosition": [
+        13,
+        4
+      ],
+      "ownerId": 2,
+      "units": [
+        {
           "unitId": 1,
-          "stackSize": 2
+          "stackSize": 4
         },
         {
           "unitId": 2,
-          "stackSize": 3
+          "stackSize": 12
+        },
+        {
+          "unitId": 1,
+          "stackSize": 8
         }
       ]
+    },
+    {
+      "mapPosition": [
+        17,
+        2
+      ],
+      "ownerId": 2,
+      "hero": {
+        "heroId": 2,
+        "inventory": {
+          //"mainhand": 3,
+          //"offHand": 4,
+          "helmet": 6
+        }
+      },
+      "units": [
+        {
+          "unitId": 1,
+          "stackSize": 10
+        },
+        {
+          "unitId": 2,
+          "stackSize": 10
+        },
+        {
+          "unitId": 1,
+          "stackSize": 10
+        },
+        {
+          "unitId": 2,
+          "stackSize": 10
+        },
+        {
+          "unitId": 1,
+          "stackSize": 10
+        }
+      ]
+    }
+  ],
+  "pickups": [
+    {
+      "mapPosition": [
+        2,
+        2
+      ],
+      "pickupType": "ARTIFACT",
+      "artifact": 9
+    },
+    {
+      "mapPosition": [
+        13,
+        16
+      ],
+      "pickupType": "ARTIFACT",
+      "artifact": 7
+    },
+    {
+      "mapPosition": [
+        12,
+        5
+      ],
+      "pickupType": "ARTIFACT",
+      "artifact": 5
     }
   ]
 }

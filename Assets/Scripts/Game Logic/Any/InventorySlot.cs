@@ -21,10 +21,7 @@ public class InventorySlot : MonoBehaviour
 
         if (dbArtifact != null)
         {
-            Artifact prefab = AllPrefabs.Instance.artifact;
-            Artifact item = Instantiate(prefab, transform);
-            item.Initialize(dbArtifact);
-
+            Artifact item = CreateArtifact(dbArtifact);
             AddArtifact(item);
             if (!HasArtifact(item))
             {
@@ -37,6 +34,14 @@ public class InventorySlot : MonoBehaviour
         {
             slotName += " " + appendId;
         }
+    }
+
+    public Artifact CreateArtifact(DB_Artifact dbArtifact)
+    {
+        Artifact prefab = AllPrefabs.Instance.artifact;
+        Artifact item = Instantiate(prefab, transform);
+        item.Initialize(dbArtifact);
+        return item;
     }
 
     public bool HasArtifact()
@@ -60,13 +65,13 @@ public class InventorySlot : MonoBehaviour
     {
         if (artifact == item)
         {
-            Debug.LogWarning("Artifact rejected! DBArtifact " + item.artifactName + " already exists on slot type " + type);
+            Debug.LogWarning("Artifact rejected! DBArtifact " + item.dbData.artifactName + " already exists on slot type " + type);
             return false;
         }
 
-        if (!CheckType(item.type))
+        if (!CheckType(item.dbData.artifactType))
         {
-            Debug.LogWarning("Artifact rejected! DBArtifact " + item.artifactName + " over slot type " + type);
+            Debug.LogWarning("Artifact rejected! DBArtifact " + item.dbData.artifactName + " over slot type " + type);
             return false;
         }
 

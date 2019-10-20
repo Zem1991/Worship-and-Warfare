@@ -82,6 +82,28 @@ public class Inventory : MonoBehaviour
         RecalculateParameters();
     }
 
+    public bool AddArtifact(Artifact item)
+    {
+        InventorySlot slot = null;
+        switch (item.dbData.artifactType)
+        {
+            case ArtifactType.MAIN_HAND:
+                slot = mainHand;
+                break;
+            case ArtifactType.OFF_HAND:
+                slot = offHand;
+                break;
+            case ArtifactType.HELMET:
+                slot = helmet;
+                break;
+            case ArtifactType.ARMOR:
+                slot = armor;
+                break;
+        }
+        if (slot) return AddArtifactToSlot(slot, item);
+        else return AddArtifactToBackpack(item);
+    }
+
     public bool AddArtifactToSlot(InventorySlot slot, Artifact item)
     {
         bool result = slot.AddArtifact(item);
@@ -115,11 +137,11 @@ public class Inventory : MonoBehaviour
             Artifact artifact = invSlot.artifact;
             if (!artifact || invSlot.beingDragged) continue;
 
-            atrCommand += artifact.atrCommand;
-            atrOffense += artifact.atrOffense;
-            atrDefense += artifact.atrDefense;
-            atrPower += artifact.atrPower;
-            atrFocus += artifact.atrFocus;
+            atrCommand += artifact.dbData.atrCommand;
+            atrOffense += artifact.dbData.atrOffense;
+            atrDefense += artifact.dbData.atrDefense;
+            atrPower += artifact.dbData.atrPower;
+            atrFocus += artifact.dbData.atrFocus;
         }
 
         this.atrCommand = atrCommand;

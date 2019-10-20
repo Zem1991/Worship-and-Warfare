@@ -9,16 +9,14 @@ public class CombatantHeroPiece2 : AbstractCombatantPiece2
 
     public void Initialize(Hero hero, Player owner, int spawnId, bool defenderSide = false)
     {
-        this.owner = owner;
+        Initialize(owner, spawnId, defenderSide);
+
         this.hero = hero;
 
-        this.spawnId = spawnId;
-        this.defenderSide = defenderSide;
         //initiative = hero.initiative;             //TODO LATER ?
         //hasRangedAttack = hero.hasRangedAttack;   //TODO LATER ?
 
         ACtP_ResetMovementPoints();
-        FlipSpriteHorizontally(defenderSide);
         SetAnimatorOverrideController(hero.dbData.classs.animatorCombat);
 
         name = "P" + owner.id + " - " + hero.dbData.heroName + ", " + hero.dbData.classs.className;

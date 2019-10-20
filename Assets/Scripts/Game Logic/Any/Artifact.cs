@@ -6,29 +6,20 @@ using UnityEngine;
 public class Artifact : MonoBehaviour
 {
     [Header("Artifact identification")]
-    public string artifactName;
-    public ArtifactType type;
-    public ArtifactRarity rarity;
-    public Sprite image;
+    public DB_Artifact dbData;
 
-    [Header("Artifact parameters")]
-    public int atrCommand;
-    public int atrOffense;
-    public int atrDefense;
-    public int atrPower;
-    public int atrFocus;
-
-    public void Initialize(DB_Artifact dbArtifact)
+    public void Initialize(DB_Artifact dbData)
     {
-        artifactName = dbArtifact.name;
-        type = dbArtifact.type;
-        rarity = dbArtifact.rarity;
-        image = dbArtifact.image;
+        this.dbData = dbData;
+        //artifactName = dbArtifact.artifactName;
+        //type = dbArtifact.type;
+        //rarity = dbArtifact.rarity;
+        //image = dbArtifact.image;
 
-        atrCommand = dbArtifact.atrCommand;
-        atrOffense = dbArtifact.atrOffense;
-        atrDefense = dbArtifact.atrDefense;
-        atrPower = dbArtifact.atrPower;
-        atrFocus = dbArtifact.atrFocus;
+        //atrCommand = dbArtifact.atrCommand;
+        //atrOffense = dbArtifact.atrOffense;
+        //atrDefense = dbArtifact.atrDefense;
+        //atrPower = dbArtifact.atrPower;
+        //atrFocus = dbArtifact.atrFocus;
     }
 }

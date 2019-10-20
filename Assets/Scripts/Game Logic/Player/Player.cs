@@ -9,24 +9,27 @@ public class Player : MonoBehaviour
     public int id;
     public PlayerType type;
     public AIPersonality aiPersonality;
-    public Color color;
+    //public Color color;
+    public DB_Color dbColor;
     public string playerName;
 
     [Header("Game Data")]
     public DBHandler_Faction faction;
     public long gold;
+    public List<PartyPiece2> partyPieces = new List<PartyPiece2>();
 
     [Header("Game Flow")]
     public int currentTurn;
     public bool currentTurnAvailable;
 
-    public void Initialize(PlayerData data, int id)
+    public void Initialize(PlayerData data, int id, DB_Color dbColor)
     {
-        this.id = id;
-
         type = data.playerType;
-        color = PlayerManager.PLAYER_COLORS[data.colorId];
+        //color = PlayerManager.PLAYER_COLORS[data.colorId];
         playerName = data.name;
+
+        this.id = id;
+        this.dbColor = dbColor;
 
         if (type == PlayerType.COMPUTER)
         {

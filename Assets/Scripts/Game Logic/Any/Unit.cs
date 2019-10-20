@@ -16,12 +16,12 @@ public class Unit : MonoBehaviour
     public int movementRange;
     public int initiative;
 
-    public void Initialize(UnitData unitData, DB_Unit dbData)
+    public void Initialize(DB_Unit dbData, int stackSize)
     {
         this.dbData = dbData;
 
         hitPointsMax = dbData.hitPoints;
-        stackSize = unitData.stackSize;
+        this.stackSize = stackSize;
 
         damageMin = dbData.damageMin;
         damageMax = dbData.damageMax;

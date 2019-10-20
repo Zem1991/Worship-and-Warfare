@@ -9,31 +9,6 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
     public FieldMapHandler mapHandler;
     public FieldPieceHandler pieceHandler;
 
-    public void TerminateField()
-    {
-        mapHandler.ClearMap();
-        pieceHandler.Remove();
-    }
-
-    public void BootField(Vector2Int scenarioSize, MapData map, PieceData[] pieces)
-    {
-        mapHandler.BuildMap(scenarioSize, map);
-        pieceHandler.Create(pieces);
-    }
-
-    public void RemovePiece(PartyPiece2 piece)
-    {
-        pieceHandler.RemovePiece(piece);
-    }
-
-    public void NextTurnForAll()
-    {
-        foreach (var item in pieceHandler.partyPieces)
-        {
-            item.ICP_StartTurn();
-        }
-    }
-
     public void Hide()
     {
         gameObject.SetActive(false);
@@ -46,6 +21,69 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         gameObject.SetActive(true);
         mapHandler.gameObject.SetActive(true);
         pieceHandler.gameObject.SetActive(true);
+    }
+
+    public void TerminateField()
+    {
+        mapHandler.ClearMap();
+        pieceHandler.RemoveAll();
+    }
+
+    public void BootField(Vector2Int scenarioSize, MapData map, List<PartyData> parties, List<PickupData> pickups)
+    {
+        mapHandler.BuildMap(scenarioSize, map);
+        pieceHandler.CreateAll(parties, pickups);
+    }
+
+    public void RemovePiece(PartyPiece2 piece)
+    {
+        pieceHandler.RemovePiece(piece);
+    }
+
+    public void RemovePickup(PickupPiece2 pickup)
+    {
+        pieceHandler.RemovePickup(pickup);
+    }
+
+    public void NextTurnForAll()
+    {
+        foreach (var item in pieceHandler.partyPieces)
+        {
+            item.ICP_StartTurn();
+        }
+    }
+
+    public void PartiesAreInteracting(PartyPiece2 sender, PartyPiece2 receiver)
+    {
+        if (sender.IPO_GetOwner() == receiver.IPO_GetOwner())
+        {
+            GameManager.Instance.PerformExchange(sender, receiver);
+        }
+        else
+        {
+            GameManager.Instance.GoToCombat(sender, receiver);
+            //StartCoroutine(GameManager.Instance.GoToCombat(sender, receiver));
+        }
+    }
+
+    public void PartyFoundPickup(PartyPiece2 partyPiece2, PickupPiece2 targetPickup)
+    {
+        switch (targetPickup.pickupType)
+        {
+            case PickupType.RESOURCE:
+                Debug.LogWarning("Resource pickup is not supported");
+                break;
+            case PickupType.ARTIFACT:
+                Artifact artifact = targetPickup.artifact;
+                partyPiece2.partyHero.inventory.AddArtifact(artifact);
+                break;
+            case PickupType.UNIT:
+                Debug.LogWarning("Unit pickup is not supported");
+                break;
+            default:
+                break;
+        }
+        RemovePickup(targetPickup);
     }
 
     /*

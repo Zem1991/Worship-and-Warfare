@@ -461,6 +461,7 @@ MonoBehaviour:
   kbm_escapeMenu: 27
   kbm_selection: 323
   kbm_command: 324
+  kbm_endTurn: 8
 --- !u!114 &26693462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -478,6 +479,7 @@ MonoBehaviour:
   escapeMenuDown: 0
   selectionDown: 0
   commandDown: 0
+  endTurnDown: 0
 --- !u!114 &26693463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,6 +517,7 @@ MonoBehaviour:
   canCommandSelectedPiece: 0
   movementHighlightsUpdateFromCommand: 0
   movementHighlightsUpdateOnPieceStop: 0
+  movementHighlightsUpdateOnMethodCall: 0
   movementHighlights: []
   im: {fileID: 0}
   recorder: {fileID: 0}
@@ -1609,7 +1612,8 @@ MonoBehaviour:
   defenderPiece: {fileID: 0}
   combatStarted: 0
   currentTurn: 0
-  currentUnit: {fileID: 0}
+  currentPiece: {fileID: 0}
+  retaliatorPiece: {fileID: 0}
   turnSequence: []
   combatLog: []
   result: 0
@@ -3696,8 +3700,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackerHero: {fileID: 0}
   attackerUnits: []
+  attackerPieces: []
   defenderHero: {fileID: 0}
   defenderUnits: []
+  defenderPieces: []
 --- !u!1 &958352252
 GameObject:
   m_ObjectHideFlags: 0

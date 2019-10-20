@@ -11,9 +11,10 @@ public class CombatantUnitPiece2 : AbstractCombatantPiece2
     public int stackSizeCurrent;
     public int stackSizeStart;
 
-    public void Initialize(Player owner, Unit unit, int spawnId, bool defenderSide = false)
+    public void Initialize(Unit unit, Player owner, int spawnId, bool defenderSide = false)
     {
-        this.owner = owner;
+        Initialize(owner, spawnId, defenderSide);
+
         this.unit = unit;
 
         profilePicture = unit.dbData.profilePicture;
@@ -21,8 +22,6 @@ public class CombatantUnitPiece2 : AbstractCombatantPiece2
         hitPointsMax = unit.hitPointsMax;
         hitPointsCurrent = hitPointsMax;
 
-        this.spawnId = spawnId;
-        this.defenderSide = defenderSide;
         initiative = unit.initiative;
         hasRangedAttack = unit.hasRangedAttack;
 
@@ -30,7 +29,6 @@ public class CombatantUnitPiece2 : AbstractCombatantPiece2
         stackSizeCurrent = stackSizeStart;
 
         ACtP_ResetMovementPoints();
-        FlipSpriteHorizontally(defenderSide);
         SetAnimatorOverrideController(unit.dbData.animatorCombat);
 
         name = "P" + owner.id + " - Stack of " + unit.GetName();

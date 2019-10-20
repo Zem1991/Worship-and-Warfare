@@ -21,6 +21,7 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
     [Header("Field Scene")]
     public FieldTile fieldTile;
     public PartyPiece2 fieldPartyPiece;
+    public PickupPiece2 fieldPickupPiece;
 
     [Header("Field UI")]
     public FUI_InventorySlot_Back fuiInvSlot;

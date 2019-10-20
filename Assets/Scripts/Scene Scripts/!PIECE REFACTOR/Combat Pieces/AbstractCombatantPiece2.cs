@@ -47,6 +47,19 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, IPlayerOwn
         ACtP_MakeHurt();
     }
 
+    public void Initialize(Player owner, int spawnId, bool defenderSide = false)
+    {
+        canBeOwned = true;
+        canBeControlled = true;
+
+        this.owner = owner;
+        this.spawnId = spawnId;
+        this.defenderSide = defenderSide;
+
+        FlipSpriteHorizontally(defenderSide);
+        SetFlagSprite(owner.dbColor.imgFlag);
+    }
+
     public override void AP2_AnimatorParameters()
     {
         anim_movement = pieceMovement.inMovement;
@@ -75,7 +88,9 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, IPlayerOwn
         if (pieceMovement.targetPiece)
         {
             AbstractCombatantPiece2 acp = pieceMovement.targetPiece as AbstractCombatantPiece2;
-            if (acp.IPO_HasOwner() && acp.IPO_GetOwner() != owner)
+            bool hasOwner = acp.IPO_HasOwner();
+            bool difOwner = acp.IPO_GetOwner() != owner;
+            if (hasOwner && difOwner)
             {
                 //TODO check ranged interaction
                 ACtP_Attack(hasRangedAttack);

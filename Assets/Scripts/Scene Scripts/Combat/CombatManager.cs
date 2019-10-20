@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -14,9 +15,9 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
     [Header("Teams")]
     public Player attacker;
-    public PartyPiece2 attackerPiece;
+    public PartyPiece2 attackerParty;
     public Player defender;
-    public PartyPiece2 defenderPiece;
+    public PartyPiece2 defenderParty;
 
     [Header("Combat Flow")]
     public bool combatStarted;
@@ -52,15 +53,18 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         //background = battleground.image;
 
         attacker = attackerPiece.IPO_GetOwner();
-        this.attackerPiece = attackerPiece;
+        attackerParty = attackerPiece;
         defender = defenderPiece.IPO_GetOwner();
-        this.defenderPiece = defenderPiece;
+        defenderParty = defenderPiece;
 
         Debug.LogWarning("No tile data for combat map!");
         mapHandler.BuildMap(MAP_SIZE, tileset);
         pieceHandler.Create(attackerPiece, defenderPiece);
         pieceHandler.InitialHeroPositions(mapHandler.map);
         pieceHandler.InitialUnitPositions(mapHandler.map);
+
+        //TODO make actual wait for piece initializations.
+        //yield return 0;
 
         combatStarted = true;
         NextTurn();
@@ -206,9 +210,12 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
     public void CombatEndConfirm()
     {
-        //TODO CHANGE PIECES BEFORE SENDING THEM BACK.
         CombatUI.Instance.ResultPopupHide();
-        GameManager.Instance.ReturnFromCombat(result, attackerPiece, defenderPiece);
+
+        if (result == CombatResult.ATTACKER_WON) pieceHandler.ApplyCombatChanges(attackerParty, pieceHandler.attackerPieces);
+        else if (result == CombatResult.DEFENDER_WON) pieceHandler.ApplyCombatChanges(defenderParty, pieceHandler.defenderPieces);
+
+        GameManager.Instance.ReturnFromCombat(result, attackerParty, defenderParty);
 
         ClearLogs();
     }

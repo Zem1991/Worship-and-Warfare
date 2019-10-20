@@ -26,7 +26,7 @@ public abstract class AbstractCombatPiece2 : AbstractPiece2
     {
         hitPointsCurrent = 0;
         isDead = true;
-        spriteRenderer.sortingOrder--;
+        mainSpriteRenderer.sortingOrder--;
 
         currentTile.occupantPiece = null;
         (currentTile as CombatTile).deadPieces.Add(this);

@@ -13,7 +13,7 @@ public class FieldMap : AbstractMap<FieldTile>
         int maxX = mapSize.x - 1;
         int maxY = mapSize.y - 1;
         int current = 0;
-        //for (int row = 0; row < mapSize.y; row++)
+        int rowIdFix = 0;
         for (int row = maxY; row >= 0; row--)
         {
             for (int col = 0; col < mapSize.x; col++)
@@ -21,7 +21,7 @@ public class FieldMap : AbstractMap<FieldTile>
                 Vector3 pos = new Vector3(col, 0, row);
                 Quaternion rot = Quaternion.identity;
 
-                Vector2Int tileId = new Vector2Int(col, row);
+                Vector2Int tileId = new Vector2Int(col, rowIdFix);
                 FieldTile tile = Instantiate(prefabTile, pos, rot, transform);
                 tiles.Add(tileId, tile);
 
@@ -34,33 +34,34 @@ public class FieldMap : AbstractMap<FieldTile>
                 FieldTile neighbour;
                 if (col > 0)
                 {
-                    neighbourId = new Vector2Int(col - 1, row);
+                    neighbourId = new Vector2Int(col - 1, rowIdFix);
                     neighbour = tiles[neighbourId];
                     tile.l = neighbour;
                     neighbour.r = tile;
                 }
                 if (row < maxY)
                 {
-                    neighbourId = new Vector2Int(col, row + 1);
+                    neighbourId = new Vector2Int(col, rowIdFix - 1);
                     neighbour = tiles[neighbourId];
                     tile.f = neighbour;
                     neighbour.b = tile;
                 }
                 if (col > 0 && row < maxY)
                 {
-                    neighbourId = new Vector2Int(col - 1, row + 1);
+                    neighbourId = new Vector2Int(col - 1, rowIdFix - 1);
                     neighbour = tiles[neighbourId];
                     tile.fl = neighbour;
                     neighbour.br = tile;
                 }
                 if (col < maxX && row < maxY)
                 {
-                    neighbourId = new Vector2Int(col + 1, row + 1);
+                    neighbourId = new Vector2Int(col + 1, rowIdFix - 1);
                     neighbour = tiles[neighbourId];
                     tile.fr = neighbour;
                     neighbour.bl = tile;
                 }
             }
+            rowIdFix++;
         }
     }
 

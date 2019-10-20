@@ -20,7 +20,7 @@ public class ScenarioManager : AbstractSingleton<ScenarioManager>
 
         PlayerManager.Instance.InstantiatePlayers(data.players);
 
-        FieldManager.Instance.BootField(scenario.scenarioSize, data.map, data.pieces);
+        FieldManager.Instance.BootField(scenario.scenarioSize, data.map, data.parties, data.pickups);
         //if (data.extraMap != null)
         //{
         //    usesExtraMap = true;

@@ -9,22 +9,34 @@ public class FieldPieceHandler : MonoBehaviour
 
     [Header("Pieces")]
     public List<PartyPiece2> partyPieces;
+    public List<PickupPiece2> pickupPieces;
 
-    public void Remove()
+    public void RemoveAll()
     {
         if (partyPieces != null)
         {
-            foreach (var item in partyPieces)
-            {
-                Destroy(item.gameObject);
-            }
+            foreach (var item in partyPieces) Destroy(item.gameObject);
         }
         partyPieces = new List<PartyPiece2>();
+
+        if (pickupPieces != null)
+        {
+            foreach (var item in pickupPieces) Destroy(item.gameObject);
+        }
+        pickupPieces = new List<PickupPiece2>();
     }
 
-    public void Create(PieceData[] pieceData)
+    public void CreateAll(List<PartyData> parties, List<PickupData> pickups)
     {
-        Remove();
+        RemoveAll();
+
+        CreateParties(parties);
+        CreatePickups(pickups);
+    }
+
+    private void CreateParties(List<PartyData> parties)
+    {
+        if (parties == null) return;
 
         DatabaseManager db = DatabaseManager.Instance;
         DBHandler_Hero dbHeroes = db.heroes;
@@ -34,30 +46,32 @@ public class FieldPieceHandler : MonoBehaviour
 
         FieldManager fm = FieldManager.Instance;
         FieldMap fieldMap = fm.mapHandler.map;
-        PartyPiece2 prefabPiece = AllPrefabs.Instance.fieldPartyPiece;
 
+        PartyPiece2 prefabPiece = AllPrefabs.Instance.fieldPartyPiece;
         Hero prefabHero = AllPrefabs.Instance.hero;
         Unit prefabUnit = AllPrefabs.Instance.unit;
 
         partyPieces = new List<PartyPiece2>();
 
-        foreach (var item in pieceData)
+        foreach (var pData in parties)
         {
-            int posX = item.mapPosition[0];
-            int posY = item.mapPosition[1];
+            int posX = pData.mapPosition[0];
+            int posY = pData.mapPosition[1];
 
-            Vector3 pos = new Vector3(posX, 0, posY);
+            Vector2Int tileId = new Vector2Int(posX, posY);
+            FieldTile fieldTile = fieldMap.tiles[tileId];
+            Vector3 pos = fieldTile.transform.position;
             Quaternion rot = Quaternion.identity;
 
             PartyPiece2 newPiece = Instantiate(prefabPiece, pos, rot, transform);
             partyPieces.Add(newPiece);
 
-            Player owner = pm.allPlayers[item.ownerId];
+            Player owner = pm.allPlayers[pData.ownerId - 1];
 
             Hero hero = null;
-            if (item.hero != null)
+            if (pData.hero != null)
             {
-                HeroData heroData = item.hero;
+                HeroData heroData = pData.hero;
 
                 int dbId = heroData.heroId;
                 DB_Hero dbData = dbHeroes.Select(dbId);
@@ -67,28 +81,72 @@ public class FieldPieceHandler : MonoBehaviour
             }
 
             List<Unit> units = new List<Unit>();
-            if (item.units != null)
+            if (pData.units != null)
             {
-                if (item.units.Length > MAX_UNITS) Debug.LogWarning("There are more units than the piece can store!");
-                int totalUnits = Mathf.Min(item.units.Length, MAX_UNITS);
+                if (pData.units.Length > MAX_UNITS) Debug.LogWarning("There are more units than the piece can store!");
+                int totalUnits = Mathf.Min(pData.units.Length, MAX_UNITS);
 
                 for (int i = 0; i < totalUnits; i++)
                 {
-                    UnitData unitData = item.units[i];
+                    UnitData unitData = pData.units[i];
 
                     int dbId = unitData.unitId;
                     DB_Unit dbData = dbUnits.Select(dbId);
 
                     Unit unit = Instantiate(prefabUnit, newPiece.transform);
-                    unit.Initialize(unitData, dbData);
+                    unit.Initialize(dbData, unitData.stackSize);
                     units.Add(unit);
                 }
             }
-            
-            Vector2Int id = new Vector2Int(posX, posY);
-            newPiece.currentTile = fieldMap.tiles[id];
+
+            newPiece.currentTile = fieldTile;
             newPiece.currentTile.occupantPiece = newPiece;
             newPiece.Initialize(owner, hero, units);
+        }
+    }
+
+    private void CreatePickups(List<PickupData> pickups)
+    {
+        if (pickups == null) return;
+
+        DatabaseManager db = DatabaseManager.Instance;
+        DBHandler_Artifact dbArtifacts = db.artifacts;
+        DBHandler_Unit dbUnits = db.units;
+
+        FieldManager fm = FieldManager.Instance;
+        FieldMap fieldMap = fm.mapHandler.map;
+
+        PickupPiece2 prefabPiece = AllPrefabs.Instance.fieldPickupPiece;
+
+        pickupPieces = new List<PickupPiece2>();
+
+        foreach (var pData in pickups)
+        {
+            int posX = pData.mapPosition[0];
+            int posY = pData.mapPosition[1];
+
+            Vector2Int tileId = new Vector2Int(posX, posY);
+            FieldTile fieldTile = fieldMap.tiles[tileId];
+            Vector3 pos = fieldTile.transform.position;
+            Quaternion rot = Quaternion.identity;
+
+            PickupPiece2 newPiece = Instantiate(prefabPiece, pos, rot, transform);
+            pickupPieces.Add(newPiece);
+
+            newPiece.currentTile = fieldTile;
+            newPiece.currentTile.occupantPiece = newPiece;
+            switch (pData.pickupType)
+            {
+                case PickupType.RESOURCE:
+                    Debug.LogError("No support for resource pickups!");
+                    break;
+                case PickupType.ARTIFACT:
+                    newPiece.Initialize(dbArtifacts.Select(pData.artifact));
+                    break;
+                case PickupType.UNIT:
+                    newPiece.Initialize(dbUnits.Select(pData.unit), pData.unitAmount);
+                    break;
+            }
         }
     }
 
@@ -99,6 +157,13 @@ public class FieldPieceHandler : MonoBehaviour
         Destroy(piece.gameObject);
     }
 
+    public void RemovePickup(PickupPiece2 pickup)
+    {
+        pickupPieces.Remove(pickup);
+        pickup.currentTile.occupantPiece = null;
+        Destroy(pickup.gameObject);
+    }
+
     public void Pathfind(PartyPiece2 piece, FieldTile targetTile,
         bool needGroundAccess = true, bool needWaterAccess = false, bool needLavaAccess = false)
     {
@@ -106,18 +171,6 @@ public class FieldPieceHandler : MonoBehaviour
             needGroundAccess, needWaterAccess, needLavaAccess,
             out PathfindResults pathfindResults);
         piece.IMP_GetPieceMovement().SetPath(pathfindResults, targetTile);
-    }
-
-    public void PartiesAreInteracting(PartyPiece2 sender, PartyPiece2 receiver)
-    {
-        if (sender.IPO_GetOwner() == receiver.IPO_GetOwner())
-        {
-            GameManager.Instance.PerformExchange(sender, receiver);
-        }
-        else
-        {
-            GameManager.Instance.GoToCombat(sender, receiver);
-        }
     }
 
     public List<PartyPiece2> GetIdlePieces(List<PartyPiece2> pieces)

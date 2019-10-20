@@ -5,6 +5,7 @@ using UnityEngine;
 public class DatabaseManager : AbstractSingleton<DatabaseManager>
 {
     [Header("Database Contents")]
+    public DBHandler_Color colors;
     public DBHandler_Faction factions;
     public DBHandler_Class classes;
     public DBHandler_Hero heroes;
@@ -21,6 +22,7 @@ public class DatabaseManager : AbstractSingleton<DatabaseManager>
 
     public override void Awake()
     {
+        colors = GetComponentInChildren<DBHandler_Color>();
         factions = GetComponentInChildren<DBHandler_Faction>();
         classes = GetComponentInChildren<DBHandler_Class>();
         heroes = GetComponentInChildren<DBHandler_Hero>();

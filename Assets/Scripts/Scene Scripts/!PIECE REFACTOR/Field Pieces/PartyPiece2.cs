@@ -32,6 +32,9 @@ public class PartyPiece2 : AbstractFieldPiece2, IPlayerOwnable, IPlayerControlla
 
     public void Initialize(Player owner, Hero hero, List<Unit> units)
     {
+        canBeOwned = true;
+        canBeControlled = true;
+
         base.owner = owner;
         partyHero = hero;
         partyUnits = units;
@@ -49,6 +52,8 @@ public class PartyPiece2 : AbstractFieldPiece2, IPlayerOwnable, IPlayerControlla
             name = "P" + owner.id + " - Stack of " + relevantUnit.GetName();
             //name = "Army of " + relevantUnit.dbData.namePlural;
         }
+
+        SetFlagSprite(owner.dbColor.imgFlag);
 
         IMP_ResetMovementPoints();
     }
@@ -71,7 +76,11 @@ public class PartyPiece2 : AbstractFieldPiece2, IPlayerOwnable, IPlayerControlla
 
     public override void AP2_PieceInteraction()
     {
-        FieldManager.Instance.pieceHandler.PartiesAreInteracting(this, pieceMovement.targetPiece as PartyPiece2);
+        PartyPiece2 targetParty = pieceMovement.targetPiece as PartyPiece2;
+        PickupPiece2 targetPickup = pieceMovement.targetPiece as PickupPiece2;
+
+        if (targetParty) FieldManager.Instance.PartiesAreInteracting(this, targetParty);
+        else if (targetPickup) FieldManager.Instance.PartyFoundPickup(this, targetPickup);
     }
 
     public bool IPO_HasOwner()

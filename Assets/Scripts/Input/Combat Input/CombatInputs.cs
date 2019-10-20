@@ -179,19 +179,27 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
             Debug.LogWarning("SelectionHighlight() is not available in combat!");
         }
 
-        AbstractCombatantPiece2 actp = selectionPiece as AbstractCombatantPiece2;
-        if (actp)
+        if (selectionPiece)
         {
-            if (actp.IMP_GetPieceMovement().inMovement)
+            selectionPos = selectionTile.posId;
+            selectionTile = selectionPiece.currentTile as CombatTile;
+            selectionHighlight.transform.position = selectionPiece.transform.position;
+
+            AbstractCombatantPiece2 actp = selectionPiece as AbstractCombatantPiece2;
+            if (actp)
             {
-                selectionTile = actp.currentTile as CombatTile;
-                selectionPos = selectionTile.posId;
+                if (actp.IMP_GetPieceMovement().inMovement)
+                {
 
-                selectionHighlight.transform.position = actp.transform.position;
+                }
+
+                selectionHighlight.gameObject.SetActive(true);
+                canCommandSelectedPiece = actp.IPO_GetOwner() == PlayerManager.Instance.localPlayer;
             }
-
-            selectionHighlight.gameObject.SetActive(true);
-            canCommandSelectedPiece = actp.IPO_GetOwner() == PlayerManager.Instance.localPlayer;
+            else
+            {
+                canCommandSelectedPiece = false;
+            }
         }
         else
         {
@@ -254,9 +262,9 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
 
     private void MovementHighlights()
     {
-        AbstractCombatantPiece2 actp = selectionPiece as AbstractCombatantPiece2;
         bool clearThenReturn = false;
 
+        AbstractCombatantPiece2 actp = selectionPiece as AbstractCombatantPiece2;
         if (!actp)
         {
             if (movementHighlights.Count > 0) clearThenReturn = true;

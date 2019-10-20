@@ -132,7 +132,11 @@ public class GameManager : AbstractSingleton<GameManager>
 
         FieldSC.Instance.HideObjects();
         FieldTile fieldTile = defender.currentTile as FieldTile;
+
         CombatManager.Instance.BootCombat(attacker, defender, fieldTile.db_tileset_lowerLand);
+        //IEnumerator coroutine = CombatManager.Instance.BootCombat(attacker, defender, fieldTile.db_tileset_lowerLand);
+        //yield return StartCoroutine(coroutine);
+
         CombatSC.Instance.ShowObjects();
     }
 

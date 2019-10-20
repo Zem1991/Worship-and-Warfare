@@ -66,10 +66,10 @@ public class CombatPieceHandler : MonoBehaviour
         spawnId = 2;
         if (attackerPiece.partyUnits != null)
         {
-            foreach (var item in attackerPiece.partyUnits)
+            foreach (var unit in attackerPiece.partyUnits)
             {
                 CombatantUnitPiece2 uc = Instantiate(prefabUnit, transform);
-                uc.Initialize(attackerPiece.IPO_GetOwner(), item, spawnId);
+                uc.Initialize(unit, attackerPiece.IPO_GetOwner(), spawnId);
                 attackerUnits.Add(uc);
                 attackerPieces.Add(uc);
 
@@ -80,10 +80,10 @@ public class CombatPieceHandler : MonoBehaviour
         spawnId = 3;
         if (defenderPiece.partyUnits != null)
         {
-            foreach (var item in defenderPiece.partyUnits)
+            foreach (var unit in defenderPiece.partyUnits)
             {
                 CombatantUnitPiece2 uc = Instantiate(prefabUnit, transform);
-                uc.Initialize(defenderPiece.IPO_GetOwner(), item, spawnId, true);
+                uc.Initialize(unit, defenderPiece.IPO_GetOwner(), spawnId, true);
                 defenderUnits.Add(uc);
                 defenderPieces.Add(uc);
 
@@ -91,11 +91,6 @@ public class CombatPieceHandler : MonoBehaviour
             }
         }
     }
-
-    //public void RemovePiece(FieldPiece piece)
-    //{
-    //    throw new NotImplementedException();
-    //}
 
     public void InitialHeroPositions(CombatMap map)
     {
@@ -134,7 +129,7 @@ public class CombatPieceHandler : MonoBehaviour
 
         if (defenderUnits != null)
         {
-            for (int i = 0; i < attackerUnits.Count; i++)
+            for (int i = 0; i < defenderUnits.Count; i++)
             {
                 defenderUnits[i].transform.position = defenderHeroTiles[i].transform.position;
                 defenderUnits[i].currentTile = defenderHeroTiles[i];
@@ -195,5 +190,24 @@ public class CombatPieceHandler : MonoBehaviour
             if (!item.isDead) result.Add(item);
         }
         return result;
+    }
+
+    public void ApplyCombatChanges(PartyPiece2 party, List<AbstractCombatantPiece2> pieces)
+    {
+        foreach (var piece in pieces)
+        {
+            CombatantUnitPiece2 cup = piece as CombatantUnitPiece2;
+            if (cup && cup.unit)
+            {
+                Unit unit = cup.unit;
+                unit.stackSize = cup.stackSizeCurrent;
+
+                if (unit.stackSize <= 0)
+                {
+                    party.partyUnits.Remove(unit);
+                    Destroy(unit.gameObject);
+                }
+            }
+        }
     }
 }
