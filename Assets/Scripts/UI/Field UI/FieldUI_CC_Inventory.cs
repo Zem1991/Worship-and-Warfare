@@ -28,7 +28,7 @@ public class FieldUI_CC_Inventory : AUIPanel
     public Button btnClose;
 
     [Header("Other")]
-    public AUI_Draggable invSlotDraggable;
+    public AnyUI_Draggable invSlotDraggable;
 
     public bool isDraggingInvSlot = false;
     public FUI_InventorySlot_Front fuiInvSlotFrontDragged = null;

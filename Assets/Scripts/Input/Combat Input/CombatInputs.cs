@@ -37,7 +37,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
 
     public override void Awake()
     {
-        InputManager im = InputManager.Instance;
+        im = InputManager.Instance;
         InputHighlight prefabHighlight = AllPrefabs.Instance.inputHighlight;
 
         cursorHighlight = Instantiate(prefabHighlight, transform);
@@ -54,7 +54,6 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
     // Start is called before the first frame update
     void Start()
     {
-        im = InputManager.Instance;
         recorder = GetComponent<CombatInputRecorder>();
         cameraController = GetComponentInChildren<CameraController>();
     }

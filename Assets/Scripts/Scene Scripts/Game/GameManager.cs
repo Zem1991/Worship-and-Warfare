@@ -14,9 +14,6 @@ public class GameManager : AbstractSingleton<GameManager>
     public const float SPEED_MIN = 0.25F;
     public const float SPEED_MAX = 2F;
 
-    [Header("Settings")]
-    public string scenarioFileToLoad = "Test Scenario 01";
-
     [Header("Scenes")]
     public Scene sceneDatabase;
     public Scene sceneField;
@@ -24,6 +21,7 @@ public class GameManager : AbstractSingleton<GameManager>
     public Scene sceneCombat;
 
     [Header("Match initialization")]
+    public string scenarioName;
     public bool scenarioBooted;
     public bool scenarioStarted;
 
@@ -56,7 +54,7 @@ public class GameManager : AbstractSingleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
-        LoadScenarioFile(null);
+        LoadScenarioFile(scenarioName);
     }
 
     // Update is called once per frame
@@ -214,14 +212,14 @@ public class GameManager : AbstractSingleton<GameManager>
     public void Restart()
     {
         FieldManager.Instance.TerminateField();
-        LoadScenarioFile(null);
+        LoadScenarioFile(scenarioName);
     }
 
     public void LoadScenarioFile(string scenarioFileName)
     {
-        Debug.LogWarning("NOT READING ANY SCENARIO FILE BY NAME!");
-        Debug.Log("Loading scenario file: " + scenarioFileToLoad);
-        scenarioFileData = ScenarioFileHandler.Load(scenarioFileToLoad);
+        Debug.Log("Loading scenario file: " + scenarioFileName);
+        scenarioName = scenarioFileName;
+        scenarioFileData = ScenarioFileHandler.Load(scenarioFileName);
 
         if (scenarioFileData != null)
         {

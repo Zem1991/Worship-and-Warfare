@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AUI_Draggable : MonoBehaviour
+public class AnyUI_Draggable : MonoBehaviour
 {
     public Image image;
 

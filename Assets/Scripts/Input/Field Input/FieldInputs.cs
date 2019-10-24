@@ -37,7 +37,7 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
 
     public override void Awake()
     {
-        InputManager im = InputManager.Instance;
+        im = InputManager.Instance;
         InputHighlight prefabHighlight = AllPrefabs.Instance.inputHighlight;
 
         cursorHighlight = Instantiate(prefabHighlight, transform);
@@ -54,7 +54,6 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
     // Start is called before the first frame update
     void Start()
     {
-        im = InputManager.Instance;
         recorder = GetComponent<FieldInputRecorder>();
         cameraController = GetComponentInChildren<CameraController>();
     }
