@@ -39,7 +39,7 @@ public class GameManager : AbstractSingleton<GameManager>
     public int week;
     public int month;
 
-    private ScenarioFileData scenarioFileData;
+    private ScenarioFile scenarioFileData;
     private TimeSpan timeElapsed;
 
     public Camera mainCamera { get; private set; }

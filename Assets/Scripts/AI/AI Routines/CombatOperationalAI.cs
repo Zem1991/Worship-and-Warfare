@@ -67,7 +67,7 @@ public class CombatOperationalAI : AbstractAIRoutine
         if (!cph.GetPieceList(aiPersonality.player, true, out unitList)) return;
         unitList = cph.GetActivePieces(unitList);
 
-        if (currentUnit.hasRangedAttack)
+        if (currentUnit.combatPieceStats.attack_primary.isRanged)
         {
             Dictionary<AbstractCombatantPiece2, float> mapUnitDistance = new Dictionary<AbstractCombatantPiece2, float>();
             foreach (AbstractCombatantPiece2 unit in unitList)

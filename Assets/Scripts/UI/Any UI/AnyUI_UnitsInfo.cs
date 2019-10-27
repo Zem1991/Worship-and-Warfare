@@ -32,7 +32,7 @@ public class AnyUI_UnitsInfo : MonoBehaviour, IShowableHideable
         if (units.Count >= 1)
         {
             u1Portrait.sprite = units[0].dbData.profilePicture;
-            u1StackSize.text = units[0].stackSize.ToString();
+            u1StackSize.text = units[0].stackStats.stack_maximum.ToString();
         }
         else
         {
@@ -43,7 +43,7 @@ public class AnyUI_UnitsInfo : MonoBehaviour, IShowableHideable
         if (units.Count >= 2)
         {
             u2Portrait.sprite = units[1].dbData.profilePicture;
-            u2StackSize.text = units[1].stackSize.ToString();
+            u2StackSize.text = units[1].stackStats.stack_maximum.ToString();
         }
         else
         {
@@ -54,7 +54,7 @@ public class AnyUI_UnitsInfo : MonoBehaviour, IShowableHideable
         if (units.Count >= 3)
         {
             u3Portrait.sprite = units[2].dbData.profilePicture;
-            u3StackSize.text = units[2].stackSize.ToString();
+            u3StackSize.text = units[2].stackStats.stack_maximum.ToString();
         }
         else
         {
@@ -65,7 +65,7 @@ public class AnyUI_UnitsInfo : MonoBehaviour, IShowableHideable
         if (units.Count >= 4)
         {
             u4Portrait.sprite = units[3].dbData.profilePicture;
-            u4StackSize.text = units[3].stackSize.ToString();
+            u4StackSize.text = units[3].stackStats.stack_maximum.ToString();
         }
         else
         {
@@ -76,7 +76,7 @@ public class AnyUI_UnitsInfo : MonoBehaviour, IShowableHideable
         if (units.Count >= 5)
         {
             u5Portrait.sprite = units[4].dbData.profilePicture;
-            u5StackSize.text = units[4].stackSize.ToString();
+            u5StackSize.text = units[4].stackStats.stack_maximum.ToString();
         }
         else
         {

@@ -60,11 +60,9 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         Debug.LogWarning("No tile data for combat map!");
         mapHandler.BuildMap(MAP_SIZE, tileset);
         pieceHandler.Create(attackerPiece, defenderPiece);
-        pieceHandler.InitialHeroPositions(mapHandler.map);
-        pieceHandler.InitialUnitPositions(mapHandler.map);
-
-        //TODO make actual wait for piece initializations.
-        //yield return 0;
+        pieceHandler.InitialPositions(mapHandler.map);
+        //pieceHandler.InitialHeroPositions(mapHandler.map);
+        //pieceHandler.InitialUnitPositions(mapHandler.map);
 
         combatStarted = true;
         NextTurn();
@@ -149,7 +147,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     public void UpdateTurnSequence()
     {
         turnSequence = turnSequence.OrderBy(a => a.spawnId).ToList();
-        turnSequence = turnSequence.OrderByDescending(a => a.initiative).ToList();
+        turnSequence = turnSequence.OrderByDescending(a => a.combatPieceStats.initiative).ToList();
         CombatUI.Instance.turnSequence.CreateTurnSequence(turnSequence);
     }
 

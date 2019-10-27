@@ -32,13 +32,13 @@ public class AnyUI_HeroInfo : MonoBehaviour, IShowableHideable
         {
             heroPortrait.sprite = hero.dbData.profilePicture;
             txtHeroName.text = hero.dbData.heroName;
-            txtLevelAndClass.text = "Level " + hero.level + " " + hero.dbData.classs.className;
+            txtLevelAndClass.text = "Level " + hero.experienceStats.level + " " + hero.dbData.classs.className;
 
-            txtCommand.text = hero.atrCommand.ToString();
-            txtOffense.text = hero.atrOffense.ToString();
-            txtDefense.text = hero.atrDefense.ToString();
-            txtPower.text = hero.atrPower.ToString();
-            txtFocus.text = hero.atrFocus.ToString();
+            txtCommand.text = hero.attributeStats.atrCommand.ToString();
+            txtOffense.text = hero.attributeStats.atrOffense.ToString();
+            txtDefense.text = hero.attributeStats.atrDefense.ToString();
+            txtPower.text = hero.attributeStats.atrPower.ToString();
+            txtFocus.text = hero.attributeStats.atrFocus.ToString();
         }
         else
         {

@@ -51,16 +51,16 @@ public class CombatPieceHandler : MonoBehaviour
         if (attackerPiece.partyHero != null)
         {
             attackerHero = Instantiate(prefabHero, transform);
-            attackerHero.Initialize(attackerPiece.partyHero, attackerPiece.IPO_GetOwner(), spawnId);
-            //attackerPieces.Add(attackerHero); //TODO THIS LATER
+            attackerHero.Initialize(attackerPiece.partyHero, attackerPiece.IPO_GetOwner(), spawnId, false);
+            attackerPieces.Add(attackerHero);
         }
 
         spawnId = 1;
         if (defenderPiece.partyHero != null)
         {
             defenderHero = Instantiate(prefabHero, transform);
-            defenderHero.Initialize(defenderPiece.partyHero, defenderPiece.IPO_GetOwner(), spawnId);
-            //defenderPieces.Add(defenderHero); //TODO THIS LATER
+            defenderHero.Initialize(defenderPiece.partyHero, defenderPiece.IPO_GetOwner(), spawnId, true);
+            defenderPieces.Add(defenderHero);
         }
 
         spawnId = 2;
@@ -69,7 +69,7 @@ public class CombatPieceHandler : MonoBehaviour
             foreach (var unit in attackerPiece.partyUnits)
             {
                 CombatantUnitPiece2 uc = Instantiate(prefabUnit, transform);
-                uc.Initialize(unit, attackerPiece.IPO_GetOwner(), spawnId);
+                uc.Initialize(unit, attackerPiece.IPO_GetOwner(), spawnId, false);
                 attackerUnits.Add(uc);
                 attackerPieces.Add(uc);
 
@@ -92,51 +92,74 @@ public class CombatPieceHandler : MonoBehaviour
         }
     }
 
-    public void InitialHeroPositions(CombatMap map)
+    public void InitialPositions(CombatMap map)
     {
-        CombatTile attackerHeroTile = map.attackerHeroTile;
-        CombatTile defenderHeroTile = map.defenderHeroTile;
+        InitialPosition(attackerPieces, map.attackerStartTiles);
+        InitialPosition(defenderPieces, map.defenderStartTiles);
+    }
 
-        if (attackerHero)
+    private void InitialPosition(List<AbstractCombatantPiece2> combatants, List<CombatTile> tiles)
+    {
+        int middle = tiles.Count / 2;
+        for (int i = 0; i < combatants.Count; i++)
         {
-            attackerHero.transform.position = attackerHeroTile.transform.position;
-            attackerHero.currentTile = attackerHeroTile;
-            attackerHeroTile.occupantPiece = attackerHero;
-        }
+            int modifier = (i + 1) / 2;
+            if (i % 2 == 1) modifier *= -1;
 
-        if (defenderHero)
-        {
-            defenderHero.transform.position = defenderHeroTile.transform.position;
-            defenderHero.currentTile = defenderHeroTile;
-            defenderHeroTile.occupantPiece = defenderHero;
+            AbstractCombatantPiece2 combatant = combatants[i];
+            CombatTile tile = tiles[middle + modifier];
+
+            combatant.transform.position = tile.transform.position;
+            combatant.currentTile = tile;
+            tile.occupantPiece = combatant;
         }
     }
 
-    public void InitialUnitPositions(CombatMap map)
-    {
-        List<CombatTile> attackerHeroTiles = map.attackerStartTiles;
-        List<CombatTile> defenderHeroTiles = map.defenderStartTiles;
+    //public void InitialHeroPositions(CombatMap map)
+    //{
+    //    CombatTile attackerHeroTile = map.attackerHeroTile;
+    //    CombatTile defenderHeroTile = map.defenderHeroTile;
 
-        if (attackerUnits != null)
-        {
-            for (int i = 0; i < attackerUnits.Count; i++)
-            {
-                attackerUnits[i].transform.position = attackerHeroTiles[i].transform.position;
-                attackerUnits[i].currentTile = attackerHeroTiles[i];
-                attackerHeroTiles[i].occupantPiece = attackerUnits[i];
-            }
-        }
+    //    if (attackerHero)
+    //    {
+    //        attackerHero.transform.position = attackerHeroTile.transform.position;
+    //        attackerHero.currentTile = attackerHeroTile;
+    //        attackerHeroTile.occupantPiece = attackerHero;
+    //    }
 
-        if (defenderUnits != null)
-        {
-            for (int i = 0; i < defenderUnits.Count; i++)
-            {
-                defenderUnits[i].transform.position = defenderHeroTiles[i].transform.position;
-                defenderUnits[i].currentTile = defenderHeroTiles[i];
-                defenderHeroTiles[i].occupantPiece = defenderUnits[i];
-            }
-        }
-    }
+    //    if (defenderHero)
+    //    {
+    //        defenderHero.transform.position = defenderHeroTile.transform.position;
+    //        defenderHero.currentTile = defenderHeroTile;
+    //        defenderHeroTile.occupantPiece = defenderHero;
+    //    }
+    //}
+
+    //public void InitialUnitPositions(CombatMap map)
+    //{
+    //    List<CombatTile> attackerHeroTiles = map.attackerStartTiles;
+    //    List<CombatTile> defenderHeroTiles = map.defenderStartTiles;
+
+    //    if (attackerUnits != null)
+    //    {
+    //        for (int i = 0; i < attackerUnits.Count; i++)
+    //        {
+    //            attackerUnits[i].transform.position = attackerHeroTiles[i].transform.position;
+    //            attackerUnits[i].currentTile = attackerHeroTiles[i];
+    //            attackerHeroTiles[i].occupantPiece = attackerUnits[i];
+    //        }
+    //    }
+
+    //    if (defenderUnits != null)
+    //    {
+    //        for (int i = 0; i < defenderUnits.Count; i++)
+    //        {
+    //            defenderUnits[i].transform.position = defenderHeroTiles[i].transform.position;
+    //            defenderUnits[i].currentTile = defenderHeroTiles[i];
+    //            defenderHeroTiles[i].occupantPiece = defenderUnits[i];
+    //        }
+    //    }
+    //}
 
     public void Pathfind(AbstractCombatantPiece2 piece, CombatTile targetTile,
         bool needGroundAccess = true, bool needWaterAccess = false, bool needLavaAccess = false)
@@ -200,9 +223,9 @@ public class CombatPieceHandler : MonoBehaviour
             if (cup && cup.unit)
             {
                 Unit unit = cup.unit;
-                unit.stackSize = cup.stackSizeCurrent;
+                unit.stackStats.stack_maximum = cup.stackStats.stack_current;
 
-                if (unit.stackSize <= 0)
+                if (unit.stackStats.stack_maximum <= 0)
                 {
                     party.partyUnits.Remove(unit);
                     Destroy(unit.gameObject);

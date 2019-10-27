@@ -27,12 +27,12 @@ public class CombatUI_BL_CurrentUnit : AUIPanel
             txtUnitName.text = cup.unit.GetName();
 
             txtUnitHitPoints.text = cup.hitPointsCurrent + "/" + cup.hitPointsMax;
-            txtUnitStackCount.text = cup.stackSizeCurrent + "/" + cup.stackSizeStart;
+            txtUnitStackCount.text = cup.stackStats.stack_current + "/" + cup.stackStats.stack_maximum;
 
-            txtDamage.text = cup.unit.damageMin.ToString() + " - " + cup.unit.damageMax.ToString();
-            txtResistance.text = cup.unit.resistance.ToString();
-            txtSpeed.text = cup.unit.movementRange.ToString();
-            txtInitiative.text = cup.unit.initiative.ToString();
+            txtDamage.text = cup.unit.combatPieceStats.attack_primary.damage_minimum.ToString() + " ~ " + cup.unit.combatPieceStats.attack_primary.damage_maximum.ToString();
+            txtResistance.text = cup.unit.combatPieceStats.armor_physical.ToString() + "/" + cup.unit.combatPieceStats.armor_magical.ToString();
+            txtSpeed.text = cup.unit.combatPieceStats.movementRange.ToString();
+            txtInitiative.text = cup.unit.combatPieceStats.initiative.ToString();
         }
 
     }

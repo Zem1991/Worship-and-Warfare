@@ -53,14 +53,14 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
     }
 
-    public void InstantiatePlayer(PlayerData data, int id)
+    public void InstantiatePlayer(PlayerData playerData, int id)
     {
         DBHandler_Color dbColors = DatabaseManager.Instance.colors;
 
         Player prefab = AllPrefabs.Instance.player;
 
         Player newPlayer = Instantiate(prefab, transform);
-        newPlayer.Initialize(data, id, dbColors.Select(data.colorId));
+        newPlayer.Initialize(playerData, id, dbColors.Select(playerData.colorId));
         allPlayers.Add(newPlayer);
     }
 

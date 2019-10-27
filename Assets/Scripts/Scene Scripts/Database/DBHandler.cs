@@ -3,56 +3,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class DBContentHandler<T> : MonoBehaviour where T : DBContent
+public abstract class DBContentHandler<T> : AbstractSingleton<DBContentHandler<T>> where T : DBContent
 {
-    private List<T> contents = new List<T>();
-    public T defaultContent;
+    private Dictionary<string, T> contents = new Dictionary<string, T>();
 
-    void Awake()
+    public override void Awake()
     {
-        T defaultContent = GetComponent<T>();
-        if (Validate(defaultContent))
-        {
-            this.defaultContent = defaultContent;
-        }
+        base.Awake();
 
         T[] children = GetComponentsInChildren<T>();
         foreach (var item in children)
         {
-            if (item.gameObject != defaultContent.gameObject)
+            if (Validate(item))
             {
-                if (Validate(item))
-                {
-                    contents.Add(item);
-                }
+                contents.Add(item.id, item);
             }
         }
     }
 
-    public virtual T Select(int index, bool returnDefault = true)
+    public virtual T Select(string id)
     {
-        index--;
-        if (index >= 0 && index < contents.Count)
-            return contents[index];
-
-        if (returnDefault)
-            return defaultContent;
-        else
-            return null;
-    }
-
-    public virtual T Select(string id, bool returnDefault = true)
-    {
-        foreach (var item in contents)
-        {
-            if (item.id.Equals(id))
-                return item;
-        }
-
-        if (returnDefault)
-            return defaultContent;
-        else
-            return null;
+        bool result = contents.TryGetValue(id, out T content);
+        if (result) return content;
+        return null;
     }
 
     private bool Validate(T item)

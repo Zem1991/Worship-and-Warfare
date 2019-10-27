@@ -1,17 +1,19 @@
 {
-  "name": "Test Scenario 01",
-  "author": "Zem",
-  "width": 20,
-  "height": 20,
+  "scenarioData": {
+    "name": "Test Scenario 01",
+    "author": "Zem",
+    "width": 20,
+    "height": 20
+  },
   "players": [
     {
       "playerType": "Human",
-      "colorId": 1,
+      "colorId": "Red",
       "name": "Human"
     },
     {
       "playerType": "Computer",
-      "colorId": 2,
+      "colorId": "Blue",
       "name": "Computer"
     }
   ],
@@ -1414,23 +1416,29 @@
       ],
       "ownerId": 1,
       "hero": {
-        "heroId": 1,
+        "id": "Christian",
         "inventory": {
-          "offHand": 2
+          "offHandId": 2
         }
       },
       "units": [
         {
-          "unitId": 1,
-          "stackSize": 35
+          "id": "Pikeman",
+          "stackData": {
+            "stack_maximum": 35
+          }
         },
         {
-          "unitId": 2,
-          "stackSize": 25
+          "id": "Archer",
+          "stackData": {
+            "stack_maximum": 25
+          }
         },
         {
-          "unitId": 1,
-          "stackSize": 35
+          "id": "Pikeman",
+          "stackData": {
+            "stack_maximum": 35
+          }
         }
       ]
     },
@@ -1442,12 +1450,16 @@
       "ownerId": 2,
       "units": [
         {
-          "unitId": 2,
-          "stackSize": 7
+          "id": "Archer",
+          "stackData": {
+            "stack_maximum": 7
+          }
         },
         {
-          "unitId": 2,
-          "stackSize": 7
+          "id": "Archer",
+          "stackData": {
+            "stack_maximum": 7
+          }
         }
       ]
     },
@@ -1459,12 +1471,16 @@
       "ownerId": 2,
       "units": [
         {
-          "unitId": 1,
-          "stackSize": 15
+          "id": "Pikeman",
+          "stackData": {
+            "stack_maximum": 15
+          }
         },
         {
-          "unitId": 1,
-          "stackSize": 10
+          "id": "Pikeman",
+          "stackData": {
+            "stack_maximum": 10
+          }
         }
       ]
     },
@@ -1476,16 +1492,22 @@
       "ownerId": 2,
       "units": [
         {
-          "unitId": 2,
-          "stackSize": 12
+          "id": "Archer",
+          "stackData": {
+            "stack_maximum": 12
+          }
         },
         {
-          "unitId": 1,
-          "stackSize": 10
+          "id": "Pikeman",
+          "stackData": {
+            "stack_maximum": 10
+          }
         },
         {
-          "unitId": 2,
-          "stackSize": 12
+          "id": "Archer",
+          "stackData": {
+            "stack_maximum": 12
+          }
         }
       ]
     },
@@ -1497,12 +1519,16 @@
       "ownerId": 2,
       "units": [
         {
-          "unitId": 1,
-          "stackSize": 5
+          "id": "Pikeman",
+          "stackData": {
+            "stack_maximum": 5
+          }
         },
         {
-          "unitId": 2,
-          "stackSize": 5
+          "id": "Archer",
+          "stackData": {
+            "stack_maximum": 5
+          }
         }
       ]
     },
@@ -1514,53 +1540,69 @@
       "ownerId": 2,
       "units": [
         {
-          "unitId": 1,
-          "stackSize": 4
+          "id": "Pikeman",
+          "stackData": {
+            "stack_maximum": 4
+          }
         },
         {
-          "unitId": 2,
-          "stackSize": 12
+          "id": "Archer",
+          "stackData": {
+            "stack_maximum": 12
+          }
         },
         {
-          "unitId": 1,
-          "stackSize": 8
+          "id": "Pikeman",
+          "stackData": {
+            "stack_maximum": 8
+          }
         }
       ]
     },
     {
       "mapPosition": [
-        17,
-        2
+        4, //17,
+        15 //2
       ],
       "ownerId": 2,
       "hero": {
-        "heroId": 2,
+        "id": "Ingham",
         "inventory": {
-          //"mainhand": 3,
-          //"offHand": 4,
-          "helmet": 6
+          //"mainHandId": 3,
+          //"offHandId": 4,
+          "helmetId": 6
         }
       },
       "units": [
         {
-          "unitId": 1,
-          "stackSize": 10
+          "id": "Pikeman",
+          "stackData": {
+            "stack_maximum": 10
+          }
         },
         {
-          "unitId": 2,
-          "stackSize": 10
+          "id": "Archer",
+          "stackData": {
+            "stack_maximum": 10
+          }
         },
         {
-          "unitId": 1,
-          "stackSize": 10
+          "id": "Pikeman",
+          "stackData": {
+            "stack_maximum": 10
+          }
         },
         {
-          "unitId": 2,
-          "stackSize": 10
+          "id": "Archer",
+          "stackData": {
+            "stack_maximum": 10
+          }
         },
         {
-          "unitId": 1,
-          "stackSize": 10
+          "id": "Pikeman",
+          "stackData": {
+            "stack_maximum": 10
+          }
         }
       ]
     }
@@ -1572,7 +1614,7 @@
         2
       ],
       "pickupType": "ARTIFACT",
-      "artifact": 9
+      "artifactId": 9
     },
     {
       "mapPosition": [
@@ -1580,7 +1622,7 @@
         16
       ],
       "pickupType": "ARTIFACT",
-      "artifact": 7
+      "artifactId": 7
     },
     {
       "mapPosition": [
@@ -1588,7 +1630,7 @@
         5
       ],
       "pickupType": "ARTIFACT",
-      "artifact": 5
+      "artifactId": 5
     }
   ]
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DB_Color : DBContent
 {
-    [Header("Stats")]
+    [Header("Color settings")]
     public string colorName;
     public Color mainColor;
     public Sprite imgFlag;

@@ -74,7 +74,9 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
                 Debug.LogWarning("Resource pickup is not supported");
                 break;
             case PickupType.ARTIFACT:
-                Artifact artifact = targetPickup.artifact;
+                Artifact prefab = AllPrefabs.Instance.artifact;
+                Artifact artifact = Instantiate(prefab, transform);
+                artifact.Initialize(targetPickup.dbArtifact);
                 partyPiece2.partyHero.inventory.AddArtifact(artifact);
                 break;
             case PickupType.UNIT:

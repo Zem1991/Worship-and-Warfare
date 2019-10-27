@@ -39,42 +39,42 @@ public class Inventory : MonoBehaviour
 
         this.hero = hero;
 
-        DB_Artifact mh = dbArtifacts.Select(inventory.mainHand, false);
+        DB_Artifact mh = dbArtifacts.Select(inventory.mainHandId);
         mainHand = Instantiate(prefabInventorySlot, transform);
         mainHand.Initialize(this, ArtifactType.MAIN_HAND, mh);
         parameterSlots.Add(mainHand);
 
-        DB_Artifact oh = dbArtifacts.Select(inventory.offHand, false);
+        DB_Artifact oh = dbArtifacts.Select(inventory.offHandId);
         offHand = Instantiate(prefabInventorySlot, transform);
         offHand.Initialize(this, ArtifactType.OFF_HAND, oh);
         parameterSlots.Add(offHand);
 
-        DB_Artifact he = dbArtifacts.Select(inventory.helmet, false);
+        DB_Artifact he = dbArtifacts.Select(inventory.helmetId);
         helmet = Instantiate(prefabInventorySlot, transform);
         helmet.Initialize(this, ArtifactType.HELMET, he);
         parameterSlots.Add(helmet);
 
-        DB_Artifact ar = dbArtifacts.Select(inventory.armor, false);
+        DB_Artifact ar = dbArtifacts.Select(inventory.armorId);
         armor = Instantiate(prefabInventorySlot, transform);
         armor.Initialize(this, ArtifactType.ARMOR, ar);
         parameterSlots.Add(armor);
 
-        DB_Artifact t1 = dbArtifacts.Select(inventory.trinket1, false);
+        DB_Artifact t1 = dbArtifacts.Select(inventory.trinket1Id);
         trinket1 = Instantiate(prefabInventorySlot, transform);
         trinket1.Initialize(this, ArtifactType.TRINKET, t1, "1");
         parameterSlots.Add(trinket1);
 
-        DB_Artifact t2 = dbArtifacts.Select(inventory.trinket2, false);
+        DB_Artifact t2 = dbArtifacts.Select(inventory.trinket2Id);
         trinket2 = Instantiate(prefabInventorySlot, transform);
         trinket2.Initialize(this, ArtifactType.TRINKET, t2, "2");
         parameterSlots.Add(trinket2);
 
-        DB_Artifact t3 = dbArtifacts.Select(inventory.trinket3, false);
+        DB_Artifact t3 = dbArtifacts.Select(inventory.trinket3Id);
         trinket3 = Instantiate(prefabInventorySlot, transform);
         trinket3.Initialize(this, ArtifactType.TRINKET, t3, "3");
         parameterSlots.Add(trinket3);
 
-        DB_Artifact t4 = dbArtifacts.Select(inventory.trinket4, false);
+        DB_Artifact t4 = dbArtifacts.Select(inventory.trinket4Id);
         trinket4 = Instantiate(prefabInventorySlot, transform);
         trinket4.Initialize(this, ArtifactType.TRINKET, t4, "4");
         parameterSlots.Add(trinket4);

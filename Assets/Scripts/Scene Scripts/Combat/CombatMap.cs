@@ -48,7 +48,9 @@ public class CombatMap : AbstractMap<CombatTile>
         prefabTile.allowGroundMovement = true;  //TODO GET MOVEMENT TYPES LATER
 
         int width = mapSize.x;
-        int height = mapSize.y;
+        //int height = mapSize.y;
+        //int maxX = mapSize.x - 1;
+        int maxY = mapSize.y - 1;
 
         Vector3 startPos = new Vector3();
         startPos.x = 0; // (width - 1) / -2F;
@@ -57,7 +59,7 @@ public class CombatMap : AbstractMap<CombatTile>
         int current = 0;
         CombatTile previousRowReference = null;
         CombatTile previousRowReferenceLeft = null;
-        for (int row = 0; row < height; row++)
+        for (int row = maxY; row >= 0; row--)
         {
             CombatTile firstOfCurrentRow = null;
             CombatTile previousInCurrentRow = null;
@@ -99,25 +101,25 @@ public class CombatMap : AbstractMap<CombatTile>
                 {
                     if (oddCol)
                     {
-                        newTile.br = previousRowReference;
-                        newTile.bl = previousRowReference.l;
-                        newTile.br.fl = newTile;
-                        if (newTile.bl) newTile.bl.fr = newTile;
+                        newTile.fr = previousRowReference;
+                        newTile.fl = previousRowReference.l;
+                        newTile.fr.bl = newTile;
+                        if (newTile.fl) newTile.fl.br = newTile;
                     }
                     else
                     {
-                        newTile.bl = previousRowReference;
-                        newTile.br = previousRowReference.r;
-                        newTile.bl.fr = newTile;
-                        newTile.br.fl = newTile;
+                        newTile.fl = previousRowReference;
+                        newTile.fr = previousRowReference.r;
+                        newTile.fl.br = newTile;
+                        newTile.fr.bl = newTile;
                     }
                     previousRowReferenceLeft = previousRowReference;
                     previousRowReference = previousRowReference.r as CombatTile;
                 }
                 else if (previousRowReferenceLeft)
                 {
-                    newTile.bl = previousRowReferenceLeft;
-                    newTile.bl.fr = newTile;
+                    newTile.fl = previousRowReferenceLeft;
+                    newTile.fl.br = newTile;
                 }
 
                 previousInCurrentRow = newTile;

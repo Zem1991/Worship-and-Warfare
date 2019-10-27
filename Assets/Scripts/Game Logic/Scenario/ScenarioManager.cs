@@ -12,11 +12,11 @@ public class ScenarioManager : AbstractSingleton<ScenarioManager>
 
     private Bounds scenarioBounds;
 
-    public void BootScenario(ScenarioFileData data)
+    public void BootScenario(ScenarioFile data)
     {
-        scenario.scenarioName = data.name;
-        scenario.scenarioAuthor = data.author;
-        scenario.scenarioSize = new Vector2Int(data.width, data.height);
+        scenario.scenarioName = data.scenarioData.name;
+        scenario.scenarioAuthor = data.scenarioData.author;
+        scenario.scenarioSize = new Vector2Int(data.scenarioData.width, data.scenarioData.height);
 
         PlayerManager.Instance.InstantiatePlayers(data.players);
 

@@ -4,38 +4,31 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
+    [Header("Prefab references")]
+    public CombatPieceStats combatPieceStats;
+    public StackStats stackStats;
+
+    [Header("Database reference")]
     public DB_Unit dbData;
 
-    public int hitPointsMax;
-    public int stackSize;
-
-    public int damageMin;
-    public int damageMax;
-    public bool hasRangedAttack;
-    public int resistance;
-    public int movementRange;
-    public int initiative;
-
-    public void Initialize(DB_Unit dbData, int stackSize)
+    public void Initialize(DB_Unit dbData, StackData stackData)
     {
+        CombatPieceStats prefabCPS = AllPrefabs.Instance.combatPieceStats;
+        StackStats prefabSS = AllPrefabs.Instance.stackStats;
+
         this.dbData = dbData;
+        name = dbData.nameSingular;
 
-        hitPointsMax = dbData.hitPoints;
-        this.stackSize = stackSize;
+        combatPieceStats = Instantiate(prefabCPS, transform);
+        combatPieceStats.Initialize(dbData.combatPieceStats);
 
-        damageMin = dbData.damageMin;
-        damageMax = dbData.damageMax;
-        hasRangedAttack = dbData.hasRangedAttack;
-        resistance = dbData.resistance;
-        movementRange = dbData.movementRange;
-        initiative = dbData.initiative;
-
-        name = GetName();
+        stackStats = Instantiate(prefabSS, transform);
+        stackStats.Initialize(stackData);
     }
 
     public string GetName()
     {
-        if (stackSize <= 1) return dbData.nameSingular;
+        if (stackStats.stack_current <= 1) return dbData.nameSingular;
         return dbData.namePlural;
     }
 }

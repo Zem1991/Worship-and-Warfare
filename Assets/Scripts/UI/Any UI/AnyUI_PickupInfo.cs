@@ -30,13 +30,13 @@ public class AnyUI_PickupInfo : MonoBehaviour, IShowableHideable
                     Debug.LogWarning("Resource pickup is not supported");
                     break;
                 case PickupType.ARTIFACT:
-                    portrait.sprite = pickup.artifact.dbData.image;
-                    txtPickupName.text = pickup.artifact.dbData.artifactName;
-                    txtPickupDescription.text = pickup.artifact.dbData.artifactDescription;
+                    portrait.sprite = pickup.dbArtifact.image;
+                    txtPickupName.text = pickup.dbArtifact.artifactName;
+                    txtPickupDescription.text = pickup.dbArtifact.artifactDescription;
                     break;
                 case PickupType.UNIT:
-                    portrait.sprite = pickup.unit.dbData.profilePicture;
-                    txtPickupName.text = pickup.unit.dbData.namePlural;
+                    portrait.sprite = pickup.dbUnit.profilePicture;
+                    txtPickupName.text = pickup.dbUnit.namePlural;  //TODO NAME IN SINGULAR/PLURAL
                     txtPickupDescription.text = pickup.unitAmount + " to be picked up.";
                     break;
             }

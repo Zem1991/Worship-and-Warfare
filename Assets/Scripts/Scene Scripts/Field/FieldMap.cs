@@ -80,20 +80,25 @@ public class FieldMap : AbstractMap<FieldTile>
             tile.featureId = tileData.featureId;
             tile.roadId = tileData.roadId;
 
-            DB_Tileset lowerLand = tilesets.Select(tile.lowerLandId) as DB_Tileset;
-            Sprite s = lowerLand.image;
-            tile.db_tileset_lowerLand = lowerLand;
-            tile.ChangeLandSprite(s);
-
-            tile.groundMovementCost = lowerLand.groundMovementCost;
-            tile.allowGroundMovement = lowerLand.allowGroundMovement;
-            tile.allowWaterMovement = lowerLand.allowWaterMovement;
-            tile.allowLavaMovement = lowerLand.allowLavaMovement;
-
-            DB_Tileset water = tilesets.Select(tile.waterId, false) as DB_Tileset;
-            if (water)
+            if (tile.lowerLandId != null)
             {
-                s = water.image;
+                DB_Tileset lowerLand = tilesets.Select(tile.lowerLandId) as DB_Tileset;
+
+                Sprite s = lowerLand.image;
+                tile.db_tileset_lowerLand = lowerLand;
+                tile.ChangeLandSprite(s);
+
+                tile.groundMovementCost = lowerLand.groundMovementCost;
+                tile.allowGroundMovement = lowerLand.allowGroundMovement;
+                tile.allowWaterMovement = lowerLand.allowWaterMovement;
+                tile.allowLavaMovement = lowerLand.allowLavaMovement;
+            }
+
+            if (tile.waterId != null)
+            {
+                DB_Tileset water = tilesets.Select(tile.waterId) as DB_Tileset;
+
+                Sprite s = water.image;
                 tile.db_tileset_feature = water;
                 tile.ChangeFeatureSprite(s);
 
@@ -103,10 +108,11 @@ public class FieldMap : AbstractMap<FieldTile>
                 tile.allowLavaMovement &= water.allowLavaMovement;
             }
 
-            DB_Tileset feature = tilesets.Select(tile.featureId, false) as DB_Tileset;
-            if (feature)
+            if (tile.featureId != null)
             {
-                s = feature.image;
+                DB_Tileset feature = tilesets.Select(tile.featureId) as DB_Tileset;
+
+                Sprite s = feature.image;
                 tile.db_tileset_feature = feature;
                 tile.ChangeFeatureSprite(s);
 

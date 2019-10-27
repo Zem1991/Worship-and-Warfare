@@ -4,9 +4,9 @@ using UnityEngine;
 
 public static class CombatLogic
 {
-    public static int DamageCalculation(CombatantUnitPiece2 attackerUnit, CombatantUnitPiece2 defenderUnit, CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
+    public static int DamageCalculation(AbstractCombatantPiece2 attacker, AbstractCombatantPiece2 defender, CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
     {
-        float dmgBase = UnitDamage(attackerUnit);
+        float dmgBase = UnitDamage(attacker);
         float increments = Increments(attackerHero, defenderHero);
         float reductions = Reductions(attackerHero, defenderHero);
         Debug.Log("DamageCalculation result: " + dmgBase + " * " + increments + " * " + reductions);
@@ -15,12 +15,18 @@ public static class CombatLogic
         return Mathf.Max(result, 1);
     }
 
-    public static float UnitDamage(CombatantUnitPiece2 unit)
+    public static float UnitDamage(AbstractCombatantPiece2 unit)
     {
         float result = 0;
-        for (int i = 0; i < unit.stackSizeCurrent; i++)
+        CombatantUnitPiece2 asUnit = unit as CombatantUnitPiece2;
+        if (asUnit)
         {
-            result += Random.Range(unit.unit.damageMin, unit.unit.damageMax + 1);
+            for (int i = 0; i < asUnit.stackStats.stack_current; i++)
+                result += Random.Range(asUnit.combatPieceStats.attack_primary.damage_minimum, asUnit.combatPieceStats.attack_primary.damage_maximum + 1);
+        }
+        else
+        {
+            //TODO
         }
         return result;
     }
@@ -36,8 +42,8 @@ public static class CombatLogic
         float result = 0;
         if (attackerHero == null) return result;
 
-        float atrDif = attackerHero.hero.atrOffense;
-        if (defenderHero != null) atrDif -= defenderHero.hero.atrDefense;
+        float atrDif = attackerHero.hero.attributeStats.atrOffense;
+        if (defenderHero != null) atrDif -= defenderHero.hero.attributeStats.atrDefense;
 
         if (atrDif > 0)
         {
@@ -58,8 +64,8 @@ public static class CombatLogic
         float result = 0;
         if (defenderHero == null) return result;
 
-        float atrDif = defenderHero.hero.atrDefense;
-        if (attackerHero != null) atrDif -= attackerHero.hero.atrOffense;
+        float atrDif = defenderHero.hero.attributeStats.atrDefense;
+        if (attackerHero != null) atrDif -= attackerHero.hero.attributeStats.atrOffense;
 
         if (atrDif > 0)
         {
