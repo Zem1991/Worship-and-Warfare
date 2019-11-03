@@ -5,17 +5,17 @@ using UnityEngine;
 public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideable
 {
     [Header("Panels")]
-    public CombatUI_TL_CoreButtons coreButtons;
-    public CombatUI_TC_PartyCard attackerParty;
-    public CombatUI_TC_PartyCard defenderParty;
-    public CombatUI_TR_Timers timers;
-    public CombatUI_BL_CurrentUnit currentUnit;
-    public CombatUI_BC_TurnSequence turnSequence;
-    public CombatUI_BR_CombatLogs combatLogs;
+    public CombatUI_Panel_CoreButtons coreButtons;
+    public CombatUI_Panel_PartyCard attackerParty;
+    public CombatUI_Panel_PartyCard defenderParty;
+    public CombatUI_Panel_Timers timers;
+    public CombatUI_Panel_CurrentPiece currentPiece;
+    public CombatUI_Panel_TurnSequence turnSequence;
+    public CombatUI_Panel_CombatLogs combatLogs;
 
     [Header("Windows")]
-    public CombatUI_CC_EscapeMenu escapeMenu;
-    public CombatUI_CC_ResultPopup resultPopup;
+    public CombatUI_Panel_EscapeMenu escapeMenu;
+    public CombatUI_Panel_ResultPopup resultPopup;
 
     [Header("Current Window")]
     public AUIPanel currentWindow;
@@ -55,21 +55,21 @@ public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideabl
         turnSequence.UpdatePanel();
         combatLogs.UpdatePanel(cm.GetLastLogs(5));
 
-        AbstractCombatPiece2 acp = cm.currentPiece;
+        AbstractCombatantPiece2 actp = cm.currentPiece;
         bool canCommandSelectedPiece = ci.canCommandSelectedPiece;
 
-        if (acp) UpdateWithSelection(acp, canCommandSelectedPiece);
+        if (actp) UpdateWithSelection(actp, canCommandSelectedPiece);
         else UpdateWithoutSelection();
     }
 
-    private void UpdateWithSelection(AbstractCombatPiece2 acp, bool canCommandSelectedPiece)
+    private void UpdateWithSelection(AbstractCombatantPiece2 actp, bool canCommandSelectedPiece)
     {
-        currentUnit.UpdatePanel(acp);
+        currentPiece.UpdatePanel(actp);
     }
 
     private void UpdateWithoutSelection()
     {
-        currentUnit.UpdatePanel(null);
+        currentPiece.UpdatePanel(null);
     }
 
     public void EscapeMenuHide()

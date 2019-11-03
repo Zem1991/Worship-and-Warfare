@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FieldUI_BR_SelectionCard : AUIPanel
+public class FieldUI_Panel_Selection : AUIPanel
 {
-    public Image crest;
+    public Text txtSelectionTitle;
 
-    public AnyUI_HeroInfo heroInfo;
-    public AnyUI_UnitsInfo unitsInfo;
-    public AnyUI_PickupInfo pickupInfo;
+    public UI_HeroInfo heroInfo;
+    public UI_UnitsInfo unitsInfo;
+    public UI_PickupInfo pickupInfo;
 
-    //public Image commandBar;
-
-    public void HidePanel()
+    public void HideInformations()
     {
+        txtSelectionTitle.text = "--";
+
         heroInfo.Hide();
         unitsInfo.Hide();
         pickupInfo.Hide();
@@ -22,7 +22,7 @@ public class FieldUI_BR_SelectionCard : AUIPanel
 
     public void UpdatePanel(PartyPiece2 party)
     {
-        HidePanel();
+        HideInformations();
         if (!party) return;
 
         Hero hero = party.partyHero;
@@ -30,6 +30,8 @@ public class FieldUI_BR_SelectionCard : AUIPanel
         {
             heroInfo.RefreshInfo(hero);
             heroInfo.Show();
+
+            txtSelectionTitle.text = hero.dbData.heroName + "'s party";
         }
 
         List<Unit> units = party.partyUnits;
@@ -37,15 +39,17 @@ public class FieldUI_BR_SelectionCard : AUIPanel
         {
             unitsInfo.RefreshInfo(units);
             unitsInfo.Show();
+
+            if (hero == null) txtSelectionTitle.text = "Non-commissioned party";
         }
     }
 
     public void UpdatePanel(PickupPiece2 pickup)
     {
-        HidePanel();
+        HideInformations();
         if (!pickup) return;
-        
-        pickupInfo.RefreshInfo(pickup);
+
+        pickupInfo.RefreshInfo(pickup, txtSelectionTitle);
         pickupInfo.Show();
     }
 }

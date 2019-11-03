@@ -3268,7 +3268,7 @@ GameObject:
   - component: {fileID: 873562911}
   - component: {fileID: 873562913}
   m_Layer: 5
-  m_Name: BL Current Unit
+  m_Name: BL Current Piece
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3903,7 +3903,7 @@ MonoBehaviour:
   attackerParty: {fileID: 2055421214}
   defenderParty: {fileID: 1342899363}
   timers: {fileID: 1396038905}
-  currentUnit: {fileID: 873562913}
+  currentPiece: {fileID: 873562913}
   turnSequence: {fileID: 3970061}
   combatLogs: {fileID: 1475999137}
   escapeMenu: {fileID: 1981053604}

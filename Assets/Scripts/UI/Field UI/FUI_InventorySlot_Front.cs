@@ -12,12 +12,12 @@ public class FUI_InventorySlot_Front : MonoBehaviour, IBeginDragHandler, IDragHa
     [Header("Runtime stuff")]
     public FUI_InventorySlot_Back invSlotBack;
 
-    private FieldUI_CC_Inventory invWindow;
+    private FieldUI_Panel_Inventory invWindow;
 
     void Awake()
     {
         invSlotBack = GetComponentInParent<FUI_InventorySlot_Back>();
-        invWindow = GetComponentInParent<FieldUI_CC_Inventory>();
+        invWindow = GetComponentInParent<FieldUI_Panel_Inventory>();
     }
 
     public void ChangeImage(Sprite img)

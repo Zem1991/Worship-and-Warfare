@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CombatUI_TC_PartyCard : AUIPanel
+public class CombatUI_Panel_PartyCard : AUIPanel
 {
-    public AnyUI_HeroInfo heroInfo;
+    public UI_HeroInfo heroInfo;
 
     public Image commandBar;
     public Image manaBar;

@@ -31,7 +31,7 @@ public class CameraController : MonoBehaviour
 
         Vector3 pos = transform.position;
         pos.x = Mathf.Clamp(pos.x, 0, sm.scenario.scenarioSize.x - sm.MIN_SIZE.x);
-        pos.z = Mathf.Clamp(pos.z, 0, sm.scenario.scenarioSize.y - sm.MIN_SIZE.y);
+        pos.z = Mathf.Clamp(pos.z, 0, (sm.scenario.scenarioSize.y - sm.MIN_SIZE.y) + 1);
         transform.position = pos;
     }
 }

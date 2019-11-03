@@ -67,8 +67,7 @@ public class FieldMap : AbstractMap<FieldTile>
 
     public void ApplyMapData(MapData mapData)
     {
-        DatabaseManager db = DatabaseManager.Instance;
-        DBHandler_Tileset tilesets = db.tilesets;
+        DBContentHandler<DB_Tileset> dbTilesets = DBHandler_Tileset.Instance;
 
         int current = 0;
         foreach (var tile in tiles.Values)
@@ -82,7 +81,7 @@ public class FieldMap : AbstractMap<FieldTile>
 
             if (tile.lowerLandId != null)
             {
-                DB_Tileset lowerLand = tilesets.Select(tile.lowerLandId) as DB_Tileset;
+                DB_Tileset lowerLand = dbTilesets.Select(tile.lowerLandId) as DB_Tileset;
 
                 Sprite s = lowerLand.image;
                 tile.db_tileset_lowerLand = lowerLand;
@@ -96,7 +95,7 @@ public class FieldMap : AbstractMap<FieldTile>
 
             if (tile.waterId != null)
             {
-                DB_Tileset water = tilesets.Select(tile.waterId) as DB_Tileset;
+                DB_Tileset water = dbTilesets.Select(tile.waterId) as DB_Tileset;
 
                 Sprite s = water.image;
                 tile.db_tileset_feature = water;
@@ -110,7 +109,7 @@ public class FieldMap : AbstractMap<FieldTile>
 
             if (tile.featureId != null)
             {
-                DB_Tileset feature = tilesets.Select(tile.featureId) as DB_Tileset;
+                DB_Tileset feature = dbTilesets.Select(tile.featureId) as DB_Tileset;
 
                 Sprite s = feature.image;
                 tile.db_tileset_feature = feature;

@@ -115,52 +115,6 @@ public class CombatPieceHandler : MonoBehaviour
         }
     }
 
-    //public void InitialHeroPositions(CombatMap map)
-    //{
-    //    CombatTile attackerHeroTile = map.attackerHeroTile;
-    //    CombatTile defenderHeroTile = map.defenderHeroTile;
-
-    //    if (attackerHero)
-    //    {
-    //        attackerHero.transform.position = attackerHeroTile.transform.position;
-    //        attackerHero.currentTile = attackerHeroTile;
-    //        attackerHeroTile.occupantPiece = attackerHero;
-    //    }
-
-    //    if (defenderHero)
-    //    {
-    //        defenderHero.transform.position = defenderHeroTile.transform.position;
-    //        defenderHero.currentTile = defenderHeroTile;
-    //        defenderHeroTile.occupantPiece = defenderHero;
-    //    }
-    //}
-
-    //public void InitialUnitPositions(CombatMap map)
-    //{
-    //    List<CombatTile> attackerHeroTiles = map.attackerStartTiles;
-    //    List<CombatTile> defenderHeroTiles = map.defenderStartTiles;
-
-    //    if (attackerUnits != null)
-    //    {
-    //        for (int i = 0; i < attackerUnits.Count; i++)
-    //        {
-    //            attackerUnits[i].transform.position = attackerHeroTiles[i].transform.position;
-    //            attackerUnits[i].currentTile = attackerHeroTiles[i];
-    //            attackerHeroTiles[i].occupantPiece = attackerUnits[i];
-    //        }
-    //    }
-
-    //    if (defenderUnits != null)
-    //    {
-    //        for (int i = 0; i < defenderUnits.Count; i++)
-    //        {
-    //            defenderUnits[i].transform.position = defenderHeroTiles[i].transform.position;
-    //            defenderUnits[i].currentTile = defenderHeroTiles[i];
-    //            defenderHeroTiles[i].occupantPiece = defenderUnits[i];
-    //        }
-    //    }
-    //}
-
     public void Pathfind(AbstractCombatantPiece2 piece, CombatTile targetTile,
         bool needGroundAccess = true, bool needWaterAccess = false, bool needLavaAccess = false)
     {
@@ -173,8 +127,8 @@ public class CombatPieceHandler : MonoBehaviour
     public CombatantHeroPiece2 GetHero(Player player)
     {
         CombatManager cm = CombatManager.Instance;
-        if (player == cm.attacker) return attackerHero;
-        if (player == cm.defender) return defenderHero;
+        if (player == cm.attackerPlayer) return attackerHero;
+        if (player == cm.defenderPlayer) return defenderHero;
         return null;
     }
 
@@ -182,12 +136,12 @@ public class CombatPieceHandler : MonoBehaviour
     {
         list = null;
         CombatManager cm = CombatManager.Instance;
-        if (owner == cm.attacker)
+        if (owner == cm.attackerPlayer)
         {
             if (enemyPieces) list = defenderPieces;
             else list = attackerPieces;
         }
-        else if (owner == cm.defender)
+        else if (owner == cm.defenderPlayer)
         {
             if (enemyPieces) list = attackerPieces;
             else list = defenderPieces;
@@ -213,24 +167,5 @@ public class CombatPieceHandler : MonoBehaviour
             if (!item.isDead) result.Add(item);
         }
         return result;
-    }
-
-    public void ApplyCombatChanges(PartyPiece2 party, List<AbstractCombatantPiece2> pieces)
-    {
-        foreach (var piece in pieces)
-        {
-            CombatantUnitPiece2 cup = piece as CombatantUnitPiece2;
-            if (cup && cup.unit)
-            {
-                Unit unit = cup.unit;
-                unit.stackStats.stack_maximum = cup.stackStats.stack_current;
-
-                if (unit.stackStats.stack_maximum <= 0)
-                {
-                    party.partyUnits.Remove(unit);
-                    Destroy(unit.gameObject);
-                }
-            }
-        }
     }
 }

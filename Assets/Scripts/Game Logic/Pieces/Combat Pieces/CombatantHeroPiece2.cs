@@ -21,7 +21,6 @@ public class CombatantHeroPiece2 : AbstractCombatantPiece2
 
         this.hero = hero;
         name = "P" + owner.id + " - " + hero.dbData.heroName + ", " + hero.dbData.classs.className;
-        profilePicture = hero.dbData.profilePicture;
 
         attributeStats = Instantiate(prefabAS, transform);
         attributeStats.Initialize(hero.attributeStats);
@@ -30,34 +29,21 @@ public class CombatantHeroPiece2 : AbstractCombatantPiece2
         SetAnimatorOverrideController(hero.dbData.classs.animatorCombat);
     }
 
-    public override void ACtP_ResetMovementPoints()
+    public override bool ACP_TakeDamage(int amount)
     {
-        if (!pieceMovement) pieceMovement = GetComponent<PieceMovement>();
-        Debug.Log("throw new System.NotImplementedException()");
-    }
+        bool result = combatPieceStats.TakeDamage(amount);
+        string log = hero.dbData.heroName + " took " + amount + " damage.";
+        CombatManager.Instance.AddEntryToLog(log);
 
-    public override void ACtP_MakeAttack()
-    {
-        Debug.Log("throw new System.NotImplementedException()");
-    }
-
-    public override void ACtP_MakeHurt()
-    {
-        Debug.Log("throw new System.NotImplementedException()");
-    }
-
-    public override int ACtP_CalculateDamage()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void ACtP_Attack(bool ranged)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void ACtP_Retaliate()
-    {
-        throw new System.NotImplementedException();
+        if (result)
+        {
+            ACP_Die();
+            return true;
+        }
+        else
+        {
+            isHurt = true;
+            return false;
+        }
     }
 }

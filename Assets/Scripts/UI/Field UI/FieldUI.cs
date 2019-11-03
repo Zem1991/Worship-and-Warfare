@@ -5,16 +5,16 @@ using UnityEngine;
 public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
 {
     [Header("Panels")]
-    public FieldUI_TL_CoreButtons coreButtons;
-    public FieldUI_TC_Resources resources;
-    public FieldUI_TR_Timers timers;
-    public FieldUI_BL_Minimap minimap;
-    public FieldUI_BC_Commands commands;
-    public FieldUI_BR_SelectionCard selectionCard;
+    public FieldUI_Panel_CoreButtons coreButtons;
+    public FieldUI_Panel_Resources resources;
+    public FieldUI_Panel_Timers timers;
+    public FieldUI_Panel_Minimap minimap;
+    public FieldUI_Panel_Selection selection;
+    public FieldUI_Panel_Commands commands;
 
     [Header("Windows")]
-    public FieldUI_CC_EscapeMenu escapeMenu;
-    public FieldUI_CC_Inventory inventory;
+    public FieldUI_Panel_EscapeMenu escapeMenu;
+    public FieldUI_Panel_Inventory inventory;
 
     [Header("Current Window")]
     public AUIPanel currentWindow;
@@ -66,29 +66,41 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
 
     private void UpdateWithSelection(PartyPiece2 party, bool canCommandSelectedPiece)
     {
-        selectionCard.UpdatePanel(party);
+        if (party)
+        {
+            selection.UpdatePanel(party);
+            selection.Show();
+        }
+        else
+        {
+            selection.HideInformations();
+            selection.Hide();
+        }
 
         if (canCommandSelectedPiece)
         {
             commands.UpdatePanel(party);
-            commands.Show();
         }
         else
         {
-            commands.Hide();
+            commands.UpdatePanel();
         }
     }
 
     private void UpdateWithSelection(PickupPiece2 pickup)
     {
-        selectionCard.UpdatePanel(pickup);
-        commands.Hide();
+        selection.UpdatePanel(pickup);
+        selection.Show();
+
+        commands.UpdatePanel();
     }
 
     private void UpdateWithoutSelection()
     {
-        selectionCard.HidePanel();
-        commands.Hide();
+        selection.HideInformations();
+        selection.Hide();
+
+        commands.UpdatePanel();
     }
 
     public void EscapeMenuHide()

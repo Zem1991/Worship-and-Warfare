@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -39,23 +40,28 @@ public class PartyPiece2 : AbstractFieldPiece2, IPlayerOwnable, IPlayerControlla
         partyHero = hero;
         partyUnits = units;
 
+        name = "P" + owner.id + " - Party";
         if (hero != null)
         {
             SetAnimatorOverrideController(hero.dbData.classs.animatorField);
-            name = "P" + owner.id + " - " + hero.dbData.heroName + ", " + hero.dbData.classs.className;
-            //name = hero.dbData.heroName + "´s army";
         }
         else
         {
             Unit relevantUnit = units[0];
             SetAnimatorOverrideController(relevantUnit.dbData.animatorField);
-            name = "P" + owner.id + " - Stack of " + relevantUnit.GetName();
-            //name = "Army of " + relevantUnit.dbData.namePlural;
         }
 
         SetFlagSprite(owner.dbColor.imgFlag);
 
         IMP_ResetMovementPoints();
+    }
+
+    public void ApplyExperience(int experience)
+    {
+        if (partyHero)
+        {
+            partyHero.RecalculateExperience(experience);
+        }
     }
 
     public override void AP2_AnimatorParameters()

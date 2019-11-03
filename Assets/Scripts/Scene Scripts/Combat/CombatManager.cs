@@ -14,9 +14,9 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     public CombatPieceHandler pieceHandler;
 
     [Header("Teams")]
-    public Player attacker;
+    public Player attackerPlayer;
     public PartyPiece2 attackerParty;
-    public Player defender;
+    public Player defenderPlayer;
     public PartyPiece2 defenderParty;
 
     [Header("Combat Flow")]
@@ -30,10 +30,10 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
     void Update()
     {
-        if (combatStarted)
-        {
-            CheckBattleEnd();
-        }
+        //if (combatStarted)
+        //{
+        //    CheckBattleEnd();
+        //}
     }
 
     public void TerminateCombat()
@@ -45,6 +45,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         currentTurn = 0;
         currentPiece = null;
         turnSequence.Clear();
+        combatLog.Clear();
         result = CombatResult.NOT_FINISHED;
     }
 
@@ -52,9 +53,9 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     {
         //background = battleground.image;
 
-        attacker = attackerPiece.IPO_GetOwner();
+        attackerPlayer = attackerPiece.IPO_GetOwner();
         attackerParty = attackerPiece;
-        defender = defenderPiece.IPO_GetOwner();
+        defenderPlayer = defenderPiece.IPO_GetOwner();
         defenderParty = defenderPiece;
 
         Debug.LogWarning("No tile data for combat map!");
@@ -187,8 +188,8 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         Player localPlayer = PlayerManager.Instance.localPlayer;
 
         string resultMsg;
-        if ((result == CombatResult.ATTACKER_WON) && (attacker == localPlayer) ||
-            (result == CombatResult.DEFENDER_WON) && (defender == localPlayer))
+        if ((result == CombatResult.ATTACKER_WON) && (attackerPlayer == localPlayer) ||
+            (result == CombatResult.DEFENDER_WON) && (defenderPlayer == localPlayer))
         {
             resultMsg = localPlayerVictoryMsg;
         }
@@ -202,20 +203,62 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     public void CombatEndForceDefeat()
     {
         Player localPlayer = PlayerManager.Instance.localPlayer;
-        if (attacker == localPlayer) CombatEnd(CombatResult.DEFENDER_WON);
-        else if (defender == localPlayer) CombatEnd(CombatResult.ATTACKER_WON);
+        if (attackerPlayer == localPlayer) CombatEnd(CombatResult.DEFENDER_WON);
+        else if (defenderPlayer == localPlayer) CombatEnd(CombatResult.ATTACKER_WON);
     }
 
     public void CombatEndConfirm()
     {
         CombatUI.Instance.ResultPopupHide();
-
-        if (result == CombatResult.ATTACKER_WON) pieceHandler.ApplyCombatChanges(attackerParty, pieceHandler.attackerPieces);
-        else if (result == CombatResult.DEFENDER_WON) pieceHandler.ApplyCombatChanges(defenderParty, pieceHandler.defenderPieces);
-
         GameManager.Instance.ReturnFromCombat(result, attackerParty, defenderParty);
+        TerminateCombat();
+    }
 
-        ClearLogs();
+    public void ApplyCombatResults(out int attackerExperience, out int defenderExperience)
+    {
+        attackerExperience = 0;
+        defenderExperience = 0;
+
+        if (result != CombatResult.DEFENDER_WON)
+        {
+            attackerExperience = ExperienceCalculation.FullExperienceCalculation(pieceHandler.defenderPieces);
+            ApplyCombatChanges(attackerParty, pieceHandler.attackerPieces);
+        }
+        if (result != CombatResult.ATTACKER_WON)
+        {
+            defenderExperience = ExperienceCalculation.FullExperienceCalculation(pieceHandler.attackerPieces);
+            ApplyCombatChanges(defenderParty, pieceHandler.defenderPieces);
+        }
+    }
+
+    private void ApplyCombatChanges(PartyPiece2 party, List<AbstractCombatantPiece2> pieces)
+    {
+        foreach (var piece in pieces)
+        {
+            CombatantHeroPiece2 asHero = piece as CombatantHeroPiece2;
+            CombatantUnitPiece2 asUnit = piece as CombatantUnitPiece2;
+
+            if (asHero)
+            {
+                Hero hero = asHero.hero;
+                if (asHero.combatPieceStats.hitPoints_current <= 0)
+                {
+                    party.partyHero = null;
+                    Destroy(hero.gameObject);
+                }
+            }
+
+            if (asUnit)
+            {
+                Unit unit = asUnit.unit;
+                unit.stackStats.stack_maximum = asUnit.stackStats.stack_current;
+                if (unit.stackStats.stack_maximum <= 0)
+                {
+                    party.partyUnits.Remove(unit);
+                    Destroy(unit.gameObject);
+                }
+            }
+        }
     }
 
     public List<string> GetLastLogs(int entries)
@@ -235,11 +278,6 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         string currentDT = GameManager.Instance.currentDateTime;
         string fullEntry = "[Turn #" + currentTurn + "]" + "[" + currentDT + "]" + " " + entry;
         combatLog.Add(fullEntry);
-    }
-
-    public void ClearLogs()
-    {
-        combatLog.Clear();
     }
 
     private bool CheckBattleEnd()

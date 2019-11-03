@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AnyUI_UnitsInfo : MonoBehaviour, IShowableHideable
+public class UI_UnitsInfo : MonoBehaviour, IShowableHideable
 {
     public Image u1Portrait;
     public Text u1StackSize;

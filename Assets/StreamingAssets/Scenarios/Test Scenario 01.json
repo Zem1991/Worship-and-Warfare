@@ -1417,7 +1417,7 @@
       "ownerId": 1,
       "hero": {
         "id": "Christian",
-        "inventory": {
+        "inventoryData": {
           "offHandId": 2
         }
       },
@@ -1567,7 +1567,7 @@
       "ownerId": 2,
       "hero": {
         "id": "Ingham",
-        "inventory": {
+        "inventoryData": {
           //"mainHandId": 3,
           //"offHandId": 4,
           "helmetId": 6

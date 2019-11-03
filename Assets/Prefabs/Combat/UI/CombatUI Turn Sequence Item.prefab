@@ -85,9 +85,9 @@ GameObject:
   - component: {fileID: 5768570643077589890}
   - component: {fileID: 5768570643077589916}
   - component: {fileID: 5768570643077589917}
-  - component: {fileID: 5768570643077589919}
+  - component: {fileID: 2897984054310898061}
   m_Layer: 5
-  m_Name: CUI Turn Sequence Item
+  m_Name: CombatUI Turn Sequence Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!114 &5768570643077589919
+--- !u!114 &2897984054310898061
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,4 +164,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   border: {fileID: 5768570643077589917}
   portrait: {fileID: 5768570642453403091}
-  unit: {fileID: 0}
+  combatPiece: {fileID: 0}

@@ -5,20 +5,20 @@ using UnityEngine;
 public class DatabaseManager : AbstractSingleton<DatabaseManager>
 {
     [Header("Database Contents")]
-    public DBHandler_Color colors;
-    public DBHandler_Faction factions;
-    public DBHandler_Class classes;
-    public DBHandler_Hero heroes;
-    public DBHandler_Skill skills;
-    public DBHandler_Animation animations;
-    public DBHandler_Artifact artifacts;
-    public DBHandler_Spell spells;
-    public DBHandler_Unit units;
-    public DBHandler_Ability traits;
-    public DBHandler_Element elements;
-    public DBHandler_Status statuses;
-    public DBHandler_Tileset tilesets;
-    public DBHandler_Battleground battlegrounds;
+    [SerializeField] private DBHandler_Color colors;
+    [SerializeField] private DBHandler_Faction factions;
+    [SerializeField] private DBHandler_Class classes;
+    [SerializeField] private DBHandler_Hero heroes;
+    [SerializeField] private DBHandler_Skill skills;
+    [SerializeField] private DBHandler_Animation animations;
+    [SerializeField] private DBHandler_Artifact artifacts;
+    [SerializeField] private DBHandler_Spell spells;
+    [SerializeField] private DBHandler_Unit units;
+    [SerializeField] private DBHandler_Ability traits;
+    [SerializeField] private DBHandler_Element elements;
+    [SerializeField] private DBHandler_Status statuses;
+    [SerializeField] private DBHandler_Tileset tilesets;
+    [SerializeField] private DBHandler_Battleground battlegrounds;
 
     public override void Awake()
     {

@@ -1,9 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Hero : MonoBehaviour
 {
+    [Header("Hero parameters")]
+    [SerializeField] private int levelUps;
+
     [Header("Prefab references")]
     public CombatPieceStats combatPieceStats;
     public AttributeStats attributeStats;
@@ -30,15 +34,50 @@ public class Hero : MonoBehaviour
         attributeStats.Initialize(dbData.classs.attributeStats);
 
         experienceStats = Instantiate(prefabES, transform);
-        if (experienceData != null) experienceStats.Initialize(experienceData);
+        experienceStats.Initialize(experienceData);
 
         inventory = Instantiate(prefabInventory, transform);
-        if (inventoryData != null) inventory.Initialize(inventoryData, this);
+        inventory.Initialize(this, inventoryData);
     }
 
-    public void RecalculateParameters()
+    public void RecalculateStats()
     {
         DB_Class classs = dbData.classs;
-        attributeStats.RecalculateParameters(classs.attributeStats, inventory);
+        attributeStats.RecalculateStats(classs.attributeStats, inventory);
+    }
+
+    public void RecalculateExperience(int experience)
+    {
+        experienceStats.experience += experience;
+        levelUps = ExperienceCalculation.CalculateLevelUps(experienceStats.level, experienceStats.experience);
+    }
+
+    public bool ApplyLevelUp(AttributeType attributeUp)
+    {
+        if (levelUps <= 0) return false;
+
+        switch (attributeUp)
+        {
+            case AttributeType.COMMAND:
+                attributeStats.atrCommand++;
+                break;
+            case AttributeType.OFFENSE:
+                attributeStats.atrOffense++;
+                break;
+            case AttributeType.DEFENSE:
+                attributeStats.atrDefense++;
+                break;
+            case AttributeType.KNOWLEDGE:
+                attributeStats.atrPower++;
+                break;
+            case AttributeType.SPIRIT:
+                attributeStats.atrFocus++;
+                break;
+            case AttributeType.CRAFT:
+                attributeStats.atrCraft++;
+                break;
+        }
+        levelUps--;
+        return true;
     }
 }

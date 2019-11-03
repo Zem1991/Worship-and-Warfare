@@ -11,6 +11,7 @@ public class AttributeStats : MonoBehaviour
     public int atrDefense;
     public int atrPower;
     public int atrFocus;
+    public int atrCraft;
 
     public void Initialize(AttributeStats attributeStats)
     {
@@ -21,12 +22,12 @@ public class AttributeStats : MonoBehaviour
         atrFocus = attributeStats.atrFocus;
     }
 
-    public void RecalculateParameters(AttributeStats attributeStats, Inventory inventory)
+    public void RecalculateStats(AttributeStats attributeStats, Inventory inventory)
     {
         atrCommand = attributeStats.atrCommand + inventory.atrCommand;
-        atrOffense = attributeStats.atrCommand + inventory.atrOffense;
-        atrDefense = attributeStats.atrCommand + inventory.atrDefense;
-        atrPower = attributeStats.atrCommand + inventory.atrPower;
-        atrFocus = attributeStats.atrCommand + inventory.atrFocus;
+        atrOffense = attributeStats.atrOffense + inventory.atrOffense;
+        atrDefense = attributeStats.atrDefense + inventory.atrDefense;
+        atrPower = attributeStats.atrPower + inventory.atrPower;
+        atrFocus = attributeStats.atrFocus + inventory.atrFocus;
     }
 }

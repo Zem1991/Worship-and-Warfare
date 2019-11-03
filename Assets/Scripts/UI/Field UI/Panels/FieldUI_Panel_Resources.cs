@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FieldUI_TC_Resources : AUIPanel
+public class FieldUI_Panel_Resources : AUIPanel
 {
     public Text txtGold;
     public Text txtOre;

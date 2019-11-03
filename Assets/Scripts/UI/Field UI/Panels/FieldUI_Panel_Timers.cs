@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CombatUI_TR_Timers : AUIPanel
+public class FieldUI_Panel_Timers : AUIPanel
 {
     public Text txtTurns;
     public Text txtTimer;
@@ -14,5 +14,15 @@ public class CombatUI_TR_Timers : AUIPanel
         GameManager gm = GameManager.Instance;
         txtTurns.text = "Day " + gm.day + ", week " + gm.week + ", month " + gm.month;
         txtTimer.text = gm.timeElapsedText;
+    }
+
+    public void LockButtons()
+    {
+        btnNextTurn.interactable = false;
+    }
+
+    public void UnlockButtons()
+    {
+        btnNextTurn.interactable = true;
     }
 }

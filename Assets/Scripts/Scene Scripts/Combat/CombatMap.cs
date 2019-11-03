@@ -8,10 +8,6 @@ public class CombatMap : AbstractMap<CombatTile>
     public List<CombatTile> attackerStartTiles;
     public List<CombatTile> defenderStartTiles;
 
-    [Header("Special Tiles")]
-    public CombatTile attackerHeroTile;
-    public CombatTile defenderHeroTile;
-
     public override void Remove()
     {
         base.Remove();
@@ -33,9 +29,6 @@ public class CombatMap : AbstractMap<CombatTile>
             }
         }
         defenderStartTiles = new List<CombatTile>();
-
-        if (attackerHeroTile) Destroy(attackerHeroTile.gameObject);
-        if (defenderHeroTile) Destroy(defenderHeroTile.gameObject);
     }
 
     public override void Create(Vector2Int size)
@@ -137,16 +130,6 @@ public class CombatMap : AbstractMap<CombatTile>
                 if (col == lastCol) defenderStartTiles.Add(newTile);
             }
         }
-
-        Vector3 heroTilePos = new Vector3();
-        heroTilePos.x += -1.5F;
-        heroTilePos.z += size.y / 2;
-        Quaternion heroTileRot = Quaternion.identity;
-        attackerHeroTile = Instantiate(prefabTile, heroTilePos, heroTileRot, transform);
-
-        heroTilePos.x *= -1;
-        heroTilePos.x += size.x - 1;
-        defenderHeroTile = Instantiate(prefabTile, heroTilePos, heroTileRot, transform);
     }
 
     public void ApplyTileset(DB_Tileset tileset)
@@ -157,9 +140,5 @@ public class CombatMap : AbstractMap<CombatTile>
             tile.db_tileset_battleground = tileset;
             tile.ChangeLandSprite(s);
         }
-        attackerHeroTile.db_tileset_battleground = tileset;
-        attackerHeroTile.ChangeLandSprite(s);
-        defenderHeroTile.db_tileset_battleground = tileset;
-        defenderHeroTile.ChangeLandSprite(s);
     }
 }

@@ -30,56 +30,67 @@ public class Inventory : MonoBehaviour
 
     private List<InventorySlot> parameterSlots = new List<InventorySlot>();
 
-    public void Initialize(InventoryData inventory, Hero hero)
+    public void Initialize(Hero hero, InventoryData inventoryData)
     {
-        DatabaseManager db = DatabaseManager.Instance;
-        DBHandler_Artifact dbArtifacts = db.artifacts;
+        DBContentHandler<DB_Artifact> dbArtifacts = DBHandler_Artifact.Instance;
 
         InventorySlot prefabInventorySlot = AllPrefabs.Instance.inventorySlot;
 
         this.hero = hero;
 
-        DB_Artifact mh = dbArtifacts.Select(inventory.mainHandId);
+        DB_Artifact mh = null;
+        DB_Artifact oh = null;
+        DB_Artifact he = null;
+        DB_Artifact ar = null;
+        DB_Artifact t1 = null;
+        DB_Artifact t2 = null;
+        DB_Artifact t3 = null;
+        DB_Artifact t4 = null;
+        if (inventoryData != null)
+        {
+            if (inventoryData.mainHandId != null) mh = dbArtifacts.Select(inventoryData.mainHandId);
+            if (inventoryData.offHandId != null) oh = dbArtifacts.Select(inventoryData.offHandId);
+            if (inventoryData.helmetId != null) he = dbArtifacts.Select(inventoryData.helmetId);
+            if (inventoryData.armorId != null) ar = dbArtifacts.Select(inventoryData.armorId);
+            if (inventoryData.trinket1Id != null) t1 = dbArtifacts.Select(inventoryData.trinket1Id);
+            if (inventoryData.trinket2Id != null) t2 = dbArtifacts.Select(inventoryData.trinket2Id);
+            if (inventoryData.trinket3Id != null) t3 = dbArtifacts.Select(inventoryData.trinket3Id);
+            if (inventoryData.trinket4Id != null) t4 = dbArtifacts.Select(inventoryData.trinket4Id);
+        }
+
         mainHand = Instantiate(prefabInventorySlot, transform);
         mainHand.Initialize(this, ArtifactType.MAIN_HAND, mh);
         parameterSlots.Add(mainHand);
 
-        DB_Artifact oh = dbArtifacts.Select(inventory.offHandId);
         offHand = Instantiate(prefabInventorySlot, transform);
         offHand.Initialize(this, ArtifactType.OFF_HAND, oh);
         parameterSlots.Add(offHand);
 
-        DB_Artifact he = dbArtifacts.Select(inventory.helmetId);
         helmet = Instantiate(prefabInventorySlot, transform);
         helmet.Initialize(this, ArtifactType.HELMET, he);
         parameterSlots.Add(helmet);
 
-        DB_Artifact ar = dbArtifacts.Select(inventory.armorId);
         armor = Instantiate(prefabInventorySlot, transform);
         armor.Initialize(this, ArtifactType.ARMOR, ar);
         parameterSlots.Add(armor);
 
-        DB_Artifact t1 = dbArtifacts.Select(inventory.trinket1Id);
         trinket1 = Instantiate(prefabInventorySlot, transform);
         trinket1.Initialize(this, ArtifactType.TRINKET, t1, "1");
         parameterSlots.Add(trinket1);
 
-        DB_Artifact t2 = dbArtifacts.Select(inventory.trinket2Id);
         trinket2 = Instantiate(prefabInventorySlot, transform);
         trinket2.Initialize(this, ArtifactType.TRINKET, t2, "2");
         parameterSlots.Add(trinket2);
 
-        DB_Artifact t3 = dbArtifacts.Select(inventory.trinket3Id);
         trinket3 = Instantiate(prefabInventorySlot, transform);
         trinket3.Initialize(this, ArtifactType.TRINKET, t3, "3");
         parameterSlots.Add(trinket3);
 
-        DB_Artifact t4 = dbArtifacts.Select(inventory.trinket4Id);
         trinket4 = Instantiate(prefabInventorySlot, transform);
         trinket4.Initialize(this, ArtifactType.TRINKET, t4, "4");
         parameterSlots.Add(trinket4);
 
-        RecalculateParameters();
+        RecalculateStats();
     }
 
     public bool AddArtifact(Artifact item)
@@ -107,14 +118,14 @@ public class Inventory : MonoBehaviour
     public bool AddArtifactToSlot(InventorySlot slot, Artifact item)
     {
         bool result = slot.AddArtifact(item);
-        RecalculateParameters();
+        RecalculateStats();
         return result;
     }
 
     public bool RemoveArtifactFromSlot(InventorySlot slot)
     {
         bool result = slot.RemoveArtifact();
-        RecalculateParameters();
+        RecalculateStats();
         return result;
     }
 
@@ -124,7 +135,7 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
-    public void RecalculateParameters()
+    public void RecalculateStats()
     {
         int atrCommand = 0;
         int atrOffense = 0;
@@ -150,6 +161,6 @@ public class Inventory : MonoBehaviour
         this.atrPower = atrPower;
         this.atrFocus = atrFocus;
 
-        hero.RecalculateParameters();
+        hero.RecalculateStats();
     }
 }

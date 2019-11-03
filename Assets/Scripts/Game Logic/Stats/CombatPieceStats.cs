@@ -29,11 +29,27 @@ public class CombatPieceStats : MonoBehaviour
         CostStats prefabCS = AllPrefabs.Instance.costStats;
         AttackStats prefabAS = AllPrefabs.Instance.attackStats;
 
+        armor_physical = combatPieceStats.armor_physical;
+        armor_magical = combatPieceStats.armor_magical;
+
+        hitPoints_current = combatPieceStats.hitPoints_current;
+        hitPoints_maximum = combatPieceStats.hitPoints_maximum;
+
+        initiative = combatPieceStats.initiative;
+        movementRange = combatPieceStats.movementRange;
+        movementType = combatPieceStats.movementType;
+
         costStats = Instantiate(prefabCS, transform);
         costStats.Initialize(); //TODO add data
 
         attack_primary = Instantiate(prefabAS, transform);
         attack_primary.Initialize(combatPieceStats.attack_primary);
+    }
+
+    public bool TakeDamage(int amount)
+    {
+        hitPoints_current -= amount;
+        return hitPoints_current <= 0;
     }
 
     public bool TakeDamage(int amount, StackStats stackStats, out int stackLost)

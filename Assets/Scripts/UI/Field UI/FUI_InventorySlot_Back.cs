@@ -14,12 +14,12 @@ public class FUI_InventorySlot_Back : MonoBehaviour, IDropHandler
     public string slotName;
     public FUI_InventorySlot_Front invSlotFront;
 
-    private FieldUI_CC_Inventory invWindow;
+    private FieldUI_Panel_Inventory invWindow;
 
     void Awake()
     {
         invSlotFront = GetComponentInChildren<FUI_InventorySlot_Front>();
-        invWindow = GetComponentInParent<FieldUI_CC_Inventory>();
+        invWindow = GetComponentInParent<FieldUI_Panel_Inventory>();
     }
 
     public void UpdateSlot(InventorySlot invSlot)

@@ -8,6 +8,9 @@ public class DB_Unit : DBContent
     public string namePlural;
     public Sprite profilePicture;
 
+    [Header("Unit settings")]
+    public int tier;
+
     [Header("Stats")]
     public CombatPieceStats combatPieceStats;
 

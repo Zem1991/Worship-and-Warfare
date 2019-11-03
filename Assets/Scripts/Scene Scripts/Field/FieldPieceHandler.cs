@@ -38,9 +38,8 @@ public class FieldPieceHandler : MonoBehaviour
     {
         if (parties == null) return;
 
-        DatabaseManager db = DatabaseManager.Instance;
-        DBHandler_Hero dbHeroes = db.heroes;
-        DBHandler_Unit dbUnits = db.units;
+        DBContentHandler<DB_Hero> dbHeroes = DBHandler_Hero.Instance;
+        DBContentHandler<DB_Unit> dbUnits = DBHandler_Unit.Instance;
 
         PlayerManager pm = PlayerManager.Instance;
 
@@ -109,9 +108,8 @@ public class FieldPieceHandler : MonoBehaviour
     {
         if (pickups == null) return;
 
-        DatabaseManager db = DatabaseManager.Instance;
-        DBHandler_Artifact dbArtifacts = db.artifacts;
-        DBHandler_Unit dbUnits = db.units;
+        DBContentHandler<DB_Artifact> dbArtifacts = DBHandler_Artifact.Instance;
+        DBContentHandler<DB_Unit> dbUnits = DBHandler_Unit.Instance;
 
         FieldManager fm = FieldManager.Instance;
         FieldMap fieldMap = fm.mapHandler.map;

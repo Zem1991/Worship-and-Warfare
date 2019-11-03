@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FieldUI_CC_EscapeMenu : AUIPanel
+public class FieldUI_Panel_EscapeMenu : AUIPanel
 {
     public Text txtHeader;
-    //public Button btnResume;
-    //public Button btnSurrender;
+    public Button btnResume;
+    public Button btnRestart;
 
     public void UpdatePanel(CombatantHeroPiece2 hc)
     {

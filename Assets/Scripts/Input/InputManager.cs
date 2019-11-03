@@ -75,11 +75,11 @@ public class InputManager : AbstractSingleton<InputManager>
         mouseScreenPos = Input.mousePosition;
         mouseWorldPos = ScreenToWorld(mouseScreenPos);
         mouseAfterBorders = Vector3.zero;
-        if (mouseScreenPos.x < 0)
+        if (mouseScreenPos.x < 1)
             mouseAfterBorders.x--;
         if (mouseScreenPos.x > width)
             mouseAfterBorders.x++;
-        if (mouseScreenPos.y < 0)
+        if (mouseScreenPos.y < 1)
             mouseAfterBorders.y--;
         if (mouseScreenPos.y > height)
             mouseAfterBorders.y++;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CombatUI_BR_CombatLogs : AUIPanel
+public class CombatUI_Panel_CombatLogs : AUIPanel
 {
     public Text logs;
 

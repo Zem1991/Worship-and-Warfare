@@ -140,19 +140,22 @@ public class GameManager : AbstractSingleton<GameManager>
 
     public void ReturnFromCombat(CombatResult result, PartyPiece2 attacker, PartyPiece2 defender)
     {
-        Debug.Log("PIECES FINISHED BATTLE");
-        ChangeSchemes(GameScheme.FIELD);
-
         CombatSC.Instance.HideObjects();
-        CombatManager.Instance.TerminateCombat();
+
+        //Doing this here, because later I could add an 'redo combat' feature.
+        CombatManager.Instance.ApplyCombatResults(out int attackerExperience, out int defenderExperience);
+
+        ChangeSchemes(GameScheme.FIELD);
 
         FieldSC.Instance.ShowObjects();
         switch (result)
         {
             case CombatResult.ATTACKER_WON:
+                attacker.ApplyExperience(attackerExperience);
                 FieldManager.Instance.RemovePiece(defender);
                 break;
             case CombatResult.DEFENDER_WON:
+                defender.ApplyExperience(defenderExperience);
                 FieldManager.Instance.RemovePiece(attacker);
                 break;
         }

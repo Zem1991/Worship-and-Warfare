@@ -44,7 +44,7 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, IPlayerOwn
         ACtP_MakeHurt();
     }
 
-    public void Initialize(Player owner, CombatPieceStats combatPieceStats, int spawnId, bool defenderSide)
+    public void Initialize(Player owner, CombatPieceStats cps, int spawnId, bool defenderSide)
     {
         CombatPieceStats prefabCPS = AllPrefabs.Instance.combatPieceStats;
 
@@ -56,10 +56,96 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, IPlayerOwn
         this.defenderSide = defenderSide;
 
         combatPieceStats = Instantiate(prefabCPS, transform);
-        combatPieceStats.Initialize(combatPieceStats);
+        combatPieceStats.Initialize(cps);
 
         FlipSpriteHorizontally(defenderSide);
         SetFlagSprite(owner.dbColor.imgFlag);
+    }
+
+    public virtual void ACtP_ResetMovementPoints()
+    {
+        if (!pieceMovement) pieceMovement = GetComponent<PieceMovement>();
+        pieceMovement.movementPointsMax = combatPieceStats.movementRange * 100;
+        pieceMovement.movementPointsCurrent = pieceMovement.movementPointsMax;
+    }
+
+    public virtual void ACtP_MakeAttack()
+    {
+        if (!isAttacking_Start && !isAttacking_End) return;
+
+        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+        if (state.normalizedTime >= 1)
+        {
+            AbstractCombatPiece2 acp = pieceMovement.targetPiece as AbstractCombatPiece2;
+            AbstractCombatantPiece2 actp = pieceMovement.targetPiece as AbstractCombatantPiece2;
+
+            if (isAttacking_Start &&
+                state.IsName("Attack Start"))
+            {
+                isAttacking_Start = false;
+                isAttacking_End = true;
+                int dmg = ACtP_CalculateDamage();
+                acp.ACP_TakeDamage(dmg);
+            }
+            if (isAttacking_End &&
+                state.IsName("Attack End"))
+            {
+                isAttacking_End = false;
+                pieceMovement.targetPiece = null;
+                if (actp && actp.retaliationTarget && !actp.isDead)
+                {
+                    actp.ACtP_Retaliate();
+                }
+                else
+                {
+                    ICP_EndTurn();
+                }
+            }
+        }
+    }
+
+    public virtual void ACtP_MakeHurt()
+    {
+        if (!isHurt) return;
+
+        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+        if (state.normalizedTime >= 1)
+        {
+            if (state.IsName("Hurt"))
+            {
+                isHurt = false;
+            }
+        }
+    }
+
+    public virtual int ACtP_CalculateDamage()
+    {
+        AbstractCombatantPiece2 targetUnit = pieceMovement.targetPiece as AbstractCombatantPiece2;
+        CombatPieceHandler cph = CombatManager.Instance.pieceHandler;
+        CombatantHeroPiece2 attackerHero = cph.GetHero(owner);
+        CombatantHeroPiece2 defenderHero = cph.GetHero(targetUnit.IPO_GetOwner());
+        return DamageCalculation.FullDamageCalculation(this, targetUnit, attackerHero, defenderHero);
+    }
+
+    public virtual void ACtP_Attack(bool ranged)
+    {
+        AbstractCombatantPiece2 actp = pieceMovement.targetPiece as AbstractCombatantPiece2;
+
+        if (!ranged && actp)
+        {
+            CombatManager.Instance.retaliatorPiece = actp;
+            actp.retaliationTarget = this;
+        }
+        isAttacking_Start = true;
+        //Debug.LogWarning("InteractWithPiece insta-killed the target!");
+        //targetUnit.hitPointsCurrent = 0;
+    }
+
+    public virtual void ACtP_Retaliate()
+    {
+        pieceMovement.targetPiece = retaliationTarget;
+        retaliationTarget = null;
+        isAttacking_Start = true;
     }
 
     public override void AP2_AnimatorParameters()
@@ -250,11 +336,4 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, IPlayerOwn
     {
         return pieceMovement;
     }
-
-    public abstract void ACtP_ResetMovementPoints();
-    public abstract void ACtP_MakeAttack();
-    public abstract void ACtP_MakeHurt();
-    public abstract int ACtP_CalculateDamage();
-    public abstract void ACtP_Attack(bool ranged);
-    public abstract void ACtP_Retaliate();
 }

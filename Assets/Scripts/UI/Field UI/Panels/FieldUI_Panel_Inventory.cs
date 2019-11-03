@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FieldUI_CC_Inventory : AUIPanel
+public class FieldUI_Panel_Inventory : AUIPanel
 {
     [Header("Hero info")]
-    public AnyUI_HeroInfo heroInfo;
+    public UI_HeroInfo heroInfo;
+    public UI_AttributeInfo attributeInfo;
 
     [Header("Inventory Slots")]
     public FUI_InventorySlot_Back mainHand;
@@ -28,7 +29,7 @@ public class FieldUI_CC_Inventory : AUIPanel
     public Button btnClose;
 
     [Header("Other")]
-    public AnyUI_Draggable invSlotDraggable;
+    public UI_DraggableElement invSlotDraggable;
 
     public bool isDraggingInvSlot = false;
     public FUI_InventorySlot_Front fuiInvSlotFrontDragged = null;
@@ -37,6 +38,7 @@ public class FieldUI_CC_Inventory : AUIPanel
     {
         Hero hero = p.partyHero;
         heroInfo.RefreshInfo(p.partyHero);
+        attributeInfo.RefreshInfo(p.partyHero.attributeStats);
 
         mainHand.UpdateSlot(hero.inventory.mainHand);
         offHand.UpdateSlot(hero.inventory.offHand);
@@ -52,7 +54,7 @@ public class FieldUI_CC_Inventory : AUIPanel
     {
         InventorySlot invSlot = invSlotFront.invSlotBack.invSlot;
         invSlot.beingDragged = true;
-        invSlot.inventory.RecalculateParameters();
+        invSlot.inventory.RecalculateStats();
 
         isDraggingInvSlot = true;
         fuiInvSlotFrontDragged = invSlotFront;
@@ -79,7 +81,7 @@ public class FieldUI_CC_Inventory : AUIPanel
             }
 
             actualInvSlot.beingDragged = false;
-            actualInvSlot.inventory.RecalculateParameters();
+            actualInvSlot.inventory.RecalculateStats();
         }
 
         isDraggingInvSlot = false;

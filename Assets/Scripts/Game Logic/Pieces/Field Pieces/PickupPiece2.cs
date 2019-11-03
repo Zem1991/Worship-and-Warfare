@@ -39,7 +39,7 @@ public class PickupPiece2 : AbstractFieldPiece2
 
     public void Initialize(DB_Unit dbUnit, int unitAmount)
     {
-        name = "Unit pickup: " + unitAmount + " " + dbUnit.namePlural;  //TODO NAME IN SINGULAR/PLURAL
+        name = "Unit pickup: " + dbUnit.nameSingular + " (x" + unitAmount + ")";
         pickupType = PickupType.UNIT;
 
         this.dbUnit = dbUnit;

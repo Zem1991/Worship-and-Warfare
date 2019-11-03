@@ -15,7 +15,6 @@ public abstract class AbstractPiece2 : MonoBehaviour
     [SerializeField] protected Player controller;
 
     [Header("Identification")]
-    public Sprite profilePicture;
     public AbstractTile currentTile;
 
     protected virtual void Awake()
