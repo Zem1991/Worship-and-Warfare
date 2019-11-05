@@ -129,14 +129,14 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
      */
 
     /*
-     * Begin: UI Bottom Center buttons
+     * Begin: UI Bottom Right buttons
      */
-    public void MakeSelectedPieceMove()
+    public void Selection_Movement()
     {
         FieldInputs.Instance.MakeSelectedPieceInteract(false);
     }
 
-    public void Inventory()
+    public void Selection_Inventory()
     {
         AbstractFieldPiece2 selectionPiece = FieldInputs.Instance.selectionPiece;
         bool canCommandSelectedPiece = FieldInputs.Instance.canCommandSelectedPiece;
@@ -148,6 +148,6 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         }
     }
     /*
-    * End: UI Bottom Center buttons
+    * End: UI Bottom Right buttons
     */
 }

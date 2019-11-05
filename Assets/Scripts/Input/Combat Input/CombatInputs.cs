@@ -235,6 +235,24 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         }
     }
 
+    public void MakeSelectedPieceWait()
+    {
+        AbstractCombatantPiece2 actp = selectionPiece as AbstractCombatantPiece2;
+        if (selectionPiece && canCommandSelectedPiece && actp)
+        {
+            if (!actp.stateWaiting) actp.ACtP_Wait();
+        }
+    }
+
+    public void MakeSelectedPieceDefend()
+    {
+        AbstractCombatantPiece2 actp = selectionPiece as AbstractCombatantPiece2;
+        if (selectionPiece && canCommandSelectedPiece && actp)
+        {
+            actp.ACtP_Defend();
+        }
+    }
+
     private void EndTurn()
     {
         if (recorder.endTurnDown)

@@ -17,6 +17,10 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, IPlayerOwn
     public bool isAttacking_End;
     public bool isHurt;
 
+    [Header("Combatant states")]
+    public bool stateWaiting;
+    public bool stateDefending;
+
     [Header("Animator parameters")]
     private bool anim_movement;
     private float anim_directionX;
@@ -148,6 +152,19 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, IPlayerOwn
         isAttacking_Start = true;
     }
 
+    public virtual void ACtP_Wait()
+    {
+        stateWaiting = true;
+        CombatManager.Instance.AddUnitToWaitSequence(this);
+        ICP_EndTurn();
+    }
+
+    public virtual void ACtP_Defend()
+    {
+        stateDefending = true;
+        ICP_EndTurn();
+    }
+
     public override void AP2_AnimatorParameters()
     {
         anim_movement = pieceMovement.inMovement;
@@ -226,6 +243,9 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, IPlayerOwn
 
     public void ICP_StartTurn()
     {
+        stateWaiting = false;
+        stateDefending = false;
+
         IMP_ResetMovementPoints();
     }
 

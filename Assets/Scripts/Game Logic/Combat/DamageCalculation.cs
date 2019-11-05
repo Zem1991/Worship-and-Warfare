@@ -10,6 +10,7 @@ public static class DamageCalculation
         float increments = Increments(attacker, defender, attackerHero, defenderHero);
         float reductions = Reductions(attacker, defender, attackerHero, defenderHero);
         Debug.Log("DamageCalculation result: " + dmgBase + " * " + increments + " * " + reductions);
+
         float fullFormula = dmgBase * increments * reductions;
         int result = Mathf.CeilToInt(fullFormula);
         return Mathf.Max(result, 1);
@@ -48,8 +49,7 @@ public static class DamageCalculation
 
         if (atrDif > 0)
         {
-            float perDif = 0.05F * atrDif;
-            result += perDif;
+            result = 0.05F * atrDif;
         }
         return result;
     }
@@ -58,7 +58,8 @@ public static class DamageCalculation
     {
         float defenderHeroDefense = 1 - R1_DefenderHeroDefense(attackerHero, defenderHero);
         float defenderIsHero = 1 - RX_DefenderIsHero(attacker, defender);
-        return defenderHeroDefense * defenderIsHero;
+        float defenderIsDefending = 1 - RX_DefenderIsDefending(defender);
+        return defenderHeroDefense * defenderIsHero * defenderIsDefending;
     }
 
     public static float R1_DefenderHeroDefense(CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
@@ -71,8 +72,7 @@ public static class DamageCalculation
 
         if (atrDif > 0)
         {
-            float perDif = 0.025F * atrDif;
-            result += perDif;
+            result = 0.025F * atrDif;
         }
         return result;
     }
@@ -88,6 +88,13 @@ public static class DamageCalculation
             result = 1F / tierMath;
             result = 1 - Mathf.Clamp01(result);
         }
+        return result;
+    }
+
+    public static float RX_DefenderIsDefending(AbstractCombatantPiece2 defender)
+    {
+        float result = 0;
+        if (defender.stateDefending) result = 0.25F;
         return result;
     }
 }

@@ -4919,7 +4919,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 952644559}
-        m_MethodName: Inventory
+        m_MethodName: Selection_Inventory
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6033,7 +6033,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 952644559}
-        m_MethodName: MakeSelectedPieceMove
+        m_MethodName: Selection_Movement
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8984,7 +8984,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 952644559}
-        m_MethodName: MakeSelectedPieceMove
+        m_MethodName: Selection_Movement
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10218,7 +10218,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 952644559}
-        m_MethodName: Inventory
+        m_MethodName: Selection_Inventory
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10786,7 +10786,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 952644559}
-        m_MethodName: MakeSelectedPieceMove
+        m_MethodName: Selection_Movement
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

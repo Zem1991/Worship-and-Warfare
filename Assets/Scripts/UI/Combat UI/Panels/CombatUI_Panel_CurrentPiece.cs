@@ -16,7 +16,10 @@ public class CombatUI_Panel_CurrentPiece : AUIPanel
     public Text txtSpeed;
     public Text txtInitiative;
 
-    public void UpdatePanel(AbstractCombatantPiece2 actp)
+    public Button btnWait;
+    public Button btnDefend;
+
+    public void UpdatePanel(AbstractCombatantPiece2 actp, bool canCommandSelectedPiece)
     {
         if (actp == null) return;
 
@@ -44,5 +47,9 @@ public class CombatUI_Panel_CurrentPiece : AUIPanel
         txtResistance.text = actp.combatPieceStats.armor_physical.ToString() + "/" + actp.combatPieceStats.armor_magical.ToString();
         txtSpeed.text = actp.combatPieceStats.movementRange.ToString();
         txtInitiative.text = actp.combatPieceStats.initiative.ToString();
+
+        btnWait.interactable = !actp.stateWaiting;
+        btnWait.gameObject.SetActive(canCommandSelectedPiece);
+        btnDefend.gameObject.SetActive(canCommandSelectedPiece);
     }
 }

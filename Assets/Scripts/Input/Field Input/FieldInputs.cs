@@ -115,7 +115,7 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
 
     private void Inventory()
     {
-        if (recorder.inventoryDown) FieldManager.Instance.Inventory();
+        if (recorder.inventoryDown) FieldManager.Instance.Selection_Inventory();
     }
 
     private void CameraControls()
@@ -253,7 +253,7 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
 
     private void StopOrResumeCommand()
     {
-        if (recorder.stopOrResumeCommandDown) FieldManager.Instance.MakeSelectedPieceMove();
+        if (recorder.stopOrResumeCommandDown) FieldManager.Instance.Selection_Movement();
     }
 
     private void EndTurn()

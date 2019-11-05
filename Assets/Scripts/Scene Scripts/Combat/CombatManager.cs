@@ -25,6 +25,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     public AbstractCombatantPiece2 currentPiece;
     public AbstractCombatantPiece2 retaliatorPiece;
     public List<AbstractCombatantPiece2> turnSequence = new List<AbstractCombatantPiece2>();
+    public List<AbstractCombatantPiece2> waitSequence = new List<AbstractCombatantPiece2>();
     public List<string> combatLog = new List<string>();
     public CombatResult result;
 
@@ -94,9 +95,13 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
         if (CheckBattleEnd()) return;
 
-        if (turnSequence.Count > 0)
+        if (turnSequence.Count > 0 || waitSequence.Count > 0)
         {
-            currentPiece = turnSequence[0];
+            List<AbstractCombatantPiece2> list = null;
+            if (turnSequence.Count > 0) list = turnSequence;
+            else if (waitSequence.Count > 0) list = waitSequence;
+
+            currentPiece = list[0];
             Vector3 pos = currentPiece.transform.position;
 
             CombatInputs ci = CombatInputs.Instance;
@@ -107,7 +112,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
             ci.selectionHighlight.transform.position = currentPiece.transform.position;
             ci.canCommandSelectedPiece = currentPiece.IPO_GetOwner() == PlayerManager.Instance.localPlayer;
 
-            turnSequence.RemoveAt(0);
+            list.RemoveAt(0);
             CombatUI.Instance.turnSequence.RemoveFirstFromTurnSequence();
 
             Player owner = currentPiece.IPO_GetOwner();
@@ -141,6 +146,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         if (newSequence.Count <= 0) return false;
 
         turnSequence = newSequence;
+        waitSequence = new List<AbstractCombatantPiece2>();
         UpdateTurnSequence();
         return true;
     }
@@ -149,7 +155,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     {
         turnSequence = turnSequence.OrderBy(a => a.spawnId).ToList();
         turnSequence = turnSequence.OrderByDescending(a => a.combatPieceStats.initiative).ToList();
-        CombatUI.Instance.turnSequence.CreateTurnSequence(turnSequence);
+        CombatUI.Instance.turnSequence.CreateTurnSequence(turnSequence, waitSequence);
     }
 
     public void AddUnitToTurnSequence(AbstractCombatantPiece2 uc)
@@ -164,19 +170,23 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         UpdateTurnSequence();
     }
 
-    public void EscapeMenu()
+    public void UpdateWaitSequence()
     {
-        bool isPaused = GameManager.Instance.isPaused;
-        AUIPanel currentWindow = CombatUI.Instance.currentWindow;
-        if (!isPaused && currentWindow)
-        {
-            CombatUI.Instance.CloseCurrentWindow();
-            return;
-        }
+        waitSequence = waitSequence.OrderBy(a => a.spawnId).ToList();
+        waitSequence = waitSequence.OrderBy(a => a.combatPieceStats.initiative).ToList();
+        CombatUI.Instance.turnSequence.CreateTurnSequence(turnSequence, waitSequence);
+    }
 
-        bool pauseStatus = GameManager.Instance.PauseUnpause();
-        if (pauseStatus) CombatUI.Instance.EscapeMenuShow();
-        else CombatUI.Instance.EscapeMenuHide();
+    public void AddUnitToWaitSequence(AbstractCombatantPiece2 uc)
+    {
+        waitSequence.Add(uc);
+        UpdateWaitSequence();
+    }
+
+    public void RemoveUnitFromWaitSequence(AbstractCombatantPiece2 uc)
+    {
+        waitSequence.Remove(uc);
+        UpdateTurnSequence();
     }
 
     public void CombatEnd(CombatResult result)
@@ -299,4 +309,41 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         }
         return false;
     }
+
+    /*
+     * Begin: UI Top Left buttons
+     */
+    public void EscapeMenu()
+    {
+        bool isPaused = GameManager.Instance.isPaused;
+        AUIPanel currentWindow = CombatUI.Instance.currentWindow;
+        if (!isPaused && currentWindow)
+        {
+            CombatUI.Instance.CloseCurrentWindow();
+            return;
+        }
+
+        bool pauseStatus = GameManager.Instance.PauseUnpause();
+        if (pauseStatus) CombatUI.Instance.EscapeMenuShow();
+        else CombatUI.Instance.EscapeMenuHide();
+    }
+    /*
+     * End: UI Top Left buttons
+     */
+
+    /*
+     * Begin: UI Bottom Left buttons
+     */
+    public void Selection_Wait()
+    {
+        CombatInputs.Instance.MakeSelectedPieceWait();
+    }
+
+    public void Selection_Defend()
+    {
+        CombatInputs.Instance.MakeSelectedPieceDefend();
+    }
+    /*
+    * End: UI Bottom Left buttons
+    */
 }

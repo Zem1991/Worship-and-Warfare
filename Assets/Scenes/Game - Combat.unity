@@ -754,11 +754,22 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 142965025}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 368341122}
+        m_MethodName: Selection_Wait
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &142965025
@@ -1606,15 +1617,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapHandler: {fileID: 1781131099}
   pieceHandler: {fileID: 952644559}
-  attacker: {fileID: 0}
+  attackerPlayer: {fileID: 0}
   attackerParty: {fileID: 0}
-  defender: {fileID: 0}
+  defenderPlayer: {fileID: 0}
   defenderParty: {fileID: 0}
   combatStarted: 0
   currentTurn: 0
   currentPiece: {fileID: 0}
   retaliatorPiece: {fileID: 0}
   turnSequence: []
+  waitSequence: []
   combatLog: []
   result: 0
 --- !u!1 &394101703
@@ -3363,6 +3375,8 @@ MonoBehaviour:
   txtResistance: {fileID: 1423412444}
   txtSpeed: {fileID: 928241884}
   txtInitiative: {fileID: 422123615}
+  btnWait: {fileID: 142965024}
+  btnDefend: {fileID: 1646764082}
 --- !u!1 &894135377
 GameObject:
   m_ObjectHideFlags: 0
@@ -3650,11 +3664,6 @@ MonoBehaviour:
   heroPortrait: {fileID: 634312054}
   txtHeroName: {fileID: 1925738881}
   txtLevelAndClass: {fileID: 1932898928}
-  txtCommand: {fileID: 1249307276}
-  txtOffense: {fileID: 537157793}
-  txtDefense: {fileID: 191061012}
-  txtPower: {fileID: 520700499}
-  txtFocus: {fileID: 1951500362}
 --- !u!1 &952644557
 GameObject:
   m_ObjectHideFlags: 0
@@ -5105,8 +5114,6 @@ MonoBehaviour:
   mapSize: {x: 0, y: 0}
   attackerStartTiles: []
   defenderStartTiles: []
-  attackerHeroTile: {fileID: 0}
-  defenderHeroTile: {fileID: 0}
 --- !u!1 &1249307274
 GameObject:
   m_ObjectHideFlags: 0
@@ -7791,11 +7798,22 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1646764083}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 368341122}
+        m_MethodName: Selection_Defend
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1646764083
@@ -8716,11 +8734,6 @@ MonoBehaviour:
   heroPortrait: {fileID: 763234830}
   txtHeroName: {fileID: 1614728969}
   txtLevelAndClass: {fileID: 1387368438}
-  txtCommand: {fileID: 1100817121}
-  txtOffense: {fileID: 1512030403}
-  txtDefense: {fileID: 503205443}
-  txtPower: {fileID: 66387346}
-  txtFocus: {fileID: 1505640677}
 --- !u!1 &1981053602
 GameObject:
   m_ObjectHideFlags: 0

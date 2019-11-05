@@ -64,12 +64,12 @@ public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideabl
 
     private void UpdateWithSelection(AbstractCombatantPiece2 actp, bool canCommandSelectedPiece)
     {
-        currentPiece.UpdatePanel(actp);
+        currentPiece.UpdatePanel(actp, canCommandSelectedPiece);
     }
 
     private void UpdateWithoutSelection()
     {
-        currentPiece.UpdatePanel(null);
+        currentPiece.UpdatePanel(null, false);
     }
 
     public void EscapeMenuHide()

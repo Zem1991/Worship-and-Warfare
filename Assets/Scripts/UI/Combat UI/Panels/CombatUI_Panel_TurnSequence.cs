@@ -21,27 +21,13 @@ public class CombatUI_Panel_TurnSequence : AUIPanel
         tsItems.Clear();
     }
 
-    public void CreateTurnSequence(List<AbstractCombatantPiece2> turnSequence)
+    public void CreateTurnSequence(List<AbstractCombatantPiece2> turnSequence, List<AbstractCombatantPiece2> waitSequence)
     {
         DestroyTurnSequence();
 
         CombatUI_TurnSequenceItem prefab = AllPrefabs.Instance.cuiTurnSequenceItem;
-
-        foreach (AbstractCombatantPiece2 forCUP in turnSequence)
-        {
-            CombatUI_TurnSequenceItem newCUI = Instantiate(prefab, sequenceBar.transform);
-            newCUI.border.color = forCUP.IPO_GetOwner().dbColor.mainColor;
-
-            Sprite portrait = null;
-            CombatantHeroPiece2 chp = forCUP as CombatantHeroPiece2;
-            CombatantUnitPiece2 cup = forCUP as CombatantUnitPiece2;
-            if (chp) portrait = chp.hero.dbData.profilePicture;
-            if (cup) portrait = cup.unit.dbData.profilePicture;
-            if (portrait) newCUI.portrait.sprite = portrait;
-
-            newCUI.combatPiece = forCUP;
-            tsItems.Add(newCUI);
-        }
+        ProcessSequence(prefab, turnSequence);
+        ProcessSequence(prefab, waitSequence);
     }
 
     public void RemoveFirstFromTurnSequence()
@@ -49,5 +35,24 @@ public class CombatUI_Panel_TurnSequence : AUIPanel
         CombatUI_TurnSequenceItem cuiTSI = tsItems[0];
         tsItems.RemoveAt(0);
         Destroy(cuiTSI.gameObject);
+    }
+
+    private void ProcessSequence(CombatUI_TurnSequenceItem prefab, List<AbstractCombatantPiece2> list)
+    {
+        foreach (AbstractCombatantPiece2 forCutp in list)
+        {
+            CombatUI_TurnSequenceItem newCUI = Instantiate(prefab, sequenceBar.transform);
+            newCUI.border.color = forCutp.IPO_GetOwner().dbColor.mainColor;
+
+            Sprite portrait = null;
+            CombatantHeroPiece2 chp = forCutp as CombatantHeroPiece2;
+            CombatantUnitPiece2 cup = forCutp as CombatantUnitPiece2;
+            if (chp) portrait = chp.hero.dbData.profilePicture;
+            if (cup) portrait = cup.unit.dbData.profilePicture;
+            if (portrait) newCUI.portrait.sprite = portrait;
+
+            newCUI.combatPiece = forCutp;
+            tsItems.Add(newCUI);
+        }
     }
 }
