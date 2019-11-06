@@ -13,6 +13,9 @@ public class AttackStats : MonoBehaviour
     public int range_effective;
     public int range_maximum;
 
+    [Header("References")]
+    public DB_Animation animationProjectile;
+
     public void Initialize(AttackStats attackStats)
     {
         damage_minimum = attackStats.damage_minimum;

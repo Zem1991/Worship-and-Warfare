@@ -114,8 +114,8 @@ public class PieceMovement : MonoBehaviour
 
         if (nextTile && currentPos == nextPos)
         {
-            //Doing this may seem redundant, but it actually fixes some floating point issues that can cause movement overshooting
-            //Moving to the bottom or left edge of the grid without this fix may cause the Unit to be read as over a tile with coordinate equal to -1
+            //Doing this may seem redundant, but it actually fixes some floating point issues that can cause movement overshooting.
+            //Moving to the bottom or left edge of the grid without this fix may cause the Unit to be read as over a tile with coordinate equal to -1.
             transform.position = nextPos;
 
             piece.currentTile.occupantPiece = null;

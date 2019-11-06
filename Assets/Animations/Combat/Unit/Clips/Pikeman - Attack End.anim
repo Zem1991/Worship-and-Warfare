@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Default Unit - Attack End
+  m_Name: Pikeman - Attack End
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0

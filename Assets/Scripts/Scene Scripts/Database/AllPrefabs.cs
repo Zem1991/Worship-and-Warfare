@@ -13,6 +13,9 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
     public Unit unit;
     public Artifact artifact;
 
+    [Header("Projectile")]
+    public Projectile projectile;
+
     [Header("Stats - Combatant")]
     public CombatPieceStats combatPieceStats;
     public CostStats costStats;

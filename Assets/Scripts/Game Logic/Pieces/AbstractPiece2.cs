@@ -48,16 +48,16 @@ public abstract class AbstractPiece2 : MonoBehaviour
         mainSpriteRenderer.flipX = flip;
     }
 
-    public void SetMainSprite(Sprite flag)
+    public void SetMainSprite(Sprite sprite)
     {
         if (!mainSpriteRenderer) mainSpriteRenderer = GetComponentsInChildren<SpriteRenderer>()[0];
-        mainSpriteRenderer.sprite = flag;
+        mainSpriteRenderer.sprite = sprite;
     }
 
-    public void SetFlagSprite(Sprite flag)
+    public void SetFlagSprite(Sprite sprite)
     {
         if (!flagSpriteRenderer) flagSpriteRenderer = GetComponentsInChildren<SpriteRenderer>()[1];
-        flagSpriteRenderer.sprite = flag;
+        flagSpriteRenderer.sprite = sprite;
     }
 
     public abstract void AP2_AnimatorParameters();

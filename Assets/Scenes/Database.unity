@@ -544,6 +544,8 @@ MonoBehaviour:
   hero: {fileID: 8507488037947193599, guid: 96895e799d8318f409f080a41f243636, type: 3}
   unit: {fileID: 1485436908184088651, guid: a9ff8d2df2ae55046a37b63525e48252, type: 3}
   artifact: {fileID: 208367886873617183, guid: 3d0f41dcc6135f64cb0c648762f34959, type: 3}
+  projectile: {fileID: 2156067328831934996, guid: 38aba04180ee3bf4a8e954023a18cf95,
+    type: 3}
   combatPieceStats: {fileID: 8876443332866185410, guid: 18bc3b7f582d292458b88a4307346f10,
     type: 3}
   costStats: {fileID: 9010556360063455625, guid: 93c409561b393e04da420969b5477492,
@@ -1532,6 +1534,11 @@ PrefabInstance:
       propertyPath: range_maximum
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 2703027630738221901, guid: c29de37e6be59774fb249ec8c5830944,
+        type: 3}
+      propertyPath: animationProjectile
+      value: 
+      objectReference: {fileID: 1532252778}
     - target: {fileID: 2703027630738221938, guid: c29de37e6be59774fb249ec8c5830944,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1973,7 +1980,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1532252777}
   m_Father: {fileID: 1037067536}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2834,6 +2842,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e85564141e09543bae1035a361a6b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1532252776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1532252777}
+  - component: {fileID: 1532252778}
+  m_Layer: 0
+  m_Name: Arrow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1532252777
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532252776}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1161256589}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1532252778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532252776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44d9b1412866ae449a0b05b0fea597e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Arrow
+  animationAnimator: {fileID: 22100000, guid: 04400e62af18ee247b0f82cec73d219f, type: 2}
 --- !u!1 &1540432247
 GameObject:
   m_ObjectHideFlags: 0

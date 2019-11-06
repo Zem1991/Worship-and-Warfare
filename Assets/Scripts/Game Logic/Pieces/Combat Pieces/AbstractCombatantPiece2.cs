@@ -13,6 +13,7 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, IPlayerOwn
 
     [Header("Combatant actions")]
     public AbstractCombatPiece2 retaliationTarget;
+    public Projectile projectile;
     public bool isAttacking_Start;
     public bool isAttacking_End;
     public bool isHurt;
@@ -83,26 +84,62 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, IPlayerOwn
             AbstractCombatPiece2 acp = pieceMovement.targetPiece as AbstractCombatPiece2;
             AbstractCombatantPiece2 actp = pieceMovement.targetPiece as AbstractCombatantPiece2;
 
-            if (isAttacking_Start &&
-                state.IsName("Attack Start"))
+            /*  MELEE ATTACKS:
+             *  1.  attacker enters animation of attack starting
+             *  2.  apply damage, defender enters animation of being hurt
+             *  3.  attacker enters animation of attack ending
+             */
+            /*  RANGED ATTACKS:
+             *  1.  attacker enters animation of attack starting
+             *  2.  create projectile, target against defender
+             *  3.  attacker enters animation of attack ending
+             *  4.  wait for projectile hitting target
+             *  5.  apply damage, defender enters animation of being hurt
+             */
+            if (!combatPieceStats.attack_primary.isRanged)
             {
-                isAttacking_Start = false;
-                isAttacking_End = true;
-                int dmg = ACtP_CalculateDamage();
-                acp.ACP_TakeDamage(dmg);
-            }
-            if (isAttacking_End &&
-                state.IsName("Attack End"))
-            {
-                isAttacking_End = false;
-                pieceMovement.targetPiece = null;
-                if (actp && actp.retaliationTarget && !actp.isDead)
+                if (isAttacking_Start && state.IsName("Attack Start"))
                 {
-                    actp.ACtP_Retaliate();
+                    isAttacking_Start = false;
+                    isAttacking_End = true;
+                    int dmg = ACtP_CalculateDamage();
+                    acp.ACP_TakeDamage(dmg);
                 }
-                else
+                if (isAttacking_End && state.IsName("Attack End"))
                 {
-                    ICP_EndTurn();
+                    isAttacking_End = false;
+                    pieceMovement.targetPiece = null;
+                    if (actp && actp.retaliationTarget && !actp.isDead)
+                    {
+                        actp.ACtP_Retaliate();
+                    }
+                    else
+                    {
+                        ICP_EndTurn();
+                    }
+                }
+            }
+            else
+            {
+                if (isAttacking_Start && state.IsName("Attack Start"))
+                {
+                    isAttacking_Start = false;
+                    isAttacking_End = true;
+                    int dmg = ACtP_CalculateDamage();
+                    acp.ACP_TakeDamage(dmg);
+                }
+                if (isAttacking_End && state.IsName("Attack End"))
+                {
+                    isAttacking_End = false;
+                    pieceMovement.targetPiece = null;
+                    if (actp && actp.retaliationTarget && !actp.isDead)
+                    {
+                        actp.ACtP_Retaliate();
+                    }
+                    else
+                    {
+                        ICP_EndTurn();
+                    }
                 }
             }
         }

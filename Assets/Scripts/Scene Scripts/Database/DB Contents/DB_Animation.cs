@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class DB_Animation : DBContent
 {
-    public AnimationClip clip;
+    public AnimatorOverrideController animationAnimator;
 }
