@@ -2,33 +2,109 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AbstractCombatPiece2 : AbstractPiece2
+[RequireComponent(typeof(PieceCombatActions2))]
+public abstract class AbstractCombatPiece2 : AbstractPiece2, IStartTurnEndTurn, ICommandablePiece
 {
+    public PieceCombatActions2 pieceCombatActions { get; private set; }
+
+    [Header("Combat identification")]
+    public int spawnId;
+    public bool onDefenderSide;
+
     [Header("Hit point management")]
     public int hitPointsCurrent;
     public int hitPointsMax;
-    public bool isDead;
 
-    public virtual bool ACP_TakeDamage(int amount)
+    [Header("States")]
+    public bool stateHurt;
+    public bool stateDead;
+
+    [Header("Stats")]
+    public CombatPieceStats combatPieceStats;
+
+    protected override void Awake()
     {
-        int amountFixed = Mathf.CeilToInt(amount);
-        hitPointsCurrent -= amountFixed;
+        base.Awake();
 
-        if (hitPointsCurrent <= 0)
-        {
-            ACP_Die();
-            return true;
-        }
-        return false;
+        canBeOwned = true;
+        canBeControlled = true;
+
+        pieceCombatActions = GetComponent<PieceCombatActions2>();
     }
 
-    public virtual void ACP_Die()
+    public override void AP2_UpdateAnimatorParameters()
     {
+        animator.SetBool("Hurt", stateHurt);
+        animator.SetBool("Dead", stateDead);
+
+        animator.SetBool("Melee attack start", pieceCombatActions.meleeAttackStart);
+        animator.SetBool("Melee attack end", pieceCombatActions.meleeAttackEnd);
+    }
+
+    /*
+    *   BEGIN:      Take damage, become either hurt or dead
+    */
+    public virtual IEnumerator TakeDamage(int amount)
+    {
+        hitPointsCurrent -= amount;
+        if (hitPointsCurrent > 0) yield return StartCoroutine(DamagedHurt());
+        else yield return StartCoroutine(DamagedDead());
+    }
+    protected virtual IEnumerator DamagedHurt()
+    {
+        stateHurt = true;
+        AnimatorStateInfo state = GetAnimatorStateInfo();
+        while (state.IsName("Hurt")) yield return null;
+        stateHurt = false;
+    }
+    protected virtual IEnumerator DamagedDead()
+    {
+        stateDead = true;
         hitPointsCurrent = 0;
-        isDead = true;
         mainSpriteRenderer.sortingOrder--;
 
         currentTile.occupantPiece = null;
         (currentTile as CombatTile).deadPieces.Add(this);
+
+        CombatManager.Instance.RemoveUnitFromTurnSequence(this);
+
+        AnimatorStateInfo state = GetAnimatorStateInfo();
+        while (state.IsName("Dead")) yield return null;
     }
+    /*
+    *   END:        Take damage, become either hurt or dead
+    */
+
+    public virtual void ISTET_StartTurn()
+    {
+        pieceCombatActions.stateWait = false;
+        pieceCombatActions.stateDefend = false;
+    }
+
+    public virtual void ISTET_EndTurn()
+    {
+        CombatManager cm = CombatManager.Instance;
+        if (cm.currentPiece == this) cm.NextUnit();
+        else if (cm.retaliatorPiece == this) cm.NextUnit();
+    }
+
+    public virtual bool ICP_IsIdle()
+    {
+        return !stateHurt
+            && !stateDead
+            && pieceCombatActions.IsIdle();
+    }
+
+    public virtual void ICP_Stop()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    //public virtual void ICP_InteractWith(AbstractTile aTile, bool canPathfind)
+    //{
+    //    targetTile = aTile;
+    //    targetPiece = aTile.occupantPiece;
+    //    if (targetPiece) AP2_PieceInteraction();
+    //    else AP2_TileInteraction();
+    //}
 }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public static class DamageCalculation
 {
-    public static int FullDamageCalculation(AbstractCombatantPiece2 attacker, AbstractCombatantPiece2 defender, CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
+    public static int FullDamageCalculation(AttackStats attack, AbstractCombatPiece2 attacker, AbstractCombatPiece2 defender, CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
     {
-        float dmgBase = CombatantDamage(attacker);
+        float dmgBase = CombatantDamage(attack, attacker);
         float increments = Increments(attacker, defender, attackerHero, defenderHero);
         float reductions = Reductions(attacker, defender, attackerHero, defenderHero);
         Debug.Log("DamageCalculation result: " + dmgBase + " * " + increments + " * " + reductions);
@@ -16,24 +16,23 @@ public static class DamageCalculation
         return Mathf.Max(result, 1);
     }
 
-    public static float CombatantDamage(AbstractCombatantPiece2 attacker)
+    public static float CombatantDamage(AttackStats attack, AbstractCombatPiece2 attacker)
     {
         float result = 0;
-        CombatantHeroPiece2 attackerAsHero = attacker as CombatantHeroPiece2;
         CombatantUnitPiece2 attackerAsUnit = attacker as CombatantUnitPiece2;
-        if (attackerAsHero)
-        {
-            result += Random.Range(attackerAsHero.combatPieceStats.attack_primary.damage_minimum, attackerAsHero.combatPieceStats.attack_primary.damage_maximum + 1);
-        }
-        else if (attackerAsUnit)
+        if (attackerAsUnit)
         {
             for (int i = 0; i < attackerAsUnit.stackStats.stack_current; i++)
-                result += Random.Range(attackerAsUnit.combatPieceStats.attack_primary.damage_minimum, attackerAsUnit.combatPieceStats.attack_primary.damage_maximum + 1);
+                result += Random.Range(attack.damage_minimum, attack.damage_maximum + 1);
+        }
+        else
+        {
+            result += Random.Range(attack.damage_minimum, attack.damage_maximum + 1);
         }
         return result;
     }
 
-    public static float Increments(AbstractCombatantPiece2 attacker, AbstractCombatantPiece2 defender, CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
+    public static float Increments(AbstractCombatPiece2 attacker, AbstractCombatPiece2 defender, CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
     {
         float attackerHeroOffense = I1_AttackerHeroOffense(attackerHero, defenderHero);
         return 1 + attackerHeroOffense;
@@ -42,10 +41,10 @@ public static class DamageCalculation
     public static float I1_AttackerHeroOffense(CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
     {
         float result = 0;
-        if (attackerHero == null || attackerHero.isDead) return result;
+        if (attackerHero == null || attackerHero.stateDead) return result;
 
         float atrDif = attackerHero.attributeStats.atrOffense;
-        if (defenderHero != null && !defenderHero.isDead) atrDif -= defenderHero.attributeStats.atrDefense;
+        if (defenderHero != null && !defenderHero.stateDead) atrDif -= defenderHero.attributeStats.atrDefense;
 
         if (atrDif > 0)
         {
@@ -54,7 +53,7 @@ public static class DamageCalculation
         return result;
     }
 
-    public static float Reductions(AbstractCombatantPiece2 attacker, AbstractCombatantPiece2 defender, CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
+    public static float Reductions(AbstractCombatPiece2 attacker, AbstractCombatPiece2 defender, CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
     {
         float defenderHeroDefense = 1 - R1_DefenderHeroDefense(attackerHero, defenderHero);
         float defenderIsHero = 1 - RX_DefenderIsHero(attacker, defender);
@@ -65,10 +64,10 @@ public static class DamageCalculation
     public static float R1_DefenderHeroDefense(CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
     {
         float result = 0;
-        if (defenderHero == null || defenderHero.isDead) return result;
+        if (defenderHero == null || defenderHero.stateDead) return result;
 
         float atrDif = defenderHero.attributeStats.atrDefense;
-        if (attackerHero != null && !attackerHero.isDead) atrDif -= attackerHero.attributeStats.atrOffense;
+        if (attackerHero != null && !attackerHero.stateDead) atrDif -= attackerHero.attributeStats.atrOffense;
 
         if (atrDif > 0)
         {
@@ -77,7 +76,7 @@ public static class DamageCalculation
         return result;
     }
 
-    public static float RX_DefenderIsHero(AbstractCombatantPiece2 attacker, AbstractCombatantPiece2 defender)
+    public static float RX_DefenderIsHero(AbstractCombatPiece2 attacker, AbstractCombatPiece2 defender)
     {
         float result = 0;
         CombatantUnitPiece2 attackerAsUnit = attacker as CombatantUnitPiece2;
@@ -91,10 +90,10 @@ public static class DamageCalculation
         return result;
     }
 
-    public static float RX_DefenderIsDefending(AbstractCombatantPiece2 defender)
+    public static float RX_DefenderIsDefending(AbstractCombatPiece2 defender)
     {
         float result = 0;
-        if (defender.stateDefending) result = 0.25F;
+        if (defender.pieceCombatActions.stateDefend) result = 0.25F;
         return result;
     }
 }

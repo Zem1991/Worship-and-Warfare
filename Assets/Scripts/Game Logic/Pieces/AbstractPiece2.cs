@@ -14,8 +14,11 @@ public abstract class AbstractPiece2 : MonoBehaviour
     [SerializeField] protected bool canBeControlled;
     [SerializeField] protected Player controller;
 
-    [Header("Identification")]
+    [Header("References")]
     public AbstractTile currentTile;
+    public AbstractTile nextTile;
+    public AbstractTile targetTile;
+    public AbstractPiece2 targetPiece;
 
     protected virtual void Awake()
     {
@@ -26,20 +29,20 @@ public abstract class AbstractPiece2 : MonoBehaviour
         if (renderers.Length > 1) flagSpriteRenderer = renderers[1];
     }
 
-    protected virtual void Start()
-    {
-        //Nothing yet...
-    }
-
     protected virtual void Update()
     {
-        AP2_AnimatorParameters();
+        AP2_UpdateAnimatorParameters();
     }
 
     public void SetAnimatorOverrideController(AnimatorOverrideController aoc)
     {
         if (!animator) animator = GetComponentInChildren<Animator>();
         animator.runtimeAnimatorController = aoc;
+    }
+
+    public AnimatorStateInfo GetAnimatorStateInfo()
+    {
+        return animator.GetCurrentAnimatorStateInfo(0);
     }
 
     public void FlipSpriteHorizontally(bool flip)
@@ -60,6 +63,45 @@ public abstract class AbstractPiece2 : MonoBehaviour
         flagSpriteRenderer.sprite = sprite;
     }
 
-    public abstract void AP2_AnimatorParameters();
-    public abstract void AP2_PieceInteraction();
+    /*
+    *   BEGIN:      Owner handling
+    */
+    public bool HasOwner()
+    {
+        return canBeOwned && owner;
+    }
+    public Player GetOwner()
+    {
+        return HasOwner() ? owner : null;
+    }
+    public void SetOwner(Player player)
+    {
+        owner = player;
+    }
+    /*
+    *   END:        Owner handling
+    */
+
+    /*
+    *   BEGIN:      Controller handling
+    */
+    public bool HasController()
+    {
+        return canBeControlled && controller;
+    }
+    public Player GetController()
+    {
+        return HasController() ? controller : null;
+    }
+    public void SetController(Player player)
+    {
+        controller = player;
+    }
+    /*
+    *   END:        Controller handling
+    */
+
+    public abstract void AP2_UpdateAnimatorParameters();
+    //public abstract void AP2_TileInteraction();
+    //public abstract void AP2_PieceInteraction();
 }

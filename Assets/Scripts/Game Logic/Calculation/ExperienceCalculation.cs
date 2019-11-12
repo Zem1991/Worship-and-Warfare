@@ -38,7 +38,7 @@ public static class ExperienceCalculation
         return levelUps;
     }
 
-    public static int FullExperienceCalculation(List<AbstractCombatantPiece2> pieces)
+    public static int FullExperienceCalculation(List<AbstractCombatPiece2> pieces)
     {
         int result = 0;
         foreach (var item in pieces)
@@ -55,7 +55,7 @@ public static class ExperienceCalculation
     public static int HeroExperience(CombatantHeroPiece2 hero)
     {
         int result = 0;
-        if (hero.isDead)
+        if (hero.stateDead)
         {
             result = hero.hero.combatPieceStats.hitPoints_maximum;
             result += hero.hero.experienceStats.level * 50;

@@ -203,13 +203,13 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
             PartyPiece2 pp = selectionPiece as PartyPiece2;
             if (pp)
             {
-                if (pp.IMP_GetPieceMovement().inMovement)
+                if (pp.pieceMovement.stateMove)
                 {
 
                 }
 
                 selectionHighlight.gameObject.SetActive(true);
-                canCommandSelectedPiece = pp.IPO_GetOwner() == PlayerManager.Instance.localPlayer;
+                canCommandSelectedPiece = pp.GetOwner() == PlayerManager.Instance.localPlayer;
             }
             else
             {
@@ -239,9 +239,9 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
         {
             movementHighlightsUpdateFromCommand = true;
 
-            if (pp.IMP_GetPieceMovement().inMovement)
+            if (pp.pieceMovement.stateMove)
             {
-                pp.IMP_Stop();
+                pp.ICP_Stop();
                 movementHighlightsUpdateOnPieceStop = true;
             }
             else
@@ -293,7 +293,7 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
         else
         {
             bool condition1 = movementHighlightsUpdateFromCommand;
-            bool condition2 = movementHighlightsUpdateOnPieceStop && !pp.IMP_GetPieceMovement().inMovement;
+            bool condition2 = movementHighlightsUpdateOnPieceStop && !pp.pieceMovement.stateMove;
             bool condition3 = movementHighlightsUpdateOnMethodCall;
             if (!condition1 &&
                 !condition2 &&
@@ -303,7 +303,7 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
         RemoveMovementHighlights();
         if (clearThenReturn) return;
 
-        List<PathNode> path = pp.IMP_GetPieceMovement().path;
+        List<PathNode> path = pp.pieceMovement.GetPath();
         if (canCommandSelectedPiece &&
             pp.ICP_IsIdle() &&
             path != null)
@@ -312,7 +312,7 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
             InputHighlight prefabHighlight = AllPrefabs.Instance.inputHighlight;
 
             movementHighlights = new List<InputHighlight>();
-            int movePoints = pp.IMP_GetPieceMovement().movementPointsCurrent;
+            int movePoints = pp.pieceMovement.movementPointsCurrent;
             int moveCost = 0;
             Color moveColor;
 

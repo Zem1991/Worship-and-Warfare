@@ -168,7 +168,7 @@ public class FieldPieceHandler : MonoBehaviour
         Pathfinder.FindPath(piece.currentTile, targetTile, Pathfinder.OctoHeuristic,
             needGroundAccess, needWaterAccess, needLavaAccess,
             out PathfindResults pathfindResults);
-        piece.IMP_GetPieceMovement().SetPath(pathfindResults, targetTile);
+        piece.pieceMovement.SetPath(pathfindResults, targetTile);
     }
 
     public List<PartyPiece2> GetIdlePieces(List<PartyPiece2> pieces)
@@ -186,7 +186,7 @@ public class FieldPieceHandler : MonoBehaviour
         List<PartyPiece2> result = new List<PartyPiece2>();
         foreach (var item in partyPieces)
         {
-            if (item.IPO_GetOwner() == player) result.Add(item);
+            if (item.GetOwner() == player) result.Add(item);
         }
         return result;
     }

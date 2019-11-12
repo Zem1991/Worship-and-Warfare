@@ -48,7 +48,7 @@ public class CombatUI_Panel_CurrentPiece : AUIPanel
         txtSpeed.text = actp.combatPieceStats.movementRange.ToString();
         txtInitiative.text = actp.combatPieceStats.initiative.ToString();
 
-        btnWait.interactable = !actp.stateWaiting;
+        btnWait.interactable = !actp.pieceCombatActions.stateWait;
         btnWait.gameObject.SetActive(canCommandSelectedPiece);
         btnDefend.gameObject.SetActive(canCommandSelectedPiece);
     }

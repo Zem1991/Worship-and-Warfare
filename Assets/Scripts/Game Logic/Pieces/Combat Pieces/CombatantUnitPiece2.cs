@@ -22,31 +22,31 @@ public class CombatantUnitPiece2 : AbstractCombatantPiece2
         stackStats = Instantiate(prefabSS, transform);
         stackStats.Initialize(unit.stackStats);
 
-        ACtP_ResetMovementPoints();
+        IMP_ResetMovementPoints();
         SetAnimatorOverrideController(unit.dbData.animatorCombat);
     }
 
-    public override bool ACP_TakeDamage(int amount)
-    {
-        bool result = combatPieceStats.TakeDamage(amount, stackStats, out int stackLost);
-        string log = unit.GetName() + " took " + amount + " damage. " + stackLost + " units died.";
-        CombatManager.Instance.AddEntryToLog(log);
+    //public override bool ACP_TakeDamage(int amount)
+    //{
+    //    bool result = combatPieceStats.TakeDamage(amount, stackStats, out int stackLost);
+    //    string log = unit.GetName() + " took " + amount + " damage. " + stackLost + " units died.";
+    //    CombatManager.Instance.AddEntryToLog(log);
 
-        if (result)
-        {
-            ACP_Die();
-            return true;
-        }
-        else
-        {
-            isHurt = true;
-            return false;
-        }
-    }
+    //    if (result)
+    //    {
+    //        ACP_Die();
+    //        return true;
+    //    }
+    //    else
+    //    {
+    //        isHurt = true;
+    //        return false;
+    //    }
+    //}
 
-    public override void ACP_Die()
-    {
-        stackStats.stack_current = 0;
-        base.ACP_Die();
-    }
+    //public override void ACP_Die()
+    //{
+    //    stackStats.stack_current = 0;
+    //    base.ACP_Die();
+    //}
 }

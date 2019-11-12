@@ -22,10 +22,10 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     [Header("Combat Flow")]
     public bool combatStarted;
     public int currentTurn;
-    public AbstractCombatantPiece2 currentPiece;
-    public AbstractCombatantPiece2 retaliatorPiece;
-    public List<AbstractCombatantPiece2> turnSequence = new List<AbstractCombatantPiece2>();
-    public List<AbstractCombatantPiece2> waitSequence = new List<AbstractCombatantPiece2>();
+    public AbstractCombatPiece2 currentPiece;
+    public AbstractCombatPiece2 retaliatorPiece;
+    public List<AbstractCombatPiece2> turnSequence = new List<AbstractCombatPiece2>();
+    public List<AbstractCombatPiece2> waitSequence = new List<AbstractCombatPiece2>();
     public List<string> combatLog = new List<string>();
     public CombatResult result;
 
@@ -54,9 +54,9 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     {
         //background = battleground.image;
 
-        attackerPlayer = attackerPiece.IPO_GetOwner();
+        attackerPlayer = attackerPiece.GetOwner();
         attackerParty = attackerPiece;
-        defenderPlayer = defenderPiece.IPO_GetOwner();
+        defenderPlayer = defenderPiece.GetOwner();
         defenderParty = defenderPiece;
 
         Debug.LogWarning("No tile data for combat map!");
@@ -97,7 +97,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
         if (turnSequence.Count > 0 || waitSequence.Count > 0)
         {
-            List<AbstractCombatantPiece2> list = null;
+            List<AbstractCombatPiece2> list = null;
             if (turnSequence.Count > 0) list = turnSequence;
             else if (waitSequence.Count > 0) list = waitSequence;
 
@@ -110,12 +110,12 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
             ci.selectionPiece = currentPiece;
 
             ci.selectionHighlight.transform.position = currentPiece.transform.position;
-            ci.canCommandSelectedPiece = currentPiece.IPO_GetOwner() == PlayerManager.Instance.localPlayer;
+            ci.canCommandSelectedPiece = currentPiece.GetOwner() == PlayerManager.Instance.localPlayer;
 
             list.RemoveAt(0);
             CombatUI.Instance.turnSequence.RemoveFirstFromTurnSequence();
 
-            Player owner = currentPiece.IPO_GetOwner();
+            Player owner = currentPiece.GetOwner();
             if (owner.type == PlayerType.COMPUTER)
             {
                 owner.aiPersonality.CombatRoutine();
@@ -131,7 +131,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     {
         if (CalculateFullTurnSequence())
         {
-            foreach (AbstractCombatantPiece2 cup in turnSequence) cup.ICP_StartTurn();
+            foreach (AbstractCombatPiece2 cup in turnSequence) cup.ISTET_StartTurn();
 
             NextUnit();
             currentTurn++;
@@ -140,13 +140,13 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
     public bool CalculateFullTurnSequence()
     {
-        List<AbstractCombatantPiece2> newSequence = new List<AbstractCombatantPiece2>();
+        List<AbstractCombatPiece2> newSequence = new List<AbstractCombatPiece2>();
         newSequence.AddRange(pieceHandler.GetActivePieces(pieceHandler.attackerPieces));
         newSequence.AddRange(pieceHandler.GetActivePieces(pieceHandler.defenderPieces));
         if (newSequence.Count <= 0) return false;
 
         turnSequence = newSequence;
-        waitSequence = new List<AbstractCombatantPiece2>();
+        waitSequence = new List<AbstractCombatPiece2>();
         UpdateTurnSequence();
         return true;
     }
@@ -158,13 +158,13 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         CombatUI.Instance.turnSequence.CreateTurnSequence(turnSequence, waitSequence);
     }
 
-    public void AddUnitToTurnSequence(AbstractCombatantPiece2 uc)
+    public void AddUnitToTurnSequence(AbstractCombatPiece2 uc)
     {
         turnSequence.Add(uc);
         UpdateTurnSequence();
     }
 
-    public void RemoveUnitFromTurnSequence(AbstractCombatantPiece2 uc)
+    public void RemoveUnitFromTurnSequence(AbstractCombatPiece2 uc)
     {
         turnSequence.Remove(uc);
         UpdateTurnSequence();
@@ -177,13 +177,13 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         CombatUI.Instance.turnSequence.CreateTurnSequence(turnSequence, waitSequence);
     }
 
-    public void AddUnitToWaitSequence(AbstractCombatantPiece2 uc)
+    public void AddUnitToWaitSequence(AbstractCombatPiece2 uc)
     {
         waitSequence.Add(uc);
         UpdateWaitSequence();
     }
 
-    public void RemoveUnitFromWaitSequence(AbstractCombatantPiece2 uc)
+    public void RemoveUnitFromWaitSequence(AbstractCombatPiece2 uc)
     {
         waitSequence.Remove(uc);
         UpdateTurnSequence();
@@ -241,7 +241,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         }
     }
 
-    private void ApplyCombatChanges(PartyPiece2 party, List<AbstractCombatantPiece2> pieces)
+    private void ApplyCombatChanges(PartyPiece2 party, List<AbstractCombatPiece2> pieces)
     {
         foreach (var piece in pieces)
         {

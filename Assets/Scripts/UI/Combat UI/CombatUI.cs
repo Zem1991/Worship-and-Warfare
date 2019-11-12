@@ -55,7 +55,7 @@ public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideabl
         turnSequence.UpdatePanel();
         combatLogs.UpdatePanel(cm.GetLastLogs(5));
 
-        AbstractCombatantPiece2 actp = cm.currentPiece;
+        AbstractCombatantPiece2 actp = cm.currentPiece as AbstractCombatantPiece2;
         bool canCommandSelectedPiece = ci.canCommandSelectedPiece;
 
         if (actp) UpdateWithSelection(actp, canCommandSelectedPiece);

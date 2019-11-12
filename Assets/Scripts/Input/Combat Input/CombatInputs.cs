@@ -187,13 +187,13 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
             AbstractCombatantPiece2 actp = selectionPiece as AbstractCombatantPiece2;
             if (actp)
             {
-                if (actp.IMP_GetPieceMovement().inMovement)
-                {
+                //if (actp.pieceMovement.inMovement)
+                //{
 
-                }
+                //}
 
                 selectionHighlight.gameObject.SetActive(true);
-                canCommandSelectedPiece = actp.IPO_GetOwner() == PlayerManager.Instance.localPlayer;
+                canCommandSelectedPiece = actp.GetOwner() == PlayerManager.Instance.localPlayer;
             }
             else
             {
@@ -218,20 +218,27 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
 
     public void MakeSelectedPieceInteract(bool canPathfind)
     {
+        bool condition = selectionPiece && canCommandSelectedPiece && selectionPiece.ICP_IsIdle();
+        if (!condition) return;
+
         AbstractCombatantPiece2 actp = selectionPiece as AbstractCombatantPiece2;
-        if (selectionPiece && canCommandSelectedPiece && actp.ICP_IsIdle())
+        if (actp)
         {
             movementHighlightsUpdateFromCommand = true;
 
-            if (actp.IMP_GetPieceMovement().inMovement)
+            if (actp.pieceMovement.stateMove)
             {
-                actp.IMP_Stop();
+                actp.ICP_Stop();
                 movementHighlightsUpdateOnPieceStop = true;
             }
             else
             {
                 actp.ICP_InteractWithTile(cursorTile, canPathfind);
             }
+        }
+        else
+        {
+
         }
     }
 
@@ -240,16 +247,16 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         AbstractCombatantPiece2 actp = selectionPiece as AbstractCombatantPiece2;
         if (selectionPiece && canCommandSelectedPiece && actp)
         {
-            if (!actp.stateWaiting) actp.ACtP_Wait();
+            if (!actp.pieceCombatActions.stateWait) actp.pieceCombatActions.Wait();
         }
     }
 
     public void MakeSelectedPieceDefend()
     {
-        AbstractCombatantPiece2 actp = selectionPiece as AbstractCombatantPiece2;
+        AbstractCombatPiece2 actp = selectionPiece as AbstractCombatPiece2;
         if (selectionPiece && canCommandSelectedPiece && actp)
         {
-            actp.ACtP_Defend();
+            actp.pieceCombatActions.Defend();
         }
     }
 
@@ -257,9 +264,9 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
     {
         if (recorder.endTurnDown)
         {
-            AbstractCombatantPiece2 acp = CombatManager.Instance.currentPiece;
+            AbstractCombatPiece2 acp = CombatManager.Instance.currentPiece;
             PlayerManager pm = PlayerManager.Instance;
-            if (acp.IPO_GetOwner() == pm.localPlayer) acp.ICP_EndTurn();
+            if (acp.GetOwner() == pm.localPlayer) acp.ISTET_EndTurn();
         }
     }
 
@@ -290,7 +297,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         else
         {
             bool condition1 = movementHighlightsUpdateFromCommand;
-            bool condition2 = movementHighlightsUpdateOnPieceStop && !actp.IMP_GetPieceMovement().inMovement;
+            bool condition2 = movementHighlightsUpdateOnPieceStop && !actp.pieceMovement.stateMove;
             bool condition3 = movementHighlightsUpdateOnMethodCall;
             if (!condition1 && 
                 !condition2 &&
@@ -300,7 +307,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         RemoveMovementHighlights();
         if (clearThenReturn) return;
 
-        List<PathNode> path = actp.IMP_GetPieceMovement().path;
+        List<PathNode> path = actp.pieceMovement.GetPath();
         if (canCommandSelectedPiece &&
             actp.ICP_IsIdle() &&
             path != null)
@@ -309,7 +316,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
             InputHighlight prefabHighlight = AllPrefabs.Instance.inputHighlight;
 
             movementHighlights = new List<InputHighlight>();
-            int movePoints = actp.IMP_GetPieceMovement().movementPointsCurrent;
+            int movePoints = actp.pieceMovement.movementPointsCurrent;
             int moveCost = 0;
             Color moveColor;
 

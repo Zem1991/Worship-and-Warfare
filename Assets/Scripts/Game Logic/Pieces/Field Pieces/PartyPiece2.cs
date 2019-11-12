@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(PieceMovement))]
-public class PartyPiece2 : AbstractFieldPiece2, IPlayerOwnable, IPlayerControllable, ICommandablePiece, IMovablePiece
+[RequireComponent(typeof(PieceMovement2))]
+public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandablePiece, IMovablePiece
 {
-    protected PieceMovement pieceMovement;
+    public PieceMovement2 pieceMovement;
 
     [Header("Party contets")]
     public Hero partyHero;
@@ -20,15 +20,11 @@ public class PartyPiece2 : AbstractFieldPiece2, IPlayerOwnable, IPlayerControlla
     protected override void Awake()
     {
         base.Awake();
+
         canBeOwned = true;
         canBeControlled = true;
-        pieceMovement = GetComponent<PieceMovement>();
-    }
 
-    protected override void Update()
-    {
-        base.Update();
-        IMP_MakeMove();
+        pieceMovement = GetComponent<PieceMovement2>();
     }
 
     public void Initialize(Player owner, Hero hero, List<Unit> units)
@@ -64,9 +60,9 @@ public class PartyPiece2 : AbstractFieldPiece2, IPlayerOwnable, IPlayerControlla
         }
     }
 
-    public override void AP2_AnimatorParameters()
+    public override void AP2_UpdateAnimatorParameters()
     {
-        anim_movement = pieceMovement.inMovement;
+        anim_movement = pieceMovement.stateMove;
         animator.SetBool("Movement", anim_movement);
 
         anim_directionX = 0;
@@ -80,100 +76,60 @@ public class PartyPiece2 : AbstractFieldPiece2, IPlayerOwnable, IPlayerControlla
         animator.SetFloat("Direction Z", anim_directionZ);
     }
 
-    public override void AP2_PieceInteraction()
-    {
-        PartyPiece2 targetParty = pieceMovement.targetPiece as PartyPiece2;
-        PickupPiece2 targetPickup = pieceMovement.targetPiece as PickupPiece2;
+    //public override void AP2_TileInteraction()
+    //{
+    //    throw new NotImplementedException();
+    //}
 
-        if (targetParty) FieldManager.Instance.PartiesAreInteracting(this, targetParty);
-        else if (targetPickup) FieldManager.Instance.PartyFoundPickup(this, targetPickup);
-    }
+    //public override void AP2_PieceInteraction()
+    //{
+    //    PartyPiece2 targetParty = targetPiece as PartyPiece2;
+    //    PickupPiece2 targetPickup = targetPiece as PickupPiece2;
 
-    public bool IPO_HasOwner()
-    {
-        return canBeOwned && owner;
-    }
+    //    if (targetParty) FieldManager.Instance.PartiesAreInteracting(this, targetParty);
+    //    else if (targetPickup) FieldManager.Instance.PartyFoundPickup(this, targetPickup);
+    //}
 
-    public Player IPO_GetOwner()
-    {
-        return owner;
-    }
-
-    public bool IPC_HasController()
-    {
-        return canBeControlled && controller;
-    }
-
-    public Player IPC_GetController()
-    {
-        return controller;
-    }
-
-    public void IPC_SetController(Player player)
-    {
-        controller = player;
-    }
-
-    public void ICP_StartTurn()
+    public void ISTET_StartTurn()
     {
         IMP_ResetMovementPoints();
     }
 
-    public void ICP_EndTurn()
+    public void ISTET_EndTurn()
     {
         throw new System.NotImplementedException();
     }
 
-    public void ICP_InteractWithTile(AbstractTile aTile, bool canPathfind)
-    {
-        if (canPathfind)
-        {
-            if (aTile)
-            {
-                if (pieceMovement.HasPath(aTile)) IMP_Move();
-                else FieldManager.Instance.pieceHandler.Pathfind(this, aTile as FieldTile);
-            }
-        }
-        else
-        {
-            if (pieceMovement.HasPath()) IMP_Move();
-        }
-    }
-
-    public void ICP_InteractWithPiece(AbstractPiece2 aPiece, bool canPathfind)
-    {
-        ICP_InteractWithTile(aPiece.currentTile, canPathfind);
-    }
-
     public bool ICP_IsIdle()
     {
-        return !pieceMovement.inMovement;
+        return !pieceMovement.stateMove;
     }
+
+    public void ICP_Stop()
+    {
+        pieceMovement.Stop();
+    }
+
+    //public void ICP_InteractWith(AbstractTile aTile, bool canPathfind)
+    //{
+    //    if (canPathfind)
+    //    {
+    //        if (aTile)
+    //        {
+    //            if (pieceMovement.HasPath(aTile)) IMP_Move();
+    //            else FieldManager.Instance.pieceHandler.Pathfind(this, aTile as FieldTile);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        if (pieceMovement.HasPath()) IMP_Move();
+    //    }
+    //}
 
     public void IMP_ResetMovementPoints()
     {
         //TODO ACTUAL CALCULATIONS
-        pieceMovement.movementPointsMax = 1000;
-        pieceMovement.movementPointsCurrent = pieceMovement.movementPointsMax;
-    }
-
-    public void IMP_Move()
-    {
-        pieceMovement.inMovement = true;
-    }
-
-    public void IMP_Stop()
-    {
-        pieceMovement.stopWasCalled = true;
-    }
-
-    public void IMP_MakeMove()
-    {
-        pieceMovement.MakeMove();
-    }
-
-    public PieceMovement IMP_GetPieceMovement()
-    {
-        return pieceMovement;
+        int movementPointsMax = 1000;
+        pieceMovement.ResetMovementPoints(movementPointsMax);
     }
 }

@@ -49,13 +49,13 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
     {
         foreach (var item in pieceHandler.partyPieces)
         {
-            item.ICP_StartTurn();
+            item.ISTET_StartTurn();
         }
     }
 
     public void PartiesAreInteracting(PartyPiece2 sender, PartyPiece2 receiver)
     {
-        if (sender.IPO_GetOwner() == receiver.IPO_GetOwner())
+        if (sender.GetOwner() == receiver.GetOwner())
         {
             GameManager.Instance.PerformExchange(sender, receiver);
         }

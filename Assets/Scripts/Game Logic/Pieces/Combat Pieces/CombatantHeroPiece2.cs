@@ -25,25 +25,25 @@ public class CombatantHeroPiece2 : AbstractCombatantPiece2
         attributeStats = Instantiate(prefabAS, transform);
         attributeStats.Initialize(hero.attributeStats);
 
-        ACtP_ResetMovementPoints();
+        IMP_ResetMovementPoints();
         SetAnimatorOverrideController(hero.dbData.classs.animatorCombat);
     }
 
-    public override bool ACP_TakeDamage(int amount)
-    {
-        bool result = combatPieceStats.TakeDamage(amount);
-        string log = hero.dbData.heroName + " took " + amount + " damage.";
-        CombatManager.Instance.AddEntryToLog(log);
+    //public override bool ACP_TakeDamage(int amount)
+    //{
+    //    bool result = combatPieceStats.TakeDamage(amount);
+    //    string log = hero.dbData.heroName + " took " + amount + " damage.";
+    //    CombatManager.Instance.AddEntryToLog(log);
 
-        if (result)
-        {
-            ACP_Die();
-            return true;
-        }
-        else
-        {
-            isHurt = true;
-            return false;
-        }
-    }
+    //    if (result)
+    //    {
+    //        ACP_Die();
+    //        return true;
+    //    }
+    //    else
+    //    {
+    //        isHurt = true;
+    //        return false;
+    //    }
+    //}
 }

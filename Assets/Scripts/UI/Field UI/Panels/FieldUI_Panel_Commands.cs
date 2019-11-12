@@ -58,7 +58,7 @@ public class FieldUI_Panel_Commands : AUIPanel
     {
         ShowButtons();
 
-        PieceMovement pm = pp.IMP_GetPieceMovement();
+        PieceMovement2 pm = pp.pieceMovement;
         txtMovePoints.text = pm.movementPointsCurrent + "/" + pm.movementPointsMax;
         //txtManaPoints.text = pm.movementPointsCurrent + "/" + pm.movementPointsMax;   //TODO MANA
 

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -46,7 +47,7 @@ public class Projectile : MonoBehaviour
         mainSpriteRenderer.flipX = flip;
     }
 
-    public void SetupAndGo(AbstractPiece2 casterPiece, Vector3 targetPos)
+    public void SetupAndGo(AttackStats attack, AbstractPiece2 casterPiece, Vector3 targetPos)
     {
         casterPos = casterPiece.transform.position;
         this.targetPos = targetPos;
@@ -54,10 +55,10 @@ public class Projectile : MonoBehaviour
         inMove = true;
     }
 
-    public void SetupAndGo(AbstractPiece2 casterPiece, AbstractPiece2 targetPiece)
+    public void SetupAndGo(AttackStats attack, AbstractPiece2 casterPiece, AbstractPiece2 targetPiece)
     {
         this.targetPiece = targetPiece;
-        SetupAndGo(casterPiece, targetPiece.transform.position);
+        SetupAndGo(attack, casterPiece, targetPiece.transform.position);
     }
 
     public IEnumerator CheckDestinationReached()
@@ -85,5 +86,10 @@ public class Projectile : MonoBehaviour
             transform.position = targetPos;
             hasReachedDestination = true;
         }
+    }
+
+    public IEnumerator MakeTrajectory()
+    {
+        throw new NotImplementedException();
     }
 }

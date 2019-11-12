@@ -21,7 +21,7 @@ public class CombatUI_Panel_TurnSequence : AUIPanel
         tsItems.Clear();
     }
 
-    public void CreateTurnSequence(List<AbstractCombatantPiece2> turnSequence, List<AbstractCombatantPiece2> waitSequence)
+    public void CreateTurnSequence(List<AbstractCombatPiece2> turnSequence, List<AbstractCombatPiece2> waitSequence)
     {
         DestroyTurnSequence();
 
@@ -37,12 +37,12 @@ public class CombatUI_Panel_TurnSequence : AUIPanel
         Destroy(cuiTSI.gameObject);
     }
 
-    private void ProcessSequence(CombatUI_TurnSequenceItem prefab, List<AbstractCombatantPiece2> list)
+    private void ProcessSequence(CombatUI_TurnSequenceItem prefab, List<AbstractCombatPiece2> list)
     {
-        foreach (AbstractCombatantPiece2 forCutp in list)
+        foreach (AbstractCombatPiece2 forCutp in list)
         {
             CombatUI_TurnSequenceItem newCUI = Instantiate(prefab, sequenceBar.transform);
-            newCUI.border.color = forCutp.IPO_GetOwner().dbColor.mainColor;
+            newCUI.border.color = forCutp.GetOwner().dbColor.mainColor;
 
             Sprite portrait = null;
             CombatantHeroPiece2 chp = forCutp as CombatantHeroPiece2;

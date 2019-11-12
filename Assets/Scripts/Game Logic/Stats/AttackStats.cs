@@ -24,4 +24,10 @@ public class AttackStats : MonoBehaviour
         range_effective = attackStats.range_effective;
         range_maximum = attackStats.range_maximum;
     }
+
+    public string AttackType()
+    {
+        string attackType = isRanged ? "Ranged attack" : "Melee attack";
+        return attackType;
+    }
 }

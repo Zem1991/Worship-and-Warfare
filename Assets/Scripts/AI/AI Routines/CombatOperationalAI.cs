@@ -6,7 +6,7 @@ using UnityEngine;
 public class CombatOperationalAI : AbstractAIRoutine
 {
     [Header("Readings")]
-    public AbstractCombatantPiece2 currentUnit;
+    public AbstractCombatPiece2 currentUnit;
 
     [Header("Skill calculations")]
     public int skill;
@@ -15,7 +15,7 @@ public class CombatOperationalAI : AbstractAIRoutine
 
     [Header("Attack calculations")]
     public int attack;
-    public AbstractCombatantPiece2 attackTarget;
+    public AbstractCombatPiece2 attackTarget;
 
     [Header("Other calculations")]
     public int defend;
@@ -48,8 +48,8 @@ public class CombatOperationalAI : AbstractAIRoutine
 
     private void ReadCurrentUnit()
     {
-        AbstractCombatantPiece2 current = CombatManager.Instance.currentPiece;
-        currentUnit = current.IPO_GetOwner() == aiPersonality.player ? current : null;
+        AbstractCombatPiece2 current = CombatManager.Instance.currentPiece;
+        currentUnit = current.GetOwner() == aiPersonality.player ? current : null;
     }
 
     private void CalculateSkillPriority()
@@ -63,14 +63,14 @@ public class CombatOperationalAI : AbstractAIRoutine
         attackTarget = null;
 
         CombatPieceHandler cph = CombatManager.Instance.pieceHandler;
-        List<AbstractCombatantPiece2> unitList;
+        List<AbstractCombatPiece2> unitList;
         if (!cph.GetPieceList(aiPersonality.player, true, out unitList)) return;
         unitList = cph.GetActivePieces(unitList);
 
         if (currentUnit.combatPieceStats.attack_primary.isRanged)
         {
-            Dictionary<AbstractCombatantPiece2, float> mapUnitDistance = new Dictionary<AbstractCombatantPiece2, float>();
-            foreach (AbstractCombatantPiece2 unit in unitList)
+            Dictionary<AbstractCombatPiece2, float> mapUnitDistance = new Dictionary<AbstractCombatPiece2, float>();
+            foreach (AbstractCombatPiece2 unit in unitList)
             {
                 float distance = Vector3.Distance(currentUnit.transform.position, unit.transform.position);
                 mapUnitDistance.Add(unit, distance);
@@ -80,8 +80,8 @@ public class CombatOperationalAI : AbstractAIRoutine
         }
         else
         {
-            Dictionary<AbstractCombatantPiece2, PathfindResults> mapUnitPath = new Dictionary<AbstractCombatantPiece2, PathfindResults>();
-            foreach (AbstractCombatantPiece2 unit in unitList)
+            Dictionary<AbstractCombatPiece2, PathfindResults> mapUnitPath = new Dictionary<AbstractCombatPiece2, PathfindResults>();
+            foreach (AbstractCombatPiece2 unit in unitList)
             {
                 Pathfinder.FindPath(currentUnit.currentTile, unit.currentTile, Pathfinder.HexHeuristic,
                     true, true, true,
@@ -171,7 +171,8 @@ public class CombatOperationalAI : AbstractAIRoutine
             case CombatOperationalDecision.SKILL:
                 break;
             case CombatOperationalDecision.ATTACK:
-                currentUnit.ICP_InteractWithPiece(attackTarget, false);
+                currentUnit.pieceCombatActions.Attack(currentUnit.combatPieceStats.attack_primary, attackTarget);
+                //currentUnit.ICP_InteractWith(attackTarget.currentTile, false);
                 break;
             case CombatOperationalDecision.DEFEND:
                 break;
