@@ -203,10 +203,10 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
             PartyPiece2 pp = selectionPiece as PartyPiece2;
             if (pp)
             {
-                if (pp.pieceMovement.stateMove)
-                {
+                //if (pp.pieceMovement.stateMove)
+                //{
 
-                }
+                //}
 
                 selectionHighlight.gameObject.SetActive(true);
                 canCommandSelectedPiece = pp.GetOwner() == PlayerManager.Instance.localPlayer;
@@ -234,20 +234,20 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
 
     public void MakeSelectedPieceInteract(bool canPathfind)
     {
+        bool condition = selectionPiece && canCommandSelectedPiece;
+        if (!condition) return;
+
         PartyPiece2 pp = selectionPiece as PartyPiece2;
-        if (pp && canCommandSelectedPiece)
+        if (pp)
         {
             movementHighlightsUpdateFromCommand = true;
-
             if (pp.pieceMovement.stateMove)
             {
                 pp.ICP_Stop();
                 movementHighlightsUpdateOnPieceStop = true;
+                return;
             }
-            else
-            {
-                pp.ICP_InteractWithTile(cursorTile, canPathfind);
-            }
+            pp.ICP_InteractWith(cursorTile, canPathfind);
         }
     }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using ZemDirections;
 
 [RequireComponent(typeof(AbstractCombatantPiece2))]
 public class PieceCombatActions2 : MonoBehaviour
@@ -65,10 +66,12 @@ public class PieceCombatActions2 : MonoBehaviour
     /*
     *   BEGIN:      Attack
     */
-    public IEnumerator Attack(AttackStats attack, AbstractCombatPiece2 target)
+    public IEnumerator Attack(AttackStats attack)
     {
+        AbstractCombatPiece2 target = piece.targetPiece as AbstractCombatPiece2;
+
         stateAttack = true;
-        if (attack.isRanged)
+        if (attack.isRanged && EvaluateRangedAttack())
         {
             yield return StartCoroutine(AttackRanged(attack, target));
         }
@@ -140,6 +143,12 @@ public class PieceCombatActions2 : MonoBehaviour
         Projectile prefab = AllPrefabs.Instance.projectile;
         projectile = Instantiate(prefab, transform);
         projectile.SetupAndGo(attack, piece, target);
+    }
+    public bool EvaluateRangedAttack()
+    {
+        OctoDirXZ direction = piece.currentTile.GetNeighbourDirection(piece.targetTile);
+        bool condition = direction == OctoDirXZ.NONE;
+        return condition;
     }
     /*
     *   END:        Attack

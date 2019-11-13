@@ -49,8 +49,11 @@ MonoBehaviour:
   owner: {fileID: 0}
   canBeControlled: 0
   controller: {fileID: 0}
-  profilePicture: {fileID: 0}
   currentTile: {fileID: 0}
+  nextTile: {fileID: 0}
+  targetTile: {fileID: 0}
+  targetPiece: {fileID: 0}
+  pieceMovement: {fileID: 0}
   partyHero: {fileID: 0}
   partyUnits: []
   anim_movement: 0
@@ -65,21 +68,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1317082670439789999}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a11583dde50c1244f9e21f99c92d626c, type: 3}
+  m_Script: {fileID: 11500000, guid: 092dbb15e6e8f4d438f62bfeed5b2ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathTotalCost: 0
+  canMove: 0
+  stateMove: 0
+  movementStart: 0
+  movementGoing: 0
+  movementEnd: 0
   movementPointsCurrent: 0
   movementPointsMax: 0
+  pathTotalCost: 0
   inMovement: 0
   stopWasCalled: 0
-  currentTile: {fileID: 0}
-  targetTile: {fileID: 0}
-  nextTile: {fileID: 0}
   nextPos: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
-  targetPiece: {fileID: 0}
 --- !u!1 &3326219280932499402
 GameObject:
   m_ObjectHideFlags: 0

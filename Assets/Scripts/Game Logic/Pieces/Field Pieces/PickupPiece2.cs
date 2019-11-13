@@ -50,14 +50,4 @@ public class PickupPiece2 : AbstractFieldPiece2
     {
         //Nothing yet...
     }
-
-    //public override void AP2_TileInteraction()
-    //{
-    //    //Nothing yet...
-    //}
-
-    //public override void AP2_PieceInteraction()
-    //{
-    //    //Nothing yet...
-    //}
 }

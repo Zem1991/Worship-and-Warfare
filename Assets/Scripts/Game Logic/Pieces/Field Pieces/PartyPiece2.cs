@@ -76,20 +76,6 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
         animator.SetFloat("Direction Z", anim_directionZ);
     }
 
-    //public override void AP2_TileInteraction()
-    //{
-    //    throw new NotImplementedException();
-    //}
-
-    //public override void AP2_PieceInteraction()
-    //{
-    //    PartyPiece2 targetParty = targetPiece as PartyPiece2;
-    //    PickupPiece2 targetPickup = targetPiece as PickupPiece2;
-
-    //    if (targetParty) FieldManager.Instance.PartiesAreInteracting(this, targetParty);
-    //    else if (targetPickup) FieldManager.Instance.PartyFoundPickup(this, targetPickup);
-    //}
-
     public void ISTET_StartTurn()
     {
         IMP_ResetMovementPoints();
@@ -110,25 +96,41 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
         pieceMovement.Stop();
     }
 
-    //public void ICP_InteractWith(AbstractTile aTile, bool canPathfind)
-    //{
-    //    if (canPathfind)
-    //    {
-    //        if (aTile)
-    //        {
-    //            if (pieceMovement.HasPath(aTile)) IMP_Move();
-    //            else FieldManager.Instance.pieceHandler.Pathfind(this, aTile as FieldTile);
-    //        }
-    //    }
-    //    else
-    //    {
-    //        if (pieceMovement.HasPath()) IMP_Move();
-    //    }
-    //}
+    public void ICP_InteractWith(AbstractTile tile, bool canPathfind)
+    {
+        targetTile = tile;
+        targetPiece = tile.occupantPiece;
+
+        if (targetPiece) ICP_InteractWithTargetPiece(canPathfind);
+        else ICP_InteractWithTargetTile(canPathfind);
+    }
+
+    public virtual void ICP_InteractWithTargetTile(bool canPathfind)
+    {
+        if (canPathfind)
+        {
+            if (pieceMovement.HasPath(targetTile)) pieceMovement.Movement();
+            else FieldManager.Instance.pieceHandler.Pathfind(this, targetTile as FieldTile);
+        }
+        else
+        {
+            if (pieceMovement.HasPath()) pieceMovement.Movement();
+        }
+    }
+
+    public virtual void ICP_InteractWithTargetPiece(bool canPathfind)
+    {
+        PartyPiece2 targetParty = targetPiece as PartyPiece2;
+        PickupPiece2 targetPickup = targetPiece as PickupPiece2;
+
+        if (targetParty) FieldManager.Instance.PartiesAreInteracting(this, targetParty);
+        else if (targetPickup) FieldManager.Instance.PartyFoundPickup(this, targetPickup);
+    }
 
     public void IMP_ResetMovementPoints()
     {
         //TODO ACTUAL CALCULATIONS
+        if (!pieceMovement) pieceMovement = GetComponent<PieceMovement2>();
         int movementPointsMax = 1000;
         pieceMovement.ResetMovementPoints(movementPointsMax);
     }

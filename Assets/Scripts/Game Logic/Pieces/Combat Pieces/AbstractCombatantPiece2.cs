@@ -132,10 +132,28 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, IMovablePi
         pieceMovement.Stop();
     }
 
-    //public override void ICP_InteractWith(AbstractTile aTile, bool canPathfind)
-    //{
-    //    throw new System.NotImplementedException();
-    //}
+    public override void ICP_InteractWithTargetTile(bool canPathfind)
+    {
+        if (canPathfind)
+        {
+            if (pieceMovement.HasPath(targetTile)) pieceMovement.Movement();
+            else CombatManager.Instance.pieceHandler.Pathfind(this, targetTile as CombatTile);
+        }
+        else
+        {
+            CombatManager.Instance.pieceHandler.Pathfind(this, targetTile as CombatTile);
+            if (pieceMovement.HasPath(targetTile)) pieceMovement.Movement();
+        }
+    }
+
+    public override void ICP_InteractWithTargetPiece(bool canPathfind)
+    {
+        //targetTile = aTile;
+        //targetPiece = aTile.occupantPiece;
+        //if (targetPiece) AP2_PieceInteraction();
+        //else pieceMovement.Movement();
+        throw new System.NotImplementedException();
+    }
 
     public virtual void IMP_ResetMovementPoints()
     {

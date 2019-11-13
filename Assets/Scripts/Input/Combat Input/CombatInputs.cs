@@ -225,21 +225,14 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         if (actp)
         {
             movementHighlightsUpdateFromCommand = true;
-
             if (actp.pieceMovement.stateMove)
             {
                 actp.ICP_Stop();
                 movementHighlightsUpdateOnPieceStop = true;
-            }
-            else
-            {
-                actp.ICP_InteractWithTile(cursorTile, canPathfind);
+                return;
             }
         }
-        else
-        {
-
-        }
+        selectionPiece.ICP_InteractWith(cursorTile, canPathfind);
     }
 
     public void MakeSelectedPieceWait()

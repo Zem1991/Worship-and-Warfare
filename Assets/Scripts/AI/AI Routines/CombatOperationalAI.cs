@@ -171,8 +171,8 @@ public class CombatOperationalAI : AbstractAIRoutine
             case CombatOperationalDecision.SKILL:
                 break;
             case CombatOperationalDecision.ATTACK:
-                currentUnit.pieceCombatActions.Attack(currentUnit.combatPieceStats.attack_primary, attackTarget);
-                //currentUnit.ICP_InteractWith(attackTarget.currentTile, false);
+                currentUnit.targetPiece = attackTarget;
+                currentUnit.pieceCombatActions.Attack(currentUnit.combatPieceStats.attack_primary);
                 break;
             case CombatOperationalDecision.DEFEND:
                 break;

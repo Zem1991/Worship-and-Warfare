@@ -97,14 +97,33 @@ public abstract class AbstractCombatPiece2 : AbstractPiece2, IStartTurnEndTurn, 
 
     public virtual void ICP_Stop()
     {
+        //TODO become called from overridden methods
         throw new System.NotImplementedException();
     }
 
-    //public virtual void ICP_InteractWith(AbstractTile aTile, bool canPathfind)
-    //{
-    //    targetTile = aTile;
-    //    targetPiece = aTile.occupantPiece;
-    //    if (targetPiece) AP2_PieceInteraction();
-    //    else AP2_TileInteraction();
-    //}
+    public virtual void ICP_InteractWith(AbstractTile tile, bool canPathfind)
+    {
+        targetTile = tile;
+        targetPiece = tile.occupantPiece;
+
+        if (targetPiece) ICP_InteractWithTargetPiece(canPathfind);
+        else ICP_InteractWithTargetTile(canPathfind);
+    }
+
+    public virtual void ICP_InteractWithTargetTile(bool canPathfind)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public virtual void ICP_InteractWithTargetPiece(bool canPathfind)
+    {
+        if (GetOwner() != targetPiece.GetOwner())
+        {
+            pieceCombatActions.Attack(combatPieceStats.attack_primary);
+        }
+        else
+        {
+            //TODO ALLY INTERACTIONS
+        }
+    }
 }

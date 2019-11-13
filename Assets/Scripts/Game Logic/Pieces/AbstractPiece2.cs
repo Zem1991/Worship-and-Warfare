@@ -14,7 +14,7 @@ public abstract class AbstractPiece2 : MonoBehaviour
     [SerializeField] protected bool canBeControlled;
     [SerializeField] protected Player controller;
 
-    [Header("References")]
+    [Header("Tile and Piece references")]
     public AbstractTile currentTile;
     public AbstractTile nextTile;
     public AbstractTile targetTile;
@@ -102,6 +102,4 @@ public abstract class AbstractPiece2 : MonoBehaviour
     */
 
     public abstract void AP2_UpdateAnimatorParameters();
-    //public abstract void AP2_TileInteraction();
-    //public abstract void AP2_PieceInteraction();
 }
