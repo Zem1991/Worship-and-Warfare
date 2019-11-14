@@ -11,15 +11,17 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, IMovablePi
     public AbstractCombatPiece2 retaliationTarget;
     public Projectile projectile;
 
-    protected override void Awake()
+    protected override void ManualAwake()
     {
-        base.Awake();
+        base.ManualAwake();
 
         pieceMovement = GetComponent<PieceMovement2>();
     }
 
     public void Initialize(Player owner, CombatPieceStats cps, int spawnId, bool onDefenderSide)
     {
+        ManualAwake();
+
         CombatPieceStats prefabCPS = AllPrefabs.Instance.combatPieceStats;
 
         canBeOwned = true;
@@ -38,7 +40,7 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, IMovablePi
         IMP_ResetMovementPoints();
     }
 
-    public override void AP2_UpdateAnimatorParameters()
+    protected override void AP2_UpdateAnimatorParameters()
     {
         base.AP2_UpdateAnimatorParameters();
 
@@ -129,31 +131,31 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, IMovablePi
 
     public override void ICP_Stop()
     {
-        pieceMovement.Stop();
+        StartCoroutine(pieceMovement.Stop());
     }
 
-    public override void ICP_InteractWithTargetTile(bool canPathfind)
+    public override void ICP_InteractWithTargetTile(AbstractTile targetTile, bool canPathfind)
     {
         if (canPathfind)
         {
-            if (pieceMovement.HasPath(targetTile)) pieceMovement.Movement();
+            if (pieceMovement.HasPath(targetTile)) StartCoroutine(pieceMovement.Movement());
             else CombatManager.Instance.pieceHandler.Pathfind(this, targetTile as CombatTile);
         }
         else
         {
             CombatManager.Instance.pieceHandler.Pathfind(this, targetTile as CombatTile);
-            if (pieceMovement.HasPath(targetTile)) pieceMovement.Movement();
+            if (pieceMovement.HasPath(targetTile)) StartCoroutine(pieceMovement.Movement());
         }
     }
 
-    public override void ICP_InteractWithTargetPiece(bool canPathfind)
-    {
-        //targetTile = aTile;
-        //targetPiece = aTile.occupantPiece;
-        //if (targetPiece) AP2_PieceInteraction();
-        //else pieceMovement.Movement();
-        throw new System.NotImplementedException();
-    }
+    //public override void ICP_InteractWithTargetPiece(bool canPathfind)
+    //{
+    //    //targetTile = aTile;
+    //    //targetPiece = aTile.occupantPiece;
+    //    //if (targetPiece) AP2_PieceInteraction();
+    //    //else pieceMovement.Movement();
+    //    throw new System.NotImplementedException();
+    //}
 
     public virtual void IMP_ResetMovementPoints()
     {

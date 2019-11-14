@@ -1611,7 +1611,7 @@
     {
       "mapPosition": [
         2,
-        2
+        15//2
       ],
       "pickupType": "ARTIFACT",
       "artifactId": 9

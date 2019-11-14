@@ -71,4 +71,9 @@ public abstract class AbstractTile : MonoBehaviour
         if (t == fr) return OctoDirXZ.FRONT_RIGHT;
         return OctoDirXZ.NONE;
     }
+
+    public bool IsNeighbour(AbstractTile t)
+    {
+        return GetNeighbourDirection(t) != OctoDirXZ.NONE;
+    }
 }

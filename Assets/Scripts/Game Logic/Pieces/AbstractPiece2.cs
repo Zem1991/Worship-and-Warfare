@@ -20,7 +20,7 @@ public abstract class AbstractPiece2 : MonoBehaviour
     public AbstractTile targetTile;
     public AbstractPiece2 targetPiece;
 
-    protected virtual void Awake()
+    protected virtual void ManualAwake()
     {
         animator = GetComponentInChildren<Animator>();
 
@@ -42,6 +42,7 @@ public abstract class AbstractPiece2 : MonoBehaviour
 
     public AnimatorStateInfo GetAnimatorStateInfo()
     {
+        //AP2_UpdateAnimatorParameters();
         return animator.GetCurrentAnimatorStateInfo(0);
     }
 
@@ -101,5 +102,5 @@ public abstract class AbstractPiece2 : MonoBehaviour
     *   END:        Controller handling
     */
 
-    public abstract void AP2_UpdateAnimatorParameters();
+    protected abstract void AP2_UpdateAnimatorParameters();
 }

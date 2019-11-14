@@ -62,7 +62,6 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         else
         {
             GameManager.Instance.GoToCombat(sender, receiver);
-            //StartCoroutine(GameManager.Instance.GoToCombat(sender, receiver));
         }
     }
 

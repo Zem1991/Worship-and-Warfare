@@ -26,7 +26,7 @@ public class PieceMovement2 : MonoBehaviour
     public int movementPointsMax;
     public int pathTotalCost;
     [SerializeField] private List<PathNode> path = new List<PathNode>();
-    [SerializeField] private bool inMovement;
+    [SerializeField] private bool inActualMovement;
     public bool stopWasCalled;
     public Vector3 nextPos;
     public Vector3 direction;
@@ -125,12 +125,17 @@ public class PieceMovement2 : MonoBehaviour
     */
     public IEnumerator Movement()
     {
+        ICommandablePiece commandablePiece = piece as ICommandablePiece;
+        if (!commandablePiece.ICP_IsIdle()) yield break;
+
+        bool animateStartAndEnd = piece as AbstractCombatPiece2;
+
         if (piece.currentTile != piece.targetTile)
         {
             stateMove = true;
-            yield return StartCoroutine(MovementStart());
+            if (animateStartAndEnd) yield return StartCoroutine(MovementStart());
             yield return StartCoroutine(MovementGoing());
-            yield return StartCoroutine(MovementEnd());
+            if (animateStartAndEnd) yield return StartCoroutine(MovementEnd());
             stateMove = false;
         }
     }
@@ -138,23 +143,22 @@ public class PieceMovement2 : MonoBehaviour
     {
         movementStart = true;
         AnimatorStateInfo state = piece.GetAnimatorStateInfo();
-        while (state.IsName("Movement start")) yield return null;
+        while (!state.IsName("Movement start")) yield return null;
+        while (state.normalizedTime < 1) yield return null;
         movementStart = false;
     }
     private IEnumerator MovementGoing()
     {
         movementGoing = true;
-        inMovement = true;
-        StartCoroutine(ActualMovement());
-        AnimatorStateInfo state = piece.GetAnimatorStateInfo();
-        while (state.IsName("Movement start")) yield return null;
+        yield return StartCoroutine(ActualMovement());
         movementGoing = false;
     }
     private IEnumerator MovementEnd()
     {
         movementEnd = true;
         AnimatorStateInfo state = piece.GetAnimatorStateInfo();
-        while (state.IsName("Movement end")) yield return null;
+        while (!state.IsName("Movement end")) yield return null;
+        while (state.normalizedTime < 1) yield return null;
         movementEnd = false;
     }
     public IEnumerator Stop()
@@ -171,7 +175,8 @@ public class PieceMovement2 : MonoBehaviour
     */
     private IEnumerator ActualMovement()
     {
-        while (inMovement)
+        inActualMovement = true;
+        while (inActualMovement)
         {
             Vector3 currentPos = transform.position;
             bool doStop = false;
@@ -222,7 +227,7 @@ public class PieceMovement2 : MonoBehaviour
 
             if (doStop)
             {
-                inMovement = false;
+                inActualMovement = false;
                 nextPos = Vector3.zero;
                 velocity = Vector3.zero;
             }
@@ -239,7 +244,7 @@ public class PieceMovement2 : MonoBehaviour
                 //piece.AP2_PieceInteraction(); //TODO confirm that this is not requried anymore
             }
 
-            if (inMovement)
+            if (inActualMovement)
             {
                 direction = (nextPos - currentPos).normalized;
                 velocity = direction * movementSpeed;

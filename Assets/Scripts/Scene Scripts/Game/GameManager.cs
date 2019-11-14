@@ -98,9 +98,10 @@ public class GameManager : AbstractSingleton<GameManager>
         return PauseUnpause();
     }
 
-    public void PerformExchange(AbstractFieldPiece2 sender, AbstractFieldPiece2 receiver)
+    public IEnumerator PerformExchange(AbstractFieldPiece2 sender, AbstractFieldPiece2 receiver)
     {
         Debug.Log("PIECES ARE EXCHANGING STUFF");
+        yield return null;
     }
 
     public void GoToTown(AbstractFieldPiece2 piece, Town town)
@@ -132,8 +133,6 @@ public class GameManager : AbstractSingleton<GameManager>
         FieldTile fieldTile = defender.currentTile as FieldTile;
 
         CombatManager.Instance.BootCombat(attacker, defender, fieldTile.db_tileset_lowerLand);
-        //IEnumerator coroutine = CombatManager.Instance.BootCombat(attacker, defender, fieldTile.db_tileset_lowerLand);
-        //yield return StartCoroutine(coroutine);
 
         CombatSC.Instance.ShowObjects();
     }
@@ -276,6 +275,7 @@ public class GameManager : AbstractSingleton<GameManager>
     {
         while (!(DatabaseSC.Instance && FieldSC.Instance && TownSC.Instance && CombatSC.Instance))
         {
+            Debug.Log("Not all Scene Controllers are ready!");
             yield return null;
         }
 

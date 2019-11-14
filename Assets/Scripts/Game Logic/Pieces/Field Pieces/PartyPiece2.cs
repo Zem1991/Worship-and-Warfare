@@ -17,9 +17,9 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
     public float anim_directionX;
     public float anim_directionZ = -1;
 
-    protected override void Awake()
+    protected override void ManualAwake()
     {
-        base.Awake();
+        base.ManualAwake();
 
         canBeOwned = true;
         canBeControlled = true;
@@ -60,7 +60,7 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
         }
     }
 
-    public override void AP2_UpdateAnimatorParameters()
+    protected override void AP2_UpdateAnimatorParameters()
     {
         anim_movement = pieceMovement.stateMove;
         animator.SetBool("Movement", anim_movement);
@@ -88,37 +88,35 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
 
     public bool ICP_IsIdle()
     {
-        return !pieceMovement.stateMove;
+        return pieceMovement.IsIdle();
     }
 
     public void ICP_Stop()
     {
-        pieceMovement.Stop();
+        StartCoroutine(pieceMovement.Stop());
     }
 
     public void ICP_InteractWith(AbstractTile tile, bool canPathfind)
     {
-        targetTile = tile;
-        targetPiece = tile.occupantPiece;
-
-        if (targetPiece) ICP_InteractWithTargetPiece(canPathfind);
-        else ICP_InteractWithTargetTile(canPathfind);
+        if (!tile) return;
+        if (tile.occupantPiece) ICP_InteractWithTargetPiece(tile.occupantPiece, canPathfind);
+        else ICP_InteractWithTargetTile(tile, canPathfind);
     }
 
-    public virtual void ICP_InteractWithTargetTile(bool canPathfind)
+    public virtual void ICP_InteractWithTargetTile(AbstractTile targetTile, bool canPathfind)
     {
         if (canPathfind)
         {
-            if (pieceMovement.HasPath(targetTile)) pieceMovement.Movement();
+            if (pieceMovement.HasPath(targetTile)) StartCoroutine(pieceMovement.Movement());
             else FieldManager.Instance.pieceHandler.Pathfind(this, targetTile as FieldTile);
         }
         else
         {
-            if (pieceMovement.HasPath()) pieceMovement.Movement();
+            if (pieceMovement.HasPath()) StartCoroutine(pieceMovement.Movement());
         }
     }
 
-    public virtual void ICP_InteractWithTargetPiece(bool canPathfind)
+    public virtual void ICP_InteractWithTargetPiece(AbstractPiece2 targetPiece, bool canPathfind)
     {
         PartyPiece2 targetParty = targetPiece as PartyPiece2;
         PickupPiece2 targetPickup = targetPiece as PickupPiece2;

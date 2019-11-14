@@ -22,9 +22,9 @@ public abstract class AbstractCombatPiece2 : AbstractPiece2, IStartTurnEndTurn, 
     [Header("Stats")]
     public CombatPieceStats combatPieceStats;
 
-    protected override void Awake()
+    protected override void ManualAwake()
     {
-        base.Awake();
+        base.ManualAwake();
 
         canBeOwned = true;
         canBeControlled = true;
@@ -32,7 +32,7 @@ public abstract class AbstractCombatPiece2 : AbstractPiece2, IStartTurnEndTurn, 
         pieceCombatActions = GetComponent<PieceCombatActions2>();
     }
 
-    public override void AP2_UpdateAnimatorParameters()
+    protected override void AP2_UpdateAnimatorParameters()
     {
         animator.SetBool("Hurt", stateHurt);
         animator.SetBool("Dead", stateDead);
@@ -103,23 +103,21 @@ public abstract class AbstractCombatPiece2 : AbstractPiece2, IStartTurnEndTurn, 
 
     public virtual void ICP_InteractWith(AbstractTile tile, bool canPathfind)
     {
-        targetTile = tile;
-        targetPiece = tile.occupantPiece;
-
-        if (targetPiece) ICP_InteractWithTargetPiece(canPathfind);
-        else ICP_InteractWithTargetTile(canPathfind);
+        if (!tile) return;
+        if (tile.occupantPiece) ICP_InteractWithTargetPiece(tile.occupantPiece, canPathfind);
+        else ICP_InteractWithTargetTile(tile, canPathfind);
     }
 
-    public virtual void ICP_InteractWithTargetTile(bool canPathfind)
+    public virtual void ICP_InteractWithTargetTile(AbstractTile targetTile, bool canPathfind)
     {
         throw new System.NotImplementedException();
     }
 
-    public virtual void ICP_InteractWithTargetPiece(bool canPathfind)
+    public virtual void ICP_InteractWithTargetPiece(AbstractPiece2 targetPiece, bool canPathfind)
     {
         if (GetOwner() != targetPiece.GetOwner())
         {
-            pieceCombatActions.Attack(combatPieceStats.attack_primary);
+            StartCoroutine(pieceCombatActions.Attack(combatPieceStats.attack_primary));
         }
         else
         {

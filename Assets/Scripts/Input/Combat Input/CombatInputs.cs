@@ -100,6 +100,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
                 EndTurn();
             }
         }
+
         MovementHighlights();
     }
 

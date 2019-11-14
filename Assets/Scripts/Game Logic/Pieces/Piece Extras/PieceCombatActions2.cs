@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using ZemDirections;
 
 [RequireComponent(typeof(AbstractCombatantPiece2))]
 public class PieceCombatActions2 : MonoBehaviour
 {
-    private AbstractCombatantPiece2 piece;
+    private AbstractCombatPiece2 piece;
 
     [Header("Settings")]
     public bool canWait;
@@ -68,24 +67,25 @@ public class PieceCombatActions2 : MonoBehaviour
     */
     public IEnumerator Attack(AttackStats attack)
     {
-        AbstractCombatPiece2 target = piece.targetPiece as AbstractCombatPiece2;
+        AbstractCombatPiece2 targetasCombatPiece = piece.targetPiece as AbstractCombatPiece2;
+        AbstractCombatantPiece2 pieceAsCombatant = piece as AbstractCombatantPiece2;
 
         stateAttack = true;
         if (attack.isRanged && EvaluateRangedAttack())
         {
-            yield return StartCoroutine(AttackRanged(attack, target));
+            yield return StartCoroutine(AttackRanged(attack, targetasCombatPiece));
         }
         else
         {
-            PieceCombatActions2 targetCombatActions = target.pieceCombatActions;
-            AttackStats targetMeleeAttack = target.combatPieceStats.attack_primary;
+            PieceCombatActions2 targetCombatActions = targetasCombatPiece.pieceCombatActions;
+            AttackStats targetMeleeAttack = targetasCombatPiece.combatPieceStats.attack_primary;
 
-            if (piece.pieceMovement) yield return StartCoroutine(piece.pieceMovement.Movement());
+            if (pieceAsCombatant) yield return StartCoroutine(pieceAsCombatant.pieceMovement.Movement());
 
             bool willCounter = targetCombatActions.EvaluateCounter();
             if (willCounter) yield return StartCoroutine(targetCombatActions.Retaliate(targetMeleeAttack, piece));
 
-            yield return StartCoroutine(AttackMelee(attack, target));
+            yield return StartCoroutine(AttackMelee(attack, targetasCombatPiece));
 
             bool willRetaliate = willCounter ? false : targetCombatActions.EvaluateRetaliation();
             if (willRetaliate) yield return StartCoroutine(targetCombatActions.Retaliate(targetMeleeAttack, piece));
@@ -146,8 +146,7 @@ public class PieceCombatActions2 : MonoBehaviour
     }
     public bool EvaluateRangedAttack()
     {
-        OctoDirXZ direction = piece.currentTile.GetNeighbourDirection(piece.targetTile);
-        bool condition = direction == OctoDirXZ.NONE;
+        bool condition = piece.currentTile.IsNeighbour(piece.targetTile);
         return condition;
     }
     /*

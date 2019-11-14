@@ -99,6 +99,7 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
 
             EndTurn();
         }
+
         MovementHighlights();
     }
 
@@ -241,6 +242,7 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
         if (pp)
         {
             movementHighlightsUpdateFromCommand = true;
+
             if (pp.pieceMovement.stateMove)
             {
                 pp.ICP_Stop();

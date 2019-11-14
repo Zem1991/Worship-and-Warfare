@@ -46,7 +46,7 @@ public class PickupPiece2 : AbstractFieldPiece2
         this.unitAmount = unitAmount;
     }
 
-    public override void AP2_UpdateAnimatorParameters()
+    protected override void AP2_UpdateAnimatorParameters()
     {
         //Nothing yet...
     }
