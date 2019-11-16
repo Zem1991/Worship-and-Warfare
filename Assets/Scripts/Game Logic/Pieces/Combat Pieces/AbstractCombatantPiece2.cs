@@ -18,24 +18,9 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, IMovablePi
         pieceMovement = GetComponent<PieceMovement2>();
     }
 
-    public void Initialize(Player owner, CombatPieceStats cps, int spawnId, bool onDefenderSide)
+    public override void Initialize(Player owner, CombatPieceStats cps, int spawnId, bool onDefenderSide)
     {
-        ManualAwake();
-
-        CombatPieceStats prefabCPS = AllPrefabs.Instance.combatPieceStats;
-
-        canBeOwned = true;
-        canBeControlled = true;
-
-        this.owner = owner;
-        this.spawnId = spawnId;
-        this.onDefenderSide = onDefenderSide;
-
-        combatPieceStats = Instantiate(prefabCPS, transform);
-        combatPieceStats.Initialize(cps);
-
-        FlipSpriteHorizontally(onDefenderSide);
-        SetFlagSprite(owner.dbColor.imgFlag);
+        base.Initialize(owner, cps, spawnId, onDefenderSide);
 
         IMP_ResetMovementPoints();
     }
@@ -148,14 +133,15 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, IMovablePi
         }
     }
 
-    //public override void ICP_InteractWithTargetPiece(bool canPathfind)
-    //{
-    //    //targetTile = aTile;
-    //    //targetPiece = aTile.occupantPiece;
-    //    //if (targetPiece) AP2_PieceInteraction();
-    //    //else pieceMovement.Movement();
-    //    throw new System.NotImplementedException();
-    //}
+    public override void ICP_InteractWithTargetPiece(AbstractPiece2 targetPiece, bool canPathfind)
+    {
+        base.ICP_InteractWithTargetPiece(targetPiece, canPathfind);
+        //targetTile = aTile;
+        //targetPiece = aTile.occupantPiece;
+        //if (targetPiece) AP2_PieceInteraction();
+        //else pieceMovement.Movement();
+        //throw new System.NotImplementedException();
+    }
 
     public virtual void IMP_ResetMovementPoints()
     {

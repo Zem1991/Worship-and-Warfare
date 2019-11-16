@@ -40,10 +40,19 @@ public abstract class AbstractPiece2 : MonoBehaviour
         animator.runtimeAnimatorController = aoc;
     }
 
-    public AnimatorStateInfo GetAnimatorStateInfo()
+    public IEnumerator WaitForAnimationStartAndEnd(string animationName)
     {
-        //AP2_UpdateAnimatorParameters();
-        return animator.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+        while (!state.IsName(animationName))
+        {
+            yield return null;
+            state = animator.GetCurrentAnimatorStateInfo(0);
+        }
+        while (state.normalizedTime < 1)
+        {
+            yield return null;
+            state = animator.GetCurrentAnimatorStateInfo(0);
+        }
     }
 
     public void FlipSpriteHorizontally(bool flip)

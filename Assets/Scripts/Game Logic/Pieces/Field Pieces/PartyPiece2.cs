@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(PieceMovement2))]
 public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandablePiece, IMovablePiece
 {
+    [Header("Other references")]
     public PieceMovement2 pieceMovement;
 
     [Header("Party contets")]
@@ -29,8 +30,7 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
 
     public void Initialize(Player owner, Hero hero, List<Unit> units)
     {
-        canBeOwned = true;
-        canBeControlled = true;
+        ManualAwake();
 
         base.owner = owner;
         partyHero = hero;
@@ -99,7 +99,8 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
     public void ICP_InteractWith(AbstractTile tile, bool canPathfind)
     {
         if (!tile) return;
-        if (tile.occupantPiece) ICP_InteractWithTargetPiece(tile.occupantPiece, canPathfind);
+        targetPiece = tile.occupantPiece;
+        if (targetPiece) ICP_InteractWithTargetPiece(tile.occupantPiece, canPathfind);
         else ICP_InteractWithTargetTile(tile, canPathfind);
     }
 
@@ -118,18 +119,27 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
 
     public virtual void ICP_InteractWithTargetPiece(AbstractPiece2 targetPiece, bool canPathfind)
     {
-        PartyPiece2 targetParty = targetPiece as PartyPiece2;
-        PickupPiece2 targetPickup = targetPiece as PickupPiece2;
+        //TODO consider making an PieceFieldActions2 class to handle each interaction.
+        bool neighbours = currentTile.IsNeighbour(targetPiece.currentTile);
+        if (neighbours)
+        {
+            PartyPiece2 targetParty = targetPiece as PartyPiece2;
+            PickupPiece2 targetPickup = targetPiece as PickupPiece2;
 
-        if (targetParty) FieldManager.Instance.PartiesAreInteracting(this, targetParty);
-        else if (targetPickup) FieldManager.Instance.PartyFoundPickup(this, targetPickup);
+            if (targetParty) FieldManager.Instance.PartiesAreInteracting(this, targetParty);
+            else if (targetPickup) FieldManager.Instance.PartyFoundPickup(this, targetPickup);
+        }
+        else
+        {
+            ICP_InteractWithTargetTile(targetPiece.currentTile, canPathfind);
+        }
     }
 
     public void IMP_ResetMovementPoints()
     {
         //TODO ACTUAL CALCULATIONS
         if (!pieceMovement) pieceMovement = GetComponent<PieceMovement2>();
-        int movementPointsMax = 1000;
+        int movementPointsMax = 1500;
         pieceMovement.ResetMovementPoints(movementPointsMax);
     }
 }

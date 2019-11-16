@@ -11,23 +11,23 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
     public Sprite[] movementArrowSprites = new Sprite[8];
     public Sprite[] movementMarkerSprites = new Sprite[2];
 
-    [Header("Cursor Data")]
+    [Header("Cursor data")]
     public InputHighlight cursorHighlight;
     public Vector2Int cursorPos;
     public FieldTile cursorTile;
     public AbstractFieldPiece2 cursorPiece;
 
-    [Header("Selection Data")]
+    [Header("Selection data")]
     public InputHighlight selectionHighlight;
     public Vector2Int selectionPos;
     public FieldTile selectionTile;
     public AbstractFieldPiece2 selectionPiece;
+
+    [Header("Interaction data")]
     public bool canCommandSelectedPiece;
+    public AbstractFieldPiece2 lastHighlightedPiece;
 
     [Header("Movement Highlights")]
-    public bool movementHighlightsUpdateFromCommand;
-    public bool movementHighlightsUpdateOnPieceStop;
-    public bool movementHighlightsUpdateOnMethodCall;
     public List<InputHighlight> movementHighlights = new List<InputHighlight>();
 
     [Header("Required Objects")]
@@ -166,18 +166,13 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
                 cursorHighlight.gameObject.SetActive(false);
             }
         }
-        else
-        {
-            cursorHighlight.gameObject.SetActive(false);
-        }
     }
 
     private void SelectionHighlight()
     {
-        if (recorder.selectionDown &&
-            IsCursorValid())
+        if (recorder.selectionDown && IsCursorValid())
         {
-            movementHighlightsUpdateFromCommand = true;
+            lastHighlightedPiece = null;
 
             if (true)   //(im.cursorOnPlayArea)
             {
@@ -186,12 +181,6 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
                 selectionPiece = cursorPiece;
 
                 selectionHighlight.transform.position = cursorHighlight.transform.position;
-            }
-            else
-            {
-                selectionPos = Vector2Int.one * -1;
-                selectionTile = null;
-                selectionPiece = null;
             }
         }
 
@@ -204,11 +193,6 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
             PartyPiece2 pp = selectionPiece as PartyPiece2;
             if (pp)
             {
-                //if (pp.pieceMovement.stateMove)
-                //{
-
-                //}
-
                 selectionHighlight.gameObject.SetActive(true);
                 canCommandSelectedPiece = pp.GetOwner() == PlayerManager.Instance.localPlayer;
             }
@@ -226,11 +210,10 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
 
     private void SelectionCommand()
     {
-        if (recorder.commandDown &&
-            IsCursorValid())
-        {
-            MakeSelectedPieceInteract(true);
-        }
+        if (!recorder.commandDown || !IsCursorValid()) return;
+
+        lastHighlightedPiece = null;
+        MakeSelectedPieceInteract(true);
     }
 
     public void MakeSelectedPieceInteract(bool canPathfind)
@@ -241,16 +224,14 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
         PartyPiece2 pp = selectionPiece as PartyPiece2;
         if (pp)
         {
-            movementHighlightsUpdateFromCommand = true;
-
             if (pp.pieceMovement.stateMove)
             {
                 pp.ICP_Stop();
-                movementHighlightsUpdateOnPieceStop = true;
                 return;
             }
             pp.ICP_InteractWith(cursorTile, canPathfind);
         }
+        lastHighlightedPiece = null;
     }
 
     private void StopOrResumeCommand()
@@ -277,89 +258,26 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
         movementHighlights.Clear();
     }
 
-    public void CreateMovementHighlights()
+    public void ResetHighlights()
     {
-        movementHighlightsUpdateOnMethodCall = true;
+        lastHighlightedPiece = null;
     }
 
     private void MovementHighlights()
     {
-        bool clearThenReturn = false;
+        if (selectionPiece && selectionPiece == lastHighlightedPiece) return;
+
+        bool dontCreateHighlights = false;
+
+        if (!canCommandSelectedPiece) dontCreateHighlights = true;
 
         PartyPiece2 pp = selectionPiece as PartyPiece2;
-        if (!pp)
-        {
-            if (movementHighlights.Count > 0) clearThenReturn = true;
-            else return;
-        }
-        else
-        {
-            bool condition1 = movementHighlightsUpdateFromCommand;
-            bool condition2 = movementHighlightsUpdateOnPieceStop && !pp.pieceMovement.stateMove;
-            bool condition3 = movementHighlightsUpdateOnMethodCall;
-            if (!condition1 &&
-                !condition2 &&
-                !condition3) return;
-        }
+        if (!pp || !pp.ICP_IsIdle()) dontCreateHighlights = true;
 
         RemoveMovementHighlights();
-        if (clearThenReturn) return;
+        if (dontCreateHighlights) return;
 
-        List<PathNode> path = pp.pieceMovement.GetPath();
-        if (canCommandSelectedPiece &&
-            pp.ICP_IsIdle() &&
-            path != null)
-        {
-            InputManager im = InputManager.Instance;
-            InputHighlight prefabHighlight = AllPrefabs.Instance.inputHighlight;
-
-            movementHighlights = new List<InputHighlight>();
-            int movePoints = pp.pieceMovement.movementPointsCurrent;
-            int moveCost = 0;
-            Color moveColor;
-
-            int totalNodes = path.Count;
-            for (int i = -1; i < totalNodes - 1; i++)
-            {
-                int nextI = i + 1;
-
-                FieldTile currentTile = (i == -1 ? selectionPiece.currentTile : path[i].tile) as FieldTile;
-                FieldTile nextTile = path[nextI].tile as FieldTile;
-
-                moveCost += path[nextI].moveCost;
-                moveColor = moveCost > movePoints ? im.highlightDenied : im.highlightAllowed;
-
-                Vector3 fromPos = currentTile.transform.position;
-                Vector3 toPos = nextTile.transform.position;
-
-                Vector3 pos = Vector3.Lerp(fromPos, toPos, 0.5F);
-                Quaternion rot = Quaternion.identity;
-                OctoDirXZ dir = currentTile.GetNeighbourDirection(nextTile);
-
-                nextI++;
-
-                InputHighlight step = Instantiate(prefabHighlight, pos, rot, transform);
-                movementHighlights.Add(step);
-                step.name = "Step #" + nextI;
-                step.ChangeSprite(movementArrowSprites[(int)dir], moveColor);
-
-                InputHighlight marker = Instantiate(prefabHighlight, toPos, rot, transform);
-                movementHighlights.Add(marker);
-                if (nextI == totalNodes)
-                {
-                    marker.name = "Final Marker";
-                    marker.ChangeSprite(movementMarkerSprites[1], moveColor);
-                }
-                else
-                {
-                    marker.name = "Marker #" + nextI;
-                    marker.ChangeSprite(movementMarkerSprites[0], moveColor);
-                }
-            }
-        }
-
-        movementHighlightsUpdateFromCommand = false;
-        movementHighlightsUpdateOnPieceStop = false;
-        movementHighlightsUpdateOnMethodCall = false;
+        movementHighlights = InputHelper.MakeMovementHighlights(pp, pp.pieceMovement, transform, movementArrowSprites, movementMarkerSprites);
+        lastHighlightedPiece = selectionPiece;
     }
 }

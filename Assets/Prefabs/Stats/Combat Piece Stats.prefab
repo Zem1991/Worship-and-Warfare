@@ -47,6 +47,11 @@ MonoBehaviour:
   attack_primary: {fileID: 0}
   armor_physical: 0
   armor_magical: 0
+  canWait: 1
+  canDefend: 1
+  canRetaliate: 1
+  canCounter: 0
+  retaliationsMax: 1
   hitPoints_current: 0
   hitPoints_maximum: 0
   initiative: 0

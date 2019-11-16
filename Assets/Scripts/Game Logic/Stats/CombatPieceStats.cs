@@ -9,11 +9,19 @@ public class CombatPieceStats : MonoBehaviour
     public CostStats costStats;
 
     [Header("Offense")]
-    public AttackStats attack_primary;
+    public AttackStats attack_melee;
+    public AttackStats attack_ranged;
 
     [Header("Defense")]
     public int armor_physical;
     public int armor_magical;
+
+    [Header("Combat actions settings")]
+    public bool canWait;
+    public bool canDefend;
+    public bool canRetaliate;
+    public bool canCounter;
+    public int retaliationsMax;
 
     [Header("Health")]
     public int hitPoints_current;
@@ -42,8 +50,16 @@ public class CombatPieceStats : MonoBehaviour
         costStats = Instantiate(prefabCS, transform);
         costStats.Initialize(); //TODO add data
 
-        attack_primary = Instantiate(prefabAS, transform);
-        attack_primary.Initialize(combatPieceStats.attack_primary);
+        attack_melee = Instantiate(prefabAS, transform);
+        attack_melee.Initialize(combatPieceStats.attack_melee);
+        attack_melee.isRanged = false;
+
+        if (combatPieceStats.attack_ranged)
+        {
+            attack_ranged = Instantiate(prefabAS, transform);
+            attack_ranged.Initialize(combatPieceStats.attack_ranged);
+            attack_ranged.isRanged = true;
+        }
     }
 
     public bool TakeDamage(int amount)

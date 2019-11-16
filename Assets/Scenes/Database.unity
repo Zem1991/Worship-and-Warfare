@@ -1242,6 +1242,16 @@ PrefabInstance:
       propertyPath: hitPoints_maximum
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 8876443332866185410, guid: 18bc3b7f582d292458b88a4307346f10,
+        type: 3}
+      propertyPath: attack_melee
+      value: 
+      objectReference: {fileID: 1344694341}
+    - target: {fileID: 8876443332866185410, guid: 18bc3b7f582d292458b88a4307346f10,
+        type: 3}
+      propertyPath: attack_ranged
+      value: 
+      objectReference: {fileID: 1344694341}
     - target: {fileID: 8876443332866185411, guid: 18bc3b7f582d292458b88a4307346f10,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1507,7 +1517,7 @@ PrefabInstance:
     - target: {fileID: 2703027630738221900, guid: c29de37e6be59774fb249ec8c5830944,
         type: 3}
       propertyPath: m_Name
-      value: Attack Stats
+      value: Ranged Attack Stats
       objectReference: {fileID: 0}
     - target: {fileID: 2703027630738221901, guid: c29de37e6be59774fb249ec8c5830944,
         type: 3}
@@ -1726,6 +1736,11 @@ PrefabInstance:
       propertyPath: movementRange
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8876443332866185410, guid: 18bc3b7f582d292458b88a4307346f10,
+        type: 3}
+      propertyPath: attack_melee
+      value: 
+      objectReference: {fileID: 1691610490}
     - target: {fileID: 8876443332866185411, guid: 18bc3b7f582d292458b88a4307346f10,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2239,7 +2254,7 @@ PrefabInstance:
     - target: {fileID: 2703027630738221900, guid: c29de37e6be59774fb249ec8c5830944,
         type: 3}
       propertyPath: m_Name
-      value: Attack Stats
+      value: Melee Attack Stats
       objectReference: {fileID: 0}
     - target: {fileID: 2703027630738221901, guid: c29de37e6be59774fb249ec8c5830944,
         type: 3}
@@ -2330,7 +2345,7 @@ PrefabInstance:
     - target: {fileID: 2703027630738221900, guid: c29de37e6be59774fb249ec8c5830944,
         type: 3}
       propertyPath: m_Name
-      value: Attack Stats
+      value: Ranged Attack Stats
       objectReference: {fileID: 0}
     - target: {fileID: 2703027630738221901, guid: c29de37e6be59774fb249ec8c5830944,
         type: 3}
@@ -2767,6 +2782,16 @@ PrefabInstance:
       propertyPath: attack_primary
       value: 
       objectReference: {fileID: 1021179339}
+    - target: {fileID: 8876443332866185410, guid: 18bc3b7f582d292458b88a4307346f10,
+        type: 3}
+      propertyPath: attack_melee
+      value: 
+      objectReference: {fileID: 1021179339}
+    - target: {fileID: 8876443332866185410, guid: 18bc3b7f582d292458b88a4307346f10,
+        type: 3}
+      propertyPath: attack_ranged
+      value: 
+      objectReference: {fileID: 1021179339}
     - target: {fileID: 8876443332866185411, guid: 18bc3b7f582d292458b88a4307346f10,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3101,7 +3126,7 @@ PrefabInstance:
     - target: {fileID: 2703027630738221900, guid: c29de37e6be59774fb249ec8c5830944,
         type: 3}
       propertyPath: m_Name
-      value: Attack Stats
+      value: Melee Attack Stats
       objectReference: {fileID: 0}
     - target: {fileID: 2703027630738221901, guid: c29de37e6be59774fb249ec8c5830944,
         type: 3}
@@ -3265,6 +3290,16 @@ PrefabInstance:
     - target: {fileID: 8876443332866185410, guid: 18bc3b7f582d292458b88a4307346f10,
         type: 3}
       propertyPath: attack_primary
+      value: 
+      objectReference: {fileID: 1313988443}
+    - target: {fileID: 8876443332866185410, guid: 18bc3b7f582d292458b88a4307346f10,
+        type: 3}
+      propertyPath: attack_melee
+      value: 
+      objectReference: {fileID: 1313988443}
+    - target: {fileID: 8876443332866185410, guid: 18bc3b7f582d292458b88a4307346f10,
+        type: 3}
+      propertyPath: attack_ranged
       value: 
       objectReference: {fileID: 1313988443}
     - target: {fileID: 8876443332866185411, guid: 18bc3b7f582d292458b88a4307346f10,

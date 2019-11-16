@@ -26,7 +26,6 @@ public class PieceCombatActions2 : MonoBehaviour
 
     [Header("Parameters")]
     public int retaliations;
-    public int retaliationsMax;
 
     [Header("References")]
     public Projectile projectile;
@@ -65,30 +64,38 @@ public class PieceCombatActions2 : MonoBehaviour
     /*
     *   BEGIN:      Attack
     */
-    public IEnumerator Attack(AttackStats attack)
+    public IEnumerator Attack()
     {
-        AbstractCombatPiece2 targetasCombatPiece = piece.targetPiece as AbstractCombatPiece2;
-        AbstractCombatantPiece2 pieceAsCombatant = piece as AbstractCombatantPiece2;
+        AttackStats attack = EvaluateRangedAttack() ? piece.combatPieceStats.attack_ranged : piece.combatPieceStats.attack_melee;
+        AbstractCombatPiece2 targetAsCombatPiece = piece.targetPiece as AbstractCombatPiece2;
 
         stateAttack = true;
-        if (attack.isRanged && EvaluateRangedAttack())
+        if (attack.isRanged)
         {
-            yield return StartCoroutine(AttackRanged(attack, targetasCombatPiece));
+            yield return StartCoroutine(AttackRanged(attack, targetAsCombatPiece));
         }
         else
         {
-            PieceCombatActions2 targetCombatActions = targetasCombatPiece.pieceCombatActions;
-            AttackStats targetMeleeAttack = targetasCombatPiece.combatPieceStats.attack_primary;
+            AbstractCombatantPiece2 pieceAsCombatant = piece as AbstractCombatantPiece2;
 
-            if (pieceAsCombatant) yield return StartCoroutine(pieceAsCombatant.pieceMovement.Movement());
+            if (pieceAsCombatant)
+            {
+                yield return StartCoroutine(pieceAsCombatant.pieceMovement.Movement());
+            }
+            else
+            {
+                yield break;
+            }
+
+            PieceCombatActions2 targetCombatActions = targetAsCombatPiece.pieceCombatActions;
 
             bool willCounter = targetCombatActions.EvaluateCounter();
-            if (willCounter) yield return StartCoroutine(targetCombatActions.Retaliate(targetMeleeAttack, piece));
+            if (willCounter) yield return StartCoroutine(targetCombatActions.Retaliate(piece));
 
-            yield return StartCoroutine(AttackMelee(attack, targetasCombatPiece));
+            yield return StartCoroutine(AttackMelee(attack, targetAsCombatPiece));
 
             bool willRetaliate = willCounter ? false : targetCombatActions.EvaluateRetaliation();
-            if (willRetaliate) yield return StartCoroutine(targetCombatActions.Retaliate(targetMeleeAttack, piece));
+            if (willRetaliate) yield return StartCoroutine(targetCombatActions.Retaliate(piece));
         }
         stateAttack = false;
         piece.ISTET_EndTurn();
@@ -123,13 +130,17 @@ public class PieceCombatActions2 : MonoBehaviour
     }
     private IEnumerator AttackStart(AttackStats attack)
     {
-        AnimatorStateInfo state = piece.GetAnimatorStateInfo();
-        while (state.IsName(attack.AttackType() + " start")) yield return null;
+        meleeAttackStart = true;
+        string stateName = attack.AttackType() + " start";
+        yield return StartCoroutine(piece.WaitForAnimationStartAndEnd(stateName));
+        meleeAttackStart = false;
     }
     private IEnumerator AttackEnd(AttackStats attack)
     {
-        AnimatorStateInfo state = piece.GetAnimatorStateInfo();
-        while (state.IsName(attack.AttackType() + " end")) yield return null;
+        meleeAttackEnd = true;
+        string stateName = attack.AttackType() + " end";
+        yield return StartCoroutine(piece.WaitForAnimationStartAndEnd(stateName));
+        meleeAttackEnd = false;
     }
     private int CalculateDamage(AttackStats attack, AbstractCombatPiece2 target)
     {
@@ -156,8 +167,10 @@ public class PieceCombatActions2 : MonoBehaviour
     /*
     *   BEGIN:      Counter and Retaliation
     */
-    public IEnumerator Retaliate(AttackStats attack, AbstractCombatPiece2 target)
+    public IEnumerator Retaliate(AbstractCombatPiece2 target)
     {
+        AttackStats attack = piece.combatPieceStats.attack_melee;
+
         stateRetaliation = true;
         retaliations--;
         yield return StartCoroutine(AttackMelee(attack, target));

@@ -142,9 +142,8 @@ public class PieceMovement2 : MonoBehaviour
     private IEnumerator MovementStart()
     {
         movementStart = true;
-        AnimatorStateInfo state = piece.GetAnimatorStateInfo();
-        while (!state.IsName("Movement start")) yield return null;
-        while (state.normalizedTime < 1) yield return null;
+        string stateName = "Movement start";
+        yield return StartCoroutine(piece.WaitForAnimationStartAndEnd(stateName));
         movementStart = false;
     }
     private IEnumerator MovementGoing()
@@ -156,9 +155,8 @@ public class PieceMovement2 : MonoBehaviour
     private IEnumerator MovementEnd()
     {
         movementEnd = true;
-        AnimatorStateInfo state = piece.GetAnimatorStateInfo();
-        while (!state.IsName("Movement end")) yield return null;
-        while (state.normalizedTime < 1) yield return null;
+        string stateName = "Movement end";
+        yield return StartCoroutine(piece.WaitForAnimationStartAndEnd(stateName));
         movementEnd = false;
     }
     public IEnumerator Stop()
@@ -191,11 +189,9 @@ public class PieceMovement2 : MonoBehaviour
                 piece.nextTile.occupantPiece = piece;
                 piece.currentTile = piece.nextTile;
                 piece.nextTile = null;
-
-                //piece.AP2_TileInteraction(); //TODO confirm that this is not requried anymore
             }
 
-            if (piece.nextTile == null)
+            if (!piece.nextTile)
             {
                 if (!stopWasCalled &&
                     path.Count > 0 &&
@@ -208,21 +204,26 @@ public class PieceMovement2 : MonoBehaviour
                     piece.nextTile = pNode.tile;
                     OctoDirXZ dirToLook = piece.currentTile.GetNeighbourDirection(piece.nextTile);
                     LookAtDirection(dirToLook);
-
-                    // If the next tile is the target tile, and the target tile has a piece over it,
-                    // then instead of performing one more move we perform an interaction between pieces.
-                    if (piece.nextTile == piece.targetTile)
-                    {
-                        //TODO check if we already have an targetPiece defined
-                        piece.targetPiece = piece.nextTile.occupantPiece;
-                        if (piece.targetPiece) doStop = true;
-                    }
                 }
                 else
                 {
                     stopWasCalled = false;
                     doStop = true;
                 }
+            }
+
+            if (piece.nextTile && piece.nextTile.occupantPiece)
+            {
+                //If the piece has a way to interact with other pieces, make it happen here.
+                ICommandablePiece commandablePiece = piece as ICommandablePiece;
+                if (commandablePiece != null)
+                {
+                    commandablePiece.ICP_InteractWithTargetPiece(piece.nextTile.occupantPiece, false);
+                }
+
+                //Doing this here prevents that a piece walks over the spot of another removed piece.
+                piece.nextTile = null;
+                doStop = true;
             }
 
             if (doStop)
@@ -234,14 +235,6 @@ public class PieceMovement2 : MonoBehaviour
             else
             {
                 nextPos = piece.nextTile.transform.position;
-            }
-
-            if (piece.targetPiece)
-            {
-                //Doing this here prevents that a piece walks over the spot of another removed piece.
-                piece.nextTile = null;
-
-                //piece.AP2_PieceInteraction(); //TODO confirm that this is not requried anymore
             }
 
             if (inActualMovement)

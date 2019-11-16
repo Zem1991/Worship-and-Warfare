@@ -6,13 +6,9 @@ public class InputHighlight : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
 
-    void Awake()
-    {
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-    }
-
     public void ChangeSprite(Sprite s, Color c)
     {
+        if (!spriteRenderer) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         spriteRenderer.sprite = s;
         spriteRenderer.color = c;
     }

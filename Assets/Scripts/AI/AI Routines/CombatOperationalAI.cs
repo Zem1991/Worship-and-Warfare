@@ -9,18 +9,18 @@ public class CombatOperationalAI : AbstractAIRoutine
     public AbstractCombatPiece2 currentUnit;
 
     [Header("Skill calculations")]
-    public int skill;
+    public int skillChance;
     //TODO skill item
     //TODO skill target
 
     [Header("Attack calculations")]
-    public int attack;
+    public int attackChance;
     public AbstractCombatPiece2 attackTarget;
 
     [Header("Other calculations")]
-    public int defend;
-    public int wait;
-    public int move;
+    public int defendChance;
+    public int waitChance;
+    public int moveChance;
 
     [Header("Decision made")]
     public int sortedValue;
@@ -54,12 +54,12 @@ public class CombatOperationalAI : AbstractAIRoutine
 
     private void CalculateSkillPriority()
     {
-        skill = 0;
+        skillChance = 0;
     }
 
     private void CalculateAttackPriority()
     {
-        attack = 0;
+        attackChance = 0;
         attackTarget = null;
 
         CombatPieceHandler cph = CombatManager.Instance.pieceHandler;
@@ -67,7 +67,7 @@ public class CombatOperationalAI : AbstractAIRoutine
         if (!cph.GetPieceList(aiPersonality.player, true, out unitList)) return;
         unitList = cph.GetActivePieces(unitList);
 
-        if (currentUnit.combatPieceStats.attack_primary.isRanged)
+        if (currentUnit.combatPieceStats.attack_ranged && currentUnit.pieceCombatActions.EvaluateRangedAttack())
         {
             Dictionary<AbstractCombatPiece2, float> mapUnitDistance = new Dictionary<AbstractCombatPiece2, float>();
             foreach (AbstractCombatPiece2 unit in unitList)
@@ -92,69 +92,69 @@ public class CombatOperationalAI : AbstractAIRoutine
             if (mapUnitPath.Count > 0) attackTarget = mapUnitPath.First().Key;
         }
 
-        if (attackTarget) attack = 100;   //for now, we can only attack the enemy
+        if (attackTarget) attackChance = 100;   //for now, we can only attack the enemy
     }
 
     private void CalculateDefendPriority()
     {
-        defend = 0;
+        defendChance = 0;
     }
 
     private void CalculateWaitPriority()
     {
-        wait = 0;
+        waitChance = 0;
     }
 
     private void CalculateMovePriority()
     {
-        move = 0;
+        moveChance = 0;
     }
 
     private void SelectAction()
     {
-        int allValues = skill + attack + defend + wait + move;
+        int allValues = skillChance + attackChance + defendChance + waitChance + moveChance;
         sortedValue = Random.Range(0, allValues);
         decision = CombatOperationalDecision.NONE;
 
         int bottom = 0;
-        int top = skill;
-        if (skill > 0 &&
+        int top = skillChance;
+        if (skillChance > 0 &&
             bottom <= sortedValue && sortedValue < top)
         {
             decision = CombatOperationalDecision.SKILL;
             return;
         }
 
-        bottom += skill;
-        top = attack;
-        if (attack > 0 &&
+        bottom += skillChance;
+        top = attackChance;
+        if (attackChance > 0 &&
             bottom <= sortedValue && sortedValue < top)
         {
             decision = CombatOperationalDecision.ATTACK;
             return;
         }
 
-        bottom += attack;
-        top = defend;
-        if (defend > 0 &&
+        bottom += attackChance;
+        top = defendChance;
+        if (defendChance > 0 &&
             bottom <= sortedValue && sortedValue < top)
         {
             decision = CombatOperationalDecision.DEFEND;
             return;
         }
 
-        bottom += defend;
-        top = wait;
-        if (wait > 0 &&
+        bottom += defendChance;
+        top = waitChance;
+        if (waitChance > 0 &&
             bottom <= sortedValue && sortedValue < top)
         {
             decision = CombatOperationalDecision.WAIT;
             return;
         }
 
-        bottom += wait;
-        top = move;
-        if (move > 0 &&
+        bottom += waitChance;
+        top = moveChance;
+        if (moveChance > 0 &&
             bottom <= sortedValue && sortedValue < top)
         {
             decision = CombatOperationalDecision.MOVE;
@@ -164,25 +164,25 @@ public class CombatOperationalAI : AbstractAIRoutine
 
     private void PerformAction()
     {
-        CombatManager cm = CombatManager.Instance;
-
+        IEnumerator coroutine = null;
         switch (decision)
         {
             case CombatOperationalDecision.SKILL:
                 break;
             case CombatOperationalDecision.ATTACK:
                 currentUnit.targetPiece = attackTarget;
-                currentUnit.pieceCombatActions.Attack(currentUnit.combatPieceStats.attack_primary);
+                coroutine = currentUnit.pieceCombatActions.Attack();
                 break;
             case CombatOperationalDecision.DEFEND:
+                coroutine = currentUnit.pieceCombatActions.Defend();
                 break;
             case CombatOperationalDecision.WAIT:
+                coroutine = currentUnit.pieceCombatActions.Wait();
                 break;
             case CombatOperationalDecision.MOVE:
                 break;
-            default:
-                cm.NextUnit();
-                break;
         }
+
+        StartCoroutine(coroutine);
     }
 }

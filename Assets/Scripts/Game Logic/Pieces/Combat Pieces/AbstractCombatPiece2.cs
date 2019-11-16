@@ -5,15 +5,12 @@ using UnityEngine;
 [RequireComponent(typeof(PieceCombatActions2))]
 public abstract class AbstractCombatPiece2 : AbstractPiece2, IStartTurnEndTurn, ICommandablePiece
 {
-    public PieceCombatActions2 pieceCombatActions { get; private set; }
+    [Header("Other references")]
+    public PieceCombatActions2 pieceCombatActions;
 
     [Header("Combat identification")]
     public int spawnId;
     public bool onDefenderSide;
-
-    [Header("Hit point management")]
-    public int hitPointsCurrent;
-    public int hitPointsMax;
 
     [Header("States")]
     public bool stateHurt;
@@ -32,6 +29,29 @@ public abstract class AbstractCombatPiece2 : AbstractPiece2, IStartTurnEndTurn, 
         pieceCombatActions = GetComponent<PieceCombatActions2>();
     }
 
+    public virtual void Initialize(Player owner, CombatPieceStats cps, int spawnId, bool onDefenderSide)
+    {
+        ManualAwake();
+
+        CombatPieceStats prefabCPS = AllPrefabs.Instance.combatPieceStats;
+
+        this.owner = owner;
+        this.spawnId = spawnId;
+        this.onDefenderSide = onDefenderSide;
+
+        combatPieceStats = Instantiate(prefabCPS, transform);
+        combatPieceStats.Initialize(cps);
+
+        pieceCombatActions.canWait = combatPieceStats.canWait;
+        pieceCombatActions.canDefend = combatPieceStats.canDefend;
+        pieceCombatActions.canRetaliate = combatPieceStats.canRetaliate;
+        pieceCombatActions.canCounter = combatPieceStats.canCounter;
+        pieceCombatActions.retaliations = combatPieceStats.retaliationsMax;
+
+        FlipSpriteHorizontally(onDefenderSide);
+        SetFlagSprite(owner.dbColor.imgFlag);
+    }
+
     protected override void AP2_UpdateAnimatorParameters()
     {
         animator.SetBool("Hurt", stateHurt);
@@ -46,30 +66,29 @@ public abstract class AbstractCombatPiece2 : AbstractPiece2, IStartTurnEndTurn, 
     */
     public virtual IEnumerator TakeDamage(int amount)
     {
-        hitPointsCurrent -= amount;
-        if (hitPointsCurrent > 0) yield return StartCoroutine(DamagedHurt());
+        combatPieceStats.hitPoints_current -= amount;
+        if (combatPieceStats.hitPoints_current > 0) yield return StartCoroutine(DamagedHurt());
         else yield return StartCoroutine(DamagedDead());
     }
     protected virtual IEnumerator DamagedHurt()
     {
         stateHurt = true;
-        AnimatorStateInfo state = GetAnimatorStateInfo();
-        while (state.IsName("Hurt")) yield return null;
+        string stateName = "Hurt";
+        yield return StartCoroutine(WaitForAnimationStartAndEnd(stateName));
         stateHurt = false;
     }
     protected virtual IEnumerator DamagedDead()
     {
-        stateDead = true;
-        hitPointsCurrent = 0;
-        mainSpriteRenderer.sortingOrder--;
+        combatPieceStats.hitPoints_current = 0;
 
+        stateDead = true;
+        string stateName = "Dead";
+        yield return StartCoroutine(WaitForAnimationStartAndEnd(stateName));
+
+        mainSpriteRenderer.sortingOrder--;
         currentTile.occupantPiece = null;
         (currentTile as CombatTile).deadPieces.Add(this);
-
         CombatManager.Instance.RemoveUnitFromTurnSequence(this);
-
-        AnimatorStateInfo state = GetAnimatorStateInfo();
-        while (state.IsName("Dead")) yield return null;
     }
     /*
     *   END:        Take damage, become either hurt or dead
@@ -79,6 +98,8 @@ public abstract class AbstractCombatPiece2 : AbstractPiece2, IStartTurnEndTurn, 
     {
         pieceCombatActions.stateWait = false;
         pieceCombatActions.stateDefend = false;
+
+        pieceCombatActions.retaliations = combatPieceStats.retaliationsMax;
     }
 
     public virtual void ISTET_EndTurn()
@@ -104,12 +125,14 @@ public abstract class AbstractCombatPiece2 : AbstractPiece2, IStartTurnEndTurn, 
     public virtual void ICP_InteractWith(AbstractTile tile, bool canPathfind)
     {
         if (!tile) return;
-        if (tile.occupantPiece) ICP_InteractWithTargetPiece(tile.occupantPiece, canPathfind);
+        targetPiece = tile.occupantPiece;
+        if (targetPiece) ICP_InteractWithTargetPiece(tile.occupantPiece, canPathfind);
         else ICP_InteractWithTargetTile(tile, canPathfind);
     }
 
     public virtual void ICP_InteractWithTargetTile(AbstractTile targetTile, bool canPathfind)
     {
+        //TODO I don't think there would be ranged tile interactions, but let's leave this here in case I change my mind.
         throw new System.NotImplementedException();
     }
 
@@ -117,11 +140,12 @@ public abstract class AbstractCombatPiece2 : AbstractPiece2, IStartTurnEndTurn, 
     {
         if (GetOwner() != targetPiece.GetOwner())
         {
-            StartCoroutine(pieceCombatActions.Attack(combatPieceStats.attack_primary));
+            StartCoroutine(pieceCombatActions.Attack());
         }
         else
         {
             //TODO ALLY INTERACTIONS
+            throw new System.NotImplementedException();
         }
     }
 }

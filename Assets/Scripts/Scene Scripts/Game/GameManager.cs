@@ -182,7 +182,7 @@ public class GameManager : AbstractSingleton<GameManager>
         if (currentPlayer == pm.localPlayer)
         {
             FieldUI.Instance.timers.UnlockButtons();
-            fInputs.CreateMovementHighlights();
+            fInputs.ResetHighlights();
         }
         else if (currentPlayer.type == PlayerType.COMPUTER)
         {

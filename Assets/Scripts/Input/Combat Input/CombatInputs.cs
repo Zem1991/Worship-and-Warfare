@@ -22,12 +22,12 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
     public Vector2Int selectionPos;
     public CombatTile selectionTile;
     public AbstractCombatPiece2 selectionPiece;
+
+    [Header("Interaction data")]
     public bool canCommandSelectedPiece;
+    public AbstractCombatPiece2 lastHighlightedPiece;
 
     [Header("Movement Highlights")]
-    public bool movementHighlightsUpdateFromCommand;
-    public bool movementHighlightsUpdateOnPieceStop;
-    public bool movementHighlightsUpdateOnMethodCall;
     public List<InputHighlight> movementHighlights = new List<InputHighlight>();
 
     [Header("Required Objects")]
@@ -165,16 +165,11 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
                 cursorHighlight.gameObject.SetActive(false);
             }
         }
-        else
-        {
-            cursorHighlight.gameObject.SetActive(false);
-        }
     }
 
     private void SelectionHighlight()
     {
-        if (recorder.selectionDown &&
-            IsCursorValid())
+        if (recorder.selectionDown && IsCursorValid())
         {
             Debug.LogWarning("SelectionHighlight() is not available in combat!");
         }
@@ -188,11 +183,6 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
             AbstractCombatantPiece2 actp = selectionPiece as AbstractCombatantPiece2;
             if (actp)
             {
-                //if (actp.pieceMovement.inMovement)
-                //{
-
-                //}
-
                 selectionHighlight.gameObject.SetActive(true);
                 canCommandSelectedPiece = actp.GetOwner() == PlayerManager.Instance.localPlayer;
             }
@@ -210,11 +200,10 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
 
     private void SelectionCommand()
     {
-        if (recorder.commandDown &&
-            IsCursorValid())
-        {
-            MakeSelectedPieceInteract(true);
-        }
+        if (!recorder.commandDown || !IsCursorValid()) return;
+
+        lastHighlightedPiece = null;
+        MakeSelectedPieceInteract(true);
     }
 
     public void MakeSelectedPieceInteract(bool canPathfind)
@@ -225,23 +214,22 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         AbstractCombatantPiece2 actp = selectionPiece as AbstractCombatantPiece2;
         if (actp)
         {
-            movementHighlightsUpdateFromCommand = true;
             if (actp.pieceMovement.stateMove)
             {
                 actp.ICP_Stop();
-                movementHighlightsUpdateOnPieceStop = true;
                 return;
             }
         }
         selectionPiece.ICP_InteractWith(cursorTile, canPathfind);
+        lastHighlightedPiece = null;
     }
 
     public void MakeSelectedPieceWait()
     {
         AbstractCombatantPiece2 actp = selectionPiece as AbstractCombatantPiece2;
-        if (selectionPiece && canCommandSelectedPiece && actp)
+        if (selectionPiece && canCommandSelectedPiece && actp && !actp.pieceCombatActions.stateWait)
         {
-            if (!actp.pieceCombatActions.stateWait) actp.pieceCombatActions.Wait();
+            StartCoroutine(actp.pieceCombatActions.Wait());
         }
     }
 
@@ -250,7 +238,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         AbstractCombatPiece2 actp = selectionPiece as AbstractCombatPiece2;
         if (selectionPiece && canCommandSelectedPiece && actp)
         {
-            actp.pieceCombatActions.Defend();
+            StartCoroutine(actp.pieceCombatActions.Defend());
         }
     }
 
@@ -273,89 +261,26 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         movementHighlights.Clear();
     }
 
-    public void CreateMovementHighlights()
+    public void ResetHighlights()
     {
-        movementHighlightsUpdateOnMethodCall = true;
+        lastHighlightedPiece = null;
     }
 
     private void MovementHighlights()
     {
-        bool clearThenReturn = false;
+        if (selectionPiece && selectionPiece == lastHighlightedPiece) return;
+
+        bool dontCreateHighlights = false;
+
+        if (!canCommandSelectedPiece) dontCreateHighlights = true;
 
         AbstractCombatantPiece2 actp = selectionPiece as AbstractCombatantPiece2;
-        if (!actp)
-        {
-            if (movementHighlights.Count > 0) clearThenReturn = true;
-            else return;
-        }
-        else
-        {
-            bool condition1 = movementHighlightsUpdateFromCommand;
-            bool condition2 = movementHighlightsUpdateOnPieceStop && !actp.pieceMovement.stateMove;
-            bool condition3 = movementHighlightsUpdateOnMethodCall;
-            if (!condition1 && 
-                !condition2 &&
-                !condition3) return;
-        }
+        if (!actp || !actp.ICP_IsIdle()) dontCreateHighlights = true;
 
         RemoveMovementHighlights();
-        if (clearThenReturn) return;
+        if (dontCreateHighlights) return;
 
-        List<PathNode> path = actp.pieceMovement.GetPath();
-        if (canCommandSelectedPiece &&
-            actp.ICP_IsIdle() &&
-            path != null)
-        {
-            InputManager im = InputManager.Instance;
-            InputHighlight prefabHighlight = AllPrefabs.Instance.inputHighlight;
-
-            movementHighlights = new List<InputHighlight>();
-            int movePoints = actp.pieceMovement.movementPointsCurrent;
-            int moveCost = 0;
-            Color moveColor;
-
-            int totalNodes = path.Count;
-            for (int i = -1; i < totalNodes - 1; i++)
-            {
-                int nextI = i + 1;
-
-                CombatTile currentTile = (i == -1 ? actp.currentTile : path[i].tile) as CombatTile;
-                CombatTile nextTile = path[nextI].tile as CombatTile;
-
-                moveCost += path[nextI].moveCost;
-                moveColor = moveCost > movePoints ? im.highlightDenied : im.highlightAllowed;
-
-                Vector3 fromPos = currentTile.transform.position;
-                Vector3 toPos = nextTile.transform.position;
-
-                Vector3 pos = Vector3.Lerp(fromPos, toPos, 0.5F);
-                Quaternion rot = Quaternion.identity;
-                OctoDirXZ dir = currentTile.GetNeighbourDirection(nextTile);
-
-                nextI++;
-
-                InputHighlight step = Instantiate(prefabHighlight, pos, rot, transform);
-                movementHighlights.Add(step);
-                step.name = "Step #" + nextI;
-                step.ChangeSprite(movementArrowSprites[(int)dir], moveColor);
-
-                InputHighlight marker = Instantiate(prefabHighlight, toPos, rot, transform);
-                movementHighlights.Add(marker);
-                if (nextI == totalNodes)
-                {
-                    marker.name = "Final Marker";
-                    marker.ChangeSprite(movementMarkerSprites[1], moveColor);
-                }
-                else
-                {
-                    marker.name = "Marker #" + nextI;
-                    marker.ChangeSprite(movementMarkerSprites[0], moveColor);
-                }
-            }
-        }
-
-        movementHighlightsUpdateFromCommand = false;
-        movementHighlightsUpdateOnPieceStop = false;
-        movementHighlightsUpdateOnMethodCall = false;
+        movementHighlights = InputHelper.MakeMovementHighlights(actp, actp.pieceMovement, transform, movementArrowSprites, movementMarkerSprites);
+        lastHighlightedPiece = selectionPiece;
     }
 }

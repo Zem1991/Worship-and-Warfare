@@ -20,6 +20,7 @@ public class AttackStats : MonoBehaviour
     {
         damage_minimum = attackStats.damage_minimum;
         damage_maximum = attackStats.damage_maximum;
+
         isRanged = attackStats.isRanged;
         range_effective = attackStats.range_effective;
         range_maximum = attackStats.range_maximum;
