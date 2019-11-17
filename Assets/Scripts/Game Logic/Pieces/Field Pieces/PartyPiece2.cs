@@ -96,30 +96,31 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
         StartCoroutine(pieceMovement.Stop());
     }
 
-    public void ICP_InteractWith(AbstractTile tile, bool canPathfind)
+    public void ICP_InteractWith(AbstractTile tile)
     {
         if (!tile) return;
         targetTile = tile;
         targetPiece = tile?.occupantPiece;
 
-        if (targetPiece) ICP_InteractWithTargetPiece(tile.occupantPiece, canPathfind);
-        else ICP_InteractWithTargetTile(tile, canPathfind);
+        if (targetPiece) StartCoroutine(ICP_InteractWithTargetPiece(tile.occupantPiece));
+        else StartCoroutine(ICP_InteractWithTargetTile(tile, false));
     }
 
-    public virtual void ICP_InteractWithTargetTile(AbstractTile targetTile, bool canPathfind)
+    public virtual IEnumerator ICP_InteractWithTargetTile(AbstractTile targetTile, bool endTurnWhenDone)
     {
-        if (canPathfind)
-        {
-            if (pieceMovement.HasPath(targetTile)) StartCoroutine(pieceMovement.Movement());
-            else if(FieldManager.Instance.pieceHandler.Pathfind(this, targetTile as FieldTile)) pathTargetTile = targetTile;
-        }
-        else
-        {
-            if (pieceMovement.HasPath()) StartCoroutine(pieceMovement.Movement());
-        }
+        yield return StartCoroutine(pieceMovement.Movement(targetTile));
+        //if (canPathfind)
+        //{
+        //    if (pieceMovement.HasPath(targetTile)) StartCoroutine(pieceMovement.Movement());
+        //    else if(FieldManager.Instance.pieceHandler.Pathfind(this, targetTile as FieldTile)) pathTargetTile = targetTile;
+        //}
+        //else
+        //{
+        //    if (pieceMovement.HasPath()) StartCoroutine(pieceMovement.Movement());
+        //}
     }
 
-    public virtual void ICP_InteractWithTargetPiece(AbstractPiece2 targetPiece, bool canPathfind)
+    public virtual IEnumerator ICP_InteractWithTargetPiece(AbstractPiece2 targetPiece)
     {
         //TODO consider making an PieceFieldActions2 class to handle each interaction.
         bool neighbours = currentTile.IsNeighbour(targetPiece.currentTile);
@@ -128,12 +129,18 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
             PartyPiece2 targetParty = targetPiece as PartyPiece2;
             PickupPiece2 targetPickup = targetPiece as PickupPiece2;
 
-            if (targetParty) FieldManager.Instance.PartiesAreInteracting(this, targetParty);
-            else if (targetPickup) FieldManager.Instance.PartyFoundPickup(this, targetPickup);
+            if (targetParty)
+            {
+                yield return StartCoroutine(FieldManager.Instance.PartiesAreInteracting(this, targetParty));
+            }
+            else if (targetPickup)
+            {
+                yield return StartCoroutine(FieldManager.Instance.PartyFoundPickup(this, targetPickup));
+            }
         }
         else
         {
-            ICP_InteractWithTargetTile(targetPiece.currentTile, canPathfind);
+            yield return StartCoroutine(ICP_InteractWithTargetTile(targetPiece.currentTile, false));
         }
     }
 

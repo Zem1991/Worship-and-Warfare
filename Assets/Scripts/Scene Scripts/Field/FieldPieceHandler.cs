@@ -168,7 +168,7 @@ public class FieldPieceHandler : MonoBehaviour
         bool result = Pathfinder.FindPath(piece.currentTile, targetTile, Pathfinder.OctoHeuristic,
             needGroundAccess, needWaterAccess, needLavaAccess,
             out PathfindResults pathfindResults);
-        piece.pieceMovement.SetPath(pathfindResults);
+        piece.pieceMovement.SetPath(pathfindResults, targetTile);
         return result;
     }
 

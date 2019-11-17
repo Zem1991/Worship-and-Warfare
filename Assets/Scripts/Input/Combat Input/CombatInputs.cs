@@ -219,8 +219,9 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
                 actp.ICP_Stop();
                 return;
             }
+            CombatTile targetTile = (canPathfind ? cursorTile : actp.targetTile) as CombatTile;
+            actp.ICP_InteractWith(targetTile);
         }
-        selectionPiece.ICP_InteractWith(cursorTile, canPathfind);
         lastHighlightedPiece = null;
     }
 

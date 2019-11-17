@@ -31,6 +31,7 @@ public class PieceMovement2 : MonoBehaviour
     public Vector3 nextPos;
     public Vector3 direction;
     public Vector3 velocity;
+    public bool forcePieceInteraction;
 
     private void Awake()
     {
@@ -102,8 +103,10 @@ public class PieceMovement2 : MonoBehaviour
         return path;
     }
 
-    public void SetPath(PathfindResults pathfindResults)
+    public void SetPath(PathfindResults pathfindResults, AbstractTile targetTile)
     {
+        piece.pathTargetTile = targetTile;
+
         path = pathfindResults.path;
         pathTotalCost = Mathf.CeilToInt(pathfindResults.pathTotalCost);
         //Debug.Log("PIECE " + name + " got a new path with size " + pathCost);
@@ -122,21 +125,38 @@ public class PieceMovement2 : MonoBehaviour
     /*
     *   BEGIN:  Movement and Stop
     */
-    public IEnumerator Movement()
+    public IEnumerator Movement(AbstractTile targetTile)
     {
         ICommandablePiece commandablePiece = piece as ICommandablePiece;
         if (!commandablePiece.ICP_IsIdle()) yield break;
 
-        if (piece.currentTile != piece.pathTargetTile)
+        if (!HasPath(targetTile))
         {
-            stateMove = true;
-            //if (animateMovementStart) yield return StartCoroutine(MovementStart());   //TODO THIS LATER
-            yield return StartCoroutine(MovementGoing());
-            //if (animateMovementEnd) yield return StartCoroutine(MovementEnd());       //TODO THIS LATER
-            stateMove = false;
+            PartyPiece2 partyPiece = piece as PartyPiece2;
+            AbstractCombatantPiece2 combatantPiece = piece as AbstractCombatantPiece2;
 
-            AbstractCombatantPiece2 pieceCombatant = piece as AbstractCombatantPiece2;
-            if (pieceCombatant && pieceCombatant.endTurnAfterMove) pieceCombatant.ISTET_EndTurn();
+            FieldTile fieldTile = targetTile as FieldTile;
+            CombatTile combatTile = targetTile as CombatTile;
+
+            if (partyPiece)
+            {
+                FieldManager.Instance.pieceHandler.Pathfind(partyPiece, fieldTile);
+            }
+            else if (combatantPiece)
+            {
+                CombatManager.Instance.pieceHandler.Pathfind(combatantPiece, combatTile);
+            }
+        }
+        else
+        {
+            if (piece.currentTile != piece.pathTargetTile)
+            {
+                stateMove = true;
+                //if (animateMovementStart) yield return StartCoroutine(MovementStart());   //TODO THIS LATER
+                yield return StartCoroutine(MovementGoing());
+                //if (animateMovementEnd) yield return StartCoroutine(MovementEnd());       //TODO THIS LATER
+                stateMove = false;
+            }
         }
     }
     private IEnumerator MovementStart()
@@ -226,7 +246,8 @@ public class PieceMovement2 : MonoBehaviour
                 ICommandablePiece commandablePiece = piece as ICommandablePiece;
                 if (commandablePiece != null)
                 {
-                    commandablePiece.ICP_InteractWithTargetPiece(piece.pathNextTile.occupantPiece, false);
+                    yield return commandablePiece.ICP_InteractWithTargetPiece(piece.pathNextTile.occupantPiece);
+                    forcePieceInteraction = true;
                 }
 
                 //Doing this here prevents that a piece walks over the spot of another removed piece.

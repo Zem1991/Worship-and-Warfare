@@ -229,7 +229,8 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
                 pp.ICP_Stop();
                 return;
             }
-            pp.ICP_InteractWith(cursorTile, canPathfind);
+            FieldTile targetTile = (canPathfind ? cursorTile : pp.targetTile) as FieldTile;
+            pp.ICP_InteractWith(targetTile);
         }
         lastHighlightedPiece = null;
     }

@@ -66,6 +66,12 @@ public class PieceCombatActions2 : MonoBehaviour
     /*
     *   BEGIN:      Attack
     */
+    public IEnumerator Attack(AbstractCombatPiece2 target, PathfindResults attackTargetPathfind)
+    {
+        AbstractCombatantPiece2 pieceAsCombatant = piece as AbstractCombatantPiece2;
+        if (pieceAsCombatant) pieceAsCombatant.pieceMovement.SetPath(attackTargetPathfind, pieceAsCombatant.targetTile);
+        yield return StartCoroutine(Attack(target));
+    }
     public IEnumerator Attack(AbstractCombatPiece2 target)
     {
         AttackStats attack = EvaluateRangedAttack(target) ? piece.combatPieceStats.attack_ranged : piece.combatPieceStats.attack_melee;
@@ -77,10 +83,16 @@ public class PieceCombatActions2 : MonoBehaviour
         }
         else
         {
+            //yield return StartCoroutine(Approach());
             AbstractCombatantPiece2 pieceAsCombatant = piece as AbstractCombatantPiece2;
-            //if (pieceAsCombatant) yield return StartCoroutine(pieceAsCombatant.pieceMovement.Movement());
-            if (pieceAsCombatant) pieceAsCombatant.ICP_InteractWithTargetTile(target.currentTile, true);
-            while (!pieceAsCombatant.pieceMovement.IsIdle()) yield return null;
+            if (pieceAsCombatant)
+            {
+                AbstractTile targetTile = piece.targetPiece.currentTile;
+                bool hadPath = pieceAsCombatant.pieceMovement.HasPath(targetTile);
+                yield return StartCoroutine(pieceAsCombatant.pieceMovement.Movement(targetTile));
+                //while (!pieceAsCombatant.pieceMovement.IsIdle()) yield return null;
+                if (!hadPath) yield break;
+            }
 
             if (EvaluateMeleeAttack(target))
             {
@@ -96,7 +108,6 @@ public class PieceCombatActions2 : MonoBehaviour
                 bool willRetaliate = willCounter ? false : targetCombatActions.EvaluateRetaliation();
                 if (willRetaliate) yield return StartCoroutine(targetCombatActions.Retaliate(piece));
             }
-
         }
         piece.ISTET_EndTurn();
     }
@@ -192,12 +203,11 @@ public class PieceCombatActions2 : MonoBehaviour
     }
     public bool EvaluateCounter()
     {
-        bool condition = canCounter && canRetaliate;
-        return condition && retaliations > 0;
+        return EvaluateRetaliation() && canCounter;
     }
     public bool EvaluateRetaliation()
     {
-        bool condition = canRetaliate;
+        bool condition = !piece.stateDead && canRetaliate;
         return condition && retaliations > 0;
     }
     /*

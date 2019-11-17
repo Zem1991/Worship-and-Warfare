@@ -16,6 +16,7 @@ public class CombatOperationalAI : AbstractAIRoutine
     [Header("Attack calculations")]
     public int attackChance;
     public AbstractCombatPiece2 attackTarget;
+    public PathfindResults attackTargetPathfind;
 
     [Header("Other calculations")]
     public int defendChance;
@@ -62,8 +63,8 @@ public class CombatOperationalAI : AbstractAIRoutine
         attackChance = 0;
         attackTarget = null;
 
-        List<AbstractCombatPiece2> meleeTargets = new List<AbstractCombatPiece2>();
-        List<AbstractCombatPiece2> rangedTargets = new List<AbstractCombatPiece2>();
+        Dictionary<AbstractCombatPiece2, PathfindResults> meleeTargets = new Dictionary<AbstractCombatPiece2, PathfindResults>();
+        Dictionary<AbstractCombatPiece2, PathfindResults> rangedTargets = new Dictionary<AbstractCombatPiece2, PathfindResults>();
         bool isRangedViable = currentUnit.combatPieceStats.attack_ranged;
 
         CombatPieceHandler cph = CombatManager.Instance.pieceHandler;
@@ -79,7 +80,7 @@ public class CombatOperationalAI : AbstractAIRoutine
             }
 
             Pathfinder.FindPath(currentUnit.currentTile, unit.currentTile, Pathfinder.HexHeuristic,
-                true, true, true,
+                true, false, false,
                 out PathfindResults path);
             mapUnitPath.Add(unit, path);
 
@@ -87,10 +88,11 @@ public class CombatOperationalAI : AbstractAIRoutine
             //TODO actually make something of this.
             if (currentUnit.currentTile.IsNeighbour(unit.currentTile)) isRangedViable = false;
         }
-        meleeTargets = mapUnitPath.OrderBy(a => a.Value.pathTotalCost).ToDictionary(a => a.Key, a => a.Value).Keys.ToList();
+        meleeTargets = mapUnitPath.OrderBy(a => a.Value.pathTotalCost).ToDictionary(a => a.Key, a => a.Value);
 
-        attackTarget = meleeTargets.First();
-        if (attackTarget) attackChance = 100;   //for now, we can only attack the enemy
+        attackTarget = meleeTargets.Keys.First();
+        attackTargetPathfind = meleeTargets.Values.First();
+        attackChance = 100;     //for now, we can only attack the enemy
     }
 
     private void CalculateDefendPriority()
@@ -168,7 +170,9 @@ public class CombatOperationalAI : AbstractAIRoutine
             case CombatOperationalDecision.SKILL:
                 break;
             case CombatOperationalDecision.ATTACK:
-                coroutine = currentUnit.pieceCombatActions.Attack(attackTarget);
+                currentUnit.targetTile = attackTarget.currentTile;
+                currentUnit.targetPiece = attackTarget;
+                coroutine = currentUnit.pieceCombatActions.Attack(attackTarget, attackTargetPathfind);
                 break;
             case CombatOperationalDecision.DEFEND:
                 coroutine = currentUnit.pieceCombatActions.Defend();

@@ -7,11 +7,6 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, IMovablePi
 {
     public PieceMovement2 pieceMovement { get; private set; }
 
-    [Header("Combatant actions")]
-    //public AbstractCombatPiece2 retaliationTarget;
-    public bool endTurnAfterMove;
-    public Projectile projectile;
-
     protected override void ManualAwake()
     {
         base.ManualAwake();
@@ -47,13 +42,6 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, IMovablePi
         IMP_ResetMovementPoints();
     }
 
-    public override void ISTET_EndTurn()
-    {
-        base.ISTET_EndTurn();
-
-        endTurnAfterMove = false;
-    }
-
     public override bool ICP_IsIdle()
     {
         return base.ICP_IsIdle()
@@ -65,19 +53,21 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, IMovablePi
         StartCoroutine(pieceMovement.Stop());
     }
 
-    public override void ICP_InteractWithTargetTile(AbstractTile targetTile, bool canPathfind)
+    public override void ICP_InteractWith(AbstractTile tile)
     {
-        endTurnAfterMove = true;
-        if (canPathfind)
-        {
-            if (pieceMovement.HasPath(targetTile)) StartCoroutine(pieceMovement.Movement());
-            else if (CombatManager.Instance.pieceHandler.Pathfind(this, targetTile as CombatTile)) pathTargetTile = targetTile;
-        }
-        else
-        {
-            if (CombatManager.Instance.pieceHandler.Pathfind(this, targetTile as CombatTile)) pathTargetTile = targetTile;
-            if (pieceMovement.HasPath(targetTile)) StartCoroutine(pieceMovement.Movement());
-        }
+        if (!tile) return;
+        targetTile = tile;
+        targetPiece = tile?.occupantPiece;
+
+        if (tile.occupantPiece) StartCoroutine(ICP_InteractWithTargetPiece(tile.occupantPiece));
+        else StartCoroutine(ICP_InteractWithTargetTile(tile, true));
+    }
+
+    public override IEnumerator ICP_InteractWithTargetTile(AbstractTile targetTile, bool endTurnWhenDone)
+    {
+        bool hasPath = pieceMovement.HasPath(targetTile);
+        yield return StartCoroutine(pieceMovement.Movement(targetTile));
+        if (hasPath && endTurnWhenDone) ISTET_EndTurn();
     }
 
     public virtual void IMP_ResetMovementPoints()

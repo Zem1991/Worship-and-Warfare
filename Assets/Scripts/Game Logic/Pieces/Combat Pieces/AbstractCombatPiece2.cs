@@ -134,27 +134,27 @@ public abstract class AbstractCombatPiece2 : AbstractPiece2, IStartTurnEndTurn, 
         throw new System.NotImplementedException();
     }
 
-    public virtual void ICP_InteractWith(AbstractTile tile, bool canPathfind)
+    public virtual void ICP_InteractWith(AbstractTile tile)
     {
         if (!tile) return;
         targetTile = tile;
         targetPiece = tile?.occupantPiece;
 
-        if (tile.occupantPiece) ICP_InteractWithTargetPiece(tile.occupantPiece, canPathfind);
-        else ICP_InteractWithTargetTile(tile, canPathfind);
+        if (tile.occupantPiece) StartCoroutine(ICP_InteractWithTargetPiece(tile.occupantPiece));
+        else StartCoroutine(ICP_InteractWithTargetTile(tile, false));
     }
 
-    public virtual void ICP_InteractWithTargetTile(AbstractTile targetTile, bool canPathfind)
+    public virtual IEnumerator ICP_InteractWithTargetTile(AbstractTile targetTile, bool endTurnWhenDone)
     {
         //TODO I don't think there would be ranged tile interactions, but let's leave this here in case I change my mind.
         throw new System.NotImplementedException();
     }
 
-    public virtual void ICP_InteractWithTargetPiece(AbstractPiece2 targetPiece, bool canPathfind)
+    public virtual IEnumerator ICP_InteractWithTargetPiece(AbstractPiece2 targetPiece)
     {
         if (GetOwner() != targetPiece.GetOwner())
         {
-            StartCoroutine(pieceCombatActions.Attack(targetPiece as AbstractCombatPiece2));
+            yield return StartCoroutine(pieceCombatActions.Attack(targetPiece as AbstractCombatPiece2));
         }
         else
         {
