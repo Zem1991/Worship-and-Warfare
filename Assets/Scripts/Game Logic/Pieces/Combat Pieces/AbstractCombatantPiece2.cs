@@ -8,7 +8,8 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, IMovablePi
     public PieceMovement2 pieceMovement { get; private set; }
 
     [Header("Combatant actions")]
-    public AbstractCombatPiece2 retaliationTarget;
+    //public AbstractCombatPiece2 retaliationTarget;
+    public bool endTurnAfterMove;
     public Projectile projectile;
 
     protected override void ManualAwake()
@@ -46,67 +47,12 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, IMovablePi
         IMP_ResetMovementPoints();
     }
 
-    //public void ICP_InteractWithTile(AbstractTile aTile, bool canPathfind)
-    //{
-    //    if (canPathfind)
-    //    {
-    //        CombatTile cTile = aTile as CombatTile;
-    //        if (cTile)
-    //        {
-    //            AbstractPiece2 targetPiece = cTile.occupantPiece;
-    //            if (targetPiece)
-    //            {
-    //                ICP_InteractWithPiece(targetPiece, canPathfind);
-    //            }
-    //            else
-    //            {
-    //                if (pieceMovement.HasPath(cTile)) IMP_Move();
-    //                else CombatManager.Instance.pieceHandler.Pathfind(this, cTile);
-    //                //if (!HasPath(cTile)) CombatManager.Instance.pieceHandler.Pathfind(this, cTile);
-    //                //Move();
-    //            }
-    //        }
-    //    }
-    //    else
-    //    {
-    //        if (pieceMovement.HasPath()) IMP_Move();
-    //    }
-    //}
+    public override void ISTET_EndTurn()
+    {
+        base.ISTET_EndTurn();
 
-    //public void ICP_InteractWithPiece(AbstractPiece2 aPiece, bool canPathfind)
-    //{
-    //    bool justInteract = false;
-
-    //    AbstractCombatantPiece2 targetACP = aPiece as AbstractCombatantPiece2;
-    //    if (targetACP &&
-    //        !targetACP.isDead &&
-    //        owner != targetACP.owner &&
-    //        combatPieceStats.attack_primary.isRanged)
-    //    {
-    //        //TODO add check if we are not in melee range
-    //        //TODO maybe add cases for ally ranged interactions ?
-    //        justInteract = true;
-    //    }
-
-    //    if (justInteract)
-    //    {
-    //        pieceMovement.targetPiece = targetACP;
-    //        AP2_PieceInteraction();
-    //        return;
-    //    }
-
-    //    CombatTile cTile = aPiece.currentTile as CombatTile;
-    //    if (canPathfind)
-    //    {
-    //        if (pieceMovement.HasPath(cTile)) IMP_Move();
-    //        else CombatManager.Instance.pieceHandler.Pathfind(this, cTile);
-    //    }
-    //    else
-    //    {
-    //        CombatManager.Instance.pieceHandler.Pathfind(this, cTile);
-    //        if (pieceMovement.HasPath(cTile)) IMP_Move();
-    //    }
-    //}
+        endTurnAfterMove = false;
+    }
 
     public override bool ICP_IsIdle()
     {
@@ -121,26 +67,17 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, IMovablePi
 
     public override void ICP_InteractWithTargetTile(AbstractTile targetTile, bool canPathfind)
     {
+        endTurnAfterMove = true;
         if (canPathfind)
         {
             if (pieceMovement.HasPath(targetTile)) StartCoroutine(pieceMovement.Movement());
-            else CombatManager.Instance.pieceHandler.Pathfind(this, targetTile as CombatTile);
+            else if (CombatManager.Instance.pieceHandler.Pathfind(this, targetTile as CombatTile)) pathTargetTile = targetTile;
         }
         else
         {
-            CombatManager.Instance.pieceHandler.Pathfind(this, targetTile as CombatTile);
+            if (CombatManager.Instance.pieceHandler.Pathfind(this, targetTile as CombatTile)) pathTargetTile = targetTile;
             if (pieceMovement.HasPath(targetTile)) StartCoroutine(pieceMovement.Movement());
         }
-    }
-
-    public override void ICP_InteractWithTargetPiece(AbstractPiece2 targetPiece, bool canPathfind)
-    {
-        base.ICP_InteractWithTargetPiece(targetPiece, canPathfind);
-        //targetTile = aTile;
-        //targetPiece = aTile.occupantPiece;
-        //if (targetPiece) AP2_PieceInteraction();
-        //else pieceMovement.Movement();
-        //throw new System.NotImplementedException();
     }
 
     public virtual void IMP_ResetMovementPoints()

@@ -19,6 +19,10 @@ public abstract class AbstractCombatPiece2 : AbstractPiece2, IStartTurnEndTurn, 
     [Header("Stats")]
     public CombatPieceStats combatPieceStats;
 
+    [Header("Animation settings")]
+    public bool animateMovementStart;
+    public bool animateMovementEnd;
+
     protected override void ManualAwake()
     {
         base.ManualAwake();
@@ -27,6 +31,12 @@ public abstract class AbstractCombatPiece2 : AbstractPiece2, IStartTurnEndTurn, 
         canBeControlled = true;
 
         pieceCombatActions = GetComponent<PieceCombatActions2>();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        if (!currentTile) Debug.LogError("NULEI!");
     }
 
     public virtual void Initialize(Player owner, CombatPieceStats cps, int spawnId, bool onDefenderSide)
@@ -59,6 +69,9 @@ public abstract class AbstractCombatPiece2 : AbstractPiece2, IStartTurnEndTurn, 
 
         animator.SetBool("Melee attack start", pieceCombatActions.meleeAttackStart);
         animator.SetBool("Melee attack end", pieceCombatActions.meleeAttackEnd);
+
+        animator.SetBool("Ranged attack start", pieceCombatActions.rangedAttackStart);
+        animator.SetBool("Ranged attack end", pieceCombatActions.rangedAttackEnd);
     }
 
     /*
@@ -106,7 +119,6 @@ public abstract class AbstractCombatPiece2 : AbstractPiece2, IStartTurnEndTurn, 
     {
         CombatManager cm = CombatManager.Instance;
         if (cm.currentPiece == this) cm.NextUnit();
-        else if (cm.retaliatorPiece == this) cm.NextUnit();
     }
 
     public virtual bool ICP_IsIdle()
@@ -125,8 +137,10 @@ public abstract class AbstractCombatPiece2 : AbstractPiece2, IStartTurnEndTurn, 
     public virtual void ICP_InteractWith(AbstractTile tile, bool canPathfind)
     {
         if (!tile) return;
-        targetPiece = tile.occupantPiece;
-        if (targetPiece) ICP_InteractWithTargetPiece(tile.occupantPiece, canPathfind);
+        targetTile = tile;
+        targetPiece = tile?.occupantPiece;
+
+        if (tile.occupantPiece) ICP_InteractWithTargetPiece(tile.occupantPiece, canPathfind);
         else ICP_InteractWithTargetTile(tile, canPathfind);
     }
 
@@ -140,7 +154,7 @@ public abstract class AbstractCombatPiece2 : AbstractPiece2, IStartTurnEndTurn, 
     {
         if (GetOwner() != targetPiece.GetOwner())
         {
-            StartCoroutine(pieceCombatActions.Attack());
+            StartCoroutine(pieceCombatActions.Attack(targetPiece as AbstractCombatPiece2));
         }
         else
         {

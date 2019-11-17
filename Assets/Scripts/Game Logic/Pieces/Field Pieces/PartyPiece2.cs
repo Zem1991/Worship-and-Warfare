@@ -99,7 +99,9 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
     public void ICP_InteractWith(AbstractTile tile, bool canPathfind)
     {
         if (!tile) return;
-        targetPiece = tile.occupantPiece;
+        targetTile = tile;
+        targetPiece = tile?.occupantPiece;
+
         if (targetPiece) ICP_InteractWithTargetPiece(tile.occupantPiece, canPathfind);
         else ICP_InteractWithTargetTile(tile, canPathfind);
     }
@@ -109,7 +111,7 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
         if (canPathfind)
         {
             if (pieceMovement.HasPath(targetTile)) StartCoroutine(pieceMovement.Movement());
-            else FieldManager.Instance.pieceHandler.Pathfind(this, targetTile as FieldTile);
+            else if(FieldManager.Instance.pieceHandler.Pathfind(this, targetTile as FieldTile)) pathTargetTile = targetTile;
         }
         else
         {
@@ -121,7 +123,7 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
     {
         //TODO consider making an PieceFieldActions2 class to handle each interaction.
         bool neighbours = currentTile.IsNeighbour(targetPiece.currentTile);
-        if (neighbours)
+        if (neighbours && pathTargetTile == targetPiece.currentTile)
         {
             PartyPiece2 targetParty = targetPiece as PartyPiece2;
             PickupPiece2 targetPickup = targetPiece as PickupPiece2;

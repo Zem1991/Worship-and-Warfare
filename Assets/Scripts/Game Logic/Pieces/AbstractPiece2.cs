@@ -14,9 +14,12 @@ public abstract class AbstractPiece2 : MonoBehaviour
     [SerializeField] protected bool canBeControlled;
     [SerializeField] protected Player controller;
 
-    [Header("Tile and Piece references")]
+    [Header("Pathfinding references")]
     public AbstractTile currentTile;
-    public AbstractTile nextTile;
+    public AbstractTile pathNextTile;
+    public AbstractTile pathTargetTile;
+
+    [Header("Targeting references")]
     public AbstractTile targetTile;
     public AbstractPiece2 targetPiece;
 

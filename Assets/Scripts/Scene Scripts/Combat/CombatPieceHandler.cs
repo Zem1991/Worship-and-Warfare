@@ -115,13 +115,14 @@ public class CombatPieceHandler : MonoBehaviour
         }
     }
 
-    public void Pathfind(AbstractCombatantPiece2 piece, CombatTile targetTile,
+    public bool Pathfind(AbstractCombatantPiece2 piece, CombatTile targetTile,
         bool needGroundAccess = true, bool needWaterAccess = false, bool needLavaAccess = false)
     {
-        Pathfinder.FindPath(piece.currentTile, targetTile, Pathfinder.HexHeuristic,
+        bool result = Pathfinder.FindPath(piece.currentTile, targetTile, Pathfinder.HexHeuristic,
             needGroundAccess, needWaterAccess, needLavaAccess,
             out PathfindResults pathfindResults);
-        piece.pieceMovement.SetPath(pathfindResults, targetTile);
+        piece.pieceMovement.SetPath(pathfindResults);
+        return result;
     }
 
     public CombatantHeroPiece2 GetHero(Player player)

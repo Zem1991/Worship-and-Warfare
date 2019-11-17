@@ -53,12 +53,14 @@ public class CombatPieceStats : MonoBehaviour
         attack_melee = Instantiate(prefabAS, transform);
         attack_melee.Initialize(combatPieceStats.attack_melee);
         attack_melee.isRanged = false;
+        attack_melee.name = "Melee attack stats";
 
         if (combatPieceStats.attack_ranged)
         {
             attack_ranged = Instantiate(prefabAS, transform);
             attack_ranged.Initialize(combatPieceStats.attack_ranged);
             attack_ranged.isRanged = true;
+            attack_melee.name = "Ranged attack stats";
         }
     }
 

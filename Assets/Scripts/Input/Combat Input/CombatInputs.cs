@@ -244,6 +244,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
 
     private void EndTurn()
     {
+        //TODO maybe default this to the Defend action?
         if (recorder.endTurnDown)
         {
             AbstractCombatPiece2 acp = CombatManager.Instance.currentPiece;

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public static readonly float movementSpeed = 10F;
+    public static readonly float movementSpeed = 25F;
 
     protected Animator animator;
     protected SpriteRenderer mainSpriteRenderer;
@@ -20,7 +20,6 @@ public class Projectile : MonoBehaviour
     [Header("Movement")]
     public Vector3 direction;
     public Vector3 velocity;
-    public bool hasReachedDestination;
 
     void Awake()
     {
@@ -28,11 +27,6 @@ public class Projectile : MonoBehaviour
 
         SpriteRenderer[] renderers = GetComponentsInChildren<SpriteRenderer>();
         if (renderers.Length > 0) mainSpriteRenderer = renderers[0];
-    }
-
-    void Update()
-    {
-        MakeMove();
     }
 
     public void SetAnimatorOverrideController(AnimatorOverrideController aoc)
@@ -52,7 +46,6 @@ public class Projectile : MonoBehaviour
         casterPos = casterPiece.transform.position;
         this.targetPos = targetPos;
         this.casterPiece = casterPiece;
-        inMove = true;
     }
 
     public void SetupAndGo(AttackStats attack, AbstractPiece2 casterPiece, AbstractPiece2 targetPiece)
@@ -61,35 +54,30 @@ public class Projectile : MonoBehaviour
         SetupAndGo(attack, casterPiece, targetPiece.transform.position);
     }
 
-    public IEnumerator CheckDestinationReached()
-    {
-        yield return hasReachedDestination;
-    }
-
-    private void MakeMove()
-    {
-        if (!inMove) return;
-
-        Vector3 currentPos = transform.position;
-
-        direction = (targetPos - currentPos).normalized;
-        velocity = direction * movementSpeed;
-
-        Vector3 frameVelocity = velocity * Time.deltaTime;
-        float distance = Vector3.Distance(currentPos, targetPos);
-        if (frameVelocity.magnitude > distance) frameVelocity = Vector3.ClampMagnitude(frameVelocity, distance);
-        transform.Translate(frameVelocity, Space.World);
-
-        if (currentPos == targetPos)
-        {
-            //Doing this may seem redundant, but it actually fixes some floating point issues that can cause movement overshooting.
-            transform.position = targetPos;
-            hasReachedDestination = true;
-        }
-    }
-
     public IEnumerator MakeTrajectory()
     {
-        throw new NotImplementedException();
+        inMove = true;
+        while (inMove)
+        {
+            Vector3 currentPos = transform.position;
+
+            direction = (targetPos - currentPos).normalized;
+            velocity = direction * movementSpeed;
+
+            Vector3 frameVelocity = velocity * Time.deltaTime;
+            float distance = Vector3.Distance(currentPos, targetPos);
+            if (frameVelocity.magnitude > distance) frameVelocity = Vector3.ClampMagnitude(frameVelocity, distance);
+            transform.Translate(frameVelocity, Space.World);
+
+            if (currentPos == targetPos)
+            {
+                //Doing this may seem redundant, but it actually fixes some floating point issues that can cause movement overshooting.
+                transform.position = targetPos;
+                inMove = false;
+            }
+
+            yield return null;
+        }
+        Destroy(gameObject);
     }
 }

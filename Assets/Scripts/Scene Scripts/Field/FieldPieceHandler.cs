@@ -162,13 +162,14 @@ public class FieldPieceHandler : MonoBehaviour
         Destroy(pickup.gameObject);
     }
 
-    public void Pathfind(PartyPiece2 piece, FieldTile targetTile,
+    public bool Pathfind(PartyPiece2 piece, FieldTile targetTile,
         bool needGroundAccess = true, bool needWaterAccess = false, bool needLavaAccess = false)
     {
-        Pathfinder.FindPath(piece.currentTile, targetTile, Pathfinder.OctoHeuristic,
+        bool result = Pathfinder.FindPath(piece.currentTile, targetTile, Pathfinder.OctoHeuristic,
             needGroundAccess, needWaterAccess, needLavaAccess,
             out PathfindResults pathfindResults);
-        piece.pieceMovement.SetPath(pathfindResults, targetTile);
+        piece.pieceMovement.SetPath(pathfindResults);
+        return result;
     }
 
     public List<PartyPiece2> GetIdlePieces(List<PartyPiece2> pieces)

@@ -94,7 +94,7 @@ public class PieceMovement2 : MonoBehaviour
 
     public bool HasPath(AbstractTile targetTile)
     {
-        return HasPath() && piece.targetTile == targetTile;
+        return HasPath() && piece.pathTargetTile == targetTile;
     }
 
     public List<PathNode> GetPath()
@@ -102,19 +102,18 @@ public class PieceMovement2 : MonoBehaviour
         return path;
     }
 
-    public void SetPath(PathfindResults pathfindResults, AbstractTile targetTile)
+    public void SetPath(PathfindResults pathfindResults)
     {
         path = pathfindResults.path;
         pathTotalCost = Mathf.CeilToInt(pathfindResults.pathTotalCost);
-        piece.targetTile = targetTile;
         //Debug.Log("PIECE " + name + " got a new path with size " + pathCost);
 
-        if (path != null && path.Count > 1)
+        if (path != null && path.Count > 0)
         {
-            piece.nextTile = null;
+            piece.pathNextTile = null;
 
-            AbstractTile from = path[0].tile;
-            AbstractTile to = path[1].tile;
+            AbstractTile from = piece.currentTile;
+            AbstractTile to = path[0].tile;
             OctoDirXZ dir = from.GetNeighbourDirection(to);
             LookAtDirection(dir);
         }
@@ -128,15 +127,16 @@ public class PieceMovement2 : MonoBehaviour
         ICommandablePiece commandablePiece = piece as ICommandablePiece;
         if (!commandablePiece.ICP_IsIdle()) yield break;
 
-        bool animateStartAndEnd = piece as AbstractCombatPiece2;
-
-        if (piece.currentTile != piece.targetTile)
+        if (piece.currentTile != piece.pathTargetTile)
         {
             stateMove = true;
-            if (animateStartAndEnd) yield return StartCoroutine(MovementStart());
+            //if (animateMovementStart) yield return StartCoroutine(MovementStart());   //TODO THIS LATER
             yield return StartCoroutine(MovementGoing());
-            if (animateStartAndEnd) yield return StartCoroutine(MovementEnd());
+            //if (animateMovementEnd) yield return StartCoroutine(MovementEnd());       //TODO THIS LATER
             stateMove = false;
+
+            AbstractCombatantPiece2 pieceCombatant = piece as AbstractCombatantPiece2;
+            if (pieceCombatant && pieceCombatant.endTurnAfterMove) pieceCombatant.ISTET_EndTurn();
         }
     }
     private IEnumerator MovementStart()
@@ -179,19 +179,27 @@ public class PieceMovement2 : MonoBehaviour
             Vector3 currentPos = transform.position;
             bool doStop = false;
 
-            if (piece.nextTile && currentPos == nextPos)
+            if (piece.pathNextTile && currentPos == nextPos)
             {
                 //Doing this may seem redundant, but it actually fixes some floating point issues that can cause movement overshooting.
                 //Moving to the bottom edge or left edge of the grid without this fix may cause the piece to be read as over a tile with coordinate equal to -1.
                 transform.position = nextPos;
 
+                //Clears the target references when we move over it, ending the path.
+                if (piece.pathNextTile == piece.pathTargetTile)
+                {
+                    piece.pathTargetTile = null;
+                    piece.targetTile = null;
+                    piece.targetPiece = null;
+                }
+
                 piece.currentTile.occupantPiece = null;
-                piece.nextTile.occupantPiece = piece;
-                piece.currentTile = piece.nextTile;
-                piece.nextTile = null;
+                piece.pathNextTile.occupantPiece = piece;
+                piece.currentTile = piece.pathNextTile;
+                piece.pathNextTile = null;
             }
 
-            if (!piece.nextTile)
+            if (!piece.pathNextTile)
             {
                 if (!stopWasCalled &&
                     path.Count > 0 &&
@@ -201,8 +209,8 @@ public class PieceMovement2 : MonoBehaviour
                     movementPointsCurrent -= pNode.moveCost;
                     path.RemoveAt(0);
 
-                    piece.nextTile = pNode.tile;
-                    OctoDirXZ dirToLook = piece.currentTile.GetNeighbourDirection(piece.nextTile);
+                    piece.pathNextTile = pNode.tile;
+                    OctoDirXZ dirToLook = piece.currentTile.GetNeighbourDirection(piece.pathNextTile);
                     LookAtDirection(dirToLook);
                 }
                 else
@@ -212,17 +220,17 @@ public class PieceMovement2 : MonoBehaviour
                 }
             }
 
-            if (piece.nextTile && piece.nextTile.occupantPiece)
+            if (piece.pathNextTile && piece.pathNextTile.occupantPiece)
             {
                 //If the piece has a way to interact with other pieces, make it happen here.
                 ICommandablePiece commandablePiece = piece as ICommandablePiece;
                 if (commandablePiece != null)
                 {
-                    commandablePiece.ICP_InteractWithTargetPiece(piece.nextTile.occupantPiece, false);
+                    commandablePiece.ICP_InteractWithTargetPiece(piece.pathNextTile.occupantPiece, false);
                 }
 
                 //Doing this here prevents that a piece walks over the spot of another removed piece.
-                piece.nextTile = null;
+                piece.pathNextTile = null;
                 doStop = true;
             }
 
@@ -234,7 +242,7 @@ public class PieceMovement2 : MonoBehaviour
             }
             else
             {
-                nextPos = piece.nextTile.transform.position;
+                nextPos = piece.pathNextTile.transform.position;
             }
 
             if (inActualMovement)

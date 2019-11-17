@@ -8,4 +8,16 @@ AnimatorOverrideController:
   m_PrefabAsset: {fileID: 0}
   m_Name: Pikeman
   m_Controller: {fileID: 9100000, guid: 0d6d443a90fc70f47a27039e491b8a9f, type: 2}
-  m_Clips: []
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: ed48199e969bed945b4353ccbd2bdbe3, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 358315cb345f2ac4b874b83d800ea23a, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: cfdafc7a2460efb4aac50f85e27e63bd, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3d41ff8a3af07c44e886559ff3dc1106, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 9d1bc4f82e238bb45a012f0077e3e425, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4f71d6f99eda0f74b83513bcab5be4b3, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: a7934b023317a1e4e9c548d1c3421c53, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 309f63d3b53e9db4090c70b49fbed92d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: b71e15655939d5c48bde9308d0921b2d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 38d923608ee5b3c4e88c24133a299f0f, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 9d00a9ba36e668c41abc61a20c38b1d0, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: de3f9654e911cd14aa565628d1707234, type: 2}

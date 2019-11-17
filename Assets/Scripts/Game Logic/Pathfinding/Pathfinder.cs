@@ -27,7 +27,8 @@ public static class Pathfinder
         out PathfindResults pathfindResults)
     {
         pathfindResults = new PathfindResults(new List<PathNode>(), 0, 0);
-        if (!targetTile.occupantPiece && !targetTile.IsAcessible(needGroundAccess, needWaterAccess, needLavaAccess)) return false;
+        if (!targetTile.IsAcessible(needGroundAccess, needWaterAccess, needLavaAccess)) return false;
+        //if (!targetTile.occupantPiece && !targetTile.IsAcessible(needGroundAccess, needWaterAccess, needLavaAccess)) return false;
 
         PathNode startPN = new PathNode(startTile);
         PathNode targetPN = new PathNode(targetTile);

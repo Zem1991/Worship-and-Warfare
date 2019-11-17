@@ -62,36 +62,34 @@ public class CombatOperationalAI : AbstractAIRoutine
         attackChance = 0;
         attackTarget = null;
 
+        List<AbstractCombatPiece2> meleeTargets = new List<AbstractCombatPiece2>();
+        List<AbstractCombatPiece2> rangedTargets = new List<AbstractCombatPiece2>();
+        bool isRangedViable = currentUnit.combatPieceStats.attack_ranged;
+
         CombatPieceHandler cph = CombatManager.Instance.pieceHandler;
-        List<AbstractCombatPiece2> unitList;
-        if (!cph.GetPieceList(aiPersonality.player, true, out unitList)) return;
-        unitList = cph.GetActivePieces(unitList);
+        if (!cph.GetPieceList(aiPersonality.player, true, out List<AbstractCombatPiece2> unitList)) return;
 
-        if (currentUnit.combatPieceStats.attack_ranged && currentUnit.pieceCombatActions.EvaluateRangedAttack())
+        //Sort enemy pieces based on how accessible they are to be approached.
+        Dictionary<AbstractCombatPiece2, PathfindResults> mapUnitPath = new Dictionary<AbstractCombatPiece2, PathfindResults>();
+        foreach (AbstractCombatPiece2 unit in unitList)
         {
-            Dictionary<AbstractCombatPiece2, float> mapUnitDistance = new Dictionary<AbstractCombatPiece2, float>();
-            foreach (AbstractCombatPiece2 unit in unitList)
+            if (!unit.currentTile)
             {
-                float distance = Vector3.Distance(currentUnit.transform.position, unit.transform.position);
-                mapUnitDistance.Add(unit, distance);
+                Debug.Log("!!!");
             }
-            mapUnitDistance = mapUnitDistance.OrderBy(a => a.Value).ToDictionary(a => a.Key, a => a.Value);
-            if (mapUnitDistance.Count > 0) attackTarget = mapUnitDistance.First().Key;
-        }
-        else
-        {
-            Dictionary<AbstractCombatPiece2, PathfindResults> mapUnitPath = new Dictionary<AbstractCombatPiece2, PathfindResults>();
-            foreach (AbstractCombatPiece2 unit in unitList)
-            {
-                Pathfinder.FindPath(currentUnit.currentTile, unit.currentTile, Pathfinder.HexHeuristic,
-                    true, true, true,
-                    out PathfindResults path);
-                mapUnitPath.Add(unit, path);
-            }
-            mapUnitPath = mapUnitPath.OrderBy(a => a.Value.pathTotalCost).ToDictionary(a => a.Key, a => a.Value);
-            if (mapUnitPath.Count > 0) attackTarget = mapUnitPath.First().Key;
-        }
 
+            Pathfinder.FindPath(currentUnit.currentTile, unit.currentTile, Pathfinder.HexHeuristic,
+                true, true, true,
+                out PathfindResults path);
+            mapUnitPath.Add(unit, path);
+
+            //If any enemy unit is adjacent to this unit, then it will prefer to not do ranged attacks.
+            //TODO actually make something of this.
+            if (currentUnit.currentTile.IsNeighbour(unit.currentTile)) isRangedViable = false;
+        }
+        meleeTargets = mapUnitPath.OrderBy(a => a.Value.pathTotalCost).ToDictionary(a => a.Key, a => a.Value).Keys.ToList();
+
+        attackTarget = meleeTargets.First();
         if (attackTarget) attackChance = 100;   //for now, we can only attack the enemy
     }
 
@@ -170,8 +168,7 @@ public class CombatOperationalAI : AbstractAIRoutine
             case CombatOperationalDecision.SKILL:
                 break;
             case CombatOperationalDecision.ATTACK:
-                currentUnit.targetPiece = attackTarget;
-                coroutine = currentUnit.pieceCombatActions.Attack();
+                coroutine = currentUnit.pieceCombatActions.Attack(attackTarget);
                 break;
             case CombatOperationalDecision.DEFEND:
                 coroutine = currentUnit.pieceCombatActions.Defend();

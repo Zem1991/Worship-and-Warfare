@@ -23,7 +23,6 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     public bool combatStarted;
     public int currentTurn;
     public AbstractCombatPiece2 currentPiece;
-    public AbstractCombatPiece2 retaliatorPiece;
     public List<AbstractCombatPiece2> turnSequence = new List<AbstractCombatPiece2>();
     public List<AbstractCombatPiece2> waitSequence = new List<AbstractCombatPiece2>();
     public List<string> combatLog = new List<string>();
@@ -91,8 +90,6 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
     public void NextUnit()
     {
-        retaliatorPiece = null;
-
         if (CheckBattleEnd()) return;
 
         if (turnSequence.Count > 0 || waitSequence.Count > 0)
