@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1317082670439789997}
   - component: {fileID: 1317082670439789998}
+  - component: {fileID: 3149721077811430547}
+  - component: {fileID: 9067907975852475345}
   - component: {fileID: 8878898157919510667}
   m_Layer: 0
   m_Name: Party Piece
@@ -45,20 +47,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38930c432d31b3143828a1e19ebf5d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canBeOwned: 0
-  owner: {fileID: 0}
-  canBeControlled: 0
-  controller: {fileID: 0}
   currentTile: {fileID: 0}
-  nextTile: {fileID: 0}
+  pathNextTile: {fileID: 0}
+  pathTargetTile: {fileID: 0}
   targetTile: {fileID: 0}
   targetPiece: {fileID: 0}
+  pieceOwner: {fileID: 0}
+  pieceController: {fileID: 0}
   pieceMovement: {fileID: 0}
   partyHero: {fileID: 0}
   partyUnits: []
   anim_movement: 0
   anim_directionX: 0
   anim_directionZ: -1
+--- !u!114 &3149721077811430547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317082670439789999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc796cf00bf39b34da09956849af1b89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 0}
+--- !u!114 &9067907975852475345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317082670439789999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04b3af37df4e47f43b91111cbe1ce283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
 --- !u!114 &8878898157919510667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,7 +106,7 @@ MonoBehaviour:
   movementPointsCurrent: 0
   movementPointsMax: 0
   pathTotalCost: 0
-  inMovement: 0
+  inActualMovement: 0
   stopWasCalled: 0
   nextPos: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}

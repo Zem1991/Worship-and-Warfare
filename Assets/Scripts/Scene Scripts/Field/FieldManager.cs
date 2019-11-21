@@ -55,7 +55,7 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
 
     public IEnumerator PartiesAreInteracting(PartyPiece2 sender, PartyPiece2 receiver)
     {
-        if (sender.GetOwner() == receiver.GetOwner())
+        if (sender.pieceOwner.GetOwner() == receiver.pieceOwner.GetOwner())
         {
             GameManager.Instance.PerformExchange(sender, receiver);
             yield return null;

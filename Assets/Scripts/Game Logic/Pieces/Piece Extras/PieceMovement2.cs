@@ -31,7 +31,6 @@ public class PieceMovement2 : MonoBehaviour
     public Vector3 nextPos;
     public Vector3 direction;
     public Vector3 velocity;
-    public bool forcePieceInteraction;
 
     private void Awake()
     {
@@ -246,8 +245,7 @@ public class PieceMovement2 : MonoBehaviour
                 ICommandablePiece commandablePiece = piece as ICommandablePiece;
                 if (commandablePiece != null)
                 {
-                    yield return commandablePiece.ICP_InteractWithTargetPiece(piece.pathNextTile.occupantPiece);
-                    forcePieceInteraction = true;
+                    //StartCoroutine(commandablePiece.ICP_InteractWithTargetPiece(piece.pathNextTile.occupantPiece));
                 }
 
                 //Doing this here prevents that a piece walks over the spot of another removed piece.

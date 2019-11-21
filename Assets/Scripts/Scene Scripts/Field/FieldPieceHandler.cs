@@ -187,7 +187,7 @@ public class FieldPieceHandler : MonoBehaviour
         List<PartyPiece2> result = new List<PartyPiece2>();
         foreach (var item in partyPieces)
         {
-            if (item.GetOwner() == player) result.Add(item);
+            if (item.pieceOwner.GetOwner() == player) result.Add(item);
         }
         return result;
     }

@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PieceOwner))]
+[RequireComponent(typeof(PieceController))]
 [RequireComponent(typeof(PieceCombatActions2))]
 public abstract class AbstractCombatPiece2 : AbstractPiece2, IStartTurnEndTurn, ICommandablePiece
 {
     [Header("Other references")]
+    public PieceOwner pieceOwner;
+    public PieceController pieceController;
     public PieceCombatActions2 pieceCombatActions;
 
     [Header("Combat identification")]
@@ -27,9 +31,8 @@ public abstract class AbstractCombatPiece2 : AbstractPiece2, IStartTurnEndTurn, 
     {
         base.ManualAwake();
 
-        canBeOwned = true;
-        canBeControlled = true;
-
+        pieceOwner = GetComponent<PieceOwner>();
+        pieceController = GetComponent<PieceController>();
         pieceCombatActions = GetComponent<PieceCombatActions2>();
     }
 
@@ -45,7 +48,8 @@ public abstract class AbstractCombatPiece2 : AbstractPiece2, IStartTurnEndTurn, 
 
         CombatPieceStats prefabCPS = AllPrefabs.Instance.combatPieceStats;
 
-        this.owner = owner;
+        pieceOwner.SetOwner(owner);
+        pieceController.SetController(owner);
         this.spawnId = spawnId;
         this.onDefenderSide = onDefenderSide;
 
@@ -152,9 +156,10 @@ public abstract class AbstractCombatPiece2 : AbstractPiece2, IStartTurnEndTurn, 
 
     public virtual IEnumerator ICP_InteractWithTargetPiece(AbstractPiece2 targetPiece)
     {
-        if (GetOwner() != targetPiece.GetOwner())
+        AbstractCombatPiece2 targetCombatPiece = targetPiece as AbstractCombatPiece2;
+        if (pieceOwner.GetOwner() != targetCombatPiece.pieceOwner.GetOwner())
         {
-            yield return StartCoroutine(pieceCombatActions.Attack(targetPiece as AbstractCombatPiece2));
+            yield return StartCoroutine(pieceCombatActions.Attack(targetCombatPiece));
         }
         else
         {

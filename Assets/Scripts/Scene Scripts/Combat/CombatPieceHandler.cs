@@ -51,7 +51,7 @@ public class CombatPieceHandler : MonoBehaviour
         if (attackerPiece.partyHero != null)
         {
             attackerHero = Instantiate(prefabHero, transform);
-            attackerHero.Initialize(attackerPiece.partyHero, attackerPiece.GetOwner(), spawnId, false);
+            attackerHero.Initialize(attackerPiece.partyHero, attackerPiece.pieceOwner.GetOwner(), spawnId, false);
             attackerPieces.Add(attackerHero);
         }
 
@@ -59,7 +59,7 @@ public class CombatPieceHandler : MonoBehaviour
         if (defenderPiece.partyHero != null)
         {
             defenderHero = Instantiate(prefabHero, transform);
-            defenderHero.Initialize(defenderPiece.partyHero, defenderPiece.GetOwner(), spawnId, true);
+            defenderHero.Initialize(defenderPiece.partyHero, defenderPiece.pieceOwner.GetOwner(), spawnId, true);
             defenderPieces.Add(defenderHero);
         }
 
@@ -69,7 +69,7 @@ public class CombatPieceHandler : MonoBehaviour
             foreach (var unit in attackerPiece.partyUnits)
             {
                 CombatantUnitPiece2 uc = Instantiate(prefabUnit, transform);
-                uc.Initialize(unit, attackerPiece.GetOwner(), spawnId, false);
+                uc.Initialize(unit, attackerPiece.pieceOwner.GetOwner(), spawnId, false);
                 attackerUnits.Add(uc);
                 attackerPieces.Add(uc);
 
@@ -83,7 +83,7 @@ public class CombatPieceHandler : MonoBehaviour
             foreach (var unit in defenderPiece.partyUnits)
             {
                 CombatantUnitPiece2 uc = Instantiate(prefabUnit, transform);
-                uc.Initialize(unit, defenderPiece.GetOwner(), spawnId, true);
+                uc.Initialize(unit, defenderPiece.pieceOwner.GetOwner(), spawnId, true);
                 defenderUnits.Add(uc);
                 defenderPieces.Add(uc);
 

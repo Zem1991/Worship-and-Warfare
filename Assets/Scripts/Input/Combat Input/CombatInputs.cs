@@ -184,7 +184,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
             if (actp)
             {
                 selectionHighlight.gameObject.SetActive(true);
-                canCommandSelectedPiece = actp.GetOwner() == PlayerManager.Instance.localPlayer;
+                canCommandSelectedPiece = actp.pieceOwner.GetOwner() == PlayerManager.Instance.localPlayer;
             }
             else
             {
@@ -250,7 +250,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         {
             AbstractCombatPiece2 acp = CombatManager.Instance.currentPiece;
             PlayerManager pm = PlayerManager.Instance;
-            if (acp.GetOwner() == pm.localPlayer) acp.ISTET_EndTurn();
+            if (acp.pieceOwner.GetOwner() == pm.localPlayer) acp.ISTET_EndTurn();
         }
     }
 

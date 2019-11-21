@@ -194,7 +194,7 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
             if (pp)
             {
                 selectionHighlight.gameObject.SetActive(true);
-                canCommandSelectedPiece = pp.GetOwner() == PlayerManager.Instance.localPlayer;
+                canCommandSelectedPiece = pp.pieceOwner.GetOwner() == PlayerManager.Instance.localPlayer;
             }
             else
             {

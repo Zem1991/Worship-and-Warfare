@@ -8,12 +8,6 @@ public abstract class AbstractPiece2 : MonoBehaviour
     protected SpriteRenderer mainSpriteRenderer;
     protected SpriteRenderer flagSpriteRenderer;
 
-    [Header("Player owner/controller")]
-    [SerializeField] protected bool canBeOwned;
-    [SerializeField] protected Player owner;
-    [SerializeField] protected bool canBeControlled;
-    [SerializeField] protected Player controller;
-
     [Header("Pathfinding references")]
     public AbstractTile currentTile;
     public AbstractTile pathNextTile;
@@ -75,44 +69,6 @@ public abstract class AbstractPiece2 : MonoBehaviour
         if (!flagSpriteRenderer) flagSpriteRenderer = GetComponentsInChildren<SpriteRenderer>()[1];
         flagSpriteRenderer.sprite = sprite;
     }
-
-    /*
-    *   BEGIN:      Owner handling
-    */
-    public bool HasOwner()
-    {
-        return canBeOwned && owner;
-    }
-    public Player GetOwner()
-    {
-        return HasOwner() ? owner : null;
-    }
-    public void SetOwner(Player player)
-    {
-        owner = player;
-    }
-    /*
-    *   END:        Owner handling
-    */
-
-    /*
-    *   BEGIN:      Controller handling
-    */
-    public bool HasController()
-    {
-        return canBeControlled && controller;
-    }
-    public Player GetController()
-    {
-        return HasController() ? controller : null;
-    }
-    public void SetController(Player player)
-    {
-        controller = player;
-    }
-    /*
-    *   END:        Controller handling
-    */
 
     protected abstract void AP2_UpdateAnimatorParameters();
 }

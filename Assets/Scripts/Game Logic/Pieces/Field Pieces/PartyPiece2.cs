@@ -3,10 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PieceOwner))]
+[RequireComponent(typeof(PieceController))]
 [RequireComponent(typeof(PieceMovement2))]
 public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandablePiece, IMovablePiece
 {
     [Header("Other references")]
+    public PieceOwner pieceOwner;
+    public PieceController pieceController;
     public PieceMovement2 pieceMovement;
 
     [Header("Party contets")]
@@ -22,9 +26,8 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
     {
         base.ManualAwake();
 
-        canBeOwned = true;
-        canBeControlled = true;
-
+        pieceOwner = GetComponent<PieceOwner>();
+        pieceController = GetComponent<PieceController>();
         pieceMovement = GetComponent<PieceMovement2>();
     }
 
@@ -32,7 +35,8 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
     {
         ManualAwake();
 
-        base.owner = owner;
+        pieceOwner.SetOwner(owner);
+        pieceController.SetController(owner);
         partyHero = hero;
         partyUnits = units;
 

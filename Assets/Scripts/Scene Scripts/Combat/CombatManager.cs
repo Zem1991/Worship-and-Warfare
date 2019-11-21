@@ -19,6 +19,9 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     public Player defenderPlayer;
     public PartyPiece2 defenderParty;
 
+    [Header("Battlefield")]
+    public DB_Tileset tileset;
+
     [Header("Combat Flow")]
     public bool combatStarted;
     public int currentTurn;
@@ -27,14 +30,6 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     public List<AbstractCombatPiece2> waitSequence = new List<AbstractCombatPiece2>();
     public List<string> combatLog = new List<string>();
     public CombatResult result;
-
-    void Update()
-    {
-        //if (combatStarted)
-        //{
-        //    CheckBattleEnd();
-        //}
-    }
 
     public void TerminateCombat()
     {
@@ -49,18 +44,17 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         result = CombatResult.NOT_FINISHED;
     }
 
-    public void BootCombat(PartyPiece2 attackerPiece, PartyPiece2 defenderPiece, DB_Tileset tileset)
+    public void BootCombat(PartyPiece2 attackerParty, PartyPiece2 defenderParty, DB_Tileset tileset)
     {
-        //background = battleground.image;
-
-        attackerPlayer = attackerPiece.GetOwner();
-        attackerParty = attackerPiece;
-        defenderPlayer = defenderPiece.GetOwner();
-        defenderParty = defenderPiece;
+        attackerPlayer = attackerParty.pieceOwner.GetOwner();
+        this.attackerParty = attackerParty;
+        defenderPlayer = defenderParty.pieceOwner.GetOwner();
+        this.defenderParty = defenderParty;
+        this.tileset = tileset;
 
         Debug.LogWarning("No tile data for combat map!");
         mapHandler.BuildMap(MAP_SIZE, tileset);
-        pieceHandler.Create(attackerPiece, defenderPiece);
+        pieceHandler.Create(attackerParty, defenderParty);
         pieceHandler.InitialPositions(mapHandler.map);
         //pieceHandler.InitialHeroPositions(mapHandler.map);
         //pieceHandler.InitialUnitPositions(mapHandler.map);
@@ -107,12 +101,12 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
             ci.selectionPiece = currentPiece;
 
             ci.selectionHighlight.transform.position = currentPiece.transform.position;
-            ci.canCommandSelectedPiece = currentPiece.GetOwner() == PlayerManager.Instance.localPlayer;
+            ci.canCommandSelectedPiece = currentPiece.pieceOwner.GetOwner() == PlayerManager.Instance.localPlayer;
 
             list.RemoveAt(0);
             CombatUI.Instance.turnSequence.RemoveFirstFromTurnSequence();
 
-            Player owner = currentPiece.GetOwner();
+            Player owner = currentPiece.pieceOwner.GetOwner();
             if (owner.type == PlayerType.COMPUTER)
             {
                 owner.aiPersonality.CombatRoutine();
@@ -205,6 +199,13 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
             resultMsg = localPlayerDefeatMsg;
         }
         CombatUI.Instance.ResultPopupShow(resultMsg);
+    }
+
+    public void CombatEndForceVictory()
+    {
+        Player localPlayer = PlayerManager.Instance.localPlayer;
+        if (attackerPlayer == localPlayer) CombatEnd(CombatResult.ATTACKER_WON);
+        else if (defenderPlayer == localPlayer) CombatEnd(CombatResult.DEFENDER_WON);
     }
 
     public void CombatEndForceDefeat()
@@ -323,6 +324,16 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         bool pauseStatus = GameManager.Instance.PauseUnpause();
         if (pauseStatus) CombatUI.Instance.EscapeMenuShow();
         else CombatUI.Instance.EscapeMenuHide();
+    }
+
+    public void Restart()
+    {
+        CombatUI.Instance.EscapeMenuHide();
+
+        TerminateCombat();
+        BootCombat(attackerParty, defenderParty, tileset);
+
+        GameManager.Instance.PauseUnpause();
     }
     /*
      * End: UI Top Left buttons

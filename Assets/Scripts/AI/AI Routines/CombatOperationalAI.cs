@@ -50,7 +50,7 @@ public class CombatOperationalAI : AbstractAIRoutine
     private void ReadCurrentUnit()
     {
         AbstractCombatPiece2 current = CombatManager.Instance.currentPiece;
-        currentUnit = current.GetOwner() == aiPersonality.player ? current : null;
+        currentUnit = current.pieceOwner.GetOwner() == aiPersonality.player ? current : null;
     }
 
     private void CalculateSkillPriority()

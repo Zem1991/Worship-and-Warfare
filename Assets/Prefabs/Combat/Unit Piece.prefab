@@ -89,8 +89,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6036333515219936308}
   - component: {fileID: 6036333515219936309}
-  - component: {fileID: 334233482100639713}
+  - component: {fileID: 8516396809573870807}
+  - component: {fileID: -1768015997571773248}
   - component: {fileID: 1992955084037246452}
+  - component: {fileID: 334233482100639713}
   m_Layer: 0
   m_Name: Unit Piece
   m_TagString: Untagged
@@ -125,26 +127,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e6236272799a04fbf9f6edbb63e355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canBeOwned: 0
-  owner: {fileID: 0}
-  canBeControlled: 0
-  controller: {fileID: 0}
   currentTile: {fileID: 0}
-  nextTile: {fileID: 0}
+  pathNextTile: {fileID: 0}
+  pathTargetTile: {fileID: 0}
   targetTile: {fileID: 0}
   targetPiece: {fileID: 0}
+  pieceOwner: {fileID: 0}
+  pieceController: {fileID: 0}
+  pieceCombatActions: {fileID: 0}
   spawnId: 0
   onDefenderSide: 0
-  hitPointsCurrent: 0
-  hitPointsMax: 0
   stateHurt: 0
   stateDead: 0
   combatPieceStats: {fileID: 0}
-  retaliationTarget: {fileID: 0}
-  projectile: {fileID: 0}
+  animateMovementStart: 0
+  animateMovementEnd: 0
   unit: {fileID: 0}
   stackStats: {fileID: 0}
---- !u!114 &334233482100639713
+--- !u!114 &8516396809573870807
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,22 +153,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 6036333515219936311}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 092dbb15e6e8f4d438f62bfeed5b2ace, type: 3}
+  m_Script: {fileID: 11500000, guid: dc796cf00bf39b34da09956849af1b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canMove: 0
-  stateMove: 0
-  movementStart: 0
-  movementGoing: 0
-  movementEnd: 0
-  movementPointsCurrent: 0
-  movementPointsMax: 0
-  pathTotalCost: 0
-  inMovement: 0
-  stopWasCalled: 0
-  nextPos: {x: 0, y: 0, z: 0}
-  direction: {x: 0, y: 0, z: 0}
-  velocity: {x: 0, y: 0, z: 0}
+  owner: {fileID: 0}
+--- !u!114 &-1768015997571773248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6036333515219936311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04b3af37df4e47f43b91111cbe1ce283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
 --- !u!114 &1992955084037246452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,9 +192,35 @@ MonoBehaviour:
   stateRetaliation: 0
   meleeAttackStart: 0
   meleeAttackEnd: 0
+  rangedAttackStart: 0
+  rangedAttackEnd: 0
   retaliations: 0
-  retaliationsMax: 0
   projectile: {fileID: 0}
+--- !u!114 &334233482100639713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6036333515219936311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092dbb15e6e8f4d438f62bfeed5b2ace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canMove: 0
+  stateMove: 0
+  movementStart: 0
+  movementGoing: 0
+  movementEnd: 0
+  movementPointsCurrent: 0
+  movementPointsMax: 0
+  pathTotalCost: 0
+  inActualMovement: 0
+  stopWasCalled: 0
+  nextPos: {x: 0, y: 0, z: 0}
+  direction: {x: 0, y: 0, z: 0}
+  velocity: {x: 0, y: 0, z: 0}
 --- !u!1 &6661559027028567187
 GameObject:
   m_ObjectHideFlags: 0
