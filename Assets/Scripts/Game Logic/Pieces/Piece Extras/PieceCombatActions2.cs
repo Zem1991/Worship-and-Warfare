@@ -78,13 +78,11 @@ public class PieceCombatActions2 : MonoBehaviour
         if (attack.isRanged)
         {
             stateAttack = true;
-            //yield return StartCoroutine(AttackRanged(attack, target));
-            AttackRanged(attack, target);
+            yield return StartCoroutine(AttackRanged(attack, target));
             stateAttack = false;
         }
         else
         {
-            //yield return StartCoroutine(Approach());
             AbstractCombatantPiece2 pieceAsCombatant = piece as AbstractCombatantPiece2;
             if (pieceAsCombatant)
             {
@@ -116,14 +114,12 @@ public class PieceCombatActions2 : MonoBehaviour
         yield return StartCoroutine(AttackStart(attack));
         int damage = CalculateDamage(attack, target);
 
-        //IEnumerator[] ienumerators =
-        //{
-        //    AttackEnd(attack),
-        //    target.TakeDamage(damage)
-        //};
-        //yield return ienumerators.Select(StartCoroutine).ToArray().GetEnumerator();
-        AttackEnd(attack);
-        target.TakeDamage(damage);
+        IEnumerator[] ienumerators =
+        {
+            AttackEnd(attack),
+            target.TakeDamage(damage)
+        };
+        yield return ienumerators.Select(StartCoroutine).ToArray().GetEnumerator();
     }
     private IEnumerator AttackRanged(AttackStats attack, AbstractCombatPiece2 target)
     {

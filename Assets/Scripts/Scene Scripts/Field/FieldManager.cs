@@ -77,7 +77,7 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         }
         else
         {
-            GoToCombat(sender, receiver);
+            StartCoroutine(GoToCombat(sender, receiver));
         }
     }
 
@@ -126,7 +126,7 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
     {
         FieldSC.Instance.HideScene();
         TerminateField();
-        GameManager.Instance.LoadScenarioFile();
+        StartCoroutine(GameManager.Instance.LoadScenarioFile());
     }
 
     public void QuitToMaimMenu()
@@ -214,14 +214,19 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         //yield return null;
     }
 
-    private void GoToCombat(PartyPiece2 attacker, PartyPiece2 defender)
+    private IEnumerator GoToCombat(PartyPiece2 attacker, PartyPiece2 defender)
     {
+        List<PartyPiece2> pieces = new List<PartyPiece2> { attacker, defender };
+        yield return
+            StartCoroutine(pieceHandler.YieldForIdlePieces(pieces));
+
+        FieldInputs.Instance.RemoveMovementHighlights();
+        FieldSC.Instance.HideScene();
+
         Debug.Log("PIECES ARE IN BATTLE");
         GameManager.Instance.ChangeSchemes(GameScheme.COMBAT);
 
-        FieldSC.Instance.HideScene();
         FieldTile fieldTile = defender.currentTile as FieldTile;
-
         CombatManager.Instance.BootCombat(attacker, defender, fieldTile.db_tileset_lowerLand);
 
         CombatSC.Instance.ShowScene();

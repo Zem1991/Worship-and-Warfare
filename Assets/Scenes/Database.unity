@@ -695,11 +695,6 @@ PrefabInstance:
       propertyPath: damage_maximum
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 2703027630738221901, guid: c29de37e6be59774fb249ec8c5830944,
-        type: 3}
-      propertyPath: animationProjectile
-      value: 
-      objectReference: {fileID: 1532252778}
     - target: {fileID: 2703027630738221938, guid: c29de37e6be59774fb249ec8c5830944,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2561,6 +2556,11 @@ PrefabInstance:
       propertyPath: range_maximum
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2703027630738221901, guid: c29de37e6be59774fb249ec8c5830944,
+        type: 3}
+      propertyPath: animationProjectile
+      value: 
+      objectReference: {fileID: 1532252778}
     - target: {fileID: 2703027630738221938, guid: c29de37e6be59774fb249ec8c5830944,
         type: 3}
       propertyPath: m_LocalPosition.x

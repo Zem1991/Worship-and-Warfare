@@ -46,6 +46,8 @@ public class Projectile : MonoBehaviour
         casterPos = casterPiece.transform.position;
         this.targetPos = targetPos;
         this.casterPiece = casterPiece;
+
+        SetAnimatorOverrideController(attack.animationProjectile.animationAnimator);
     }
 
     public void SetupAndGo(AttackStats attack, AbstractPiece2 casterPiece, AbstractPiece2 targetPiece)

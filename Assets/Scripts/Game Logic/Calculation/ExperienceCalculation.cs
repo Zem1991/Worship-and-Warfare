@@ -40,6 +40,8 @@ public static class ExperienceCalculation
 
     public static int FullExperienceCalculation(List<AbstractCombatPiece2> pieces)
     {
+        //TODO allow experience gain from forcibly winning or losing combat
+
         int result = 0;
         foreach (var item in pieces)
         {
@@ -57,7 +59,7 @@ public static class ExperienceCalculation
         int result = 0;
         if (hero.stateDead)
         {
-            result = hero.hero.combatPieceStats.hitPoints_maximum;
+            result = hero.combatPieceStats.hitPoints_maximum;
             result += hero.hero.experienceStats.level * 50;
         }
         return result;
@@ -69,7 +71,7 @@ public static class ExperienceCalculation
         int stackDif = unit.unit.stackStats.stack_maximum - unit.stackStats.stack_current;
         if (stackDif > 0)
         {
-            result = unit.unit.combatPieceStats.hitPoints_maximum;
+            result = unit.combatPieceStats.hitPoints_maximum;
             result *= stackDif;
         }
         return result;

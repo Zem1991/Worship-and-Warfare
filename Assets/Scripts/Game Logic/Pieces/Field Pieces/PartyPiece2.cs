@@ -113,7 +113,9 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
 
     public virtual IEnumerator ICP_InteractWithTargetTile(AbstractTile targetTile, bool endTurnWhenDone)
     {
+        bool hasPath = pieceMovement.HasPath(targetTile);
         yield return StartCoroutine(pieceMovement.Movement(targetTile));
+        if (hasPath && endTurnWhenDone) ISTET_EndTurn();
     }
 
     public virtual IEnumerator ICP_InteractWithTargetPiece(AbstractPiece2 targetPiece)

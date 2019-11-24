@@ -238,8 +238,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         AbstractCombatantPiece2 actp = selectionPiece as AbstractCombatantPiece2;
         if (selectionPiece && canCommandSelectedPiece && actp && !actp.pieceCombatActions.stateWait)
         {
-            //StartCoroutine(actp.pieceCombatActions.Wait());
-            actp.pieceCombatActions.Wait();
+            StartCoroutine(actp.pieceCombatActions.Wait());
         }
     }
 
@@ -248,8 +247,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         AbstractCombatPiece2 actp = selectionPiece as AbstractCombatPiece2;
         if (selectionPiece && canCommandSelectedPiece && actp)
         {
-            //StartCoroutine(actp.pieceCombatActions.Defend());
-            actp.pieceCombatActions.Defend();
+            StartCoroutine(actp.pieceCombatActions.Defend());
         }
     }
 

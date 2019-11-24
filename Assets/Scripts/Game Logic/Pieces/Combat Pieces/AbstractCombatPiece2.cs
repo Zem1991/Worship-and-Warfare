@@ -83,9 +83,9 @@ public abstract class AbstractCombatPiece2 : AbstractPiece2, IStartTurnEndTurn, 
     */
     public virtual IEnumerator TakeDamage(int amount)
     {
-        combatPieceStats.hitPoints_current -= amount;
-        if (combatPieceStats.hitPoints_current > 0) yield return StartCoroutine(DamagedHurt());
-        else yield return StartCoroutine(DamagedDead());
+        bool defeated = combatPieceStats.TakeDamage(amount);
+        if (defeated) yield return StartCoroutine(DamagedDead());
+        else yield return StartCoroutine(DamagedHurt());
     }
     protected virtual IEnumerator DamagedHurt()
     {
@@ -146,6 +146,8 @@ public abstract class AbstractCombatPiece2 : AbstractPiece2, IStartTurnEndTurn, 
 
         if (tile.occupantPiece) StartCoroutine(ICP_InteractWithTargetPiece(tile.occupantPiece));
         else StartCoroutine(ICP_InteractWithTargetTile(tile, false));
+        //if (tile.occupantPiece) ICP_InteractWithTargetPiece(tile.occupantPiece);
+        //else ICP_InteractWithTargetTile(tile, false);
     }
 
     public virtual IEnumerator ICP_InteractWithTargetTile(AbstractTile targetTile, bool endTurnWhenDone)
@@ -159,7 +161,8 @@ public abstract class AbstractCombatPiece2 : AbstractPiece2, IStartTurnEndTurn, 
         AbstractCombatPiece2 targetCombatPiece = targetPiece as AbstractCombatPiece2;
         if (pieceOwner.GetOwner() != targetCombatPiece.pieceOwner.GetOwner())
         {
-            yield return StartCoroutine(pieceCombatActions.Attack(targetCombatPiece));
+            yield return
+                StartCoroutine(pieceCombatActions.Attack(targetCombatPiece));
         }
         else
         {

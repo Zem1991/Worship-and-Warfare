@@ -55,11 +55,12 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         currentPiece = null;
         turnSequence.Clear();
         combatLog.Clear();
-        result = CombatResult.NOT_FINISHED;
     }
 
     public void BootCombat(PartyPiece2 attackerParty, PartyPiece2 defenderParty, DB_Tileset tileset)
     {
+        result = CombatResult.NOT_FINISHED;
+
         attackerPlayer = attackerParty.pieceOwner.GetOwner();
         this.attackerParty = attackerParty;
         defenderPlayer = defenderParty.pieceOwner.GetOwner();
@@ -308,14 +309,15 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
     private void ReturnFromCombat(CombatResult result, PartyPiece2 attacker, PartyPiece2 defender)
     {
+        CombatInputs.Instance.RemoveMovementHighlights();
         CombatSC.Instance.HideScene();
 
-        //Doing this here, because later I could add an 'redo combat' feature.
+        //TODO consider an 'redo combat' feature.
         ApplyCombatResults(out int attackerExperience, out int defenderExperience);
-
         GameManager.Instance.ChangeSchemes(GameScheme.FIELD);
 
         FieldSC.Instance.ShowScene();
+
         switch (result)
         {
             case CombatResult.ATTACKER_WON:
@@ -327,6 +329,11 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
                 FieldManager.Instance.RemovePiece(attacker);
                 break;
         }
+
+        //TODO add the call for the level up window here
+
+        FieldInputs.Instance.MakeSelectedPieceInteract(false);
+        //FieldInputs.Instance.ResetHighlights();
     }
 
     private void ApplyCombatResults(out int attackerExperience, out int defenderExperience)
@@ -337,16 +344,16 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         if (result != CombatResult.DEFENDER_WON)
         {
             attackerExperience = ExperienceCalculation.FullExperienceCalculation(pieceHandler.defenderPieces);
-            ApplyCombatChanges(attackerParty, pieceHandler.attackerPieces);
+            ApplyCombatResults(attackerParty, pieceHandler.attackerPieces);
         }
         if (result != CombatResult.ATTACKER_WON)
         {
             defenderExperience = ExperienceCalculation.FullExperienceCalculation(pieceHandler.attackerPieces);
-            ApplyCombatChanges(defenderParty, pieceHandler.defenderPieces);
+            ApplyCombatResults(defenderParty, pieceHandler.defenderPieces);
         }
     }
 
-    private void ApplyCombatChanges(PartyPiece2 party, List<AbstractCombatPiece2> pieces)
+    private void ApplyCombatResults(PartyPiece2 party, List<AbstractCombatPiece2> pieces)
     {
         foreach (var piece in pieces)
         {

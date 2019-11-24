@@ -192,6 +192,10 @@ public class PieceMovement2 : MonoBehaviour
     */
     private IEnumerator ActualMovement()
     {
+        ICommandablePiece commandablePiece = piece as ICommandablePiece;
+        bool doInteract = false;
+        AbstractPiece2 interactionTarget = null;
+
         inActualMovement = true;
         while (inActualMovement)
         {
@@ -241,17 +245,12 @@ public class PieceMovement2 : MonoBehaviour
 
             if (piece.pathNextTile && piece.pathNextTile.occupantPiece)
             {
-                //If the piece has a way to interact with other pieces, make it happen here.
-                ICommandablePiece commandablePiece = piece as ICommandablePiece;
-                if (commandablePiece != null)
-                {
-                    //StartCoroutine(commandablePiece.ICP_InteractWithTargetPiece(piece.pathNextTile.occupantPiece));
-                    commandablePiece.ICP_InteractWithTargetPiece(piece.pathNextTile.occupantPiece);
-                }
+                doStop = true;
+                doInteract = true;
+                interactionTarget = piece.pathNextTile.occupantPiece;
 
                 //Doing this here prevents that a piece walks over the spot of another removed piece.
                 piece.pathNextTile = null;
-                doStop = true;
             }
 
             if (doStop)
@@ -277,6 +276,14 @@ public class PieceMovement2 : MonoBehaviour
             }
 
             yield return null;
+        }
+
+        //If the piece has a way to interact with other pieces, make it happen here.
+        if (doInteract && interactionTarget)
+        {
+            yield return
+                StartCoroutine(commandablePiece.ICP_InteractWithTargetPiece(interactionTarget));
+            //commandablePiece.ICP_InteractWithTargetPiece(interactionTarget);
         }
     }
     /*

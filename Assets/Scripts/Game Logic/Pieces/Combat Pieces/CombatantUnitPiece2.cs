@@ -26,27 +26,12 @@ public class CombatantUnitPiece2 : AbstractCombatantPiece2
         SetAnimatorOverrideController(unit.dbData.animatorCombat);
     }
 
-    //public override bool ACP_TakeDamage(int amount)
-    //{
-    //    bool result = combatPieceStats.TakeDamage(amount, stackStats, out int stackLost);
-    //    string log = unit.GetName() + " took " + amount + " damage. " + stackLost + " units died.";
-    //    CombatManager.Instance.AddEntryToLog(log);
-
-    //    if (result)
-    //    {
-    //        ACP_Die();
-    //        return true;
-    //    }
-    //    else
-    //    {
-    //        isHurt = true;
-    //        return false;
-    //    }
-    //}
-
-    //public override void ACP_Die()
-    //{
-    //    stackStats.stack_current = 0;
-    //    base.ACP_Die();
-    //}
+    public override IEnumerator TakeDamage(int amount)
+    {
+        bool defeated = combatPieceStats.TakeDamage(amount, stackStats, out int stackLost);
+        //string log = unit.GetName() + " took " + amount + " damage. " + stackLost + " units died.";
+        //CombatManager.Instance.AddEntryToLog(log);
+        if (defeated) yield return StartCoroutine(DamagedDead());
+        else yield return StartCoroutine(DamagedHurt());
+    }
 }

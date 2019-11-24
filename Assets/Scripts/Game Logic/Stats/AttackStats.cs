@@ -24,6 +24,8 @@ public class AttackStats : MonoBehaviour
         isRanged = attackStats.isRanged;
         range_effective = attackStats.range_effective;
         range_maximum = attackStats.range_maximum;
+
+        animationProjectile = attackStats.animationProjectile;
     }
 
     public string AttackType()

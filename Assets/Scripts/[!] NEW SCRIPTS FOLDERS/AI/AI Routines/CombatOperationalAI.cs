@@ -164,7 +164,7 @@ public class CombatOperationalAI : AbstractAIRoutine
 
     private void PerformAction()
     {
-        //IEnumerator coroutine = null;
+        IEnumerator coroutine = null;
         switch (decision)
         {
             case CombatOperationalDecision.SKILL:
@@ -172,21 +172,18 @@ public class CombatOperationalAI : AbstractAIRoutine
             case CombatOperationalDecision.ATTACK:
                 currentUnit.targetTile = attackTarget.currentTile;
                 currentUnit.targetPiece = attackTarget;
-                //coroutine = currentUnit.pieceCombatActions.Attack(attackTarget, attackTargetPathfind);
-                currentUnit.pieceCombatActions.Attack(attackTarget, attackTargetPathfind);
+                coroutine = currentUnit.pieceCombatActions.Attack(attackTarget, attackTargetPathfind);
                 break;
             case CombatOperationalDecision.DEFEND:
-                //coroutine = currentUnit.pieceCombatActions.Defend();
-                currentUnit.pieceCombatActions.Defend();
+                coroutine = currentUnit.pieceCombatActions.Defend();
                 break;
             case CombatOperationalDecision.WAIT:
-                //coroutine = currentUnit.pieceCombatActions.Wait();
-                currentUnit.pieceCombatActions.Wait();
+                coroutine = currentUnit.pieceCombatActions.Wait();
                 break;
             case CombatOperationalDecision.MOVE:
                 break;
         }
 
-        //StartCoroutine(coroutine);
+        StartCoroutine(coroutine);
     }
 }
