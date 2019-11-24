@@ -32,7 +32,7 @@ public class Inventory : MonoBehaviour
 
     public void Initialize(Hero hero, InventoryData inventoryData)
     {
-        DBContentHandler<DB_Artifact> dbArtifacts = DBHandler_Artifact.Instance;
+        AbstractDBContentHandler<DB_Artifact> dbArtifacts = DBHandler_Artifact.Instance;
 
         InventorySlot prefabInventorySlot = AllPrefabs.Instance.inventorySlot;
 

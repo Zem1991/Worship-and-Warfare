@@ -5,20 +5,29 @@ using UnityEngine;
 
 public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
 {
-    [Header("Auxiliary Objects")]
+    [Header("Auxiliary objects")]
     public FieldMapHandler mapHandler;
     public FieldPieceHandler pieceHandler;
 
+    [Header("Field flow")]
+    public int currentTurn;
+    public Player currentPlayer;
+
+    [Header("Day/Week/Month")]
+    public int day;
+    public int week;
+    public int month;
+
     public void Hide()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
         mapHandler.gameObject.SetActive(false);
         pieceHandler.gameObject.SetActive(false);
     }
 
     public void Show()
     {
-        gameObject.SetActive(true);
+        //gameObject.SetActive(true);
         mapHandler.gameObject.SetActive(true);
         pieceHandler.gameObject.SetActive(true);
     }
@@ -47,27 +56,32 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
 
     public void NextTurnForAll()
     {
+        currentTurn++;
+
+        PlayerManager.Instance.RefreshTurnForActivePlayers(currentTurn);
+        currentPlayer = PlayerManager.Instance.activePlayers[0];
+
+        NextDayWeekMonth();
+
         foreach (var item in pieceHandler.partyPieces)
         {
             item.ISTET_StartTurn();
         }
     }
 
-    public IEnumerator PartiesAreInteracting(PartyPiece2 sender, PartyPiece2 receiver)
+    public void PartiesAreInteracting(PartyPiece2 sender, PartyPiece2 receiver)
     {
         if (sender.pieceOwner.GetOwner() == receiver.pieceOwner.GetOwner())
         {
-            GameManager.Instance.PerformExchange(sender, receiver);
-            yield return null;
+            PerformExchange(sender, receiver);
         }
         else
         {
-            GameManager.Instance.GoToCombat(sender, receiver);
-            yield return null;
+            GoToCombat(sender, receiver);
         }
     }
 
-    public IEnumerator PartyFoundPickup(PartyPiece2 partyPiece2, PickupPiece2 targetPickup)
+    public void PartyFoundPickup(PartyPiece2 partyPiece2, PickupPiece2 targetPickup)
     {
         switch (targetPickup.pickupType)
         {
@@ -87,7 +101,7 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
                 break;
         }
         RemovePickup(targetPickup);
-        yield return null;
+        //yield return null;
     }
 
     /*
@@ -110,10 +124,16 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
 
     public void Restart()
     {
-        GameManager.Instance.PauseUnpause(false);
-        FieldUI.Instance.EscapeMenuHide();
+        FieldSC.Instance.HideScene();
+        TerminateField();
+        GameManager.Instance.LoadScenarioFile();
+    }
 
-        GameManager.Instance.Restart();
+    public void QuitToMaimMenu()
+    {
+        FieldSC.Instance.HideScene();
+        TerminateField();
+        Main.Instance.ReturnToMain();
     }
     /*
      * End: UI Top Left buttons
@@ -124,7 +144,8 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
      */
     public void EndTurn()
     {
-        GameManager.Instance.EndTurn();
+        FieldUI.Instance.timers.LockButtons();
+        StartCoroutine(EndTurnForCurrentPlayer());
     }
     /*
      * End: UI Top Right buttons
@@ -152,4 +173,57 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
     /*
     * End: UI Bottom Right buttons
     */
+
+    private void NextDayWeekMonth()
+    {
+        int turnsAdjusted = currentTurn - 1;
+        month = (turnsAdjusted / 28) + 1;
+        int monthDayDif = turnsAdjusted % 28;
+        week = (monthDayDif / 7) + 1;
+        int weekDayDif = monthDayDif % 7;
+        day = (weekDayDif % 7) + 1;
+    }
+
+    private IEnumerator EndTurnForCurrentPlayer()
+    {
+        PlayerManager pm = PlayerManager.Instance;
+        FieldPieceHandler fPH = FieldManager.Instance.pieceHandler;
+        FieldInputs fInputs = FieldInputs.Instance;
+
+        List<PartyPiece2> playerFieldPieces = fPH.GetPlayerPieces(currentPlayer);
+        yield return StartCoroutine(fPH.YieldForIdlePieces(playerFieldPieces));
+
+        Player next = pm.EndTurnForPlayer(currentPlayer);
+        if (!next) NextTurnForAll();
+        else currentPlayer = next;
+
+        if (currentPlayer == pm.localPlayer)
+        {
+            FieldUI.Instance.timers.UnlockButtons();
+            fInputs.ResetHighlights();
+        }
+        else if (currentPlayer.type == PlayerType.COMPUTER)
+        {
+            currentPlayer.aiPersonality.FieldRoutine();
+        }
+    }
+
+    private void PerformExchange(AbstractFieldPiece2 sender, AbstractFieldPiece2 receiver)
+    {
+        Debug.Log("PIECES ARE EXCHANGING STUFF");
+        //yield return null;
+    }
+
+    private void GoToCombat(PartyPiece2 attacker, PartyPiece2 defender)
+    {
+        Debug.Log("PIECES ARE IN BATTLE");
+        GameManager.Instance.ChangeSchemes(GameScheme.COMBAT);
+
+        FieldSC.Instance.HideScene();
+        FieldTile fieldTile = defender.currentTile as FieldTile;
+
+        CombatManager.Instance.BootCombat(attacker, defender, fieldTile.db_tileset_lowerLand);
+
+        CombatSC.Instance.ShowScene();
+    }
 }

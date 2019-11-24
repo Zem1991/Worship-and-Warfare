@@ -20,27 +20,34 @@ public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideabl
     [Header("Current Window")]
     public AUIPanel currentWindow;
 
-    public override void Awake()
+    public void Hide()
     {
-        base.Awake();
+        coreButtons.Hide();
+        attackerParty.Hide();
+        defenderParty.Hide();
+        timers.Hide();
+        currentPiece.Hide();
+        turnSequence.Hide();
+        //combatLogs.Hide();
+
         EscapeMenuHide();
         ResultPopupHide();
     }
 
-    public void Hide()
-    {
-        gameObject.SetActive(false);
-    }
-
     public void Show()
     {
-        gameObject.SetActive(true);
+        coreButtons.Show();
+        attackerParty.Show();
+        defenderParty.Show();
+        timers.Show();
+        currentPiece.Show();
+        turnSequence.Show();
+        //combatLogs.Show();
     }
 
     public void CloseCurrentWindow()
     {
         if (currentWindow == escapeMenu) EscapeMenuHide();
-        //if (currentWindow == inventory) InventoryHide();
     }
 
     public void UpdatePanels()

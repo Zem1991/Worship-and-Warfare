@@ -9,9 +9,18 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     private const string localPlayerDefeatMsg = "You lost the battle!";
     public readonly Vector2Int MAP_SIZE = new Vector2Int(15, 9);
 
-    [Header("Auxiliary Objects")]
+    [Header("Auxiliary objects")]
     public CombatMapHandler mapHandler;
     public CombatPieceHandler pieceHandler;
+
+    [Header("Combat flow")]
+    public bool combatStarted;
+    public int currentTurn;
+    public AbstractCombatPiece2 currentPiece;
+    public List<AbstractCombatPiece2> turnSequence = new List<AbstractCombatPiece2>();
+    public List<AbstractCombatPiece2> waitSequence = new List<AbstractCombatPiece2>();
+    public List<string> combatLog = new List<string>();
+    public CombatResult result;
 
     [Header("Teams")]
     public Player attackerPlayer;
@@ -22,14 +31,19 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     [Header("Battlefield")]
     public DB_Tileset tileset;
 
-    [Header("Combat Flow")]
-    public bool combatStarted;
-    public int currentTurn;
-    public AbstractCombatPiece2 currentPiece;
-    public List<AbstractCombatPiece2> turnSequence = new List<AbstractCombatPiece2>();
-    public List<AbstractCombatPiece2> waitSequence = new List<AbstractCombatPiece2>();
-    public List<string> combatLog = new List<string>();
-    public CombatResult result;
+    public void Hide()
+    {
+        //gameObject.SetActive(false);
+        mapHandler.gameObject.SetActive(false);
+        pieceHandler.gameObject.SetActive(false);
+    }
+
+    public void Show()
+    {
+        //gameObject.SetActive(true);
+        mapHandler.gameObject.SetActive(true);
+        pieceHandler.gameObject.SetActive(true);
+    }
 
     public void TerminateCombat()
     {
@@ -56,25 +70,9 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         mapHandler.BuildMap(MAP_SIZE, tileset);
         pieceHandler.Create(attackerParty, defenderParty);
         pieceHandler.InitialPositions(mapHandler.map);
-        //pieceHandler.InitialHeroPositions(mapHandler.map);
-        //pieceHandler.InitialUnitPositions(mapHandler.map);
 
         combatStarted = true;
         NextTurn();
-    }
-
-    public void Hide()
-    {
-        gameObject.SetActive(false);
-        mapHandler.gameObject.SetActive(false);
-        pieceHandler.gameObject.SetActive(false);
-    }
-
-    public void Show()
-    {
-        gameObject.SetActive(true);
-        mapHandler.gameObject.SetActive(true);
-        pieceHandler.gameObject.SetActive(true);
     }
 
     public bool IsCombatRunning()
@@ -218,55 +216,8 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     public void CombatEndConfirm()
     {
         CombatUI.Instance.ResultPopupHide();
-        GameManager.Instance.ReturnFromCombat(result, attackerParty, defenderParty);
         TerminateCombat();
-    }
-
-    public void ApplyCombatResults(out int attackerExperience, out int defenderExperience)
-    {
-        attackerExperience = 0;
-        defenderExperience = 0;
-
-        if (result != CombatResult.DEFENDER_WON)
-        {
-            attackerExperience = ExperienceCalculation.FullExperienceCalculation(pieceHandler.defenderPieces);
-            ApplyCombatChanges(attackerParty, pieceHandler.attackerPieces);
-        }
-        if (result != CombatResult.ATTACKER_WON)
-        {
-            defenderExperience = ExperienceCalculation.FullExperienceCalculation(pieceHandler.attackerPieces);
-            ApplyCombatChanges(defenderParty, pieceHandler.defenderPieces);
-        }
-    }
-
-    private void ApplyCombatChanges(PartyPiece2 party, List<AbstractCombatPiece2> pieces)
-    {
-        foreach (var piece in pieces)
-        {
-            CombatantHeroPiece2 asHero = piece as CombatantHeroPiece2;
-            CombatantUnitPiece2 asUnit = piece as CombatantUnitPiece2;
-
-            if (asHero)
-            {
-                Hero hero = asHero.hero;
-                if (asHero.combatPieceStats.hitPoints_current <= 0)
-                {
-                    party.partyHero = null;
-                    Destroy(hero.gameObject);
-                }
-            }
-
-            if (asUnit)
-            {
-                Unit unit = asUnit.unit;
-                unit.stackStats.stack_maximum = asUnit.stackStats.stack_current;
-                if (unit.stackStats.stack_maximum <= 0)
-                {
-                    party.partyUnits.Remove(unit);
-                    Destroy(unit.gameObject);
-                }
-            }
-        }
+        ReturnFromCombat(result, attackerParty, defenderParty);
     }
 
     public List<string> GetLastLogs(int entries)
@@ -354,4 +305,74 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     /*
     * End: UI Bottom Left buttons
     */
+
+    private void ReturnFromCombat(CombatResult result, PartyPiece2 attacker, PartyPiece2 defender)
+    {
+        CombatSC.Instance.HideScene();
+
+        //Doing this here, because later I could add an 'redo combat' feature.
+        ApplyCombatResults(out int attackerExperience, out int defenderExperience);
+
+        GameManager.Instance.ChangeSchemes(GameScheme.FIELD);
+
+        FieldSC.Instance.ShowScene();
+        switch (result)
+        {
+            case CombatResult.ATTACKER_WON:
+                attacker.ApplyExperience(attackerExperience);
+                FieldManager.Instance.RemovePiece(defender);
+                break;
+            case CombatResult.DEFENDER_WON:
+                defender.ApplyExperience(defenderExperience);
+                FieldManager.Instance.RemovePiece(attacker);
+                break;
+        }
+    }
+
+    private void ApplyCombatResults(out int attackerExperience, out int defenderExperience)
+    {
+        attackerExperience = 0;
+        defenderExperience = 0;
+
+        if (result != CombatResult.DEFENDER_WON)
+        {
+            attackerExperience = ExperienceCalculation.FullExperienceCalculation(pieceHandler.defenderPieces);
+            ApplyCombatChanges(attackerParty, pieceHandler.attackerPieces);
+        }
+        if (result != CombatResult.ATTACKER_WON)
+        {
+            defenderExperience = ExperienceCalculation.FullExperienceCalculation(pieceHandler.attackerPieces);
+            ApplyCombatChanges(defenderParty, pieceHandler.defenderPieces);
+        }
+    }
+
+    private void ApplyCombatChanges(PartyPiece2 party, List<AbstractCombatPiece2> pieces)
+    {
+        foreach (var piece in pieces)
+        {
+            CombatantHeroPiece2 asHero = piece as CombatantHeroPiece2;
+            CombatantUnitPiece2 asUnit = piece as CombatantUnitPiece2;
+
+            if (asHero)
+            {
+                Hero hero = asHero.hero;
+                if (asHero.combatPieceStats.hitPoints_current <= 0)
+                {
+                    party.partyHero = null;
+                    Destroy(hero.gameObject);
+                }
+            }
+
+            if (asUnit)
+            {
+                Unit unit = asUnit.unit;
+                unit.stackStats.stack_maximum = asUnit.stackStats.stack_current;
+                if (unit.stackStats.stack_maximum <= 0)
+                {
+                    party.partyUnits.Remove(unit);
+                    Destroy(unit.gameObject);
+                }
+            }
+        }
+    }
 }

@@ -6,18 +6,6 @@ using UnityEngine;
 public class PlayerManager : AbstractSingleton<PlayerManager>
 {
     public static readonly int MAX_PLAYERS = 2;
-    //public static readonly Color[] PLAYER_COLORS =
-    //{
-    //    Color.red,
-    //    Color.blue,
-    //    Color.yellow,
-    //    Color.green,
-    //    Color.magenta,
-    //    Color.cyan,
-    //    Color.white,
-    //    Color.black
-    //};
-    //public readonly Color INACTIVE_COLOR = Color.gray;
 
     [Header("Players")]
     public Player localPlayer;
@@ -55,7 +43,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     public void InstantiatePlayer(PlayerData playerData, int id)
     {
-        DBContentHandler<DB_Color> dbColors = DBHandler_Color.Instance;
+        AbstractDBContentHandler<DB_Color> dbColors = DBHandler_Color.Instance;
 
         Player prefab = AllPrefabs.Instance.player;
 

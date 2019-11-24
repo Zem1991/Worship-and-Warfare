@@ -11,8 +11,9 @@ public class FieldUI_Panel_Timers : AUIPanel
 
     public void UpdatePanel()
     {
+        FieldManager fm = FieldManager.Instance;
         GameManager gm = GameManager.Instance;
-        txtTurns.text = "Day " + gm.day + ", week " + gm.week + ", month " + gm.month;
+        txtTurns.text = "Day " + fm.day + ", week " + fm.week + ", month " + fm.month;
         txtTimer.text = gm.timeElapsedText;
     }
 

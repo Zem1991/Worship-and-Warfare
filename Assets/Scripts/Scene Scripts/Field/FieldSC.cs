@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FieldSC : AbstractSingleton<FieldSC>, ISceneController
 {
-    public IEnumerator ConfirmSceneLoaded()
+    public IEnumerator WaitForSceneLoad()
     {
         yield return
             FieldInputs.Instance &&
@@ -12,14 +12,14 @@ public class FieldSC : AbstractSingleton<FieldSC>, ISceneController
             FieldManager.Instance;
     }
 
-    public void HideObjects()
+    public void HideScene()
     {
         FieldInputs.Instance.Hide();
         FieldUI.Instance.Hide();
         FieldManager.Instance.Hide();
     }
 
-    public void ShowObjects()
+    public void ShowScene()
     {
         FieldInputs.Instance.Show();
         FieldUI.Instance.Show();

@@ -19,21 +19,27 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
     [Header("Current Window")]
     public AUIPanel currentWindow;
 
-    public override void Awake()
+    public void Hide()
     {
-        base.Awake();
+        coreButtons.Hide();
+        resources.Hide();
+        timers.Hide();
+        minimap.Hide();
+        selection.Hide();
+        commands.Hide();
+
         EscapeMenuHide();
         InventoryHide();
     }
 
-    public void Hide()
-    {
-        gameObject.SetActive(false);
-    }
-
     public void Show()
     {
-        gameObject.SetActive(true);
+        coreButtons.Show();
+        resources.Show();
+        timers.Show();
+        minimap.Show();
+        selection.Show();
+        commands.Show();
     }
 
     public void CloseCurrentWindow()

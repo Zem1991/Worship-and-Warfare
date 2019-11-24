@@ -67,7 +67,7 @@ public class FieldMap : AbstractMap<FieldTile>
 
     public void ApplyMapData(MapData mapData)
     {
-        DBContentHandler<DB_Tileset> dbTilesets = DBHandler_Tileset.Instance;
+        AbstractDBContentHandler<DB_Tileset> dbTilesets = DBHandler_Tileset.Instance;
 
         int current = 0;
         foreach (var tile in tiles.Values)

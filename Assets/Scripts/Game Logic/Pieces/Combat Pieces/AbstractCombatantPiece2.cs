@@ -50,7 +50,8 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, IMovablePi
 
     public override void ICP_Stop()
     {
-        StartCoroutine(pieceMovement.Stop());
+        //StartCoroutine(pieceMovement.Stop());
+        pieceMovement.Stop();
     }
 
     public override void ICP_InteractWith(AbstractTile tile)

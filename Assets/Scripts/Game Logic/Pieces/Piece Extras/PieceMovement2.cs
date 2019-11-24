@@ -178,10 +178,10 @@ public class PieceMovement2 : MonoBehaviour
         yield return StartCoroutine(piece.WaitForAnimationStartAndEnd(stateName));
         movementEnd = false;
     }
-    public IEnumerator Stop()
+    public void Stop()
     {
         stopWasCalled = stateMove;
-        yield return true;
+        //yield return true;
     }
     /*
     *   END:    Movement and Stop
@@ -246,6 +246,7 @@ public class PieceMovement2 : MonoBehaviour
                 if (commandablePiece != null)
                 {
                     //StartCoroutine(commandablePiece.ICP_InteractWithTargetPiece(piece.pathNextTile.occupantPiece));
+                    commandablePiece.ICP_InteractWithTargetPiece(piece.pathNextTile.occupantPiece);
                 }
 
                 //Doing this here prevents that a piece walks over the spot of another removed piece.

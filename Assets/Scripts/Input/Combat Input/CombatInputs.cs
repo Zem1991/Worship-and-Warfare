@@ -38,14 +38,14 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
     public override void Awake()
     {
         im = InputManager.Instance;
-        InputHighlight prefabHighlight = AllPrefabs.Instance.inputHighlight;
+        //InputHighlight prefabHighlight = AllPrefabs.Instance.inputHighlight;
 
-        cursorHighlight = Instantiate(prefabHighlight, transform);
-        cursorHighlight.name = "Cursor Highlight";
+        //cursorHighlight = Instantiate(prefabHighlight, transform);
+        //cursorHighlight.name = "Cursor Highlight";
         cursorHighlight.ChangeSprite(cursorSprite, im.highlightDefault);
 
-        selectionHighlight = Instantiate(prefabHighlight, transform);
-        selectionHighlight.name = "Selection Highlight";
+        //selectionHighlight = Instantiate(prefabHighlight, transform);
+        //selectionHighlight.name = "Selection Highlight";
         selectionHighlight.ChangeSprite(selectionSprite, im.highlightDefault);
 
         base.Awake();
@@ -60,12 +60,16 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
 
     public void Hide()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        cursorHighlight.gameObject.SetActive(false);
+        selectionHighlight.gameObject.SetActive(false);
     }
 
     public void Show()
     {
-        gameObject.SetActive(true);
+        //gameObject.SetActive(true);
+        cursorHighlight.gameObject.SetActive(true);
+        selectionHighlight.gameObject.SetActive(true);
     }
 
     public CameraController CameraController()
@@ -128,6 +132,8 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
 
     private void CursorHighlight()
     {
+        if (!cursorHighlight) return;
+
         cursorPos = Vector2Int.one * -1;
         cursorTile = null;
         cursorPiece = null;
@@ -169,6 +175,8 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
 
     private void SelectionHighlight()
     {
+        if (!selectionHighlight) return;
+
         if (recorder.selectionDown && IsCursorValid())
         {
             Debug.LogWarning("SelectionHighlight() is not available in combat!");
@@ -230,7 +238,8 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         AbstractCombatantPiece2 actp = selectionPiece as AbstractCombatantPiece2;
         if (selectionPiece && canCommandSelectedPiece && actp && !actp.pieceCombatActions.stateWait)
         {
-            StartCoroutine(actp.pieceCombatActions.Wait());
+            //StartCoroutine(actp.pieceCombatActions.Wait());
+            actp.pieceCombatActions.Wait();
         }
     }
 
@@ -239,7 +248,8 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         AbstractCombatPiece2 actp = selectionPiece as AbstractCombatPiece2;
         if (selectionPiece && canCommandSelectedPiece && actp)
         {
-            StartCoroutine(actp.pieceCombatActions.Defend());
+            //StartCoroutine(actp.pieceCombatActions.Defend());
+            actp.pieceCombatActions.Defend();
         }
     }
 

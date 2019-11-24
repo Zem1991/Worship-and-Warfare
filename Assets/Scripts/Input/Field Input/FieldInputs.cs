@@ -38,14 +38,14 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
     public override void Awake()
     {
         im = InputManager.Instance;
-        InputHighlight prefabHighlight = AllPrefabs.Instance.inputHighlight;
+        //InputHighlight prefabHighlight = AllPrefabs.Instance.inputHighlight;
 
-        cursorHighlight = Instantiate(prefabHighlight, transform);
-        cursorHighlight.name = "Cursor Highlight";
+        //cursorHighlight = Instantiate(prefabHighlight, transform);
+        //cursorHighlight.name = "Cursor Highlight";
         cursorHighlight.ChangeSprite(cursorSprite, im.highlightDefault);
 
-        selectionHighlight = Instantiate(prefabHighlight, transform);
-        selectionHighlight.name = "Selection Highlight";
+        //selectionHighlight = Instantiate(prefabHighlight, transform);
+        //selectionHighlight.name = "Selection Highlight";
         selectionHighlight.ChangeSprite(selectionSprite, im.highlightDefault);
 
         base.Awake();
@@ -60,12 +60,16 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
 
     public void Hide()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        cursorHighlight.gameObject.SetActive(false);
+        selectionHighlight.gameObject.SetActive(false);
     }
 
     public void Show()
     {
-        gameObject.SetActive(true);
+        //gameObject.SetActive(true);
+        cursorHighlight.gameObject.SetActive(true);
+        selectionHighlight.gameObject.SetActive(true);
     }
 
     public CameraController CameraController()
@@ -129,6 +133,8 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
 
     private void CursorHighlight()
     {
+        if (!cursorHighlight) return;
+
         cursorPos = Vector2Int.one * -1;
         cursorTile = null;
         cursorPiece = null;
@@ -170,6 +176,8 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
 
     private void SelectionHighlight()
     {
+        if (!selectionHighlight) return;
+
         if (recorder.selectionDown && IsCursorValid())
         {
             lastHighlightedPiece = null;
@@ -244,9 +252,9 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
     {
         if (recorder.endTurnDown)
         {
-            GameManager gm = GameManager.Instance;
+            FieldManager fm = FieldManager.Instance;
             PlayerManager pm = PlayerManager.Instance;
-            if (gm.currentPlayer == pm.localPlayer) FieldManager.Instance.EndTurn();
+            if (fm.currentPlayer == pm.localPlayer) FieldManager.Instance.EndTurn();
         }
     }
 

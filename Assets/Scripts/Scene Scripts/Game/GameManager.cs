@@ -2,23 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : AbstractSingleton<GameManager>
 {
-    public const string SCENE_DATABASE = "Database";
-    public const string SCENE_FIELD = "Game - Field";
-    public const string SCENE_TOWN = "Game - Town";
-    public const string SCENE_COMBAT = "Game - Combat";
-
     public const float SPEED_MIN = 0.25F;
     public const float SPEED_MAX = 2F;
-
-    [Header("Scenes")]
-    public Scene sceneDatabase;
-    public Scene sceneField;
-    public Scene sceneTown;
-    public Scene sceneCombat;
 
     [Header("Match initialization")]
     public string scenarioName;
@@ -28,16 +16,9 @@ public class GameManager : AbstractSingleton<GameManager>
     [Header("Match flow")]
     public float gameSpeed;
     public bool isPaused;
-    public int currentTurn;
-    public Player currentPlayer;
     public GameScheme currentGameScheme;
     public string timeElapsedText;
     public string currentDateTime;
-
-    [Header("Day/Week/Month")]
-    public int day;
-    public int week;
-    public int month;
 
     private ScenarioFile scenarioFileData;
     private TimeSpan timeElapsed;
@@ -48,17 +29,27 @@ public class GameManager : AbstractSingleton<GameManager>
     {
         gameSpeed = Time.timeScale;
         mainCamera = GetComponentInChildren<Camera>();
+
         base.Awake();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public IEnumerator Start()
     {
-        LoadScenarioFile(scenarioName);
+        //if (scenarioFileData == null)
+        //{
+        //    yield return
+        //        StartCoroutine(SceneLoader.Instance.LoadScene_Database());
+
+        //    yield return
+        //        StartCoroutine(SceneLoader.Instance.LoadScene_Game());
+
+        //    yield return
+        //        LoadScenarioFile();
+        //}
+        yield return null;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
         if (scenarioBooted && Time.timeScale != 0)
         {
@@ -98,126 +89,25 @@ public class GameManager : AbstractSingleton<GameManager>
         return PauseUnpause();
     }
 
-    public IEnumerator PerformExchange(AbstractFieldPiece2 sender, AbstractFieldPiece2 receiver)
+    public void ChangeSchemes(GameScheme gs)
     {
-        Debug.Log("PIECES ARE EXCHANGING STUFF");
-        yield return null;
+        currentGameScheme = gs;
+        InputManager.Instance.ChangeScheme(gs);
+        UIManager.Instance.ChangeScheme(gs);
+
+        IInputScheme inputScheme = InputManager.Instance.scheme;
+        mainCamera.transform.parent = inputScheme != null ? inputScheme.CameraController().holder.transform : transform;
+        mainCamera.transform.localPosition = Vector3.zero;
+        mainCamera.transform.localRotation = Quaternion.identity;
     }
 
-    public void GoToTown(AbstractFieldPiece2 piece, Town town)
+    public IEnumerator LoadScenarioFile()
     {
-        Debug.Log("PIECE IS VISITING TOWN");
-        ChangeSchemes(GameScheme.TOWN);
-
-        FieldSC.Instance.HideObjects();
-        //TownManager.Instance.StartCombat(null, attacker, defender);
-        TownSC.Instance.ShowObjects();
+        yield return StartCoroutine(LoadScenarioFile(scenarioName));
+        PauseUnpause(false);
     }
 
-    public void ReturnFromTown(AbstractFieldPiece2 piece, Town town)
-    {
-        Debug.Log("PIECE IS BACK FROM TOWN");
-        ChangeSchemes(GameScheme.FIELD);
-
-        TownSC.Instance.HideObjects();
-        //TownManager.Instance.StartCombat(null, attacker, defender);
-        FieldSC.Instance.ShowObjects();
-    }
-
-    public void GoToCombat(PartyPiece2 attacker, PartyPiece2 defender)
-    {
-        Debug.Log("PIECES ARE IN BATTLE");
-        ChangeSchemes(GameScheme.COMBAT);
-
-        FieldSC.Instance.HideObjects();
-        FieldTile fieldTile = defender.currentTile as FieldTile;
-
-        CombatManager.Instance.BootCombat(attacker, defender, fieldTile.db_tileset_lowerLand);
-
-        CombatSC.Instance.ShowObjects();
-    }
-
-    public void ReturnFromCombat(CombatResult result, PartyPiece2 attacker, PartyPiece2 defender)
-    {
-        CombatSC.Instance.HideObjects();
-
-        //Doing this here, because later I could add an 'redo combat' feature.
-        CombatManager.Instance.ApplyCombatResults(out int attackerExperience, out int defenderExperience);
-
-        ChangeSchemes(GameScheme.FIELD);
-
-        FieldSC.Instance.ShowObjects();
-        switch (result)
-        {
-            case CombatResult.ATTACKER_WON:
-                attacker.ApplyExperience(attackerExperience);
-                FieldManager.Instance.RemovePiece(defender);
-                break;
-            case CombatResult.DEFENDER_WON:
-                defender.ApplyExperience(defenderExperience);
-                FieldManager.Instance.RemovePiece(attacker);
-                break;
-        }
-    }
-
-    public void EndTurn()
-    {
-        FieldUI.Instance.timers.LockButtons();
-        StartCoroutine(EndTurnForCurrentPlayer());
-    }
-
-    private IEnumerator EndTurnForCurrentPlayer()
-    {
-        PlayerManager pm = PlayerManager.Instance;
-        FieldPieceHandler fPH = FieldManager.Instance.pieceHandler;
-        FieldInputs fInputs = FieldInputs.Instance;
-
-        List<PartyPiece2> playerFieldPieces = fPH.GetPlayerPieces(currentPlayer);
-        yield return StartCoroutine(fPH.YieldForIdlePieces(playerFieldPieces));
-
-        Player next = pm.EndTurnForPlayer(currentPlayer);
-        if (!next) NextTurnForAll();
-        else currentPlayer = next;
-
-        if (currentPlayer == pm.localPlayer)
-        {
-            FieldUI.Instance.timers.UnlockButtons();
-            fInputs.ResetHighlights();
-        }
-        else if (currentPlayer.type == PlayerType.COMPUTER)
-        {
-            currentPlayer.aiPersonality.FieldRoutine();
-        }
-    }
-
-    private void NextTurnForAll()
-    {
-        currentTurn++;
-        PlayerManager.Instance.RefreshTurnForActivePlayers(currentTurn);
-        currentPlayer = PlayerManager.Instance.activePlayers[0];
-
-        FieldManager.Instance.NextTurnForAll();
-
-        NextDayWeekMonth();
-    }
-
-    private void NextDayWeekMonth()
-    {
-        int turnsAdjusted = currentTurn - 1;
-        month = (turnsAdjusted / 28) + 1;
-        int monthDayDif = turnsAdjusted % 28;
-        week = (monthDayDif / 7) + 1;
-        int weekDayDif = monthDayDif % 7;
-        day = (weekDayDif % 7) + 1;
-    }
-
-    public void Restart()
-    {
-        FieldManager.Instance.TerminateField();
-        LoadScenarioFile(scenarioName);
-    }
-
-    public void LoadScenarioFile(string scenarioFileName)
+    public IEnumerator LoadScenarioFile(string scenarioFileName)
     {
         Debug.Log("Loading scenario file: " + scenarioFileName);
         scenarioName = scenarioFileName;
@@ -225,10 +115,17 @@ public class GameManager : AbstractSingleton<GameManager>
 
         if (scenarioFileData != null)
         {
+            GameSC.Instance.ShowScene();
+
             Debug.Log("Scenario file loaded successfully. Initializing...");
             scenarioBooted = false;
             scenarioStarted = false;
-            StartCoroutine(InitializeScenario());
+
+            yield return
+                StartCoroutine(StartScenario());
+
+            FieldSC.Instance.ShowScene();
+
         }
         else
         {
@@ -236,87 +133,25 @@ public class GameManager : AbstractSingleton<GameManager>
         }
     }
 
-    private IEnumerator InitializeScenario()
+    private IEnumerator StartScenario()
     {
-        yield return StartCoroutine(GameSC.Instance.ConfirmSceneLoaded());
-        Debug.Log("The Game scene is fully loaded. Loading extra scenes...");
+        yield return
+                StartCoroutine(SceneLoader.Instance.LoadScene_Field());
 
-        StartCoroutine(LoadExtraScene(SCENE_DATABASE));
-        StartCoroutine(LoadExtraScene(SCENE_FIELD));
-        StartCoroutine(LoadExtraScene(SCENE_TOWN));
-        StartCoroutine(LoadExtraScene(SCENE_COMBAT));
+        yield return
+                StartCoroutine(SceneLoader.Instance.LoadScene_Combat());
 
-        yield return StartCoroutine(ConfirmAllScenesLoaded());
-        Debug.Log("All required scenes are loaded. Can now boot the scenario.");
+        yield return
+                StartCoroutine(SceneLoader.Instance.LoadScene_Town());
 
-        TownSC.Instance.HideObjects();
-        CombatSC.Instance.HideObjects();
-
-        yield return StartCoroutine(BootScenario());
-        ChangeSchemes(GameScheme.FIELD);
-        StartScenario();
-    }
-
-    private IEnumerator LoadExtraScene(string name)
-    {
-        Scene scene = SceneManager.GetSceneByName(name);
-        if (scene.handle == 0)
-        {
-            yield return SceneManager.LoadSceneAsync(name, LoadSceneMode.Additive);
-            Debug.Log("Scene " + name + " created.");
-        }
-        else
-        {
-            Debug.Log("Scene " + name + " being reused.");
-        }
-    }
-
-    private IEnumerator ConfirmAllScenesLoaded()
-    {
-        while (!(DatabaseSC.Instance && FieldSC.Instance && TownSC.Instance && CombatSC.Instance))
-        {
-            Debug.Log("Not all Scene Controllers are ready!");
-            yield return null;
-        }
-
-        yield return DatabaseSC.Instance.ConfirmSceneLoaded();
-        yield return FieldSC.Instance.ConfirmSceneLoaded();
-        yield return TownSC.Instance.ConfirmSceneLoaded();
-        yield return CombatSC.Instance.ConfirmSceneLoaded();
-    }
-
-    private IEnumerator BootScenario()
-    {
-        ScenarioManager.Instance.BootScenario(scenarioFileData);
-        scenarioBooted = true;
-        Debug.Log("Scenario booted.");
-        yield return null;
-    }
-
-    private void StartScenario()
-    {
-        currentTurn = 0;
-        NextTurnForAll();
         timeElapsed = TimeSpan.Zero;
+        ChangeSchemes(GameScheme.FIELD);
 
-        PlayerManager.Instance.RunAIPlayers();
+        ScenarioManager.Instance.StartScenario(scenarioFileData);
+        scenarioBooted = true;
 
+        FieldManager.Instance.currentTurn = 0;
+        FieldManager.Instance.NextTurnForAll();
         scenarioStarted = true;
-        Debug.Log("Scenario started.");
-    }
-
-    private void ChangeSchemes(GameScheme gs)
-    {
-        currentGameScheme = gs;
-        InputManager.Instance.ChangeScheme(gs);
-        UIManager.Instance.ChangeScheme(gs);
-
-        IInputScheme inputScheme = InputManager.Instance.scheme;
-        if (inputScheme != null)
-            mainCamera.transform.parent = inputScheme.CameraController().holder.transform;
-        else
-            mainCamera.transform.parent = transform;
-        mainCamera.transform.localPosition = Vector3.zero;
-        mainCamera.transform.localRotation = Quaternion.identity;
     }
 }

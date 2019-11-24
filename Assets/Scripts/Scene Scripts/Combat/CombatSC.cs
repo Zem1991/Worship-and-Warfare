@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CombatSC : AbstractSingleton<CombatSC>, ISceneController
 {
-    public IEnumerator ConfirmSceneLoaded()
+    public IEnumerator WaitForSceneLoad()
     {
         yield return
             CombatInputs.Instance &&
@@ -12,14 +12,14 @@ public class CombatSC : AbstractSingleton<CombatSC>, ISceneController
             CombatManager.Instance;
     }
 
-    public void HideObjects()
+    public void HideScene()
     {
         CombatInputs.Instance.Hide();
         CombatUI.Instance.Hide();
         CombatManager.Instance.Hide();
     }
 
-    public void ShowObjects()
+    public void ShowScene()
     {
         CombatInputs.Instance.Show();
         CombatUI.Instance.Show();

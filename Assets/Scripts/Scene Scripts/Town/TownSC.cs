@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TownSC : AbstractSingleton<TownSC>, ISceneController
 {
-    public IEnumerator ConfirmSceneLoaded()
+    public IEnumerator WaitForSceneLoad()
     {
         yield return
             TownInputs.Instance &&
@@ -12,14 +12,14 @@ public class TownSC : AbstractSingleton<TownSC>, ISceneController
             TownManager.Instance;
     }
 
-    public void HideObjects()
+    public void HideScene()
     {
         TownInputs.Instance.Hide();
         TownUI.Instance.Hide();
         TownManager.Instance.Hide();
     }
 
-    public void ShowObjects()
+    public void ShowScene()
     {
         TownInputs.Instance.Show();
         TownUI.Instance.Show();

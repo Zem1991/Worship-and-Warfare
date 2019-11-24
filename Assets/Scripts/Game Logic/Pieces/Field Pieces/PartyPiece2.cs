@@ -97,7 +97,8 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
 
     public void ICP_Stop()
     {
-        StartCoroutine(pieceMovement.Stop());
+        //StartCoroutine(pieceMovement.Stop());
+        pieceMovement.Stop();
     }
 
     public void ICP_InteractWith(AbstractTile tile)
@@ -113,15 +114,6 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
     public virtual IEnumerator ICP_InteractWithTargetTile(AbstractTile targetTile, bool endTurnWhenDone)
     {
         yield return StartCoroutine(pieceMovement.Movement(targetTile));
-        //if (canPathfind)
-        //{
-        //    if (pieceMovement.HasPath(targetTile)) StartCoroutine(pieceMovement.Movement());
-        //    else if(FieldManager.Instance.pieceHandler.Pathfind(this, targetTile as FieldTile)) pathTargetTile = targetTile;
-        //}
-        //else
-        //{
-        //    if (pieceMovement.HasPath()) StartCoroutine(pieceMovement.Movement());
-        //}
     }
 
     public virtual IEnumerator ICP_InteractWithTargetPiece(AbstractPiece2 targetPiece)
@@ -135,11 +127,13 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
 
             if (targetParty)
             {
-                yield return StartCoroutine(FieldManager.Instance.PartiesAreInteracting(this, targetParty));
+                //yield return StartCoroutine(FieldManager.Instance.PartiesAreInteracting(this, targetParty));
+                FieldManager.Instance.PartiesAreInteracting(this, targetParty);
             }
             else if (targetPickup)
             {
-                yield return StartCoroutine(FieldManager.Instance.PartyFoundPickup(this, targetPickup));
+                //yield return StartCoroutine(FieldManager.Instance.PartyFoundPickup(this, targetPickup));
+                FieldManager.Instance.PartyFoundPickup(this, targetPickup);
             }
         }
         else

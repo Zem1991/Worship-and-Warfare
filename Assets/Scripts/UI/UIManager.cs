@@ -11,12 +11,6 @@ public class UIManager : AbstractSingleton<UIManager>
     [Header("Focused Panel")]
     public AUIPanel focusedPanel;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {

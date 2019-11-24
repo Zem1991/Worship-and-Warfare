@@ -11,8 +11,9 @@ public class CombatUI_Panel_Timers : AUIPanel
 
     public void UpdatePanel()
     {
+        CombatManager cm = CombatManager.Instance;
         GameManager gm = GameManager.Instance;
-        txtTurns.text = "Day " + gm.day + ", week " + gm.week + ", month " + gm.month;
+        txtTurns.text = "Turn " + cm.currentTurn;
         txtTimer.text = gm.timeElapsedText;
     }
 }
