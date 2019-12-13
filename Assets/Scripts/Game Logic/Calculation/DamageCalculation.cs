@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class DamageCalculation
 {
-    public static int FullDamageCalculation(AttackStats attack, AbstractCombatPiece2 attacker, AbstractCombatPiece2 defender, CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
+    public static int FullDamageCalculation(AttackStats attack, AbstractCombatActorPiece2 attacker, AbstractCombatActorPiece2 defender, CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
     {
         float dmgBase = CombatantDamage(attack, attacker);
         float increments = Increments(attacker, defender, attackerHero, defenderHero);
@@ -16,7 +16,7 @@ public static class DamageCalculation
         return Mathf.Max(result, 1);
     }
 
-    public static float CombatantDamage(AttackStats attack, AbstractCombatPiece2 attacker)
+    public static float CombatantDamage(AttackStats attack, AbstractCombatActorPiece2 attacker)
     {
         float result = 0;
         CombatantUnitPiece2 attackerAsUnit = attacker as CombatantUnitPiece2;
@@ -32,7 +32,7 @@ public static class DamageCalculation
         return result;
     }
 
-    public static float Increments(AbstractCombatPiece2 attacker, AbstractCombatPiece2 defender, CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
+    public static float Increments(AbstractCombatActorPiece2 attacker, AbstractCombatActorPiece2 defender, CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
     {
         float attackerHeroOffense = I1_AttackerHeroOffense(attackerHero, defenderHero);
         return 1 + attackerHeroOffense;
@@ -53,7 +53,7 @@ public static class DamageCalculation
         return result;
     }
 
-    public static float Reductions(AbstractCombatPiece2 attacker, AbstractCombatPiece2 defender, CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
+    public static float Reductions(AbstractCombatActorPiece2 attacker, AbstractCombatActorPiece2 defender, CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
     {
         float defenderHeroDefense = 1 - R1_DefenderHeroDefense(attackerHero, defenderHero);
         float defenderIsHero = 1 - RX_DefenderIsHero(attacker, defender);
@@ -76,7 +76,7 @@ public static class DamageCalculation
         return result;
     }
 
-    public static float RX_DefenderIsHero(AbstractCombatPiece2 attacker, AbstractCombatPiece2 defender)
+    public static float RX_DefenderIsHero(AbstractCombatActorPiece2 attacker, AbstractCombatActorPiece2 defender)
     {
         float result = 0;
         CombatantUnitPiece2 attackerAsUnit = attacker as CombatantUnitPiece2;
@@ -90,7 +90,7 @@ public static class DamageCalculation
         return result;
     }
 
-    public static float RX_DefenderIsDefending(AbstractCombatPiece2 defender)
+    public static float RX_DefenderIsDefending(AbstractCombatActorPiece2 defender)
     {
         float result = 0;
         if (defender.pieceCombatActions.stateDefend) result = 0.25F;

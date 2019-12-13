@@ -38,7 +38,7 @@ public static class ExperienceCalculation
         return levelUps;
     }
 
-    public static int FullExperienceCalculation(List<AbstractCombatPiece2> pieces)
+    public static int FullExperienceCalculation(List<AbstractCombatActorPiece2> pieces)
     {
         //TODO allow experience gain from forcibly winning or losing combat
 

@@ -16,9 +16,9 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     [Header("Combat flow")]
     public bool combatStarted;
     public int currentTurn;
-    public AbstractCombatPiece2 currentPiece;
-    public List<AbstractCombatPiece2> turnSequence = new List<AbstractCombatPiece2>();
-    public List<AbstractCombatPiece2> waitSequence = new List<AbstractCombatPiece2>();
+    public AbstractCombatActorPiece2 currentPiece;
+    public List<AbstractCombatActorPiece2> turnSequence = new List<AbstractCombatActorPiece2>();
+    public List<AbstractCombatActorPiece2> waitSequence = new List<AbstractCombatActorPiece2>();
     public List<string> combatLog = new List<string>();
     public CombatResult result;
 
@@ -69,6 +69,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
         Debug.LogWarning("No tile data for combat map!");
         mapHandler.BuildMap(MAP_SIZE, tileset);
+        mapHandler.AddRandomObstacles(tileset);
         pieceHandler.Create(attackerParty, defenderParty);
         pieceHandler.InitialPositions(mapHandler.map);
 
@@ -87,7 +88,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
         if (turnSequence.Count > 0 || waitSequence.Count > 0)
         {
-            List<AbstractCombatPiece2> list = null;
+            List<AbstractCombatActorPiece2> list = null;
             if (turnSequence.Count > 0) list = turnSequence;
             else if (waitSequence.Count > 0) list = waitSequence;
 
@@ -121,7 +122,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     {
         if (CalculateFullTurnSequence())
         {
-            foreach (AbstractCombatPiece2 cup in turnSequence) cup.ISTET_StartTurn();
+            foreach (AbstractCombatActorPiece2 cup in turnSequence) cup.ISTET_StartTurn();
 
             NextUnit();
             currentTurn++;
@@ -130,13 +131,13 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
     public bool CalculateFullTurnSequence()
     {
-        List<AbstractCombatPiece2> newSequence = new List<AbstractCombatPiece2>();
+        List<AbstractCombatActorPiece2> newSequence = new List<AbstractCombatActorPiece2>();
         newSequence.AddRange(pieceHandler.GetActivePieces(pieceHandler.attackerPieces));
         newSequence.AddRange(pieceHandler.GetActivePieces(pieceHandler.defenderPieces));
         if (newSequence.Count <= 0) return false;
 
         turnSequence = newSequence;
-        waitSequence = new List<AbstractCombatPiece2>();
+        waitSequence = new List<AbstractCombatActorPiece2>();
         UpdateTurnSequence();
         return true;
     }
@@ -148,13 +149,13 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         CombatUI.Instance.turnSequence.CreateTurnSequence(turnSequence, waitSequence);
     }
 
-    public void AddUnitToTurnSequence(AbstractCombatPiece2 uc)
+    public void AddUnitToTurnSequence(AbstractCombatActorPiece2 uc)
     {
         turnSequence.Add(uc);
         UpdateTurnSequence();
     }
 
-    public void RemoveUnitFromTurnSequence(AbstractCombatPiece2 uc)
+    public void RemoveUnitFromTurnSequence(AbstractCombatActorPiece2 uc)
     {
         turnSequence.Remove(uc);
         UpdateTurnSequence();
@@ -167,13 +168,13 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         CombatUI.Instance.turnSequence.CreateTurnSequence(turnSequence, waitSequence);
     }
 
-    public void AddUnitToWaitSequence(AbstractCombatPiece2 uc)
+    public void AddUnitToWaitSequence(AbstractCombatActorPiece2 uc)
     {
         waitSequence.Add(uc);
         UpdateWaitSequence();
     }
 
-    public void RemoveUnitFromWaitSequence(AbstractCombatPiece2 uc)
+    public void RemoveUnitFromWaitSequence(AbstractCombatActorPiece2 uc)
     {
         waitSequence.Remove(uc);
         UpdateTurnSequence();
@@ -353,7 +354,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         }
     }
 
-    private void ApplyCombatResults(PartyPiece2 party, List<AbstractCombatPiece2> pieces)
+    private void ApplyCombatResults(PartyPiece2 party, List<AbstractCombatActorPiece2> pieces)
     {
         foreach (var piece in pieces)
         {

@@ -18,4 +18,9 @@ public class CombatMapHandler : MonoBehaviour
         map.Create(size);
         map.ApplyTileset(tileset);
     }
+
+    public void AddRandomObstacles(DB_Tileset tileset)
+    {
+        map.AddRandomObstacles(tileset);
+    }
 }

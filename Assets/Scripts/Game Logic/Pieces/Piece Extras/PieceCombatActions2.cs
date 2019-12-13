@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(AbstractCombatantPiece2))]
 public class PieceCombatActions2 : MonoBehaviour
 {
-    private AbstractCombatPiece2 piece;
+    private AbstractCombatActorPiece2 piece;
 
     [Header("Settings")]
     public bool canWait;
@@ -66,13 +66,13 @@ public class PieceCombatActions2 : MonoBehaviour
     /*
     *   BEGIN:      Attack
     */
-    public IEnumerator Attack(AbstractCombatPiece2 target, PathfindResults attackTargetPathfind)
+    public IEnumerator Attack(AbstractCombatActorPiece2 target, PathfindResults attackTargetPathfind)
     {
         AbstractCombatantPiece2 pieceAsCombatant = piece as AbstractCombatantPiece2;
         if (pieceAsCombatant) pieceAsCombatant.pieceMovement.SetPath(attackTargetPathfind, pieceAsCombatant.targetTile);
         yield return StartCoroutine(Attack(target));
     }
-    public IEnumerator Attack(AbstractCombatPiece2 target)
+    public IEnumerator Attack(AbstractCombatActorPiece2 target)
     {
         AttackStats attack = EvaluateRangedAttack(target) ? piece.combatPieceStats.attack_ranged : piece.combatPieceStats.attack_melee;
         if (attack.isRanged)
@@ -109,7 +109,7 @@ public class PieceCombatActions2 : MonoBehaviour
         }
         piece.ISTET_EndTurn();
     }
-    private IEnumerator AttackMelee(AttackStats attack, AbstractCombatPiece2 target)
+    private IEnumerator AttackMelee(AttackStats attack, AbstractCombatActorPiece2 target)
     {
         yield return StartCoroutine(AttackStart(attack));
         int damage = CalculateDamage(attack, target);
@@ -121,7 +121,7 @@ public class PieceCombatActions2 : MonoBehaviour
         };
         yield return ienumerators.Select(StartCoroutine).ToArray().GetEnumerator();
     }
-    private IEnumerator AttackRanged(AttackStats attack, AbstractCombatPiece2 target)
+    private IEnumerator AttackRanged(AttackStats attack, AbstractCombatActorPiece2 target)
     {
         yield return StartCoroutine(AttackStart(attack));
         SpawnProjectile(attack, target);
@@ -161,25 +161,25 @@ public class PieceCombatActions2 : MonoBehaviour
         rangedAttackEnd = false;
         meleeAttackEnd = false;
     }
-    private int CalculateDamage(AttackStats attack, AbstractCombatPiece2 target)
+    private int CalculateDamage(AttackStats attack, AbstractCombatActorPiece2 target)
     {
         CombatPieceHandler cph = CombatManager.Instance.pieceHandler;
         CombatantHeroPiece2 attackerHero = cph.GetHero(piece.pieceOwner.GetOwner());
         CombatantHeroPiece2 defenderHero = cph.GetHero(target.pieceOwner.GetOwner());
         return DamageCalculation.FullDamageCalculation(attack, piece, target, attackerHero, defenderHero);
     }
-    private void SpawnProjectile(AttackStats attack, AbstractCombatPiece2 target)
+    private void SpawnProjectile(AttackStats attack, AbstractCombatActorPiece2 target)
     {
         Projectile prefab = AllPrefabs.Instance.projectile;
         projectile = Instantiate(prefab, transform);
         projectile.SetupAndGo(attack, piece, target);
     }
-    public bool EvaluateMeleeAttack(AbstractCombatPiece2 targetPiece)
+    public bool EvaluateMeleeAttack(AbstractCombatActorPiece2 targetPiece)
     {
         bool condition = piece.combatPieceStats.attack_melee && piece.currentTile.IsNeighbour(targetPiece.currentTile);
         return condition;
     }
-    public bool EvaluateRangedAttack(AbstractCombatPiece2 targetPiece)
+    public bool EvaluateRangedAttack(AbstractCombatActorPiece2 targetPiece)
     {
         bool condition = piece.combatPieceStats.attack_ranged && !piece.currentTile.IsNeighbour(targetPiece.currentTile);
         return condition;
@@ -191,7 +191,7 @@ public class PieceCombatActions2 : MonoBehaviour
     /*
     *   BEGIN:      Counter and Retaliation
     */
-    public IEnumerator Retaliate(AbstractCombatPiece2 target)
+    public IEnumerator Retaliate(AbstractCombatActorPiece2 target)
     {
         AttackStats attack = piece.combatPieceStats.attack_melee;
 

@@ -61,6 +61,7 @@ MonoBehaviour:
   occupantPiece: {fileID: 0}
   db_tileset_battleground: {fileID: 0}
   landRenderer: {fileID: 4075484312413738858}
+  deadPieces: []
 --- !u!1 &4075484312187841839
 GameObject:
   m_ObjectHideFlags: 0

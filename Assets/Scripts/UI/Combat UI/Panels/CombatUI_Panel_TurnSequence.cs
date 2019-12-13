@@ -21,7 +21,7 @@ public class CombatUI_Panel_TurnSequence : AUIPanel
         tsItems.Clear();
     }
 
-    public void CreateTurnSequence(List<AbstractCombatPiece2> turnSequence, List<AbstractCombatPiece2> waitSequence)
+    public void CreateTurnSequence(List<AbstractCombatActorPiece2> turnSequence, List<AbstractCombatActorPiece2> waitSequence)
     {
         DestroyTurnSequence();
 
@@ -37,9 +37,9 @@ public class CombatUI_Panel_TurnSequence : AUIPanel
         Destroy(cuiTSI.gameObject);
     }
 
-    private void ProcessSequence(CombatUI_TurnSequenceItem prefab, List<AbstractCombatPiece2> list)
+    private void ProcessSequence(CombatUI_TurnSequenceItem prefab, List<AbstractCombatActorPiece2> list)
     {
-        foreach (AbstractCombatPiece2 forCutp in list)
+        foreach (AbstractCombatActorPiece2 forCutp in list)
         {
             CombatUI_TurnSequenceItem newCUI = Instantiate(prefab, sequenceBar.transform);
             newCUI.border.color = forCutp.pieceOwner.GetOwner().dbColor.mainColor;

@@ -8,12 +8,12 @@ public class CombatPieceHandler : MonoBehaviour
     [Header("Attacker")]
     public CombatantHeroPiece2 attackerHero;
     public List<CombatantUnitPiece2> attackerUnits;
-    public List<AbstractCombatPiece2> attackerPieces;
+    public List<AbstractCombatActorPiece2> attackerPieces;
 
     [Header("Defender")]
     public CombatantHeroPiece2 defenderHero;
     public List<CombatantUnitPiece2> defenderUnits;
-    public List<AbstractCombatPiece2> defenderPieces;
+    public List<AbstractCombatActorPiece2> defenderPieces;
 
     public void Remove()
     {
@@ -28,7 +28,7 @@ public class CombatPieceHandler : MonoBehaviour
             }
         }
         attackerUnits = new List<CombatantUnitPiece2>();
-        attackerPieces = new List<AbstractCombatPiece2>();
+        attackerPieces = new List<AbstractCombatActorPiece2>();
 
         if (defenderUnits != null)
         {
@@ -38,7 +38,7 @@ public class CombatPieceHandler : MonoBehaviour
             }
         }
         defenderUnits = new List<CombatantUnitPiece2>();
-        defenderPieces = new List<AbstractCombatPiece2>();
+        defenderPieces = new List<AbstractCombatActorPiece2>();
     }
 
     public void Create(PartyPiece2 attackerPiece, PartyPiece2 defenderPiece)
@@ -98,7 +98,7 @@ public class CombatPieceHandler : MonoBehaviour
         InitialPosition(defenderPieces, map.defenderStartTiles);
     }
 
-    private void InitialPosition(List<AbstractCombatPiece2> combatants, List<CombatTile> tiles)
+    private void InitialPosition(List<AbstractCombatActorPiece2> combatants, List<CombatTile> tiles)
     {
         int middle = tiles.Count / 2;
         for (int i = 0; i < combatants.Count; i++)
@@ -106,7 +106,7 @@ public class CombatPieceHandler : MonoBehaviour
             int modifier = (i + 1) / 2;
             if (i % 2 == 1) modifier *= -1;
 
-            AbstractCombatPiece2 combatPiece = combatants[i];
+            AbstractCombatActorPiece2 combatPiece = combatants[i];
             CombatTile tile = tiles[middle + modifier];
 
             combatPiece.transform.position = tile.transform.position;
@@ -133,7 +133,7 @@ public class CombatPieceHandler : MonoBehaviour
         return null;
     }
 
-    public bool GetPieceList(Player owner, bool enemyPieces, out List<AbstractCombatPiece2> list)
+    public bool GetPieceList(Player owner, bool enemyPieces, out List<AbstractCombatActorPiece2> list)
     {
         list = null;
         CombatManager cm = CombatManager.Instance;
@@ -150,9 +150,9 @@ public class CombatPieceHandler : MonoBehaviour
         return list != null;
     }
 
-    public List<AbstractCombatPiece2> GetIdlePieces(List<AbstractCombatPiece2> pieces)
+    public List<AbstractCombatActorPiece2> GetIdlePieces(List<AbstractCombatActorPiece2> pieces)
     {
-        List<AbstractCombatPiece2> result = new List<AbstractCombatPiece2>();
+        List<AbstractCombatActorPiece2> result = new List<AbstractCombatActorPiece2>();
         foreach (var item in pieces)
         {
             if (item.ICP_IsIdle()) result.Add(item);
@@ -160,9 +160,9 @@ public class CombatPieceHandler : MonoBehaviour
         return result;
     }
 
-    public List<AbstractCombatPiece2> GetActivePieces(List<AbstractCombatPiece2> pieces)
+    public List<AbstractCombatActorPiece2> GetActivePieces(List<AbstractCombatActorPiece2> pieces)
     {
-        List<AbstractCombatPiece2> result = new List<AbstractCombatPiece2>();
+        List<AbstractCombatActorPiece2> result = new List<AbstractCombatActorPiece2>();
         foreach (var item in pieces)
         {
             if (!item.stateDead) result.Add(item);

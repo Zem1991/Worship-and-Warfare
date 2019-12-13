@@ -42,6 +42,7 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
     public CombatTile combatTile;
     public CombatantHeroPiece2 combatHeroPiece;
     public CombatantUnitPiece2 combatUnitPiece;
+    public CombatObstacle combatObstacle;
 
     [Header("Field - UI")]
     public CombatUI_TurnSequenceItem cuiTurnSequenceItem;

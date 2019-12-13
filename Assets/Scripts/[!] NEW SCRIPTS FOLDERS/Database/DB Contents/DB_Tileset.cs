@@ -13,4 +13,7 @@ public class DB_Tileset : AbstractDBContent
 
     [Header("Graphics")]
     public Sprite image;
+
+    [Header("Combat Obstacles")]
+    public List<DB_CombatObstacle> combatObstacles;
 }

@@ -12,7 +12,7 @@ public class CombatTile : AbstractTile
     public SpriteRenderer landRenderer;
 
     [Header("Dead pieces")]
-    public List<AbstractCombatPiece2> deadPieces = new List<AbstractCombatPiece2>();
+    public List<AbstractCombatActorPiece2> deadPieces = new List<AbstractCombatActorPiece2>();
 
     public void ChangeLandSprite(Sprite s)
     {

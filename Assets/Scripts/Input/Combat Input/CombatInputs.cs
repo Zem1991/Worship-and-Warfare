@@ -15,17 +15,17 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
     public InputHighlight cursorHighlight;
     public Vector2Int cursorPos;
     public CombatTile cursorTile;
-    public AbstractCombatPiece2 cursorPiece;
+    public AbstractCombatActorPiece2 cursorPiece;
 
     [Header("Selection Data")]
     public InputHighlight selectionHighlight;
     public Vector2Int selectionPos;
     public CombatTile selectionTile;
-    public AbstractCombatPiece2 selectionPiece;
+    public AbstractCombatActorPiece2 selectionPiece;
 
     [Header("Interaction data")]
     public bool canCommandSelectedPiece;
-    public AbstractCombatPiece2 lastHighlightedPiece;
+    public AbstractCombatActorPiece2 lastHighlightedPiece;
 
     [Header("Movement Highlights")]
     public List<InputHighlight> movementHighlights = new List<InputHighlight>();
@@ -156,7 +156,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
                 if (item.collider == null) continue;
 
                 CombatTile t = item.collider.GetComponentInParent<CombatTile>();
-                AbstractCombatPiece2 p = item.collider.GetComponentInParent<AbstractCombatPiece2>();
+                AbstractCombatActorPiece2 p = item.collider.GetComponentInParent<AbstractCombatActorPiece2>();
                 if (cursorTile == null && t) cursorTile = t;
                 if (cursorPiece == null && p) cursorPiece = p;
             }
@@ -244,7 +244,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
 
     public void MakeSelectedPieceDefend()
     {
-        AbstractCombatPiece2 actp = selectionPiece as AbstractCombatPiece2;
+        AbstractCombatActorPiece2 actp = selectionPiece as AbstractCombatActorPiece2;
         if (selectionPiece && canCommandSelectedPiece && actp)
         {
             StartCoroutine(actp.pieceCombatActions.Defend());
@@ -256,7 +256,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         //TODO maybe default this to the Defend action?
         if (recorder.endTurnDown)
         {
-            AbstractCombatPiece2 acp = CombatManager.Instance.currentPiece;
+            AbstractCombatActorPiece2 acp = CombatManager.Instance.currentPiece;
             PlayerManager pm = PlayerManager.Instance;
             if (acp.pieceOwner.GetOwner() == pm.localPlayer) acp.ISTET_EndTurn();
         }

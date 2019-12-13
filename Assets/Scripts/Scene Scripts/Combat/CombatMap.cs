@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CombatMap : AbstractMap<CombatTile>
@@ -139,6 +141,25 @@ public class CombatMap : AbstractMap<CombatTile>
         {
             tile.db_tileset_battleground = tileset;
             tile.ChangeLandSprite(s);
+        }
+    }
+
+    public void AddRandomObstacles(DB_Tileset tileset)
+    {
+        CombatObstacle prefab = AllPrefabs.Instance.combatObstacle;
+        System.Random rand = new System.Random();
+        List<CombatTile> values = Enumerable.ToList(tiles.Values);
+
+        int obstaclesToMake = UnityEngine.Random.Range(0, 10);
+        for (int i = 0; i < obstaclesToMake; i++)
+        {
+            DB_CombatObstacle dbObstacle = tileset.combatObstacles[rand.Next(tileset.combatObstacles.Count)];
+            CombatTile cTile = values[rand.Next(values.Count)];
+
+            CombatObstacle obstacle = Instantiate(prefab, cTile.transform);
+            obstacle.SetMainSprite(dbObstacle.imgObstacle);
+            obstacle.currentTile = cTile;
+            cTile.occupantPiece = obstacle;
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PieceMovement2))]
-public abstract class AbstractCombatantPiece2 : AbstractCombatPiece2, IMovablePiece
+public abstract class AbstractCombatantPiece2 : AbstractCombatActorPiece2, IMovablePiece
 {
     public PieceMovement2 pieceMovement { get; private set; }
 

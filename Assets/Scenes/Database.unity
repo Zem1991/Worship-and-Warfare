@@ -307,6 +307,7 @@ MonoBehaviour:
   allowWaterMovement: 0
   allowLavaMovement: 0
   image: {fileID: 21300000, guid: 94577bcaf7ce4a2409b74e6e59d047ab, type: 3}
+  combatObstacles: []
 --- !u!1 &100158528
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,6 +411,7 @@ MonoBehaviour:
   allowWaterMovement: 0
   allowLavaMovement: 0
   image: {fileID: 21300000, guid: 425eda0d4f05b9d4db97ce58cfd873a8, type: 3}
+  combatObstacles: []
 --- !u!1001 &238418310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -669,6 +671,8 @@ MonoBehaviour:
     type: 3}
   combatUnitPiece: {fileID: 6036333515219936309, guid: ad7735426d24fa44d822fe6499eaae6d,
     type: 3}
+  combatObstacle: {fileID: 3493729476602318274, guid: 2811319c6d07d9e4683e073ab140d481,
+    type: 3}
   cuiTurnSequenceItem: {fileID: 2897984054310898061, guid: 0a01e91148905bf4b8cd8d6c58c7d5a8,
     type: 3}
   inputHighlight: {fileID: 6205666536738310281, guid: 5b702608e16dadd4bbc44d29595780b2,
@@ -813,6 +817,7 @@ MonoBehaviour:
   allowWaterMovement: 0
   allowLavaMovement: 0
   image: {fileID: 21300000, guid: 99724e9265e5b814eb647ecce47c6145, type: 3}
+  combatObstacles: []
 --- !u!1 &484480922
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,6 +912,7 @@ MonoBehaviour:
   allowWaterMovement: 0
   allowLavaMovement: 0
   image: {fileID: 21300000, guid: 2e5f1a07e9eb24444b3d39db881c4ab8, type: 3}
+  combatObstacles: []
 --- !u!1 &504196550
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,6 +962,7 @@ MonoBehaviour:
   allowWaterMovement: 0
   allowLavaMovement: 0
   image: {fileID: 21300000, guid: b657589c490c73642afeab9d3cb6f32f, type: 3}
+  combatObstacles: []
 --- !u!1 &507399650
 GameObject:
   m_ObjectHideFlags: 0
@@ -1155,6 +1162,8 @@ MonoBehaviour:
   allowWaterMovement: 0
   allowLavaMovement: 0
   image: {fileID: 21300000, guid: fc244b954f7eea14a8a8a5dfe14a981b, type: 3}
+  combatObstacles:
+  - {fileID: 1357450929}
 --- !u!1 &648845221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,7 +1236,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1037067536}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &718205236
 MonoBehaviour:
@@ -1332,6 +1341,7 @@ MonoBehaviour:
   allowWaterMovement: 0
   allowLavaMovement: 0
   image: {fileID: 21300000, guid: ff5602d6bab3d2a4ba316e76901a051f, type: 3}
+  combatObstacles: []
 --- !u!1 &818039188
 GameObject:
   m_ObjectHideFlags: 0
@@ -1560,6 +1570,7 @@ MonoBehaviour:
   allowWaterMovement: 1
   allowLavaMovement: 0
   image: {fileID: 6049605792901559095, guid: cd249195b99cbad4d9581be867dfb8b3, type: 3}
+  combatObstacles: []
 --- !u!1 &870770570
 GameObject:
   m_ObjectHideFlags: 0
@@ -1639,6 +1650,7 @@ MonoBehaviour:
   allowWaterMovement: 1
   allowLavaMovement: 0
   image: {fileID: -2891162888192440980, guid: 976a4890a96712e4d84da9aa122a188f, type: 3}
+  combatObstacles: []
 --- !u!1 &960977121
 GameObject:
   m_ObjectHideFlags: 0
@@ -1841,9 +1853,11 @@ Transform:
   - {fileID: 1540432248}
   - {fileID: 1460391487}
   - {fileID: 587533044}
+  - {fileID: 1161256589}
   - {fileID: 1957607057}
   - {fileID: 718205235}
-  - {fileID: 1161256589}
+  - {fileID: 1134833204}
+  - {fileID: 1073738798}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2049,6 +2063,51 @@ MonoBehaviour:
   allowWaterMovement: 0
   allowLavaMovement: 0
   image: {fileID: 21300000, guid: 54c59dcdb1c6e4a4bb607965ccf107a7, type: 3}
+  combatObstacles: []
+--- !u!1 &1073738797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1073738798}
+  - component: {fileID: 1073738799}
+  m_Layer: 0
+  m_Name: Combat Obstacles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1073738798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073738797}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1357450928}
+  m_Father: {fileID: 1037067536}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1073738799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073738797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d829b32847d0dca4cb70c5c9e4fa1107, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1120953693
 GameObject:
   m_ObjectHideFlags: 0
@@ -2098,6 +2157,7 @@ MonoBehaviour:
   allowWaterMovement: 0
   allowLavaMovement: 0
   image: {fileID: 21300000, guid: d116127223341c74984eb992de55738e, type: 3}
+  combatObstacles: []
 --- !u!1 &1123742728
 GameObject:
   m_ObjectHideFlags: 0
@@ -2152,6 +2212,36 @@ MonoBehaviour:
   atrDefense: 1
   atrPower: 0
   atrFocus: 0
+--- !u!1 &1134833203
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1134833204}
+  m_Layer: 0
+  m_Name: Field Obstacles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1134833204
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134833203}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1037067536}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1161256588
 GameObject:
   m_ObjectHideFlags: 0
@@ -2182,7 +2272,7 @@ Transform:
   m_Children:
   - {fileID: 1532252777}
   m_Father: {fileID: 1037067536}
-  m_RootOrder: 13
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1161256590
 MonoBehaviour:
@@ -2352,6 +2442,7 @@ MonoBehaviour:
   allowWaterMovement: 0
   allowLavaMovement: 0
   image: {fileID: 21300000, guid: af91fb488d4c84146a003c65cab51f16, type: 3}
+  combatObstacles: []
 --- !u!1 &1190025191
 GameObject:
   m_ObjectHideFlags: 0
@@ -2630,6 +2721,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8def3c9275569934ab0eef9345b2e42e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1357450927
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1357450928}
+  - component: {fileID: 1357450929}
+  m_Layer: 0
+  m_Name: Grassland Rock 01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1357450928
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357450927}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1073738798}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1357450929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357450927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd4b6d58fe805e84fba92cd51796d526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  obstacleName: Rock
+  imgObstacle: {fileID: 21300000, guid: d90bf6d2f8dbc3f418ef83394acbcd36, type: 3}
 --- !u!1 &1428424753
 GameObject:
   m_ObjectHideFlags: 0
@@ -2839,6 +2976,7 @@ MonoBehaviour:
   allowWaterMovement: 0
   allowLavaMovement: 0
   image: {fileID: 21300000, guid: 9abce7346bac7fb4eb55e9bb0036b07e, type: 3}
+  combatObstacles: []
 --- !u!1 &1460391486
 GameObject:
   m_ObjectHideFlags: 0
@@ -3610,6 +3748,7 @@ MonoBehaviour:
   allowWaterMovement: 0
   allowLavaMovement: 0
   image: {fileID: 21300000, guid: 954e76d8d547ef4429131414544c8e1f, type: 3}
+  combatObstacles: []
 --- !u!1001 &1740767945
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3816,6 +3955,7 @@ MonoBehaviour:
   allowWaterMovement: 0
   allowLavaMovement: 0
   image: {fileID: 21300000, guid: 10e2dcb69da7b3447a11450e0a0b1995, type: 3}
+  combatObstacles: []
 --- !u!1 &1819187274
 GameObject:
   m_ObjectHideFlags: 0
@@ -3912,6 +4052,7 @@ MonoBehaviour:
   allowWaterMovement: 0
   allowLavaMovement: 0
   image: {fileID: 21300000, guid: 2bc0cac108822b24e91d01688e9d59e1, type: 3}
+  combatObstacles: []
 --- !u!1 &1850063021
 GameObject:
   m_ObjectHideFlags: 0
@@ -3961,6 +4102,7 @@ MonoBehaviour:
   allowWaterMovement: 0
   allowLavaMovement: 0
   image: {fileID: 21300000, guid: 7755b79af115fb94c83e5ac7fd4d1780, type: 3}
+  combatObstacles: []
 --- !u!1 &1856570798
 GameObject:
   m_ObjectHideFlags: 0
@@ -4055,6 +4197,7 @@ MonoBehaviour:
   allowWaterMovement: 0
   allowLavaMovement: 1
   image: {fileID: -8890641348306671835, guid: 0224a6fccfca8524dbdf88a143f3d95d, type: 3}
+  combatObstacles: []
 --- !u!1 &1934940660
 GameObject:
   m_ObjectHideFlags: 0
@@ -4132,7 +4275,7 @@ Transform:
   - {fileID: 2116761659}
   - {fileID: 251117302}
   m_Father: {fileID: 1037067536}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1957607058
 MonoBehaviour:

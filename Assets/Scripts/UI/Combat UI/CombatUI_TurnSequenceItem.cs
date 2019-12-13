@@ -7,5 +7,5 @@ public class CombatUI_TurnSequenceItem : MonoBehaviour
 {
     public Image border;
     public Image portrait;
-    public AbstractCombatPiece2 combatPiece;
+    public AbstractCombatActorPiece2 combatPiece;
 }
