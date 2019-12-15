@@ -150,16 +150,23 @@ public class CombatMap : AbstractMap<CombatTile>
         System.Random rand = new System.Random();
         List<CombatTile> values = Enumerable.ToList(tiles.Values);
 
-        int obstaclesToMake = UnityEngine.Random.Range(0, 10);
+        int obstaclesToMake = UnityEngine.Random.Range(0, 20);
         for (int i = 0; i < obstaclesToMake; i++)
         {
-            DB_CombatObstacle dbObstacle = tileset.combatObstacles[rand.Next(tileset.combatObstacles.Count)];
             CombatTile cTile = values[rand.Next(values.Count)];
+            int maxTilesX = mapSize.x - 1;
+            if (cTile.posId.y % 2 == 1) maxTilesX++;
+
+            if (cTile.posId.x <= 2) continue;
+            if (cTile.posId.x >= maxTilesX - 2) continue;
+            if (cTile.GetBlockedNeighbours().Count > 0) continue;
+
+            DB_CombatObstacle dbObstacle = tileset.combatObstacles[rand.Next(tileset.combatObstacles.Count)];
 
             CombatObstacle obstacle = Instantiate(prefab, cTile.transform);
             obstacle.SetMainSprite(dbObstacle.imgObstacle);
             obstacle.currentTile = cTile;
-            cTile.occupantPiece = obstacle;
+            cTile.obstaclePiece = obstacle;
         }
     }
 }

@@ -25,12 +25,14 @@ public abstract class AbstractTile : MonoBehaviour
     public AbstractTile f;
     public AbstractTile fr;
     public AbstractPiece2 occupantPiece;
+    public AbstractPiece2 obstaclePiece;
 
-    public bool IsAcessible(bool needGroundAccess, bool needWaterAccess, bool needLavaAccess)
+    public bool IsAcessible(bool needGroundAccess, bool needWaterAccess, bool needLavaAccess, bool needNoObstacle)
     {
         if (needGroundAccess && !allowGroundMovement) return false;
         if (needWaterAccess && !allowWaterMovement) return false;
         if (needLavaAccess && !allowLavaMovement) return false;
+        if (needNoObstacle && obstaclePiece) return false;
         return true;
     }
 
@@ -53,7 +55,18 @@ public abstract class AbstractTile : MonoBehaviour
         List<AbstractTile> result = new List<AbstractTile>();
         foreach (var item in GetNeighbours())
         {
-            if (!item.IsAcessible(needGroundAccess, needWaterAccess, needLavaAccess)) continue;
+            if (!item.IsAcessible(needGroundAccess, needWaterAccess, needLavaAccess, true)) continue;
+            result.Add(item);
+        }
+        return result;
+    }
+
+    public List<AbstractTile> GetBlockedNeighbours()
+    {
+        List<AbstractTile> result = new List<AbstractTile>();
+        foreach (var item in GetNeighbours())
+        {
+            if (!item.obstaclePiece) continue;
             result.Add(item);
         }
         return result;

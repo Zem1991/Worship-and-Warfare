@@ -167,7 +167,7 @@ public abstract class AbstractCombatActorPiece2 : AbstractCombatPiece2, IStartTu
         else
         {
             //TODO ALLY INTERACTIONS
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
     }
 }
