@@ -33,13 +33,16 @@ public class Projectile : MonoBehaviour
     {
         if (!animator) animator = GetComponentInChildren<Animator>();
         animator.runtimeAnimatorController = aoc;
+
+        if (!mainSpriteRenderer) mainSpriteRenderer = GetComponentsInChildren<SpriteRenderer>()[0];
+        mainSpriteRenderer.sortingOrder = SpriteOrderConstants.PROJECTILE;
     }
 
-    public void FlipSpriteHorizontally(bool flip)
-    {
-        if (!mainSpriteRenderer) mainSpriteRenderer = GetComponentsInChildren<SpriteRenderer>()[0];
-        mainSpriteRenderer.flipX = flip;
-    }
+    //public void FlipSpriteHorizontally(bool flip)
+    //{
+    //    if (!mainSpriteRenderer) mainSpriteRenderer = GetComponentsInChildren<SpriteRenderer>()[0];
+    //    mainSpriteRenderer.flipX = flip;
+    //}
 
     public void SetupAndGo(AttackStats attack, AbstractPiece2 casterPiece, Vector3 targetPos)
     {

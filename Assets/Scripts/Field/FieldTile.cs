@@ -25,15 +25,18 @@ public class FieldTile : AbstractTile
     public void ChangeLandSprite(Sprite s)
     {
         landRenderer.sprite = s;
+        landRenderer.sortingOrder = SpriteOrderConstants.TERRAIN_LAND;
     }
 
     public void ChangeWaterSprite(Sprite s)
     {
         waterRenderer.sprite = s;
+        waterRenderer.sortingOrder = SpriteOrderConstants.TERRAIN_WATER;
     }
 
     public void ChangeFeatureSprite(Sprite s)
     {
         featureRenderer.sprite = s;
+        featureRenderer.sortingOrder = SpriteOrderConstants.TERRAIN_FEATURE;
     }
 }

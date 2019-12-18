@@ -5,30 +5,32 @@ using ZemDirections;
 
 public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShowableHideable
 {
-    [Header("Prefabs and Sprites")]
+    [Header("Sprites")]
     public Sprite cursorSprite;
     public Sprite selectionSprite;
-    public Sprite[] movementArrowSprites = new Sprite[8];
-    public Sprite[] movementMarkerSprites = new Sprite[2];
+    public Sprite moveAreaSprite;
+    public Sprite[] movePathArrowSprites = new Sprite[8];
+    public Sprite[] movePathMarkerSprites = new Sprite[2];
 
-    [Header("Cursor Data")]
+    [Header("Cursor data")]
     public InputHighlight cursorHighlight;
-    public Vector2Int cursorPos;
     public CombatTile cursorTile;
     public AbstractCombatActorPiece2 cursorPiece;
+    public Vector2Int cursorPos;
 
-    [Header("Selection Data")]
+    [Header("Selection data")]
     public InputHighlight selectionHighlight;
-    public Vector2Int selectionPos;
     public CombatTile selectionTile;
     public AbstractCombatActorPiece2 selectionPiece;
+    public Vector2Int selectionPos;
 
     [Header("Interaction data")]
     public bool canCommandSelectedPiece;
     public AbstractCombatActorPiece2 lastHighlightedPiece;
 
     [Header("Movement Highlights")]
-    public List<InputHighlight> movementHighlights = new List<InputHighlight>();
+    public List<InputHighlight> moveAreaHighlights = new List<InputHighlight>();
+    public List<InputHighlight> movePathHighlights = new List<InputHighlight>();
 
     [Header("Required Objects")]
     public InputManager im;
@@ -42,11 +44,11 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
 
         //cursorHighlight = Instantiate(prefabHighlight, transform);
         //cursorHighlight.name = "Cursor Highlight";
-        cursorHighlight.ChangeSprite(cursorSprite, im.highlightDefault);
+        cursorHighlight.ChangeSprite(cursorSprite, im.highlightDefault, SpriteOrderConstants.CURSOR);
 
         //selectionHighlight = Instantiate(prefabHighlight, transform);
         //selectionHighlight.name = "Selection Highlight";
-        selectionHighlight.ChangeSprite(selectionSprite, im.highlightDefault);
+        selectionHighlight.ChangeSprite(selectionSprite, im.highlightDefault, SpriteOrderConstants.SELECTION);
 
         base.Awake();
     }
@@ -105,7 +107,7 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
             }
         }
 
-        MovementHighlights();
+        MoveHighlights();
     }
 
     private void ManageWindows()
@@ -188,10 +190,11 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
             selectionTile = selectionPiece.currentTile as CombatTile;
             selectionHighlight.transform.position = selectionPiece.transform.position;
 
+            selectionHighlight.gameObject.SetActive(true);
+
             AbstractCombatantPiece2 actp = selectionPiece as AbstractCombatantPiece2;
             if (actp)
             {
-                selectionHighlight.gameObject.SetActive(true);
                 canCommandSelectedPiece = actp.pieceOwner.GetOwner() == PlayerManager.Instance.localPlayer;
             }
             else
@@ -253,7 +256,6 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
 
     private void EndTurn()
     {
-        //TODO maybe default this to the Defend action?
         if (recorder.endTurnDown)
         {
             AbstractCombatActorPiece2 acp = CombatManager.Instance.currentPiece;
@@ -262,35 +264,68 @@ public class CombatInputs : AbstractSingleton<CombatInputs>, IInputScheme, IShow
         }
     }
 
-    public void RemoveMovementHighlights()
-    {
-        foreach (var item in movementHighlights)
-        {
-            Destroy(item.gameObject);
-        }
-        movementHighlights.Clear();
-    }
-
     public void ResetHighlights()
     {
         lastHighlightedPiece = null;
     }
 
-    private void MovementHighlights()
+    public void RemoveMoveAreaHighlights()
+    {
+        foreach (var item in moveAreaHighlights)
+        {
+            Destroy(item.gameObject);
+        }
+        moveAreaHighlights.Clear();
+    }
+
+    public void RemoveMovePathHighlights()
+    {
+        foreach (var item in movePathHighlights)
+        {
+            Destroy(item.gameObject);
+        }
+        movePathHighlights.Clear();
+    }
+
+    private void MoveHighlights()
+    {
+        MoveAreaHighlights();
+        MovePathHighlights();
+
+        lastHighlightedPiece = selectionPiece;
+    }
+
+    private void MoveAreaHighlights()
     {
         if (selectionPiece && selectionPiece == lastHighlightedPiece) return;
 
-        bool dontCreateHighlights = false;
-
-        if (!canCommandSelectedPiece) dontCreateHighlights = true;
-
         AbstractCombatantPiece2 actp = selectionPiece as AbstractCombatantPiece2;
+
+        bool dontCreateHighlights = false;
+        if (!canCommandSelectedPiece) dontCreateHighlights = true;
         if (!actp || !actp.ICP_IsIdle()) dontCreateHighlights = true;
 
-        RemoveMovementHighlights();
+        RemoveMoveAreaHighlights();
         if (dontCreateHighlights) return;
 
-        movementHighlights = InputHelper.MakeMovementHighlights(actp, actp.pieceMovement, transform, movementArrowSprites, movementMarkerSprites);
-        lastHighlightedPiece = selectionPiece;
+        moveAreaHighlights = InputHelper.MakeMoveAreaHighlights(actp, actp.pieceMovement,
+            Pathfinder.HexHeuristic, true, false, false,
+            transform, moveAreaSprite);
+    }
+
+    private void MovePathHighlights()
+    {
+        if (selectionPiece && selectionPiece == lastHighlightedPiece) return;
+
+        AbstractCombatantPiece2 actp = selectionPiece as AbstractCombatantPiece2;
+
+        bool dontCreateHighlights = false;
+        if (!canCommandSelectedPiece) dontCreateHighlights = true;
+        if (!actp || !actp.ICP_IsIdle()) dontCreateHighlights = true;
+
+        RemoveMovePathHighlights();
+        if (dontCreateHighlights) return;
+
+        movePathHighlights = InputHelper.MakeMovePathHighlights(actp, actp.pieceMovement, transform, movePathArrowSprites, movePathMarkerSprites);
     }
 }

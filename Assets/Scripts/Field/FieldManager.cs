@@ -220,7 +220,8 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         yield return
             StartCoroutine(pieceHandler.YieldForIdlePieces(pieces));
 
-        FieldInputs.Instance.RemoveMovementHighlights();
+        FieldInputs.Instance.RemoveMoveAreaHighlights();
+        FieldInputs.Instance.RemoveMovePathHighlights();
         FieldSC.Instance.HideScene();
 
         Debug.Log("PIECES ARE IN BATTLE");

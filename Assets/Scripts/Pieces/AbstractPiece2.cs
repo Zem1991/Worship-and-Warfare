@@ -58,16 +58,18 @@ public abstract class AbstractPiece2 : MonoBehaviour
         mainSpriteRenderer.flipX = flip;
     }
 
-    public void SetMainSprite(Sprite sprite)
+    public void SetMainSprite(Sprite sprite, int sortingOrder)
     {
         if (!mainSpriteRenderer) mainSpriteRenderer = GetComponentsInChildren<SpriteRenderer>()[0];
         mainSpriteRenderer.sprite = sprite;
+        mainSpriteRenderer.sortingOrder = sortingOrder;
     }
 
     public void SetFlagSprite(Sprite sprite)
     {
         if (!flagSpriteRenderer) flagSpriteRenderer = GetComponentsInChildren<SpriteRenderer>()[1];
         flagSpriteRenderer.sprite = sprite;
+        flagSpriteRenderer.sortingOrder = SpriteOrderConstants.FLAG;
     }
 
     protected abstract void AP2_UpdateAnimatorParameters();

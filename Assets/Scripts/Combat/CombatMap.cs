@@ -164,7 +164,7 @@ public class CombatMap : AbstractMap<CombatTile>
             DB_CombatObstacle dbObstacle = tileset.combatObstacles[rand.Next(tileset.combatObstacles.Count)];
 
             CombatObstacle obstacle = Instantiate(prefab, cTile.transform);
-            obstacle.SetMainSprite(dbObstacle.imgObstacle);
+            obstacle.SetMainSprite(dbObstacle.imgObstacle, SpriteOrderConstants.OBSTACLE);
             obstacle.currentTile = cTile;
             cTile.obstaclePiece = obstacle;
         }

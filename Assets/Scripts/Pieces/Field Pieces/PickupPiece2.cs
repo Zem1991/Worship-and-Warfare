@@ -34,7 +34,7 @@ public class PickupPiece2 : AbstractFieldPiece2
 
         this.dbArtifact = dbArtifact;
 
-        SetMainSprite(dbArtifact.image);
+        SetMainSprite(dbArtifact.image, SpriteOrderConstants.PIECE);
     }
 
     public void Initialize(DB_Unit dbUnit, int unitAmount)

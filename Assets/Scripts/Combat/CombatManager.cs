@@ -310,7 +310,8 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
     private void ReturnFromCombat(CombatResult result, PartyPiece2 attacker, PartyPiece2 defender)
     {
-        CombatInputs.Instance.RemoveMovementHighlights();
+        CombatInputs.Instance.RemoveMoveAreaHighlights();
+        CombatInputs.Instance.RemoveMovePathHighlights();
         CombatSC.Instance.HideScene();
 
         //TODO consider an 'redo combat' feature.

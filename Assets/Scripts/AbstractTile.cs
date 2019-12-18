@@ -89,4 +89,29 @@ public abstract class AbstractTile : MonoBehaviour
     {
         return GetNeighbourDirection(t) != OctoDirXZ.NONE;
     }
+
+    //public List<AbstractTile> GetAccessibleTiles(bool needGroundAccess, bool needWaterAccess, bool needLavaAccess, float movementRange)
+    //{
+    //    List<AbstractTile> currentList = new List<AbstractTile>();
+
+    //    List<AbstractTile> accessibleNeighbours = new List<AbstractTile>();
+    //    foreach (var item in GetNeighbours())
+    //    {
+    //        if (!item.IsAcessible(needGroundAccess, needWaterAccess, needLavaAccess, true)) continue;
+    //        accessibleNeighbours.Add(item);
+    //    }
+
+    //    foreach (var item in accessibleNeighbours)
+    //    {
+    //        if (currentList.Contains(item)) continue;
+    //        if (movementRange < item.groundMovementCost) continue;
+
+    //        currentList.Add(item);
+
+    //        List<AbstractTile> moreTiles = item.GetAccessibleTiles(needGroundAccess, needWaterAccess, needLavaAccess, movementRange - item.groundMovementCost);
+    //        currentList.AddRange(moreTiles);
+    //    }
+
+    //    return currentList;
+    //}
 }

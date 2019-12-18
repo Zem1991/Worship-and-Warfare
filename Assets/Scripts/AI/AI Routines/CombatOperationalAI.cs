@@ -79,8 +79,8 @@ public class CombatOperationalAI : AbstractAIRoutine
                 Debug.Log("!!!");
             }
 
-            Pathfinder.FindPath(currentUnit.currentTile, unit.currentTile, Pathfinder.HexHeuristic,
-                true, false, false,
+            Pathfinder.FindPath(currentUnit.currentTile, unit.currentTile,
+                Pathfinder.HexHeuristic, true, false, false,
                 out PathfindResults path);
             mapUnitPath.Add(unit, path);
 

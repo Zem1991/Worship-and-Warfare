@@ -63,6 +63,10 @@ public abstract class AbstractCombatActorPiece2 : AbstractCombatPiece2, IStartTu
         pieceCombatActions.retaliations = combatPieceStats.retaliationsMax;
 
         FlipSpriteHorizontally(onDefenderSide);
+
+        if (!mainSpriteRenderer) mainSpriteRenderer = GetComponentsInChildren<SpriteRenderer>()[0];
+        mainSpriteRenderer.sortingOrder = SpriteOrderConstants.PIECE;
+
         SetFlagSprite(owner.dbColor.imgFlag);
     }
 

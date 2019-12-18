@@ -20,7 +20,66 @@ public struct PathfindResults
 public static class Pathfinder
 {
     public const float DIAGONAL_MODIFIER_OCTO = 0.7F;
-    //public const float DIAGONAL_MODIFIER_HEX = 0.87F;
+
+    public static List<AbstractTile> GetMovementArea(AbstractTile startTile, float movementPoints, Func<PathNode, PathNode, float> heuristic,
+        bool needGroundAccess, bool needWaterAccess, bool needLavaAccess)
+    {
+        List<AbstractTile> result = new List<AbstractTile>();
+
+        HashSet<Vector2Int> closedList = new HashSet<Vector2Int>();
+        List<PathNode> openList = new List<PathNode>();
+
+        PathNode startPN = new PathNode(startTile);
+        openList.Add(startPN);
+
+        while (openList.Count > 0)
+        {
+            // Get the PathNode with the lowest totalDistance/fCost
+            PathNode currentPN = openList[0];
+            for (int i = 0; i < openList.Count; i++)
+            {
+                if (openList[i].fCost_totalDistance < currentPN.fCost_totalDistance ||
+                    (openList[i].fCost_totalDistance == currentPN.fCost_totalDistance && openList[i].hCost_DistFromTarget < currentPN.hCost_DistFromTarget))
+                {
+                    currentPN = openList[i];
+                }
+            }
+
+            //Add the current tile to the results array.
+            result.Add(currentPN.tile);
+
+            openList.Remove(currentPN);
+            closedList.Add(currentPN.tile.posId);
+
+            // Identify and process accessible neighbouring nodes
+            foreach (AbstractTile neighbour in currentPN.tile.GetAccessibleNeighbours(needGroundAccess, needWaterAccess, needLavaAccess))
+            {
+                // Neighbour node cannot be on the closed set
+                PathNode neighbourPN = new PathNode(neighbour);
+                if (closedList.Contains(neighbour.posId)) continue;
+
+                // Switch to existing node if possible
+                PathNode existingPN = ListContainsNodeId(openList, neighbour.posId);
+                bool neighbourOnOpenList = (existingPN != null);
+                if (neighbourOnOpenList) neighbourPN = existingPN;
+
+                int moveCost = Mathf.CeilToInt(heuristic(currentPN, neighbourPN));
+                float gCost = currentPN.gCost_DistFromStart + moveCost;
+
+                if (gCost > movementPoints) continue;
+
+                if (!neighbourOnOpenList || gCost < neighbourPN.gCost_DistFromStart)
+                {
+                    neighbourPN.moveCost = moveCost;
+                    neighbourPN.gCost_DistFromStart = gCost;
+                    neighbourPN.previous = currentPN;
+                    if (!neighbourOnOpenList) openList.Add(neighbourPN);
+                }
+            }
+        }
+
+        return result;
+    }
 
     public static bool FindPath(AbstractTile startTile, AbstractTile targetTile, Func<PathNode, PathNode, float> heuristic,
         bool needGroundAccess, bool needWaterAccess, bool needLavaAccess,
@@ -28,14 +87,14 @@ public static class Pathfinder
     {
         pathfindResults = new PathfindResults(new List<PathNode>(), 0, 0);
         if (!targetTile.IsAcessible(needGroundAccess, needWaterAccess, needLavaAccess, true)) return false;
-        //if (!targetTile.occupantPiece && !targetTile.IsAcessible(needGroundAccess, needWaterAccess, needLavaAccess)) return false;
-
-        PathNode startPN = new PathNode(startTile);
-        PathNode targetPN = new PathNode(targetTile);
 
         HashSet<Vector2Int> closedList = new HashSet<Vector2Int>();
         List<PathNode> openList = new List<PathNode>();
+
+        PathNode startPN = new PathNode(startTile);
         openList.Add(startPN);
+        PathNode targetPN = new PathNode(targetTile);
+
         while (openList.Count > 0)
         {
             // New operation: process an new PathNode

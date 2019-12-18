@@ -8,27 +8,29 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
     [Header("Sprites")]
     public Sprite cursorSprite;
     public Sprite selectionSprite;
-    public Sprite[] movementArrowSprites = new Sprite[8];
-    public Sprite[] movementMarkerSprites = new Sprite[2];
+    public Sprite moveAreaSprite;
+    public Sprite[] movePathArrowSprites = new Sprite[8];
+    public Sprite[] movePathMarkerSprites = new Sprite[2];
 
     [Header("Cursor data")]
     public InputHighlight cursorHighlight;
-    public Vector2Int cursorPos;
     public FieldTile cursorTile;
     public AbstractFieldPiece2 cursorPiece;
+    public Vector2Int cursorPos;
 
     [Header("Selection data")]
     public InputHighlight selectionHighlight;
-    public Vector2Int selectionPos;
     public FieldTile selectionTile;
     public AbstractFieldPiece2 selectionPiece;
+    public Vector2Int selectionPos;
 
     [Header("Interaction data")]
     public bool canCommandSelectedPiece;
     public AbstractFieldPiece2 lastHighlightedPiece;
 
     [Header("Movement Highlights")]
-    public List<InputHighlight> movementHighlights = new List<InputHighlight>();
+    public List<InputHighlight> moveAreaHighlights = new List<InputHighlight>();
+    public List<InputHighlight> movePathHighlights = new List<InputHighlight>();
 
     [Header("Required Objects")]
     public InputManager im;
@@ -42,11 +44,11 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
 
         //cursorHighlight = Instantiate(prefabHighlight, transform);
         //cursorHighlight.name = "Cursor Highlight";
-        cursorHighlight.ChangeSprite(cursorSprite, im.highlightDefault);
+        cursorHighlight.ChangeSprite(cursorSprite, im.highlightDefault, SpriteOrderConstants.CURSOR);
 
         //selectionHighlight = Instantiate(prefabHighlight, transform);
         //selectionHighlight.name = "Selection Highlight";
-        selectionHighlight.ChangeSprite(selectionSprite, im.highlightDefault);
+        selectionHighlight.ChangeSprite(selectionSprite, im.highlightDefault, SpriteOrderConstants.SELECTION);
 
         base.Awake();
     }
@@ -104,7 +106,7 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
             EndTurn();
         }
 
-        MovementHighlights();
+        MoveHighlights();
     }
 
     private void ManageWindows()
@@ -184,35 +186,40 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
 
             if (true)   //(im.cursorOnPlayArea)
             {
-                selectionPos = cursorPos;
                 selectionTile = cursorTile;
                 selectionPiece = cursorPiece;
+                selectionPos = cursorPos;
 
                 selectionHighlight.transform.position = cursorHighlight.transform.position;
+            }
+
+            if (selectionPiece)
+            {
+                selectionHighlight.gameObject.SetActive(true);
+
+                PartyPiece2 pp = selectionPiece as PartyPiece2;
+                if (pp)
+                {
+                    canCommandSelectedPiece = pp.pieceOwner.GetOwner() == PlayerManager.Instance.localPlayer;
+                }
+                else
+                {
+                    canCommandSelectedPiece = false;
+                }
+            }
+            else
+            {
+                selectionHighlight.gameObject.SetActive(false);
+                canCommandSelectedPiece = false;
             }
         }
 
         if (selectionPiece)
         {
-            selectionPos = selectionTile.posId;
             selectionTile = selectionPiece.currentTile as FieldTile;
-            selectionHighlight.transform.position = selectionPiece.transform.position;
+            selectionPos = selectionTile.posId;
 
-            PartyPiece2 pp = selectionPiece as PartyPiece2;
-            if (pp)
-            {
-                selectionHighlight.gameObject.SetActive(true);
-                canCommandSelectedPiece = pp.pieceOwner.GetOwner() == PlayerManager.Instance.localPlayer;
-            }
-            else
-            {
-                canCommandSelectedPiece = false;
-            }
-        }
-        else
-        {
-            selectionHighlight.gameObject.SetActive(false);
-            canCommandSelectedPiece = false;
+            selectionHighlight.transform.position = selectionPiece.transform.position;
         }
     }
 
@@ -258,35 +265,68 @@ public class FieldInputs : AbstractSingleton<FieldInputs>, IInputScheme, IShowab
         }
     }
 
-    public void RemoveMovementHighlights()
-    {
-        foreach (var item in movementHighlights)
-        {
-            Destroy(item.gameObject);
-        }
-        movementHighlights.Clear();
-    }
-
     public void ResetHighlights()
     {
         lastHighlightedPiece = null;
     }
 
-    private void MovementHighlights()
+    public void RemoveMoveAreaHighlights()
+    {
+        foreach (var item in moveAreaHighlights)
+        {
+            Destroy(item.gameObject);
+        }
+        moveAreaHighlights.Clear();
+    }
+
+    public void RemoveMovePathHighlights()
+    {
+        foreach (var item in movePathHighlights)
+        {
+            Destroy(item.gameObject);
+        }
+        movePathHighlights.Clear();
+    }
+
+    private void MoveHighlights()
+    {
+        MoveAreaHighlights();
+        MovePathHighlights();
+
+        lastHighlightedPiece = selectionPiece;
+    }
+
+    private void MoveAreaHighlights()
     {
         if (selectionPiece && selectionPiece == lastHighlightedPiece) return;
 
-        bool dontCreateHighlights = false;
-
-        if (!canCommandSelectedPiece) dontCreateHighlights = true;
-
         PartyPiece2 pp = selectionPiece as PartyPiece2;
+
+        bool dontCreateHighlights = false;
+        if (!canCommandSelectedPiece) dontCreateHighlights = true;
         if (!pp || !pp.ICP_IsIdle()) dontCreateHighlights = true;
 
-        RemoveMovementHighlights();
+        RemoveMoveAreaHighlights();
         if (dontCreateHighlights) return;
 
-        movementHighlights = InputHelper.MakeMovementHighlights(pp, pp.pieceMovement, transform, movementArrowSprites, movementMarkerSprites);
-        lastHighlightedPiece = selectionPiece;
+        moveAreaHighlights = InputHelper.MakeMoveAreaHighlights(pp, pp.pieceMovement,
+            Pathfinder.OctoHeuristic, true, false, false,
+            transform, moveAreaSprite);
+    }
+
+    private void MovePathHighlights()
+    {
+        if (selectionPiece && selectionPiece == lastHighlightedPiece) return;
+
+        PartyPiece2 pp = selectionPiece as PartyPiece2;
+
+        bool dontCreateHighlights = false;
+        if (!canCommandSelectedPiece) dontCreateHighlights = true;
+        if (!pp || !pp.ICP_IsIdle()) dontCreateHighlights = true;
+
+        RemoveMovePathHighlights();
+        if (dontCreateHighlights) return;
+
+        movePathHighlights = InputHelper.MakeMovePathHighlights(pp, pp.pieceMovement, transform, movePathArrowSprites, movePathMarkerSprites);
     }
 }

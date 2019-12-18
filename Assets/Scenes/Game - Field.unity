@@ -12792,7 +12792,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorSprite: {fileID: 21300000, guid: 1dc430b12b5edd743bb382e583862f65, type: 3}
   selectionSprite: {fileID: 21300000, guid: 37660c40ec7a3b648bfb302c2286bb39, type: 3}
-  movementArrowSprites:
+  moveAreaSprite: {fileID: 21300000, guid: 3048c0a8859848b42b41c8625ee8078d, type: 3}
+  movePathArrowSprites:
   - {fileID: -3011494807137413604, guid: 241dc02df22604348ba2d4389051d846, type: 3}
   - {fileID: -3011895399059424396, guid: 241dc02df22604348ba2d4389051d846, type: 3}
   - {fileID: 8065461568050007341, guid: 241dc02df22604348ba2d4389051d846, type: 3}
@@ -12801,20 +12802,21 @@ MonoBehaviour:
   - {fileID: 7732202995327073791, guid: 241dc02df22604348ba2d4389051d846, type: 3}
   - {fileID: -7946779441942993994, guid: 241dc02df22604348ba2d4389051d846, type: 3}
   - {fileID: 7002214258062350472, guid: 241dc02df22604348ba2d4389051d846, type: 3}
-  movementMarkerSprites:
+  movePathMarkerSprites:
   - {fileID: -5081753983647618156, guid: 241dc02df22604348ba2d4389051d846, type: 3}
   - {fileID: 1385052058501580119, guid: 241dc02df22604348ba2d4389051d846, type: 3}
   cursorHighlight: {fileID: 37967172}
-  cursorPos: {x: 0, y: 0}
   cursorTile: {fileID: 0}
   cursorPiece: {fileID: 0}
+  cursorPos: {x: 0, y: 0}
   selectionHighlight: {fileID: 142926491}
-  selectionPos: {x: 0, y: 0}
   selectionTile: {fileID: 0}
   selectionPiece: {fileID: 0}
+  selectionPos: {x: 0, y: 0}
   canCommandSelectedPiece: 0
   lastHighlightedPiece: {fileID: 0}
   movementHighlights: []
+  highlightedTiles: []
   im: {fileID: 0}
   recorder: {fileID: 0}
   cameraController: {fileID: 0}

@@ -67,7 +67,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -138,6 +138,7 @@ MonoBehaviour:
   f: {fileID: 0}
   fr: {fileID: 0}
   occupantPiece: {fileID: 0}
+  obstaclePiece: {fileID: 0}
   db_tileset_lowerLand: {fileID: 0}
   db_tileset_water: {fileID: 0}
   db_tileset_feature: {fileID: 0}

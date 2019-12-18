@@ -51,6 +51,9 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
             SetAnimatorOverrideController(relevantUnit.dbData.animatorField);
         }
 
+        if (!mainSpriteRenderer) mainSpriteRenderer = GetComponentsInChildren<SpriteRenderer>()[0];
+        mainSpriteRenderer.sortingOrder = SpriteOrderConstants.PIECE;
+
         SetFlagSprite(owner.dbColor.imgFlag);
 
         IMP_ResetMovementPoints();

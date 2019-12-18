@@ -44,17 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56bebf219c2d711478ec4708dbee33b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canBeOwned: 0
-  owner: {fileID: 0}
-  canBeControlled: 0
-  controller: {fileID: 0}
-  profilePicture: {fileID: 0}
   currentTile: {fileID: 0}
+  pathNextTile: {fileID: 0}
+  pathTargetTile: {fileID: 0}
+  targetTile: {fileID: 0}
+  targetPiece: {fileID: 0}
   pickupType: 0
   resourceType: 0
   resourceAmount: 0
-  artifact: {fileID: 0}
-  unit: {fileID: 0}
+  dbArtifact: {fileID: 0}
+  dbUnit: {fileID: 0}
   unitAmount: 0
 --- !u!1 &8270297854391021019
 GameObject:
@@ -219,7 +218,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
