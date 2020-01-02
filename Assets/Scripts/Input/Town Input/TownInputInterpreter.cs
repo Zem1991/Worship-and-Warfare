@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TownInputRecorder : MonoBehaviour
+public class TownInputInterpreter : AbstractInputInterpreter<TownInputListener>
 {
-    private TownInputListener listener;
-
     [Header("Inputs")]
     public Vector3 cursorAxes;
     public Vector3 cameraAxes;

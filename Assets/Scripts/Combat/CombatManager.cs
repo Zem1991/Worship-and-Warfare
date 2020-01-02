@@ -95,13 +95,14 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
             currentPiece = list[0];
             Vector3 pos = currentPiece.transform.position;
 
-            CombatInputs ci = CombatInputs.Instance;
-            ci.selectionPos = new Vector2Int((int)pos.x, (int)pos.z);
-            ci.selectionTile = currentPiece.currentTile as CombatTile;
-            ci.selectionPiece = currentPiece;
+            CombatSceneInputs csi = CombatSceneInputs.Instance;
+            csi.executor.selectionPos = new Vector2Int((int)pos.x, (int)pos.z);
+            csi.executor.selectionTile = currentPiece.currentTile as CombatTile;
+            csi.executor.selectionPiece = currentPiece;
 
-            ci.selectionHighlight.transform.position = currentPiece.transform.position;
-            ci.canCommandSelectedPiece = currentPiece.pieceOwner.GetOwner() == PlayerManager.Instance.localPlayer;
+            //csi.executor.selectionHighlight.transform.position = currentPiece.transform.position;
+
+            csi.executor.canCommandSelectedPiece = currentPiece.pieceOwner.GetOwner() == PlayerManager.Instance.localPlayer;
 
             list.RemoveAt(0);
             CombatUI.Instance.turnSequence.RemoveFirstFromTurnSequence();
@@ -297,12 +298,12 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
      */
     public void Selection_Wait()
     {
-        CombatInputs.Instance.MakeSelectedPieceWait();
+        CombatSceneInputs.Instance.executor.MakeSelectedPieceWait();
     }
 
     public void Selection_Defend()
     {
-        CombatInputs.Instance.MakeSelectedPieceDefend();
+        CombatSceneInputs.Instance.executor.MakeSelectedPieceDefend();
     }
     /*
     * End: UI Bottom Left buttons
@@ -310,8 +311,8 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
     private void ReturnFromCombat(CombatResult result, PartyPiece2 attacker, PartyPiece2 defender)
     {
-        CombatInputs.Instance.RemoveMoveAreaHighlights();
-        CombatInputs.Instance.RemoveMovePathHighlights();
+        //CombatSceneInputs.Instance.executor.RemoveMoveAreaHighlights();
+        //CombatSceneInputs.Instance.executor.RemoveMovePathHighlights();
         CombatSC.Instance.HideScene();
 
         //TODO consider an 'redo combat' feature.
@@ -334,7 +335,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
         //TODO add the call for the level up window here
 
-        FieldInputs.Instance.MakeSelectedPieceInteract(false);
+        FieldSceneInputs.Instance.executor.MakeSelectedPieceInteract(false);
         //FieldInputs.Instance.ResetHighlights();
     }
 

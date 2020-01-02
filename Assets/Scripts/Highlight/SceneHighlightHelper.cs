@@ -4,16 +4,49 @@ using System.Collections.Generic;
 using UnityEngine;
 using ZemDirections;
 
-public static class InputHelper
+public static class SceneHighlightHelper
 {
-    public static List<InputHighlight> MakeMoveAreaHighlights(AbstractPiece2 piece, PieceMovement2 pieceMovement, 
+    public static Highlight ObjectHighlight(GameObject gObject, Highlight highlight, Transform transform, string highlightName, Sprite sprite)
+    {
+        if (!gObject)
+        {
+            if (highlight) UnityEngine.Object.Destroy(highlight.gameObject);
+            return null;
+        }
+        else
+        {
+            Vector3 pos = gObject.transform.position;
+            Quaternion rot = Quaternion.identity;
+
+            if (!highlight)
+            {
+                highlight = UnityEngine.Object.Instantiate(AllPrefabs.Instance.highlight, pos, rot, transform);
+                highlight.name = highlightName;
+                highlight.ChangeSprite(sprite, HighlightManager.Instance.highlightDefault, SpriteOrderConstants.CURSOR);
+            }
+            else
+            {
+                highlight.transform.position = pos;
+            }
+            return highlight;
+        }
+    }
+
+    public static List<Highlight> MoveAreaHighlight(GameObject gObject, PieceMovement2 pieceMovement, Transform transform, string highlightName, Sprite sprite,
+        Func<PathNode, PathNode, float> heuristic, bool needGroundAccess, bool needWaterAccess, bool needLavaAccess)
+    {
+
+    }
+
+    //  //  //  //  //
+
+    public static List<Highlight> MakeMoveAreaHighlights(AbstractPiece2 piece, PieceMovement2 pieceMovement, 
         Func<PathNode, PathNode, float> heuristic, bool needGroundAccess, bool needWaterAccess, bool needLavaAccess,
         Transform transform, Sprite moveAreaSprite)
     {
-        List<InputHighlight> movementHighlights = new List<InputHighlight>();
+        List<Highlight> movementHighlights = new List<Highlight>();
 
-        InputManager im = InputManager.Instance;
-        InputHighlight prefabHighlight = AllPrefabs.Instance.inputHighlight;
+        Highlight prefabHighlight = AllPrefabs.Instance.highlight;
 
         List<AbstractTile> movementArea = Pathfinder.GetMovementArea(piece.currentTile, pieceMovement.movementPointsCurrent,
             heuristic, needGroundAccess, needWaterAccess, needLavaAccess);
@@ -23,26 +56,26 @@ public static class InputHelper
             Vector3 pos = item.transform.position;
             Quaternion rot = Quaternion.identity;
 
-            InputHighlight highlight = UnityEngine.Object.Instantiate(prefabHighlight, pos, rot, transform);
+            Highlight highlight = UnityEngine.Object.Instantiate(prefabHighlight, pos, rot, transform);
             movementHighlights.Add(highlight);
             highlight.name = "Move area: " + item.posId;
-            highlight.ChangeSprite(moveAreaSprite, im.highlightDefault, SpriteOrderConstants.HIGHLIGHT_AREA);
+            highlight.ChangeSprite(moveAreaSprite, HighlightManager.Instance.highlightDefault, SpriteOrderConstants.HIGHLIGHT_AREA);
         }
 
         return movementHighlights;
     }
 
-    public static List<InputHighlight> MakeMovePathHighlights(AbstractPiece2 piece, PieceMovement2 pieceMovement, Transform transform, Sprite[] movementArrowSprites, Sprite[] movementMarkerSprites)
+    public static List<Highlight> MakeMovePathHighlights(AbstractPiece2 piece, PieceMovement2 pieceMovement, Transform transform, Sprite[] movementArrowSprites, Sprite[] movementMarkerSprites)
     {
-        List<InputHighlight> movementHighlights = new List<InputHighlight>();
+        List<Highlight> movementHighlights = new List<Highlight>();
 
         List<PathNode> path = pieceMovement.GetPath();
         if (path != null)
         {
-            InputManager im = InputManager.Instance;
-            InputHighlight prefabHighlight = AllPrefabs.Instance.inputHighlight;
+            HighlightManager hm = HighlightManager.Instance;
+            Highlight prefabHighlight = AllPrefabs.Instance.highlight;
 
-            movementHighlights = new List<InputHighlight>();
+            movementHighlights = new List<Highlight>();
             int movePoints = pieceMovement.movementPointsCurrent;
             int moveCost = 0;
             Color moveColor;
@@ -56,7 +89,7 @@ public static class InputHelper
                 AbstractTile nextTile = path[nextI].tile as AbstractTile;
 
                 moveCost += path[nextI].moveCost;
-                moveColor = moveCost > movePoints ? im.highlightDenied : im.highlightAllowed;
+                moveColor = moveCost > movePoints ? hm.highlightDenied : hm.highlightAllowed;
 
                 Vector3 fromPos = currentTile.transform.position;
                 Vector3 toPos = nextTile.transform.position;
@@ -67,12 +100,12 @@ public static class InputHelper
 
                 nextI++;
 
-                InputHighlight step = UnityEngine.Object.Instantiate(prefabHighlight, pos, rot, transform);
+                Highlight step = UnityEngine.Object.Instantiate(prefabHighlight, pos, rot, transform);
                 movementHighlights.Add(step);
                 step.name = "Step #" + nextI;
                 step.ChangeSprite(movementArrowSprites[(int)dir], moveColor, SpriteOrderConstants.HIGHLIGHT_PATH);
 
-                InputHighlight marker = UnityEngine.Object.Instantiate(prefabHighlight, toPos, rot, transform);
+                Highlight marker = UnityEngine.Object.Instantiate(prefabHighlight, toPos, rot, transform);
                 movementHighlights.Add(marker);
                 if (nextI == totalNodes)
                 {

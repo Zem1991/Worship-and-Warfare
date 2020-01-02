@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FieldInputListener : MonoBehaviour
+public class FieldInputListener : AbstractInputListener
 {
     public string axis_cursorX = "Mouse X";
     public string axis_cursorZ = "Mouse Y";

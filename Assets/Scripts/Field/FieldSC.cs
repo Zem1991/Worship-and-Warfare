@@ -7,22 +7,25 @@ public class FieldSC : AbstractSingleton<FieldSC>, ISceneController
     public IEnumerator WaitForSceneLoad()
     {
         yield return
-            FieldInputs.Instance &&
+            FieldSceneInputs.Instance &&
             FieldUI.Instance &&
+            FieldSceneHighlights.Instance &&
             FieldManager.Instance;
     }
 
     public void HideScene()
     {
-        FieldInputs.Instance.Hide();
+        FieldSceneInputs.Instance.Hide();
         FieldUI.Instance.Hide();
+        FieldSceneHighlights.Instance.Hide();
         FieldManager.Instance.Hide();
     }
 
     public void ShowScene()
     {
-        FieldInputs.Instance.Show();
+        FieldSceneInputs.Instance.Show();
         FieldUI.Instance.Show();
+        FieldSceneHighlights.Instance.Show();
         FieldManager.Instance.Show();
     }
 }

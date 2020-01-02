@@ -95,8 +95,8 @@ public class GameManager : AbstractSingleton<GameManager>
         InputManager.Instance.ChangeScheme(gs);
         UIManager.Instance.ChangeScheme(gs);
 
-        IInputScheme inputScheme = InputManager.Instance.scheme;
-        mainCamera.transform.parent = inputScheme != null ? inputScheme.CameraController().holder.transform : transform;
+        ISceneInputs sceneInputs = InputManager.Instance.sceneInputs;
+        mainCamera.transform.parent = sceneInputs != null ? sceneInputs.GetCameraController().holder.transform : transform;
         mainCamera.transform.localPosition = Vector3.zero;
         mainCamera.transform.localRotation = Quaternion.identity;
     }

@@ -7,22 +7,25 @@ public class CombatSC : AbstractSingleton<CombatSC>, ISceneController
     public IEnumerator WaitForSceneLoad()
     {
         yield return
-            CombatInputs.Instance &&
+            CombatSceneInputs.Instance &&
             CombatUI.Instance &&
+            CombatSceneHighlights.Instance &&
             CombatManager.Instance;
     }
 
     public void HideScene()
     {
-        CombatInputs.Instance.Hide();
+        CombatSceneInputs.Instance.Hide();
         CombatUI.Instance.Hide();
+        CombatSceneHighlights.Instance.Hide();
         CombatManager.Instance.Hide();
     }
 
     public void ShowScene()
     {
-        CombatInputs.Instance.Show();
+        CombatSceneInputs.Instance.Show();
         CombatUI.Instance.Show();
+        CombatSceneHighlights.Instance.Show();
         CombatManager.Instance.Show();
     }
 }

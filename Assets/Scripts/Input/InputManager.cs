@@ -5,7 +5,7 @@ using UnityEngine;
 public class InputManager : AbstractSingleton<InputManager>
 {
     [Header("Current Scheme")]
-    public IInputScheme scheme;
+    public ISceneInputs sceneInputs;
 
     [Header("Mouse Position")]
     public Vector3 mouseScreenPos;
@@ -13,19 +13,11 @@ public class InputManager : AbstractSingleton<InputManager>
     public Vector3 mouseAfterBorders;
     public bool cursorOnPlayArea;
 
-    [Header("Highlight Colors")]
-    public Color highlightDefault = Color.white;
-    public Color highlightAllowed = Color.green;
-    public Color highlightDenied = Color.red;
-
     // Update is called once per frame
     void Update()
     {
-        if (scheme != null)
-        {
-            UpdateMousePosition();
-            scheme.UpdateInputs();
-        }
+        UpdateMousePosition();
+        if (sceneInputs != null) sceneInputs.ExecuteInputs();
     }
 
     public void ChangeScheme(GameScheme gs)
@@ -33,17 +25,17 @@ public class InputManager : AbstractSingleton<InputManager>
         switch (gs)
         {
             case GameScheme.FIELD:
-                scheme = FieldInputs.Instance;
+                sceneInputs = FieldSceneInputs.Instance;
                 break;
             case GameScheme.TOWN:
-                scheme = TownInputs.Instance;
+                sceneInputs = TownSceneInputs.Instance;
                 break;
             case GameScheme.COMBAT:
-                scheme = CombatInputs.Instance;
+                sceneInputs = CombatSceneInputs.Instance;
                 break;
             default:
                 Debug.LogWarning("No input scheme found!");
-                scheme = null;
+                sceneInputs = null;
                 break;
         }
     }

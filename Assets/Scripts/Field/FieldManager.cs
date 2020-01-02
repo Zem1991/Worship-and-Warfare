@@ -156,13 +156,13 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
      */
     public void Selection_Movement()
     {
-        FieldInputs.Instance.MakeSelectedPieceInteract(false);
+        FieldSceneInputs.Instance.executor.MakeSelectedPieceInteract(false);
     }
 
     public void Selection_Inventory()
     {
-        AbstractFieldPiece2 selectionPiece = FieldInputs.Instance.selectionPiece;
-        bool canCommandSelectedPiece = FieldInputs.Instance.canCommandSelectedPiece;
+        AbstractFieldPiece2 selectionPiece = FieldSceneInputs.Instance.executor.selectionPiece;
+        bool canCommandSelectedPiece = FieldSceneInputs.Instance.executor.canCommandSelectedPiece;
 
         if (selectionPiece && canCommandSelectedPiece)
         {
@@ -188,7 +188,7 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
     {
         PlayerManager pm = PlayerManager.Instance;
         FieldPieceHandler fPH = FieldManager.Instance.pieceHandler;
-        FieldInputs fInputs = FieldInputs.Instance;
+        //FieldInputExecutor fInputs = FieldSceneInputs.Instance.executor;
 
         List<PartyPiece2> playerFieldPieces = fPH.GetPlayerPieces(currentPlayer);
         yield return StartCoroutine(fPH.YieldForIdlePieces(playerFieldPieces));
@@ -200,7 +200,7 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         if (currentPlayer == pm.localPlayer)
         {
             FieldUI.Instance.timers.UnlockButtons();
-            fInputs.ResetHighlights();
+            //fInputs.ResetHighlights();
         }
         else if (currentPlayer.type == PlayerType.COMPUTER)
         {
@@ -220,8 +220,8 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         yield return
             StartCoroutine(pieceHandler.YieldForIdlePieces(pieces));
 
-        FieldInputs.Instance.RemoveMoveAreaHighlights();
-        FieldInputs.Instance.RemoveMovePathHighlights();
+        //FieldSceneInputs.Instance.executor.RemoveMoveAreaHighlights();
+        //FieldSceneInputs.Instance.executor.RemoveMovePathHighlights();
         FieldSC.Instance.HideScene();
 
         Debug.Log("PIECES ARE IN BATTLE");

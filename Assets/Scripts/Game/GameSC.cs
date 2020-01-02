@@ -10,6 +10,7 @@ public class GameSC : AbstractSingleton<GameSC>, ISceneController
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private InputManager inputManager;
     [SerializeField] private UIManager uiManager;
+    [SerializeField] private HighlightManager highlightManager;
 
     public override void Awake()
     {
@@ -18,6 +19,7 @@ public class GameSC : AbstractSingleton<GameSC>, ISceneController
         playerManager = FindObjectOfType<PlayerManager>();
         inputManager = FindObjectOfType<InputManager>();
         uiManager = FindObjectOfType<UIManager>();
+        highlightManager = FindObjectOfType<HighlightManager>();
 
         base.Awake();
     }
@@ -29,7 +31,8 @@ public class GameSC : AbstractSingleton<GameSC>, ISceneController
             ScenarioManager.CheckReference(scenarioManager) &&
             PlayerManager.CheckReference(playerManager) &&
             InputManager.CheckReference(inputManager) &&
-            UIManager.CheckReference(uiManager);
+            UIManager.CheckReference(uiManager) &&
+            HighlightManager.CheckReference(highlightManager);
     }
 
     public void HideScene()

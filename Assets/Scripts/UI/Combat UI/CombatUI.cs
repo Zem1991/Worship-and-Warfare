@@ -53,7 +53,7 @@ public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideabl
     public void UpdatePanels()
     {
         CombatManager cm = CombatManager.Instance;
-        CombatInputs ci = CombatInputs.Instance;
+        CombatInputExecutor ci = CombatSceneInputs.Instance.executor;
 
         coreButtons.UpdatePanel();
         attackerParty.UpdatePanel(cm.pieceHandler.attackerHero);

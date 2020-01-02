@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputHighlight : MonoBehaviour
+public class Highlight : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
 

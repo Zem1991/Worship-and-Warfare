@@ -675,7 +675,7 @@ MonoBehaviour:
     type: 3}
   cuiTurnSequenceItem: {fileID: 2897984054310898061, guid: 0a01e91148905bf4b8cd8d6c58c7d5a8,
     type: 3}
-  inputHighlight: {fileID: 6205666536738310281, guid: 5b702608e16dadd4bbc44d29595780b2,
+  highlight: {fileID: 6205666536738310281, guid: 5b702608e16dadd4bbc44d29595780b2,
     type: 3}
 --- !u!1001 &443040020
 PrefabInstance:

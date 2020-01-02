@@ -47,6 +47,6 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
     [Header("Field - UI")]
     public CombatUI_TurnSequenceItem cuiTurnSequenceItem;
 
-    [Header("Input")]
-    public InputHighlight inputHighlight;
+    [Header("Highlight")]
+    public Highlight highlight;
 }

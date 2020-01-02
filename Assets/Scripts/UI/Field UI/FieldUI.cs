@@ -50,7 +50,7 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
 
     public void UpdatePanels()
     {
-        FieldInputs fi = FieldInputs.Instance;
+        FieldInputExecutor fi = FieldSceneInputs.Instance.executor;
 
         coreButtons.UpdatePanel();
         resources.UpdatePanel();

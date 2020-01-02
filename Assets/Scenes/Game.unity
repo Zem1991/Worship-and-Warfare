@@ -163,6 +163,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4756c4749daa818488dbdd4a50399f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  scenarioManager: {fileID: 0}
+  playerManager: {fileID: 0}
+  inputManager: {fileID: 0}
+  uiManager: {fileID: 0}
+  highlightManager: {fileID: 0}
 --- !u!1 &234822435
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,27 +426,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5262a99b958b01743b5b4ca9f24cfecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneDatabase:
-    m_Handle: 0
-  sceneField:
-    m_Handle: 0
-  sceneTown:
-    m_Handle: 0
-  sceneCombat:
-    m_Handle: 0
   scenarioName: Test Scenario 01
   scenarioBooted: 0
   scenarioStarted: 0
   gameSpeed: 0
   isPaused: 0
-  currentTurn: 0
-  currentPlayer: {fileID: 0}
   currentGameScheme: 0
   timeElapsedText: 
   currentDateTime: 
-  day: 0
-  week: 0
-  month: 0
 --- !u!4 &1009103195
 Transform:
   m_ObjectHideFlags: 0
@@ -457,6 +450,52 @@ Transform:
   - {fileID: 1826632449}
   m_Father: {fileID: 0}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1089927457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1089927459}
+  - component: {fileID: 1089927458}
+  m_Layer: 0
+  m_Name: Highlight Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1089927458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089927457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb4eaa911560fd14398c621dfc716622, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightDefault: {r: 1, g: 1, b: 1, a: 1}
+  highlightAllowed: {r: 0, g: 1, b: 0, a: 1}
+  highlightDenied: {r: 1, g: 0, b: 0, a: 1}
+--- !u!4 &1089927459
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089927457}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1415969385
 GameObject:
@@ -535,9 +574,6 @@ MonoBehaviour:
   mouseWorldPos: {x: 0, y: 0, z: 0}
   mouseAfterBorders: {x: 0, y: 0, z: 0}
   cursorOnPlayArea: 0
-  highlightDefault: {r: 1, g: 1, b: 1, a: 1}
-  highlightAllowed: {r: 0, g: 1, b: 0, a: 1}
-  highlightDenied: {r: 1, g: 0, b: 0, a: 1}
 --- !u!4 &1446143056
 Transform:
   m_ObjectHideFlags: 0

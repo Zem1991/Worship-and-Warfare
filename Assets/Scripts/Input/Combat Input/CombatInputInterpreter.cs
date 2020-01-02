@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CombatInputRecorder : MonoBehaviour
+public class CombatInputInterpreter : AbstractInputInterpreter<CombatInputListener>
 {
-    private CombatInputListener listener;
-
     [Header("Inputs")]
     public Vector3 cursorAxes;
     public Vector3 cameraAxes;
@@ -13,12 +11,6 @@ public class CombatInputRecorder : MonoBehaviour
     public bool selectionDown;
     public bool commandDown;
     public bool endTurnDown;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        listener = GetComponent<CombatInputListener>();
-    }
 
     // Update is called once per frame
     void Update()
