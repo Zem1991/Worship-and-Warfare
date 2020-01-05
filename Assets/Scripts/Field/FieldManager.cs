@@ -187,11 +187,9 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
     private IEnumerator EndTurnForCurrentPlayer()
     {
         PlayerManager pm = PlayerManager.Instance;
-        FieldPieceHandler fPH = FieldManager.Instance.pieceHandler;
-        //FieldInputExecutor fInputs = FieldSceneInputs.Instance.executor;
 
-        List<PartyPiece2> playerFieldPieces = fPH.GetPlayerPieces(currentPlayer);
-        yield return StartCoroutine(fPH.YieldForIdlePieces(playerFieldPieces));
+        List<PartyPiece2> playerFieldPieces = pieceHandler.GetPlayerPieces(currentPlayer);
+        yield return StartCoroutine(pieceHandler.YieldForIdlePieces(playerFieldPieces));
 
         Player next = pm.EndTurnForPlayer(currentPlayer);
         if (!next) NextTurnForAll();
@@ -200,7 +198,7 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         if (currentPlayer == pm.localPlayer)
         {
             FieldUI.Instance.timers.UnlockButtons();
-            //fInputs.ResetHighlights();
+            FieldSceneHighlights.Instance.Refresh();
         }
         else if (currentPlayer.type == PlayerType.COMPUTER)
         {

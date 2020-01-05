@@ -106,6 +106,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
             list.RemoveAt(0);
             CombatUI.Instance.turnSequence.RemoveFirstFromTurnSequence();
+            CombatSceneHighlights.Instance.Refresh();
 
             Player owner = currentPiece.pieceOwner.GetOwner();
             if (owner.type == PlayerType.COMPUTER)

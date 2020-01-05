@@ -12,19 +12,17 @@ public class FieldSceneHighlights : AbstractSingleton<FieldSceneHighlights>, ISh
     public Sprite[] movePathArrowSprites = new Sprite[8];
     public Sprite[] movePathMarkerSprites = new Sprite[2];
 
-    [Header("Object highlights")]
+    [Header("Highlighted pieces")]
+    [SerializeField] private FieldTile cursorTile;
+    [SerializeField] private AbstractFieldPiece2 selectionPiece;
+    [SerializeField] private PartyPiece2 movePiece;
+    [SerializeField] private bool movePieceMoving;
+
+    [Header("Highlights")]
     public Highlight cursorHighlight;
     public Highlight selectionHighlight;
-
-    [Header("Movement highlights")]
     public List<Highlight> moveAreaHighlights = new List<Highlight>();
     public List<Highlight> movePathHighlights = new List<Highlight>();
-
-    [Header("Specific update calls")]
-    public bool showMoveArea;
-    public bool hideMoveArea;
-    public bool showMovePath;
-    public bool hideMovePath;
 
     public void Hide()
     {
@@ -40,14 +38,14 @@ public class FieldSceneHighlights : AbstractSingleton<FieldSceneHighlights>, ISh
     {
         CursorHighlight();
         SelectionHighlight();
-        MoveAreaHighlight();
-        MovePathHighlight();
+        MoveHighlights();
     }
 
     private void CursorHighlight()
     {
         FieldTile tile = FieldSceneInputs.Instance.executor.cursorTile;
         GameObject gObject = tile ? tile.gameObject : null;
+        cursorTile = tile;
         cursorHighlight = SceneHighlightHelper.ObjectHighlight(gObject, cursorHighlight, transform, "Cursor", cursorSprite);
     }
 
@@ -55,64 +53,54 @@ public class FieldSceneHighlights : AbstractSingleton<FieldSceneHighlights>, ISh
     {
         AbstractFieldPiece2 piece = FieldSceneInputs.Instance.executor.selectionPiece;
         GameObject gObject = piece ? piece.gameObject : null;
+        selectionPiece = piece;
         selectionHighlight = SceneHighlightHelper.ObjectHighlight(gObject, selectionHighlight, transform, "Selection", selectionSprite);
     }
 
-    private void MoveAreaHighlight()
+    private void MoveHighlights()
     {
-        if (!showMoveArea && !hideMoveArea) return;
+        FieldInputExecutor fie = FieldSceneInputs.Instance.executor;
+        PartyPiece2 pp = fie.selectionPiece as PartyPiece2;
 
-        if (moveAreaHighlights != null)
-        {
-            foreach (var item in moveAreaHighlights) Destroy(item.gameObject);
-            moveAreaHighlights = null;
-        }
+        bool currentMoving = movePiece && !movePiece.ICP_IsIdle();
+        bool currentNotSelected = movePiece != pp;
+        bool selectedIdle = pp && pp.ICP_IsIdle();
+        bool selectedCanCommand = fie.canCommandSelectedPiece;
 
-        if (showMoveArea)
-        {
-            FieldInputExecutor fie = FieldSceneInputs.Instance.executor;
-            PartyPiece2 pp = fie.selectionPiece as PartyPiece2;
+        bool conditionsToRemove = (movePieceMoving && !currentMoving) || (!movePieceMoving && currentMoving) || currentNotSelected;
+        bool conditionsToCreate = selectedIdle && selectedCanCommand;
 
-            bool dontCreateHighlights = false;
-            if (!fie.canCommandSelectedPiece) dontCreateHighlights = true;
-            if (!pp || !pp.ICP_IsIdle()) dontCreateHighlights = true;
-
-            if (dontCreateHighlights) return;
-
-            moveAreaHighlights = SceneHighlightHelper.MakeMoveAreaHighlights(pp, pp.pieceMovement,
-                Pathfinder.OctoHeuristic, true, false, false,
-                transform, moveAreaSprite);
-        }
-
-        showMoveArea = false;
-        hideMoveArea = false;
+        movePiece = pp;
+        if (conditionsToRemove) RemoveMoveHighlights();
+        if (conditionsToRemove && conditionsToCreate) CreateMoveHighlights(pp);
+        movePieceMoving = movePiece && !movePiece.ICP_IsIdle();
     }
 
-    private void MovePathHighlight()
+    private void RemoveMoveHighlights()
     {
-        if (!showMovePath && !hideMovePath) return;
+        Debug.Log("FieldSceneHighlights - RemoveMoveHighlights()");
+        foreach (var item in moveAreaHighlights) Destroy(item.gameObject);
+        moveAreaHighlights.Clear();
+        foreach (var item in movePathHighlights) Destroy(item.gameObject);
+        movePathHighlights.Clear();
+    }
 
-        if (movePathHighlights != null)
-        {
-            foreach (var item in movePathHighlights) Destroy(item.gameObject);
-            movePathHighlights.Clear();
-        }
+    private void CreateMoveHighlights(PartyPiece2 pp)
+    {
+        Debug.Log("FieldSceneHighlights - CreateMoveHighlights()");
+        PieceMovement2 pm2 = pp.pieceMovement;
+        moveAreaHighlights = SceneHighlightHelper.MoveAreaHighlights(pp, transform, moveAreaSprite,
+            pm2.movementPointsCurrent, Pathfinder.OctoHeuristic, true, false, false);
+        movePathHighlights = SceneHighlightHelper.MovePathHighlights(pp, transform, movePathArrowSprites, movePathMarkerSprites,
+            pm2.movementPointsCurrent, pm2.GetPath());
+    }
 
-        if (showMovePath)
-        {
-            FieldInputExecutor fie = FieldSceneInputs.Instance.executor;
-            PartyPiece2 pp = fie.selectionPiece as PartyPiece2;
-
-            bool dontCreateHighlights = false;
-            if (!fie.canCommandSelectedPiece) dontCreateHighlights = true;
-            if (!pp || !pp.ICP_IsIdle()) dontCreateHighlights = true;
-
-            if (dontCreateHighlights) return;
-
-            movePathHighlights = SceneHighlightHelper.MakeMovePathHighlights(pp, pp.pieceMovement, transform, movePathArrowSprites, movePathMarkerSprites);
-        }
-
-        showMovePath = false;
-        hideMovePath = false;
+    public void Refresh()
+    {
+        cursorTile = null;
+        selectionPiece = null;
+        movePiece = null;
+        movePieceMoving = false;
+        Update();
     }
 }

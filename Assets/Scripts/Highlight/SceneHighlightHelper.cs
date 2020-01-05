@@ -6,77 +6,63 @@ using ZemDirections;
 
 public static class SceneHighlightHelper
 {
-    public static Highlight ObjectHighlight(GameObject gObject, Highlight highlight, Transform transform, string highlightName, Sprite sprite)
+    public static Highlight ObjectHighlight(GameObject gObject, Highlight current, Transform transform, string highlightName, Sprite sprite)
     {
         if (!gObject)
         {
-            if (highlight) UnityEngine.Object.Destroy(highlight.gameObject);
+            if (current) UnityEngine.Object.Destroy(current.gameObject);
             return null;
+        }
+
+        Vector3 pos = gObject.transform.position;
+        Quaternion rot = Quaternion.identity;
+
+        if (!current)
+        {
+            current = UnityEngine.Object.Instantiate(AllPrefabs.Instance.highlight, pos, rot, transform);
+            current.name = highlightName;
+            current.ChangeSprite(sprite, HighlightManager.Instance.highlightDefault, SpriteOrderConstants.CURSOR);
         }
         else
         {
-            Vector3 pos = gObject.transform.position;
-            Quaternion rot = Quaternion.identity;
-
-            if (!highlight)
-            {
-                highlight = UnityEngine.Object.Instantiate(AllPrefabs.Instance.highlight, pos, rot, transform);
-                highlight.name = highlightName;
-                highlight.ChangeSprite(sprite, HighlightManager.Instance.highlightDefault, SpriteOrderConstants.CURSOR);
-            }
-            else
-            {
-                highlight.transform.position = pos;
-            }
-            return highlight;
+            current.transform.position = pos;
         }
+        return current;
     }
 
-    public static List<Highlight> MoveAreaHighlight(GameObject gObject, PieceMovement2 pieceMovement, Transform transform, string highlightName, Sprite sprite,
-        Func<PathNode, PathNode, float> heuristic, bool needGroundAccess, bool needWaterAccess, bool needLavaAccess)
+    public static List<Highlight> MoveAreaHighlights(AbstractPiece2 piece, Transform transform, Sprite sprite,
+        int movementPointsCurrent, Func<PathNode, PathNode, float> heuristic, bool needGroundAccess, bool needWaterAccess, bool needLavaAccess)
     {
-
-    }
-
-    //  //  //  //  //
-
-    public static List<Highlight> MakeMoveAreaHighlights(AbstractPiece2 piece, PieceMovement2 pieceMovement, 
-        Func<PathNode, PathNode, float> heuristic, bool needGroundAccess, bool needWaterAccess, bool needLavaAccess,
-        Transform transform, Sprite moveAreaSprite)
-    {
-        List<Highlight> movementHighlights = new List<Highlight>();
-
         Highlight prefabHighlight = AllPrefabs.Instance.highlight;
 
-        List<AbstractTile> movementArea = Pathfinder.GetMovementArea(piece.currentTile, pieceMovement.movementPointsCurrent,
-            heuristic, needGroundAccess, needWaterAccess, needLavaAccess);
+        List<Highlight> result = new List<Highlight>();
 
+        List<AbstractTile> movementArea = Pathfinder.GetMovementArea(piece.currentTile, movementPointsCurrent,
+            heuristic, needGroundAccess, needWaterAccess, needLavaAccess);
         foreach (var item in movementArea)
         {
             Vector3 pos = item.transform.position;
             Quaternion rot = Quaternion.identity;
 
             Highlight highlight = UnityEngine.Object.Instantiate(prefabHighlight, pos, rot, transform);
-            movementHighlights.Add(highlight);
+            result.Add(highlight);
             highlight.name = "Move area: " + item.posId;
-            highlight.ChangeSprite(moveAreaSprite, HighlightManager.Instance.highlightDefault, SpriteOrderConstants.HIGHLIGHT_AREA);
+            highlight.ChangeSprite(sprite, HighlightManager.Instance.highlightDefault, SpriteOrderConstants.HIGHLIGHT_AREA);
         }
 
-        return movementHighlights;
+        return result;
     }
 
-    public static List<Highlight> MakeMovePathHighlights(AbstractPiece2 piece, PieceMovement2 pieceMovement, Transform transform, Sprite[] movementArrowSprites, Sprite[] movementMarkerSprites)
+    public static List<Highlight> MovePathHighlights(AbstractPiece2 piece, Transform transform, Sprite[] movementArrowSprites, Sprite[] movementMarkerSprites,
+        int movementPointsCurrent, List<PathNode> path)
     {
-        List<Highlight> movementHighlights = new List<Highlight>();
+        HighlightManager hm = HighlightManager.Instance;
+        Highlight prefabHighlight = AllPrefabs.Instance.highlight;
 
-        List<PathNode> path = pieceMovement.GetPath();
-        if (path != null)
+        List<Highlight> result = new List<Highlight>();
+
+        if (path == null || path.Count <= 0)
         {
-            HighlightManager hm = HighlightManager.Instance;
-            Highlight prefabHighlight = AllPrefabs.Instance.highlight;
-
-            movementHighlights = new List<Highlight>();
-            int movePoints = pieceMovement.movementPointsCurrent;
             int moveCost = 0;
             Color moveColor;
 
@@ -89,7 +75,7 @@ public static class SceneHighlightHelper
                 AbstractTile nextTile = path[nextI].tile as AbstractTile;
 
                 moveCost += path[nextI].moveCost;
-                moveColor = moveCost > movePoints ? hm.highlightDenied : hm.highlightAllowed;
+                moveColor = moveCost > movementPointsCurrent ? hm.highlightDenied : hm.highlightAllowed;
 
                 Vector3 fromPos = currentTile.transform.position;
                 Vector3 toPos = nextTile.transform.position;
@@ -101,12 +87,12 @@ public static class SceneHighlightHelper
                 nextI++;
 
                 Highlight step = UnityEngine.Object.Instantiate(prefabHighlight, pos, rot, transform);
-                movementHighlights.Add(step);
+                result.Add(step);
                 step.name = "Step #" + nextI;
                 step.ChangeSprite(movementArrowSprites[(int)dir], moveColor, SpriteOrderConstants.HIGHLIGHT_PATH);
 
                 Highlight marker = UnityEngine.Object.Instantiate(prefabHighlight, toPos, rot, transform);
-                movementHighlights.Add(marker);
+                result.Add(marker);
                 if (nextI == totalNodes)
                 {
                     marker.name = "Final Marker";
@@ -120,6 +106,6 @@ public static class SceneHighlightHelper
             }
         }
 
-        return movementHighlights;
+        return result;
     }
 }
