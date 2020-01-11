@@ -61,7 +61,7 @@ public static class SceneHighlightHelper
 
         List<Highlight> result = new List<Highlight>();
 
-        if (path == null || path.Count <= 0)
+        if (path != null && path.Count > 0)
         {
             int moveCost = 0;
             Color moveColor;

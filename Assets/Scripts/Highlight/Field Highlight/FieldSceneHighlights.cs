@@ -16,6 +16,7 @@ public class FieldSceneHighlights : AbstractSingleton<FieldSceneHighlights>, ISh
     [SerializeField] private FieldTile cursorTile;
     [SerializeField] private AbstractFieldPiece2 selectionPiece;
     [SerializeField] private PartyPiece2 movePiece;
+    [SerializeField] private bool movePiecePathChange;
     [SerializeField] private bool movePieceMoving;
 
     [Header("Highlights")]
@@ -71,26 +72,52 @@ public class FieldSceneHighlights : AbstractSingleton<FieldSceneHighlights>, ISh
         bool conditionsToCreate = selectedIdle && selectedCanCommand;
 
         movePiece = pp;
-        if (conditionsToRemove) RemoveMoveHighlights();
-        if (conditionsToRemove && conditionsToCreate) CreateMoveHighlights(pp);
+        if (conditionsToRemove)
+        {
+            RemoveMoveAreaighlights();
+            RemoveMovePathHighlights();
+
+            if (conditionsToCreate)
+            {
+                CreateMoveAreaHighlights(pp);
+                CreateMovePathHighlights(pp);
+            }
+        }
+        else if (movePiecePathChange)
+        {
+            RemoveMovePathHighlights();
+            CreateMovePathHighlights(pp);
+            movePiecePathChange = false;
+        }
         movePieceMoving = movePiece && !movePiece.ICP_IsIdle();
     }
 
-    private void RemoveMoveHighlights()
+    private void RemoveMoveAreaighlights()
     {
-        Debug.Log("FieldSceneHighlights - RemoveMoveHighlights()");
+        Debug.Log("FieldSceneHighlights - RemoveMoveAreaighlights()");
         foreach (var item in moveAreaHighlights) Destroy(item.gameObject);
         moveAreaHighlights.Clear();
+    }
+
+    private void RemoveMovePathHighlights()
+    {
+        Debug.Log("FieldSceneHighlights - RemoveMovePathHighlights()");
         foreach (var item in movePathHighlights) Destroy(item.gameObject);
         movePathHighlights.Clear();
     }
 
-    private void CreateMoveHighlights(PartyPiece2 pp)
+    private void CreateMoveAreaHighlights(PartyPiece2 pp)
     {
-        Debug.Log("FieldSceneHighlights - CreateMoveHighlights()");
+        Debug.Log("FieldSceneHighlights - CreateMoveAreaHighlights()");
         PieceMovement2 pm2 = pp.pieceMovement;
         moveAreaHighlights = SceneHighlightHelper.MoveAreaHighlights(pp, transform, moveAreaSprite,
             pm2.movementPointsCurrent, Pathfinder.OctoHeuristic, true, false, false);
+    }
+
+    private void CreateMovePathHighlights(PartyPiece2 pp)
+    {
+        Debug.Log("FieldSceneHighlights - CreateMovePathHighlights()");
+        PieceMovement2 pm2 = pp.pieceMovement;
         movePathHighlights = SceneHighlightHelper.MovePathHighlights(pp, transform, movePathArrowSprites, movePathMarkerSprites,
             pm2.movementPointsCurrent, pm2.GetPath());
     }
@@ -102,5 +129,14 @@ public class FieldSceneHighlights : AbstractSingleton<FieldSceneHighlights>, ISh
         movePiece = null;
         movePieceMoving = false;
         Update();
+    }
+
+    public void PathChange()
+    {
+        FieldInputExecutor fie = FieldSceneInputs.Instance.executor;
+        if (fie.selectionPiece && fie.selectionPiece == movePiece)
+        {
+            movePiecePathChange = true;
+        }
     }
 }

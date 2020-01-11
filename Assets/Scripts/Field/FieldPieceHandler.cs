@@ -169,6 +169,7 @@ public class FieldPieceHandler : MonoBehaviour
             Pathfinder.OctoHeuristic, needGroundAccess, needWaterAccess, needLavaAccess,
             out PathfindResults pathfindResults);
         piece.pieceMovement.SetPath(pathfindResults, targetTile);
+        FieldSceneHighlights.Instance.PathChange();
         return result;
     }
 

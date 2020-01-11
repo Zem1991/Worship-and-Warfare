@@ -122,6 +122,7 @@ public class CombatPieceHandler : MonoBehaviour
             Pathfinder.HexHeuristic, needGroundAccess, needWaterAccess, needLavaAccess,
             out PathfindResults pathfindResults);
         piece.pieceMovement.SetPath(pathfindResults, targetTile);
+        CombatSceneHighlights.Instance.PathChange();
         return result;
     }
 
