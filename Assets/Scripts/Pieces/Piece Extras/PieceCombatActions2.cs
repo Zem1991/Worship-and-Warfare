@@ -87,9 +87,9 @@ public class PieceCombatActions2 : MonoBehaviour
             if (pieceAsCombatant)
             {
                 AbstractTile targetTile = piece.targetPiece.currentTile;
-                bool hadPath = pieceAsCombatant.pieceMovement.HasPath(targetTile);
+                bool hasPath = pieceAsCombatant.pieceMovement.HasPath(targetTile);
                 yield return StartCoroutine(pieceAsCombatant.pieceMovement.Movement(targetTile));
-                if (!hadPath) yield break;
+                if (!hasPath) yield break;
             }
 
             if (EvaluateMeleeAttack(target))

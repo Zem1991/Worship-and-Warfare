@@ -121,6 +121,11 @@ public class PieceMovement2 : MonoBehaviour
         }
     }
 
+    public bool CanDoNextStep()
+    {
+        return path != null && path.Count > 0 && path[0].moveCost <= movementPointsCurrent;
+    }
+
     /*
     *   BEGIN:  Movement and Stop
     */
@@ -148,7 +153,8 @@ public class PieceMovement2 : MonoBehaviour
         }
         else
         {
-            if (piece.currentTile != piece.pathTargetTile)
+            if (piece.currentTile != piece.pathTargetTile &&
+                CanDoNextStep())
             {
                 stateMove = true;
                 //if (animateMovementStart) yield return StartCoroutine(MovementStart());   //TODO THIS LATER
@@ -226,7 +232,7 @@ public class PieceMovement2 : MonoBehaviour
             {
                 if (!stopWasCalled &&
                     path.Count > 0 &&
-                    path[0].moveCost <= movementPointsCurrent)
+                    CanDoNextStep())
                 {
                     PathNode pNode = path[0];
                     movementPointsCurrent -= pNode.moveCost;

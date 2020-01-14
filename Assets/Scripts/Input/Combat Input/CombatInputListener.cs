@@ -12,6 +12,7 @@ public class CombatInputListener : AbstractInputListener
     public KeyCode kbm_selection = KeyCode.Mouse0;
     public KeyCode kbm_command = KeyCode.Mouse1;
     public KeyCode kbm_endTurn = KeyCode.Backspace;
+    public KeyCode kbm_inspector = KeyCode.E;
 
     public Vector3 CursorAxes()
     {
@@ -54,6 +55,12 @@ public class CombatInputListener : AbstractInputListener
     public bool EndTurnDown()
     {
         bool kbm = Input.GetKeyDown(kbm_endTurn);
+        return kbm;
+    }
+
+    public bool InspectorDown()
+    {
+        bool kbm = Input.GetKeyDown(kbm_inspector);
         return kbm;
     }
 }

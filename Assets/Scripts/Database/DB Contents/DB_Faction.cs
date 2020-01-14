@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class DB_Faction : AbstractDBContent
 {
-    public new string name;
+    public string factionName;
     public Sprite image;
 }

@@ -8,11 +8,11 @@ public class FieldInputInterpreter : AbstractInputInterpreter<FieldInputListener
     public Vector3 cursorAxes;
     public Vector3 cameraAxes;
     public bool escapeMenuDown;
-    public bool inventoryDown;
     public bool selectionDown;
     public bool commandDown;
-    public bool stopOrResumeCommandDown;
     public bool endTurnDown;
+    public bool inventoryDown;
+    public bool stopOrResumeCommandDown;
 
     // Update is called once per frame
     void Update()
@@ -20,10 +20,10 @@ public class FieldInputInterpreter : AbstractInputInterpreter<FieldInputListener
         cursorAxes = listener.CursorAxes();
         cameraAxes = listener.CameraAxes();
         escapeMenuDown = listener.EscapeMenuDown();
-        inventoryDown = listener.InventoryDown();
         selectionDown = listener.SelectionDown();
         commandDown = listener.CommandDown();
-        stopOrResumeCommandDown = listener.StopOrResumeCommandDown();
         endTurnDown = listener.EndTurnDown();
+        inventoryDown = listener.InventoryDown();
+        stopOrResumeCommandDown = listener.StopOrResumeCommandDown();
     }
 }

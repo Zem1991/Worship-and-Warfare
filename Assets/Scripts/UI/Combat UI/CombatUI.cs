@@ -16,6 +16,7 @@ public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideabl
     [Header("Windows")]
     public CombatUI_Panel_EscapeMenu escapeMenu;
     public CombatUI_Panel_ResultPopup resultPopup;
+    public UI_CombatActorInspector combatActorInspector;
 
     [Header("Current Window")]
     public AUIPanel currentWindow;
@@ -48,6 +49,7 @@ public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideabl
     public void CloseCurrentWindow()
     {
         if (currentWindow == escapeMenu) EscapeMenuHide();
+        if (currentWindow == combatActorInspector) CombatActorInspectorHide();
     }
 
     public void UpdatePanels()
@@ -104,5 +106,19 @@ public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideabl
         resultPopup.txtMessage.text = message;
         resultPopup.Show();
         currentWindow = resultPopup;
+    }
+
+    public void CombatActorInspectorHide()
+    {
+        combatActorInspector.Hide();
+        currentWindow = null;
+        UIManager.Instance.PointerExit(combatActorInspector);
+    }
+
+    public void CombatActorInspectorShow(AbstractCombatActorPiece2 acap)
+    {
+        combatActorInspector.RefreshInfo(acap);
+        combatActorInspector.Show();
+        currentWindow = combatActorInspector;
     }
 }

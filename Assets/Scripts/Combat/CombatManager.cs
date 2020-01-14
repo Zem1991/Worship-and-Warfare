@@ -295,7 +295,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
      */
 
     /*
-     * Begin: UI Bottom Left buttons
+     * Begin: UI Bottom Center buttons
      */
     public void Selection_Wait()
     {
@@ -307,8 +307,20 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         CombatSceneInputs.Instance.executor.MakeSelectedPieceDefend();
     }
     /*
-    * End: UI Bottom Left buttons
+    * End: UI Bottom Center buttons
     */
+
+    /*
+     * Begin: UI Windows
+     */
+    public void CombatActorInspector()
+    {
+        if (CombatUI.Instance.currentWindow == CombatUI.Instance.combatActorInspector) CombatUI.Instance.CombatActorInspectorHide();
+        else if (CombatUI.Instance.currentWindow == null) CombatUI.Instance.CombatActorInspectorShow(currentPiece);
+    }
+    /*
+     * End: UI Windows
+     */
 
     private void ReturnFromCombat(CombatResult result, PartyPiece2 attacker, PartyPiece2 defender)
     {

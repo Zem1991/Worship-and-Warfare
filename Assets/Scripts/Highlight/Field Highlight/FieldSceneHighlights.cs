@@ -5,17 +5,25 @@ using UnityEngine;
 
 public class FieldSceneHighlights : AbstractSingleton<FieldSceneHighlights>, IShowableHideable
 {
+    [Header("Highlight holders (editor set)")]
+    public Transform cursorAndSelectionHolder;
+    public Transform moveAreaHolder;
+    public Transform movePathHolder;
+    public Transform targetAreaHolder;
+
     [Header("Sprites (editor set)")]
     public Sprite cursorSprite;
     public Sprite selectionSprite;
     public Sprite moveAreaSprite;
     public Sprite[] movePathArrowSprites = new Sprite[8];
     public Sprite[] movePathMarkerSprites = new Sprite[2];
+    public Sprite targetAreaSprite;
 
     [Header("Highlighted pieces")]
     [SerializeField] private FieldTile cursorTile;
     [SerializeField] private AbstractFieldPiece2 selectionPiece;
     [SerializeField] private PartyPiece2 movePiece;
+    [SerializeField] private PartyPiece2 targetPiece;
     [SerializeField] private bool movePiecePathChange;
     [SerializeField] private bool movePieceMoving;
 
@@ -40,6 +48,7 @@ public class FieldSceneHighlights : AbstractSingleton<FieldSceneHighlights>, ISh
         CursorHighlight();
         SelectionHighlight();
         MoveHighlights();
+        //ActionHighlights();
     }
 
     private void CursorHighlight()
@@ -47,7 +56,7 @@ public class FieldSceneHighlights : AbstractSingleton<FieldSceneHighlights>, ISh
         FieldTile tile = FieldSceneInputs.Instance.executor.cursorTile;
         GameObject gObject = tile ? tile.gameObject : null;
         cursorTile = tile;
-        cursorHighlight = SceneHighlightHelper.ObjectHighlight(gObject, cursorHighlight, transform, "Cursor", cursorSprite);
+        cursorHighlight = SceneHighlightHelper.ObjectHighlight(gObject, cursorHighlight, cursorAndSelectionHolder, "Cursor", cursorSprite);
     }
 
     private void SelectionHighlight()
@@ -55,7 +64,7 @@ public class FieldSceneHighlights : AbstractSingleton<FieldSceneHighlights>, ISh
         AbstractFieldPiece2 piece = FieldSceneInputs.Instance.executor.selectionPiece;
         GameObject gObject = piece ? piece.gameObject : null;
         selectionPiece = piece;
-        selectionHighlight = SceneHighlightHelper.ObjectHighlight(gObject, selectionHighlight, transform, "Selection", selectionSprite);
+        selectionHighlight = SceneHighlightHelper.ObjectHighlight(gObject, selectionHighlight, cursorAndSelectionHolder, "Selection", selectionSprite);
     }
 
     private void MoveHighlights()
@@ -70,6 +79,7 @@ public class FieldSceneHighlights : AbstractSingleton<FieldSceneHighlights>, ISh
 
         bool conditionsToRemove = (movePieceMoving && !currentMoving) || (!movePieceMoving && currentMoving) || currentNotSelected;
         bool conditionsToCreate = selectedIdle && selectedCanCommand;
+        bool conditionsToRepath = movePiecePathChange && selectedIdle;
 
         movePiece = pp;
         if (conditionsToRemove)
@@ -83,12 +93,12 @@ public class FieldSceneHighlights : AbstractSingleton<FieldSceneHighlights>, ISh
                 CreateMovePathHighlights(pp);
             }
         }
-        else if (movePiecePathChange)
+        else if (conditionsToRepath)
         {
             RemoveMovePathHighlights();
             CreateMovePathHighlights(pp);
-            movePiecePathChange = false;
         }
+        movePiecePathChange = false;
         movePieceMoving = movePiece && !movePiece.ICP_IsIdle();
     }
 
@@ -110,7 +120,7 @@ public class FieldSceneHighlights : AbstractSingleton<FieldSceneHighlights>, ISh
     {
         Debug.Log("FieldSceneHighlights - CreateMoveAreaHighlights()");
         PieceMovement2 pm2 = pp.pieceMovement;
-        moveAreaHighlights = SceneHighlightHelper.MoveAreaHighlights(pp, transform, moveAreaSprite,
+        moveAreaHighlights = SceneHighlightHelper.MoveAreaHighlights(pp.currentTile, moveAreaHolder, moveAreaSprite,
             pm2.movementPointsCurrent, Pathfinder.OctoHeuristic, true, false, false);
     }
 
@@ -118,7 +128,7 @@ public class FieldSceneHighlights : AbstractSingleton<FieldSceneHighlights>, ISh
     {
         Debug.Log("FieldSceneHighlights - CreateMovePathHighlights()");
         PieceMovement2 pm2 = pp.pieceMovement;
-        movePathHighlights = SceneHighlightHelper.MovePathHighlights(pp, transform, movePathArrowSprites, movePathMarkerSprites,
+        movePathHighlights = SceneHighlightHelper.MovePathHighlights(pp.currentTile, movePathHolder, movePathArrowSprites, movePathMarkerSprites,
             pm2.movementPointsCurrent, pm2.GetPath());
     }
 

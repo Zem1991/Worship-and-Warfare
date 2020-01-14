@@ -9,11 +9,11 @@ public class FieldInputListener : AbstractInputListener
     public string axis_cameraX = "Horizontal";
     public string axis_cameraZ = "Vertical";
     public KeyCode kbm_escapeMenu = KeyCode.Escape;
-    public KeyCode kbm_inventory = KeyCode.E;
     public KeyCode kbm_selection = KeyCode.Mouse0;
     public KeyCode kbm_command = KeyCode.Mouse1;
-    public KeyCode kbm_stopOrResumeCommand = KeyCode.Space;
     public KeyCode kbm_endTurn = KeyCode.Backspace;
+    public KeyCode kbm_inventory = KeyCode.E;
+    public KeyCode kbm_stopOrResumeCommand = KeyCode.Space;
 
     public Vector3 CursorAxes()
     {

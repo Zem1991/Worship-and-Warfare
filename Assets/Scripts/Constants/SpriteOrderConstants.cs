@@ -6,8 +6,9 @@
 
     public const int OBSTACLE = 5;
 
-    public const int HIGHLIGHT_AREA = 10;
-    public const int HIGHLIGHT_PATH = 12;
+    public const int HIGHLIGHT_MOVE_AREA = 10;
+    public const int HIGHLIGHT_TARGET_AREA = 11;
+    public const int HIGHLIGHT_MOVE_PATH = 12;
 
     public const int PIECE = 20;
     public const int FLAG = 22;

@@ -11,6 +11,7 @@ public class CombatInputInterpreter : AbstractInputInterpreter<CombatInputListen
     public bool selectionDown;
     public bool commandDown;
     public bool endTurnDown;
+    public bool inspectorDown;
 
     // Update is called once per frame
     void Update()
@@ -21,5 +22,6 @@ public class CombatInputInterpreter : AbstractInputInterpreter<CombatInputListen
         selectionDown = listener.SelectionDown();
         commandDown = listener.CommandDown();
         endTurnDown = listener.EndTurnDown();
+        inspectorDown = listener.InspectorDown();
     }
 }

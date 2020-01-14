@@ -17,12 +17,14 @@ public class CombatInputExecutor : AbstractInputExecutor<CombatInputInterpreter,
 
     [Header("Interaction data")]
     public bool canCommandSelectedPiece;
-    public AbstractCombatPiece2 lastHighlightedPiece;
 
     protected override void ManageWindows()
     {
-        EscapeMenu();
-        //Inventory();
+        if (CombatManager.Instance.IsCombatRunning())
+        {
+            EscapeMenu();
+            CombatActorInspector();
+        }
     }
 
     protected override bool HasCurrentWindow()
@@ -53,10 +55,12 @@ public class CombatInputExecutor : AbstractInputExecutor<CombatInputInterpreter,
 
     private void EscapeMenu()
     {
-        if (interpreter.escapeMenuDown && CombatManager.Instance.IsCombatRunning())
-        {
-            CombatManager.Instance.EscapeMenu();
-        }
+        if (interpreter.escapeMenuDown) CombatManager.Instance.EscapeMenu();
+    }
+
+    private void CombatActorInspector()
+    {
+        if (interpreter.inspectorDown) CombatManager.Instance.CombatActorInspector();
     }
 
     //private void CameraControls()
@@ -97,8 +101,6 @@ public class CombatInputExecutor : AbstractInputExecutor<CombatInputInterpreter,
     {
         if (interpreter.selectionDown && IsCursorValid())
         {
-            lastHighlightedPiece = null;
-
             selectionTile = cursorTile;
             selectionPiece = cursorPiece;
             selectionPos = cursorPos;
@@ -118,14 +120,12 @@ public class CombatInputExecutor : AbstractInputExecutor<CombatInputInterpreter,
     private void SelectionCommand()
     {
         if (!interpreter.commandDown || !IsCursorValid()) return;
-
-        lastHighlightedPiece = null;
         MakeSelectedPieceInteract(true);
     }
 
     public void MakeSelectedPieceInteract(bool canPathfind)
     {
-        bool condition = selectionPiece && canCommandSelectedPiece && (selectionPiece as AbstractCombatActorPiece2).ICP_IsIdle();
+        bool condition = selectionPiece && canCommandSelectedPiece;
         if (!condition) return;
 
         AbstractCombatantPiece2 actp = selectionPiece as AbstractCombatantPiece2;
@@ -134,12 +134,14 @@ public class CombatInputExecutor : AbstractInputExecutor<CombatInputInterpreter,
             if (actp.pieceMovement.stateMove)
             {
                 actp.ICP_Stop();
-                return;
             }
-            CombatTile targetTile = (canPathfind ? cursorTile : actp.targetTile) as CombatTile;
-            actp.ICP_InteractWith(targetTile);
+            else
+            {
+                CombatTile targetTile = (canPathfind ? cursorTile : actp.targetTile) as CombatTile;
+                actp.ICP_InteractWith(targetTile);
+                CombatSceneHighlights.Instance.PathChange();
+            }
         }
-        lastHighlightedPiece = null;
     }
 
     public void MakeSelectedPieceWait()

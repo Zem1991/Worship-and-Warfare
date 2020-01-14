@@ -7,11 +7,12 @@ public static class DamageCalculation
     public static int FullDamageCalculation(AttackStats attack, AbstractCombatActorPiece2 attacker, AbstractCombatActorPiece2 defender, CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
     {
         float dmgBase = CombatantDamage(attack, attacker);
-        float increments = Increments(attacker, defender, attackerHero, defenderHero);
-        float reductions = Reductions(attacker, defender, attackerHero, defenderHero);
-        Debug.Log("DamageCalculation result: " + dmgBase + " * " + increments + " * " + reductions);
+        float increments = Increments(attack, attacker, defender, attackerHero, defenderHero);
+        float reductions = Reductions(attack, attacker, defender, attackerHero, defenderHero);
+        float terrain = Terrain(attack, attacker, defender, attackerHero, defenderHero);
+        Debug.Log("DamageCalculation result: " + dmgBase + " * " + increments + " * " + reductions + " * " + terrain);
 
-        float fullFormula = dmgBase * increments * reductions;
+        float fullFormula = dmgBase * increments * reductions * terrain;
         int result = Mathf.CeilToInt(fullFormula);
         return Mathf.Max(result, 1);
     }
@@ -32,7 +33,7 @@ public static class DamageCalculation
         return result;
     }
 
-    public static float Increments(AbstractCombatActorPiece2 attacker, AbstractCombatActorPiece2 defender, CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
+    public static float Increments(AttackStats attack, AbstractCombatActorPiece2 attacker, AbstractCombatActorPiece2 defender, CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
     {
         float attackerHeroOffense = I1_AttackerHeroOffense(attackerHero, defenderHero);
         return 1 + attackerHeroOffense;
@@ -53,7 +54,7 @@ public static class DamageCalculation
         return result;
     }
 
-    public static float Reductions(AbstractCombatActorPiece2 attacker, AbstractCombatActorPiece2 defender, CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
+    public static float Reductions(AttackStats attack, AbstractCombatActorPiece2 attacker, AbstractCombatActorPiece2 defender, CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
     {
         float defenderHeroDefense = 1 - R1_DefenderHeroDefense(attackerHero, defenderHero);
         float defenderIsHero = 1 - RX_DefenderIsHero(attacker, defender);
@@ -94,6 +95,45 @@ public static class DamageCalculation
     {
         float result = 0;
         if (defender.pieceCombatActions.stateDefend) result = 0.25F;
+        return result;
+    }
+
+    public static float Terrain(AttackStats attack, AbstractCombatActorPiece2 attacker, AbstractCombatActorPiece2 defender, CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
+    {
+        float rangeMod = TX_RangeModifier(attack, attacker, defender);
+        float obstacleMod = TX_ObstacleModifier(attack, attacker, defender);
+        return rangeMod * obstacleMod;
+    }
+
+    public static float TX_RangeModifier(AttackStats attack, AbstractCombatActorPiece2 attacker, AbstractCombatActorPiece2 defender)
+    {
+        float result = 1;
+        if (attack.isRanged)
+        {
+            Vector3 attackerPos = attacker.currentTile.transform.position;
+            Vector3 defenderPos = defender.currentTile.transform.position;
+            float distance = Vector3.Distance(attackerPos, defenderPos);
+            if (distance > attack.range_maximum) result = 0.5F;
+        }
+        return result;
+    }
+
+    public static float TX_ObstacleModifier(AttackStats attack, AbstractCombatActorPiece2 attacker, AbstractCombatActorPiece2 defender)
+    {
+        float result = 1;
+        if (attack.isRanged)
+        {
+            CombatMap map = CombatManager.Instance.mapHandler.map;
+            List<CombatTile> tiles = map.AreaLine(attacker.currentTile as CombatTile, defender.currentTile as CombatTile);
+
+            int obstacles = 0;
+            foreach (var item in tiles)
+            {
+                if (item.obstaclePiece) obstacles++;
+            }
+            if (obstacles >= 0) result = 0.5F;
+            if (obstacles >= 1) result = 0;
+        }
         return result;
     }
 }

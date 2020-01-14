@@ -17,7 +17,6 @@ public class FieldInputExecutor : AbstractInputExecutor<FieldInputInterpreter, F
 
     [Header("Interaction data")]
     public bool canCommandSelectedPiece;
-    public AbstractFieldPiece2 lastHighlightedPiece;
 
     protected override void ManageWindows()
     {
@@ -96,8 +95,6 @@ public class FieldInputExecutor : AbstractInputExecutor<FieldInputInterpreter, F
     {
         if (interpreter.selectionDown && IsCursorValid())
         {
-            lastHighlightedPiece = null;
-
             selectionTile = cursorTile;
             selectionPiece = cursorPiece;
             selectionPos = cursorPos;
@@ -117,8 +114,6 @@ public class FieldInputExecutor : AbstractInputExecutor<FieldInputInterpreter, F
     private void SelectionCommand()
     {
         if (!interpreter.commandDown || !IsCursorValid()) return;
-
-        lastHighlightedPiece = null;
         MakeSelectedPieceInteract(true);
     }
 
@@ -133,12 +128,14 @@ public class FieldInputExecutor : AbstractInputExecutor<FieldInputInterpreter, F
             if (pp.pieceMovement.stateMove)
             {
                 pp.ICP_Stop();
-                return;
             }
-            FieldTile targetTile = (canPathfind ? cursorTile : pp.targetTile) as FieldTile;
-            pp.ICP_InteractWith(targetTile);
+            else
+            {
+                FieldTile targetTile = (canPathfind ? cursorTile : pp.targetTile) as FieldTile;
+                pp.ICP_InteractWith(targetTile);
+                FieldSceneHighlights.Instance.PathChange();
+            }
         }
-        lastHighlightedPiece = null;
     }
 
     private void StopOrResumeCommand()
