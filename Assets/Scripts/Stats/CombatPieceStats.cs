@@ -80,6 +80,10 @@ public class CombatPieceStats : MonoBehaviour
             stackLost++;
             hitPoints_current += hitPoints_maximum;
         }
+        if (stackLost > stackStats.stack_current)
+        {
+            stackLost = stackStats.stack_current;
+        }
         stackStats.stack_current -= stackLost;
         return stackStats.stack_current <= 0;
     }

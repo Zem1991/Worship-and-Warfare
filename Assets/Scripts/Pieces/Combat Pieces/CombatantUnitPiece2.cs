@@ -1,14 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CombatantUnitPiece2 : AbstractCombatantPiece2
 {
     [Header("Unit data")]
     public Unit unit;
 
+    [Header("UI references")]
+    public RectTransform uiBarRect;
+    public Image uiHealthBar;
+    public RectTransform uiStackRect;
+    public Text uiStackSizeText;
+
     [Header("Prefab references")]
     public StackStats stackStats;
+
+    protected override void Update()
+    {
+        base.Update();
+
+        bool showUI = !stateDead && ICP_IsIdle();
+        uiBarRect.gameObject.SetActive(showUI);
+        uiHealthBar.fillAmount = ((float)combatPieceStats.hitPoints_current) / combatPieceStats.hitPoints_maximum;
+        uiStackRect.gameObject.SetActive(showUI);
+        uiStackSizeText.text = "" + stackStats.stack_current;
+    }
 
     public void Initialize(Unit unit, Player owner, int spawnId, bool defenderSide)
     {

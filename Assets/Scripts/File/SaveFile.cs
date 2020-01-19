@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class ScenarioSaveFile
+public class SaveFile
 {
     public ScenarioFile scenario;
     public SaveData game;

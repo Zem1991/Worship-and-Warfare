@@ -36,12 +36,6 @@ public abstract class AbstractCombatActorPiece2 : AbstractCombatPiece2, IStartTu
         pieceCombatActions = GetComponent<PieceCombatActions2>();
     }
 
-    protected override void Update()
-    {
-        base.Update();
-        if (!currentTile) Debug.LogError("NULEI!");
-    }
-
     public virtual void Initialize(Player owner, CombatPieceStats cps, int spawnId, bool onDefenderSide)
     {
         ManualAwake();

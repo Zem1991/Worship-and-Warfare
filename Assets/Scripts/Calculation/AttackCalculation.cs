@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class DamageCalculation
+public static class AttackCalculation
 {
     public static int FullDamageCalculation(AttackStats attack, AbstractCombatActorPiece2 attacker, AbstractCombatActorPiece2 defender, CombatantHeroPiece2 attackerHero, CombatantHeroPiece2 defenderHero)
     {

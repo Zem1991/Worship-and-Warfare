@@ -10,7 +10,7 @@ public static class SaveFileHandler
     public const string FOLDER_NAME = "Saved Games";
     public const string EXTENSION = ".json";
 
-    public static void Save(string fileName, ScenarioSaveFile data)
+    public static void Save(string fileName, SaveFile data)
     {
         string path = GetFilePath(fileName);
         string json = JsonConvert.SerializeObject(data);
@@ -21,18 +21,18 @@ public static class SaveFileHandler
         }
     }
 
-    public static ScenarioSaveFile Load(string fileName)
+    public static SaveFile Load(string fileName)
     {
         string path = GetFilePath(fileName);
         if (File.Exists(path))
         {
-            ScenarioSaveFile data;
+            SaveFile data;
             using (StreamReader reader = File.OpenText(path))
             {
                 using (JsonTextReader file = new JsonTextReader(reader))
                 {
                     JsonSerializer serializer = new JsonSerializer();
-                    data = serializer.Deserialize<ScenarioSaveFile>(file);
+                    data = serializer.Deserialize<SaveFile>(file);
                 }
             }
             return data;

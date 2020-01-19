@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class DBFormulas
+public static class CreatureCalculation
 {
     public static int CommandMax(int command)
     {

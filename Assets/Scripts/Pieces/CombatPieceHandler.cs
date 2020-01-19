@@ -169,4 +169,12 @@ public class CombatPieceHandler : MonoBehaviour
         }
         return result;
     }
+
+    public List<AbstractCombatActorPiece2> GetActivePieces()
+    {
+        List<AbstractCombatActorPiece2> result = new List<AbstractCombatActorPiece2>();
+        result.AddRange(attackerPieces);
+        result.AddRange(defenderPieces);
+        return result;
+    }
 }

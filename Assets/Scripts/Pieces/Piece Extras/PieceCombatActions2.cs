@@ -166,7 +166,7 @@ public class PieceCombatActions2 : MonoBehaviour
         CombatPieceHandler cph = CombatManager.Instance.pieceHandler;
         CombatantHeroPiece2 attackerHero = cph.GetHero(piece.pieceOwner.GetOwner());
         CombatantHeroPiece2 defenderHero = cph.GetHero(target.pieceOwner.GetOwner());
-        return DamageCalculation.FullDamageCalculation(attack, piece, target, attackerHero, defenderHero);
+        return AttackCalculation.FullDamageCalculation(attack, piece, target, attackerHero, defenderHero);
     }
     private void SpawnProjectile(AttackStats attack, AbstractCombatActorPiece2 target)
     {
