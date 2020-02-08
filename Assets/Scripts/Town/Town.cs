@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Town : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string townName;
 
-    // Update is called once per frame
-    void Update()
+    [Header("Database reference")]
+    public DB_Faction dbFaction;
+
+    public void Initialize(DB_Faction dbFaction, string townName = null)
     {
-        
+        string selectedName = townName != null ? townName : dbFaction.townNames[0];     //TODO get random name
+
+        this.dbFaction = dbFaction;
+        this.townName = selectedName;
+        name = townName;
     }
 }

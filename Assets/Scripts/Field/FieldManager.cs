@@ -38,10 +38,10 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         pieceHandler.RemoveAll();
     }
 
-    public void BootField(Vector2Int scenarioSize, MapData map, List<PartyData> parties, List<PickupData> pickups)
+    public void BootField(Vector2Int scenarioSize, MapData map, List<TownData> towns, List<PartyData> parties, List<PickupData> pickups)
     {
         mapHandler.BuildMap(scenarioSize, map);
-        pieceHandler.CreateAll(parties, pickups);
+        pieceHandler.CreateAll(towns, parties, pickups);
     }
 
     public void RemovePiece(PartyPiece2 piece)

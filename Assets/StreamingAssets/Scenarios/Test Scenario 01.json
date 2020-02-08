@@ -1408,6 +1408,17 @@
       }
     ]
   },
+  "towns": [
+    {
+      "mapPosition": [
+        3,
+        13
+      ],
+      "ownerId": 1,
+      "factionId": "Default",
+      "townName": "First"
+    }
+  ],
   "parties": [
     {
       "mapPosition": [

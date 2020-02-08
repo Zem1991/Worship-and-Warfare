@@ -9,6 +9,7 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
     public Player player;
 
     [Header("Any")]
+    public Town town;
     public Hero hero;
     public Unit unit;
     public Artifact artifact;
@@ -32,6 +33,7 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
 
     [Header("Field - Scene")]
     public FieldTile fieldTile;
+    public TownPiece2 fieldTownPiece;
     public PartyPiece2 fieldPartyPiece;
     public PickupPiece2 fieldPickupPiece;
 

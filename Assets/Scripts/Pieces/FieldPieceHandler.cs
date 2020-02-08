@@ -8,6 +8,7 @@ public class FieldPieceHandler : MonoBehaviour
     public readonly int MAX_UNITS = 5;
 
     [Header("Pieces")]
+    public List<TownPiece2> townPieces;
     public List<PartyPiece2> partyPieces;
     public List<PickupPiece2> pickupPieces;
 
@@ -26,12 +27,56 @@ public class FieldPieceHandler : MonoBehaviour
         pickupPieces = new List<PickupPiece2>();
     }
 
-    public void CreateAll(List<PartyData> parties, List<PickupData> pickups)
+    public void CreateAll(List<TownData> towns, List<PartyData> parties, List<PickupData> pickups)
     {
         RemoveAll();
 
+        CreateTowns(towns);
         CreateParties(parties);
         CreatePickups(pickups);
+    }
+
+    private void CreateTowns(List<TownData> towns)
+    {
+        if (towns == null) return;
+
+        AbstractDBContentHandler<DB_Faction> dbFactions = DBHandler_Faction.Instance;
+
+        PlayerManager pm = PlayerManager.Instance;
+        FieldManager fm = FieldManager.Instance;
+        FieldMap fieldMap = fm.mapHandler.map;
+
+        TownPiece2 prefabPiece = AllPrefabs.Instance.fieldTownPiece;
+        Town prefabTown = AllPrefabs.Instance.town;
+
+        townPieces = new List<TownPiece2>();
+
+        foreach (var townData in towns)
+        {
+            int posX = townData.mapPosition[0];
+            int posY = townData.mapPosition[1];
+
+            Vector2Int tileId = new Vector2Int(posX, posY);
+            FieldTile fieldTile = fieldMap.tiles[tileId];
+            Vector3 pos = fieldTile.transform.position;
+            Quaternion rot = Quaternion.identity;
+
+            TownPiece2 newPiece = Instantiate(prefabPiece, pos, rot, transform);
+            townPieces.Add(newPiece);
+
+            Player owner = pm.allPlayers[townData.ownerId - 1];
+
+            Town town = null;
+            string factionId = townData.factionId;
+            DB_Faction dbData = dbFactions.Select(factionId);
+
+            town = Instantiate(prefabTown, newPiece.transform);
+            town.Initialize(dbData, townData.townName);
+
+            newPiece.currentTile = fieldTile;
+            newPiece.currentTile.occupantPiece = newPiece;
+            newPiece.Initialize(owner, town);
+        }
     }
 
     private void CreateParties(List<PartyData> parties)
@@ -42,7 +87,6 @@ public class FieldPieceHandler : MonoBehaviour
         AbstractDBContentHandler<DB_Unit> dbUnits = DBHandler_Unit.Instance;
 
         PlayerManager pm = PlayerManager.Instance;
-
         FieldManager fm = FieldManager.Instance;
         FieldMap fieldMap = fm.mapHandler.map;
 

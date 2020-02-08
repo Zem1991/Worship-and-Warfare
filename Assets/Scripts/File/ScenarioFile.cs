@@ -10,6 +10,8 @@ public class ScenarioFile
 
     public MapData map;
     //public MapData extraMap;
+
+    public List<TownData> towns;
     public List<PartyData> parties;
     public List<PickupData> pickups;
 }
