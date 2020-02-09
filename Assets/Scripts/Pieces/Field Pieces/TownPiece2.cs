@@ -11,7 +11,8 @@ public class TownPiece2 : AbstractFieldPiece2, IStartTurnEndTurn
     public PieceOwner pieceOwner;
     public PieceController pieceController;
 
-    [Header("Party contets")]
+    [Header("Town contets")]
+    public Town town;
     public PartyPiece2 visitor;
     public PartyPiece2 garrison;
 
@@ -26,6 +27,8 @@ public class TownPiece2 : AbstractFieldPiece2, IStartTurnEndTurn
     public void Initialize(Player owner, Town town)
     {
         ManualAwake();
+
+        this.town = town;
 
         pieceOwner.SetOwner(owner);
         pieceController.SetController(owner);

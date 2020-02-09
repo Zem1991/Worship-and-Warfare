@@ -1490,7 +1490,7 @@ RectTransform:
   - {fileID: 195326120}
   - {fileID: 1688173981}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2599,6 +2599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49fa722278e078a48a2db19d12b6a021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  townPieces: []
   partyPieces: []
   pickupPieces: []
 --- !u!1 &302293896
@@ -6415,7 +6416,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &952644559
 MonoBehaviour:
@@ -6548,7 +6549,7 @@ Transform:
   - {fileID: 2034154618}
   - {fileID: 177506273}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &963544272
 MonoBehaviour:
@@ -12718,11 +12719,11 @@ MonoBehaviour:
   axis_cameraX: Horizontal
   axis_cameraZ: Vertical
   kbm_escapeMenu: 27
-  kbm_inventory: 101
   kbm_selection: 323
   kbm_command: 324
-  kbm_stopOrResumeCommand: 32
   kbm_endTurn: 8
+  kbm_inventory: 101
+  kbm_stopOrResumeCommand: 32
 --- !u!114 &1977747650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12738,11 +12739,11 @@ MonoBehaviour:
   cursorAxes: {x: 0, y: 0, z: 0}
   cameraAxes: {x: 0, y: 0, z: 0}
   escapeMenuDown: 0
-  inventoryDown: 0
   selectionDown: 0
   commandDown: 0
-  stopOrResumeCommandDown: 0
   endTurnDown: 0
+  inventoryDown: 0
+  stopOrResumeCommandDown: 0
 --- !u!114 &1977747651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12776,7 +12777,7 @@ Transform:
   m_Children:
   - {fileID: 1412288616}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1977747653
 MonoBehaviour:

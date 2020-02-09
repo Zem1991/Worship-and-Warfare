@@ -10,20 +10,20 @@ public class FieldUI_Panel_Inventory : AUIPanel
     public UI_AttributeInfo attributeInfo;
 
     [Header("Inventory Slots")]
-    public FUI_InventorySlot_Back mainHand;
-    public FUI_InventorySlot_Back offHand;
-    public FUI_InventorySlot_Back helmet;
-    public FUI_InventorySlot_Back armor;
-    public FUI_InventorySlot_Back trinket1;
-    public FUI_InventorySlot_Back trinket2;
-    public FUI_InventorySlot_Back trinket3;
-    public FUI_InventorySlot_Back trinket4;
+    public FieldUI_InventorySlot_Back mainHand;
+    public FieldUI_InventorySlot_Back offHand;
+    public FieldUI_InventorySlot_Back helmet;
+    public FieldUI_InventorySlot_Back armor;
+    public FieldUI_InventorySlot_Back trinket1;
+    public FieldUI_InventorySlot_Back trinket2;
+    public FieldUI_InventorySlot_Back trinket3;
+    public FieldUI_InventorySlot_Back trinket4;
 
     [Header("Backpack Slots")]
-    public FUI_InventorySlot_Back backpack1;
-    public FUI_InventorySlot_Back backpack2;
-    public FUI_InventorySlot_Back backpack3;
-    public FUI_InventorySlot_Back backpack4;
+    public FieldUI_InventorySlot_Back backpack1;
+    public FieldUI_InventorySlot_Back backpack2;
+    public FieldUI_InventorySlot_Back backpack3;
+    public FieldUI_InventorySlot_Back backpack4;
 
     [Header("Buttons")]
     public Button btnClose;
@@ -32,7 +32,7 @@ public class FieldUI_Panel_Inventory : AUIPanel
     public UI_DraggableElement invSlotDraggable;
 
     public bool isDraggingInvSlot = false;
-    public FUI_InventorySlot_Front fuiInvSlotFrontDragged = null;
+    public FieldUI_InventorySlot_Front fuiInvSlotFrontDragged = null;
 
     public void UpdatePanel(PartyPiece2 p)
     {
@@ -50,7 +50,7 @@ public class FieldUI_Panel_Inventory : AUIPanel
         trinket4.UpdateSlot(hero.inventory.trinket4);
     }
 
-    public void InvSlotBeginDrag(FUI_InventorySlot_Front invSlotFront)
+    public void InvSlotBeginDrag(FieldUI_InventorySlot_Front invSlotFront)
     {
         InventorySlot invSlot = invSlotFront.invSlotBack.invSlot;
         invSlot.beingDragged = true;
@@ -60,12 +60,12 @@ public class FieldUI_Panel_Inventory : AUIPanel
         fuiInvSlotFrontDragged = invSlotFront;
     }
 
-    public void InvSlotDrag(FUI_InventorySlot_Front invSlotFront)
+    public void InvSlotDrag(FieldUI_InventorySlot_Front invSlotFront)
     {
         invSlotDraggable.Drag(invSlotFront.slotImg.sprite);
     }
 
-    public void InvSlotDrop(FUI_InventorySlot_Back invSlotBack)
+    public void InvSlotDrop(FieldUI_InventorySlot_Back invSlotBack)
     {
         if (fuiInvSlotFrontDragged)
         {
@@ -88,7 +88,7 @@ public class FieldUI_Panel_Inventory : AUIPanel
         fuiInvSlotFrontDragged = null;
     }
 
-    public void InvSlotEndDrag(FUI_InventorySlot_Front invSlotFront)
+    public void InvSlotEndDrag(FieldUI_InventorySlot_Front invSlotFront)
     {
         if (isDraggingInvSlot) InvSlotDrop(null);
         invSlotDraggable.EndDrag();

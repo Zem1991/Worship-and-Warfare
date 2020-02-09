@@ -5,6 +5,7 @@ using UnityEngine;
 public class Town : MonoBehaviour
 {
     public string townName;
+    public List<TownBuilding> buildings;
 
     [Header("Database reference")]
     public DB_Faction dbFaction;

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class FUI_InventorySlot_Back : MonoBehaviour, IDropHandler
+public class FieldUI_InventorySlot_Back : MonoBehaviour, IDropHandler
 {
     [Header("Edit mode stuff")]
     public Image slotImg;
@@ -12,13 +12,13 @@ public class FUI_InventorySlot_Back : MonoBehaviour, IDropHandler
     [Header("Runtime stuff")]
     public InventorySlot invSlot;
     public string slotName;
-    public FUI_InventorySlot_Front invSlotFront;
+    public FieldUI_InventorySlot_Front invSlotFront;
 
     private FieldUI_Panel_Inventory invWindow;
 
     void Awake()
     {
-        invSlotFront = GetComponentInChildren<FUI_InventorySlot_Front>();
+        invSlotFront = GetComponentInChildren<FieldUI_InventorySlot_Front>();
         invWindow = GetComponentInParent<FieldUI_Panel_Inventory>();
     }
 

@@ -23,6 +23,8 @@ public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideabl
 
     public void Hide()
     {
+        gameObject.SetActive(false);
+
         coreButtons.Hide();
         attackerParty.Hide();
         defenderParty.Hide();
@@ -37,6 +39,8 @@ public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideabl
 
     public void Show()
     {
+        gameObject.SetActive(true);
+
         coreButtons.Show();
         attackerParty.Show();
         defenderParty.Show();

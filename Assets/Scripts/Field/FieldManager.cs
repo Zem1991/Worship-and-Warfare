@@ -69,21 +69,34 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         }
     }
 
-    public void PartiesAreInteracting(PartyPiece2 sender, PartyPiece2 receiver)
+    public void PartyInteraction(PartyPiece2 party, TownPiece2 town)
     {
-        if (sender.pieceOwner.GetOwner() == receiver.pieceOwner.GetOwner())
+        if (party.pieceOwner.GetOwner() == town.pieceOwner.GetOwner())
         {
-            PerformExchange(sender, receiver);
+            town.visitor = party;
+            StartCoroutine(GoToTown(town));
         }
         else
         {
-            StartCoroutine(GoToCombat(sender, receiver));
+            //StartCoroutine(GoToCombat(party, target));    //TODO TOWN SIEGE
         }
     }
 
-    public void PartyFoundPickup(PartyPiece2 partyPiece2, PickupPiece2 targetPickup)
+    public void PartyInteraction(PartyPiece2 party, PartyPiece2 defender)
     {
-        switch (targetPickup.pickupType)
+        if (party.pieceOwner.GetOwner() == defender.pieceOwner.GetOwner())
+        {
+            PerformExchange(party, defender);
+        }
+        else
+        {
+            StartCoroutine(GoToCombat(party, defender));
+        }
+    }
+
+    public void PartyInteraction(PartyPiece2 party, PickupPiece2 pickup)
+    {
+        switch (pickup.pickupType)
         {
             case PickupType.RESOURCE:
                 Debug.LogWarning("Resource pickup is not supported");
@@ -91,8 +104,8 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
             case PickupType.ARTIFACT:
                 Artifact prefab = AllPrefabs.Instance.artifact;
                 Artifact artifact = Instantiate(prefab, transform);
-                artifact.Initialize(targetPickup.dbArtifact);
-                partyPiece2.partyHero.inventory.AddArtifact(artifact);
+                artifact.Initialize(pickup.dbArtifact);
+                party.partyHero.inventory.AddArtifact(artifact);
                 break;
             case PickupType.UNIT:
                 Debug.LogWarning("Unit pickup is not supported");
@@ -100,8 +113,7 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
             default:
                 break;
         }
-        RemovePickup(targetPickup);
-        //yield return null;
+        RemovePickup(pickup);
     }
 
     /*
@@ -212,22 +224,27 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         //yield return null;
     }
 
+    private IEnumerator GoToTown(TownPiece2 town)
+    {
+        yield return null;
+
+        FieldSC.Instance.HideScene();
+        GameManager.Instance.ChangeSchemes(GameScheme.TOWN);
+        TownManager.Instance.BootTown(town);
+        TownSC.Instance.ShowScene();
+    }
+
     private IEnumerator GoToCombat(PartyPiece2 attacker, PartyPiece2 defender)
     {
         List<PartyPiece2> pieces = new List<PartyPiece2> { attacker, defender };
         yield return
             StartCoroutine(pieceHandler.YieldForIdlePieces(pieces));
 
-        //FieldSceneInputs.Instance.executor.RemoveMoveAreaHighlights();
-        //FieldSceneInputs.Instance.executor.RemoveMovePathHighlights();
-        FieldSC.Instance.HideScene();
-
-        Debug.Log("PIECES ARE IN BATTLE");
-        GameManager.Instance.ChangeSchemes(GameScheme.COMBAT);
-
         FieldTile fieldTile = defender.currentTile as FieldTile;
-        CombatManager.Instance.BootCombat(attacker, defender, fieldTile.db_tileset_lowerLand);
 
+        FieldSC.Instance.HideScene();
+        GameManager.Instance.ChangeSchemes(GameScheme.COMBAT);
+        CombatManager.Instance.BootCombat(attacker, defender, fieldTile.db_tileset_lowerLand);
         CombatSC.Instance.ShowScene();
     }
 }

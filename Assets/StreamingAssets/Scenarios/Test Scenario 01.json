@@ -1416,7 +1416,12 @@
       ],
       "ownerId": 1,
       "factionId": "Default",
-      "townName": "First"
+      "townName": "First",
+      "townBuildings": [
+        {
+          "townBuildingId": "Village Hall (DF)"
+        }
+      ]
     }
   ],
   "parties": [

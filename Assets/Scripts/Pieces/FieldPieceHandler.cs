@@ -41,6 +41,7 @@ public class FieldPieceHandler : MonoBehaviour
         if (towns == null) return;
 
         AbstractDBContentHandler<DB_Faction> dbFactions = DBHandler_Faction.Instance;
+        AbstractDBContentHandler<DB_TownBuilding> dbTownBuildings = DBHandler_TownBuilding.Instance;
 
         PlayerManager pm = PlayerManager.Instance;
         FieldManager fm = FieldManager.Instance;
@@ -48,6 +49,7 @@ public class FieldPieceHandler : MonoBehaviour
 
         TownPiece2 prefabPiece = AllPrefabs.Instance.fieldTownPiece;
         Town prefabTown = AllPrefabs.Instance.town;
+        TownBuilding prefabTownBuilding = AllPrefabs.Instance.townBuilding;
 
         townPieces = new List<TownPiece2>();
 
@@ -61,17 +63,27 @@ public class FieldPieceHandler : MonoBehaviour
             Vector3 pos = fieldTile.transform.position;
             Quaternion rot = Quaternion.identity;
 
+            Player owner = pm.allPlayers[townData.ownerId - 1];
+
+            string factionId = townData.factionId;
+            DB_Faction dbFactionData = dbFactions.Select(factionId);
+
             TownPiece2 newPiece = Instantiate(prefabPiece, pos, rot, transform);
             townPieces.Add(newPiece);
 
-            Player owner = pm.allPlayers[townData.ownerId - 1];
+            Town town = Instantiate(prefabTown, newPiece.transform);
+            town.Initialize(dbFactionData, townData.townName);
 
-            Town town = null;
-            string factionId = townData.factionId;
-            DB_Faction dbData = dbFactions.Select(factionId);
+            foreach (var townBuildingData in townData.townBuildings)
+            {
+                string townBuildingId = townBuildingData.townBuildingId;
+                DB_TownBuilding dbTownBuildingData = dbTownBuildings.Select(townBuildingId);
 
-            town = Instantiate(prefabTown, newPiece.transform);
-            town.Initialize(dbData, townData.townName);
+                TownBuilding townBldg = Instantiate(prefabTownBuilding, town.transform);
+                townBldg.Initialize(dbTownBuildingData);
+
+                town.buildings.Add(townBldg);
+            }
 
             newPiece.currentTile = fieldTile;
             newPiece.currentTile.occupantPiece = newPiece;

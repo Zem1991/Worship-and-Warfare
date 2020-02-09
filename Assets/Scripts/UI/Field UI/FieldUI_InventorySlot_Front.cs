@@ -4,19 +4,19 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class FUI_InventorySlot_Front : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class FieldUI_InventorySlot_Front : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [Header("Edit mode stuff")]
     public Image slotImg;
 
     [Header("Runtime stuff")]
-    public FUI_InventorySlot_Back invSlotBack;
+    public FieldUI_InventorySlot_Back invSlotBack;
 
     private FieldUI_Panel_Inventory invWindow;
 
     void Awake()
     {
-        invSlotBack = GetComponentInParent<FUI_InventorySlot_Back>();
+        invSlotBack = GetComponentInParent<FieldUI_InventorySlot_Back>();
         invWindow = GetComponentInParent<FieldUI_Panel_Inventory>();
     }
 

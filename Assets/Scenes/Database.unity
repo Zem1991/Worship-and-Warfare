@@ -244,7 +244,7 @@ Transform:
   - {fileID: 507399651}
   - {fileID: 1623956595}
   m_Father: {fileID: 1037067536}
-  m_RootOrder: 7
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &52499879
 MonoBehaviour:
@@ -637,6 +637,8 @@ MonoBehaviour:
     type: 3}
   player: {fileID: 7763124464079871161, guid: 269613eb47fcca74cb8d7b50b6195412, type: 3}
   town: {fileID: 1070375493909536636, guid: 1d5ca11de529d634697ef054d25dc892, type: 3}
+  townBuilding: {fileID: -3659351163518971290, guid: b5a04a796b4f14945803755952c263b5,
+    type: 3}
   hero: {fileID: 8507488037947193599, guid: 96895e799d8318f409f080a41f243636, type: 3}
   unit: {fileID: 1485436908184088651, guid: a9ff8d2df2ae55046a37b63525e48252, type: 3}
   artifact: {fileID: 208367886873617183, guid: 3d0f41dcc6135f64cb0c648762f34959, type: 3}
@@ -668,6 +670,10 @@ MonoBehaviour:
     type: 3}
   fuiInvSlot: {fileID: 4757467102435365897, guid: 838362ac4bc2bdc43b97c6ad293b0ec1,
     type: 3}
+  cuiTurnSequenceItem: {fileID: 2897984054310898061, guid: 0a01e91148905bf4b8cd8d6c58c7d5a8,
+    type: 3}
+  tuiBuilding: {fileID: 6653673228544202404, guid: cb7470946f172204889350f34add86f6,
+    type: 3}
   combatTile: {fileID: 9123833009311177861, guid: 605b8679fefa758409107b55da35c471,
     type: 3}
   combatHeroPiece: {fileID: 1999095044441610844, guid: f567798ced8827241949ba9a84b35a76,
@@ -676,10 +682,62 @@ MonoBehaviour:
     type: 3}
   combatObstacle: {fileID: 3493729476602318274, guid: 2811319c6d07d9e4683e073ab140d481,
     type: 3}
-  cuiTurnSequenceItem: {fileID: 2897984054310898061, guid: 0a01e91148905bf4b8cd8d6c58c7d5a8,
-    type: 3}
   highlight: {fileID: 6205666536738310281, guid: 5b702608e16dadd4bbc44d29595780b2,
     type: 3}
+--- !u!1 &442685253
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 442685254}
+  - component: {fileID: 442685255}
+  m_Layer: 0
+  m_Name: Temple (DF)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &442685254
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442685253}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1369911653}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &442685255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442685253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0d2e873359f3044924eec61a82e9b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Temple (DF)
+  townBuildingName: Temple
+  type: 2
+  image: {fileID: 21300000, guid: 3b7fba506c6aa5b4da1f26a6a7396225, type: 3}
+  rect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  faction: {fileID: 928834134}
 --- !u!1001 &443040020
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -771,6 +829,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8def3c9275569934ab0eef9345b2e42e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &453493845
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 453493846}
+  - component: {fileID: 453493847}
+  m_Layer: 0
+  m_Name: Workshop (DF)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &453493846
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453493845}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1369911653}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &453493847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453493845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0d2e873359f3044924eec61a82e9b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Workshop (DF)
+  townBuildingName: Workshop
+  type: 5
+  image: {fileID: 21300000, guid: 3a21838b8c97d1246bc6ace843b4b705, type: 3}
+  rect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  faction: {fileID: 928834134}
 --- !u!1 &461886818
 GameObject:
   m_ObjectHideFlags: 0
@@ -852,7 +964,7 @@ Transform:
   - {fileID: 1476942289}
   - {fileID: 960977122}
   m_Father: {fileID: 1037067536}
-  m_RootOrder: 2
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &484480924
 MonoBehaviour:
@@ -1102,7 +1214,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1037067536}
-  m_RootOrder: 10
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &587533045
 MonoBehaviour:
@@ -1197,7 +1309,7 @@ Transform:
   m_Children:
   - {fileID: 928834133}
   m_Father: {fileID: 1037067536}
-  m_RootOrder: 1
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &648845223
 MonoBehaviour:
@@ -1240,7 +1352,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1037067536}
-  m_RootOrder: 13
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &718205236
 MonoBehaviour:
@@ -1296,6 +1408,60 @@ Transform:
   m_Father: {fileID: 1957607057}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &742978119
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 742978120}
+  - component: {fileID: 742978121}
+  m_Layer: 0
+  m_Name: Village Hall (DF)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &742978120
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742978119}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1369911653}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &742978121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742978119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0d2e873359f3044924eec61a82e9b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Village Hall (DF)
+  townBuildingName: Village Hall
+  type: 0
+  image: {fileID: 21300000, guid: 95284a632b239264498e3f5320cc01b1, type: 3}
+  rect:
+    serializedVersion: 2
+    x: 200
+    y: 200
+    width: 200
+    height: 200
+  faction: {fileID: 928834134}
 --- !u!1 &805997493
 GameObject:
   m_ObjectHideFlags: 0
@@ -1655,6 +1821,60 @@ MonoBehaviour:
   allowLavaMovement: 0
   image: {fileID: -2891162888192440980, guid: 976a4890a96712e4d84da9aa122a188f, type: 3}
   combatObstacles: []
+--- !u!1 &919748283
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 919748284}
+  - component: {fileID: 919748285}
+  m_Layer: 0
+  m_Name: Castle (DF)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &919748284
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919748283}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1369911653}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &919748285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919748283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0d2e873359f3044924eec61a82e9b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Castle (DF)
+  townBuildingName: Castle
+  type: 3
+  image: {fileID: 21300000, guid: cddd29724bb05e443a46feb34b9e6ea0, type: 3}
+  rect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  faction: {fileID: 928834134}
 --- !u!1 &928834132
 GameObject:
   m_ObjectHideFlags: 0
@@ -1894,14 +2114,16 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1759139162}
-  - {fileID: 648845222}
-  - {fileID: 484480923}
-  - {fileID: 1856570799}
-  - {fileID: 1934940661}
   - {fileID: 1428424754}
   - {fileID: 1190025192}
-  - {fileID: 52499878}
+  - {fileID: 1298693705}
+  - {fileID: 1934940661}
   - {fileID: 1540432248}
+  - {fileID: 648845222}
+  - {fileID: 1369911653}
+  - {fileID: 484480923}
+  - {fileID: 1856570799}
+  - {fileID: 52499878}
   - {fileID: 1460391487}
   - {fileID: 587533044}
   - {fileID: 1161256589}
@@ -1925,19 +2147,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colors: {fileID: 0}
-  factions: {fileID: 0}
-  classes: {fileID: 0}
-  heroes: {fileID: 0}
-  skills: {fileID: 0}
-  animations: {fileID: 0}
   artifacts: {fileID: 0}
   spells: {fileID: 0}
+  techs: {fileID: 0}
+  skills: {fileID: 0}
+  abilities: {fileID: 0}
+  factions: {fileID: 0}
+  townBuildings: {fileID: 0}
+  classes: {fileID: 0}
+  heroes: {fileID: 0}
   units: {fileID: 0}
-  traits: {fileID: 0}
   elements: {fileID: 0}
   statuses: {fileID: 0}
+  animations: {fileID: 0}
   tilesets: {fileID: 0}
   battlegrounds: {fileID: 0}
+  combatObstacles: {fileID: 0}
 --- !u!1001 &1044956620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2145,7 +2370,7 @@ Transform:
   m_Children:
   - {fileID: 1357450928}
   m_Father: {fileID: 1037067536}
-  m_RootOrder: 15
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1073738799
 MonoBehaviour:
@@ -2291,7 +2516,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1037067536}
-  m_RootOrder: 14
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1161256588
 GameObject:
@@ -2323,7 +2548,7 @@ Transform:
   m_Children:
   - {fileID: 1532252777}
   m_Father: {fileID: 1037067536}
-  m_RootOrder: 11
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1161256590
 MonoBehaviour:
@@ -2494,6 +2719,60 @@ MonoBehaviour:
   allowLavaMovement: 0
   image: {fileID: 21300000, guid: af91fb488d4c84146a003c65cab51f16, type: 3}
   combatObstacles: []
+--- !u!1 &1178401594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1178401595}
+  - component: {fileID: 1178401596}
+  m_Layer: 0
+  m_Name: Tavern (DF)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1178401595
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178401594}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1369911653}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1178401596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178401594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0d2e873359f3044924eec61a82e9b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Tavern (DF)
+  townBuildingName: Tavern
+  type: 1
+  image: {fileID: 21300000, guid: fbfde68be51380f43a3c5ee89649d185, type: 3}
+  rect:
+    serializedVersion: 2
+    x: 600
+    y: 300
+    width: 100
+    height: 100
+  faction: {fileID: 928834134}
 --- !u!1 &1190025191
 GameObject:
   m_ObjectHideFlags: 0
@@ -2523,7 +2802,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1037067536}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1190025193
 MonoBehaviour:
@@ -2570,6 +2849,49 @@ Transform:
   m_Father: {fileID: 1957607057}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1298693704
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1298693705}
+  - component: {fileID: 1298693706}
+  m_Layer: 0
+  m_Name: Techs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1298693705
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298693704}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1037067536}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1298693706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298693704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbfb48268034fd14f8a5eceed1c9024b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1313988442
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2818,6 +3140,55 @@ MonoBehaviour:
   id: 
   obstacleName: Rock
   imgObstacle: {fileID: 21300000, guid: d90bf6d2f8dbc3f418ef83394acbcd36, type: 3}
+--- !u!1 &1369911652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1369911653}
+  - component: {fileID: 1369911654}
+  m_Layer: 0
+  m_Name: Town Buildings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1369911653
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369911652}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 742978120}
+  - {fileID: 1178401595}
+  - {fileID: 442685254}
+  - {fileID: 919748284}
+  - {fileID: 1880376956}
+  - {fileID: 453493846}
+  m_Father: {fileID: 1037067536}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1369911654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369911652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d542e4c8fdfb8a54d81e794a6ed1ffdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1428424753
 GameObject:
   m_ObjectHideFlags: 0
@@ -2856,7 +3227,7 @@ Transform:
   - {fileID: 1123742729}
   - {fileID: 1445933927}
   m_Father: {fileID: 1037067536}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1428424755
 MonoBehaviour:
@@ -3057,7 +3428,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1037067536}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1460391488
 MonoBehaviour:
@@ -3319,7 +3690,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1037067536}
-  m_RootOrder: 8
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1540432249
 MonoBehaviour:
@@ -4185,7 +4556,7 @@ Transform:
   - {fileID: 1819187275}
   - {fileID: 818039189}
   m_Father: {fileID: 1037067536}
-  m_RootOrder: 3
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1856570800
 MonoBehaviour:
@@ -4199,6 +4570,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72c77e8776037a74bab9061151b15ba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1880376955
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1880376956}
+  - component: {fileID: 1880376957}
+  m_Layer: 0
+  m_Name: Mage Guild (DF)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1880376956
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880376955}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1369911653}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1880376957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880376955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0d2e873359f3044924eec61a82e9b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Mage Guild (DF)
+  townBuildingName: Mage Guild
+  type: 4
+  image: {fileID: 21300000, guid: 71cc4de108b1c1443acd7afe5b5d460b, type: 3}
+  rect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  faction: {fileID: 928834134}
 --- !u!1 &1928968284
 GameObject:
   m_ObjectHideFlags: 0
@@ -4326,7 +4751,7 @@ Transform:
   - {fileID: 2116761659}
   - {fileID: 251117302}
   m_Father: {fileID: 1037067536}
-  m_RootOrder: 12
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1957607058
 MonoBehaviour:

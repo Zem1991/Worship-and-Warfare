@@ -21,6 +21,8 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
 
     public void Hide()
     {
+        gameObject.SetActive(false);
+
         coreButtons.Hide();
         resources.Hide();
         timers.Hide();
@@ -34,6 +36,8 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
 
     public void Show()
     {
+        gameObject.SetActive(true);
+
         coreButtons.Show();
         resources.Show();
         timers.Show();

@@ -10,6 +10,7 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
 
     [Header("Any")]
     public Town town;
+    public TownBuilding townBuilding;
     public Hero hero;
     public Unit unit;
     public Artifact artifact;
@@ -37,17 +38,16 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
     public PartyPiece2 fieldPartyPiece;
     public PickupPiece2 fieldPickupPiece;
 
-    [Header("Field - UI")]
-    public FUI_InventorySlot_Back fuiInvSlot;
+    [Header("UI")]
+    public FieldUI_InventorySlot_Back fuiInvSlot;
+    public CombatUI_TurnSequenceItem cuiTurnSequenceItem;
+    public TownUI_Building tuiBuilding;
 
     [Header("Combat - Scene")]
     public CombatTile combatTile;
     public CombatantHeroPiece2 combatHeroPiece;
     public CombatantUnitPiece2 combatUnitPiece;
     public CombatObstacle combatObstacle;
-
-    [Header("Field - UI")]
-    public CombatUI_TurnSequenceItem cuiTurnSequenceItem;
 
     [Header("Highlight")]
     public Highlight highlight;

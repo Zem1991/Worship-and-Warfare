@@ -8,4 +8,5 @@ public class TownData
     public int ownerId;
     public string factionId;
     public string townName;
+    public List<TownBuildingData> townBuildings;
 }

@@ -127,18 +127,24 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
         bool neighbours = currentTile.IsNeighbour(targetPiece.currentTile);
         if (neighbours && pathTargetTile == targetPiece.currentTile)
         {
+            TownPiece2 targetTown = targetPiece as TownPiece2;
             PartyPiece2 targetParty = targetPiece as PartyPiece2;
             PickupPiece2 targetPickup = targetPiece as PickupPiece2;
 
-            if (targetParty)
+            if (targetTown)
             {
                 //yield return StartCoroutine(FieldManager.Instance.PartiesAreInteracting(this, targetParty));
-                FieldManager.Instance.PartiesAreInteracting(this, targetParty);
+                FieldManager.Instance.PartyInteraction(this, targetTown);
+            }
+            else if (targetParty)
+            {
+                //yield return StartCoroutine(FieldManager.Instance.PartiesAreInteracting(this, targetParty));
+                FieldManager.Instance.PartyInteraction(this, targetParty);
             }
             else if (targetPickup)
             {
                 //yield return StartCoroutine(FieldManager.Instance.PartyFoundPickup(this, targetPickup));
-                FieldManager.Instance.PartyFoundPickup(this, targetPickup);
+                FieldManager.Instance.PartyInteraction(this, targetPickup);
             }
         }
         else
