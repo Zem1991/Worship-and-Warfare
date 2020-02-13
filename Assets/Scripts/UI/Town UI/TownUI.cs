@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,9 +20,10 @@ public class TownUI : AbstractSingleton<TownUI>, IUIScheme, IShowableHideable
     public TownUI_Panel_Parties parties;
     public TownUI_Panel_Crest crest;
 
-    //[Header("Windows")]
-    //public FieldUI_Panel_EscapeMenu escapeMenu;
-    //public FieldUI_Panel_Inventory inventory;
+    [Header("Windows")]
+    public TownUI_Panel_BuildStructure buildStructure;
+    public TownUI_Panel_RecruitHero recruitHero;
+    public TownUI_Panel_RecruitCreature recruitCreature;
 
     [Header("Current Window")]
     public AUIPanel currentWindow;
@@ -37,12 +39,13 @@ public class TownUI : AbstractSingleton<TownUI>, IUIScheme, IShowableHideable
         resources.Hide();
         timers.Hide();
         minimap.Hide();
-        parties.Hide();
         townPanel.Hide();
+        parties.Hide();
         crest.Hide();
 
-        //EscapeMenuHide();
-        //InventoryHide();
+        BuildStructureHide();
+        RecruitHeroHide();
+        RecruitCreatureHide();
     }
 
     public void Show()
@@ -56,28 +59,61 @@ public class TownUI : AbstractSingleton<TownUI>, IUIScheme, IShowableHideable
         resources.Show();
         timers.Show();
         minimap.Show();
-        parties.Show();
         townPanel.Show();
+        parties.Show();
         crest.Show();
     }
 
     public void CloseCurrentWindow()
     {
-        throw new System.NotImplementedException();
+        if (currentWindow == buildStructure) BuildStructureHide();
+        if (currentWindow == recruitHero) RecruitHeroHide();
+        if (currentWindow == recruitCreature) RecruitCreatureHide();
     }
 
     public void UpdatePanels()
     {
-        Debug.Log("TownUI PANELS BEING UPDATED ;-)");
+        TownManager tm = TownManager.Instance;
+
+        coreButtons.UpdatePanel();
+        resources.UpdatePanel();
+        timers.UpdatePanel();
+        minimap.UpdatePanel();
+        crest.UpdatePanel();
+
+        Town town = tm.townPiece.town;
+        townPanel.UpdatePanel(town);
+
+        PartyPiece2 visitor = tm.townPiece.visitor as PartyPiece2;
+        PartyPiece2 garrison = tm.townPiece.garrison as PartyPiece2;
+        parties.UpdatePanel(visitor, garrison);
     }
 
-    public void DestroyTownBuildings()
+    public void DestroyTown()
+    {
+        DestroyTownBuildings();
+    }
+
+    public void CreateTown()
+    {
+        TownManager tm = TownManager.Instance;
+
+        List<TownBuilding> townBuildings = tm.townPiece.town.buildings;
+        //PartyPiece2 visitor = tm.townPiece.visitor;
+        //PartyPiece2 garrison = tm.townPiece.garrison;
+
+        CreateTownBuildings(townBuildings);
+        //CreateVisitorParty(visitor);
+        //CreateGarrisonParty(visitor);
+    }
+
+    private void DestroyTownBuildings()
     {
         foreach (TownUI_Building item in tuiBuildings) Destroy(item.gameObject);
         tuiBuildings.Clear();
     }
 
-    public void CreateTownBuildings(List<TownBuilding> townBuildings)
+    private void CreateTownBuildings(List<TownBuilding> townBuildings)
     {
         DestroyTownBuildings();
 
@@ -91,5 +127,44 @@ public class TownUI : AbstractSingleton<TownUI>, IUIScheme, IShowableHideable
 
             tuiBuildings.Add(newTUI);
         }
+    }
+
+    public void BuildStructureHide()
+    {
+        buildStructure.Hide();
+        currentWindow = null;
+        UIManager.Instance.PointerExit(buildStructure);
+    }
+
+    public void BuildStructureShow()
+    {
+        buildStructure.Show();
+        currentWindow = buildStructure;
+    }
+
+    public void RecruitHeroHide()
+    {
+        recruitHero.Hide();
+        currentWindow = null;
+        UIManager.Instance.PointerExit(recruitHero);
+    }
+
+    public void RecruitHeroShow()
+    {
+        recruitHero.Show();
+        currentWindow = recruitHero;
+    }
+
+    public void RecruitCreatureHide()
+    {
+        recruitCreature.Hide();
+        currentWindow = null;
+        UIManager.Instance.PointerExit(recruitCreature);
+    }
+
+    public void RecruitCreatureShow()
+    {
+        recruitCreature.Show();
+        currentWindow = recruitCreature;
     }
 }

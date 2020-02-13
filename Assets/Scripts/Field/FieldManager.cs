@@ -73,8 +73,7 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
     {
         if (party.pieceOwner.GetOwner() == town.pieceOwner.GetOwner())
         {
-            town.visitor = party;
-            StartCoroutine(GoToTown(town));
+            StartCoroutine(GoToTown(party, town));
         }
         else
         {
@@ -224,9 +223,13 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         //yield return null;
     }
 
-    private IEnumerator GoToTown(TownPiece2 town)
+    private IEnumerator GoToTown(PartyPiece2 visitor, TownPiece2 town)
     {
-        yield return null;
+        List<PartyPiece2> pieces = new List<PartyPiece2> { visitor };
+        yield return
+            StartCoroutine(pieceHandler.YieldForIdlePieces(pieces));
+
+        town.visitor = visitor;
 
         FieldSC.Instance.HideScene();
         GameManager.Instance.ChangeSchemes(GameScheme.TOWN);

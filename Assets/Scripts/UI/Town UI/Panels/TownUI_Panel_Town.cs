@@ -9,8 +9,10 @@ public class TownUI_Panel_Town : AUIPanel
     public TownUI_Panel_Town_Data townData;
     public TownUI_Panel_Town_Interactions townInteractions;
 
-    public void UpdatePanel()
+    public void UpdatePanel(Town town)
     {
+        townName.text = town.townName;
+
         //TODO this?
     }
 }

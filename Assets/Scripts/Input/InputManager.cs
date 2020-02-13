@@ -22,6 +22,8 @@ public class InputManager : AbstractSingleton<InputManager>
 
     public void ChangeScheme(GameScheme gs)
     {
+        if (sceneInputs != null) sceneInputs.ClearInputs();
+
         switch (gs)
         {
             case GameScheme.FIELD:

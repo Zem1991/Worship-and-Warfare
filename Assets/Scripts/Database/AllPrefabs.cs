@@ -42,6 +42,9 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
     public FieldUI_InventorySlot_Back fuiInvSlot;
     public CombatUI_TurnSequenceItem cuiTurnSequenceItem;
     public TownUI_Building tuiBuilding;
+    public TownUI_Panel_BuildStructure_StructureOption tuiStructureOption;
+    public TownUI_Panel_RecruitHero_HeroOption tuiHeroOption;
+    public TownUI_Panel_RecruitCreature_CreatureOption tuiCreatureOption;
 
     [Header("Combat - Scene")]
     public CombatTile combatTile;

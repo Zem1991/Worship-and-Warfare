@@ -1,14 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TownInputInterpreter : AbstractInputInterpreter<TownInputListener>
 {
     [Header("Inputs")]
-    public Vector3 cursorAxes;
-    public Vector3 cameraAxes;
-    public bool selectionDown;
-    public bool commandDown;
+    public bool exitTown;
+    public bool buildStructure;
+    public bool recruitHero;
+    public bool recruitCreature;
 
     // Start is called before the first frame update
     void Start()
@@ -19,9 +20,17 @@ public class TownInputInterpreter : AbstractInputInterpreter<TownInputListener>
     // Update is called once per frame
     void Update()
     {
-        cursorAxes = listener.CursorAxes();
-        cameraAxes = listener.CameraAxes();
-        selectionDown = listener.SelectionDown();
-        commandDown = listener.CommandDown();
+        exitTown = listener.ExitTownDown();
+        buildStructure = listener.BuildStructureDown();
+        recruitHero = listener.RecruitHeroDown();
+        recruitCreature = listener.RecruitCreatureDown();
+    }
+
+    public void ClearInputs()
+    {
+        exitTown = false;
+        buildStructure = false;
+        recruitHero = false;
+        recruitCreature = false;
     }
 }

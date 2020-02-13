@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,5 +24,16 @@ public class CombatInputInterpreter : AbstractInputInterpreter<CombatInputListen
         commandDown = listener.CommandDown();
         endTurnDown = listener.EndTurnDown();
         inspectorDown = listener.InspectorDown();
+    }
+
+    public void ClearInputs()
+    {
+        cursorAxes = Vector3.zero;
+        cameraAxes = Vector3.zero;
+        escapeMenuDown = false;
+        selectionDown = false;
+        commandDown = false;
+        endTurnDown = false;
+        inspectorDown = false;
     }
 }

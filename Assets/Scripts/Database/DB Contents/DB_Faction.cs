@@ -11,4 +11,7 @@ public class DB_Faction : AbstractDBContent
     public List<string> townNames = new List<string>();
     public Sprite townFieldSprite;
     //public AnimatorOverrideController townAnimator;
+
+    [Header("Town Building parameters")]
+    public List<DB_TownBuilding> townBuildings = new List<DB_TownBuilding>();
 }

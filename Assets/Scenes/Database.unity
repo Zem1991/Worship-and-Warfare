@@ -674,6 +674,12 @@ MonoBehaviour:
     type: 3}
   tuiBuilding: {fileID: 6653673228544202404, guid: cb7470946f172204889350f34add86f6,
     type: 3}
+  tuiStructureOption: {fileID: 5460363860670517614, guid: 2997daaceb1989546bdc8f96969cafdf,
+    type: 3}
+  tuiHeroOption: {fileID: 3774522040896016976, guid: 51d4d532b2305c04f901770f29bf344e,
+    type: 3}
+  tuiCreatureOption: {fileID: 7469885818327660781, guid: 5c3073307eef40e4cbac19a625f06e6e,
+    type: 3}
   combatTile: {fileID: 9123833009311177861, guid: 605b8679fefa758409107b55da35c471,
     type: 3}
   combatHeroPiece: {fileID: 1999095044441610844, guid: f567798ced8827241949ba9a84b35a76,
@@ -1922,6 +1928,13 @@ MonoBehaviour:
   factionName: Default Faction
   townNames: []
   townFieldSprite: {fileID: 21300000, guid: f512671dc708a1242a982b7cf84b5561, type: 3}
+  townBuildings:
+  - {fileID: 742978121}
+  - {fileID: 919748285}
+  - {fileID: 1178401596}
+  - {fileID: 442685255}
+  - {fileID: 1880376957}
+  - {fileID: 453493847}
 --- !u!1 &960977121
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,6 +27,11 @@ public class CombatSceneInputs : AbstractSingleton<CombatSceneInputs>, IShowable
         gameObject.SetActive(true);
     }
 
+    public void ClearInputs()
+    {
+        interpreter.ClearInputs();
+    }
+
     public void ExecuteInputs()
     {
         executor.ExecuteInputs();

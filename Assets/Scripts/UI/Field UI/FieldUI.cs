@@ -60,7 +60,6 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
         resources.UpdatePanel();
         timers.UpdatePanel();
         minimap.UpdatePanel();
-        coreButtons.UpdatePanel();
 
         PartyPiece2 party = fi.selectionPiece as PartyPiece2;
         bool canCommandSelectedPiece = fi.canCommandSelectedPiece;

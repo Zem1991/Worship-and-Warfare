@@ -15,7 +15,7 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
 
     [Header("Party contets")]
     public Hero partyHero;
-    public List<Unit> partyUnits;
+    public List<Unit> partyUnits = new List<Unit>();
 
     [Header("Animator parameters")]
     public bool anim_movement;

@@ -16,8 +16,37 @@ public class TownUI_Panel_Parties : AUIPanel
     public UI_HeroInfo garrisonHeroInfo;
     public UI_UnitsInfo garrisonUnitsInfo;
 
-    public void UpdatePanel()
+    public void UpdatePanel(PartyPiece2 visitor, PartyPiece2 garrison)
     {
-        //TODO this
+        UpdateVisitor(visitor);
+        UpdateGarrison(garrison);
+    }
+
+    private void UpdateVisitor(PartyPiece2 visitor)
+    {
+        if (visitor != null)
+        {
+            visitorHeroInfo.RefreshInfo(visitor.partyHero);
+            visitorUnitsInfo.RefreshInfo(visitor.partyUnits);
+        }
+        else
+        {
+            visitorHeroInfo.RefreshInfo(null);
+            visitorUnitsInfo.RefreshInfo(null);
+        }
+    }
+
+    private void UpdateGarrison(PartyPiece2 garrison)
+    {
+        if (garrison != null)
+        {
+            garrisonHeroInfo.RefreshInfo(garrison.partyHero);
+            garrisonUnitsInfo.RefreshInfo(garrison.partyUnits);
+        }
+        else
+        {
+            garrisonHeroInfo.RefreshInfo(null);
+            garrisonUnitsInfo.RefreshInfo(null);
+        }
     }
 }

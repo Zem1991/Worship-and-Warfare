@@ -27,6 +27,11 @@ public class TownSceneInputs : AbstractSingleton<TownSceneInputs>, IShowableHide
         gameObject.SetActive(true);
     }
 
+    public void ClearInputs()
+    {
+        interpreter.ClearInputs();
+    }
+
     public void ExecuteInputs()
     {
         executor.ExecuteInputs();

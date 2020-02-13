@@ -11,7 +11,7 @@ public class TownPiece2 : AbstractFieldPiece2, IStartTurnEndTurn
     public PieceOwner pieceOwner;
     public PieceController pieceController;
 
-    [Header("Town contets")]
+    [Header("Town contents")]
     public Town town;
     public PartyPiece2 visitor;
     public PartyPiece2 garrison;

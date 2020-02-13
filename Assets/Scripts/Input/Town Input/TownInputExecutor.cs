@@ -1,19 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ZemDirections;
 
 public class TownInputExecutor : AbstractInputExecutor<TownInputInterpreter, TownInputListener>
 {
-    public override void Awake()
-    {
-        base.Awake();
-    }
-
     protected override void ManageWindows()
     {
-        //EscapeMenu();
-        //Inventory();
+        BuildStructure();
+        RecruitHero();
+        RecruitCreature();
     }
 
     protected override bool HasCurrentWindow()
@@ -23,17 +20,36 @@ public class TownInputExecutor : AbstractInputExecutor<TownInputInterpreter, Tow
 
     public override void ExecuteInputs()
     {
-        //if (IsGamePaused())
-        //{
+        ManageWindows();
+        ExitTown();
+    }
 
-        //}
-        //else
-        //{
-        //    CameraControls();
-        //    CursorHighlight();
+    private void BuildStructure()
+    {
+        if (interpreter.buildStructure) TownManager.Instance.BuildStructurePanel();
+    }
 
-        //    SelectionHighlight();
-        //    SelectionCommand();
-        //}
+    private void RecruitHero()
+    {
+        if (interpreter.recruitHero) TownManager.Instance.RecruitHeroPanel();
+    }
+
+    private void RecruitCreature()
+    {
+        if (interpreter.recruitCreature) TownManager.Instance.RecruitCreaturePanel();
+    }
+
+    private void ExitTown()
+    {
+        if (!interpreter.exitTown) return;
+
+        AUIPanel currentWindow = TownUI.Instance.currentWindow;
+        if (currentWindow)
+        {
+            TownUI.Instance.CloseCurrentWindow();
+            return;
+        }
+
+        TownManager.Instance.ExitTown();
     }
 }

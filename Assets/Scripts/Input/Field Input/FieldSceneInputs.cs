@@ -27,6 +27,11 @@ public class FieldSceneInputs : AbstractSingleton<FieldSceneInputs>, IShowableHi
         gameObject.SetActive(true);
     }
 
+    public void ClearInputs()
+    {
+        interpreter.ClearInputs();
+    }
+
     public void ExecuteInputs()
     {
         executor.ExecuteInputs();
