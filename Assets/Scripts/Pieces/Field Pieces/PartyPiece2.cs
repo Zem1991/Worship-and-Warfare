@@ -13,9 +13,8 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
     public PieceController pieceController;
     public PieceMovement2 pieceMovement;
 
-    [Header("Party contets")]
-    public Hero partyHero;
-    public List<Unit> partyUnits = new List<Unit>();
+    [Header("Party contents")]
+    public Party party;
 
     [Header("Animator parameters")]
     public bool anim_movement;
@@ -37,8 +36,8 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
 
         pieceOwner.SetOwner(owner);
         pieceController.SetController(owner);
-        partyHero = hero;
-        partyUnits = units;
+        party.hero = hero;
+        party.units = units;
 
         name = "P" + owner.id + " - Party";
         if (hero != null)
@@ -61,9 +60,9 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
 
     public void ApplyExperience(int experience)
     {
-        if (partyHero)
+        if (party.hero)
         {
-            partyHero.RecalculateExperience(experience);
+            party.hero.RecalculateExperience(experience);
         }
     }
 

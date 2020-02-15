@@ -62,7 +62,7 @@ public class FieldUI_Panel_Commands : AUIPanel
         txtMovePoints.text = pm.movementPointsCurrent + "/" + pm.movementPointsMax;
         //txtManaPoints.text = pm.movementPointsCurrent + "/" + pm.movementPointsMax;   //TODO MANA
 
-        if (pp.partyHero != null)
+        if (pp.party.hero != null)
         {
             btnHeroInfo.interactable = true;
             btnSpellBook.interactable = true;

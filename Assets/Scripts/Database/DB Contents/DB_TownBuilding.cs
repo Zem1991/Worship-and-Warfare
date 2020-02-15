@@ -6,7 +6,7 @@ public class DB_TownBuilding : AbstractDBContent
 {
     public string townBuildingName;
     public TownBuildingType type;
-    public Sprite image;
+    public Sprite buildingImage;
     public Rect rect;
 
     //[Header("Animations")]

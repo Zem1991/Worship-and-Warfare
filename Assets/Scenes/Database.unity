@@ -639,6 +639,7 @@ MonoBehaviour:
   town: {fileID: 1070375493909536636, guid: 1d5ca11de529d634697ef054d25dc892, type: 3}
   townBuilding: {fileID: -3659351163518971290, guid: b5a04a796b4f14945803755952c263b5,
     type: 3}
+  party: {fileID: 7527526445706768396, guid: 2ba6c8773bd149e4e9db4c3f84c79dcf, type: 3}
   hero: {fileID: 8507488037947193599, guid: 96895e799d8318f409f080a41f243636, type: 3}
   unit: {fileID: 1485436908184088651, guid: a9ff8d2df2ae55046a37b63525e48252, type: 3}
   artifact: {fileID: 208367886873617183, guid: 3d0f41dcc6135f64cb0c648762f34959, type: 3}
@@ -664,7 +665,7 @@ MonoBehaviour:
     type: 3}
   fieldTownPiece: {fileID: 97644446141563329, guid: 4b932b9804efd43498ff9e8d58dcfed3,
     type: 3}
-  fieldPartyPiece: {fileID: 1317082670439789998, guid: 3a5786de7131a584e883254e93133465,
+  fieldPartyPiece: {fileID: 4234026010174413057, guid: 401bec5f5077fe847911abfceccfb46c,
     type: 3}
   fieldPickupPiece: {fileID: -4379598809724792539, guid: 9636c308433c1254fb7a32629bf6e787,
     type: 3}
@@ -736,13 +737,13 @@ MonoBehaviour:
   id: Temple (DF)
   townBuildingName: Temple
   type: 2
-  image: {fileID: 21300000, guid: 3b7fba506c6aa5b4da1f26a6a7396225, type: 3}
+  buildingImage: {fileID: 21300000, guid: 3b7fba506c6aa5b4da1f26a6a7396225, type: 3}
   rect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
+    x: 600
+    y: 500
+    width: 200
+    height: 200
   faction: {fileID: 928834134}
 --- !u!1001 &443040020
 PrefabInstance:
@@ -881,13 +882,13 @@ MonoBehaviour:
   id: Workshop (DF)
   townBuildingName: Workshop
   type: 5
-  image: {fileID: 21300000, guid: 3a21838b8c97d1246bc6ace843b4b705, type: 3}
+  buildingImage: {fileID: 21300000, guid: 3a21838b8c97d1246bc6ace843b4b705, type: 3}
   rect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
+    x: 500
+    y: 300
+    width: 200
+    height: 200
   faction: {fileID: 928834134}
 --- !u!1 &461886818
 GameObject:
@@ -1460,11 +1461,11 @@ MonoBehaviour:
   id: Village Hall (DF)
   townBuildingName: Village Hall
   type: 0
-  image: {fileID: 21300000, guid: 95284a632b239264498e3f5320cc01b1, type: 3}
+  buildingImage: {fileID: 21300000, guid: 95284a632b239264498e3f5320cc01b1, type: 3}
   rect:
     serializedVersion: 2
-    x: 200
-    y: 200
+    x: 400
+    y: 400
     width: 200
     height: 200
   faction: {fileID: 928834134}
@@ -1873,13 +1874,13 @@ MonoBehaviour:
   id: Castle (DF)
   townBuildingName: Castle
   type: 3
-  image: {fileID: 21300000, guid: cddd29724bb05e443a46feb34b9e6ea0, type: 3}
+  buildingImage: {fileID: 21300000, guid: cddd29724bb05e443a46feb34b9e6ea0, type: 3}
   rect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
+    x: 900
+    y: 500
+    width: 300
+    height: 200
   faction: {fileID: 928834134}
 --- !u!1 &928834132
 GameObject:
@@ -2778,11 +2779,11 @@ MonoBehaviour:
   id: Tavern (DF)
   townBuildingName: Tavern
   type: 1
-  image: {fileID: 21300000, guid: fbfde68be51380f43a3c5ee89649d185, type: 3}
+  buildingImage: {fileID: 21300000, guid: fbfde68be51380f43a3c5ee89649d185, type: 3}
   rect:
     serializedVersion: 2
-    x: 600
-    y: 300
+    x: 200
+    y: 550
     width: 100
     height: 100
   faction: {fileID: 928834134}
@@ -4629,13 +4630,13 @@ MonoBehaviour:
   id: Mage Guild (DF)
   townBuildingName: Mage Guild
   type: 4
-  image: {fileID: 21300000, guid: 71cc4de108b1c1443acd7afe5b5d460b, type: 3}
+  buildingImage: {fileID: 21300000, guid: 71cc4de108b1c1443acd7afe5b5d460b, type: 3}
   rect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
+    x: 300
+    y: 300
+    width: 200
+    height: 200
   faction: {fileID: 928834134}
 --- !u!1 &1928968284
 GameObject:

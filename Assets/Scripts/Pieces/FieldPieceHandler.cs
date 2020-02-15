@@ -47,8 +47,9 @@ public class FieldPieceHandler : MonoBehaviour
         FieldManager fm = FieldManager.Instance;
         FieldMap fieldMap = fm.mapHandler.map;
 
-        TownPiece2 prefabPiece = AllPrefabs.Instance.fieldTownPiece;
+        TownPiece2 prefabTownPiece = AllPrefabs.Instance.fieldTownPiece;
         Town prefabTown = AllPrefabs.Instance.town;
+        Party prefabParty = AllPrefabs.Instance.party;
         TownBuilding prefabTownBuilding = AllPrefabs.Instance.townBuilding;
 
         townPieces = new List<TownPiece2>();
@@ -66,23 +67,22 @@ public class FieldPieceHandler : MonoBehaviour
             Player owner = pm.allPlayers[townData.ownerId - 1];
 
             string factionId = townData.factionId;
-            DB_Faction dbFactionData = dbFactions.Select(factionId);
+            DB_Faction dbFaction = dbFactions.Select(factionId);
 
-            TownPiece2 newPiece = Instantiate(prefabPiece, pos, rot, transform);
+            TownPiece2 newPiece = Instantiate(prefabTownPiece, pos, rot, transform);
             townPieces.Add(newPiece);
 
             Town town = Instantiate(prefabTown, newPiece.transform);
-            town.Initialize(dbFactionData, townData.townName);
+            town.Initialize(dbFaction, townData.townName);
+
+            Party garrisonParty = Instantiate(prefabParty, town.transform);
+            town.garrison = garrisonParty;
 
             foreach (var townBuildingData in townData.townBuildings)
             {
                 string townBuildingId = townBuildingData.townBuildingId;
-                DB_TownBuilding dbTownBuildingData = dbTownBuildings.Select(townBuildingId);
-
-                TownBuilding townBldg = Instantiate(prefabTownBuilding, town.transform);
-                townBldg.Initialize(dbTownBuildingData);
-
-                town.buildings.Add(townBldg);
+                DB_TownBuilding dbTownBuilding = dbTownBuildings.Select(townBuildingId);
+                town.BuildStructure(dbTownBuilding);
             }
 
             newPiece.currentTile = fieldTile;
@@ -103,6 +103,7 @@ public class FieldPieceHandler : MonoBehaviour
         FieldMap fieldMap = fm.mapHandler.map;
 
         PartyPiece2 prefabPiece = AllPrefabs.Instance.fieldPartyPiece;
+        Party prefabParty = AllPrefabs.Instance.party;
         Hero prefabHero = AllPrefabs.Instance.hero;
         Unit prefabUnit = AllPrefabs.Instance.unit;
 
@@ -120,6 +121,9 @@ public class FieldPieceHandler : MonoBehaviour
 
             PartyPiece2 newPiece = Instantiate(prefabPiece, pos, rot, transform);
             partyPieces.Add(newPiece);
+
+            Party party = Instantiate(prefabParty, newPiece.transform);
+            newPiece.party = party;
 
             Player owner = pm.allPlayers[partyData.ownerId - 1];
 

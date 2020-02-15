@@ -36,9 +36,9 @@ public class FieldUI_Panel_Inventory : AUIPanel
 
     public void UpdatePanel(PartyPiece2 p)
     {
-        Hero hero = p.partyHero;
-        heroInfo.RefreshInfo(p.partyHero);
-        attributeInfo.RefreshInfo(p.partyHero.attributeStats);
+        Hero hero = p.party.hero;
+        heroInfo.RefreshInfo(p.party.hero);
+        attributeInfo.RefreshInfo(p.party.hero.attributeStats);
 
         mainHand.UpdateSlot(hero.inventory.mainHand);
         offHand.UpdateSlot(hero.inventory.offHand);

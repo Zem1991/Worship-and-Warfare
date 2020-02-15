@@ -48,25 +48,25 @@ public class CombatPieceHandler : MonoBehaviour
         CombatantUnitPiece2 prefabUnit = AllPrefabs.Instance.combatUnitPiece;
 
         int spawnId = 0;
-        if (attackerPiece.partyHero != null)
+        if (attackerPiece.party.hero != null)
         {
             attackerHero = Instantiate(prefabHero, transform);
-            attackerHero.Initialize(attackerPiece.partyHero, attackerPiece.pieceOwner.GetOwner(), spawnId, false);
+            attackerHero.Initialize(attackerPiece.party.hero, attackerPiece.pieceOwner.GetOwner(), spawnId, false);
             attackerPieces.Add(attackerHero);
         }
 
         spawnId = 1;
-        if (defenderPiece.partyHero != null)
+        if (defenderPiece.party.hero != null)
         {
             defenderHero = Instantiate(prefabHero, transform);
-            defenderHero.Initialize(defenderPiece.partyHero, defenderPiece.pieceOwner.GetOwner(), spawnId, true);
+            defenderHero.Initialize(defenderPiece.party.hero, defenderPiece.pieceOwner.GetOwner(), spawnId, true);
             defenderPieces.Add(defenderHero);
         }
 
         spawnId = 2;
-        if (attackerPiece.partyUnits != null)
+        if (attackerPiece.party.units != null)
         {
-            foreach (var unit in attackerPiece.partyUnits)
+            foreach (var unit in attackerPiece.party.units)
             {
                 CombatantUnitPiece2 uc = Instantiate(prefabUnit, transform);
                 uc.Initialize(unit, attackerPiece.pieceOwner.GetOwner(), spawnId, false);
@@ -78,9 +78,9 @@ public class CombatPieceHandler : MonoBehaviour
         }
 
         spawnId = 3;
-        if (defenderPiece.partyUnits != null)
+        if (defenderPiece.party.units != null)
         {
-            foreach (var unit in defenderPiece.partyUnits)
+            foreach (var unit in defenderPiece.party.units)
             {
                 CombatantUnitPiece2 uc = Instantiate(prefabUnit, transform);
                 uc.Initialize(unit, defenderPiece.pieceOwner.GetOwner(), spawnId, true);

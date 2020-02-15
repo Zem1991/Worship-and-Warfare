@@ -104,7 +104,7 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
                 Artifact prefab = AllPrefabs.Instance.artifact;
                 Artifact artifact = Instantiate(prefab, transform);
                 artifact.Initialize(pickup.dbArtifact);
-                party.partyHero.inventory.AddArtifact(artifact);
+                party.party.hero.inventory.AddArtifact(artifact);
                 break;
             case PickupType.UNIT:
                 Debug.LogWarning("Unit pickup is not supported");

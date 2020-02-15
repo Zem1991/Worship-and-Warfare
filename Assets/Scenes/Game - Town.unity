@@ -621,7 +621,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8ed3bdd3e1944459d78d8469ec5d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  structureOptionsHolder: {fileID: 329048698}
+  btnCancel: {fileID: 1012834667}
+  btnBuild: {fileID: 1546390244}
   structureOptions: []
+  selectedOption: {fileID: 0}
 --- !u!114 &134864421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1328,7 +1332,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Close
+  m_Text: Cancel
 --- !u!222 &245410412
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3857,8 +3861,8 @@ RectTransform:
   m_Father: {fileID: 507645411}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5119,7 +5123,7 @@ GameObject:
   - component: {fileID: 1012834668}
   - component: {fileID: 1012834667}
   m_Layer: 5
-  m_Name: Btn Close
+  m_Name: Btn Cancel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5188,8 +5192,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1643393733}
-        m_MethodName: 
+      - m_Target: {fileID: 507645412}
+        m_MethodName: CloseCurrentWindow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5858,7 +5862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15197aa1e9859494fa2463d9438edd60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kbm_escapeTown: 27
+  kbm_exitTown: 27
   kbm_buildStructure: 119
   kbm_recruitHero: 115
   kbm_recruitCreature: 100
@@ -5874,7 +5878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b8fc8a20cbb4b4e9b86d33522cbe3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  escapeTown: 0
+  exitTown: 0
   buildStructure: 0
   recruitHero: 0
   recruitCreature: 0
@@ -7974,13 +7978,13 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1546390245}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1643393733}
-        m_MethodName: 
+      - m_Target: {fileID: 134864420}
+        m_MethodName: BuildStructure
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9000,6 +9004,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db3ab0845832b5d4faadb73b1c1dc895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  highlightBuilt: {r: 0, g: 1, b: 0, a: 1}
+  highlightAvailable: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  highlightDenied: {r: 1, g: 0, b: 0, a: 1}
   townPiece: {fileID: 0}
 --- !u!4 &1643393735
 Transform:

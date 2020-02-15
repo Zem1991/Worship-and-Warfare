@@ -381,7 +381,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
                 Hero hero = asHero.hero;
                 if (asHero.combatPieceStats.hitPoints_current <= 0)
                 {
-                    party.partyHero = null;
+                    party.party.hero = null;
                     Destroy(hero.gameObject);
                 }
             }
@@ -392,7 +392,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
                 unit.stackStats.stack_maximum = asUnit.stackStats.stack_current;
                 if (unit.stackStats.stack_maximum <= 0)
                 {
-                    party.partyUnits.Remove(unit);
+                    party.party.units.Remove(unit);
                     Destroy(unit.gameObject);
                 }
             }

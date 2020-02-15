@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class TownManager : AbstractSingleton<TownManager>, IShowableHideable
 {
+    [Header("Highlight Colors")]
+    public Color highlightBuilt = Color.green;
+    public Color highlightAvailable = Color.yellow;
+    public Color highlightDenied = Color.red;
+
     [Header("References")]
     public TownPiece2 townPiece;
     //public PartyPiece2 visitor;

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5460363859564936041}
   - component: {fileID: 5460363859564936040}
   m_Layer: 5
-  m_Name: InvSlot - Main hand
+  m_Name: Img Building
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -163,6 +163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b7f5aa7652ec741bad56cae04182af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  txtBuildingName: {fileID: 5460363861571535365}
+  highlightImage: {fileID: 5460363860670517611}
+  buildingImage: {fileID: 5460363859564936040}
   townBuilding: {fileID: 0}
 --- !u!1 &5460363861571535371
 GameObject:

@@ -25,7 +25,7 @@ public class FieldUI_Panel_Selection : AUIPanel
         HideInformations();
         if (!party) return;
 
-        Hero hero = party.partyHero;
+        Hero hero = party.party.hero;
         if (hero)
         {
             heroInfo.RefreshInfo(hero);
@@ -34,7 +34,7 @@ public class FieldUI_Panel_Selection : AUIPanel
             txtSelectionTitle.text = hero.dbData.heroName + "'s party";
         }
 
-        List<Unit> units = party.partyUnits;
+        List<Unit> units = party.party.units;
         if (units != null)
         {
             unitsInfo.RefreshInfo(units);

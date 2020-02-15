@@ -2,13 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class TownUI_Panel_BuildStructure_StructureOption : MonoBehaviour, IPointerClickHandler
 {
-    public TownBuilding townBuilding;
+    [Header("Static reference")]
+    public Text txtBuildingName;
+    public Image buildingImage;
+    public Image highlightImage;
+
+    [Header("Dynamic reference")]
+    public TownUI_Panel_BuildStructure parentPanel;
+    public DB_TownBuilding dbTownBuilding;
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        parentPanel.SelectOption(this);
     }
 }

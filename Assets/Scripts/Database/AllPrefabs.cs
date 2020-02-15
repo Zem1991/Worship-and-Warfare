@@ -11,6 +11,7 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
     [Header("Any")]
     public Town town;
     public TownBuilding townBuilding;
+    public Party party;
     public Hero hero;
     public Unit unit;
     public Artifact artifact;

@@ -84,8 +84,8 @@ public class TownUI : AbstractSingleton<TownUI>, IUIScheme, IShowableHideable
         Town town = tm.townPiece.town;
         townPanel.UpdatePanel(town);
 
-        PartyPiece2 visitor = tm.townPiece.visitor as PartyPiece2;
-        PartyPiece2 garrison = tm.townPiece.garrison as PartyPiece2;
+        Party visitor = tm.townPiece.visitor.party as Party;
+        Party garrison = tm.townPiece.town.garrison as Party;
         parties.UpdatePanel(visitor, garrison);
     }
 
@@ -117,16 +117,18 @@ public class TownUI : AbstractSingleton<TownUI>, IUIScheme, IShowableHideable
     {
         DestroyTownBuildings();
 
-        TownUI_Building prefab = AllPrefabs.Instance.tuiBuilding;
         foreach (TownBuilding bldg in townBuildings)
         {
-            TownUI_Building newTUI = Instantiate(prefab, buildingsHolder.transform);
-            newTUI.townBuilding = bldg;
-
-            newTUI.image.sprite = bldg.dbTownBuilding.image;
-
-            tuiBuildings.Add(newTUI);
+            CreateTownBuilding(bldg);
         }
+    }
+
+    public void CreateTownBuilding(TownBuilding townBuilding)
+    {
+        TownUI_Building prefab = AllPrefabs.Instance.tuiBuilding;
+        TownUI_Building newTUI = Instantiate(prefab, buildingsHolder.transform);
+        newTUI.Initialize(townBuilding);
+        tuiBuildings.Add(newTUI);
     }
 
     public void BuildStructureHide()
@@ -139,6 +141,7 @@ public class TownUI : AbstractSingleton<TownUI>, IUIScheme, IShowableHideable
     public void BuildStructureShow()
     {
         buildStructure.Show();
+        buildStructure.ShowOptions();
         currentWindow = buildStructure;
     }
 
