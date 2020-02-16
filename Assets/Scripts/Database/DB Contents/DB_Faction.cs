@@ -5,6 +5,7 @@ using UnityEngine;
 public class DB_Faction : AbstractDBContent
 {
     public string factionName;
+    public FactionTree factionTree;
     //public Sprite image;
 
     [Header("Town parameters")]
@@ -12,6 +13,7 @@ public class DB_Faction : AbstractDBContent
     public Sprite townFieldSprite;
     //public AnimatorOverrideController townAnimator;
 
-    [Header("Town Building parameters")]
-    public List<DB_TownBuilding> townBuildings = new List<DB_TownBuilding>();
+    //[Header("Tech tree")]
+    //public List<DB_TownBuilding> buildings = new List<DB_TownBuilding>();
+    //public List<DB_Unit> units = new List<DB_Unit>();
 }

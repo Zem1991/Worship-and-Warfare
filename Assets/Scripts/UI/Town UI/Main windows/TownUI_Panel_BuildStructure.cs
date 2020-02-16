@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,49 +29,55 @@ public class TownUI_Panel_BuildStructure : AUIPanel
 
         TownManager tm = TownManager.Instance;
         Town town = tm.townPiece.town;
-        List<DB_TownBuilding> dbBuildings = town.dbFaction.townBuildings;
-        List<TownBuilding> townBuildings = town.buildings;
+        List<DB_TownBuilding> dbBuildings = town.dbFaction.factionTree.GetBuildings();
+        List<TownBuilding> townBuildings = town.GetBuildings();     //TODO use an per building approach to better handler certain building types
 
         TownUI_Panel_BuildStructure_StructureOption prefab = AllPrefabs.Instance.tuiStructureOption;
 
         foreach (DB_TownBuilding dbBldg in dbBuildings)
         {
-            bool found = false;
+            TownBuilding foundTownBuilding = null;
             foreach (TownBuilding item in townBuildings)
             {
                 if (item.dbTownBuilding == dbBldg)
                 {
-                    found = true;
+                    foundTownBuilding = item;
                     break;
                 }
             }
 
-            Color highlightColor = found ? tm.highlightBuilt : tm.highlightAvailable;
+            Color highlightColor = foundTownBuilding ? tm.highlightBuilt : tm.highlightAvailable;
 
-            TownUI_Panel_BuildStructure_StructureOption newTuiPbsSo = Instantiate(prefab, structureOptionsHolder);
-            newTuiPbsSo.parentPanel = this;
-            newTuiPbsSo.dbTownBuilding = dbBldg;
-            newTuiPbsSo.txtBuildingName.text = dbBldg.townBuildingName;
-            newTuiPbsSo.buildingImage.sprite = dbBldg.buildingImage;
-            newTuiPbsSo.highlightImage.color = highlightColor;
+            TownUI_Panel_BuildStructure_StructureOption newTuiBsSo = Instantiate(prefab, structureOptionsHolder);
+            newTuiBsSo.parentPanel = this;
+            newTuiBsSo.dbTownBuilding = dbBldg;
+            newTuiBsSo.townBuilding = foundTownBuilding;
+            newTuiBsSo.txtBuildingName.text = dbBldg.townBuildingName;
+            newTuiBsSo.buildingImage.sprite = dbBldg.buildingImage;
+            newTuiBsSo.highlightImage.color = highlightColor;
 
-            structureOptions.Add(newTuiPbsSo);
+            structureOptions.Add(newTuiBsSo);
         }
     }
 
-    public void SelectOption(TownUI_Panel_BuildStructure_StructureOption townUI_Panel_BuildStructure_StructureOption)
+    public void SelectOption(TownUI_Panel_BuildStructure_StructureOption selectedOption)
     {
-        btnBuild.interactable = true;
-        selectedOption = townUI_Panel_BuildStructure_StructureOption;
+        this.selectedOption = selectedOption;
+        btnBuild.interactable = !selectedOption.townBuilding;
     }
 
     public void BuildStructure()
     {
         TownManager tm = TownManager.Instance;
         Town town = tm.townPiece.town;
+
         TownUI townUI = TownUI.Instance;
         townUI.CloseCurrentWindow();
+
         TownBuilding newTB = town.BuildStructure(selectedOption.dbTownBuilding);
         townUI.CreateTownBuilding(newTB);
+
+        btnBuild.interactable = false;
+        selectedOption = null;
     }
 }

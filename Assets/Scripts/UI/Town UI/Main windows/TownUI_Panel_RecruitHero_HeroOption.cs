@@ -4,16 +4,15 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TownUI_Panel_BuildStructure_StructureOption : MonoBehaviour, IPointerClickHandler
+public class TownUI_Panel_RecruitHero_HeroOption : MonoBehaviour, IPointerClickHandler
 {
     [Header("Static reference")]
-    public Text txtBuildingName;
-    public Image buildingImage;
-    public Image highlightImage;
+    public Text txtHeroName;
+    public Image heroImage;
 
     [Header("Dynamic reference")]
-    public TownUI_Panel_BuildStructure parentPanel;
-    public DB_TownBuilding dbTownBuilding;
+    public TownUI_Panel_RecruitHero parentPanel;
+    public DB_Hero dbHero;
 
     public void OnPointerClick(PointerEventData eventData)
     {

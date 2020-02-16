@@ -2,9 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TownUI_Building : MonoBehaviour
+public class TownUI_Building : MonoBehaviour, IPointerClickHandler
 {
     [Header("Static reference")]
     public Image image;
@@ -28,5 +29,10 @@ public class TownUI_Building : MonoBehaviour
         //Vector2 scale = new Vector2(dbTownBuilding.rect.x, dbTownBuilding.rect.y);
         rectTransform.anchoredPosition = pos;
         //rectTransform.sizeDelta = scale;  //TODO FIND OUT HOW TO SCALE THIS
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        TownUI.Instance.BW_ShowFromBuildingType(townBuilding.dbTownBuilding.townBuildingType);
     }
 }

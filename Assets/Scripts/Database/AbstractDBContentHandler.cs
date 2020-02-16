@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class AbstractDBContentHandler<T> : AbstractSingleton<AbstractDBContentHandler<T>> where T : AbstractDBContent
@@ -21,10 +22,15 @@ public abstract class AbstractDBContentHandler<T> : AbstractSingleton<AbstractDB
         }
     }
 
+    public virtual List<T> SelectAll()
+    {
+        return contents.Values.ToList();
+    }
+
     public virtual T Select(string id)
     {
-        bool result = contents.TryGetValue(id, out T content);
-        if (result) return content;
+        bool found = contents.TryGetValue(id, out T result);
+        if (found) return result;
         return null;
     }
 

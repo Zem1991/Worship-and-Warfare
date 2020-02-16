@@ -11,7 +11,7 @@ public class Unit : MonoBehaviour
     [Header("Database reference")]
     public DB_Unit dbData;
 
-    public void Initialize(DB_Unit dbData, StackData stackData)
+    public void Initialize(DB_Unit dbData, int stack_maximum)
     {
         CombatPieceStats prefabCPS = AllPrefabs.Instance.combatPieceStats;
         StackStats prefabSS = AllPrefabs.Instance.stackStats;
@@ -23,7 +23,7 @@ public class Unit : MonoBehaviour
         combatPieceStats.Initialize(dbData.combatPieceStats);
 
         stackStats = Instantiate(prefabSS, transform);
-        stackStats.Initialize(stackData);
+        stackStats.Initialize(stack_maximum);
     }
 
     public string GetName()

@@ -89,7 +89,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2547a87b16a14644b85434d5613ff1df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  townBuilding: {fileID: 0}
+  txtHeroName: {fileID: 7594006065363960505}
+  heroImage: {fileID: 7594006066675337019}
+  parentPanel: {fileID: 0}
+  dbHero: {fileID: 0}
 --- !u!1 &7594006065010763595
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +102,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7594006065010763594}
-  - component: {fileID: 7594006065010763593}
   m_Layer: 5
   m_Name: Attribute Info
   m_TagString: Untagged
@@ -131,23 +133,6 @@ RectTransform:
   m_AnchoredPosition: {x: 60, y: -60}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7594006065010763593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7594006065010763595}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d41c20408bf25946b0adf675a71fd69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  txtCommand: {fileID: 7594006066229490932}
-  txtOffense: {fileID: 7594006066901377074}
-  txtDefense: {fileID: 7594006065745560319}
-  txtPower: {fileID: 7594006065294142557}
-  txtFocus: {fileID: 7594006065663228385}
 --- !u!1 &7594006065053536192
 GameObject:
   m_ObjectHideFlags: 0
@@ -1235,7 +1220,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7594006066510524044}
-  - component: {fileID: 7594006066510524043}
   m_Layer: 5
   m_Name: Hero Info
   m_TagString: Untagged
@@ -1264,21 +1248,6 @@ RectTransform:
   m_AnchoredPosition: {x: 60, y: -60}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7594006066510524043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7594006066510524045}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0abbfc33e7a2ca544aad1f9584ecc276, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  heroPortrait: {fileID: 7594006066675337019}
-  txtHeroName: {fileID: 7594006065363960505}
-  txtLevelAndClass: {fileID: 7594006065250267015}
 --- !u!1 &7594006066542283819
 GameObject:
   m_ObjectHideFlags: 0

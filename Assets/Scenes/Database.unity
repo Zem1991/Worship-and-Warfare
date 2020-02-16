@@ -736,7 +736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Temple (DF)
   townBuildingName: Temple
-  type: 2
+  townBuildingType: 2
   buildingImage: {fileID: 21300000, guid: 3b7fba506c6aa5b4da1f26a6a7396225, type: 3}
   rect:
     serializedVersion: 2
@@ -881,12 +881,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Workshop (DF)
   townBuildingName: Workshop
-  type: 5
+  townBuildingType: 5
   buildingImage: {fileID: 21300000, guid: 3a21838b8c97d1246bc6ace843b4b705, type: 3}
   rect:
     serializedVersion: 2
     x: 500
-    y: 300
+    y: 600
     width: 200
     height: 200
   faction: {fileID: 928834134}
@@ -1460,7 +1460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Village Hall (DF)
   townBuildingName: Village Hall
-  type: 0
+  townBuildingType: 0
   buildingImage: {fileID: 21300000, guid: 95284a632b239264498e3f5320cc01b1, type: 3}
   rect:
     serializedVersion: 2
@@ -1873,7 +1873,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Castle (DF)
   townBuildingName: Castle
-  type: 3
+  townBuildingType: 3
   buildingImage: {fileID: 21300000, guid: cddd29724bb05e443a46feb34b9e6ea0, type: 3}
   rect:
     serializedVersion: 2
@@ -1892,6 +1892,7 @@ GameObject:
   m_Component:
   - component: {fileID: 928834133}
   - component: {fileID: 928834134}
+  - component: {fileID: 928834135}
   m_Layer: 0
   m_Name: Default Faction
   m_TagString: Untagged
@@ -1927,15 +1928,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Default
   factionName: Default Faction
+  factionTree: {fileID: 928834135}
   townNames: []
   townFieldSprite: {fileID: 21300000, guid: f512671dc708a1242a982b7cf84b5561, type: 3}
-  townBuildings:
-  - {fileID: 742978121}
-  - {fileID: 919748285}
-  - {fileID: 1178401596}
-  - {fileID: 442685255}
-  - {fileID: 1880376957}
-  - {fileID: 453493847}
+--- !u!114 &928834135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928834132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf2b7bb2943d3d447b286a2cab14b91c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  villageHall: {fileID: 742978121}
+  tavern: {fileID: 1178401596}
+  temple: {fileID: 442685255}
+  castle: {fileID: 919748285}
+  mageGuild: {fileID: 1880376957}
+  workshop: {fileID: 453493847}
+  heroClassMight: {fileID: 1476942290}
+  heroClassMagic: {fileID: 960977123}
+  heroClassTech: {fileID: 0}
+  unitTier1: {fileID: 507399652}
+  unitTier2: {fileID: 1623956596}
+  unitTier3: {fileID: 0}
+  unitTier4: {fileID: 0}
+  unitTier5: {fileID: 0}
+  unitTier6: {fileID: 0}
+  unitTier7: {fileID: 0}
 --- !u!1 &960977121
 GameObject:
   m_ObjectHideFlags: 0
@@ -2778,7 +2801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Tavern (DF)
   townBuildingName: Tavern
-  type: 1
+  townBuildingType: 1
   buildingImage: {fileID: 21300000, guid: fbfde68be51380f43a3c5ee89649d185, type: 3}
   rect:
     serializedVersion: 2
@@ -4629,7 +4652,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Mage Guild (DF)
   townBuildingName: Mage Guild
-  type: 4
+  townBuildingType: 4
   buildingImage: {fileID: 21300000, guid: 71cc4de108b1c1443acd7afe5b5d460b, type: 3}
   rect:
     serializedVersion: 2

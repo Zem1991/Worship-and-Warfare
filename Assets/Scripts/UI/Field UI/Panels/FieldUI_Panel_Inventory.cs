@@ -28,10 +28,9 @@ public class FieldUI_Panel_Inventory : AUIPanel
     [Header("Buttons")]
     public Button btnClose;
 
-    [Header("Other")]
-    public UI_DraggableElement invSlotDraggable;
-
-    public bool isDraggingInvSlot = false;
+    [Header("Draggable element handling")]
+    public UI_DraggableElement draggableElement;
+    public bool isDraggingElement = false;
     public FieldUI_InventorySlot_Front fuiInvSlotFrontDragged = null;
 
     public void UpdatePanel(PartyPiece2 p)
@@ -56,13 +55,13 @@ public class FieldUI_Panel_Inventory : AUIPanel
         invSlot.beingDragged = true;
         invSlot.inventory.RecalculateStats();
 
-        isDraggingInvSlot = true;
+        isDraggingElement = true;
         fuiInvSlotFrontDragged = invSlotFront;
     }
 
     public void InvSlotDrag(FieldUI_InventorySlot_Front invSlotFront)
     {
-        invSlotDraggable.Drag(invSlotFront.slotImg.sprite);
+        draggableElement.Drag(invSlotFront.slotImg.sprite);
     }
 
     public void InvSlotDrop(FieldUI_InventorySlot_Back invSlotBack)
@@ -84,13 +83,13 @@ public class FieldUI_Panel_Inventory : AUIPanel
             actualInvSlot.inventory.RecalculateStats();
         }
 
-        isDraggingInvSlot = false;
+        isDraggingElement = false;
         fuiInvSlotFrontDragged = null;
     }
 
     public void InvSlotEndDrag(FieldUI_InventorySlot_Front invSlotFront)
     {
-        if (isDraggingInvSlot) InvSlotDrop(null);
-        invSlotDraggable.EndDrag();
+        if (isDraggingElement) InvSlotDrop(null);
+        draggableElement.EndDrag();
     }
 }

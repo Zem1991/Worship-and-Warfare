@@ -9,15 +9,9 @@ public class StackStats : MonoBehaviour
     public int stack_current;
     public int stack_maximum;
 
-    public void Initialize(StackData stackData)
+    public void Initialize(int stack_maximum)
     {
-        stack_maximum = stackData.stack_maximum;
-        stack_current = stack_maximum;
-    }
-
-    public void Initialize(StackStats stackStats)
-    {
-        stack_maximum = stackStats.stack_maximum;
-        stack_current = stack_maximum;
+        this.stack_maximum = stack_maximum;
+        stack_current = this.stack_maximum;
     }
 }

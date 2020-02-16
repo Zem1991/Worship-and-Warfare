@@ -5,8 +5,9 @@ using UnityEngine;
 public class DB_TownBuilding : AbstractDBContent
 {
     public string townBuildingName;
-    public TownBuildingType type;
+    public TownBuildingType townBuildingType;
     public Sprite buildingImage;
+    public string buildingDescription;
     public Rect rect;
 
     //[Header("Animations")]

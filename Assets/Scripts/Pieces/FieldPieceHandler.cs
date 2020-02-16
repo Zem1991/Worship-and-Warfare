@@ -153,7 +153,7 @@ public class FieldPieceHandler : MonoBehaviour
                     DB_Unit dbData = dbUnits.Select(unitId);
 
                     Unit unit = Instantiate(prefabUnit, newPiece.transform);
-                    unit.Initialize(dbData, unitData.stackData);
+                    unit.Initialize(dbData, unitData.stackData.stack_maximum);
                     units.Add(unit);
                 }
             }

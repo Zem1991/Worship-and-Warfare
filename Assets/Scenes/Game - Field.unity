@@ -6025,7 +6025,7 @@ GameObject:
   - component: {fileID: 873163507}
   - component: {fileID: 873163506}
   m_Layer: 5
-  m_Name: InvSlot Draggable
+  m_Name: Draggable Element
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11368,8 +11368,8 @@ MonoBehaviour:
   backpack3: {fileID: 369717536}
   backpack4: {fileID: 520045331}
   btnClose: {fileID: 640713980}
-  invSlotDraggable: {fileID: 873163506}
-  isDraggingInvSlot: 0
+  draggableElement: {fileID: 873163506}
+  isDraggingElement: 0
   fuiInvSlotFrontDragged: {fileID: 0}
 --- !u!114 &1688173983
 MonoBehaviour:

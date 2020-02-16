@@ -36,35 +36,26 @@ public class TownManager : AbstractSingleton<TownManager>, IShowableHideable
 
     public void BuildStructurePanel()
     {
-        if (TownUI.Instance.currentWindow == TownUI.Instance.buildStructure)
-        {
-            TownUI.Instance.BuildStructureHide();
-            return;
-        }
+        bool closeThenReturn = TownUI.Instance.currentWindow == TownUI.Instance.buildStructure;
         TownUI.Instance.CloseCurrentWindow();
-        TownUI.Instance.BuildStructureShow();
+        if (closeThenReturn) return;
+        TownUI.Instance.CW_BuildStructureShow();
     }
 
     public void RecruitHeroPanel()
     {
-        if (TownUI.Instance.currentWindow == TownUI.Instance.recruitHero)
-        {
-            TownUI.Instance.RecruitHeroHide();
-            return;
-        }
+        bool closeThenReturn = TownUI.Instance.currentWindow == TownUI.Instance.recruitHero;
         TownUI.Instance.CloseCurrentWindow();
-        TownUI.Instance.RecruitHeroShow();
+        if (closeThenReturn) return;
+        TownUI.Instance.CW_RecruitHeroShow();
     }
 
     public void RecruitCreaturePanel()
     {
-        if (TownUI.Instance.currentWindow == TownUI.Instance.recruitCreature)
-        {
-            TownUI.Instance.RecruitCreatureHide();
-            return;
-        }
+        bool closeThenReturn = TownUI.Instance.currentWindow == TownUI.Instance.recruitCreature;
         TownUI.Instance.CloseCurrentWindow();
-        TownUI.Instance.RecruitCreatureShow();
+        if (closeThenReturn) return;
+        TownUI.Instance.CW_RecruitCreatureShow();
     }
 
     public void ExitTown()

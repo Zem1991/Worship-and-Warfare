@@ -38,7 +38,7 @@ public class CombatantUnitPiece2 : AbstractCombatantPiece2
         name = "P" + owner.id + " - Stack of " + unit.GetName();
 
         stackStats = Instantiate(prefabSS, transform);
-        stackStats.Initialize(unit.stackStats);
+        stackStats.Initialize(unit.stackStats.stack_maximum);
 
         IMP_ResetMovementPoints();
         SetAnimatorOverrideController(unit.dbData.animatorCombat);
