@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TownUI_Panel_RecruitHero : AUIPanel
+public class TownUI_Panel_RecruitHero : AbstractUIPanel
 {
     [Header("UI Elements")]
     public RectTransform heroOptionsHolder;

@@ -121,7 +121,7 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
     public void EscapeMenu()
     {
         bool isPaused = GameManager.Instance.isPaused;
-        AUIPanel currentWindow = FieldUI.Instance.currentWindow;
+        AbstractUIPanel currentWindow = FieldUI.Instance.currentWindow;
         if (!isPaused && currentWindow)
         {
             FieldUI.Instance.CloseCurrentWindow();

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TownUI_Panel_Building : AUIPanel
+public class TownUI_Panel_Building : AbstractUIPanel
 {
     [Header("UI elements")]
     public Image buildingImage;

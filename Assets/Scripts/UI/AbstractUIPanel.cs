@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public abstract class AUIPanel : MonoBehaviour, IShowableHideable, IPointerEnterHandler, IPointerExitHandler
+public abstract class AbstractUIPanel : MonoBehaviour, IShowableHideable, IPointerEnterHandler, IPointerExitHandler
 {
     public void Hide()
     {

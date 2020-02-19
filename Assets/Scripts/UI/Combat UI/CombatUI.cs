@@ -19,7 +19,7 @@ public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideabl
     public UI_CombatActorInspector combatActorInspector;
 
     [Header("Current Window")]
-    public AUIPanel currentWindow;
+    public AbstractUIPanel currentWindow;
 
     public void Hide()
     {

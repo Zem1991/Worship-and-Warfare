@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TownUI_Panel_Town_Interactions : AUIPanel
+public class TownUI_Panel_Town_Interactions : AbstractUIPanel
 {
     public Button btnTownReport;
     public Button btnBuildStructure;

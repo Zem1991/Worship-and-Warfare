@@ -34,7 +34,7 @@ public class TownUI : AbstractSingleton<TownUI>, IUIScheme, IShowableHideable
     public TownUI_Panel_Building_Workshop bldgWorkshop;
 
     [Header("Current Window")]
-    public AUIPanel currentWindow;
+    public AbstractUIPanel currentWindow;
 
     public void Hide()
     {

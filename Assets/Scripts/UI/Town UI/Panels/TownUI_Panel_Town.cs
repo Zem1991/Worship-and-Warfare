@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TownUI_Panel_Town : AUIPanel
+public class TownUI_Panel_Town : AbstractUIPanel
 {
     public Text townName;
     public TownUI_Panel_Town_Data townData;

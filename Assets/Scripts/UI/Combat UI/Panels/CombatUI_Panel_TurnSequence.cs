@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CombatUI_Panel_TurnSequence : AUIPanel
+public class CombatUI_Panel_TurnSequence : AbstractUIPanel
 {
     [Header("Sequence Bar")]
     public RectTransform sequenceBar;

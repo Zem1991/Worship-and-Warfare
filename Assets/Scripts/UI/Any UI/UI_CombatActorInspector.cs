@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_CombatActorInspector : AUIPanel, IShowableHideable
+public class UI_CombatActorInspector : AbstractUIPanel, IShowableHideable
 {
     [Header("UI objects")]
     public Text txtName;

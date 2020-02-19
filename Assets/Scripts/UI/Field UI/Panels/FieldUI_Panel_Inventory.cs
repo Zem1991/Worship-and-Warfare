@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FieldUI_Panel_Inventory : AUIPanel
+public class FieldUI_Panel_Inventory : AUI_PanelDragAndDrop
 {
     [Header("Hero info")]
     public UI_HeroInfo heroInfo;
@@ -28,11 +28,6 @@ public class FieldUI_Panel_Inventory : AUIPanel
     [Header("Buttons")]
     public Button btnClose;
 
-    [Header("Draggable element handling")]
-    public UI_DraggableElement draggableElement;
-    public bool isDraggingElement = false;
-    public FieldUI_InventorySlot_Front fuiInvSlotFrontDragged = null;
-
     public void UpdatePanel(PartyPiece2 p)
     {
         Hero hero = p.party.hero;
@@ -49,31 +44,29 @@ public class FieldUI_Panel_Inventory : AUIPanel
         trinket4.UpdateSlot(hero.inventory.trinket4);
     }
 
-    public void InvSlotBeginDrag(FieldUI_InventorySlot_Front invSlotFront)
+    public override void DNDBeginDrag(AUI_DNDSlot_Front slotFront)
     {
-        InventorySlot invSlot = invSlotFront.invSlotBack.invSlot;
+        FieldUI_InventorySlot_Back fuiInvSlot = slotFront.slotBack as FieldUI_InventorySlot_Back;
+
+        InventorySlot invSlot = fuiInvSlot.invSlot;
         invSlot.beingDragged = true;
         invSlot.inventory.RecalculateStats();
 
-        isDraggingElement = true;
-        fuiInvSlotFrontDragged = invSlotFront;
+        base.DNDBeginDrag(slotFront);
     }
 
-    public void InvSlotDrag(FieldUI_InventorySlot_Front invSlotFront)
+    public override void DNDDrop(AUI_DNDSlot slot)
     {
-        draggableElement.Drag(invSlotFront.slotImg.sprite);
-    }
+        FieldUI_InventorySlot_Back fuiInvSlot = slot as FieldUI_InventorySlot_Back;
 
-    public void InvSlotDrop(FieldUI_InventorySlot_Back invSlotBack)
-    {
-        if (fuiInvSlotFrontDragged)
+        if (slotFrontDragged)
         {
-            InventorySlot actualInvSlot = fuiInvSlotFrontDragged.invSlotBack.invSlot;
+            InventorySlot actualInvSlot = fuiInvSlot.invSlot;
 
-            if (invSlotBack)
+            if (fuiInvSlot)
             {
                 Artifact item = actualInvSlot.artifact;
-                if (item && invSlotBack.invSlot.AddArtifact(item))
+                if (item && fuiInvSlot.invSlot.AddArtifact(item))
                 {
                     actualInvSlot.artifact = null;
                 }
@@ -83,13 +76,6 @@ public class FieldUI_Panel_Inventory : AUIPanel
             actualInvSlot.inventory.RecalculateStats();
         }
 
-        isDraggingElement = false;
-        fuiInvSlotFrontDragged = null;
-    }
-
-    public void InvSlotEndDrag(FieldUI_InventorySlot_Front invSlotFront)
-    {
-        if (isDraggingElement) InvSlotDrop(null);
-        draggableElement.EndDrag();
+        base.DNDDrop(slot);
     }
 }

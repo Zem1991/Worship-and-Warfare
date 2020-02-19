@@ -269,7 +269,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     public void EscapeMenu()
     {
         bool isPaused = GameManager.Instance.isPaused;
-        AUIPanel currentWindow = CombatUI.Instance.currentWindow;
+        AbstractUIPanel currentWindow = CombatUI.Instance.currentWindow;
         if (!isPaused && currentWindow)
         {
             CombatUI.Instance.CloseCurrentWindow();

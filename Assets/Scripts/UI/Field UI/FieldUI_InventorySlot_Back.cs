@@ -4,39 +4,17 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class FieldUI_InventorySlot_Back : MonoBehaviour, IDropHandler
+public class FieldUI_InventorySlot_Back : AUI_DNDSlot
 {
-    [Header("Edit mode stuff")]
-    public Image slotImg;
-
-    [Header("Runtime stuff")]
+    [Header("Runtime references")]
     public InventorySlot invSlot;
-    public string slotName;
-    public FieldUI_InventorySlot_Front invSlotFront;
-
-    private FieldUI_Panel_Inventory invWindow;
-
-    void Awake()
-    {
-        invSlotFront = GetComponentInChildren<FieldUI_InventorySlot_Front>();
-        invWindow = GetComponentInParent<FieldUI_Panel_Inventory>();
-    }
 
     public void UpdateSlot(InventorySlot invSlot)
     {
         this.invSlot = invSlot;
-        slotName = invSlot.slotName;
+        //slotName = invSlot.slotName;
 
         Artifact artifact = invSlot.artifact;
-        invSlotFront.ChangeImage(artifact?.dbData.image);
-    }
-
-    public void OnDrop(PointerEventData eventData)
-    {
-        RectTransform invPanel = transform as RectTransform;
-        if (RectTransformUtility.RectangleContainsScreenPoint(invPanel, InputManager.Instance.mouseScreenPos))
-        {
-            invWindow.InvSlotDrop(this);
-        }
+        ChangeImage(artifact?.dbData.image);
     }
 }

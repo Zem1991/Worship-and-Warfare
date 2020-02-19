@@ -7,9 +7,14 @@ public class UI_DraggableElement : MonoBehaviour
 {
     public Image image;
 
-    public void Drag(Sprite img)
+    public void BeginDrag(Sprite img)
     {
         ChangeImage(img);
+        Drag();
+    }
+
+    public void Drag()
+    {
         transform.position = InputManager.Instance.mouseScreenPos;
     }
 

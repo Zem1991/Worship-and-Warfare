@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TownUI_Panel_Parties : AUIPanel
+public class TownUI_Panel_Parties : AbstractUIPanel
 {
+    [Header("Garrison")]
+    public Text txtGarrison;
+    public UI_HeroInfo garrisonHeroInfo;
+    public UI_UnitsInfo garrisonUnitsInfo;
 
     [Header("Visitor")]
     public Text txtVisitor;
     public UI_HeroInfo visitorHeroInfo;
     public UI_UnitsInfo visitorUnitsInfo;
-
-    [Header("Garrison")]
-    public Text txtGarrison;
-    public UI_HeroInfo garrisonHeroInfo;
-    public UI_UnitsInfo garrisonUnitsInfo;
 
     [Header("Draggable element handling")]
     public UI_DraggableElement draggableElement;
@@ -67,7 +66,7 @@ public class TownUI_Panel_Parties : AUIPanel
 
     public void InvSlotDrag(TownUI_PartySlot_Front slotFront)
     {
-        draggableElement.Drag(slotFront.slotImg.sprite);
+        draggableElement.Drag();
     }
 
     public void InvSlotDrop(TownUI_PartySlot_Back slotBack)

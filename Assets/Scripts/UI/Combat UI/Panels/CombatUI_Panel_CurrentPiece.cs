@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CombatUI_Panel_CurrentPiece : AUIPanel
+public class CombatUI_Panel_CurrentPiece : AbstractUIPanel
 {
     public Image unitPortrait;
     public Button btnWait;

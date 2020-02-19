@@ -17,7 +17,7 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
     public FieldUI_Panel_Inventory inventory;
 
     [Header("Current Window")]
-    public AUIPanel currentWindow;
+    public AbstractUIPanel currentWindow;
 
     public void Hide()
     {
@@ -127,7 +127,7 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
 
     public void InventoryHide()
     {
-        inventory.InvSlotEndDrag(null);
+        inventory.DNDEndDrag();
         inventory.Hide();
         currentWindow = null;
         UIManager.Instance.PointerExit(inventory);

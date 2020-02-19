@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FieldUI_Panel_Commands : AUIPanel
+public class FieldUI_Panel_Commands : AbstractUIPanel
 {
     public Image crest;
 

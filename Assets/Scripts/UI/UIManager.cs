@@ -9,7 +9,7 @@ public class UIManager : AbstractSingleton<UIManager>
     public IUIScheme scheme;
 
     [Header("Focused Panel")]
-    public AUIPanel focusedPanel;
+    public AbstractUIPanel focusedPanel;
 
     // Update is called once per frame
     void Update()
@@ -40,12 +40,12 @@ public class UIManager : AbstractSingleton<UIManager>
         }
     }
 
-    public void PointerEnter(AUIPanel panel)
+    public void PointerEnter(AbstractUIPanel panel)
     {
         focusedPanel = panel;
     }
 
-    public void PointerExit(AUIPanel panel)
+    public void PointerExit(AbstractUIPanel panel)
     {
         if (focusedPanel == panel) focusedPanel = null;
     }

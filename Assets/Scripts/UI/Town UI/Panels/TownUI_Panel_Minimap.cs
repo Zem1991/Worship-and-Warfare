@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TownUI_Panel_Minimap : AUIPanel
+public class TownUI_Panel_Minimap : AbstractUIPanel
 {
     public Image minimap;
     public Image banner;

@@ -43,7 +43,7 @@ public class TownInputExecutor : AbstractInputExecutor<TownInputInterpreter, Tow
     {
         if (!interpreter.exitTown) return;
 
-        AUIPanel currentWindow = TownUI.Instance.currentWindow;
+        AbstractUIPanel currentWindow = TownUI.Instance.currentWindow;
         if (currentWindow)
         {
             TownUI.Instance.CloseCurrentWindow();

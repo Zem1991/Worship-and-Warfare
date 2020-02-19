@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FieldUI_Panel_Timers : AUIPanel
+public class FieldUI_Panel_Timers : AbstractUIPanel
 {
     public Text txtTurns;
     public Text txtTimer;

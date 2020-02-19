@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TownUI_Panel_CoreButtons : AUIPanel
+public class TownUI_Panel_CoreButtons : AbstractUIPanel
 {
     public Button btnMenu;
     public Button btnHelp;

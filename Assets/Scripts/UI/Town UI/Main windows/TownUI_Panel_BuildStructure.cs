@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TownUI_Panel_BuildStructure : AUIPanel
+public class TownUI_Panel_BuildStructure : AbstractUIPanel
 {
     [Header("UI Elements")]
     public RectTransform structureOptionsHolder;
