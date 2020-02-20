@@ -669,7 +669,7 @@ MonoBehaviour:
     type: 3}
   fieldPickupPiece: {fileID: -4379598809724792539, guid: 9636c308433c1254fb7a32629bf6e787,
     type: 3}
-  fuiInvSlot: {fileID: 4757467102435365897, guid: 838362ac4bc2bdc43b97c6ad293b0ec1,
+  fuiInvSlotHolder: {fileID: -5993691286250219256, guid: aeac03812a2acdc4c8a6d627c646950f,
     type: 3}
   cuiTurnSequenceItem: {fileID: 2897984054310898061, guid: 0a01e91148905bf4b8cd8d6c58c7d5a8,
     type: 3}
@@ -738,6 +738,7 @@ MonoBehaviour:
   townBuildingName: Temple
   townBuildingType: 2
   buildingImage: {fileID: 21300000, guid: 3b7fba506c6aa5b4da1f26a6a7396225, type: 3}
+  buildingDescription: 
   rect:
     serializedVersion: 2
     x: 600
@@ -883,6 +884,7 @@ MonoBehaviour:
   townBuildingName: Workshop
   townBuildingType: 5
   buildingImage: {fileID: 21300000, guid: 3a21838b8c97d1246bc6ace843b4b705, type: 3}
+  buildingDescription: 
   rect:
     serializedVersion: 2
     x: 500
@@ -1462,6 +1464,7 @@ MonoBehaviour:
   townBuildingName: Village Hall
   townBuildingType: 0
   buildingImage: {fileID: 21300000, guid: 95284a632b239264498e3f5320cc01b1, type: 3}
+  buildingDescription: 
   rect:
     serializedVersion: 2
     x: 400
@@ -1875,6 +1878,7 @@ MonoBehaviour:
   townBuildingName: Castle
   townBuildingType: 3
   buildingImage: {fileID: 21300000, guid: cddd29724bb05e443a46feb34b9e6ea0, type: 3}
+  buildingDescription: 
   rect:
     serializedVersion: 2
     x: 900
@@ -2803,6 +2807,7 @@ MonoBehaviour:
   townBuildingName: Tavern
   townBuildingType: 1
   buildingImage: {fileID: 21300000, guid: fbfde68be51380f43a3c5ee89649d185, type: 3}
+  buildingDescription: 
   rect:
     serializedVersion: 2
     x: 200
@@ -4654,6 +4659,7 @@ MonoBehaviour:
   townBuildingName: Mage Guild
   townBuildingType: 4
   buildingImage: {fileID: 21300000, guid: 71cc4de108b1c1443acd7afe5b5d460b, type: 3}
+  buildingDescription: 
   rect:
     serializedVersion: 2
     x: 300

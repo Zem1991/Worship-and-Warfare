@@ -17,8 +17,8 @@ public abstract class AUI_DNDSlot : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        RectTransform invPanel = transform as RectTransform;
-        if (RectTransformUtility.RectangleContainsScreenPoint(invPanel, InputManager.Instance.mouseScreenPos))
+        RectTransform rectTransform = transform as RectTransform;
+        if (RectTransformUtility.RectangleContainsScreenPoint(rectTransform, InputManager.Instance.mouseScreenPos))
         {
             panelDND.DNDDrop(this);
         }
@@ -28,7 +28,7 @@ public abstract class AUI_DNDSlot : MonoBehaviour, IDropHandler
     {
         Color color = Color.white;
         if (!img) color.a = 0;
-        //else if (panelDND.beingDragged) color.a = 0.5F;  //TODO this later
+        else if (panelDND.slotFrontDragged) color.a = 0.5F;
 
         imgSlotFront.sprite = img;
         imgSlotFront.color = color;

@@ -13,7 +13,7 @@ public abstract class AUI_DNDSlot_Front : MonoBehaviour, IBeginDragHandler, IDra
     {
         if (CheckSlotFilled())
         {
-            slotBack.ChangeImage(slotBack.imgSlot.sprite);
+            slotBack.ChangeImage(slotBack.imgSlotFront.sprite);
             slotBack.panelDND.DNDBeginDrag(this);
         }
     }

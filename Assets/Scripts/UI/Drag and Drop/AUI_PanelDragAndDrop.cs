@@ -15,7 +15,7 @@ public abstract class AUI_PanelDragAndDrop : AbstractUIPanel
     public virtual void DNDBeginDrag(AUI_DNDSlot_Front slotFront)
     {
         //Remember to call this in overriden function using "base"
-        draggableElement.BeginDrag(slotFront.slotBack.imgSlot.sprite);
+        draggableElement.BeginDrag(slotFront.slotBack.imgSlotFront.sprite);
         slotFrontDragged = slotFront;
     }
 

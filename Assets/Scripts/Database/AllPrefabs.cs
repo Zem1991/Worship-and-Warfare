@@ -40,7 +40,7 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
     public PickupPiece2 fieldPickupPiece;
 
     [Header("UI")]
-    public FieldUI_InventorySlot_Back fuiInvSlot;
+    public FieldUI_InventorySlot_Holder fuiInvSlotHolder;
     public CombatUI_TurnSequenceItem cuiTurnSequenceItem;
     public TownUI_Building tuiBuilding;
     public TownUI_Panel_BuildStructure_StructureOption tuiStructureOption;
