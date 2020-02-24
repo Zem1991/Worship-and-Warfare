@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit : MonoBehaviour
+public class Unit : AbstractPartyElement
 {
     [Header("Prefab references")]
     public CombatPieceStats combatPieceStats;

@@ -30,9 +30,9 @@ public class FieldUI_Panel_Inventory : AUI_PanelDragAndDrop
 
     public void UpdatePanel(PartyPiece2 p)
     {
-        Hero hero = p.party.hero;
-        heroInfo.RefreshInfo(p.party.hero);
-        attributeInfo.RefreshInfo(p.party.hero.attributeStats);
+        Hero hero = p.party.hero.slotObj as Hero;
+        heroInfo.RefreshInfo(hero);
+        attributeInfo.RefreshInfo(hero.attributeStats);
 
         mainHand.UpdateSlot(this, hero.inventory.mainHand);
         offHand.UpdateSlot(this, hero.inventory.offHand);
@@ -49,7 +49,7 @@ public class FieldUI_Panel_Inventory : AUI_PanelDragAndDrop
         FieldUI_InventorySlot fuiInvSlot = slotFront.slotBack as FieldUI_InventorySlot;
 
         InventorySlot invSlot = fuiInvSlot.invSlot;
-        invSlot.beingDragged = true;
+        invSlot.isBeingDragged = true;
         invSlot.inventory.RecalculateStats();
 
         base.DNDBeginDrag(slotFront);
@@ -65,14 +65,14 @@ public class FieldUI_Panel_Inventory : AUI_PanelDragAndDrop
             FieldUI_InventorySlot fuiInvSlot = slot as FieldUI_InventorySlot;
             if (fuiInvSlot)
             {
-                Artifact item = actualInvSlot.artifact;
-                if (item && fuiInvSlot.invSlot.AddArtifact(item))
+                Artifact item = actualInvSlot.slotObj;
+                if (item && fuiInvSlot.invSlot.AddSlotObject(item))
                 {
-                    actualInvSlot.artifact = null;
+                    actualInvSlot.slotObj = null;
                 }
             }
 
-            actualInvSlot.beingDragged = false;
+            actualInvSlot.isBeingDragged = false;
             actualInvSlot.inventory.RecalculateStats();
         }
 

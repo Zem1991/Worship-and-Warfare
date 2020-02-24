@@ -15,11 +15,9 @@ public class FieldUI_InventorySlot : AUI_DNDSlot
     public void UpdateSlot(AUI_PanelDragAndDrop panelDND, InventorySlot invSlot)
     {
         this.panelDND = panelDND;
-
         this.invSlot = invSlot;
-        txtType.text = invSlot.slotName;
 
-        Artifact artifact = invSlot.artifact;
+        Artifact artifact = invSlot.slotObj;
         ChangeImage(artifact?.dbData.image);
     }
 }

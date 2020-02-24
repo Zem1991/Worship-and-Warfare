@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class Inventory : AbstractSlotContainer<InventorySlot, Artifact>
 {
     public const int BACKPACK_LIMIT = 4;
 
-    [Header("Hero data")]
+    [Header("Hero reference")]
     public Hero hero;
 
     [Header("Slots")]
@@ -75,25 +75,25 @@ public class Inventory : MonoBehaviour
         parameterSlots.Add(armor);
 
         trinket1 = Instantiate(prefabInventorySlot, transform);
-        trinket1.Initialize(this, ArtifactType.TRINKET, t1, "1");
+        trinket1.Initialize(this, ArtifactType.TRINKET, t1);
         parameterSlots.Add(trinket1);
 
         trinket2 = Instantiate(prefabInventorySlot, transform);
-        trinket2.Initialize(this, ArtifactType.TRINKET, t2, "2");
+        trinket2.Initialize(this, ArtifactType.TRINKET, t2);
         parameterSlots.Add(trinket2);
 
         trinket3 = Instantiate(prefabInventorySlot, transform);
-        trinket3.Initialize(this, ArtifactType.TRINKET, t3, "3");
+        trinket3.Initialize(this, ArtifactType.TRINKET, t3);
         parameterSlots.Add(trinket3);
 
         trinket4 = Instantiate(prefabInventorySlot, transform);
-        trinket4.Initialize(this, ArtifactType.TRINKET, t4, "4");
+        trinket4.Initialize(this, ArtifactType.TRINKET, t4);
         parameterSlots.Add(trinket4);
 
         RecalculateStats();
     }
 
-    public bool AddArtifact(Artifact item)
+    public override bool AddSlotObject(Artifact item)
     {
         InventorySlot slot = null;
         switch (item.dbData.artifactType)
@@ -111,20 +111,20 @@ public class Inventory : MonoBehaviour
                 slot = armor;
                 break;
         }
-        if (slot) return AddArtifactToSlot(slot, item);
+        if (slot) return AddSlotObjectToSlot(slot, item);
         else return AddArtifactToBackpack(item);
     }
 
-    public bool AddArtifactToSlot(InventorySlot slot, Artifact item)
+    public override bool AddSlotObjectToSlot(AbstractSlot<Artifact> slot, Artifact item)
     {
-        bool result = slot.AddArtifact(item);
+        bool result = base.AddSlotObjectToSlot(slot, item);
         RecalculateStats();
         return result;
     }
 
-    public bool RemoveArtifactFromSlot(InventorySlot slot)
+    public override bool RemoveSlotObjectFromSlot(AbstractSlot<Artifact> slot)
     {
-        bool result = slot.RemoveArtifact();
+        bool result = base.RemoveSlotObjectFromSlot(slot);
         RecalculateStats();
         return result;
     }
@@ -145,8 +145,8 @@ public class Inventory : MonoBehaviour
 
         foreach (InventorySlot invSlot in parameterSlots)
         {
-            Artifact artifact = invSlot.artifact;
-            if (!artifact || invSlot.beingDragged) continue;
+            Artifact artifact = invSlot.slotObj;
+            if (!artifact || invSlot.isBeingDragged) continue;
 
             atrCommand += artifact.dbData.atrCommand;
             atrOffense += artifact.dbData.atrOffense;

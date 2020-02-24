@@ -50,7 +50,6 @@ public class FieldPieceHandler : MonoBehaviour
         TownPiece2 prefabTownPiece = AllPrefabs.Instance.fieldTownPiece;
         Town prefabTown = AllPrefabs.Instance.town;
         Party prefabParty = AllPrefabs.Instance.party;
-        TownBuilding prefabTownBuilding = AllPrefabs.Instance.townBuilding;
 
         townPieces = new List<TownPiece2>();
 
@@ -95,17 +94,12 @@ public class FieldPieceHandler : MonoBehaviour
     {
         if (parties == null) return;
 
-        AbstractDBContentHandler<DB_Hero> dbHeroes = DBHandler_Hero.Instance;
-        AbstractDBContentHandler<DB_Unit> dbUnits = DBHandler_Unit.Instance;
-
         PlayerManager pm = PlayerManager.Instance;
         FieldManager fm = FieldManager.Instance;
         FieldMap fieldMap = fm.mapHandler.map;
 
         PartyPiece2 prefabPiece = AllPrefabs.Instance.fieldPartyPiece;
         Party prefabParty = AllPrefabs.Instance.party;
-        Hero prefabHero = AllPrefabs.Instance.hero;
-        Unit prefabUnit = AllPrefabs.Instance.unit;
 
         partyPieces = new List<PartyPiece2>();
 
@@ -119,48 +113,15 @@ public class FieldPieceHandler : MonoBehaviour
             Vector3 pos = fieldTile.transform.position;
             Quaternion rot = Quaternion.identity;
 
-            PartyPiece2 newPiece = Instantiate(prefabPiece, pos, rot, transform);
-            partyPieces.Add(newPiece);
-
-            Party party = Instantiate(prefabParty, newPiece.transform);
-            newPiece.party = party;
-
+            PartyPiece2 newParty = Instantiate(prefabPiece, pos, rot, transform);
             Player owner = pm.allPlayers[partyData.ownerId - 1];
+            Party party = Instantiate(prefabParty, newParty.transform);
+            party.Initialize(partyData);
+            newParty.Initialize(owner, party);
 
-            Hero hero = null;
-            if (partyData.hero != null)
-            {
-                HeroData heroData = partyData.hero;
-
-                string heroId = heroData.id;
-                DB_Hero dbData = dbHeroes.Select(heroId);
-
-                hero = Instantiate(prefabHero, newPiece.transform);
-                hero.Initialize(dbData, heroData.experienceData, heroData.inventoryData);
-            }
-
-            List<Unit> units = new List<Unit>();
-            if (partyData.units != null)
-            {
-                if (partyData.units.Length > MAX_UNITS) Debug.LogWarning("There are more units than the piece can store!");
-                int totalUnits = Mathf.Min(partyData.units.Length, MAX_UNITS);
-
-                for (int i = 0; i < totalUnits; i++)
-                {
-                    UnitData unitData = partyData.units[i];
-
-                    string unitId = unitData.id;
-                    DB_Unit dbData = dbUnits.Select(unitId);
-
-                    Unit unit = Instantiate(prefabUnit, newPiece.transform);
-                    unit.Initialize(dbData, unitData.stackData.stack_maximum);
-                    units.Add(unit);
-                }
-            }
-
-            newPiece.currentTile = fieldTile;
-            newPiece.currentTile.occupantPiece = newPiece;
-            newPiece.Initialize(owner, hero, units);
+            newParty.currentTile = fieldTile;
+            newParty.currentTile.occupantPiece = newParty;
+            partyPieces.Add(newParty);
         }
     }
 

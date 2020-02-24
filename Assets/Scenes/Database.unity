@@ -639,10 +639,16 @@ MonoBehaviour:
   town: {fileID: 1070375493909536636, guid: 1d5ca11de529d634697ef054d25dc892, type: 3}
   townBuilding: {fileID: -3659351163518971290, guid: b5a04a796b4f14945803755952c263b5,
     type: 3}
-  party: {fileID: 7527526445706768396, guid: 2ba6c8773bd149e4e9db4c3f84c79dcf, type: 3}
   hero: {fileID: 8507488037947193599, guid: 96895e799d8318f409f080a41f243636, type: 3}
   unit: {fileID: 1485436908184088651, guid: a9ff8d2df2ae55046a37b63525e48252, type: 3}
   artifact: {fileID: 208367886873617183, guid: 3d0f41dcc6135f64cb0c648762f34959, type: 3}
+  party: {fileID: 7527526445706768396, guid: 2ba6c8773bd149e4e9db4c3f84c79dcf, type: 3}
+  partySlot: {fileID: 5746358022123851709, guid: ddcbb449ee8944646b4cc125b37f3923,
+    type: 3}
+  inventory: {fileID: 7244132929809245279, guid: 09fe24764bfc2d74da5c9b4cdc116d1b,
+    type: 3}
+  inventorySlot: {fileID: 2256691961838049280, guid: 7ad00ff2241a22142a14d6921d90dbbb,
+    type: 3}
   projectile: {fileID: 2156067328831934996, guid: 38aba04180ee3bf4a8e954023a18cf95,
     type: 3}
   combatPieceStats: {fileID: 8876443332866185410, guid: 18bc3b7f582d292458b88a4307346f10,
@@ -654,10 +660,6 @@ MonoBehaviour:
   attributeStats: {fileID: 6726943552014786795, guid: b3d1587f03a1b2f4fae0b7d046deccc8,
     type: 3}
   experienceStats: {fileID: 641148877894861194, guid: 223bfeb779cf7af4b84ab4e1a43998e0,
-    type: 3}
-  inventory: {fileID: 7244132929809245279, guid: 09fe24764bfc2d74da5c9b4cdc116d1b,
-    type: 3}
-  inventorySlot: {fileID: 2256691961838049280, guid: 7ad00ff2241a22142a14d6921d90dbbb,
     type: 3}
   stackStats: {fileID: 8509671326709471399, guid: d4dd60fe961b37943b029705f6433dde,
     type: 3}

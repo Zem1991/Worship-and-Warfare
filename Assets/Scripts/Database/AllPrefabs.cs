@@ -11,10 +11,17 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
     [Header("Any")]
     public Town town;
     public TownBuilding townBuilding;
-    public Party party;
     public Hero hero;
     public Unit unit;
     public Artifact artifact;
+
+    [Header("Party")]
+    public Party party;
+    public PartySlot partySlot;
+
+    [Header("Inventory")]
+    public Inventory inventory;
+    public InventorySlot inventorySlot;
 
     [Header("Projectile")]
     public Projectile projectile;
@@ -27,8 +34,6 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
     [Header("Stats - Hero")]
     public AttributeStats attributeStats;
     public ExperienceStats experienceStats;
-    public Inventory inventory;
-    public InventorySlot inventorySlot;
 
     [Header("Stats - Unit")]
     public StackStats stackStats;

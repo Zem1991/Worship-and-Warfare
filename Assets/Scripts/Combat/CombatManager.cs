@@ -392,7 +392,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
                 unit.stackStats.stack_maximum = asUnit.stackStats.stack_current;
                 if (unit.stackStats.stack_maximum <= 0)
                 {
-                    party.party.units.Remove(unit);
+                    party.party.RemoveUnt(unit);
                     Destroy(unit.gameObject);
                 }
             }

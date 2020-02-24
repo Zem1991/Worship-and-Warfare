@@ -30,23 +30,25 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
         pieceMovement = GetComponent<PieceMovement2>();
     }
 
-    public void Initialize(Player owner, Hero hero, List<Unit> units)
+    public void Initialize(Player owner, Party party)
     {
         ManualAwake();
 
         pieceOwner.SetOwner(owner);
         pieceController.SetController(owner);
-        party.hero = hero;
-        party.units = units;
 
+        this.party = party;
         name = "P" + owner.id + " - Party";
-        if (hero != null)
+
+        Hero hero = party.hero.slotObj as Hero;
+        Unit relevantUnit = party.GetRelevantUnit();
+
+        if (hero)
         {
             SetAnimatorOverrideController(hero.dbData.classs.animatorField);
         }
         else
         {
-            Unit relevantUnit = units[0];
             SetAnimatorOverrideController(relevantUnit.dbData.animatorField);
         }
 
@@ -60,9 +62,10 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
 
     public void ApplyExperience(int experience)
     {
-        if (party.hero)
+        if (party.hero.slotObj)
         {
-            party.hero.RecalculateExperience(experience);
+            Hero hero = party.hero.slotObj as Hero;
+            hero.RecalculateExperience(experience);
         }
     }
 

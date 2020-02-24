@@ -1,4 +1,4 @@
-﻿public enum PartyElement
+﻿public enum PartyElementType
 {
     HERO,
     CREATURE,

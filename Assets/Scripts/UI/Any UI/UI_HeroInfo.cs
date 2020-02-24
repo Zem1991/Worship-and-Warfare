@@ -20,19 +20,26 @@ public class UI_HeroInfo : MonoBehaviour, IShowableHideable
         gameObject.SetActive(true);
     }
 
+    public void ClearInfo()
+    {
+        if (heroPortrait) heroPortrait.sprite = null;
+        if (txtHeroName) txtHeroName.text = "--";
+        if (txtLevelAndClass) txtLevelAndClass.text = "--";
+    }
+
+    public void RefreshInfo(PartySlot slot)
+    {
+        Hero hero = slot?.slotObj as Hero;
+        RefreshInfo(hero);
+    }
+
     public void RefreshInfo(Hero hero)
     {
-        if (hero != null)
-        {
-            if (heroPortrait) heroPortrait.sprite = hero.dbData.profilePicture;
-            if (txtHeroName) txtHeroName.text = hero.dbData.heroName;
-            if (txtLevelAndClass) txtLevelAndClass.text = "Level " + hero.experienceStats.level + " " + hero.dbData.classs.className;
-        }
-        else
-        {
-            if (heroPortrait) heroPortrait.sprite = null;
-            if (txtHeroName) txtHeroName.text = "--";
-            if (txtLevelAndClass) txtLevelAndClass.text = "--";
-        }
+        ClearInfo();
+        if (hero == null) return;
+
+        if (heroPortrait) heroPortrait.sprite = hero.dbData.profilePicture;
+        if (txtHeroName) txtHeroName.text = hero.dbData.heroName;
+        if (txtLevelAndClass) txtLevelAndClass.text = "Level " + hero.experienceStats.level + " " + hero.dbData.classs.className;
     }
 }

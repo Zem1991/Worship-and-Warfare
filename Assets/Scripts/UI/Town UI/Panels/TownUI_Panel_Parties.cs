@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TownUI_Panel_Parties : AbstractUIPanel
+public class TownUI_Panel_Parties : AUI_PanelDragAndDrop
 {
     [Header("Garrison")]
     public Text txtGarrison;
@@ -15,86 +15,74 @@ public class TownUI_Panel_Parties : AbstractUIPanel
     public UI_HeroInfo visitorHeroInfo;
     public UI_UnitsInfo visitorUnitsInfo;
 
-    [Header("Draggable element handling")]
-    public UI_DraggableElement draggableElement;
-    public bool isDraggingElement = false;
-    public TownUI_PartySlot_Front fuiInvSlotFrontDragged = null;
-
     public void UpdatePanel(Party visitor, Party garrison)
     {
         UpdateVisitor(visitor);
         UpdateGarrison(garrison);
     }
 
-    private void UpdateVisitor(Party visitor)
-    {
-        if (visitor != null)
-        {
-            visitorHeroInfo.RefreshInfo(visitor.hero);
-            visitorUnitsInfo.RefreshInfo(visitor.units);
-        }
-        else
-        {
-            visitorHeroInfo.RefreshInfo(null);
-            visitorUnitsInfo.RefreshInfo(null);
-        }
-    }
-
     private void UpdateGarrison(Party garrison)
     {
         if (garrison != null)
         {
-            garrisonHeroInfo.RefreshInfo(garrison.hero);
-            garrisonUnitsInfo.RefreshInfo(garrison.units);
+            PartySlot hero = garrison.hero;
+            PartySlot[] units = garrison.units;
+            garrisonHeroInfo.RefreshInfo(hero);
+            garrisonUnitsInfo.RefreshInfo(units);
         }
         else
         {
-            garrisonHeroInfo.RefreshInfo(null);
+            garrisonHeroInfo.ClearInfo();
             garrisonUnitsInfo.RefreshInfo(null);
         }
     }
 
-    public void InvSlotBeginDrag(TownUI_PartySlot_Front slotFront)
+    private void UpdateVisitor(Party visitor)
     {
-        InventorySlot invSlot = slotFront.slotBack.invSlot;
-        invSlot.beingDragged = true;
-        invSlot.inventory.RecalculateStats();
-
-        isDraggingElement = true;
-        fuiInvSlotFrontDragged = slotFront;
-    }
-
-    public void InvSlotDrag(TownUI_PartySlot_Front slotFront)
-    {
-        draggableElement.Drag();
-    }
-
-    public void InvSlotDrop(TownUI_PartySlot_Back slotBack)
-    {
-        if (fuiInvSlotFrontDragged)
+        if (visitor != null)
         {
-            InventorySlot actualInvSlot = fuiInvSlotFrontDragged.slotBack.invSlot;
+            PartySlot hero = visitor.hero;
+            PartySlot[] units = visitor.units;
+            visitorHeroInfo.RefreshInfo(hero);
+            visitorUnitsInfo.RefreshInfo(units);
+        }
+        else
+        {
+            visitorHeroInfo.ClearInfo();
+            visitorUnitsInfo.RefreshInfo(null);
+        }
+    }
 
-            if (slotBack)
+    public override void DNDBeginDrag(AUI_DNDSlot_Front slotFront)
+    {
+        TownUI_PartySlot tuiPartySlot = slotFront.slotBack as TownUI_PartySlot;
+
+        PartySlot partySlot = tuiPartySlot.partySlot;
+        partySlot.isBeingDragged = true;
+
+        base.DNDBeginDrag(slotFront);
+    }
+
+    public override void DNDDrop(AUI_DNDSlot slot)
+    {
+        if (slotFrontDragged)
+        {
+            TownUI_PartySlot draggedSlot = slotFrontDragged.slotBack as TownUI_PartySlot;
+            PartySlot actualPartySlot = draggedSlot.partySlot;
+
+            TownUI_PartySlot tuiPartySlot = slot as TownUI_PartySlot;
+            if (tuiPartySlot)
             {
-                Artifact item = actualInvSlot.artifact;
-                if (item && slotBack.invSlot.AddArtifact(item))
+                AbstractPartyElement item = actualPartySlot.slotObj;
+                if (item && tuiPartySlot.partySlot.AddSlotObject(item))
                 {
-                    actualInvSlot.artifact = null;
+                    actualPartySlot.slotObj = null;
                 }
             }
 
-            actualInvSlot.beingDragged = false;
-            actualInvSlot.inventory.RecalculateStats();
+            actualPartySlot.isBeingDragged = false;
         }
 
-        isDraggingElement = false;
-        fuiInvSlotFrontDragged = null;
-    }
-
-    public void InvSlotEndDrag(TownUI_PartySlot_Front slotFront)
-    {
-        if (isDraggingElement) InvSlotDrop(null);
-        draggableElement.EndDrag();
+        base.DNDDrop(slot);
     }
 }

@@ -25,16 +25,17 @@ public class FieldUI_Panel_Selection : AbstractUIPanel
         HideInformations();
         if (!party) return;
 
-        Hero hero = party.party.hero;
+        PartySlot hero = party.party.hero;
         if (hero)
         {
             heroInfo.RefreshInfo(hero);
             heroInfo.Show();
 
-            txtSelectionTitle.text = hero.dbData.heroName + "'s party";
+            Hero actualHero = hero.slotObj as Hero;
+            txtSelectionTitle.text = actualHero.dbData.heroName + "'s party";
         }
 
-        List<Unit> units = party.party.units;
+        PartySlot[] units = party.party.units;
         if (units != null)
         {
             unitsInfo.RefreshInfo(units);

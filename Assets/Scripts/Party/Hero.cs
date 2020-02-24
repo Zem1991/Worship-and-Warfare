@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hero : MonoBehaviour
+public class Hero : AbstractPartyElement
 {
     [Header("Hero parameters")]
     [SerializeField] private int levelUps;
