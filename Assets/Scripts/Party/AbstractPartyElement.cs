@@ -5,4 +5,6 @@ using UnityEngine;
 public abstract class AbstractPartyElement : MonoBehaviour
 {
     public PartyElementType partyElementType;
+
+    public abstract Sprite GetProfileImage();
 }

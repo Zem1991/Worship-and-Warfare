@@ -19,6 +19,8 @@ public class Hero : AbstractPartyElement
 
     public void Initialize(DB_Hero dbData, ExperienceData experienceData, InventoryData inventoryData)
     {
+        partyElementType = PartyElementType.HERO;
+
         CombatPieceStats prefabCPS = AllPrefabs.Instance.combatPieceStats;
         AttributeStats prefabAS = AllPrefabs.Instance.attributeStats;
         ExperienceStats prefabES = AllPrefabs.Instance.experienceStats;
@@ -79,5 +81,10 @@ public class Hero : AbstractPartyElement
         }
         levelUps--;
         return true;
+    }
+
+    public override Sprite GetProfileImage()
+    {
+        return dbData.profilePicture;
     }
 }

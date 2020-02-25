@@ -1434,7 +1434,9 @@
       "hero": {
         "id": "Christian",
         "inventoryData": {
-          "offHandId": 2
+          "offHandId": 2,
+          "trinket1Id":  5,
+          "trinket2Id":  8
         }
       },
       "units": [

@@ -75,6 +75,7 @@ public class FieldPieceHandler : MonoBehaviour
             town.Initialize(dbFaction, townData.townName);
 
             Party garrisonParty = Instantiate(prefabParty, town.transform);
+            garrisonParty.Initialize();
             town.garrison = garrisonParty;
 
             foreach (var townBuildingData in townData.townBuildings)

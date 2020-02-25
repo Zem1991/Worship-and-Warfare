@@ -7,49 +7,32 @@ public class TownUI_Panel_Parties : AUI_PanelDragAndDrop
 {
     [Header("Garrison")]
     public Text txtGarrison;
-    public UI_HeroInfo garrisonHeroInfo;
-    public UI_UnitsInfo garrisonUnitsInfo;
+    public TownUI_PartySlot garrisonHero;
+    public TownUI_PartySlot[] garrisonUnits;
 
     [Header("Visitor")]
     public Text txtVisitor;
-    public UI_HeroInfo visitorHeroInfo;
-    public UI_UnitsInfo visitorUnitsInfo;
+    public TownUI_PartySlot visitorHero;
+    public TownUI_PartySlot[] visitorUnits;
 
-    public void UpdatePanel(Party visitor, Party garrison)
+    public void UpdatePanel(Party garrison, Party visitor)
     {
-        UpdateVisitor(visitor);
-        UpdateGarrison(garrison);
+        UpdateParty(garrison, garrisonHero, garrisonUnits);
+        UpdateParty(visitor, visitorHero, visitorUnits);
     }
 
-    private void UpdateGarrison(Party garrison)
+    private void UpdateParty(Party party, TownUI_PartySlot heroSlot, TownUI_PartySlot[] unitSlots)
     {
-        if (garrison != null)
+        if (party != null)
         {
-            PartySlot hero = garrison.hero;
-            PartySlot[] units = garrison.units;
-            garrisonHeroInfo.RefreshInfo(hero);
-            garrisonUnitsInfo.RefreshInfo(units);
-        }
-        else
-        {
-            garrisonHeroInfo.ClearInfo();
-            garrisonUnitsInfo.RefreshInfo(null);
-        }
-    }
+            PartySlot hero = party.hero;
+            PartySlot[] units = party.units;
 
-    private void UpdateVisitor(Party visitor)
-    {
-        if (visitor != null)
-        {
-            PartySlot hero = visitor.hero;
-            PartySlot[] units = visitor.units;
-            visitorHeroInfo.RefreshInfo(hero);
-            visitorUnitsInfo.RefreshInfo(units);
-        }
-        else
-        {
-            visitorHeroInfo.ClearInfo();
-            visitorUnitsInfo.RefreshInfo(null);
+            heroSlot.UpdateSlot(this, hero);
+            for (int i = 0; i < PartyConstants.MAX_UNITS; i++)
+            {
+                unitSlots[i].UpdateSlot(this, units[i]);
+            }
         }
     }
 

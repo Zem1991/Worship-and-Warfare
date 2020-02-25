@@ -6,9 +6,7 @@ public class TownUI_PartySlot_Front : AUI_DNDSlot_Front
 {
     public override bool CheckSlotFilled()
     {
-        Debug.LogError("NOT DONE");
-        return true;
-        //FieldUI_InventorySlot fuiInvSlot = slotBack as FieldUI_InventorySlot;
-        //return fuiInvSlot.invSlot.artifact;
+        TownUI_PartySlot tuiPartySlot = slotBack as TownUI_PartySlot;
+        return tuiPartySlot.partySlot.slotObj;
     }
 }

@@ -13,6 +13,8 @@ public class Unit : AbstractPartyElement
 
     public void Initialize(DB_Unit dbData, int stack_maximum)
     {
+        partyElementType = PartyElementType.CREATURE;
+
         CombatPieceStats prefabCPS = AllPrefabs.Instance.combatPieceStats;
         StackStats prefabSS = AllPrefabs.Instance.stackStats;
 
@@ -30,5 +32,10 @@ public class Unit : AbstractPartyElement
     {
         if (stackStats.stack_current <= 1) return dbData.nameSingular;
         return dbData.namePlural;
+    }
+
+    public override Sprite GetProfileImage()
+    {
+        return dbData.profilePicture;
     }
 }

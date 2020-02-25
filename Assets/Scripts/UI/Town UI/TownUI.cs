@@ -90,9 +90,9 @@ public class TownUI : AbstractSingleton<TownUI>, IUIScheme, IShowableHideable
         Town town = tm.townPiece.town;
         townPanel.UpdatePanel(town);
 
-        Party visitor = tm.townPiece.visitor.party as Party;
         Party garrison = tm.townPiece.town.garrison as Party;
-        parties.UpdatePanel(visitor, garrison);
+        Party visitor = tm.townPiece.visitor.party as Party;
+        parties.UpdatePanel(garrison, visitor);
     }
 
     public void DestroyTown()

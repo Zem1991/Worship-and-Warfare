@@ -7,12 +7,12 @@ public class PartySlot : AbstractSlot<AbstractPartyElement>
 {
     [Header("Party data")]
     public Party party;
-    public PartyElementType partyElementType;
+    public PartyElementType slotType;
 
-    public void Initialize(Party party, PartyElementType partyElementType)
+    public void Initialize(Party party, PartyElementType slotType)
     {
         this.party = party;
-        this.partyElementType = partyElementType;
+        this.slotType = slotType;
     }
 
     public override bool RemoveSlotObject()
@@ -20,8 +20,9 @@ public class PartySlot : AbstractSlot<AbstractPartyElement>
         throw new System.NotImplementedException();
     }
 
-    public override bool CheckSlotObjectType(AbstractPartyElement sObj)
+    public override bool CheckSlotObjectType(AbstractPartyElement slotObject)
     {
-        return slotObj.partyElementType == partyElementType;
+        bool typeCheck = slotType == slotObject.partyElementType;
+        return typeCheck;
     }
 }
