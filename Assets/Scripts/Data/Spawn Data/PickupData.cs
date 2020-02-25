@@ -13,6 +13,6 @@ public class PickupData
 
     public string artifactId;
 
-    public string unitId;
-    public int unitAmount;
+    //public string unitId;
+    //public int unitAmount;
 }

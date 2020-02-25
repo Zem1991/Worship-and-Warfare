@@ -5,23 +5,27 @@ using UnityEngine;
 public class AllPrefabs : AbstractSingleton<AllPrefabs>
 {
     [Header("Player")]
-    public AIPersonality aiPersonality;
     public Player player;
+    public AIPersonality aiPersonality;
 
-    [Header("Any")]
+    [Header("Town")]
     public Town town;
     public TownBuilding townBuilding;
-    public Hero hero;
-    public Unit unit;
-    public Artifact artifact;
 
     [Header("Party")]
     public Party party;
     public PartySlot partySlot;
+    public Hero hero;
+    public Unit unit;
+
+    [Header("Pickup")]
+    public ResourcePickupPiece2 resourcePickupPiece;
+    public ArtifactPickupPiece2 artifactPickupPiece;
 
     [Header("Inventory")]
     public Inventory inventory;
     public InventorySlot inventorySlot;
+    public Artifact artifact;
 
     [Header("Projectile")]
     public Projectile projectile;
@@ -42,7 +46,6 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
     public FieldTile fieldTile;
     public TownPiece2 fieldTownPiece;
     public PartyPiece2 fieldPartyPiece;
-    public PickupPiece2 fieldPickupPiece;
 
     [Header("UI")]
     public FieldUI_InventorySlot_Holder fuiInvSlotHolder;

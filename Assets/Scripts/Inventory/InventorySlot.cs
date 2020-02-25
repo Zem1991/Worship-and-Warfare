@@ -33,6 +33,24 @@ public class InventorySlot : AbstractSlot<Artifact>
         return item;
     }
 
+    public override bool CheckSlotObjectType(Artifact slotObject)
+    {
+        bool typeCheck = slotType == slotObject.dbData.artifactType;
+        bool anyCheck = slotType == ArtifactType.ANY;
+        return typeCheck || anyCheck;
+    }
+
+    public override bool AddSlotObject(Artifact slotObject)
+    {
+        if (!CheckSlotObjectType(slotObject)) return false;
+        if (HasSlotObject(slotObject)) return false;
+        if (HasSlotObject() && !RemoveSlotObject()) return false;
+
+        slotObj = slotObject;
+        slotObj.transform.parent = transform;
+        return true;
+    }
+
     public override bool RemoveSlotObject()
     {
         if (HasSlotObject())
@@ -42,12 +60,5 @@ public class InventorySlot : AbstractSlot<Artifact>
         }
         slotObj = null;
         return true;
-    }
-
-    public override bool CheckSlotObjectType(Artifact slotObject)
-    {
-        bool typeCheck = slotType == slotObject.dbData.artifactType;
-        bool anyCheck = slotType == ArtifactType.ANY;
-        return typeCheck || anyCheck;
     }
 }

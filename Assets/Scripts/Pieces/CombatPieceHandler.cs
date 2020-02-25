@@ -51,20 +51,24 @@ public class CombatPieceHandler : MonoBehaviour
         if (attackerPiece.party.hero != null)
         {
             Hero hero = attackerPiece.party.hero.slotObj as Hero;
-
-            attackerHero = Instantiate(prefabHero, transform);
-            attackerHero.Initialize(hero, attackerPiece.pieceOwner.GetOwner(), spawnId, false);
-            attackerPieces.Add(attackerHero);
+            if (hero)
+            {
+                attackerHero = Instantiate(prefabHero, transform);
+                attackerHero.Initialize(hero, attackerPiece.pieceOwner.GetOwner(), spawnId, false);
+                attackerPieces.Add(attackerHero);
+            }
         }
 
         spawnId = 1;
         if (defenderPiece.party.hero != null)
         {
             Hero hero = defenderPiece.party.hero.slotObj as Hero;
-
-            defenderHero = Instantiate(prefabHero, transform);
-            defenderHero.Initialize(hero, defenderPiece.pieceOwner.GetOwner(), spawnId, true);
-            defenderPieces.Add(defenderHero);
+            if (hero)
+            {
+                defenderHero = Instantiate(prefabHero, transform);
+                defenderHero.Initialize(hero, defenderPiece.pieceOwner.GetOwner(), spawnId, true);
+                defenderPieces.Add(defenderHero);
+            }
         }
 
         spawnId = 2;

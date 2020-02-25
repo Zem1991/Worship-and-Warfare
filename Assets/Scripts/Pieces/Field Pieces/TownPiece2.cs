@@ -13,8 +13,7 @@ public class TownPiece2 : AbstractFieldPiece2, IStartTurnEndTurn
 
     [Header("Town contents")]
     public Town town;
-    public PartyPiece2 visitor;
-    //public PartyPiece2 garrison;
+    public PartyPiece2 visitorPiece;
 
     protected override void ManualAwake()
     {
@@ -42,6 +41,11 @@ public class TownPiece2 : AbstractFieldPiece2, IStartTurnEndTurn
     protected override void AP2_UpdateAnimatorParameters()
     {
         //Nothing yet...
+    }
+
+    public override string AFP2_GetPieceTitle()
+    {
+        return town.townName;
     }
 
     public void ISTET_StartTurn()

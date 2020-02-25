@@ -7,17 +7,27 @@ public class FieldUI_Panel_Selection : AbstractUIPanel
 {
     public Text txtSelectionTitle;
 
-    public UI_HeroInfo heroInfo;
-    public UI_UnitsInfo unitsInfo;
+    public UI_TownInfo townInfo;
+    public UI_PartyInfo partyInfo;
     public UI_PickupInfo pickupInfo;
 
     public void HideInformations()
     {
         txtSelectionTitle.text = "--";
 
-        heroInfo.Hide();
-        unitsInfo.Hide();
+        townInfo.Hide();
+        partyInfo.Hide();
         pickupInfo.Hide();
+    }
+
+    public void UpdatePanel(TownPiece2 town)
+    {
+        HideInformations();
+        if (!town) return;
+
+        townInfo.RefreshInfo(town);
+        townInfo.Show();
+        txtSelectionTitle.text = town.AFP2_GetPieceTitle();
     }
 
     public void UpdatePanel(PartyPiece2 party)
@@ -25,32 +35,18 @@ public class FieldUI_Panel_Selection : AbstractUIPanel
         HideInformations();
         if (!party) return;
 
-        PartySlot hero = party.party.hero;
-        if (hero)
-        {
-            heroInfo.RefreshInfo(hero);
-            heroInfo.Show();
-
-            Hero actualHero = hero.slotObj as Hero;
-            txtSelectionTitle.text = actualHero.dbData.heroName + "'s party";
-        }
-
-        PartySlot[] units = party.party.units;
-        if (units != null)
-        {
-            unitsInfo.RefreshInfo(units);
-            unitsInfo.Show();
-
-            if (hero == null) txtSelectionTitle.text = "Non-commissioned party";
-        }
+        partyInfo.RefreshInfo(party);
+        partyInfo.Show();
+        txtSelectionTitle.text = party.AFP2_GetPieceTitle();
     }
 
-    public void UpdatePanel(PickupPiece2 pickup)
+    public void UpdatePanel(AbstractPickupPiece2 pickup)
     {
         HideInformations();
         if (!pickup) return;
 
         pickupInfo.RefreshInfo(pickup, txtSelectionTitle);
         pickupInfo.Show();
+        txtSelectionTitle.text = pickup.AFP2_GetPieceTitle();
     }
 }

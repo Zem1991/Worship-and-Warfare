@@ -37,7 +37,7 @@ public class TownUI_Panel_RecruitCreature : AbstractUIPanel
             newTuiRcCo.txtUnitName.text = dbUnit.nameSingular;
             newTuiRcCo.unitImage.sprite = dbUnit.profilePicture;
             newTuiRcCo.txtAvailable.text = "" + 9999; //dbUnit.nameSingular; //TODO add current available amount to recruit
-            newTuiRcCo.inpAmount.text = "";
+            newTuiRcCo.inpAmount.text = "" + 0;
 
             creatureOptions.Add(newTuiRcCo);
         }

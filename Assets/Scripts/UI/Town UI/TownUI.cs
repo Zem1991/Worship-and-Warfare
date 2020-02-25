@@ -91,7 +91,7 @@ public class TownUI : AbstractSingleton<TownUI>, IUIScheme, IShowableHideable
         townPanel.UpdatePanel(town);
 
         Party garrison = tm.townPiece.town.garrison as Party;
-        Party visitor = tm.townPiece.visitor.party as Party;
+        Party visitor = tm.townPiece.town.visitor as Party;
         parties.UpdatePanel(garrison, visitor);
     }
 

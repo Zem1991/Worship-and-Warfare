@@ -44,12 +44,12 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         pieceHandler.CreateAll(towns, parties, pickups);
     }
 
-    public void RemovePiece(PartyPiece2 piece)
+    public void RemoveParty(PartyPiece2 piece)
     {
-        pieceHandler.RemovePiece(piece);
+        pieceHandler.RemoveParty(piece);
     }
 
-    public void RemovePickup(PickupPiece2 pickup)
+    public void RemovePickup(AbstractPickupPiece2 pickup)
     {
         pieceHandler.RemovePickup(pickup);
     }
@@ -93,7 +93,7 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         }
     }
 
-    public void PartyInteraction(PartyPiece2 party, PickupPiece2 pickup)
+    public void PartyInteraction(PartyPiece2 party, AbstractPickupPiece2 pickup)
     {
         switch (pickup.pickupType)
         {
@@ -101,14 +101,13 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
                 Debug.LogWarning("Resource pickup is not supported");
                 break;
             case PickupType.ARTIFACT:
+                ArtifactPickupPiece2 artifactPickup = pickup as ArtifactPickupPiece2;
+
                 Artifact prefab = AllPrefabs.Instance.artifact;
                 Artifact artifact = Instantiate(prefab, transform);
-                artifact.Initialize(pickup.dbArtifact);
+                artifact.Initialize(artifactPickup.dbArtifact);
                 Hero hero = party.party.hero.slotObj as Hero;
                 hero.inventory.AddSlotObject(artifact);
-                break;
-            case PickupType.UNIT:
-                Debug.LogWarning("Unit pickup is not supported");
                 break;
             default:
                 break;
@@ -166,6 +165,18 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
     /*
      * Begin: UI Bottom Right buttons
      */
+    public void Selection_EnterTown()
+    {
+        TownPiece2 selectionPiece = FieldSceneInputs.Instance.executor.selectionPiece as TownPiece2;
+        bool canCommandSelectedPiece = FieldSceneInputs.Instance.executor.canCommandSelectedPiece;
+
+        if (selectionPiece && canCommandSelectedPiece)
+        {
+            TownPiece2 town = FieldSceneInputs.Instance.executor.selectionPiece as TownPiece2;
+            StartCoroutine(GoToTown(null, town));
+        }
+    }
+
     public void Selection_Movement()
     {
         FieldSceneInputs.Instance.executor.MakeSelectedPieceInteract(false);
@@ -173,7 +184,7 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
 
     public void Selection_Inventory()
     {
-        AbstractFieldPiece2 selectionPiece = FieldSceneInputs.Instance.executor.selectionPiece;
+        PartyPiece2 selectionPiece = FieldSceneInputs.Instance.executor.selectionPiece as PartyPiece2;
         bool canCommandSelectedPiece = FieldSceneInputs.Instance.executor.canCommandSelectedPiece;
 
         if (selectionPiece && canCommandSelectedPiece)
@@ -224,17 +235,21 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         //yield return null;
     }
 
-    private IEnumerator GoToTown(PartyPiece2 visitor, TownPiece2 town)
+    private IEnumerator GoToTown(PartyPiece2 visitor, TownPiece2 townPiece)
     {
-        List<PartyPiece2> pieces = new List<PartyPiece2> { visitor };
+        List<PartyPiece2> pieces = new List<PartyPiece2>();
+        if (visitor)
+        {
+            pieces.Add(visitor);
+            townPiece.visitorPiece = visitor;
+        }
+
         yield return
             StartCoroutine(pieceHandler.YieldForIdlePieces(pieces));
 
-        town.visitor = visitor;
-
         FieldSC.Instance.HideScene();
         GameManager.Instance.ChangeSchemes(GameScheme.TOWN);
-        TownManager.Instance.BootTown(town);
+        TownManager.Instance.BootTown(townPiece);
         TownSC.Instance.ShowScene();
     }
 

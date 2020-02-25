@@ -61,42 +61,38 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
         timers.UpdatePanel();
         minimap.UpdatePanel();
 
+        TownPiece2 town = fi.selectionPiece as TownPiece2;
         PartyPiece2 party = fi.selectionPiece as PartyPiece2;
+        AbstractPickupPiece2 pickup = fi.selectionPiece as AbstractPickupPiece2;
         bool canCommandSelectedPiece = fi.canCommandSelectedPiece;
 
-        PickupPiece2 pickup = fi.selectionPiece as PickupPiece2;
-
-        if (party) UpdateWithSelection(party, canCommandSelectedPiece);
+        if (town) UpdateWithSelection(town, canCommandSelectedPiece);
+        else if (party) UpdateWithSelection(party, canCommandSelectedPiece);
         else if (pickup) UpdateWithSelection(pickup);
         else UpdateWithoutSelection();
 
         if (currentWindow == inventory) inventory.UpdatePanel(party);
     }
 
-    private void UpdateWithSelection(PartyPiece2 party, bool canCommandSelectedPiece)
+    private void UpdateWithSelection(TownPiece2 town, bool canCommandSelectedPiece)
     {
-        if (party)
-        {
-            selection.UpdatePanel(party);
-            selection.Show();
-        }
-        else
-        {
-            selection.HideInformations();
-            selection.Hide();
-        }
+        selection.UpdatePanel(town);
+        selection.Show();
 
-        if (canCommandSelectedPiece)
-        {
-            commands.UpdatePanel(party);
-        }
-        else
-        {
-            commands.UpdatePanel();
-        }
+        if (canCommandSelectedPiece) commands.UpdatePanel(town);
+        else commands.UpdatePanel();
     }
 
-    private void UpdateWithSelection(PickupPiece2 pickup)
+    private void UpdateWithSelection(PartyPiece2 party, bool canCommandSelectedPiece)
+    {
+        selection.UpdatePanel(party);
+        selection.Show();
+
+        if (canCommandSelectedPiece) commands.UpdatePanel(party);
+        else commands.UpdatePanel();
+    }
+
+    private void UpdateWithSelection(AbstractPickupPiece2 pickup)
     {
         selection.UpdatePanel(pickup);
         selection.Show();

@@ -21,7 +21,7 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
         for (int i = 0; i < units.Length; i++)
         {
             PartySlot unit = Instantiate(prefabPartySlot, transform);
-            unit.Initialize(this, PartyElementType.CREATURE);
+            unit.Initialize(this, PartyElementType.CREATURE, i);
             units[i] = unit;
         }
     }
@@ -67,27 +67,56 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
         }
     }
 
+    public void TransferContentsFrom(Party party)
+    {
+        Initialize();
+
+        Hero hero = party.hero.slotObj as Hero;
+        if (hero)
+        {
+            this.hero.slotObj = hero;
+            hero.transform.parent = transform;
+            party.hero.slotObj = null;
+        }
+
+        PartySlot[] unitSlots = party.units;
+        for (int i = 0; i < unitSlots.Length; i++)
+        {
+            Unit unit = unitSlots[i].slotObj as Unit;
+            if (unit)
+            {
+                units[i].slotObj = unit;
+                unit.transform.parent = units[i].slotObj.transform;
+                party.units[i].slotObj = null;
+            }
+        }
+    }
+
     public override bool AddSlotObject(AbstractPartyElement item)
     {
         throw new NotImplementedException();
     }
 
-    public void ClearUnits()
+    public void ClearParty()
     {
-        foreach (PartySlot slot in units)
+        if (hero.slotObj)
         {
-            Destroy(slot.slotObj.gameObject);
-            slot.slotObj = null;
+            Destroy(hero.slotObj.gameObject);
         }
+        hero.slotObj = null;
+
+        ClearUnits();
     }
 
-    public void SetUnits(List<Unit> units)
+    public void ClearUnits()
     {
-        ClearUnits();
-
-        for (int i = 0; i < units.Count; i++)
+        foreach (PartySlot unitSlot in units)
         {
-            this.units[i].slotObj = units[i];
+            if (unitSlot.slotObj)
+            {
+                Destroy(unitSlot.slotObj.gameObject);
+            }
+            unitSlot.slotObj = null;
         }
     }
 
@@ -122,5 +151,15 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
             if (unit) return unit;
         }
         return null;
+    }
+
+    public bool HasAnyContent()
+    {
+        if (hero.HasSlotObject()) return true;
+        foreach (PartySlot unit in units)
+        {
+            if (unit.HasSlotObject()) return true;
+        }
+        return false;
     }
 }

@@ -85,6 +85,17 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
         animator.SetFloat("Direction Z", anim_directionZ);
     }
 
+    public override string AFP2_GetPieceTitle()
+    {
+        Hero hero = party.hero.slotObj as Hero;
+        Unit unit = party.GetRelevantUnit();
+
+        string result = "Unknown party piece title";
+        if (hero) result = hero.dbData.heroName + "'s party";
+        else if (unit) result = "Non-commissioned party";
+        return result;
+    }
+
     public void ISTET_StartTurn()
     {
         IMP_ResetMovementPoints();
@@ -131,7 +142,7 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
         {
             TownPiece2 targetTown = targetPiece as TownPiece2;
             PartyPiece2 targetParty = targetPiece as PartyPiece2;
-            PickupPiece2 targetPickup = targetPiece as PickupPiece2;
+            AbstractPickupPiece2 targetPickup = targetPiece as AbstractPickupPiece2;
 
             if (targetTown)
             {

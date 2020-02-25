@@ -27,10 +27,12 @@ public class TownManager : AbstractSingleton<TownManager>, IShowableHideable
 
     public void BootTown(TownPiece2 town)
     {
-        townPiece = town;
-        //visitor = town.visitor;
-        //garrison = town.garrison;
+        if (town.visitorPiece)
+        {
+            town.town.visitor = town.visitorPiece.party;
+        }
 
+        townPiece = town;
         TownUI.Instance.CreateTown();
     }
 
@@ -64,6 +66,21 @@ public class TownManager : AbstractSingleton<TownManager>, IShowableHideable
 
         TownSC.Instance.HideScene();
         GameManager.Instance.ChangeSchemes(GameScheme.FIELD);
+
+        PartyPiece2 visitorPiece = townPiece.visitorPiece;
+        Party visitorParty = townPiece.town.visitor;
+        if (visitorPiece)
+        {
+            if (!visitorPiece.party.HasAnyContent()) FieldManager.Instance.RemoveParty(visitorPiece);
+        }
+        else if (visitorParty.HasAnyContent())
+        {
+            FieldManager.Instance.pieceHandler.CreatePartyFromTown(townPiece, visitorParty);
+        }
+
+        townPiece.visitorPiece = null;
+        visitorParty.ClearParty();
+
         FieldSC.Instance.ShowScene();
     }
 }

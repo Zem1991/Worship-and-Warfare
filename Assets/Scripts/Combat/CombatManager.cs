@@ -338,11 +338,11 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         {
             case CombatResult.ATTACKER_WON:
                 attacker.ApplyExperience(attackerExperience);
-                FieldManager.Instance.RemovePiece(defender);
+                FieldManager.Instance.RemoveParty(defender);
                 break;
             case CombatResult.DEFENDER_WON:
                 defender.ApplyExperience(defenderExperience);
-                FieldManager.Instance.RemovePiece(attacker);
+                FieldManager.Instance.RemoveParty(attacker);
                 break;
         }
 

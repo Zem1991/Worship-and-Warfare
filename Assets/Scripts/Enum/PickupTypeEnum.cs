@@ -1,6 +1,6 @@
 ﻿public enum PickupType
 {
     RESOURCE,
-    ARTIFACT,
-    UNIT
+    ARTIFACT
+    //UNIT
 }

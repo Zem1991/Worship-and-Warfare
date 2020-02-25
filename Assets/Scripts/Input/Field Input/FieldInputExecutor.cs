@@ -18,10 +18,25 @@ public class FieldInputExecutor : AbstractInputExecutor<FieldInputInterpreter, F
     [Header("Interaction data")]
     public bool canCommandSelectedPiece;
 
+    private void EscapeMenu()
+    {
+        if (interpreter.escapeMenuDown) FieldManager.Instance.EscapeMenu();
+    }
+
+    private void ManageExtras()
+    {
+        TownPiece2 town = FieldSceneInputs.Instance.executor.selectionPiece as TownPiece2;
+        if (town && interpreter.inventoryDown) FieldManager.Instance.Selection_EnterTown();
+    }
+
     protected override void ManageWindows()
     {
-        EscapeMenu();
         Inventory();
+    }
+
+    private void Inventory()
+    {
+        if (interpreter.inventoryDown) FieldManager.Instance.Selection_Inventory();
     }
 
     protected override bool HasCurrentWindow()
@@ -31,30 +46,26 @@ public class FieldInputExecutor : AbstractInputExecutor<FieldInputInterpreter, F
 
     public override void ExecuteInputs()
     {
-        ManageWindows();
+        EscapeMenu();
 
-        if (!IsGamePaused() && !HasCurrentWindow())
+        if (!IsGamePaused())
         {
-            CameraControls();
-            CursorChange();
+            ManageExtras();
+            ManageWindows();
 
-            SelectionChange();
-            SelectionCommand();
+            if (!HasCurrentWindow())
+            {
+                CameraControls();
+                CursorChange();
 
-            StopOrResumeCommand();
+                SelectionChange();
+                SelectionCommand();
 
-            EndTurn();
+                StopOrResumeCommand();
+
+                EndTurn();
+            }
         }
-    }
-
-    private void EscapeMenu()
-    {
-        if (interpreter.escapeMenuDown) FieldManager.Instance.EscapeMenu();
-    }
-
-    private void Inventory()
-    {
-        if (interpreter.inventoryDown) FieldManager.Instance.Selection_Inventory();
     }
 
     private void CameraControls()
@@ -99,15 +110,12 @@ public class FieldInputExecutor : AbstractInputExecutor<FieldInputInterpreter, F
             selectionPiece = cursorPiece;
             selectionPos = cursorPos;
 
+            TownPiece2 tp = selectionPiece as TownPiece2;
             PartyPiece2 pp = selectionPiece as PartyPiece2;
-            if (pp)
-            {
-                canCommandSelectedPiece = pp.pieceOwner.GetOwner() == PlayerManager.Instance.localPlayer;
-            }
-            else
-            {
-                canCommandSelectedPiece = false;
-            }
+
+            if (tp) canCommandSelectedPiece = tp.pieceOwner.GetOwner() == PlayerManager.Instance.localPlayer;
+            else if (pp) canCommandSelectedPiece = pp.pieceOwner.GetOwner() == PlayerManager.Instance.localPlayer;
+            else canCommandSelectedPiece = false;
         }
     }
 

@@ -10,7 +10,7 @@ public class FieldPieceHandler : MonoBehaviour
     [Header("Pieces")]
     public List<TownPiece2> townPieces;
     public List<PartyPiece2> partyPieces;
-    public List<PickupPiece2> pickupPieces;
+    public List<AbstractPickupPiece2> pickupPieces;
 
     public void RemoveAll()
     {
@@ -24,7 +24,7 @@ public class FieldPieceHandler : MonoBehaviour
         {
             foreach (var item in pickupPieces) Destroy(item.gameObject);
         }
-        pickupPieces = new List<PickupPiece2>();
+        pickupPieces = new List<AbstractPickupPiece2>();
     }
 
     public void CreateAll(List<TownData> towns, List<PartyData> parties, List<PickupData> pickups)
@@ -76,7 +76,13 @@ public class FieldPieceHandler : MonoBehaviour
 
             Party garrisonParty = Instantiate(prefabParty, town.transform);
             garrisonParty.Initialize();
+            garrisonParty.name = "Garrison";
             town.garrison = garrisonParty;
+
+            Party visitorParty = Instantiate(prefabParty, town.transform);
+            visitorParty.Initialize();
+            visitorParty.name = "Visitor";
+            town.visitor = visitorParty;
 
             foreach (var townBuildingData in townData.townBuildings)
             {
@@ -99,7 +105,7 @@ public class FieldPieceHandler : MonoBehaviour
         FieldManager fm = FieldManager.Instance;
         FieldMap fieldMap = fm.mapHandler.map;
 
-        PartyPiece2 prefabPiece = AllPrefabs.Instance.fieldPartyPiece;
+        PartyPiece2 prefabPartyPiece = AllPrefabs.Instance.fieldPartyPiece;
         Party prefabParty = AllPrefabs.Instance.party;
 
         partyPieces = new List<PartyPiece2>();
@@ -114,10 +120,12 @@ public class FieldPieceHandler : MonoBehaviour
             Vector3 pos = fieldTile.transform.position;
             Quaternion rot = Quaternion.identity;
 
-            PartyPiece2 newParty = Instantiate(prefabPiece, pos, rot, transform);
+            PartyPiece2 newParty = Instantiate(prefabPartyPiece, pos, rot, transform);
+
             Player owner = pm.allPlayers[partyData.ownerId - 1];
             Party party = Instantiate(prefabParty, newParty.transform);
             party.Initialize(partyData);
+
             newParty.Initialize(owner, party);
 
             newParty.currentTile = fieldTile;
@@ -130,15 +138,15 @@ public class FieldPieceHandler : MonoBehaviour
     {
         if (pickups == null) return;
 
+        ResourcePickupPiece2 prefabResourcePiece = AllPrefabs.Instance.resourcePickupPiece;
+        ArtifactPickupPiece2 prefabArtifactPiece = AllPrefabs.Instance.artifactPickupPiece;
+
         AbstractDBContentHandler<DB_Artifact> dbArtifacts = DBHandler_Artifact.Instance;
-        AbstractDBContentHandler<DB_Unit> dbUnits = DBHandler_Unit.Instance;
 
         FieldManager fm = FieldManager.Instance;
         FieldMap fieldMap = fm.mapHandler.map;
 
-        PickupPiece2 prefabPiece = AllPrefabs.Instance.fieldPickupPiece;
-
-        pickupPieces = new List<PickupPiece2>();
+        pickupPieces = new List<AbstractPickupPiece2>();
 
         foreach (var pData in pickups)
         {
@@ -150,34 +158,72 @@ public class FieldPieceHandler : MonoBehaviour
             Vector3 pos = fieldTile.transform.position;
             Quaternion rot = Quaternion.identity;
 
-            PickupPiece2 newPiece = Instantiate(prefabPiece, pos, rot, transform);
-            pickupPieces.Add(newPiece);
-
-            newPiece.currentTile = fieldTile;
-            newPiece.currentTile.occupantPiece = newPiece;
+            AbstractPickupPiece2 newPiece = null;
             switch (pData.pickupType)
             {
                 case PickupType.RESOURCE:
-                    Debug.LogError("No support for resource pickups!");
+                    newPiece = CreateResourcePickup(prefabResourcePiece, pos, rot, pData);
                     break;
                 case PickupType.ARTIFACT:
-                    newPiece.Initialize(dbArtifacts.Select(pData.artifactId));
-                    break;
-                case PickupType.UNIT:
-                    newPiece.Initialize(dbUnits.Select(pData.unitId), pData.unitAmount);
+                    newPiece = CreateArtifactPickup(prefabArtifactPiece, pos, rot, dbArtifacts, pData);
                     break;
             }
+            newPiece.currentTile = fieldTile;
+            newPiece.currentTile.occupantPiece = newPiece;
+            pickupPieces.Add(newPiece);
         }
     }
 
-    public void RemovePiece(PartyPiece2 piece)
+    public void CreatePartyFromTown(TownPiece2 townPiece, Party party)
+    {
+        PartyPiece2 prefabPartyPiece = AllPrefabs.Instance.fieldPartyPiece;
+        Party prefabParty = AllPrefabs.Instance.party;
+
+        FieldManager fm = FieldManager.Instance;
+        FieldMap fieldMap = fm.mapHandler.map;
+
+        int posX = townPiece.currentTile.posId.x;
+        int posY = townPiece.currentTile.posId.y + 1;   //TODO better position?
+
+        Vector2Int tileId = new Vector2Int(posX, posY);
+        FieldTile fieldTile = fieldMap.tiles[tileId];
+        Vector3 pos = fieldTile.transform.position;
+        Quaternion rot = Quaternion.identity;
+
+        PartyPiece2 newPartyPiece = Instantiate(prefabPartyPiece, pos, rot, transform);
+
+        Party newParty = Instantiate(prefabParty, newPartyPiece.transform);
+        newParty.TransferContentsFrom(party);
+
+        newPartyPiece.Initialize(townPiece.pieceOwner.GetOwner(), newParty);
+
+        newPartyPiece.currentTile = fieldTile;
+        newPartyPiece.currentTile.occupantPiece = newPartyPiece;
+        partyPieces.Add(newPartyPiece);
+    }
+
+    public void RemoveParty(PartyPiece2 piece)
     {
         partyPieces.Remove(piece);
         piece.currentTile.occupantPiece = null;
         Destroy(piece.gameObject);
     }
 
-    public void RemovePickup(PickupPiece2 pickup)
+    public ResourcePickupPiece2 CreateResourcePickup(ResourcePickupPiece2 prefabPiece, Vector3 pos, Quaternion rot, PickupData pickupData)
+    {
+        ResourcePickupPiece2 newPiece = Instantiate(prefabPiece, pos, rot, transform);
+        newPiece.Initialize(pickupData.resourceType, pickupData.resourceAmount);
+        return newPiece;
+    }
+
+    public ArtifactPickupPiece2 CreateArtifactPickup(ArtifactPickupPiece2 prefabPiece, Vector3 pos, Quaternion rot, AbstractDBContentHandler<DB_Artifact> dbArtifacts, PickupData pickupData)
+    {
+        ArtifactPickupPiece2 newPiece = Instantiate(prefabPiece, pos, rot, transform);
+        newPiece.Initialize(dbArtifacts.Select(pickupData.artifactId));
+        return newPiece;
+    }
+
+    public void RemovePickup(AbstractPickupPiece2 pickup)
     {
         pickupPieces.Remove(pickup);
         pickup.currentTile.occupantPiece = null;
