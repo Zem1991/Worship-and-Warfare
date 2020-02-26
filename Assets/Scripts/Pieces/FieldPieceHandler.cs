@@ -141,6 +141,7 @@ public class FieldPieceHandler : MonoBehaviour
         ResourcePickupPiece2 prefabResourcePiece = AllPrefabs.Instance.resourcePickupPiece;
         ArtifactPickupPiece2 prefabArtifactPiece = AllPrefabs.Instance.artifactPickupPiece;
 
+        AbstractDBContentHandler<DB_Resource> dbResources = DBHandler_Resource.Instance;
         AbstractDBContentHandler<DB_Artifact> dbArtifacts = DBHandler_Artifact.Instance;
 
         FieldManager fm = FieldManager.Instance;
@@ -162,7 +163,7 @@ public class FieldPieceHandler : MonoBehaviour
             switch (pData.pickupType)
             {
                 case PickupType.RESOURCE:
-                    newPiece = CreateResourcePickup(prefabResourcePiece, pos, rot, pData);
+                    newPiece = CreateResourcePickup(prefabResourcePiece, pos, rot, dbResources, pData);
                     break;
                 case PickupType.ARTIFACT:
                     newPiece = CreateArtifactPickup(prefabArtifactPiece, pos, rot, dbArtifacts, pData);
@@ -209,10 +210,10 @@ public class FieldPieceHandler : MonoBehaviour
         Destroy(piece.gameObject);
     }
 
-    public ResourcePickupPiece2 CreateResourcePickup(ResourcePickupPiece2 prefabPiece, Vector3 pos, Quaternion rot, PickupData pickupData)
+    public ResourcePickupPiece2 CreateResourcePickup(ResourcePickupPiece2 prefabPiece, Vector3 pos, Quaternion rot, AbstractDBContentHandler<DB_Resource> dbResources, PickupData pickupData)
     {
         ResourcePickupPiece2 newPiece = Instantiate(prefabPiece, pos, rot, transform);
-        newPiece.Initialize(pickupData.resourceType, pickupData.resourceAmount);
+        newPiece.Initialize(dbResources.Select(pickupData.resourceType.ToString()), pickupData.resourceAmount);
         return newPiece;
     }
 

@@ -32,7 +32,7 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
 
     [Header("Stats - Combatant")]
     public CombatPieceStats combatPieceStats;
-    public CostStats costStats;
+    public ResourceStats resourceStats;
     public AttackStats attackStats;
 
     [Header("Stats - Hero")]

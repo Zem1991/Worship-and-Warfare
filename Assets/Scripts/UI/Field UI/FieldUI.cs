@@ -54,10 +54,11 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
 
     public void UpdatePanels()
     {
+        Player player = PlayerManager.Instance.localPlayer;
         FieldInputExecutor fi = FieldSceneInputs.Instance.executor;
 
         coreButtons.UpdatePanel();
-        resources.UpdatePanel();
+        resources.UpdatePanel(player);
         timers.UpdatePanel();
         minimap.UpdatePanel();
 

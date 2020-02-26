@@ -6,16 +6,18 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Identification")]
-    public int id;
-    public PlayerType type;
-    public AIPersonality aiPersonality;
-    //public Color color;
-    public DB_Color dbColor;
     public string playerName;
+    public PlayerType type;
+    public int id;
+    public DB_Color dbColor;
+    public AIPersonality aiPersonality;
 
-    [Header("Game Data")]
+    [Header("Stats")]
+    public ResourceStats resourceStats;
+
+    [Header("Pieces")]
     public DBHandler_Faction faction;
-    public long gold;
+    public List<TownPiece2> townPieces = new List<TownPiece2>();
     public List<PartyPiece2> partyPieces = new List<PartyPiece2>();
 
     [Header("Game Flow")]
@@ -24,12 +26,13 @@ public class Player : MonoBehaviour
 
     public void Initialize(PlayerData data, int id, DB_Color dbColor)
     {
-        type = data.playerType;
-        //color = PlayerManager.PLAYER_COLORS[data.colorId];
         playerName = data.name;
+        type = data.playerType;
 
         this.id = id;
         this.dbColor = dbColor;
+
+        resourceStats.Initialize(data.resourceData);
 
         if (type == PlayerType.COMPUTER)
         {

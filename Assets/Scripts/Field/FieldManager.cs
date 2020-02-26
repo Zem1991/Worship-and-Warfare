@@ -98,11 +98,34 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         switch (pickup.pickupType)
         {
             case PickupType.RESOURCE:
-                Debug.LogWarning("Resource pickup is not supported");
+                ResourcePickupPiece2 resourcePickup = pickup as ResourcePickupPiece2;
+                Player owner = party.pieceOwner.GetOwner();
+                ResourceStats resources = owner.resourceStats;
+                long amount = resourcePickup.resourceAmount;
+                switch (resourcePickup.dbResource.resourceType)
+                {
+                    case ResourceType.GOLD:
+                        resources.gold += amount;
+                        break;
+                    case ResourceType.ORE:
+                        resources.ore += amount;
+                        break;
+                    case ResourceType.ALE:
+                        resources.ale += amount;
+                        break;
+                    case ResourceType.CRYSTALS:
+                        resources.crystals += amount;
+                        break;
+                    case ResourceType.SULPHUR:
+                        resources.sulphur += amount;
+                        break;
+                    default:
+                        Debug.LogError("Resource not found: " + resourcePickup.dbResource.resourceType);
+                        break;
+                }
                 break;
             case PickupType.ARTIFACT:
                 ArtifactPickupPiece2 artifactPickup = pickup as ArtifactPickupPiece2;
-
                 Artifact prefab = AllPrefabs.Instance.artifact;
                 Artifact artifact = Instantiate(prefab, transform);
                 artifact.Initialize(artifactPickup.dbArtifact);

@@ -5,6 +5,7 @@ using UnityEngine;
 public class DatabaseManager : AbstractSingleton<DatabaseManager>
 {
     [Header("Database Contents")]
+    [SerializeField] private DBHandler_Resource resources;
     [SerializeField] private DBHandler_Color colors;
     [SerializeField] private DBHandler_Artifact artifacts;
     [SerializeField] private DBHandler_Spell spells;
@@ -25,6 +26,7 @@ public class DatabaseManager : AbstractSingleton<DatabaseManager>
 
     public override void Awake()
     {
+        resources = GetComponentInChildren<DBHandler_Resource>();
         colors = GetComponentInChildren<DBHandler_Color>();
         artifacts = GetComponentInChildren<DBHandler_Artifact>();
         spells = GetComponentInChildren<DBHandler_Spell>();

@@ -6,7 +6,7 @@ using UnityEngine;
 public class CombatPieceStats : MonoBehaviour
 {
     [Header("Cost")]
-    public CostStats costStats;
+    public ResourceStats resourceStats;
 
     [Header("Offense")]
     public AttackStats attack_melee;
@@ -34,7 +34,7 @@ public class CombatPieceStats : MonoBehaviour
 
     public void Initialize(CombatPieceStats combatPieceStats)
     {
-        CostStats prefabCS = AllPrefabs.Instance.costStats;
+        ResourceStats prefabRS = AllPrefabs.Instance.resourceStats;
         AttackStats prefabAS = AllPrefabs.Instance.attackStats;
 
         armor_physical = combatPieceStats.armor_physical;
@@ -47,8 +47,8 @@ public class CombatPieceStats : MonoBehaviour
         movementRange = combatPieceStats.movementRange;
         movementType = combatPieceStats.movementType;
 
-        costStats = Instantiate(prefabCS, transform);
-        costStats.Initialize(); //TODO add data
+        resourceStats = Instantiate(prefabRS, transform);
+        resourceStats.Initialize(null);
 
         attack_melee = Instantiate(prefabAS, transform);
         attack_melee.Initialize(combatPieceStats.attack_melee);

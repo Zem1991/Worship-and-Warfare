@@ -7,14 +7,19 @@
   },
   "players": [
     {
-      "playerType": "Human",
+      "name": "Human",
       "colorId": "Red",
-      "name": "Human"
+      "playerType": "Human",
+      "resourceData": {
+        "gold": 2500,
+        "ore": 10,
+        "ale": 10
+      }
     },
     {
-      "playerType": "Computer",
+      "name": "Computer",
       "colorId": "Blue",
-      "name": "Computer"
+      "playerType": "Computer"
     }
   ],
   "map": {
@@ -1628,8 +1633,26 @@
   "pickups": [
     {
       "mapPosition": [
+        4,
+        3
+      ],
+      "pickupType": "RESOURCE",
+      "resourceType": "Gold",
+      "resourceAmount": 500
+    },
+    {
+      "mapPosition": [
         2,
-        15//2
+        12
+      ],
+      "pickupType": "RESOURCE",
+      "resourceType": "Ore",
+      "resourceAmount": 5
+    },
+    {
+      "mapPosition": [
+        2,
+        15
       ],
       "pickupType": "ARTIFACT",
       "artifactId": 9

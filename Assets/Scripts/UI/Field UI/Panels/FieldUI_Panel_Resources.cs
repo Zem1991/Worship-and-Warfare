@@ -11,8 +11,12 @@ public class FieldUI_Panel_Resources : AbstractUIPanel
     public Text txtCrystals;
     public Text txtSulphur;
 
-    public void UpdatePanel()
+    public void UpdatePanel(Player player)
     {
-
+        txtGold.text = "" + player.resourceStats.gold;
+        txtOre.text = "" + player.resourceStats.ore;
+        txtAle.text = "" + player.resourceStats.ale;
+        txtCrystals.text = "" + player.resourceStats.crystals;
+        txtSulphur.text = "" + player.resourceStats.sulphur;
     }
 }

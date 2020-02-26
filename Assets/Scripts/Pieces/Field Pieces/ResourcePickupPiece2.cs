@@ -5,16 +5,18 @@ using UnityEngine;
 public class ResourcePickupPiece2 : AbstractPickupPiece2
 {
     [Header("Resource pickup?")]
-    public ResourceType resourceType;
+    public DB_Resource dbResource;
     public int resourceAmount;
 
-    public void Initialize(ResourceType resourceType, int resourceAmount)
+    public void Initialize(DB_Resource dbResource, int resourceAmount)
     {
+        name = "Resource pickup: " + resourceAmount + " units of " + dbResource.resourceName;
         pickupType = PickupType.RESOURCE;
-        this.resourceType = resourceType;
+
+        this.dbResource = dbResource;
         this.resourceAmount = resourceAmount;
 
-        name = "Resource pickup: " + resourceAmount + " units of " + resourceType;
+        SetMainSprite(dbResource.spritePickup, SpriteOrderConstants.PIECE);
     }
 
     protected override void AP2_UpdateAnimatorParameters()
@@ -24,6 +26,6 @@ public class ResourcePickupPiece2 : AbstractPickupPiece2
 
     public override string AFP2_GetPieceTitle()
     {
-        return resourceType + " (" + resourceAmount + ")";
+        return dbResource.resourceName + " (" + resourceAmount + ")";
     }
 }

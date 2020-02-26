@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerData
 {
-    public PlayerType playerType;
-    public string colorId;
     public string name;
+    public string colorId;
+    public PlayerType playerType;
+    public ResourceData resourceData;
 }
