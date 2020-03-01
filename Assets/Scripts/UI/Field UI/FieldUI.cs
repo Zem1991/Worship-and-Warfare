@@ -14,6 +14,7 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
 
     [Header("Windows")]
     public FieldUI_Panel_EscapeMenu escapeMenu;
+    public FieldUI_Panel_TradeScreen tradeScreen;
     public FieldUI_Panel_Inventory inventory;
 
     [Header("Current Window")]
@@ -31,6 +32,7 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
         commands.Hide();
 
         EscapeMenuHide();
+        TradeScreenHide();
         InventoryHide();
     }
 
@@ -49,6 +51,7 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
     public void CloseCurrentWindow()
     {
         if (currentWindow == escapeMenu) EscapeMenuHide();
+        if (currentWindow == tradeScreen) TradeScreenHide();
         if (currentWindow == inventory) InventoryHide();
     }
 
@@ -72,7 +75,16 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
         else if (pickup) UpdateWithSelection(pickup);
         else UpdateWithoutSelection();
 
-        if (currentWindow == inventory) inventory.UpdatePanel(party);
+        if (currentWindow == tradeScreen)
+        {
+            PartyPiece2 targetParty = party.targetPiece as PartyPiece2;
+            tradeScreen.UpdatePanel(party, targetParty);
+        }
+
+        if (currentWindow == inventory)
+        {
+            inventory.UpdatePanel(party);
+        }
     }
 
     private void UpdateWithSelection(TownPiece2 town, bool canCommandSelectedPiece)
@@ -120,6 +132,20 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
     {
         escapeMenu.Show();
         currentWindow = escapeMenu;
+    }
+
+    public void TradeScreenHide()
+    {
+        tradeScreen.DNDEndDrag();
+        tradeScreen.Hide();
+        currentWindow = null;
+        UIManager.Instance.PointerExit(tradeScreen);
+    }
+
+    public void TradeScreenShow(PartyPiece2 left, PartyPiece2 right)
+    {
+        tradeScreen.Show();
+        currentWindow = tradeScreen;
     }
 
     public void InventoryHide()

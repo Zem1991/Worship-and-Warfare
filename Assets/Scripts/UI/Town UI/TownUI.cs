@@ -79,10 +79,11 @@ public class TownUI : AbstractSingleton<TownUI>, IUIScheme, IShowableHideable
 
     public void UpdatePanels()
     {
+        Player player = PlayerManager.Instance.localPlayer;
         TownManager tm = TownManager.Instance;
 
         coreButtons.UpdatePanel();
-        resources.UpdatePanel();
+        resources.UpdatePanel(player);
         timers.UpdatePanel();
         minimap.UpdatePanel();
         crest.UpdatePanel();

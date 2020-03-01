@@ -68,11 +68,11 @@ public class FieldPieceHandler : MonoBehaviour
             string factionId = townData.factionId;
             DB_Faction dbFaction = dbFactions.Select(factionId);
 
-            TownPiece2 newPiece = Instantiate(prefabTownPiece, pos, rot, transform);
-            townPieces.Add(newPiece);
+            TownPiece2 newTownPiece = Instantiate(prefabTownPiece, pos, rot, transform);
+            townPieces.Add(newTownPiece);
 
-            Town town = Instantiate(prefabTown, newPiece.transform);
-            town.Initialize(dbFaction, townData.townName);
+            Town town = Instantiate(prefabTown, newTownPiece.transform);
+            town.Initialize(dbFaction, newTownPiece, townData.townName);
 
             Party garrisonParty = Instantiate(prefabParty, town.transform);
             garrisonParty.Initialize();
@@ -88,12 +88,12 @@ public class FieldPieceHandler : MonoBehaviour
             {
                 string townBuildingId = townBuildingData.townBuildingId;
                 DB_TownBuilding dbTownBuilding = dbTownBuildings.Select(townBuildingId);
-                town.BuildStructure(dbTownBuilding);
+                town.BuildStructure(dbTownBuilding, true);
             }
 
-            newPiece.currentTile = fieldTile;
-            newPiece.currentTile.occupantPiece = newPiece;
-            newPiece.Initialize(owner, town);
+            newTownPiece.currentTile = fieldTile;
+            newTownPiece.currentTile.occupantPiece = newTownPiece;
+            newTownPiece.Initialize(owner, town);
         }
     }
 

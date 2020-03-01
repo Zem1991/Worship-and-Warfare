@@ -11,7 +11,7 @@
       "colorId": "Red",
       "playerType": "Human",
       "resourceData": {
-        "gold": 2500,
+        "gold": 10000,
         "ore": 10,
         "ale": 10
       }
@@ -1638,7 +1638,7 @@
       ],
       "pickupType": "RESOURCE",
       "resourceType": "Gold",
-      "resourceAmount": 500
+      "resourceAmount": 50000
     },
     {
       "mapPosition": [
@@ -1647,6 +1647,24 @@
       ],
       "pickupType": "RESOURCE",
       "resourceType": "Ore",
+      "resourceAmount": 30
+    },
+    {
+      "mapPosition": [
+        3,
+        12
+      ],
+      "pickupType": "RESOURCE",
+      "resourceType": "Crystals",
+      "resourceAmount": 5
+    },
+    {
+      "mapPosition": [
+        2,
+        11
+      ],
+      "pickupType": "RESOURCE",
+      "resourceType": "Sulphur",
       "resourceAmount": 5
     },
     {

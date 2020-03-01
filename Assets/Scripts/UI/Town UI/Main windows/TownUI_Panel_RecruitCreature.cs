@@ -7,6 +7,7 @@ public class TownUI_Panel_RecruitCreature : AbstractUIPanel
 {
     [Header("UI Elements")]
     public RectTransform creatureOptionsHolder;
+    public Text txtDescriptionAndCosts;
     public Button btnCancel;
     public Button btnRecruit;
 
@@ -36,11 +37,27 @@ public class TownUI_Panel_RecruitCreature : AbstractUIPanel
             newTuiRcCo.dbUnit = dbUnit;
             newTuiRcCo.txtUnitName.text = dbUnit.nameSingular;
             newTuiRcCo.unitImage.sprite = dbUnit.profilePicture;
-            newTuiRcCo.txtAvailable.text = "" + 9999; //dbUnit.nameSingular; //TODO add current available amount to recruit
+            newTuiRcCo.txtAvailable.text = "" + 9999;       //dbUnit.nameSingular; //TODO add current available amount to recruit
             newTuiRcCo.inpAmount.text = "" + 0;
 
             creatureOptions.Add(newTuiRcCo);
         }
+    }
+
+    public void CheckAmounts()
+    {
+        TownManager tm = TownManager.Instance;
+        Player owner = tm.townPiece.pieceOwner.GetOwner();
+
+        Dictionary<ResourceStats, int> costs = new Dictionary<ResourceStats, int>();
+        foreach (TownUI_Panel_RecruitCreature_CreatureOption option in creatureOptions)
+        {
+            ResourceStats optionCosts = option.dbUnit.resourceStats;
+            costs.Add(option.dbUnit.resourceStats, option.amount);
+        }
+
+        txtDescriptionAndCosts.text = owner.resourceStats.WrittenForm(costs);
+        btnRecruit.interactable = owner.resourceStats.CanAfford(costs);
     }
 
     public void RecruitCreatures()

@@ -7,6 +7,7 @@ public class TownUI_Panel_RecruitHero : AbstractUIPanel
 {
     [Header("UI Elements")]
     public RectTransform heroOptionsHolder;
+    public Text txtDescriptionAndCosts;
     public Button btnCancel;
     public Button btnRecruit;
 
@@ -54,13 +55,25 @@ public class TownUI_Panel_RecruitHero : AbstractUIPanel
     public void SelectOption(TownUI_Panel_RecruitHero_HeroOption selectedOption)
     {
         this.selectedOption = selectedOption;
-        btnRecruit.interactable = true;
+
+        TownManager tm = TownManager.Instance;
+        Player owner = tm.townPiece.pieceOwner.GetOwner();
+
+        DB_Hero dbHero = selectedOption.dbHero;
+        Dictionary<ResourceStats, int> costs = dbHero.classs.resourceStats.GetCosts(1);
+
+        txtDescriptionAndCosts.text = dbHero.classs.GetDescriptionWithCosts();
+        btnRecruit.interactable = owner.resourceStats.CanAfford(costs);
     }
 
     public void RecruitHero()
     {
         TownManager tm = TownManager.Instance;
         Town town = tm.townPiece.town;
+
+        Player owner = tm.townPiece.pieceOwner.GetOwner();
+        Dictionary<ResourceStats, int> costs = selectedOption.dbHero.classs.resourceStats.GetCosts(1);
+        owner.resourceStats.Subtract(costs);
 
         TownUI townUI = TownUI.Instance;
         townUI.CloseCurrentWindow();

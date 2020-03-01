@@ -85,7 +85,7 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
     {
         if (party.pieceOwner.GetOwner() == defender.pieceOwner.GetOwner())
         {
-            PerformExchange(party, defender);
+            TradeScreen(party, defender);
         }
         else
         {
@@ -252,10 +252,9 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         }
     }
 
-    private void PerformExchange(AbstractFieldPiece2 sender, AbstractFieldPiece2 receiver)
+    private void TradeScreen(PartyPiece2 sender, PartyPiece2 receiver)
     {
-        Debug.Log("PIECES ARE EXCHANGING STUFF");
-        //yield return null;
+        FieldUI.Instance.TradeScreenShow(sender, receiver);
     }
 
     private IEnumerator GoToTown(PartyPiece2 visitor, TownPiece2 townPiece)

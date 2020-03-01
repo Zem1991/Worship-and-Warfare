@@ -10,9 +10,18 @@ public class DB_TownBuilding : AbstractDBContent
     public string buildingDescription;
     public Rect rect;
 
+    [Header("Stats")]
+    public ResourceStats resourceStats;
+
     //[Header("Animations")]
     //public AnimatorOverrideController animator;
 
     [Header("References")]
     public DB_Faction faction;
+
+    public string GetDescriptionWithCosts()
+    {
+        Dictionary<ResourceStats, int> costs = new Dictionary<ResourceStats, int> { [resourceStats] = 1 };
+        return buildingDescription + "\n" + "Costs: " + resourceStats.WrittenForm(costs);
+    }
 }

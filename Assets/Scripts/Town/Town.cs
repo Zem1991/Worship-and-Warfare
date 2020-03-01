@@ -6,6 +6,7 @@ using UnityEngine;
 public class Town : MonoBehaviour
 {
     public string townName;
+    public TownPiece2 townPiece;
 
     [Header("Garrison")]
     public Party garrison;
@@ -23,9 +24,11 @@ public class Town : MonoBehaviour
     [Header("Database reference")]
     public DB_Faction dbFaction;
 
-    public void Initialize(DB_Faction dbFaction, string townName = null)
+    public void Initialize(DB_Faction dbFaction, TownPiece2 townPiece, string townName = null)
     {
         string selectedName = townName != null ? townName : dbFaction.townNames[0];     //TODO get random name
+
+        this.townPiece = townPiece;
 
         this.dbFaction = dbFaction;
         this.townName = selectedName;
@@ -44,8 +47,15 @@ public class Town : MonoBehaviour
         return result;
     }
 
-    public TownBuilding BuildStructure(DB_TownBuilding dbTownBuilding)
+    public TownBuilding BuildStructure(DB_TownBuilding dbTownBuilding, bool forFree = false)
     {
+        if (!forFree)
+        {
+            Player owner = townPiece.pieceOwner.GetOwner();
+            Dictionary<ResourceStats, int> costs = dbTownBuilding.resourceStats.GetCosts(1);
+            owner.resourceStats.Subtract(costs);
+        }
+
         TownBuilding prefab = AllPrefabs.Instance.townBuilding;
         TownBuilding newTB = Instantiate(prefab, transform);
         newTB.Initialize(dbTownBuilding);

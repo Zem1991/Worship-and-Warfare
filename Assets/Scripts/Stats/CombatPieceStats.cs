@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class CombatPieceStats : MonoBehaviour
 {
-    [Header("Cost")]
-    public ResourceStats resourceStats;
-
     [Header("Offense")]
     public AttackStats attack_melee;
     public AttackStats attack_ranged;
@@ -34,7 +31,7 @@ public class CombatPieceStats : MonoBehaviour
 
     public void Initialize(CombatPieceStats combatPieceStats)
     {
-        ResourceStats prefabRS = AllPrefabs.Instance.resourceStats;
+        //ResourceStats prefabRS = AllPrefabs.Instance.resourceStats;
         AttackStats prefabAS = AllPrefabs.Instance.attackStats;
 
         armor_physical = combatPieceStats.armor_physical;
@@ -47,8 +44,8 @@ public class CombatPieceStats : MonoBehaviour
         movementRange = combatPieceStats.movementRange;
         movementType = combatPieceStats.movementType;
 
-        resourceStats = Instantiate(prefabRS, transform);
-        resourceStats.Initialize(null);
+        //resourceStats = Instantiate(prefabRS, transform);
+        //resourceStats.Initialize(null);
 
         attack_melee = Instantiate(prefabAS, transform);
         attack_melee.Initialize(combatPieceStats.attack_melee);

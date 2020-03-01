@@ -60,20 +60,25 @@ public class FieldUI_Panel_Inventory : AUI_PanelDragAndDrop
         if (slotFrontDragged)
         {
             FieldUI_InventorySlot draggedSlot = slotFrontDragged.slotBack as FieldUI_InventorySlot;
-            InventorySlot actualInvSlot = draggedSlot.invSlot;
+            InventorySlot sourceInvSlot = draggedSlot.invSlot;
+            Inventory sourceInv = sourceInvSlot.inventory;
 
-            FieldUI_InventorySlot fuiInvSlot = slot as FieldUI_InventorySlot;
-            if (fuiInvSlot)
+            FieldUI_InventorySlot targetInvSlot = slot as FieldUI_InventorySlot;
+            Inventory targetInv = null;
+
+            if (targetInvSlot)
             {
-                Artifact item = actualInvSlot.slotObj;
-                if (item && fuiInvSlot.invSlot.AddSlotObject(item))
+                targetInv = targetInvSlot.invSlot.inventory;
+                Artifact item = sourceInvSlot.slotObj;
+                if (item && targetInvSlot.invSlot.AddSlotObject(item))
                 {
-                    actualInvSlot.slotObj = null;
+                    sourceInvSlot.slotObj = null;
                 }
             }
 
-            actualInvSlot.isBeingDragged = false;
-            actualInvSlot.inventory.RecalculateStats();
+            sourceInvSlot.isBeingDragged = false;
+            sourceInv.RecalculateStats();
+            if (targetInv && sourceInv != targetInv) targetInv.RecalculateStats();
         }
 
         base.DNDDrop(slot);

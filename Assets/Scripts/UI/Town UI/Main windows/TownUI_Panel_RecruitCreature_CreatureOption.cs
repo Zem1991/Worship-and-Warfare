@@ -15,6 +15,7 @@ public class TownUI_Panel_RecruitCreature_CreatureOption : MonoBehaviour
     [Header("Dynamic reference")]
     public TownUI_Panel_RecruitCreature parentPanel;
     public DB_Unit dbUnit;
+    public int amount;
 
     public void CheckAmountRange()
     {
@@ -22,5 +23,7 @@ public class TownUI_Panel_RecruitCreature_CreatureOption : MonoBehaviour
         if (parsed) amount = Mathf.Clamp(amount, 0, 9999);
         else amount = 0;
         inpAmount.text = "" + amount;
+        this.amount = amount;
+        parentPanel.CheckAmounts();
     }
 }

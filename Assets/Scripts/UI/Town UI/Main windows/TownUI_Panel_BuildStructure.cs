@@ -7,6 +7,7 @@ public class TownUI_Panel_BuildStructure : AbstractUIPanel
 {
     [Header("UI Elements")]
     public RectTransform structureOptionsHolder;
+    public Text txtDescriptionAndCosts;
     public Button btnCancel;
     public Button btnBuild;
 
@@ -18,6 +19,8 @@ public class TownUI_Panel_BuildStructure : AbstractUIPanel
     {
         foreach (TownUI_Panel_BuildStructure_StructureOption item in structureOptions) Destroy(item.gameObject);
         structureOptions.Clear();
+
+        txtDescriptionAndCosts.text = "";
 
         btnBuild.interactable = false;
         selectedOption = null;
@@ -63,7 +66,22 @@ public class TownUI_Panel_BuildStructure : AbstractUIPanel
     public void SelectOption(TownUI_Panel_BuildStructure_StructureOption selectedOption)
     {
         this.selectedOption = selectedOption;
-        btnBuild.interactable = !selectedOption.townBuilding;
+        if (!selectedOption.townBuilding)
+        {
+            TownManager tm = TownManager.Instance;
+            Player owner = tm.townPiece.pieceOwner.GetOwner();
+
+            DB_TownBuilding dbTownBuilding = selectedOption.dbTownBuilding;
+            Dictionary<ResourceStats, int> costs = dbTownBuilding.resourceStats.GetCosts(1);
+
+            txtDescriptionAndCosts.text =  dbTownBuilding.GetDescriptionWithCosts();
+            btnBuild.interactable = owner.resourceStats.CanAfford(costs);
+        }
+        else
+        {
+            txtDescriptionAndCosts.text = "Already built.";
+            btnBuild.interactable = false;
+        }
     }
 
     public void BuildStructure()

@@ -12,6 +12,7 @@ public class DB_Unit : AbstractDBContent
     public int tier;
 
     [Header("Stats")]
+    public ResourceStats resourceStats;
     public CombatPieceStats combatPieceStats;
 
     [Header("Animations")]
