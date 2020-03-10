@@ -40,6 +40,6 @@ public class UI_HeroInfo : MonoBehaviour, IShowableHideable
 
         if (heroPortrait) heroPortrait.sprite = hero.dbData.profilePicture;
         if (txtHeroName) txtHeroName.text = hero.dbData.heroName;
-        if (txtLevelAndClass) txtLevelAndClass.text = "Level " + hero.experienceStats.level + " " + hero.dbData.classs.className;
+        if (txtLevelAndClass) txtLevelAndClass.text = "Level " + hero.experienceStats.level + " " + hero.dbData.heroClass.className;
     }
 }

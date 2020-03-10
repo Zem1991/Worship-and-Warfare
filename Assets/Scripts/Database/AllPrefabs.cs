@@ -47,14 +47,6 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
     public TownPiece2 fieldTownPiece;
     public PartyPiece2 fieldPartyPiece;
 
-    [Header("UI")]
-    public FieldUI_InventorySlot_Holder fuiInvSlotHolder;
-    public CombatUI_TurnSequenceItem cuiTurnSequenceItem;
-    public TownUI_Building tuiBuilding;
-    public TownUI_Panel_BuildStructure_StructureOption tuiStructureOption;
-    public TownUI_Panel_RecruitHero_HeroOption tuiHeroOption;
-    public TownUI_Panel_RecruitCreature_CreatureOption tuiCreatureOption;
-
     [Header("Combat - Scene")]
     public CombatTile combatTile;
     public CombatantHeroPiece2 combatHeroPiece;
@@ -63,4 +55,17 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
 
     [Header("Highlight")]
     public Highlight highlight;
+
+    //[Header("Field UI")]
+    //public FieldUI_InventorySlot_Holder fuiInvSlotHolder;
+    //public FieldUI_Panel_LevelUp_AttributeOption fuiAttributeOption;
+
+    [Header("Combat UI")]
+    public CombatUI_TurnSequenceItem cuiTurnSequenceItem;
+
+    [Header("Town UI")]
+    public TownUI_Building tuiBuilding;
+    public TownUI_Panel_BuildStructure_StructureOption tuiStructureOption;
+    public TownUI_Panel_RecruitHero_HeroOption tuiHeroOption;
+    public TownUI_Panel_RecruitCreature_CreatureOption tuiCreatureOption;
 }

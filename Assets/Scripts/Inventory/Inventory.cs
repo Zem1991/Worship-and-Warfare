@@ -21,12 +21,14 @@ public class Inventory : AbstractSlotContainer<InventorySlot, Artifact>
     public InventorySlot trinket4;
     public List<InventorySlot> backpack = new List<InventorySlot>();
 
-    [Header("Parameters")]
-    public int atrCommand;
-    public int atrOffense;
-    public int atrDefense;
-    public int atrPower;
-    public int atrFocus;
+    [Header("Stats")]
+    public AttributeStats attributeStats;
+    //public int atrOffense;
+    //public int atrDefense;
+    //public int atrSupport;
+    //public int atrCommand;
+    //public int atrMagic;
+    //public int atrTech;
 
     private List<InventorySlot> parameterSlots = new List<InventorySlot>();
 
@@ -67,11 +69,11 @@ public class Inventory : AbstractSlotContainer<InventorySlot, Artifact>
         parameterSlots.Add(offHand);
 
         helmet = Instantiate(prefabInventorySlot, transform);
-        helmet.Initialize(this, ArtifactType.HELMET, he);
+        helmet.Initialize(this, ArtifactType.HEAD, he);
         parameterSlots.Add(helmet);
 
         armor = Instantiate(prefabInventorySlot, transform);
-        armor.Initialize(this, ArtifactType.ARMOR, ar);
+        armor.Initialize(this, ArtifactType.TORSO, ar);
         parameterSlots.Add(armor);
 
         trinket1 = Instantiate(prefabInventorySlot, transform);
@@ -104,10 +106,10 @@ public class Inventory : AbstractSlotContainer<InventorySlot, Artifact>
             case ArtifactType.OFF_HAND:
                 slot = offHand;
                 break;
-            case ArtifactType.HELMET:
+            case ArtifactType.HEAD:
                 slot = helmet;
                 break;
-            case ArtifactType.ARMOR:
+            case ArtifactType.TORSO:
                 slot = armor;
                 break;
         }
@@ -137,29 +139,32 @@ public class Inventory : AbstractSlotContainer<InventorySlot, Artifact>
 
     public void RecalculateStats()
     {
-        int atrCommand = 0;
         int atrOffense = 0;
         int atrDefense = 0;
-        int atrPower = 0;
-        int atrFocus = 0;
+        int atrSupport = 0;
+        int atrCommand = 0;
+        int atrMagic = 0;
+        int atrTech = 0;
 
         foreach (InventorySlot invSlot in parameterSlots)
         {
             Artifact artifact = invSlot.slotObj;
             if (!artifact || invSlot.isBeingDragged) continue;
 
-            atrCommand += artifact.dbData.atrCommand;
-            atrOffense += artifact.dbData.atrOffense;
-            atrDefense += artifact.dbData.atrDefense;
-            atrPower += artifact.dbData.atrPower;
-            atrFocus += artifact.dbData.atrFocus;
+            atrOffense += artifact.dbData.attributeStats.atrOffense;
+            atrDefense += artifact.dbData.attributeStats.atrDefense;
+            atrSupport += artifact.dbData.attributeStats.atrSupport;
+            atrCommand += artifact.dbData.attributeStats.atrCommand;
+            atrMagic += artifact.dbData.attributeStats.atrMagic;
+            atrTech += artifact.dbData.attributeStats.atrTech;
         }
 
-        this.atrCommand = atrCommand;
-        this.atrOffense = atrOffense;
-        this.atrDefense = atrDefense;
-        this.atrPower = atrPower;
-        this.atrFocus = atrFocus;
+        attributeStats.atrOffense = atrOffense;
+        attributeStats.atrDefense = atrDefense;
+        attributeStats.atrSupport = atrSupport;
+        attributeStats.atrCommand = atrCommand;
+        attributeStats.atrMagic = atrMagic;
+        attributeStats.atrTech = atrTech;
 
         hero.RecalculateStats();
     }

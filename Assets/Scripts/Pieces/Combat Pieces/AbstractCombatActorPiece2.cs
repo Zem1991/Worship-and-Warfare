@@ -105,6 +105,10 @@ public abstract class AbstractCombatActorPiece2 : AbstractCombatPiece2, IStartTu
         (currentTile as CombatTile).deadPieces.Add(this);
         CombatManager.Instance.RemoveUnitFromTurnSequence(this);
     }
+    public virtual void Die()
+    {
+        StartCoroutine(DamagedDead());
+    }
     /*
     *   END:        Take damage, become either hurt or dead
     */

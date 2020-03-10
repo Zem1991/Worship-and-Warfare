@@ -5,6 +5,7 @@ using UnityEngine;
 public class DatabaseManager : AbstractSingleton<DatabaseManager>
 {
     [Header("Database Contents")]
+    [SerializeField] private DBHandler_Attribute attributes;
     [SerializeField] private DBHandler_Resource resources;
     [SerializeField] private DBHandler_Color colors;
     [SerializeField] private DBHandler_Artifact artifacts;
@@ -14,7 +15,7 @@ public class DatabaseManager : AbstractSingleton<DatabaseManager>
     [SerializeField] private DBHandler_Ability abilities;
     [SerializeField] private DBHandler_Faction factions;
     [SerializeField] private DBHandler_TownBuilding townBuildings;
-    [SerializeField] private DBHandler_Class classes;
+    [SerializeField] private DBHandler_HeroClass classes;
     [SerializeField] private DBHandler_Hero heroes;
     [SerializeField] private DBHandler_Unit units;
     [SerializeField] private DBHandler_Element elements;
@@ -26,6 +27,7 @@ public class DatabaseManager : AbstractSingleton<DatabaseManager>
 
     public override void Awake()
     {
+        attributes = GetComponentInChildren<DBHandler_Attribute>();
         resources = GetComponentInChildren<DBHandler_Resource>();
         colors = GetComponentInChildren<DBHandler_Color>();
         artifacts = GetComponentInChildren<DBHandler_Artifact>();
@@ -35,7 +37,7 @@ public class DatabaseManager : AbstractSingleton<DatabaseManager>
         abilities = GetComponentInChildren<DBHandler_Ability>();
         factions = GetComponentInChildren<DBHandler_Faction>();
         townBuildings = GetComponentInChildren<DBHandler_TownBuilding>();
-        classes = GetComponentInChildren<DBHandler_Class>();
+        classes = GetComponentInChildren<DBHandler_HeroClass>();
         heroes = GetComponentInChildren<DBHandler_Hero>();
         units = GetComponentInChildren<DBHandler_Unit>();
         elements = GetComponentInChildren<DBHandler_Element>();

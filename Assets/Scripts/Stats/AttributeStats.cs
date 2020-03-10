@@ -6,28 +6,30 @@ using UnityEngine;
 public class AttributeStats : MonoBehaviour
 {
     [Header("Attributes")]
-    public int atrCommand;
     public int atrOffense;
     public int atrDefense;
-    public int atrPower;
-    public int atrFocus;
-    public int atrCraft;
+    public int atrSupport;
+    public int atrCommand;
+    public int atrMagic;
+    public int atrTech;
 
     public void Initialize(AttributeStats attributeStats)
     {
-        atrCommand = attributeStats.atrCommand;
         atrOffense = attributeStats.atrOffense;
         atrDefense = attributeStats.atrDefense;
-        atrPower = attributeStats.atrPower;
-        atrFocus = attributeStats.atrFocus;
+        atrSupport = attributeStats.atrSupport;
+        atrCommand = attributeStats.atrCommand;
+        atrMagic = attributeStats.atrMagic;
+        atrTech = attributeStats.atrTech;
     }
 
-    public void RecalculateStats(AttributeStats attributeStats, Inventory inventory)
+    public static void RecalculateStats(AttributeStats attributeStats, AttributeStats levelUp, DB_HeroClass dbHeroClass, Inventory inventory)
     {
-        atrCommand = attributeStats.atrCommand + inventory.atrCommand;
-        atrOffense = attributeStats.atrOffense + inventory.atrOffense;
-        atrDefense = attributeStats.atrDefense + inventory.atrDefense;
-        atrPower = attributeStats.atrPower + inventory.atrPower;
-        atrFocus = attributeStats.atrFocus + inventory.atrFocus;
+        attributeStats.atrOffense = levelUp.atrOffense +    dbHeroClass.attributeStats.atrOffense +     inventory.attributeStats.atrOffense;
+        attributeStats.atrDefense = levelUp.atrDefense +    dbHeroClass.attributeStats.atrDefense +     inventory.attributeStats.atrDefense;
+        attributeStats.atrSupport = levelUp.atrSupport +    dbHeroClass.attributeStats.atrSupport +     inventory.attributeStats.atrSupport;
+        attributeStats.atrCommand = levelUp.atrCommand +    dbHeroClass.attributeStats.atrCommand +     inventory.attributeStats.atrCommand;
+        attributeStats.atrMagic =   levelUp.atrMagic +      dbHeroClass.attributeStats.atrMagic +       inventory.attributeStats.atrMagic;
+        attributeStats.atrTech =    levelUp.atrTech +       dbHeroClass.attributeStats.atrTech +        inventory.attributeStats.atrTech;
     }
 }

@@ -6,13 +6,12 @@ public static class ExperienceCalculation
 {
     public static int CalculateExperienceToLevel(int targetLevel)
     {
-        int expSum = 0;
-        if (targetLevel > 1) expSum += 1000;
-
-        int lvlSum = 1;
+        //TODO base exp value per level, will it be 100 or 1000?
+        int expSum = 100;
+        int lvlSum = 2;
         while (lvlSum < targetLevel)
         {
-            expSum += (int)(expSum * 1.1F);
+            expSum = (int)(expSum * 1.2F);
             lvlSum++;
         }
         return expSum;
@@ -21,20 +20,22 @@ public static class ExperienceCalculation
     public static int CalculateLevelUps(int currentLevel, int currentExperience)
     {
         int levelUps = 0;
+        int expToNext = 0;
         int nextLevel = currentLevel + 1;
         while (true)
         {
-            int expToNext = CalculateExperienceToLevel(nextLevel);
+            expToNext += CalculateExperienceToLevel(nextLevel);
             if (expToNext <= currentExperience)
             {
                 levelUps++;
+                nextLevel++;
             }
             else
             {
                 break;
             }
         }
-        levelUps -= currentLevel;
+        levelUps -= (currentLevel - 1);
         return levelUps;
     }
 
@@ -59,7 +60,7 @@ public static class ExperienceCalculation
         int result = 0;
         if (hero.stateDead)
         {
-            result = hero.combatPieceStats.hitPoints_maximum;
+            result = 150;
             result += hero.hero.experienceStats.level * 50;
         }
         return result;
@@ -71,7 +72,7 @@ public static class ExperienceCalculation
         int stackDif = unit.unit.stackStats.stack_maximum - unit.stackStats.stack_current;
         if (stackDif > 0)
         {
-            result = unit.combatPieceStats.hitPoints_maximum;
+            result = unit.unit.dbData.experienceValue;
             result *= stackDif;
         }
         return result;

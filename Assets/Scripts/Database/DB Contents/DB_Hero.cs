@@ -8,5 +8,5 @@ public class DB_Hero : AbstractDBContent
     public Sprite profilePicture;
 
     [Header("References")]
-    public DB_Class classs;
+    public DB_HeroClass heroClass;
 }

@@ -3,12 +3,10 @@
     ANY,
     MAIN_HAND,
     OFF_HAND,
-    HELMET,
-    ARMOR,
+    HEAD,
+    TORSO,
+    BACK,
+    NECK,
+    FINGER,
     TRINKET
-}
-
-public static class ArtifactTypeExtension
-{
-
 }

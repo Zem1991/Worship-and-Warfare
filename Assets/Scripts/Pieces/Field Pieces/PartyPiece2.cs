@@ -45,7 +45,7 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
 
         if (hero)
         {
-            SetAnimatorOverrideController(hero.dbData.classs.animatorField);
+            SetAnimatorOverrideController(hero.dbData.heroClass.animatorField);
         }
         else
         {
@@ -60,13 +60,20 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
         IMP_ResetMovementPoints();
     }
 
-    public void ApplyExperience(int experience)
+    public bool ApplyExperience()
+    {
+        return ApplyExperience(0);
+    }
+
+    public bool ApplyExperience(int amountToAdd)
     {
         if (party.hero.slotObj)
         {
             Hero hero = party.hero.slotObj as Hero;
-            hero.RecalculateExperience(experience);
+            hero.RecalculateExperience(amountToAdd);
+            return hero.levelUps > 0;
         }
+        return false;
     }
 
     protected override void AP2_UpdateAnimatorParameters()

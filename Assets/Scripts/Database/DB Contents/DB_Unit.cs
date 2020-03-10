@@ -10,6 +10,7 @@ public class DB_Unit : AbstractDBContent
 
     [Header("Unit settings")]
     public int tier;
+    public int experienceValue;
 
     [Header("Stats")]
     public ResourceStats resourceStats;

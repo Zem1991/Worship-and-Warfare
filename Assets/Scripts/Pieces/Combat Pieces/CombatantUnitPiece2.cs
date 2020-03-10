@@ -52,4 +52,10 @@ public class CombatantUnitPiece2 : AbstractCombatantPiece2
         if (defeated) yield return StartCoroutine(DamagedDead());
         else yield return StartCoroutine(DamagedHurt());
     }
+
+    public override void Die()
+    {
+        stackStats.stack_current = 0;
+        base.Die();
+    }
 }

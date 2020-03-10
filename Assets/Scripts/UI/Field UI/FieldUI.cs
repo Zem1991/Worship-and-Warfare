@@ -12,10 +12,13 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
     public FieldUI_Panel_Selection selection;
     public FieldUI_Panel_Commands commands;
 
-    [Header("Windows")]
+    [Header("Main windows")]
     public FieldUI_Panel_EscapeMenu escapeMenu;
     public FieldUI_Panel_TradeScreen tradeScreen;
     public FieldUI_Panel_Inventory inventory;
+
+    [Header("Other windows")]
+    public FieldUI_Panel_LevelUp levelUp;
 
     [Header("Current Window")]
     public AbstractUIPanel currentWindow;
@@ -34,6 +37,8 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
         EscapeMenuHide();
         TradeScreenHide();
         InventoryHide();
+
+        LevelUpHide();
     }
 
     public void Show()
@@ -121,19 +126,18 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
         commands.UpdatePanel();
     }
 
+    //BEGIN:    Main windows options
     public void EscapeMenuHide()
     {
         escapeMenu.Hide();
         currentWindow = null;
         UIManager.Instance.PointerExit(escapeMenu);
     }
-
     public void EscapeMenuShow()
     {
         escapeMenu.Show();
         currentWindow = escapeMenu;
     }
-
     public void TradeScreenHide()
     {
         tradeScreen.DNDEndDrag();
@@ -141,13 +145,11 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
         currentWindow = null;
         UIManager.Instance.PointerExit(tradeScreen);
     }
-
     public void TradeScreenShow(PartyPiece2 left, PartyPiece2 right)
     {
         tradeScreen.Show();
         currentWindow = tradeScreen;
     }
-
     public void InventoryHide()
     {
         inventory.DNDEndDrag();
@@ -155,10 +157,24 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
         currentWindow = null;
         UIManager.Instance.PointerExit(inventory);
     }
-
     public void InventoryShow(AbstractFieldPiece2 selectionPiece)
     {
         inventory.Show();
         currentWindow = inventory;
     }
+    //END:      Main windows options
+
+    //BEGIN:    Other windows options
+    public void LevelUpHide()
+    {
+        levelUp.Hide();
+        currentWindow = null;
+        UIManager.Instance.PointerExit(levelUp);
+    }
+    public void LevelUpShow(Hero hero)
+    {
+        levelUp.Show();
+        currentWindow = levelUp;
+    }
+    //END:      Other windows options
 }

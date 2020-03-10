@@ -36,12 +36,12 @@ public class CombatantHeroPiece2 : AbstractCombatantPiece2
         //ExperienceStats prefabES = AllPrefabs.Instance.experienceStats;
 
         this.hero = hero;
-        name = "P" + owner.id + " - " + hero.dbData.heroName + ", " + hero.dbData.classs.className;
+        name = "P" + owner.id + " - " + hero.dbData.heroName + ", " + hero.dbData.heroClass.className;
 
         attributeStats = Instantiate(prefabAS, transform);
         attributeStats.Initialize(hero.attributeStats);
 
         IMP_ResetMovementPoints();
-        SetAnimatorOverrideController(hero.dbData.classs.animatorCombat);
+        SetAnimatorOverrideController(hero.dbData.heroClass.animatorCombat);
     }
 }

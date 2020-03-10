@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class DB_Artifact : AbstractDBContent
 {
-    [Header("Artifact identification")]
+    [Header("Identification")]
     public string artifactName;
     public ArtifactType artifactType;
     public ArtifactRarity artifactRarity;
     public Sprite image;
     public string artifactDescription;
 
-    [Header("Artifact parameters")]
-    public int atrCommand;
-    public int atrOffense;
-    public int atrDefense;
-    public int atrPower;
-    public int atrFocus;
+    [Header("Stats")]
+    public AttributeStats attributeStats;
 }

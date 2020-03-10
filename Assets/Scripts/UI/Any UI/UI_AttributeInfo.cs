@@ -6,11 +6,12 @@ using UnityEngine.UI;
 
 public class UI_AttributeInfo : MonoBehaviour, IShowableHideable
 {
-    public Text txtCommand;
     public Text txtOffense;
     public Text txtDefense;
-    public Text txtPower;
-    public Text txtFocus;
+    public Text txtSupport;
+    public Text txtCommand;
+    public Text txtMagic;
+    public Text txtTech;
 
     public void Hide()
     {
@@ -26,19 +27,20 @@ public class UI_AttributeInfo : MonoBehaviour, IShowableHideable
     {
         if (attributeStats != null)
         {
-            txtCommand.text = attributeStats.atrCommand.ToString();
             txtOffense.text = attributeStats.atrOffense.ToString();
             txtDefense.text = attributeStats.atrDefense.ToString();
-            txtPower.text = attributeStats.atrPower.ToString();
-            txtFocus.text = attributeStats.atrFocus.ToString();
+            txtSupport.text = attributeStats.atrSupport.ToString();
+            txtCommand.text = attributeStats.atrCommand.ToString();
+            txtMagic.text = attributeStats.atrMagic.ToString();
+            txtTech.text = attributeStats.atrTech.ToString();
         }
         else
         {
             txtCommand.text = "--";
             txtOffense.text = "--";
             txtDefense.text = "--";
-            txtPower.text = "--";
-            txtFocus.text = "--";
+            txtMagic.text = "--";
+            txtTech.text = "--";
         }
     }
 }

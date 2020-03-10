@@ -28,14 +28,14 @@ public class Unit : AbstractPartyElement
         stackStats.Initialize(stack_maximum);
     }
 
+    public override Sprite GetProfileImage()
+    {
+        return dbData.profilePicture;
+    }
+
     public string GetName()
     {
         if (stackStats.stack_current <= 1) return dbData.nameSingular;
         return dbData.namePlural;
-    }
-
-    public override Sprite GetProfileImage()
-    {
-        return dbData.profilePicture;
     }
 }

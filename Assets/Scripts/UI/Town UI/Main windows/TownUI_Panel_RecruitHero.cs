@@ -30,11 +30,11 @@ public class TownUI_Panel_RecruitHero : AbstractUIPanel
 
         TownManager tm = TownManager.Instance;
         Town town = tm.townPiece.town;
-        List<DB_Class> dbClasses = town.dbFaction.factionTree.GetHeroClasses();
+        List<DB_HeroClass> dbClasses = town.dbFaction.factionTree.GetHeroClasses();
 
         TownUI_Panel_RecruitHero_HeroOption prefab = AllPrefabs.Instance.tuiHeroOption;
 
-        foreach (DB_Class dbClass in dbClasses)
+        foreach (DB_HeroClass dbClass in dbClasses)
         {
             List<DB_Hero> dbHeroes = town.dbFaction.factionTree.GetHeroes(dbClass);
             if (dbHeroes.Count <= 0) continue;
@@ -60,9 +60,9 @@ public class TownUI_Panel_RecruitHero : AbstractUIPanel
         Player owner = tm.townPiece.pieceOwner.GetOwner();
 
         DB_Hero dbHero = selectedOption.dbHero;
-        Dictionary<ResourceStats, int> costs = dbHero.classs.resourceStats.GetCosts(1);
+        Dictionary<ResourceStats, int> costs = dbHero.heroClass.resourceStats.GetCosts(1);
 
-        txtDescriptionAndCosts.text = dbHero.classs.GetDescriptionWithCosts();
+        txtDescriptionAndCosts.text = dbHero.heroClass.GetDescriptionWithCosts();
         btnRecruit.interactable = owner.resourceStats.CanAfford(costs);
     }
 
@@ -72,7 +72,7 @@ public class TownUI_Panel_RecruitHero : AbstractUIPanel
         Town town = tm.townPiece.town;
 
         Player owner = tm.townPiece.pieceOwner.GetOwner();
-        Dictionary<ResourceStats, int> costs = selectedOption.dbHero.classs.resourceStats.GetCosts(1);
+        Dictionary<ResourceStats, int> costs = selectedOption.dbHero.heroClass.resourceStats.GetCosts(1);
         owner.resourceStats.Subtract(costs);
 
         TownUI townUI = TownUI.Instance;

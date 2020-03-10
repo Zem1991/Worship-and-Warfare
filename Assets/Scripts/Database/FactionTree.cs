@@ -13,9 +13,9 @@ public class FactionTree : MonoBehaviour
     public DB_TownBuilding workshop;
 
     [Header("Hero classes")]
-    public DB_Class heroClassMight;
-    public DB_Class heroClassMagic;
-    public DB_Class heroClassTech;
+    public DB_HeroClass heroClassMight;
+    public DB_HeroClass heroClassMagic;
+    public DB_HeroClass heroClassTech;
 
     [Header("Units")]
     public DB_Unit unitTier1;
@@ -38,22 +38,22 @@ public class FactionTree : MonoBehaviour
         return result;
     }
 
-    public List<DB_Class> GetHeroClasses()
+    public List<DB_HeroClass> GetHeroClasses()
     {
-        List<DB_Class> result = new List<DB_Class>();
+        List<DB_HeroClass> result = new List<DB_HeroClass>();
         if (heroClassMight) result.Add(heroClassMight);
         if (heroClassMagic) result.Add(heroClassMagic);
         if (heroClassTech) result.Add(heroClassTech);
         return result;
     }
 
-    public List<DB_Hero> GetHeroes(DB_Class heroClass)
+    public List<DB_Hero> GetHeroes(DB_HeroClass heroClass)
     {
         List<DB_Hero> result = new List<DB_Hero>();
         List<DB_Hero> heroes = DBHandler_Hero.Instance.SelectAll();
         foreach (DB_Hero hero in heroes)
         {
-            if (hero.classs == heroClass) result.Add(hero);
+            if (hero.heroClass == heroClass) result.Add(hero);
         }
         return result;
     }

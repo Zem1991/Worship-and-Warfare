@@ -191,4 +191,12 @@ public class CombatPieceHandler : MonoBehaviour
         result.AddRange(defenderPieces);
         return result;
     }
+
+    public void KillEmAll(List<AbstractCombatActorPiece2> pieces)
+    {
+        foreach (var item in pieces)
+        {
+            item.Die();
+        }
+    }
 }

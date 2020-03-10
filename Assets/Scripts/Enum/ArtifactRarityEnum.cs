@@ -1,12 +1,7 @@
 ﻿public enum ArtifactRarity
 {
-    COMMON,
+    TREASURE,
     MINOR,
     MAJOR,
     RELIC
-}
-
-public static class ArtifactRarityExtension
-{
-
 }

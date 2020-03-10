@@ -48,7 +48,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     public void TerminateCombat()
     {
         mapHandler.ClearMap();
-        pieceHandler.Remove();
+        //pieceHandler.Remove();
 
         combatStarted = false;
         currentTurn = 0;
@@ -59,6 +59,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
     public void BootCombat(PartyPiece2 attackerParty, PartyPiece2 defenderParty, DB_Tileset tileset)
     {
+        pieceHandler.Remove();
         result = CombatResult.NOT_FINISHED;
 
         attackerPlayer = attackerParty.pieceOwner.GetOwner();
@@ -206,15 +207,35 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     public void CombatEndForceVictory()
     {
         Player localPlayer = PlayerManager.Instance.localPlayer;
-        if (attackerPlayer == localPlayer) CombatEnd(CombatResult.ATTACKER_WON);
-        else if (defenderPlayer == localPlayer) CombatEnd(CombatResult.DEFENDER_WON);
+        if (attackerPlayer == localPlayer)
+        {
+            List<AbstractCombatActorPiece2> piecesToKill = pieceHandler.defenderPieces;
+            pieceHandler.KillEmAll(piecesToKill);
+            CombatEnd(CombatResult.ATTACKER_WON);
+        }
+        else if (defenderPlayer == localPlayer)
+        {
+            List<AbstractCombatActorPiece2> piecesToKill = pieceHandler.attackerPieces;
+            pieceHandler.KillEmAll(piecesToKill);
+            CombatEnd(CombatResult.DEFENDER_WON);
+        }
     }
 
     public void CombatEndForceDefeat()
     {
         Player localPlayer = PlayerManager.Instance.localPlayer;
-        if (attackerPlayer == localPlayer) CombatEnd(CombatResult.DEFENDER_WON);
-        else if (defenderPlayer == localPlayer) CombatEnd(CombatResult.ATTACKER_WON);
+        if (attackerPlayer == localPlayer)
+        {
+            List<AbstractCombatActorPiece2> piecesToKill = pieceHandler.attackerPieces;
+            pieceHandler.KillEmAll(piecesToKill);
+            CombatEnd(CombatResult.DEFENDER_WON);
+        }
+        else if (defenderPlayer == localPlayer)
+        {
+            List<AbstractCombatActorPiece2> piecesToKill = pieceHandler.defenderPieces;
+            pieceHandler.KillEmAll(piecesToKill);
+            CombatEnd(CombatResult.ATTACKER_WON);
+        }
     }
 
     public void CombatEndConfirm()
@@ -334,19 +355,42 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
         FieldSC.Instance.ShowScene();
 
+        PartyPiece2 victor = null;
+        int expBounty = 0;
+        PartyPiece2 defeated = null;
+
         switch (result)
         {
             case CombatResult.ATTACKER_WON:
-                attacker.ApplyExperience(attackerExperience);
-                FieldManager.Instance.RemoveParty(defender);
+                victor = attacker;
+                expBounty = attackerExperience;
+                defeated = defender;
                 break;
             case CombatResult.DEFENDER_WON:
-                defender.ApplyExperience(defenderExperience);
-                FieldManager.Instance.RemoveParty(attacker);
+                victor = defender;
+                expBounty = defenderExperience;
+                defeated = attacker;
                 break;
         }
+        FieldManager.Instance.RemoveParty(defeated);
 
-        //TODO add the call for the level up window here
+        //TODO move this apply experience/levelup thing to the FieldManager
+        bool hasLevelUp = victor.ApplyExperience(expBounty);
+        //while (hasLevelUp)
+        //{
+        //TODO don't use this while
+        if (hasLevelUp)
+        {
+            Hero hero = victor.party.hero.slotObj as Hero;
+            FieldUI fui = FieldUI.Instance;
+            fui.levelUp.UpdatePanel(hero);
+            fui.LevelUpShow(hero);
+            hasLevelUp = victor.ApplyExperience();
+        }
+        //}
+
+        //Combat scene cleanups
+        pieceHandler.Remove();
 
         FieldSceneInputs.Instance.executor.MakeSelectedPieceInteract(false);
         //FieldInputs.Instance.ResetHighlights();

@@ -23,7 +23,7 @@ public class UI_CombatActorInspector_OtherStats : MonoBehaviour
 
             if (hero)
             {
-                txtFaction.text = hero.hero.dbData.classs.faction.factionName;
+                txtFaction.text = hero.hero.dbData.heroClass.faction.factionName;
                 txtTier.text = "Hero";
             }
             else if (unit)
