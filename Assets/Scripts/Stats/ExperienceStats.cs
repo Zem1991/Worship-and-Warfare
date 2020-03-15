@@ -24,6 +24,6 @@ public class ExperienceStats : MonoBehaviour
         }
 
         level = experienceData.level;
-        experience = 0;     // experienceData.experience;   //TODO calculate experience from current level somewhere
+        experience = ExperienceCalculation.CalculateExperienceToLevel(level);
     }
 }

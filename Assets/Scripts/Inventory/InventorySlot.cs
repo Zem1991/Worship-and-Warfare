@@ -23,6 +23,8 @@ public class InventorySlot : AbstractSlot<Artifact>
                 Destroy(item.gameObject);
             }
         }
+
+        name = slotType.ToString() + " slot";
     }
 
     public Artifact CreateArtifact(DB_Artifact dbArtifact)
@@ -42,12 +44,25 @@ public class InventorySlot : AbstractSlot<Artifact>
 
     public override bool AddSlotObject(Artifact slotObject)
     {
-        if (!CheckSlotObjectType(slotObject)) return false;
-        if (HasSlotObject(slotObject)) return false;
-        if (HasSlotObject() && !RemoveSlotObject()) return false;
+        bool isTheSameArtifact = HasSlotObject(slotObject);
+        bool acceptableType = CheckSlotObjectType(slotObject);
+
+        if (isTheSameArtifact) return false;
+        if (!acceptableType) return false;
+
+        if (!isTheSameArtifact && acceptableType)
+        {
+            //Here we just swap positions because both slots are compatible.
+        }
+
+        if (!RemoveSlotObject()) return false;
 
         slotObj = slotObject;
         slotObj.transform.parent = transform;
+
+        //If this slot is part of the backpack, we add one more slot for more itens to be stored.
+        if (inventory.GetBackpackSlots(false).Contains(this)) inventory.AddBackpackSlot();
+
         return true;
     }
 
@@ -58,7 +73,28 @@ public class InventorySlot : AbstractSlot<Artifact>
             if (!inventory.AddArtifactToBackpack(slotObj))
                 return false;
         }
+
         slotObj = null;
+
+        ////If this slot is part of the backpack, ???
+        //if (inventory.GetBackpackSlots(false).Contains(this)) inventory.RemoveBackpackSlot();
+
+        return true;
+    }
+
+    public bool SwapSlots(InventorySlot other)
+    {
+        bool typeCheck = slotType == other.slotType;
+        if (!typeCheck) return false;
+        //bool anyCheck = slotType == ArtifactType.ANY || other.slotType == ArtifactType.ANY;
+        //if (!typeCheck && !anyCheck) return false;
+
+        Artifact thisArtifact = slotObj as Artifact;
+        Artifact otherArtifact = other.slotObj as Artifact;
+        slotObj = otherArtifact;
+        slotObj.transform.parent = transform;
+        other.slotObj = thisArtifact;
+        other.slotObj.transform.parent = other.transform;
         return true;
     }
 }

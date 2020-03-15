@@ -15,7 +15,8 @@ public abstract class AbstractSlot<SlotObject> : MonoBehaviour where SlotObject 
 
     public bool HasSlotObject(SlotObject slotObject)
     {
-        return slotObj == slotObject;
+        return HasSlotObject() && slotObj == slotObject;
+        //return slotObj == slotObject;
     }
 
     public abstract bool CheckSlotObjectType(SlotObject slotObject);

@@ -94,6 +94,8 @@ public class TownUI : AbstractSingleton<TownUI>, IUIScheme, IShowableHideable
         Party garrison = tm.townPiece.town.garrison as Party;
         Party visitor = tm.townPiece.town.visitor as Party;
         parties.UpdatePanel(garrison, visitor);
+
+        //Don't update windows, only the HUD panels!
     }
 
     public void DestroyTown()

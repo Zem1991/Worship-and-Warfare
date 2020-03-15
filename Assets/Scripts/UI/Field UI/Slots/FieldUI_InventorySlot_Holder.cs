@@ -5,5 +5,5 @@ using UnityEngine;
 public class FieldUI_InventorySlot_Holder : MonoBehaviour
 {
     [Header("Editor references")]
-    public FieldUI_InventorySlot slotHolder;
+    public FieldUI_InventorySlot slot;
 }

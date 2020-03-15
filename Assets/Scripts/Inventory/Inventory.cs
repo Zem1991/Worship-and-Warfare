@@ -19,7 +19,7 @@ public class Inventory : AbstractSlotContainer<InventorySlot, Artifact>
     public InventorySlot trinket2;
     public InventorySlot trinket3;
     public InventorySlot trinket4;
-    public List<InventorySlot> backpack = new List<InventorySlot>();
+    [SerializeField] private List<InventorySlot> backpackSlots = new List<InventorySlot>();
 
     [Header("Stats")]
     public AttributeStats attributeStats;
@@ -92,7 +92,25 @@ public class Inventory : AbstractSlotContainer<InventorySlot, Artifact>
         trinket4.Initialize(this, ArtifactType.TRINKET, t4);
         parameterSlots.Add(trinket4);
 
+        //Add one empty backpack slot. This makes handling the inventory and trade windows much easier.
+        AddBackpackSlot();
+
         RecalculateStats();
+    }
+
+    public void AddBackpackSlot()
+    {
+        InventorySlot prefabInventorySlot = AllPrefabs.Instance.inventorySlot;
+        InventorySlot newSlot = Instantiate(prefabInventorySlot, transform);
+        newSlot.Initialize(this, ArtifactType.ANY, null);
+        newSlot.name = "Backpack";
+        backpackSlots.Add(newSlot);
+    }
+
+    public void RemoveBackpackSlot(InventorySlot slot)
+    {
+        backpackSlots.Remove(slot);
+        backpackSlots.TrimExcess();
     }
 
     public override bool AddSlotObject(Artifact item)
@@ -112,6 +130,7 @@ public class Inventory : AbstractSlotContainer<InventorySlot, Artifact>
             case ArtifactType.TORSO:
                 slot = armor;
                 break;
+            //TODO trinket slots
         }
         if (slot) return AddSlotObjectToSlot(slot, item);
         else return AddArtifactToBackpack(item);
@@ -131,10 +150,23 @@ public class Inventory : AbstractSlotContainer<InventorySlot, Artifact>
         return result;
     }
 
-    public bool AddArtifactToBackpack(Artifact item)
+    public List<InventorySlot> GetBackpackSlots(bool invertOrder)
     {
-        Debug.LogError("AddArtifactToBackpack not implemented!");
-        return true;
+        List<InventorySlot> result = new List<InventorySlot>(backpackSlots);
+        if (invertOrder) result.Reverse();
+        return result;
+    }
+
+    public bool AddArtifactToBackpack(Artifact artifact)
+    {
+        foreach (var item in backpackSlots)
+        {
+            if (!item.HasSlotObject())
+            {
+                if (item.AddSlotObject(artifact)) return true;
+            }
+        }
+        return false;
     }
 
     public void RecalculateStats()

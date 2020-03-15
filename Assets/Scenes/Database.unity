@@ -1405,6 +1405,16 @@ MonoBehaviour:
     type: 3}
   fieldPartyPiece: {fileID: 4234026010174413057, guid: 401bec5f5077fe847911abfceccfb46c,
     type: 3}
+  combatTile: {fileID: 9123833009311177861, guid: 605b8679fefa758409107b55da35c471,
+    type: 3}
+  combatHeroPiece: {fileID: 1999095044441610844, guid: f567798ced8827241949ba9a84b35a76,
+    type: 3}
+  combatUnitPiece: {fileID: 6036333515219936309, guid: ad7735426d24fa44d822fe6499eaae6d,
+    type: 3}
+  combatObstacle: {fileID: 3493729476602318274, guid: 2811319c6d07d9e4683e073ab140d481,
+    type: 3}
+  highlight: {fileID: 6205666536738310281, guid: 5b702608e16dadd4bbc44d29595780b2,
+    type: 3}
   fuiInvSlotHolder: {fileID: -5993691286250219256, guid: aeac03812a2acdc4c8a6d627c646950f,
     type: 3}
   cuiTurnSequenceItem: {fileID: 2897984054310898061, guid: 0a01e91148905bf4b8cd8d6c58c7d5a8,
@@ -1416,16 +1426,6 @@ MonoBehaviour:
   tuiHeroOption: {fileID: 3774522040896016976, guid: 51d4d532b2305c04f901770f29bf344e,
     type: 3}
   tuiCreatureOption: {fileID: 7469885818327660781, guid: 5c3073307eef40e4cbac19a625f06e6e,
-    type: 3}
-  combatTile: {fileID: 9123833009311177861, guid: 605b8679fefa758409107b55da35c471,
-    type: 3}
-  combatHeroPiece: {fileID: 1999095044441610844, guid: f567798ced8827241949ba9a84b35a76,
-    type: 3}
-  combatUnitPiece: {fileID: 6036333515219936309, guid: ad7735426d24fa44d822fe6499eaae6d,
-    type: 3}
-  combatObstacle: {fileID: 3493729476602318274, guid: 2811319c6d07d9e4683e073ab140d481,
-    type: 3}
-  highlight: {fileID: 6205666536738310281, guid: 5b702608e16dadd4bbc44d29595780b2,
     type: 3}
 --- !u!1 &442685253
 GameObject:
@@ -4139,7 +4139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 8
   artifactName: Quiet Eye of the Dragon
-  artifactType: 5
+  artifactType: 8
   artifactRarity: 0
   image: {fileID: 21300000, guid: 2fcd58137408ee94092112c0d04261b9, type: 3}
   artifactDescription: Adds 1 to Offense and Defense.
@@ -5750,7 +5750,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 5
   artifactName: Celestial Necklace of Bliss
-  artifactType: 5
+  artifactType: 8
   artifactRarity: 0
   image: {fileID: 21300000, guid: a344d1373c7ab9c4cb20de01bc1d75db, type: 3}
   artifactDescription: Adds 3 to all attributes.

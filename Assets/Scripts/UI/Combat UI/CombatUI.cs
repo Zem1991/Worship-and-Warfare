@@ -73,6 +73,8 @@ public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideabl
 
         if (actp) UpdateWithSelection(actp, canCommandSelectedPiece);
         else UpdateWithoutSelection();
+
+        //Don't update windows, only the HUD panels!
     }
 
     private void UpdateWithSelection(AbstractCombatantPiece2 actp, bool canCommandSelectedPiece)

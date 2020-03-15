@@ -80,16 +80,7 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
         else if (pickup) UpdateWithSelection(pickup);
         else UpdateWithoutSelection();
 
-        if (currentWindow == tradeScreen)
-        {
-            PartyPiece2 targetParty = party.targetPiece as PartyPiece2;
-            tradeScreen.UpdatePanel(party, targetParty);
-        }
-
-        if (currentWindow == inventory)
-        {
-            inventory.UpdatePanel(party);
-        }
+        //Don't update windows, only the HUD panels!
     }
 
     private void UpdateWithSelection(TownPiece2 town, bool canCommandSelectedPiece)
@@ -147,6 +138,7 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
     }
     public void TradeScreenShow(PartyPiece2 left, PartyPiece2 right)
     {
+        tradeScreen.UpdatePanel(left, right);
         tradeScreen.Show();
         currentWindow = tradeScreen;
     }
@@ -154,11 +146,13 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
     {
         inventory.DNDEndDrag();
         inventory.Hide();
+        inventory.ClearPanel();
         currentWindow = null;
         UIManager.Instance.PointerExit(inventory);
     }
-    public void InventoryShow(AbstractFieldPiece2 selectionPiece)
+    public void InventoryShow(PartyPiece2 selectionPiece)
     {
+        inventory.UpdatePanel(selectionPiece as PartyPiece2);
         inventory.Show();
         currentWindow = inventory;
     }

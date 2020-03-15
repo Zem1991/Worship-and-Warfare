@@ -26,8 +26,12 @@ public class FieldUI_Panel_LevelUp : AbstractUIPanel
     public void UpdatePanel(Hero hero)
     {
         DBHandler_Attribute dbAttributes = DBHandler_Attribute.Instance as DBHandler_Attribute;
-
         this.hero = hero;
+
+        int nextLevel = hero.experienceStats.level + 1;
+
+        imgPortrait.sprite = hero.dbData.profilePicture;
+        txtAnnouncement.text = hero.dbData.heroName + " is now an level " + nextLevel + " " + hero.dbData.heroClass.className + "!";
 
         AttributeType primaryAtt = hero.dbData.heroClass.GetPrimaryAttribute();
         DB_Attribute primaryDB = dbAttributes.SelectFromType(primaryAtt);

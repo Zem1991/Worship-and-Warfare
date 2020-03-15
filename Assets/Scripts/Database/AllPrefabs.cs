@@ -56,8 +56,8 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
     [Header("Highlight")]
     public Highlight highlight;
 
-    //[Header("Field UI")]
-    //public FieldUI_InventorySlot_Holder fuiInvSlotHolder;
+    [Header("Field UI")]
+    public FieldUI_InventorySlot_Holder fuiInvSlotHolder;
     //public FieldUI_Panel_LevelUp_AttributeOption fuiAttributeOption;
 
     [Header("Combat UI")]

@@ -106,6 +106,7 @@ public class Hero : AbstractPartyElement
         LevelUp_ApplyLevelUp(userSelection);
 
         levelUps--;
+        experienceStats.level++;
         return true;
     }
 
@@ -114,22 +115,22 @@ public class Hero : AbstractPartyElement
         switch (attributeType)
         {
             case AttributeType.OFFENSE:
-                attributeStats.atrOffense++;
+                levelUpAttributes.atrOffense++;
                 break;
             case AttributeType.DEFENSE:
-                attributeStats.atrDefense++;
+                levelUpAttributes.atrDefense++;
                 break;
             case AttributeType.SUPPORT:
-                attributeStats.atrSupport++;
+                levelUpAttributes.atrSupport++;
                 break;
             case AttributeType.COMMAND:
-                attributeStats.atrCommand++;
+                levelUpAttributes.atrCommand++;
                 break;
             case AttributeType.MAGIC:
-                attributeStats.atrMagic++;
+                levelUpAttributes.atrMagic++;
                 break;
             case AttributeType.TECH:
-                attributeStats.atrTech++;
+                levelUpAttributes.atrTech++;
                 break;
         }
     }
