@@ -1,96 +1,96 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class Inventory : AbstractSlotContainer<InventorySlot, Artifact>
+public class Inventory : MonoBehaviour  //AbstractSlotContainer<InventorySlot, Artifact>
 {
-    public const int BACKPACK_LIMIT = 4;
+    [Header("Static references")]
+    public AttributeStats equipAttributeStats;
+    public Transform equipmentSlotHolder;
+    public Transform backpackSlotHolder;
 
-    [Header("Hero reference")]
+    [Header("Dynamic references")]
     public Hero hero;
 
-    [Header("Slots")]
-    public InventorySlot mainHand;
-    public InventorySlot offHand;
-    public InventorySlot helmet;
-    public InventorySlot armor;
-    public InventorySlot trinket1;
-    public InventorySlot trinket2;
-    public InventorySlot trinket3;
-    public InventorySlot trinket4;
-    [SerializeField] private List<InventorySlot> backpackSlots = new List<InventorySlot>();
+    [Header("Slots - equipment")]
+    [SerializeField] private InventorySlot equipMainHand;
+    [SerializeField] private InventorySlot equipOffHand;
+    [SerializeField] private InventorySlot equipHead;
+    [SerializeField] private InventorySlot equipTorso;
+    [SerializeField] private InventorySlot equipBack;
+    [SerializeField] private InventorySlot equipNeck;
+    [SerializeField] private InventorySlot equipRing1;
+    [SerializeField] private InventorySlot equipRing2;
+    [SerializeField] private InventorySlot equipTrinket1;
+    [SerializeField] private InventorySlot equipTrinket2;
+    [SerializeField] private InventorySlot equipTrinket3;
+    [SerializeField] private InventorySlot equipTrinket4;
 
-    [Header("Stats")]
-    public AttributeStats attributeStats;
-    //public int atrOffense;
-    //public int atrDefense;
-    //public int atrSupport;
-    //public int atrCommand;
-    //public int atrMagic;
-    //public int atrTech;
-
-    private List<InventorySlot> parameterSlots = new List<InventorySlot>();
+    [Header("Slots - backpack")]
+    [SerializeField] private List<InventorySlot> backpackItems;
 
     public void Initialize(Hero hero, InventoryData inventoryData)
     {
-        AbstractDBContentHandler<DB_Artifact> dbArtifacts = DBHandler_Artifact.Instance;
-
-        InventorySlot prefabInventorySlot = AllPrefabs.Instance.inventorySlot;
-
         this.hero = hero;
+
+        AbstractDBContentHandler<DB_Artifact> dbArtifacts = DBHandler_Artifact.Instance;
+        InventorySlot prefabInventorySlot = AllPrefabs.Instance.inventorySlot;
 
         DB_Artifact mh = null;
         DB_Artifact oh = null;
         DB_Artifact he = null;
-        DB_Artifact ar = null;
+        DB_Artifact to = null;
+        DB_Artifact ba = null;
+        DB_Artifact ne = null;
+        DB_Artifact r1 = null;
+        DB_Artifact r2 = null;
         DB_Artifact t1 = null;
         DB_Artifact t2 = null;
         DB_Artifact t3 = null;
         DB_Artifact t4 = null;
+
         if (inventoryData != null)
         {
             if (inventoryData.mainHandId != null) mh = dbArtifacts.Select(inventoryData.mainHandId);
             if (inventoryData.offHandId != null) oh = dbArtifacts.Select(inventoryData.offHandId);
-            if (inventoryData.helmetId != null) he = dbArtifacts.Select(inventoryData.helmetId);
-            if (inventoryData.armorId != null) ar = dbArtifacts.Select(inventoryData.armorId);
+            if (inventoryData.headId != null) he = dbArtifacts.Select(inventoryData.headId);
+            if (inventoryData.torsoId != null) to = dbArtifacts.Select(inventoryData.torsoId);
+            if (inventoryData.backId != null) ba = dbArtifacts.Select(inventoryData.backId);
+            if (inventoryData.neckId != null) ne = dbArtifacts.Select(inventoryData.neckId);
+            if (inventoryData.ring1Id != null) r1 = dbArtifacts.Select(inventoryData.ring1Id);
+            if (inventoryData.ring2Id != null) r2 = dbArtifacts.Select(inventoryData.ring2Id);
             if (inventoryData.trinket1Id != null) t1 = dbArtifacts.Select(inventoryData.trinket1Id);
             if (inventoryData.trinket2Id != null) t2 = dbArtifacts.Select(inventoryData.trinket2Id);
             if (inventoryData.trinket3Id != null) t3 = dbArtifacts.Select(inventoryData.trinket3Id);
             if (inventoryData.trinket4Id != null) t4 = dbArtifacts.Select(inventoryData.trinket4Id);
         }
 
-        mainHand = Instantiate(prefabInventorySlot, transform);
-        mainHand.Initialize(this, ArtifactType.MAIN_HAND, mh);
-        parameterSlots.Add(mainHand);
-
-        offHand = Instantiate(prefabInventorySlot, transform);
-        offHand.Initialize(this, ArtifactType.OFF_HAND, oh);
-        parameterSlots.Add(offHand);
-
-        helmet = Instantiate(prefabInventorySlot, transform);
-        helmet.Initialize(this, ArtifactType.HEAD, he);
-        parameterSlots.Add(helmet);
-
-        armor = Instantiate(prefabInventorySlot, transform);
-        armor.Initialize(this, ArtifactType.TORSO, ar);
-        parameterSlots.Add(armor);
-
-        trinket1 = Instantiate(prefabInventorySlot, transform);
-        trinket1.Initialize(this, ArtifactType.TRINKET, t1);
-        parameterSlots.Add(trinket1);
-
-        trinket2 = Instantiate(prefabInventorySlot, transform);
-        trinket2.Initialize(this, ArtifactType.TRINKET, t2);
-        parameterSlots.Add(trinket2);
-
-        trinket3 = Instantiate(prefabInventorySlot, transform);
-        trinket3.Initialize(this, ArtifactType.TRINKET, t3);
-        parameterSlots.Add(trinket3);
-
-        trinket4 = Instantiate(prefabInventorySlot, transform);
-        trinket4.Initialize(this, ArtifactType.TRINKET, t4);
-        parameterSlots.Add(trinket4);
+        equipMainHand = Instantiate(prefabInventorySlot, equipmentSlotHolder.transform);
+        equipMainHand.Initialize(this, ArtifactType.MAIN_HAND, mh);
+        equipOffHand = Instantiate(prefabInventorySlot, equipmentSlotHolder.transform);
+        equipOffHand.Initialize(this, ArtifactType.OFF_HAND, oh);
+        equipHead = Instantiate(prefabInventorySlot, equipmentSlotHolder.transform);
+        equipHead.Initialize(this, ArtifactType.HEAD, he);
+        equipTorso = Instantiate(prefabInventorySlot, equipmentSlotHolder.transform);
+        equipTorso.Initialize(this, ArtifactType.TORSO, to);
+        equipBack = Instantiate(prefabInventorySlot, equipmentSlotHolder.transform);
+        equipBack.Initialize(this, ArtifactType.BACK, ba);
+        equipNeck = Instantiate(prefabInventorySlot, equipmentSlotHolder.transform);
+        equipNeck.Initialize(this, ArtifactType.NECK, ne);
+        equipRing1 = Instantiate(prefabInventorySlot, equipmentSlotHolder.transform);
+        equipRing1.Initialize(this, ArtifactType.RING, r1);
+        equipRing2 = Instantiate(prefabInventorySlot, equipmentSlotHolder.transform);
+        equipRing2.Initialize(this, ArtifactType.RING, r2);
+        equipTrinket1 = Instantiate(prefabInventorySlot, equipmentSlotHolder.transform);
+        equipTrinket1.Initialize(this, ArtifactType.TRINKET, t1);
+        equipTrinket2 = Instantiate(prefabInventorySlot, equipmentSlotHolder.transform);
+        equipTrinket2.Initialize(this, ArtifactType.TRINKET, t2);
+        equipTrinket3 = Instantiate(prefabInventorySlot, equipmentSlotHolder.transform);
+        equipTrinket3.Initialize(this, ArtifactType.TRINKET, t3);
+        equipTrinket4 = Instantiate(prefabInventorySlot, equipmentSlotHolder.transform);
+        equipTrinket4.Initialize(this, ArtifactType.TRINKET, t4);
 
         //Add one empty backpack slot. This makes handling the inventory and trade windows much easier.
         AddBackpackSlot();
@@ -100,73 +100,27 @@ public class Inventory : AbstractSlotContainer<InventorySlot, Artifact>
 
     public void AddBackpackSlot()
     {
-        InventorySlot prefabInventorySlot = AllPrefabs.Instance.inventorySlot;
-        InventorySlot newSlot = Instantiate(prefabInventorySlot, transform);
+        InventorySlot prefab = AllPrefabs.Instance.inventorySlot;
+        InventorySlot newSlot = Instantiate(prefab, backpackSlotHolder.transform);
         newSlot.Initialize(this, ArtifactType.ANY, null);
-        newSlot.name = "Backpack";
-        backpackSlots.Add(newSlot);
+        newSlot.name = "Backpack slot";
+        backpackItems.Add(newSlot);
     }
 
-    public void RemoveBackpackSlot(InventorySlot slot)
+    public bool RemoveBackpackSlot(InventorySlot slot)
     {
-        backpackSlots.Remove(slot);
-        backpackSlots.TrimExcess();
-    }
-
-    public override bool AddSlotObject(Artifact item)
-    {
-        InventorySlot slot = null;
-        switch (item.dbData.artifactType)
+        bool result = backpackItems.Remove(slot);
+        if (result)
         {
-            case ArtifactType.MAIN_HAND:
-                slot = mainHand;
-                break;
-            case ArtifactType.OFF_HAND:
-                slot = offHand;
-                break;
-            case ArtifactType.HEAD:
-                slot = helmet;
-                break;
-            case ArtifactType.TORSO:
-                slot = armor;
-                break;
-            //TODO trinket slots
+            backpackItems.TrimExcess();
+            Destroy(slot.gameObject);
         }
-        if (slot) return AddSlotObjectToSlot(slot, item);
-        else return AddArtifactToBackpack(item);
-    }
-
-    public override bool AddSlotObjectToSlot(AbstractSlot<Artifact> slot, Artifact item)
-    {
-        bool result = base.AddSlotObjectToSlot(slot, item);
-        RecalculateStats();
         return result;
     }
 
-    public override bool RemoveSlotObjectFromSlot(AbstractSlot<Artifact> slot)
+    public bool HasBackpackSlot(InventorySlot slot)
     {
-        bool result = base.RemoveSlotObjectFromSlot(slot);
-        RecalculateStats();
-        return result;
-    }
-
-    public List<InventorySlot> GetBackpackSlots(bool invertOrder)
-    {
-        List<InventorySlot> result = new List<InventorySlot>(backpackSlots);
-        if (invertOrder) result.Reverse();
-        return result;
-    }
-
-    public bool AddArtifactToBackpack(Artifact artifact)
-    {
-        foreach (var item in backpackSlots)
-        {
-            if (!item.HasSlotObject())
-            {
-                if (item.AddSlotObject(artifact)) return true;
-            }
-        }
-        return false;
+        return backpackItems.Contains(slot);
     }
 
     public void RecalculateStats()
@@ -178,9 +132,9 @@ public class Inventory : AbstractSlotContainer<InventorySlot, Artifact>
         int atrMagic = 0;
         int atrTech = 0;
 
-        foreach (InventorySlot invSlot in parameterSlots)
+        foreach (InventorySlot invSlot in GetEquipmentSlots())
         {
-            Artifact artifact = invSlot.slotObj;
+            Artifact artifact = invSlot.slotItem;
             if (!artifact || invSlot.isBeingDragged) continue;
 
             atrOffense += artifact.dbData.attributeStats.atrOffense;
@@ -191,13 +145,215 @@ public class Inventory : AbstractSlotContainer<InventorySlot, Artifact>
             atrTech += artifact.dbData.attributeStats.atrTech;
         }
 
-        attributeStats.atrOffense = atrOffense;
-        attributeStats.atrDefense = atrDefense;
-        attributeStats.atrSupport = atrSupport;
-        attributeStats.atrCommand = atrCommand;
-        attributeStats.atrMagic = atrMagic;
-        attributeStats.atrTech = atrTech;
+        equipAttributeStats.atrOffense = atrOffense;
+        equipAttributeStats.atrDefense = atrDefense;
+        equipAttributeStats.atrSupport = atrSupport;
+        equipAttributeStats.atrCommand = atrCommand;
+        equipAttributeStats.atrMagic = atrMagic;
+        equipAttributeStats.atrTech = atrTech;
 
         hero.RecalculateStats();
+    }
+
+    public InventorySlot GetEquipmentSlot(ArtifactType type, int id = 0)
+    {
+        InventorySlot result = null;
+        switch (type)
+        {
+            case ArtifactType.MAIN_HAND:
+                result = equipMainHand;
+                break;
+            case ArtifactType.OFF_HAND:
+                result = equipOffHand;
+                break;
+            case ArtifactType.HEAD:
+                result = equipHead;
+                break;
+            case ArtifactType.TORSO:
+                result = equipTorso;
+                break;
+            case ArtifactType.BACK:
+                result = equipBack;
+                break;
+            case ArtifactType.NECK:
+                result = equipNeck;
+                break;
+            case ArtifactType.RING:
+                if (id == 1) result = equipRing1;
+                if (id == 2) result = equipRing2;
+                break;
+            case ArtifactType.TRINKET:
+                if (id == 1) result = equipTrinket1;
+                if (id == 2) result = equipTrinket2;
+                if (id == 3) result = equipTrinket3;
+                if (id == 4) result = equipTrinket4;
+                break;
+        }
+        return result;
+    }
+
+    public List<InventorySlot> GetEquipmentSlots()
+    {
+        List<InventorySlot> result = new List<InventorySlot>
+        {
+            equipMainHand,
+            equipOffHand,
+            equipHead,
+            equipTorso,
+            equipBack,
+            equipNeck,
+            equipRing1,
+            equipRing2,
+            equipTrinket1,
+            equipTrinket2,
+            equipTrinket3,
+            equipTrinket4
+        };
+        return result;
+    }
+
+    public List<InventorySlot> GetBackpackSlots(bool reverseOrder)
+    {
+        List<InventorySlot> result = new List<InventorySlot>(backpackItems);
+        result.OrderBy(a => a.slotItem);
+        if (reverseOrder) result.Reverse();
+        return result;
+    }
+
+    public bool AddFromPickup(Artifact artifact)
+    {
+        InventorySlot slot = null;
+        switch (artifact.dbData.artifactType)
+        {
+            case ArtifactType.MAIN_HAND:
+                slot = equipMainHand.HasSlotObject() ? null : equipMainHand;
+                break;
+            case ArtifactType.OFF_HAND:
+                slot = equipOffHand.HasSlotObject() ? null : equipOffHand;
+                break;
+            case ArtifactType.HEAD:
+                slot = equipHead.HasSlotObject() ? null : equipHead;
+                break;
+            case ArtifactType.TORSO:
+                slot = equipTorso.HasSlotObject() ? null : equipTorso;
+                break;
+            case ArtifactType.BACK:
+                slot = equipBack.HasSlotObject() ? null : equipBack;
+                break;
+            case ArtifactType.NECK:
+                slot = equipNeck.HasSlotObject() ? null : equipNeck;
+                break;
+            case ArtifactType.RING:
+                slot = equipRing1.HasSlotObject() ? null : equipRing1;
+                if (!slot) slot = equipRing2.HasSlotObject() ? null : equipRing2;
+                break;
+            case ArtifactType.TRINKET:
+                slot = equipTrinket1.HasSlotObject() ? null : equipTrinket1;
+                if (!slot) slot = equipTrinket2.HasSlotObject() ? null : equipTrinket2;
+                if (!slot) slot = equipTrinket3.HasSlotObject() ? null : equipTrinket3;
+                if (!slot) slot = equipTrinket4.HasSlotObject() ? null : equipTrinket4;
+                break;
+        }
+
+        bool result;
+        if (slot)
+        {
+            //Create an temporary InventorySlot just to reuse the AddFromSlot function.
+            InventorySlot temp = CreateTempSlot(artifact);
+            result = AddFromSlot(temp, slot);
+            Destroy(temp.gameObject);
+        }
+        else
+        {
+            result = AddToBackpack(artifact);
+        }
+        return result;
+    }
+
+    
+
+    public bool AddFromSlot(InventorySlot fromSlot, InventorySlot toSlot)
+    {
+        Artifact fromItem = fromSlot.slotItem;
+        Artifact toItem = toSlot.slotItem;
+
+        bool fromBackpack = HasBackpackSlot(fromSlot);
+        bool toBackpack = HasBackpackSlot(toSlot);
+        bool equipAndBackpack = fromBackpack != toBackpack;
+        bool sameTypeSlots = fromSlot.slotType == toSlot.slotType;
+        bool sameTypeArtifacts = fromItem && toItem && fromItem.dbData.artifactType == toItem.dbData.artifactType;
+        bool canSendToSlot = fromItem && fromItem.dbData.artifactType == toSlot.slotType;
+
+        //If the slots are of the same type, then an simple swap is done.
+        //Else if we are exchanging between equipped items and backpack items, then we do specific actions.
+        bool result = false;
+        if (sameTypeSlots)
+        {
+            //Here we just exchange items between slots.
+            SwapSlotContents(fromSlot, toSlot);
+            result = true;
+        }
+        else if (equipAndBackpack)
+        {
+            //If the items are of the same type, then an simple swap is done.
+            //Else, we check for which one of the slots are from the backpack and act accordingly.
+            if (sameTypeArtifacts)
+            {
+                SwapSlotContents(fromSlot, toSlot);
+                result = true;
+            }
+            else
+            {
+                if (toBackpack)
+                {
+                    AddToBackpack(fromItem);
+                    fromSlot.Clear();
+                    result = true;
+                }
+                else if (fromBackpack && canSendToSlot)
+                {
+                    toSlot.Set(fromItem);
+                    RemoveBackpackSlot(fromSlot);
+                    result = true;
+                }
+            }
+        }
+        return result;
+    }
+
+    public bool AddToBackpack(Artifact artifact)
+    {
+        //Create an temporary InventorySlot just to reuse the AddFromSlot function.
+        InventorySlot temp = CreateTempSlot(artifact);
+        bool result = false;
+        foreach (InventorySlot slot in backpackItems)
+        {
+            if (!slot.HasSlotObject())
+            {
+                SwapSlotContents(temp, slot);
+                result = true;
+                break;
+            }
+        }
+        if (!result) Debug.LogError("Somehow the item was not added to the backpack!");
+        else AddBackpackSlot();
+        Destroy(temp.gameObject);
+        return result;
+    }
+
+    private InventorySlot CreateTempSlot(Artifact artifact)
+    {
+        InventorySlot prefabInvSlot = AllPrefabs.Instance.inventorySlot;
+        InventorySlot temp = Instantiate(prefabInvSlot, transform);
+        temp.Initialize(this, artifact.dbData.artifactType, null);
+        temp.slotItem = artifact;
+        return temp;
+    }
+
+    private void SwapSlotContents(InventorySlot from, InventorySlot to)
+    {
+        Artifact fromItem = from.slotItem;
+        from.Set(to.slotItem);
+        to.Set(fromItem);
     }
 }

@@ -972,6 +972,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EQ Slot OH
       objectReference: {fileID: 0}
+    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
+        type: 3}
+      propertyPath: m_Name
+      value: SB OH
+      objectReference: {fileID: 0}
     - target: {fileID: 5128229997603812754, guid: aeac03812a2acdc4c8a6d627c646950f,
         type: 3}
       propertyPath: m_Text
@@ -1096,11 +1101,6 @@ PrefabInstance:
         type: 3}
       propertyPath: slotName
       value: oh
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: SB OH
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
@@ -1469,6 +1469,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EQ Slot T1
       objectReference: {fileID: 0}
+    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
+        type: 3}
+      propertyPath: m_Name
+      value: SB T1
+      objectReference: {fileID: 0}
     - target: {fileID: 5128229997603812754, guid: aeac03812a2acdc4c8a6d627c646950f,
         type: 3}
       propertyPath: m_Text
@@ -1594,11 +1599,6 @@ PrefabInstance:
       propertyPath: slotName
       value: t1
       objectReference: {fileID: 0}
-    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: SB T1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
 --- !u!224 &85134017 stripped
@@ -1692,6 +1692,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EQ Slot T2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
+        type: 3}
+      propertyPath: m_Name
+      value: SB T2
       objectReference: {fileID: 0}
     - target: {fileID: 5128229997603812754, guid: aeac03812a2acdc4c8a6d627c646950f,
         type: 3}
@@ -1817,11 +1822,6 @@ PrefabInstance:
         type: 3}
       propertyPath: slotName
       value: t2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: SB T2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
@@ -2107,6 +2107,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EQ Slot HE
       objectReference: {fileID: 0}
+    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
+        type: 3}
+      propertyPath: m_Name
+      value: SB HM
+      objectReference: {fileID: 0}
     - target: {fileID: 5128229997603812754, guid: aeac03812a2acdc4c8a6d627c646950f,
         type: 3}
       propertyPath: m_Text
@@ -2232,11 +2237,6 @@ PrefabInstance:
       propertyPath: slotName
       value: hl
       objectReference: {fileID: 0}
-    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: SB HM
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
 --- !u!224 &129946910 stripped
@@ -2256,6 +2256,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Equip Slot (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
+        type: 3}
+      propertyPath: m_Name
+      value: SB AM
       objectReference: {fileID: 0}
     - target: {fileID: 5128229997603812754, guid: aeac03812a2acdc4c8a6d627c646950f,
         type: 3}
@@ -2381,11 +2386,6 @@ PrefabInstance:
         type: 3}
       propertyPath: slotName
       value: ar
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: SB AM
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
@@ -4789,6 +4789,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Equip Slot (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
+        type: 3}
+      propertyPath: m_Name
+      value: SB AM
+      objectReference: {fileID: 0}
     - target: {fileID: 5128229997603812754, guid: aeac03812a2acdc4c8a6d627c646950f,
         type: 3}
       propertyPath: m_Text
@@ -4913,11 +4918,6 @@ PrefabInstance:
         type: 3}
       propertyPath: slotName
       value: ar
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: SB AM
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
@@ -6485,6 +6485,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Equip Slot (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
+        type: 3}
+      propertyPath: m_Name
+      value: SB HM
+      objectReference: {fileID: 0}
     - target: {fileID: 5128229997603812754, guid: aeac03812a2acdc4c8a6d627c646950f,
         type: 3}
       propertyPath: m_Text
@@ -6609,11 +6614,6 @@ PrefabInstance:
         type: 3}
       propertyPath: slotName
       value: hl
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: SB HM
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
@@ -7303,8 +7303,8 @@ MonoBehaviour:
   attributeInfo: {fileID: 2126562064}
   mainHand: {fileID: 1440594146}
   offHand: {fileID: 1659493262}
-  helmet: {fileID: 515274109}
-  armor: {fileID: 412600838}
+  head: {fileID: 515274109}
+  torso: {fileID: 412600838}
   trinket1: {fileID: 988326341}
   trinket2: {fileID: 1721887575}
   trinket3: {fileID: 732731224}
@@ -8831,6 +8831,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Equip Slot (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
+        type: 3}
+      propertyPath: m_Name
+      value: SB T4
+      objectReference: {fileID: 0}
     - target: {fileID: 5128229997603812754, guid: aeac03812a2acdc4c8a6d627c646950f,
         type: 3}
       propertyPath: m_Text
@@ -8956,11 +8961,6 @@ PrefabInstance:
       propertyPath: slotName
       value: t4
       objectReference: {fileID: 0}
-    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: SB T4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
 --- !u!224 &727389488 stripped
@@ -8992,6 +8992,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Equip Slot (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
+        type: 3}
+      propertyPath: m_Name
+      value: SB T3
       objectReference: {fileID: 0}
     - target: {fileID: 5128229997603812754, guid: aeac03812a2acdc4c8a6d627c646950f,
         type: 3}
@@ -9118,11 +9123,6 @@ PrefabInstance:
       propertyPath: slotName
       value: t3
       objectReference: {fileID: 0}
-    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: SB T3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
 --- !u!224 &732731223 stripped
@@ -9154,6 +9154,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Equip Slot (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
+        type: 3}
+      propertyPath: m_Name
+      value: SB T4
       objectReference: {fileID: 0}
     - target: {fileID: 5128229997603812754, guid: aeac03812a2acdc4c8a6d627c646950f,
         type: 3}
@@ -9279,11 +9284,6 @@ PrefabInstance:
         type: 3}
       propertyPath: slotName
       value: t4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: SB T4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
@@ -9615,6 +9615,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Equip Slot (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
+        type: 3}
+      propertyPath: m_Name
+      value: SB HM
+      objectReference: {fileID: 0}
     - target: {fileID: 5128229997603812754, guid: aeac03812a2acdc4c8a6d627c646950f,
         type: 3}
       propertyPath: m_Text
@@ -9739,11 +9744,6 @@ PrefabInstance:
         type: 3}
       propertyPath: slotName
       value: hl
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: SB HM
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
@@ -11263,6 +11263,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Equip Slot (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
+        type: 3}
+      propertyPath: m_Name
+      value: SB T2
+      objectReference: {fileID: 0}
     - target: {fileID: 5128229997603812754, guid: aeac03812a2acdc4c8a6d627c646950f,
         type: 3}
       propertyPath: m_Text
@@ -11387,11 +11392,6 @@ PrefabInstance:
         type: 3}
       propertyPath: slotName
       value: t2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: SB T2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
@@ -12190,6 +12190,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Equip Slot (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
+        type: 3}
+      propertyPath: m_Name
+      value: SB T1
+      objectReference: {fileID: 0}
     - target: {fileID: 5128229997603812754, guid: aeac03812a2acdc4c8a6d627c646950f,
         type: 3}
       propertyPath: m_Text
@@ -12315,11 +12320,6 @@ PrefabInstance:
       propertyPath: slotName
       value: t1
       objectReference: {fileID: 0}
-    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: SB T1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
 --- !u!224 &988326340 stripped
@@ -12351,6 +12351,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Equip Slot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
+        type: 3}
+      propertyPath: m_Name
+      value: SB MH
       objectReference: {fileID: 0}
     - target: {fileID: 5128229997603812754, guid: aeac03812a2acdc4c8a6d627c646950f,
         type: 3}
@@ -12476,11 +12481,6 @@ PrefabInstance:
         type: 3}
       propertyPath: slotName
       value: mh
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: SB MH
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
@@ -12871,8 +12871,8 @@ MonoBehaviour:
   attributeInfo: {fileID: 2105802348}
   mainHand: {fileID: 990190151}
   offHand: {fileID: 2083422516}
-  helmet: {fileID: 792407924}
-  armor: {fileID: 136446381}
+  head: {fileID: 792407924}
+  torso: {fileID: 136446381}
   trinket1: {fileID: 2003031549}
   trinket2: {fileID: 920940329}
   trinket3: {fileID: 1917327622}
@@ -13739,6 +13739,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EQ Slot T3
       objectReference: {fileID: 0}
+    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
+        type: 3}
+      propertyPath: m_Name
+      value: SB T3
+      objectReference: {fileID: 0}
     - target: {fileID: 5128229997603812754, guid: aeac03812a2acdc4c8a6d627c646950f,
         type: 3}
       propertyPath: m_Text
@@ -13863,11 +13868,6 @@ PrefabInstance:
         type: 3}
       propertyPath: slotName
       value: t3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: SB T3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
@@ -14272,6 +14272,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EQ Slot TO
       objectReference: {fileID: 0}
+    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
+        type: 3}
+      propertyPath: m_Name
+      value: SB AM
+      objectReference: {fileID: 0}
     - target: {fileID: 5128229997603812754, guid: aeac03812a2acdc4c8a6d627c646950f,
         type: 3}
       propertyPath: m_Text
@@ -14396,11 +14401,6 @@ PrefabInstance:
         type: 3}
       propertyPath: slotName
       value: ar
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: SB AM
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
@@ -17233,6 +17233,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EQ Slot T4
       objectReference: {fileID: 0}
+    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
+        type: 3}
+      propertyPath: m_Name
+      value: SB T4
+      objectReference: {fileID: 0}
     - target: {fileID: 5128229997603812754, guid: aeac03812a2acdc4c8a6d627c646950f,
         type: 3}
       propertyPath: m_Text
@@ -17357,11 +17362,6 @@ PrefabInstance:
         type: 3}
       propertyPath: slotName
       value: t4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: SB T4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
@@ -18577,6 +18577,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Equip Slot
       objectReference: {fileID: 0}
+    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
+        type: 3}
+      propertyPath: m_Name
+      value: SB MH
+      objectReference: {fileID: 0}
     - target: {fileID: 5128229997603812754, guid: aeac03812a2acdc4c8a6d627c646950f,
         type: 3}
       propertyPath: m_Text
@@ -18701,11 +18706,6 @@ PrefabInstance:
         type: 3}
       propertyPath: slotName
       value: mh
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: SB MH
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
@@ -20684,6 +20684,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Equip Slot (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
+        type: 3}
+      propertyPath: m_Name
+      value: SB OH
+      objectReference: {fileID: 0}
     - target: {fileID: 5128229997603812754, guid: aeac03812a2acdc4c8a6d627c646950f,
         type: 3}
       propertyPath: m_Text
@@ -20808,11 +20813,6 @@ PrefabInstance:
         type: 3}
       propertyPath: slotName
       value: oh
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: SB OH
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
@@ -21354,8 +21354,8 @@ MonoBehaviour:
   attributeInfo: {fileID: 118415992}
   mainHand: {fileID: 1294030895}
   offHand: {fileID: 1412741940}
-  helmet: {fileID: 369489663}
-  armor: {fileID: 2037445853}
+  head: {fileID: 369489663}
+  torso: {fileID: 2037445853}
   trinket1: {fileID: 1211666991}
   trinket2: {fileID: 538809230}
   trinket3: {fileID: 799503854}
@@ -21900,6 +21900,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Equip Slot (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
+        type: 3}
+      propertyPath: m_Name
+      value: SB T2
+      objectReference: {fileID: 0}
     - target: {fileID: 5128229997603812754, guid: aeac03812a2acdc4c8a6d627c646950f,
         type: 3}
       propertyPath: m_Text
@@ -22024,11 +22029,6 @@ PrefabInstance:
         type: 3}
       propertyPath: slotName
       value: t2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: SB T2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
@@ -22381,8 +22381,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   draggableElement: {fileID: 415406397}
   slotFrontDragged: {fileID: 0}
-  leftParty: {fileID: 1027406435}
-  rightParty: {fileID: 585303169}
+  fuiLeftParty: {fileID: 1027406435}
+  fuiRightParty: {fileID: 585303169}
   btnClose: {fileID: 1280252415}
 --- !u!114 &1770836527
 MonoBehaviour:
@@ -23605,6 +23605,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Equip Slot (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
+        type: 3}
+      propertyPath: m_Name
+      value: SB T3
+      objectReference: {fileID: 0}
     - target: {fileID: 5128229997603812754, guid: aeac03812a2acdc4c8a6d627c646950f,
         type: 3}
       propertyPath: m_Text
@@ -23729,11 +23734,6 @@ PrefabInstance:
         type: 3}
       propertyPath: slotName
       value: t3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: SB T3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
@@ -24794,6 +24794,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Equip Slot (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
+        type: 3}
+      propertyPath: m_Name
+      value: SB T1
+      objectReference: {fileID: 0}
     - target: {fileID: 5128229997603812754, guid: aeac03812a2acdc4c8a6d627c646950f,
         type: 3}
       propertyPath: m_Text
@@ -24918,11 +24923,6 @@ PrefabInstance:
         type: 3}
       propertyPath: slotName
       value: t1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: SB T1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
@@ -25609,6 +25609,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Equip Slot (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
+        type: 3}
+      propertyPath: m_Name
+      value: SB OH
+      objectReference: {fileID: 0}
     - target: {fileID: 5128229997603812754, guid: aeac03812a2acdc4c8a6d627c646950f,
         type: 3}
       propertyPath: m_Text
@@ -25733,11 +25738,6 @@ PrefabInstance:
         type: 3}
       propertyPath: slotName
       value: oh
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: SB OH
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
@@ -25919,6 +25919,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EQ Slot MH
       objectReference: {fileID: 0}
+    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
+        type: 3}
+      propertyPath: m_Name
+      value: SB MH
+      objectReference: {fileID: 0}
     - target: {fileID: 5128229997603812754, guid: aeac03812a2acdc4c8a6d627c646950f,
         type: 3}
       propertyPath: m_Text
@@ -26043,11 +26048,6 @@ PrefabInstance:
         type: 3}
       propertyPath: slotName
       value: mh
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125208956128110881, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: SB MH
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}

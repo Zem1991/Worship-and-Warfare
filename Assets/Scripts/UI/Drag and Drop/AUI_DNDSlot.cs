@@ -28,7 +28,7 @@ public abstract class AUI_DNDSlot : MonoBehaviour, IDropHandler
     {
         Color color = Color.white;
         if (!img) color.a = 0;
-        else if (panelDND.slotFrontDragged) color.a = 0.5F;
+        else if (panelDND.slotFrontDragged == slotFront) color.a = 0.5F;
 
         imgSlotFront.sprite = img;
         imgSlotFront.color = color;

@@ -146,13 +146,12 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
     {
         inventory.DNDEndDrag();
         inventory.Hide();
-        inventory.ClearPanel();
         currentWindow = null;
         UIManager.Instance.PointerExit(inventory);
     }
     public void InventoryShow(PartyPiece2 selectionPiece)
     {
-        inventory.UpdatePanel(selectionPiece as PartyPiece2);
+        inventory.UpdatePanel(selectionPiece as PartyPiece2, true);
         inventory.Show();
         currentWindow = inventory;
     }

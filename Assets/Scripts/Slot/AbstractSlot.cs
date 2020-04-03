@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class AbstractSlot<SlotObject> : MonoBehaviour where SlotObject : MonoBehaviour
 {
-    [Header("Slot object data")]
+    [Header("Item data")]
     public SlotObject slotObj;
     public bool isBeingDragged;
 

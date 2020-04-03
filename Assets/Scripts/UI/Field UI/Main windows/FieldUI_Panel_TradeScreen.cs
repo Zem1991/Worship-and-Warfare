@@ -6,16 +6,22 @@ using UnityEngine.UI;
 public class FieldUI_Panel_TradeScreen : AUI_PanelDragAndDrop
 {
     [Header("Parties")]
-    public FieldUI_Panel_TradeScreen_Party leftParty;
-    public FieldUI_Panel_TradeScreen_Party rightParty;
+    public FieldUI_Panel_TradeScreen_Party fuiLeftParty;
+    public FieldUI_Panel_TradeScreen_Party fuiRightParty;
 
     [Header("Buttons")]
     public Button btnClose;
 
-    public void UpdatePanel(PartyPiece2 left, PartyPiece2 right)
+    private PartyPiece2 partyLeft;
+    private PartyPiece2 partyRight;
+
+    public void UpdatePanel(PartyPiece2 partyLeft, PartyPiece2 partyRight)
     {
-        leftParty.UpdatePanel(left);
-        rightParty.UpdatePanel(right);
+        this.partyLeft = partyLeft;
+        this.partyRight = partyRight;
+
+        fuiLeftParty.UpdatePanel(partyLeft);
+        fuiRightParty.UpdatePanel(partyRight);
     }
 
     public override void DNDBeginDrag(AUI_DNDSlot_Front slotFront)
@@ -33,21 +39,19 @@ public class FieldUI_Panel_TradeScreen : AUI_PanelDragAndDrop
     {
         if (slotFrontDragged)
         {
-            FieldUI_InventorySlot draggedSlot = slotFrontDragged.slotBack as FieldUI_InventorySlot;
-            InventorySlot sourceInvSlot = draggedSlot.invSlot;
+            FieldUI_InventorySlot sourceSlot = slotFrontDragged.slotBack as FieldUI_InventorySlot;
+            InventorySlot sourceInvSlot = sourceSlot.invSlot;
             Inventory sourceInv = sourceInvSlot.inventory;
 
-            FieldUI_InventorySlot targetInvSlot = slot as FieldUI_InventorySlot;
+            FieldUI_InventorySlot targetSlot = slot as FieldUI_InventorySlot;
+            InventorySlot targetInvSlot;
             Inventory targetInv = null;
 
-            if (targetInvSlot)
+            if (targetSlot)
             {
-                targetInv = targetInvSlot.invSlot.inventory;
-                Artifact item = sourceInvSlot.slotObj;
-                if (item && targetInvSlot.invSlot.AddSlotObject(item))
-                {
-                    sourceInvSlot.slotObj = null;
-                }
+                targetInvSlot = targetSlot.invSlot;
+                targetInv = targetInvSlot.inventory;
+                targetInv.AddFromSlot(sourceInvSlot, targetInvSlot);
             }
 
             sourceInvSlot.isBeingDragged = false;
@@ -56,5 +60,6 @@ public class FieldUI_Panel_TradeScreen : AUI_PanelDragAndDrop
         }
 
         base.DNDDrop(slot);
+        UpdatePanel(partyLeft, partyRight);
     }
 }

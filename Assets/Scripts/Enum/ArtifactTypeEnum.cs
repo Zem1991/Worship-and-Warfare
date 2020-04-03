@@ -7,6 +7,6 @@
     TORSO,
     BACK,
     NECK,
-    FINGER,
+    RING,
     TRINKET
 }

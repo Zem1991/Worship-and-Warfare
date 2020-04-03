@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventorySlot : AbstractSlot<Artifact>
+public class InventorySlot : MonoBehaviour  //AbstractSlot<Artifact>
 {
+    [Header("Item data")]
+    public Artifact slotItem;
+    public bool isBeingDragged;
+
     [Header("Slot data")]
     public Inventory inventory;
     public ArtifactType slotType;
@@ -12,89 +16,41 @@ public class InventorySlot : AbstractSlot<Artifact>
     {
         this.inventory = inventory;
         this.slotType = slotType;
+        name = slotType.ToString() + " slot";
 
         if (dbArtifact != null)
         {
-            Artifact item = CreateArtifact(dbArtifact);
-            AddSlotObject(item);
-            if (!HasSlotObject(item))
+            Artifact prefab = AllPrefabs.Instance.artifact;
+            Artifact item = Instantiate(prefab, transform);
+            item.Initialize(dbArtifact);
+            Set(item);
+
+            if (!HasSlotObject())
             {
                 Debug.LogWarning("Created artifact was destroyed due to slot rejection.");
                 Destroy(item.gameObject);
             }
         }
-
-        name = slotType.ToString() + " slot";
     }
 
-    public Artifact CreateArtifact(DB_Artifact dbArtifact)
+    public void Set(Artifact item)
     {
-        Artifact prefab = AllPrefabs.Instance.artifact;
-        Artifact item = Instantiate(prefab, transform);
-        item.Initialize(dbArtifact);
-        return item;
+        slotItem = item;
+        if (slotItem) slotItem.transform.parent = transform;
     }
 
-    public override bool CheckSlotObjectType(Artifact slotObject)
+    public void Clear()
     {
-        bool typeCheck = slotType == slotObject.dbData.artifactType;
-        bool anyCheck = slotType == ArtifactType.ANY;
-        return typeCheck || anyCheck;
+        slotItem = null;
     }
 
-    public override bool AddSlotObject(Artifact slotObject)
+    public bool HasSlotObject()
     {
-        bool isTheSameArtifact = HasSlotObject(slotObject);
-        bool acceptableType = CheckSlotObjectType(slotObject);
-
-        if (isTheSameArtifact) return false;
-        if (!acceptableType) return false;
-
-        if (!isTheSameArtifact && acceptableType)
-        {
-            //Here we just swap positions because both slots are compatible.
-        }
-
-        if (!RemoveSlotObject()) return false;
-
-        slotObj = slotObject;
-        slotObj.transform.parent = transform;
-
-        //If this slot is part of the backpack, we add one more slot for more itens to be stored.
-        if (inventory.GetBackpackSlots(false).Contains(this)) inventory.AddBackpackSlot();
-
-        return true;
+        return slotItem != null;
     }
 
-    public override bool RemoveSlotObject()
-    {
-        if (HasSlotObject())
-        {
-            if (!inventory.AddArtifactToBackpack(slotObj))
-                return false;
-        }
-
-        slotObj = null;
-
-        ////If this slot is part of the backpack, ???
-        //if (inventory.GetBackpackSlots(false).Contains(this)) inventory.RemoveBackpackSlot();
-
-        return true;
-    }
-
-    public bool SwapSlots(InventorySlot other)
-    {
-        bool typeCheck = slotType == other.slotType;
-        if (!typeCheck) return false;
-        //bool anyCheck = slotType == ArtifactType.ANY || other.slotType == ArtifactType.ANY;
-        //if (!typeCheck && !anyCheck) return false;
-
-        Artifact thisArtifact = slotObj as Artifact;
-        Artifact otherArtifact = other.slotObj as Artifact;
-        slotObj = otherArtifact;
-        slotObj.transform.parent = transform;
-        other.slotObj = thisArtifact;
-        other.slotObj.transform.parent = other.transform;
-        return true;
-    }
+    //public bool HasSlotObject(Artifact slotObject)
+    //{
+    //    return HasSlotObject() && (slotObj == slotObject);
+    //}
 }
