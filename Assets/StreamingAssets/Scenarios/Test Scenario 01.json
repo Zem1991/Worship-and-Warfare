@@ -1432,6 +1432,41 @@
   "parties": [
     {
       "mapPosition": [
+        3,
+        17
+      ],
+      "ownerId": 1,
+      "hero": {
+        "id": "Christian",
+        "inventoryData": {
+          "offHandId": 2,
+          "trinket1Id": 5,
+          "trinket2Id": 8
+        }
+      },
+      "units": [
+        {
+          "id": "Pikeman",
+          "stackData": {
+            "stack_maximum": 35
+          }
+        },
+        {
+          "id": "Archer",
+          "stackData": {
+            "stack_maximum": 25
+          }
+        },
+        {
+          "id": "Pikeman",
+          "stackData": {
+            "stack_maximum": 35
+          }
+        }
+      ]
+    },
+    {
+      "mapPosition": [
         2,
         17
       ],

@@ -105,6 +105,7 @@ public class Inventory : MonoBehaviour  //AbstractSlotContainer<InventorySlot, A
         newSlot.Initialize(this, ArtifactType.ANY, null);
         newSlot.name = "Backpack slot";
         backpackItems.Add(newSlot);
+        ReorderBackpack();
     }
 
     public bool RemoveBackpackSlot(InventorySlot slot)
@@ -115,6 +116,7 @@ public class Inventory : MonoBehaviour  //AbstractSlotContainer<InventorySlot, A
             backpackItems.TrimExcess();
             Destroy(slot.gameObject);
         }
+        ReorderBackpack();
         return result;
     }
 
@@ -215,7 +217,6 @@ public class Inventory : MonoBehaviour  //AbstractSlotContainer<InventorySlot, A
     public List<InventorySlot> GetBackpackSlots(bool reverseOrder)
     {
         List<InventorySlot> result = new List<InventorySlot>(backpackItems);
-        result.OrderBy(a => a.slotItem);
         if (reverseOrder) result.Reverse();
         return result;
     }
@@ -262,6 +263,9 @@ public class Inventory : MonoBehaviour  //AbstractSlotContainer<InventorySlot, A
             InventorySlot temp = CreateTempSlot(artifact);
             result = AddFromSlot(temp, slot);
             Destroy(temp.gameObject);
+
+            //Since we added this as an equipment, we recalculate the holder's stats.
+            RecalculateStats();
         }
         else
         {
@@ -269,8 +273,6 @@ public class Inventory : MonoBehaviour  //AbstractSlotContainer<InventorySlot, A
         }
         return result;
     }
-
-    
 
     public bool AddFromSlot(InventorySlot fromSlot, InventorySlot toSlot)
     {
@@ -355,5 +357,11 @@ public class Inventory : MonoBehaviour  //AbstractSlotContainer<InventorySlot, A
         Artifact fromItem = from.slotItem;
         from.Set(to.slotItem);
         to.Set(fromItem);
+        ReorderBackpack();
+    }
+
+    private void ReorderBackpack()
+    {
+        backpackItems = backpackItems.OrderBy(a => a.slotItem == null).ToList();
     }
 }

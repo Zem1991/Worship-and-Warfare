@@ -26,11 +26,11 @@ public abstract class AUI_PanelDragAndDrop : AbstractUIPanel
 
     public virtual void DNDEndDrag()
     {
-        if (slotFrontDragged) DNDDrop(null);
+        if (slotFrontDragged) DNDDrop(slotFrontDragged, null);
         draggableElement.EndDrag();
     }
 
-    public virtual void DNDDrop(AUI_DNDSlot slot)
+    public virtual void DNDDrop(AUI_DNDSlot_Front slotFrontDragged, AUI_DNDSlot targetSlot)
     {
         //Remember to call this in overriden function using "base"
         slotFrontDragged = null;

@@ -14,11 +14,11 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
 
     [Header("Main windows")]
     public FieldUI_Panel_EscapeMenu escapeMenu;
-    public FieldUI_Panel_TradeScreen tradeScreen;
     public FieldUI_Panel_Inventory inventory;
 
     [Header("Other windows")]
     public FieldUI_Panel_LevelUp levelUp;
+    public FieldUI_Panel_TradeScreen tradeScreen;
 
     [Header("Current Window")]
     public AbstractUIPanel currentWindow;
@@ -131,7 +131,8 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
     }
     public void TradeScreenHide()
     {
-        tradeScreen.DNDEndDrag();
+        tradeScreen.fuiLeftParty.inventoryInfo.DNDEndDrag();
+        tradeScreen.fuiRightParty.inventoryInfo.DNDEndDrag();
         tradeScreen.Hide();
         currentWindow = null;
         UIManager.Instance.PointerExit(tradeScreen);
@@ -144,7 +145,7 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
     }
     public void InventoryHide()
     {
-        inventory.DNDEndDrag();
+        inventory.inventoryInfo.DNDEndDrag();
         inventory.Hide();
         currentWindow = null;
         UIManager.Instance.PointerExit(inventory);

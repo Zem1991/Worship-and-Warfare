@@ -46,14 +46,15 @@ public class TownUI_Panel_Parties : AUI_PanelDragAndDrop
         base.DNDBeginDrag(slotFront);
     }
 
-    public override void DNDDrop(AUI_DNDSlot slot)
+    public override void DNDDrop(AUI_DNDSlot_Front slotFrontDragged, AUI_DNDSlot targetSlot)
     {
+        this.slotFrontDragged = slotFrontDragged;
         if (slotFrontDragged)
         {
             TownUI_PartySlot draggedSlot = slotFrontDragged.slotBack as TownUI_PartySlot;
             PartySlot actualPartySlot = draggedSlot.partySlot;
 
-            TownUI_PartySlot tuiPartySlot = slot as TownUI_PartySlot;
+            TownUI_PartySlot tuiPartySlot = targetSlot as TownUI_PartySlot;
             if (tuiPartySlot)
             {
                 AbstractPartyElement item = actualPartySlot.slotObj;
@@ -66,6 +67,6 @@ public class TownUI_Panel_Parties : AUI_PanelDragAndDrop
             actualPartySlot.isBeingDragged = false;
         }
 
-        base.DNDDrop(slot);
+        base.DNDDrop(slotFrontDragged, targetSlot);
     }
 }

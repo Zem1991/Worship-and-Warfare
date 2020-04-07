@@ -20,7 +20,8 @@ public abstract class AUI_DNDSlot : MonoBehaviour, IDropHandler
         RectTransform rectTransform = transform as RectTransform;
         if (RectTransformUtility.RectangleContainsScreenPoint(rectTransform, InputManager.Instance.mouseScreenPos))
         {
-            panelDND.DNDDrop(this);
+            AUI_DNDSlot_Front draggedObj = eventData.pointerDrag.GetComponent<AUI_DNDSlot_Front>();
+            panelDND.DNDDrop(draggedObj, this);
         }
     }
 
