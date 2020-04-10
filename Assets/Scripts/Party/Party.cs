@@ -45,7 +45,7 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
 
             Hero actualHero = Instantiate(prefabHero, hero.transform);
             actualHero.Initialize(dbData, heroData.experienceData, heroData.inventoryData);
-            hero.slotObj = actualHero;
+            hero.SetSlotObject(actualHero);
         }
 
         if (partyData.units != null)
@@ -62,7 +62,7 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
 
                 Unit unit = Instantiate(prefabUnit, units[i].transform);
                 unit.Initialize(dbData, unitData.stackData.stack_maximum);
-                units[i].slotObj = unit;
+                units[i].SetSlotObject(unit);
             }
         }
     }
@@ -71,23 +71,23 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
     {
         Initialize();
 
-        Hero hero = party.hero.slotObj as Hero;
+        Hero hero = party.hero.GetSlotObject() as Hero;
         if (hero)
         {
-            this.hero.slotObj = hero;
+            this.hero.SetSlotObject(hero);
             hero.transform.parent = transform;
-            party.hero.slotObj = null;
+            party.hero.SetSlotObject(null);
         }
 
         PartySlot[] unitSlots = party.units;
         for (int i = 0; i < unitSlots.Length; i++)
         {
-            Unit unit = unitSlots[i].slotObj as Unit;
+            Unit unit = unitSlots[i].GetSlotObject() as Unit;
             if (unit)
             {
-                units[i].slotObj = unit;
-                unit.transform.parent = units[i].slotObj.transform;
-                party.units[i].slotObj = null;
+                units[i].SetSlotObject(unit);
+                unit.transform.parent = units[i].GetSlotObject().transform;
+                party.units[i].SetSlotObject(null);
             }
         }
     }
@@ -99,11 +99,11 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
 
     public void ClearParty()
     {
-        if (hero.slotObj)
+        if (hero.GetSlotObject())
         {
-            Destroy(hero.slotObj.gameObject);
+            Destroy(hero.GetSlotObject().gameObject);
         }
-        hero.slotObj = null;
+        hero.SetSlotObject(null);
 
         ClearUnits();
     }
@@ -112,11 +112,11 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
     {
         foreach (PartySlot unitSlot in units)
         {
-            if (unitSlot.slotObj)
+            if (unitSlot.GetSlotObject())
             {
-                Destroy(unitSlot.slotObj.gameObject);
+                Destroy(unitSlot.GetSlotObject().gameObject);
             }
-            unitSlot.slotObj = null;
+            unitSlot.SetSlotObject(null);
         }
     }
 
@@ -147,7 +147,7 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
         //TODO make a better method than this
         foreach (PartySlot slot in units)
         {
-            Unit unit = slot.slotObj as Unit;
+            Unit unit = slot.GetSlotObject() as Unit;
             if (unit) return unit;
         }
         return null;

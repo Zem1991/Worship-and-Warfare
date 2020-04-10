@@ -17,7 +17,7 @@ public class FieldUI_InventorySlot : AUI_DNDSlot
         this.panelDND = panelDND;
         this.invSlot = invSlot;
 
-        Artifact artifact = invSlot?.slotItem;
+        Artifact artifact = invSlot?.GetSlotObject();
         ChangeImage(artifact?.dbData.image);
     }
 }

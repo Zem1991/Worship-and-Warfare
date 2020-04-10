@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public abstract class AUI_PanelDragAndDrop : AbstractUIPanel
 {
-    [Header("Drag and Drop - local reference")]
+    [Header("Drag and Drop - settings")]
     public UI_DraggableElement draggableElement;
 
     [Header("Drag and Drop - runtime")]
     public AUI_DNDSlot_Front slotFrontDragged = null;
-    //public bool isDraggingElement = false;
+
+    public abstract bool DNDCanDragThis(AUI_DNDSlot_Front slotFront);
 
     public virtual void DNDBeginDrag(AUI_DNDSlot_Front slotFront)
     {
@@ -19,12 +20,12 @@ public abstract class AUI_PanelDragAndDrop : AbstractUIPanel
         slotFrontDragged = slotFront;
     }
 
-    public virtual void DNDDrag()
+    public void DNDDrag()
     {
         draggableElement.Drag();
     }
 
-    public virtual void DNDEndDrag()
+    public void DNDEndDrag()
     {
         if (slotFrontDragged) DNDDrop(slotFrontDragged, null);
         draggableElement.EndDrag();
@@ -33,6 +34,6 @@ public abstract class AUI_PanelDragAndDrop : AbstractUIPanel
     public virtual void DNDDrop(AUI_DNDSlot_Front slotFrontDragged, AUI_DNDSlot targetSlot)
     {
         //Remember to call this in overriden function using "base"
-        slotFrontDragged = null;
+        this.slotFrontDragged = null;
     }
 }

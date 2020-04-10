@@ -129,7 +129,7 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
                 Artifact prefab = AllPrefabs.Instance.artifact;
                 Artifact artifact = Instantiate(prefab, transform);
                 artifact.Initialize(artifactPickup.dbArtifact);
-                Hero hero = party.party.hero.slotObj as Hero;
+                Hero hero = party.party.hero.GetSlotObject() as Hero;
                 hero.inventory.AddFromPickup(artifact);
                 break;
             default:

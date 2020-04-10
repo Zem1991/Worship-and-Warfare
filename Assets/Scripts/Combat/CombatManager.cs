@@ -381,11 +381,11 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         //TODO don't use this while
         if (hasLevelUp)
         {
-            Hero hero = victor.party.hero.slotObj as Hero;
+            Hero hero = victor.party.hero.GetSlotObject() as Hero;
             FieldUI fui = FieldUI.Instance;
             fui.levelUp.UpdatePanel(hero);
             fui.LevelUpShow(hero);
-            hasLevelUp = victor.ApplyExperience();
+            //hasLevelUp = victor.ApplyExperience();
         }
         //}
 

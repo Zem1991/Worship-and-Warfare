@@ -12,7 +12,7 @@ public class TownUI_PartySlot : AUI_DNDSlot
         this.panelDND = panelDND;
         this.partySlot = partySlot;
 
-        AbstractPartyElement partyEl = partySlot?.slotObj;
+        AbstractPartyElement partyEl = partySlot?.GetSlotObject();
         ChangeImage(partyEl?.GetProfileImage());
     }
 }

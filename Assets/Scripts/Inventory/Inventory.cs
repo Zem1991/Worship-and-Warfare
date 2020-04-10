@@ -136,7 +136,7 @@ public class Inventory : MonoBehaviour  //AbstractSlotContainer<InventorySlot, A
 
         foreach (InventorySlot invSlot in GetEquipmentSlots())
         {
-            Artifact artifact = invSlot.slotItem;
+            Artifact artifact = invSlot.GetSlotObject();
             if (!artifact || invSlot.isBeingDragged) continue;
 
             atrOffense += artifact.dbData.attributeStats.atrOffense;
@@ -276,8 +276,8 @@ public class Inventory : MonoBehaviour  //AbstractSlotContainer<InventorySlot, A
 
     public bool AddFromSlot(InventorySlot fromSlot, InventorySlot toSlot)
     {
-        Artifact fromItem = fromSlot.slotItem;
-        Artifact toItem = toSlot.slotItem;
+        Artifact fromItem = fromSlot.GetSlotObject();
+        Artifact toItem = toSlot.GetSlotObject();
 
         bool fromBackpack = HasBackpackSlot(fromSlot);
         bool toBackpack = HasBackpackSlot(toSlot);
@@ -309,12 +309,12 @@ public class Inventory : MonoBehaviour  //AbstractSlotContainer<InventorySlot, A
                 if (toBackpack)
                 {
                     AddToBackpack(fromItem);
-                    fromSlot.Clear();
+                    fromSlot.ClearSlotObject();
                     result = true;
                 }
                 else if (fromBackpack && canSendToSlot)
                 {
-                    toSlot.Set(fromItem);
+                    toSlot.SetSlotObject(fromItem);
                     RemoveBackpackSlot(fromSlot);
                     result = true;
                 }
@@ -348,20 +348,20 @@ public class Inventory : MonoBehaviour  //AbstractSlotContainer<InventorySlot, A
         InventorySlot prefabInvSlot = AllPrefabs.Instance.inventorySlot;
         InventorySlot temp = Instantiate(prefabInvSlot, transform);
         temp.Initialize(this, artifact.dbData.artifactType, null);
-        temp.slotItem = artifact;
+        temp.SetSlotObject(artifact);
         return temp;
     }
 
     private void SwapSlotContents(InventorySlot from, InventorySlot to)
     {
-        Artifact fromItem = from.slotItem;
-        from.Set(to.slotItem);
-        to.Set(fromItem);
+        Artifact fromItem = from.GetSlotObject();
+        from.SetSlotObject(to.GetSlotObject());
+        to.SetSlotObject(fromItem);
         ReorderBackpack();
     }
 
     private void ReorderBackpack()
     {
-        backpackItems = backpackItems.OrderBy(a => a.slotItem == null).ToList();
+        backpackItems = backpackItems.OrderBy(a => a.GetSlotObject() == null).ToList();
     }
 }

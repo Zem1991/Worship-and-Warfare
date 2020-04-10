@@ -50,7 +50,7 @@ public class CombatPieceHandler : MonoBehaviour
         int spawnId = 0;
         if (attackerPiece.party.hero != null)
         {
-            Hero hero = attackerPiece.party.hero.slotObj as Hero;
+            Hero hero = attackerPiece.party.hero.GetSlotObject() as Hero;
             if (hero)
             {
                 attackerHero = Instantiate(prefabHero, transform);
@@ -62,7 +62,7 @@ public class CombatPieceHandler : MonoBehaviour
         spawnId = 1;
         if (defenderPiece.party.hero != null)
         {
-            Hero hero = defenderPiece.party.hero.slotObj as Hero;
+            Hero hero = defenderPiece.party.hero.GetSlotObject() as Hero;
             if (hero)
             {
                 defenderHero = Instantiate(prefabHero, transform);
@@ -76,7 +76,7 @@ public class CombatPieceHandler : MonoBehaviour
         {
             foreach (var unitSlot in attackerPiece.party.units)
             {
-                Unit unit = unitSlot.slotObj as Unit;
+                Unit unit = unitSlot.GetSlotObject() as Unit;
                 if (unit)
                 {
                     CombatantUnitPiece2 uc = Instantiate(prefabUnit, transform);
@@ -93,7 +93,7 @@ public class CombatPieceHandler : MonoBehaviour
         {
             foreach (var unitSlot in defenderPiece.party.units)
             {
-                Unit unit = unitSlot.slotObj as Unit;
+                Unit unit = unitSlot.GetSlotObject() as Unit;
                 if (unit)
                 {
                     CombatantUnitPiece2 uc = Instantiate(prefabUnit, transform);

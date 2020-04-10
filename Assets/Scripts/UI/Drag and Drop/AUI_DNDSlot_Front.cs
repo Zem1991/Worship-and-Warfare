@@ -11,20 +11,23 @@ public abstract class AUI_DNDSlot_Front : MonoBehaviour, IBeginDragHandler, IDra
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (CheckSlotFilled())
-        {
-            slotBack.ChangeImage(slotBack.imgSlotFront.sprite);
-            slotBack.panelDND.DNDBeginDrag(this);
-        }
+        if (!slotBack.panelDND.DNDCanDragThis(this)) return;
+        if (!CheckSlotFilled()) return;
+        slotBack.ChangeImage(slotBack.imgSlotFront.sprite);
+        slotBack.panelDND.DNDBeginDrag(this);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (!slotBack.panelDND.DNDCanDragThis(this)) return;
+        if (!CheckSlotFilled()) return;
         slotBack.panelDND.DNDDrag();
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (!slotBack.panelDND.DNDCanDragThis(this)) return;
+        //if (!CheckSlotFilled()) return;
         slotBack.panelDND.DNDEndDrag();
     }
 

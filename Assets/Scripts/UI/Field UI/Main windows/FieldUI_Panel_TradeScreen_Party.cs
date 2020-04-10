@@ -12,7 +12,7 @@ public class FieldUI_Panel_TradeScreen_Party : MonoBehaviour, IInventoryPanel
 
     public void UpdatePanel(PartyPiece2 partyPiece, bool refreshBackpackSlots)
     {
-        Hero hero = partyPiece.party.hero.slotObj as Hero;
+        Hero hero = partyPiece.party.hero.GetSlotObject() as Hero;
         heroInfo.RefreshInfo(hero);
         attributeInfo.RefreshInfo(hero?.attributeStats);
         inventoryInfo.RefreshInfo(partyPiece, refreshBackpackSlots);

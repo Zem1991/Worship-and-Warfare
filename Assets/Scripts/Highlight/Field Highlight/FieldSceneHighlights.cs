@@ -104,21 +104,21 @@ public class FieldSceneHighlights : AbstractSingleton<FieldSceneHighlights>, ISh
 
     private void RemoveMoveAreaighlights()
     {
-        Debug.Log("FieldSceneHighlights - RemoveMoveAreaighlights()");
+        //Debug.Log("FieldSceneHighlights - RemoveMoveAreaighlights()");
         foreach (var item in moveAreaHighlights) Destroy(item.gameObject);
         moveAreaHighlights.Clear();
     }
 
     private void RemoveMovePathHighlights()
     {
-        Debug.Log("FieldSceneHighlights - RemoveMovePathHighlights()");
+        //Debug.Log("FieldSceneHighlights - RemoveMovePathHighlights()");
         foreach (var item in movePathHighlights) Destroy(item.gameObject);
         movePathHighlights.Clear();
     }
 
     private void CreateMoveAreaHighlights(PartyPiece2 pp)
     {
-        Debug.Log("FieldSceneHighlights - CreateMoveAreaHighlights()");
+        //Debug.Log("FieldSceneHighlights - CreateMoveAreaHighlights()");
         PieceMovement2 pm2 = pp.pieceMovement;
         moveAreaHighlights = SceneHighlightHelper.MoveAreaHighlights(pp.currentTile, moveAreaHolder, moveAreaSprite,
             pm2.movementPointsCurrent, Pathfinder.OctoHeuristic, true, false, false);
@@ -126,7 +126,7 @@ public class FieldSceneHighlights : AbstractSingleton<FieldSceneHighlights>, ISh
 
     private void CreateMovePathHighlights(PartyPiece2 pp)
     {
-        Debug.Log("FieldSceneHighlights - CreateMovePathHighlights()");
+        //Debug.Log("FieldSceneHighlights - CreateMovePathHighlights()");
         PieceMovement2 pm2 = pp.pieceMovement;
         movePathHighlights = SceneHighlightHelper.MovePathHighlights(pp.currentTile, movePathHolder, movePathArrowSprites, movePathMarkerSprites,
             pm2.movementPointsCurrent, pm2.GetPath());

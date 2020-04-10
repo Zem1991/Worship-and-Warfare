@@ -7,6 +7,8 @@ public class TownUI_PartySlot_Front : AUI_DNDSlot_Front
     public override bool CheckSlotFilled()
     {
         TownUI_PartySlot tuiPartySlot = slotBack as TownUI_PartySlot;
-        return tuiPartySlot.partySlot.slotObj;
+        AbstractPartyElement slotObj = tuiPartySlot.partySlot.GetSlotObject();
+        Debug.Log("Slot is filled with: " + slotObj);
+        return slotObj;
     }
 }

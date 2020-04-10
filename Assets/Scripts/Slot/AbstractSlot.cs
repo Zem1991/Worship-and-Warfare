@@ -4,8 +4,8 @@ using UnityEngine;
 
 public abstract class AbstractSlot<SlotObject> : MonoBehaviour where SlotObject : MonoBehaviour
 {
-    [Header("Item data")]
-    public SlotObject slotObj;
+    [Header("Slot data")]
+    protected SlotObject slotObj;
     public bool isBeingDragged;
 
     public bool HasSlotObject()
@@ -19,7 +19,23 @@ public abstract class AbstractSlot<SlotObject> : MonoBehaviour where SlotObject 
         //return slotObj == slotObject;
     }
 
-    public abstract bool CheckSlotObjectType(SlotObject slotObject);
-    public abstract bool AddSlotObject(SlotObject slotObject);
-    public abstract bool RemoveSlotObject();
+    public void ClearSlotObject()
+    {
+        slotObj = null;
+    }
+
+    public SlotObject GetSlotObject()
+    {
+        return slotObj;
+    }
+
+    public void SetSlotObject(SlotObject item)
+    {
+        slotObj = item;
+        if (slotObj) slotObj.transform.parent = transform;
+    }
+
+    //public abstract bool CheckSlotObjectType(SlotObject slotObject);
+    //public abstract bool AddSlotObject(SlotObject slotObject);
+    //public abstract bool RemoveSlotObject();
 }

@@ -29,7 +29,7 @@ public class UI_HeroInfo : MonoBehaviour, IShowableHideable
 
     public void RefreshInfo(PartySlot slot)
     {
-        Hero hero = slot?.slotObj as Hero;
+        Hero hero = slot?.GetSlotObject() as Hero;
         RefreshInfo(hero);
     }
 

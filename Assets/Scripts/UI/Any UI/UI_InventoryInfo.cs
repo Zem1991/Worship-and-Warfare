@@ -38,7 +38,7 @@ public class UI_InventoryInfo : AUI_PanelDragAndDrop
 
     private void RefreshEquipmentInfo(PartyPiece2 partyPiece)
     {
-        Hero hero = partyPiece.party.hero.slotObj as Hero;
+        Hero hero = partyPiece.party.hero.GetSlotObject() as Hero;
         Inventory inv = hero.inventory;
         mainHand.slot.UpdateSlot(this, inv.GetEquipmentSlot(ArtifactType.MAIN_HAND));
         offHand.slot.UpdateSlot(this, inv.GetEquipmentSlot(ArtifactType.OFF_HAND));
@@ -56,7 +56,7 @@ public class UI_InventoryInfo : AUI_PanelDragAndDrop
         foreach (FieldUI_InventorySlot_Holder item in backpack) Destroy(item.gameObject);
         backpack.Clear();
 
-        Hero hero = partyPiece.party.hero.slotObj as Hero;
+        Hero hero = partyPiece.party.hero.GetSlotObject() as Hero;
         Inventory inv = hero.inventory;
         foreach (InventorySlot backpackSlot in inv.GetBackpackSlots(true))
         {
@@ -67,6 +67,18 @@ public class UI_InventoryInfo : AUI_PanelDragAndDrop
         }
     }
 
+    public override bool DNDCanDragThis(AUI_DNDSlot_Front slotFront)
+    {
+        FieldUI_InventorySlot fuiInvSlot = slotFront.slotBack as FieldUI_InventorySlot;
+
+        bool result = true;
+        if (!fuiInvSlot)
+        {
+            result = false;
+        }
+        return result;
+    }
+
     public override void DNDBeginDrag(AUI_DNDSlot_Front slotFront)
     {
         FieldUI_InventorySlot fuiInvSlot = slotFront.slotBack as FieldUI_InventorySlot;
@@ -74,8 +86,8 @@ public class UI_InventoryInfo : AUI_PanelDragAndDrop
         InventorySlot invSlot = fuiInvSlot.invSlot;
         invSlot.isBeingDragged = true;
         invSlot.inventory.RecalculateStats();
-
         base.DNDBeginDrag(slotFront);
+
         inventoryPanel.CallUpdatePanel(partyPiece, false);
     }
 

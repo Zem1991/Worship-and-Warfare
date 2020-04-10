@@ -6,15 +6,15 @@ public abstract class AbstractSlotContainer<Slot, SlotObject> : MonoBehaviour wh
 {
     public abstract bool AddSlotObject(SlotObject item);
 
-    public virtual bool AddSlotObjectToSlot(AbstractSlot<SlotObject> slot, SlotObject item)
-    {
-        bool result = slot.AddSlotObject(item);
-        return result;
-    }
+    //public virtual bool AddSlotObjectToSlot(AbstractSlot<SlotObject> slot, SlotObject item)
+    //{
+    //    bool result = slot.AddSlotObject(item);
+    //    return result;
+    //}
 
-    public virtual bool RemoveSlotObjectFromSlot(AbstractSlot<SlotObject> slot)
-    {
-        bool result = slot.RemoveSlotObject();
-        return result;
-    }
+    //public virtual bool RemoveSlotObjectFromSlot(AbstractSlot<SlotObject> slot)
+    //{
+    //    bool result = slot.RemoveSlotObject();
+    //    return result;
+    //}
 }

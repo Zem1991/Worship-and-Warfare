@@ -2,13 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventorySlot : MonoBehaviour  //AbstractSlot<Artifact>
+public class InventorySlot : AbstractSlot<Artifact>
 {
-    [Header("Item data")]
-    public Artifact slotItem;
-    public bool isBeingDragged;
-
-    [Header("Slot data")]
+    [Header("Inventory data")]
     public Inventory inventory;
     public ArtifactType slotType;
 
@@ -23,7 +19,7 @@ public class InventorySlot : MonoBehaviour  //AbstractSlot<Artifact>
             Artifact prefab = AllPrefabs.Instance.artifact;
             Artifact item = Instantiate(prefab, transform);
             item.Initialize(dbArtifact);
-            Set(item);
+            SetSlotObject(item);
 
             if (!HasSlotObject())
             {
@@ -32,25 +28,4 @@ public class InventorySlot : MonoBehaviour  //AbstractSlot<Artifact>
             }
         }
     }
-
-    public void Set(Artifact item)
-    {
-        slotItem = item;
-        if (slotItem) slotItem.transform.parent = transform;
-    }
-
-    public void Clear()
-    {
-        slotItem = null;
-    }
-
-    public bool HasSlotObject()
-    {
-        return slotItem != null;
-    }
-
-    //public bool HasSlotObject(Artifact slotObject)
-    //{
-    //    return HasSlotObject() && (slotObj == slotObject);
-    //}
 }

@@ -40,7 +40,7 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
         this.party = party;
         name = "P" + owner.id + " - Party";
 
-        Hero hero = party.hero.slotObj as Hero;
+        Hero hero = party.hero.GetSlotObject() as Hero;
         Unit relevantUnit = party.GetRelevantUnit();
 
         if (hero)
@@ -67,9 +67,9 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
 
     public bool ApplyExperience(int amountToAdd)
     {
-        if (party.hero.slotObj)
+        if (party.hero.GetSlotObject())
         {
-            Hero hero = party.hero.slotObj as Hero;
+            Hero hero = party.hero.GetSlotObject() as Hero;
             hero.RecalculateExperience(amountToAdd);
             return hero.levelUps > 0;
         }
@@ -94,7 +94,7 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
 
     public override string AFP2_GetPieceTitle()
     {
-        Hero hero = party.hero.slotObj as Hero;
+        Hero hero = party.hero.GetSlotObject() as Hero;
         Unit unit = party.GetRelevantUnit();
 
         string result = "Unknown party piece title";
