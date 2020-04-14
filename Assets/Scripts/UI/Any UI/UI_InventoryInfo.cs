@@ -38,7 +38,7 @@ public class UI_InventoryInfo : AUI_PanelDragAndDrop
 
     private void RefreshEquipmentInfo(PartyPiece2 partyPiece)
     {
-        Hero hero = partyPiece.party.hero.GetSlotObject() as Hero;
+        Hero hero = partyPiece.party.GetHeroSlot().Get() as Hero;
         Inventory inv = hero.inventory;
         mainHand.slot.UpdateSlot(this, inv.GetEquipmentSlot(ArtifactType.MAIN_HAND));
         offHand.slot.UpdateSlot(this, inv.GetEquipmentSlot(ArtifactType.OFF_HAND));
@@ -56,7 +56,7 @@ public class UI_InventoryInfo : AUI_PanelDragAndDrop
         foreach (FieldUI_InventorySlot_Holder item in backpack) Destroy(item.gameObject);
         backpack.Clear();
 
-        Hero hero = partyPiece.party.hero.GetSlotObject() as Hero;
+        Hero hero = partyPiece.party.GetHeroSlot().Get() as Hero;
         Inventory inv = hero.inventory;
         foreach (InventorySlot backpackSlot in inv.GetBackpackSlots(true))
         {
@@ -108,7 +108,7 @@ public class UI_InventoryInfo : AUI_PanelDragAndDrop
             {
                 targetInvSlot = targetUISlot.invSlot;
                 targetInv = targetInvSlot.inventory;
-                targetInv.AddFromSlot(sourceInvSlot, targetInvSlot);
+                targetInv.Swap(sourceInvSlot, targetInvSlot);
             }
 
             sourceInvSlot.isBeingDragged = false;

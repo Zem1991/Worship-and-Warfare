@@ -5,31 +5,30 @@ using UnityEngine;
 public abstract class AbstractSlot<SlotObject> : MonoBehaviour where SlotObject : MonoBehaviour
 {
     [Header("Slot data")]
-    protected SlotObject slotObj;
+    [SerializeField] protected SlotObject slotObj;
     public bool isBeingDragged;
 
-    public bool HasSlotObject()
+    public bool Has()
     {
         return slotObj != null;
     }
 
-    public bool HasSlotObject(SlotObject slotObject)
+    public bool Has(SlotObject slotObject)
     {
-        return HasSlotObject() && slotObj == slotObject;
-        //return slotObj == slotObject;
+        return Has() && slotObj == slotObject;
     }
 
-    public void ClearSlotObject()
+    public void Clear()
     {
         slotObj = null;
     }
 
-    public SlotObject GetSlotObject()
+    public SlotObject Get()
     {
         return slotObj;
     }
 
-    public void SetSlotObject(SlotObject item)
+    public void Set(SlotObject item)
     {
         slotObj = item;
         if (slotObj) slotObj.transform.parent = transform;

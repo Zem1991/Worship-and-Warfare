@@ -65,21 +65,26 @@ public class TownManager : AbstractSingleton<TownManager>, IShowableHideable
         if (TownUI.Instance.currentWindow != null) TownUI.Instance.CloseCurrentWindow();
 
         TownSC.Instance.HideScene();
+
+        //TODO For some reason I can't change this line to another position down below (the #HERE marker). Investigate?
         GameManager.Instance.ChangeSchemes(GameScheme.FIELD);
 
         PartyPiece2 visitorPiece = townPiece.visitorPiece;
         Party visitorParty = townPiece.town.visitor;
+
         if (visitorPiece)
         {
-            if (!visitorPiece.party.HasAnyContent()) FieldManager.Instance.RemoveParty(visitorPiece);
+            if (!visitorPiece.party.GetMostRelevant()) FieldManager.Instance.RemoveParty(visitorPiece);
         }
-        else if (visitorParty.HasAnyContent())
+        else if (visitorParty.GetMostRelevant())
         {
-            FieldManager.Instance.pieceHandler.CreatePartyFromTown(townPiece, visitorParty);
+            FieldManager.Instance.pieceHandler.SpawnTownVisitor(townPiece);
         }
 
         townPiece.visitorPiece = null;
         visitorParty.ClearParty();
+        //FieldManager.Instance.pieceHandler.SpawnTownVisitor(townPiece);
+        //#HERE
 
         FieldSC.Instance.ShowScene();
     }

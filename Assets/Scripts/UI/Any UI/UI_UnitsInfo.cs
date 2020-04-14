@@ -35,7 +35,7 @@ public class UI_UnitsInfo : MonoBehaviour, IShowableHideable
     {
         for (int i = 0; i < slots.Length; i++)
         {
-            Unit unit = slots[i]?.GetSlotObject() as Unit;
+            Unit unit = slots[i]?.Get() as Unit;
             unitsInfo[i].RefreshInfo(unit);
         }
     }

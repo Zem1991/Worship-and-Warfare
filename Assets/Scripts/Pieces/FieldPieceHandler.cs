@@ -175,8 +175,11 @@ public class FieldPieceHandler : MonoBehaviour
         }
     }
 
-    public void CreatePartyFromTown(TownPiece2 townPiece, Party party)
+    public void SpawnTownVisitor(TownPiece2 townPiece)
     {
+        Party visitor = townPiece.town.visitor;
+        if (!visitor || !visitor.GetMostRelevant()) return;
+
         PartyPiece2 prefabPartyPiece = AllPrefabs.Instance.fieldPartyPiece;
         Party prefabParty = AllPrefabs.Instance.party;
 
@@ -192,12 +195,30 @@ public class FieldPieceHandler : MonoBehaviour
         Quaternion rot = Quaternion.identity;
 
         PartyPiece2 newPartyPiece = Instantiate(prefabPartyPiece, pos, rot, transform);
-
         Party newParty = Instantiate(prefabParty, newPartyPiece.transform);
-        newParty.TransferContentsFrom(party);
+        
+        //We will just transfer the contents from the visitor party to this party, manually.
+        newParty.Initialize();
+        Hero hero = visitor.GetHeroSlot().Get() as Hero;
+        if (hero)
+        {
+            newParty.GetHeroSlot().Set(hero);
+            hero.transform.parent = newParty.transform;
+            visitor.GetHeroSlot().Set(null);
+        }
+        List<PartySlot> unitSlots = visitor.GetUnitSlots();
+        for (int i = 0; i < unitSlots.Count; i++)
+        {
+            Unit unit = unitSlots[i].Get() as Unit;
+            if (unit)
+            {
+                newParty.GetUnitSlot(i).Set(unit);
+                unit.transform.parent = newParty.GetUnitSlot(i).Get().transform;
+                visitor.GetUnitSlot(i).Set(null);
+            }
+        }
 
         newPartyPiece.Initialize(townPiece.pieceOwner.GetOwner(), newParty);
-
         newPartyPiece.currentTile = fieldTile;
         newPartyPiece.currentTile.occupantPiece = newPartyPiece;
         partyPieces.Add(newPartyPiece);

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour  //AbstractSlotContainer<InventorySlot, Artifact>
+public class Inventory : AbstractSlotContainer<InventorySlot, Artifact>
 {
     [Header("Static references")]
     public AttributeStats equipAttributeStats;
@@ -14,7 +14,7 @@ public class Inventory : MonoBehaviour  //AbstractSlotContainer<InventorySlot, A
     [Header("Dynamic references")]
     public Hero hero;
 
-    [Header("Slots - equipment")]
+    [Header("Equipment slots")]
     [SerializeField] private InventorySlot equipMainHand;
     [SerializeField] private InventorySlot equipOffHand;
     [SerializeField] private InventorySlot equipHead;
@@ -28,7 +28,7 @@ public class Inventory : MonoBehaviour  //AbstractSlotContainer<InventorySlot, A
     [SerializeField] private InventorySlot equipTrinket3;
     [SerializeField] private InventorySlot equipTrinket4;
 
-    [Header("Slots - backpack")]
+    [Header("Backpack slots")]
     [SerializeField] private List<InventorySlot> backpackItems;
 
     public void Initialize(Hero hero, InventoryData inventoryData)
@@ -92,10 +92,184 @@ public class Inventory : MonoBehaviour  //AbstractSlotContainer<InventorySlot, A
         equipTrinket4 = Instantiate(prefabInventorySlot, equipmentSlotHolder.transform);
         equipTrinket4.Initialize(this, ArtifactType.TRINKET, t4);
 
+        RecalculateStats();
+
         //Add one empty backpack slot. This makes handling the inventory and trade windows much easier.
         AddBackpackSlot();
+    }
 
-        RecalculateStats();
+    public override bool Add(Artifact item)
+    {
+        InventorySlot slot = null;
+        switch (item.dbData.artifactType)
+        {
+            case ArtifactType.MAIN_HAND:
+                slot = equipMainHand.Has() ? null : equipMainHand;
+                break;
+            case ArtifactType.OFF_HAND:
+                slot = equipOffHand.Has() ? null : equipOffHand;
+                break;
+            case ArtifactType.HEAD:
+                slot = equipHead.Has() ? null : equipHead;
+                break;
+            case ArtifactType.TORSO:
+                slot = equipTorso.Has() ? null : equipTorso;
+                break;
+            case ArtifactType.BACK:
+                slot = equipBack.Has() ? null : equipBack;
+                break;
+            case ArtifactType.NECK:
+                slot = equipNeck.Has() ? null : equipNeck;
+                break;
+            case ArtifactType.RING:
+                slot = equipRing1.Has() ? null : equipRing1;
+                if (!slot) slot = equipRing2.Has() ? null : equipRing2;
+                break;
+            case ArtifactType.TRINKET:
+                slot = equipTrinket1.Has() ? null : equipTrinket1;
+                if (!slot) slot = equipTrinket2.Has() ? null : equipTrinket2;
+                if (!slot) slot = equipTrinket3.Has() ? null : equipTrinket3;
+                if (!slot) slot = equipTrinket4.Has() ? null : equipTrinket4;
+                break;
+        }
+
+        bool result;
+        if (slot)
+        {
+            //Create an temporary InventorySlot just to reuse the AddFromSlot function.
+            InventorySlot prefab = AllPrefabs.Instance.inventorySlot;
+            InventorySlot temp = CreateTempSlot(prefab, item) as InventorySlot;
+            result = Swap(temp, slot);
+            Destroy(temp.gameObject);
+
+            //Since we added this as an equipment, we recalculate the holder's stats.
+            RecalculateStats();
+        }
+        else
+        {
+            result = SendToBackpack(item);
+        }
+        return result;
+    }
+
+    public override bool Remove(Artifact item)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override bool Swap(AbstractSlot<Artifact> fromSlot, AbstractSlot<Artifact> toSlot)
+    {
+        InventorySlot fromSlotFix = fromSlot as InventorySlot;
+        InventorySlot toSlotFix = toSlot as InventorySlot;
+
+        Artifact fromItem = fromSlotFix.Get();
+        Artifact toItem = toSlotFix.Get();
+
+        //bool fromBackpack = HasBackpackSlot(fromSlot);
+        //bool toBackpack = HasBackpackSlot(toSlot);
+        bool fromBackpack = backpackItems.Contains(fromSlotFix);
+        bool toBackpack = backpackItems.Contains(toSlotFix);
+        bool equipAndBackpack = fromBackpack != toBackpack;
+        bool sameTypeSlots = fromSlotFix.slotType == toSlotFix.slotType;
+        bool sameTypeArtifacts = fromItem && toItem && fromItem.dbData.artifactType == toItem.dbData.artifactType;
+        bool canSendToSlot = fromItem && fromItem.dbData.artifactType == toSlotFix.slotType;
+
+        //If the slots are of the same type, then an simple swap is done.
+        //Else if we are exchanging between equipped items and backpack items, then we do specific actions.
+        bool result = false;
+        if (sameTypeSlots)
+        {
+            //Here we just exchange items between slots.
+            SwapAux(fromSlotFix, toSlotFix);
+            result = true;
+        }
+        else if (equipAndBackpack)
+        {
+            //If the items are of the same type, then an simple swap is done.
+            //Else, we check for which one of the slots are from the backpack and act accordingly.
+            if (sameTypeArtifacts)
+            {
+                SwapAux(fromSlotFix, toSlotFix);
+                result = true;
+            }
+            else
+            {
+                if (toBackpack)
+                {
+                    SendToBackpack(fromItem);
+                    fromSlotFix.Clear();
+                    result = true;
+                }
+                else if (fromBackpack && canSendToSlot)
+                {
+                    toSlotFix.Set(fromItem);
+                    RemoveBackpackSlot(fromSlotFix);
+                    result = true;
+                }
+            }
+        }
+        return result;
+    }
+
+    private void SwapAux(InventorySlot from, InventorySlot to)
+    {
+        Artifact fromItem = from.Get();
+        from.Set(to.Get());
+        to.Set(fromItem);
+        ReorderBackpack();
+    }
+
+    public void RecalculateStats()
+    {
+        int atrOffense = 0;
+        int atrDefense = 0;
+        int atrSupport = 0;
+        int atrCommand = 0;
+        int atrMagic = 0;
+        int atrTech = 0;
+
+        foreach (InventorySlot invSlot in GetEquipmentSlots())
+        {
+            Artifact artifact = invSlot.Get();
+            if (!artifact || invSlot.isBeingDragged) continue;
+
+            atrOffense += artifact.dbData.attributeStats.atrOffense;
+            atrDefense += artifact.dbData.attributeStats.atrDefense;
+            atrSupport += artifact.dbData.attributeStats.atrSupport;
+            atrCommand += artifact.dbData.attributeStats.atrCommand;
+            atrMagic += artifact.dbData.attributeStats.atrMagic;
+            atrTech += artifact.dbData.attributeStats.atrTech;
+        }
+
+        equipAttributeStats.atrOffense = atrOffense;
+        equipAttributeStats.atrDefense = atrDefense;
+        equipAttributeStats.atrSupport = atrSupport;
+        equipAttributeStats.atrCommand = atrCommand;
+        equipAttributeStats.atrMagic = atrMagic;
+        equipAttributeStats.atrTech = atrTech;
+
+        hero.RecalculateStats();
+    }
+
+    private bool SendToBackpack(Artifact item)
+    {
+        //Create an temporary InventorySlot just to reuse the AddFromSlot function.
+        InventorySlot prefab = AllPrefabs.Instance.inventorySlot;
+        InventorySlot temp = CreateTempSlot(prefab, item) as InventorySlot;
+        bool result = false;
+        foreach (InventorySlot slot in backpackItems)
+        {
+            if (!slot.Has())
+            {
+                SwapAux(temp, slot);
+                result = true;
+                break;
+            }
+        }
+        if (!result) Debug.LogError("Somehow the item was not added to the backpack!");
+        else AddBackpackSlot();
+        Destroy(temp.gameObject);
+        return result;
     }
 
     public void AddBackpackSlot()
@@ -120,41 +294,9 @@ public class Inventory : MonoBehaviour  //AbstractSlotContainer<InventorySlot, A
         return result;
     }
 
-    public bool HasBackpackSlot(InventorySlot slot)
+    private void ReorderBackpack()
     {
-        return backpackItems.Contains(slot);
-    }
-
-    public void RecalculateStats()
-    {
-        int atrOffense = 0;
-        int atrDefense = 0;
-        int atrSupport = 0;
-        int atrCommand = 0;
-        int atrMagic = 0;
-        int atrTech = 0;
-
-        foreach (InventorySlot invSlot in GetEquipmentSlots())
-        {
-            Artifact artifact = invSlot.GetSlotObject();
-            if (!artifact || invSlot.isBeingDragged) continue;
-
-            atrOffense += artifact.dbData.attributeStats.atrOffense;
-            atrDefense += artifact.dbData.attributeStats.atrDefense;
-            atrSupport += artifact.dbData.attributeStats.atrSupport;
-            atrCommand += artifact.dbData.attributeStats.atrCommand;
-            atrMagic += artifact.dbData.attributeStats.atrMagic;
-            atrTech += artifact.dbData.attributeStats.atrTech;
-        }
-
-        equipAttributeStats.atrOffense = atrOffense;
-        equipAttributeStats.atrDefense = atrDefense;
-        equipAttributeStats.atrSupport = atrSupport;
-        equipAttributeStats.atrCommand = atrCommand;
-        equipAttributeStats.atrMagic = atrMagic;
-        equipAttributeStats.atrTech = atrTech;
-
-        hero.RecalculateStats();
+        backpackItems = backpackItems.OrderBy(a => a.Get() == null).ToList();
     }
 
     public InventorySlot GetEquipmentSlot(ArtifactType type, int id = 0)
@@ -219,149 +361,5 @@ public class Inventory : MonoBehaviour  //AbstractSlotContainer<InventorySlot, A
         List<InventorySlot> result = new List<InventorySlot>(backpackItems);
         if (reverseOrder) result.Reverse();
         return result;
-    }
-
-    public bool AddFromPickup(Artifact artifact)
-    {
-        InventorySlot slot = null;
-        switch (artifact.dbData.artifactType)
-        {
-            case ArtifactType.MAIN_HAND:
-                slot = equipMainHand.HasSlotObject() ? null : equipMainHand;
-                break;
-            case ArtifactType.OFF_HAND:
-                slot = equipOffHand.HasSlotObject() ? null : equipOffHand;
-                break;
-            case ArtifactType.HEAD:
-                slot = equipHead.HasSlotObject() ? null : equipHead;
-                break;
-            case ArtifactType.TORSO:
-                slot = equipTorso.HasSlotObject() ? null : equipTorso;
-                break;
-            case ArtifactType.BACK:
-                slot = equipBack.HasSlotObject() ? null : equipBack;
-                break;
-            case ArtifactType.NECK:
-                slot = equipNeck.HasSlotObject() ? null : equipNeck;
-                break;
-            case ArtifactType.RING:
-                slot = equipRing1.HasSlotObject() ? null : equipRing1;
-                if (!slot) slot = equipRing2.HasSlotObject() ? null : equipRing2;
-                break;
-            case ArtifactType.TRINKET:
-                slot = equipTrinket1.HasSlotObject() ? null : equipTrinket1;
-                if (!slot) slot = equipTrinket2.HasSlotObject() ? null : equipTrinket2;
-                if (!slot) slot = equipTrinket3.HasSlotObject() ? null : equipTrinket3;
-                if (!slot) slot = equipTrinket4.HasSlotObject() ? null : equipTrinket4;
-                break;
-        }
-
-        bool result;
-        if (slot)
-        {
-            //Create an temporary InventorySlot just to reuse the AddFromSlot function.
-            InventorySlot temp = CreateTempSlot(artifact);
-            result = AddFromSlot(temp, slot);
-            Destroy(temp.gameObject);
-
-            //Since we added this as an equipment, we recalculate the holder's stats.
-            RecalculateStats();
-        }
-        else
-        {
-            result = AddToBackpack(artifact);
-        }
-        return result;
-    }
-
-    public bool AddFromSlot(InventorySlot fromSlot, InventorySlot toSlot)
-    {
-        Artifact fromItem = fromSlot.GetSlotObject();
-        Artifact toItem = toSlot.GetSlotObject();
-
-        bool fromBackpack = HasBackpackSlot(fromSlot);
-        bool toBackpack = HasBackpackSlot(toSlot);
-        bool equipAndBackpack = fromBackpack != toBackpack;
-        bool sameTypeSlots = fromSlot.slotType == toSlot.slotType;
-        bool sameTypeArtifacts = fromItem && toItem && fromItem.dbData.artifactType == toItem.dbData.artifactType;
-        bool canSendToSlot = fromItem && fromItem.dbData.artifactType == toSlot.slotType;
-
-        //If the slots are of the same type, then an simple swap is done.
-        //Else if we are exchanging between equipped items and backpack items, then we do specific actions.
-        bool result = false;
-        if (sameTypeSlots)
-        {
-            //Here we just exchange items between slots.
-            SwapSlotContents(fromSlot, toSlot);
-            result = true;
-        }
-        else if (equipAndBackpack)
-        {
-            //If the items are of the same type, then an simple swap is done.
-            //Else, we check for which one of the slots are from the backpack and act accordingly.
-            if (sameTypeArtifacts)
-            {
-                SwapSlotContents(fromSlot, toSlot);
-                result = true;
-            }
-            else
-            {
-                if (toBackpack)
-                {
-                    AddToBackpack(fromItem);
-                    fromSlot.ClearSlotObject();
-                    result = true;
-                }
-                else if (fromBackpack && canSendToSlot)
-                {
-                    toSlot.SetSlotObject(fromItem);
-                    RemoveBackpackSlot(fromSlot);
-                    result = true;
-                }
-            }
-        }
-        return result;
-    }
-
-    public bool AddToBackpack(Artifact artifact)
-    {
-        //Create an temporary InventorySlot just to reuse the AddFromSlot function.
-        InventorySlot temp = CreateTempSlot(artifact);
-        bool result = false;
-        foreach (InventorySlot slot in backpackItems)
-        {
-            if (!slot.HasSlotObject())
-            {
-                SwapSlotContents(temp, slot);
-                result = true;
-                break;
-            }
-        }
-        if (!result) Debug.LogError("Somehow the item was not added to the backpack!");
-        else AddBackpackSlot();
-        Destroy(temp.gameObject);
-        return result;
-    }
-
-    private InventorySlot CreateTempSlot(Artifact artifact)
-    {
-        InventorySlot prefabInvSlot = AllPrefabs.Instance.inventorySlot;
-        InventorySlot temp = Instantiate(prefabInvSlot, transform);
-        temp.Initialize(this, artifact.dbData.artifactType, null);
-        temp.SetSlotObject(artifact);
-        return temp;
-    }
-
-    private void SwapSlotContents(InventorySlot from, InventorySlot to)
-    {
-        Artifact fromItem = from.GetSlotObject();
-        from.SetSlotObject(to.GetSlotObject());
-        to.SetSlotObject(fromItem);
-        ReorderBackpack();
-    }
-
-    private void ReorderBackpack()
-    {
-        backpackItems = backpackItems.OrderBy(a => a.GetSlotObject() == null).ToList();
     }
 }

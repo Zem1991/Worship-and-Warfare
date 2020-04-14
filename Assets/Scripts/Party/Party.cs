@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
 {
-    [Header("Party contents")]
-    public PartySlot hero;
-    public PartySlot[] units;
+    [Header("Party slots")]
+    [SerializeField] private PartySlot hero;
+    [SerializeField] private List<PartySlot> units;
 
     public void Initialize()
     {
@@ -17,12 +17,12 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
         hero.Initialize(this, PartyElementType.HERO);
         this.hero = hero;
 
-        units = new PartySlot[PartyConstants.MAX_UNITS];
-        for (int i = 0; i < units.Length; i++)
+        units = new List<PartySlot>();
+        for (int i = 0; i < PartyConstants.MAX_UNITS; i++)
         {
             PartySlot unit = Instantiate(prefabPartySlot, transform);
             unit.Initialize(this, PartyElementType.CREATURE, i);
-            units[i] = unit;
+            units.Add(unit);
         }
     }
 
@@ -45,7 +45,7 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
 
             Hero actualHero = Instantiate(prefabHero, hero.transform);
             actualHero.Initialize(dbData, heroData.experienceData, heroData.inventoryData);
-            hero.SetSlotObject(actualHero);
+            hero.Set(actualHero);
         }
 
         if (partyData.units != null)
@@ -62,104 +62,83 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
 
                 Unit unit = Instantiate(prefabUnit, units[i].transform);
                 unit.Initialize(dbData, unitData.stackData.stack_maximum);
-                units[i].SetSlotObject(unit);
+                units[i].Set(unit);
             }
         }
     }
 
-    public void TransferContentsFrom(Party party)
-    {
-        Initialize();
-
-        Hero hero = party.hero.GetSlotObject() as Hero;
-        if (hero)
-        {
-            this.hero.SetSlotObject(hero);
-            hero.transform.parent = transform;
-            party.hero.SetSlotObject(null);
-        }
-
-        PartySlot[] unitSlots = party.units;
-        for (int i = 0; i < unitSlots.Length; i++)
-        {
-            Unit unit = unitSlots[i].GetSlotObject() as Unit;
-            if (unit)
-            {
-                units[i].SetSlotObject(unit);
-                unit.transform.parent = units[i].GetSlotObject().transform;
-                party.units[i].SetSlotObject(null);
-            }
-        }
-    }
-
-    public override bool AddSlotObject(AbstractPartyElement item)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void ClearParty()
-    {
-        if (hero.GetSlotObject())
-        {
-            Destroy(hero.GetSlotObject().gameObject);
-        }
-        hero.SetSlotObject(null);
-
-        ClearUnits();
-    }
-
-    public void ClearUnits()
-    {
-        foreach (PartySlot unitSlot in units)
-        {
-            if (unitSlot.GetSlotObject())
-            {
-                Destroy(unitSlot.GetSlotObject().gameObject);
-            }
-            unitSlot.SetSlotObject(null);
-        }
-    }
-
-    public bool AddUnt(Unit unit)
+    public override bool Add(AbstractPartyElement item)
     {
         foreach (PartySlot slot in units)
         {
-            if (slot.AddSlotObject(unit)) return true;
-        }
-        return false;
-    }
-
-    public bool RemoveUnt(Unit unit)
-    {
-        foreach (PartySlot slot in units)
-        {
-            if (slot.HasSlotObject(unit))
+            if (!slot.Has())
             {
-                slot.RemoveSlotObject();
+                slot.Set(item);
                 return true;
             }
         }
         return false;
     }
 
-    public Unit GetRelevantUnit()
+    public override bool Remove(AbstractPartyElement item)
     {
-        //TODO make a better method than this
         foreach (PartySlot slot in units)
         {
-            Unit unit = slot.GetSlotObject() as Unit;
-            if (unit) return unit;
-        }
-        return null;
-    }
-
-    public bool HasAnyContent()
-    {
-        if (hero.HasSlotObject()) return true;
-        foreach (PartySlot unit in units)
-        {
-            if (unit.HasSlotObject()) return true;
+            if (slot.Has(item))
+            {
+                slot.Clear();
+                return true;
+            }
         }
         return false;
+    }
+
+    public override bool Swap(AbstractSlot<AbstractPartyElement> fromSlot, AbstractSlot<AbstractPartyElement> toSlot)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void ClearParty()
+    {
+        if (hero.Get()) Destroy(hero.Get().gameObject);
+        hero.Set(null);
+
+        foreach (PartySlot unitSlot in units)
+        {
+            if (unitSlot.Get()) Destroy(unitSlot.Get().gameObject);
+            unitSlot.Set(null);
+        }
+
+        Debug.LogWarning("PARTY CLEARED!");
+    }
+
+    public AbstractPartyElement GetMostRelevant()
+    {
+        AbstractPartyElement result = hero.Get();
+        if (!result)
+        {
+            //TODO Need to actually identify which unit in the party is the most relevant.
+            foreach (PartySlot slot in units)
+            {
+                result = slot.Get() as Unit;
+                if (result) break;
+            }
+        }
+        return result;
+    }
+
+    public PartySlot GetHeroSlot()
+    {
+        return hero;
+    }
+
+    public PartySlot GetUnitSlot(int id)
+    {
+        return units[id];
+    }
+
+    public List<PartySlot> GetUnitSlots()
+    {
+        return units;
     }
 }

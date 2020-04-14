@@ -14,8 +14,8 @@ public class UI_PartyInfo : AUI_PanelDragAndDrop
 
     public void RefreshInfo(Party party)
     {
-        PartySlot hero = party.hero;
-        PartySlot[] units = party.units;
+        PartySlot hero = party.GetHeroSlot();
+        List<PartySlot> units = party.GetUnitSlots();
 
         heroSlot.UpdateSlot(this, hero);
         for (int i = 0; i < PartyConstants.MAX_UNITS; i++)
@@ -68,10 +68,11 @@ public class UI_PartyInfo : AUI_PanelDragAndDrop
             TownUI_PartySlot tuiPartySlot = targetSlot as TownUI_PartySlot;
             if (tuiPartySlot)
             {
-                AbstractPartyElement item = actualPartySlot.GetSlotObject();
-                if (item && tuiPartySlot.partySlot.AddSlotObject(item))
+                AbstractPartyElement item = actualPartySlot.Get();
+                if (item)
                 {
-                    actualPartySlot.SetSlotObject(null);
+                    tuiPartySlot.partySlot.Set(item);
+                    actualPartySlot.Set(null);
                 }
             }
 

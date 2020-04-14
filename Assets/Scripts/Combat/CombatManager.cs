@@ -381,7 +381,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         //TODO don't use this while
         if (hasLevelUp)
         {
-            Hero hero = victor.party.hero.GetSlotObject() as Hero;
+            Hero hero = victor.party.GetHeroSlot().Get() as Hero;
             FieldUI fui = FieldUI.Instance;
             fui.levelUp.UpdatePanel(hero);
             fui.LevelUpShow(hero);
@@ -425,7 +425,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
                 Hero hero = asHero.hero;
                 if (asHero.combatPieceStats.hitPoints_current <= 0)
                 {
-                    party.party.hero = null;
+                    party.party.Remove(hero);
                     Destroy(hero.gameObject);
                 }
             }
@@ -436,7 +436,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
                 unit.stackStats.stack_maximum = asUnit.stackStats.stack_current;
                 if (unit.stackStats.stack_maximum <= 0)
                 {
-                    party.party.RemoveUnt(unit);
+                    party.party.Remove(unit);
                     Destroy(unit.gameObject);
                 }
             }

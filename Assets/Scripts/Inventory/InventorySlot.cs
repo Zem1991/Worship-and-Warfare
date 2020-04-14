@@ -19,9 +19,9 @@ public class InventorySlot : AbstractSlot<Artifact>
             Artifact prefab = AllPrefabs.Instance.artifact;
             Artifact item = Instantiate(prefab, transform);
             item.Initialize(dbArtifact);
-            SetSlotObject(item);
+            Set(item);
 
-            if (!HasSlotObject())
+            if (!Has())
             {
                 Debug.LogWarning("Created artifact was destroyed due to slot rejection.");
                 Destroy(item.gameObject);

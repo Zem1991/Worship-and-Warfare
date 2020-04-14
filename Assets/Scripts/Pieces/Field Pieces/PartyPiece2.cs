@@ -40,16 +40,19 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
         this.party = party;
         name = "P" + owner.id + " - Party";
 
-        Hero hero = party.hero.GetSlotObject() as Hero;
-        Unit relevantUnit = party.GetRelevantUnit();
+        AbstractPartyElement ape = party.GetMostRelevant();
+        PartyElementType partyElementType = ape.partyElementType;
 
-        if (hero)
+        switch (partyElementType)
         {
-            SetAnimatorOverrideController(hero.dbData.heroClass.animatorField);
-        }
-        else
-        {
-            SetAnimatorOverrideController(relevantUnit.dbData.animatorField);
+            case PartyElementType.HERO:
+                SetAnimatorOverrideController((ape as Hero).dbData.heroClass.animatorField);
+                break;
+            case PartyElementType.CREATURE:
+                SetAnimatorOverrideController((ape as Unit).dbData.animatorField);
+                break;
+            case PartyElementType.SIEGE_ENGINE:
+                break;
         }
 
         if (!mainSpriteRenderer) mainSpriteRenderer = GetComponentsInChildren<SpriteRenderer>()[0];
@@ -67,9 +70,9 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
 
     public bool ApplyExperience(int amountToAdd)
     {
-        if (party.hero.GetSlotObject())
+        if (party.GetHeroSlot().Get())
         {
-            Hero hero = party.hero.GetSlotObject() as Hero;
+            Hero hero = party.GetHeroSlot().Get() as Hero;
             hero.RecalculateExperience(amountToAdd);
             return hero.levelUps > 0;
         }
@@ -94,12 +97,21 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
 
     public override string AFP2_GetPieceTitle()
     {
-        Hero hero = party.hero.GetSlotObject() as Hero;
-        Unit unit = party.GetRelevantUnit();
+        AbstractPartyElement ape = party.GetMostRelevant();
+        PartyElementType partyElementType = ape.partyElementType;
 
         string result = "Unknown party piece title";
-        if (hero) result = hero.dbData.heroName + "'s party";
-        else if (unit) result = "Non-commissioned party";
+        switch (partyElementType)
+        {
+            case PartyElementType.HERO:
+                result = (ape as Hero).dbData.heroName + "'s party";
+                break;
+            case PartyElementType.CREATURE:
+                result = "Non-commissioned party";
+                break;
+            case PartyElementType.SIEGE_ENGINE:
+                break;
+        }
         return result;
     }
 
