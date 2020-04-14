@@ -190,12 +190,13 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
      */
     public void Selection_EnterTown()
     {
-        TownPiece2 selectionPiece = FieldSceneInputs.Instance.executor.selectionPiece as TownPiece2;
-        bool canCommandSelectedPiece = FieldSceneInputs.Instance.executor.canCommandSelectedPiece;
+        FieldInputExecutor fie = FieldSceneInputs.Instance.executor;
+        TownPiece2 selectionPiece = fie.selectionPiece as TownPiece2;
+        bool canCommandSelectedPiece = fie.canCommandSelectedPiece;
 
         if (selectionPiece && canCommandSelectedPiece)
         {
-            TownPiece2 town = FieldSceneInputs.Instance.executor.selectionPiece as TownPiece2;
+            TownPiece2 town = selectionPiece;
             StartCoroutine(GoToTown(null, town));
         }
     }

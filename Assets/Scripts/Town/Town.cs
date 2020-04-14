@@ -10,7 +10,7 @@ public class Town : MonoBehaviour
 
     [Header("Garrison")]
     public Party garrison;
-    public Party visitor;
+    //public Party visitor; //not using this anymore
 
     [Header("Buildings")]
     public TownBuilding townCenter;

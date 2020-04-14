@@ -178,7 +178,7 @@ public class FieldPieceHandler : MonoBehaviour
     public void SpawnTownVisitor(TownPiece2 townPiece)
     {
         Party visitor = townPiece.town.visitor;
-        if (!visitor || !visitor.GetMostRelevant()) return;
+        if (!visitor.GetMostRelevant()) return;
 
         PartyPiece2 prefabPartyPiece = AllPrefabs.Instance.fieldPartyPiece;
         Party prefabParty = AllPrefabs.Instance.party;

@@ -70,6 +70,7 @@ public class TownUI_Panel_RecruitHero : AbstractUIPanel
     {
         TownManager tm = TownManager.Instance;
         Town town = tm.townPiece.town;
+        Party party = town.garrison;
 
         Player owner = tm.townPiece.pieceOwner.GetOwner();
         Dictionary<ResourceStats, int> costs = selectedOption.dbHero.heroClass.resourceStats.GetCosts(1);
@@ -79,8 +80,6 @@ public class TownUI_Panel_RecruitHero : AbstractUIPanel
         townUI.CloseCurrentWindow();
 
         Hero prefab = AllPrefabs.Instance.hero;
-        Party party = town.garrison;
-
         Hero hero = Instantiate(prefab, party.GetHeroSlot().transform);
         hero.Initialize(selectedOption.dbHero, null, null);
         party.GetHeroSlot().Set(hero);

@@ -25,14 +25,13 @@ public class TownManager : AbstractSingleton<TownManager>, IShowableHideable
         gameObject.SetActive(true);
     }
 
-    public void BootTown(TownPiece2 town)
+    public void BootTown(TownPiece2 townPiece)
     {
-        if (town.visitorPiece)
+        this.townPiece = townPiece;
+        if (townPiece.visitorPiece)
         {
-            town.town.visitor = town.visitorPiece.party;
+            townPiece.town.visitor = townPiece.visitorPiece.party;  //AQUI CARAI
         }
-
-        townPiece = town;
         TownUI.Instance.CreateTown();
     }
 
@@ -70,20 +69,19 @@ public class TownManager : AbstractSingleton<TownManager>, IShowableHideable
         GameManager.Instance.ChangeSchemes(GameScheme.FIELD);
 
         PartyPiece2 visitorPiece = townPiece.visitorPiece;
-        Party visitorParty = townPiece.town.visitor;
+        Party visitor = townPiece.town.visitor;
 
         if (visitorPiece)
         {
             if (!visitorPiece.party.GetMostRelevant()) FieldManager.Instance.RemoveParty(visitorPiece);
         }
-        else if (visitorParty.GetMostRelevant())
+        else if (visitor.GetMostRelevant())
         {
             FieldManager.Instance.pieceHandler.SpawnTownVisitor(townPiece);
         }
 
         townPiece.visitorPiece = null;
-        visitorParty.ClearParty();
-        //FieldManager.Instance.pieceHandler.SpawnTownVisitor(townPiece);
+        visitor.ClearParty();
         //#HERE
 
         FieldSC.Instance.ShowScene();

@@ -64,19 +64,18 @@ public class TownUI_Panel_RecruitCreature : AbstractUIPanel
     {
         TownManager tm = TownManager.Instance;
         Town town = tm.townPiece.town;
+        Party party = town.garrison;
 
         TownUI townUI = TownUI.Instance;
         townUI.CloseCurrentWindow();
 
         foreach (TownUI_Panel_RecruitCreature_CreatureOption option in creatureOptions)
         {
+            DB_Unit dbUnit = option.dbUnit;
             int amount = int.Parse(option.inpAmount.text);
             if (amount <= 0) continue;
 
             Unit prefab = AllPrefabs.Instance.unit;
-            Party party = town.garrison;
-            DB_Unit dbUnit = option.dbUnit;
-
             Unit unit = Instantiate(prefab, party.transform);
             unit.Initialize(dbUnit, amount);
             party.Add(unit);

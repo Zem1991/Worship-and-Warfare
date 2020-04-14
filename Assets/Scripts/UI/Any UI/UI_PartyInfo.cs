@@ -62,21 +62,24 @@ public class UI_PartyInfo : AUI_PanelDragAndDrop
         this.slotFrontDragged = slotFrontDragged;
         if (slotFrontDragged)
         {
-            TownUI_PartySlot draggedSlot = slotFrontDragged.slotBack as TownUI_PartySlot;
-            PartySlot actualPartySlot = draggedSlot.partySlot;
+            TownUI_PartySlot sourceUISlot = slotFrontDragged.slotBack as TownUI_PartySlot;
+            PartySlot sourcePartySlot = sourceUISlot.partySlot;
+            Party sourceParty = sourcePartySlot.party;
 
-            TownUI_PartySlot tuiPartySlot = targetSlot as TownUI_PartySlot;
-            if (tuiPartySlot)
+            TownUI_PartySlot targetUISlot = targetSlot as TownUI_PartySlot;
+            PartySlot targetPartySlot;
+            Party targetParty = null;
+
+            if (targetUISlot)
             {
-                AbstractPartyElement item = actualPartySlot.Get();
-                if (item)
-                {
-                    tuiPartySlot.partySlot.Set(item);
-                    actualPartySlot.Set(null);
-                }
+                targetPartySlot = targetUISlot.partySlot;
+                targetParty = targetPartySlot.party;
+                targetParty.Swap(sourcePartySlot, targetPartySlot);
             }
 
-            actualPartySlot.isBeingDragged = false;
+            sourcePartySlot.isBeingDragged = false;
+            //sourceParty.RecalculateStats();
+            //if (targetParty && sourceParty != targetParty) targetParty.RecalculateStats();
         }
 
         base.DNDDrop(slotFrontDragged, targetSlot);
