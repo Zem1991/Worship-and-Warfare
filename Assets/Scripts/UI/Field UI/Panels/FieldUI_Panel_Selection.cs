@@ -35,7 +35,7 @@ public class FieldUI_Panel_Selection : AbstractUIPanel
         HideInformations();
         if (!party) return;
 
-        partyInfo.RefreshInfo(party.party);
+        partyInfo.RefreshInfo(party);
         partyInfo.Show();
         txtSelectionTitle.text = party.AFP2_GetPieceTitle();
     }

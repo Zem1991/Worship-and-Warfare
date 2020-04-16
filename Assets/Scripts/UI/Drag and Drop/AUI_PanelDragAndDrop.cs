@@ -15,6 +15,7 @@ public abstract class AUI_PanelDragAndDrop : AbstractUIPanel
 
     public virtual void DNDBeginDrag(AUI_DNDSlot_Front slotFront)
     {
+        Debug.Log("1/4 DNDBeginDrag");
         //Remember to call this in overriden function using "base"
         draggableElement.BeginDrag(slotFront.slotBack.imgSlotFront.sprite);
         slotFrontDragged = slotFront;
@@ -22,18 +23,21 @@ public abstract class AUI_PanelDragAndDrop : AbstractUIPanel
 
     public void DNDDrag()
     {
+        Debug.Log("2/4 DNDDrag");
         draggableElement.Drag();
-    }
-
-    public void DNDEndDrag()
-    {
-        if (slotFrontDragged) DNDDrop(slotFrontDragged, null);
-        draggableElement.EndDrag();
     }
 
     public virtual void DNDDrop(AUI_DNDSlot_Front slotFrontDragged, AUI_DNDSlot targetSlot)
     {
+        Debug.Log("3/4 DNDDrop");
         //Remember to call this in overriden function using "base"
         this.slotFrontDragged = null;
+    }
+
+    public void DNDEndDrag()
+    {
+        Debug.Log("4/4 DNDEndDrag");
+        if (slotFrontDragged) DNDDrop(slotFrontDragged, null);
+        draggableElement.EndDrag();
     }
 }

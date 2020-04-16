@@ -88,12 +88,8 @@ public class TownUI : AbstractSingleton<TownUI>, IUIScheme, IShowableHideable
         minimap.UpdatePanel();
         crest.UpdatePanel();
 
-        Town town = tm.townPiece.town;
-        townPanel.UpdatePanel(town);
-
-        Party garrison = tm.townPiece.town.garrison as Party;
-        Party visitor = tm.townPiece.town.visitor as Party;
-        parties.UpdatePanel(garrison, visitor);
+        townPanel.UpdatePanel(tm.townPiece.town);
+        parties.UpdatePanel(tm.townPiece);
 
         //Don't update windows, only the HUD panels!
     }

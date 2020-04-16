@@ -41,18 +41,20 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
         name = "P" + owner.id + " - Party";
 
         AbstractPartyElement ape = party.GetMostRelevant();
-        PartyElementType partyElementType = ape.partyElementType;
-
-        switch (partyElementType)
+        if (ape)
         {
-            case PartyElementType.HERO:
-                SetAnimatorOverrideController((ape as Hero).dbData.heroClass.animatorField);
-                break;
-            case PartyElementType.CREATURE:
-                SetAnimatorOverrideController((ape as Unit).dbData.animatorField);
-                break;
-            case PartyElementType.SIEGE_ENGINE:
-                break;
+            PartyElementType partyElementType = ape.partyElementType;
+            switch (partyElementType)
+            {
+                case PartyElementType.HERO:
+                    SetAnimatorOverrideController((ape as Hero).dbData.heroClass.animatorField);
+                    break;
+                case PartyElementType.CREATURE:
+                    SetAnimatorOverrideController((ape as Unit).dbData.animatorField);
+                    break;
+                case PartyElementType.SIEGE_ENGINE:
+                    break;
+            }
         }
 
         if (!mainSpriteRenderer) mainSpriteRenderer = GetComponentsInChildren<SpriteRenderer>()[0];

@@ -28,10 +28,6 @@ public class TownManager : AbstractSingleton<TownManager>, IShowableHideable
     public void BootTown(TownPiece2 townPiece)
     {
         this.townPiece = townPiece;
-        if (townPiece.visitorPiece)
-        {
-            townPiece.town.visitor = townPiece.visitorPiece.party;  //AQUI CARAI
-        }
         TownUI.Instance.CreateTown();
     }
 
@@ -65,24 +61,8 @@ public class TownManager : AbstractSingleton<TownManager>, IShowableHideable
 
         TownSC.Instance.HideScene();
 
-        //TODO For some reason I can't change this line to another position down below (the #HERE marker). Investigate?
-        GameManager.Instance.ChangeSchemes(GameScheme.FIELD);
-
-        PartyPiece2 visitorPiece = townPiece.visitorPiece;
-        Party visitor = townPiece.town.visitor;
-
-        if (visitorPiece)
-        {
-            if (!visitorPiece.party.GetMostRelevant()) FieldManager.Instance.RemoveParty(visitorPiece);
-        }
-        else if (visitor.GetMostRelevant())
-        {
-            FieldManager.Instance.pieceHandler.SpawnTownVisitor(townPiece);
-        }
-
         townPiece.visitorPiece = null;
-        visitor.ClearParty();
-        //#HERE
+        GameManager.Instance.ChangeSchemes(GameScheme.FIELD);
 
         FieldSC.Instance.ShowScene();
     }

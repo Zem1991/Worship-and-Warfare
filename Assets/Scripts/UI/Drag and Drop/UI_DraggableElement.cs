@@ -27,7 +27,15 @@ public class UI_DraggableElement : MonoBehaviour
     private void ChangeImage(Sprite img)
     {
         Color color = Color.white;
-        if (!img) color.a = 0;
+        if (!img)
+        {
+            //color.a = 0;
+
+            //TODO remove those testing values later.
+            //TODO also consider reseting the starting position.
+            color = Color.magenta;
+            color.a = 0.25F;
+        }
         image.color = color;
         image.sprite = img;
     }

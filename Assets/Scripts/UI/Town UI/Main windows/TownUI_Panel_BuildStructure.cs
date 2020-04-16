@@ -87,12 +87,14 @@ public class TownUI_Panel_BuildStructure : AbstractUIPanel
     public void BuildStructure()
     {
         TownManager tm = TownManager.Instance;
-        Town town = tm.townPiece.town;
+        TownPiece2 tp = tm.townPiece;
+        Town town = tp.town;
+        Player owner = tp.pieceOwner.GetOwner();
 
         TownUI townUI = TownUI.Instance;
         townUI.CloseCurrentWindow();
 
-        TownBuilding newTB = town.BuildStructure(selectedOption.dbTownBuilding);
+        TownBuilding newTB = town.BuildStructure(selectedOption.dbTownBuilding, owner);
         townUI.CreateTownBuilding(newTB);
 
         btnBuild.interactable = false;

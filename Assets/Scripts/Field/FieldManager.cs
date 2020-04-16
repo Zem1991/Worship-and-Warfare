@@ -63,6 +63,11 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
 
         NextDayWeekMonth();
 
+        foreach (var item in pieceHandler.townPieces)
+        {
+            //item.ISTET_StartTurn(); TODO THIS
+        }
+
         foreach (var item in pieceHandler.partyPieces)
         {
             item.ISTET_StartTurn();

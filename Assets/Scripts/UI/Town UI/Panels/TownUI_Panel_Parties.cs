@@ -13,9 +13,9 @@ public class TownUI_Panel_Parties : AbstractUIPanel
     public Text txtVisitor;
     public UI_PartyInfo visitorInfo;
 
-    public void UpdatePanel(Party garrison, Party visitor)
+    public void UpdatePanel(TownPiece2 town)
     {
-        garrisonInfo.RefreshInfo(garrison);
-        visitorInfo.RefreshInfo(visitor);
+        garrisonInfo.RefreshInfo(town);
+        visitorInfo.RefreshInfo(town.visitorPiece);
     }
 }

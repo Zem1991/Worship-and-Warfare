@@ -5,10 +5,8 @@ using UnityEngine;
 
 public class Town : MonoBehaviour
 {
+    [Header("Town data")]
     public string townName;
-    public TownPiece2 townPiece;
-
-    [Header("Garrison")]
     public Party garrison;
     //public Party visitor; //not using this anymore
 
@@ -28,8 +26,6 @@ public class Town : MonoBehaviour
     {
         string selectedName = townName != null ? townName : dbFaction.townNames[0];     //TODO get random name
 
-        this.townPiece = townPiece;
-
         this.dbFaction = dbFaction;
         this.townName = selectedName;
         name = townName;
@@ -47,11 +43,10 @@ public class Town : MonoBehaviour
         return result;
     }
 
-    public TownBuilding BuildStructure(DB_TownBuilding dbTownBuilding, bool forFree = false)
+    public TownBuilding BuildStructure(DB_TownBuilding dbTownBuilding, Player owner)
     {
-        if (!forFree)
+        if (owner)
         {
-            Player owner = townPiece.pieceOwner.GetOwner();
             Dictionary<ResourceStats, int> costs = dbTownBuilding.resourceStats.GetCosts(1);
             owner.resourceStats.Subtract(costs);
         }

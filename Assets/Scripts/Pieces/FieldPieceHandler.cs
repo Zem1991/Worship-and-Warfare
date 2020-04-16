@@ -8,23 +8,20 @@ public class FieldPieceHandler : MonoBehaviour
     public readonly int MAX_UNITS = 5;
 
     [Header("Pieces")]
-    public List<TownPiece2> townPieces;
-    public List<PartyPiece2> partyPieces;
-    public List<AbstractPickupPiece2> pickupPieces;
+    public List<TownPiece2> townPieces = new List<TownPiece2>();
+    public List<PartyPiece2> partyPieces = new List<PartyPiece2>();
+    public List<AbstractPickupPiece2> pickupPieces = new List<AbstractPickupPiece2>();
 
     public void RemoveAll()
     {
-        if (partyPieces != null)
-        {
-            foreach (var item in partyPieces) Destroy(item.gameObject);
-        }
-        partyPieces = new List<PartyPiece2>();
+        foreach (var item in townPieces) Destroy(item.gameObject);
+        townPieces.Clear();
 
-        if (pickupPieces != null)
-        {
-            foreach (var item in pickupPieces) Destroy(item.gameObject);
-        }
-        pickupPieces = new List<AbstractPickupPiece2>();
+        foreach (var item in partyPieces) Destroy(item.gameObject);
+        partyPieces.Clear();
+
+        foreach (var item in pickupPieces) Destroy(item.gameObject);
+        pickupPieces.Clear();
     }
 
     public void CreateAll(List<TownData> towns, List<PartyData> parties, List<PickupData> pickups)
@@ -50,8 +47,6 @@ public class FieldPieceHandler : MonoBehaviour
         TownPiece2 prefabTownPiece = AllPrefabs.Instance.fieldTownPiece;
         Town prefabTown = AllPrefabs.Instance.town;
         Party prefabParty = AllPrefabs.Instance.party;
-
-        townPieces = new List<TownPiece2>();
 
         foreach (var townData in towns)
         {
@@ -79,16 +74,11 @@ public class FieldPieceHandler : MonoBehaviour
             garrisonParty.name = "Garrison";
             town.garrison = garrisonParty;
 
-            Party visitorParty = Instantiate(prefabParty, town.transform);
-            visitorParty.Initialize();
-            visitorParty.name = "Visitor";
-            town.visitor = visitorParty;
-
             foreach (var townBuildingData in townData.townBuildings)
             {
                 string townBuildingId = townBuildingData.townBuildingId;
                 DB_TownBuilding dbTownBuilding = dbTownBuildings.Select(townBuildingId);
-                town.BuildStructure(dbTownBuilding, true);
+                town.BuildStructure(dbTownBuilding, null);
             }
 
             newTownPiece.currentTile = fieldTile;
@@ -102,34 +92,12 @@ public class FieldPieceHandler : MonoBehaviour
         if (parties == null) return;
 
         PlayerManager pm = PlayerManager.Instance;
-        FieldManager fm = FieldManager.Instance;
-        FieldMap fieldMap = fm.mapHandler.map;
 
-        PartyPiece2 prefabPartyPiece = AllPrefabs.Instance.fieldPartyPiece;
-        Party prefabParty = AllPrefabs.Instance.party;
-
-        partyPieces = new List<PartyPiece2>();
-
-        foreach (var partyData in parties)
+        foreach (PartyData partyData in parties)
         {
-            int posX = partyData.mapPosition[0];
-            int posY = partyData.mapPosition[1];
-
-            Vector2Int tileId = new Vector2Int(posX, posY);
-            FieldTile fieldTile = fieldMap.tiles[tileId];
-            Vector3 pos = fieldTile.transform.position;
-            Quaternion rot = Quaternion.identity;
-
-            PartyPiece2 newParty = Instantiate(prefabPartyPiece, pos, rot, transform);
-
+            Vector2Int mapPostion = new Vector2Int(partyData.mapPosition[0], partyData.mapPosition[1]);
             Player owner = pm.allPlayers[partyData.ownerId - 1];
-            Party party = Instantiate(prefabParty, newParty.transform);
-            party.Initialize(partyData);
-
-            newParty.Initialize(owner, party);
-
-            newParty.currentTile = fieldTile;
-            newParty.currentTile.occupantPiece = newParty;
+            PartyPiece2 newParty = CreateParty(mapPostion, partyData, owner);
             partyPieces.Add(newParty);
         }
     }
@@ -146,8 +114,6 @@ public class FieldPieceHandler : MonoBehaviour
 
         FieldManager fm = FieldManager.Instance;
         FieldMap fieldMap = fm.mapHandler.map;
-
-        pickupPieces = new List<AbstractPickupPiece2>();
 
         foreach (var pData in pickups)
         {
@@ -175,53 +141,29 @@ public class FieldPieceHandler : MonoBehaviour
         }
     }
 
-    public void SpawnTownVisitor(TownPiece2 townPiece)
+    public PartyPiece2 CreateParty(Vector2Int mapPosition, PartyData partyData, Player owner)
     {
-        Party visitor = townPiece.town.visitor;
-        if (!visitor.GetMostRelevant()) return;
-
+        FieldMap fieldMap = FieldManager.Instance.mapHandler.map;
         PartyPiece2 prefabPartyPiece = AllPrefabs.Instance.fieldPartyPiece;
         Party prefabParty = AllPrefabs.Instance.party;
 
-        FieldManager fm = FieldManager.Instance;
-        FieldMap fieldMap = fm.mapHandler.map;
-
-        int posX = townPiece.currentTile.posId.x;
-        int posY = townPiece.currentTile.posId.y + 1;   //TODO better position?
+        int posX = mapPosition.x;
+        int posY = mapPosition.y;
 
         Vector2Int tileId = new Vector2Int(posX, posY);
         FieldTile fieldTile = fieldMap.tiles[tileId];
         Vector3 pos = fieldTile.transform.position;
         Quaternion rot = Quaternion.identity;
 
-        PartyPiece2 newPartyPiece = Instantiate(prefabPartyPiece, pos, rot, transform);
-        Party newParty = Instantiate(prefabParty, newPartyPiece.transform);
-        
-        //We will just transfer the contents from the visitor party to this party, manually.
-        newParty.Initialize();
-        Hero hero = visitor.GetHeroSlot().Get() as Hero;
-        if (hero)
-        {
-            newParty.GetHeroSlot().Set(hero);
-            hero.transform.parent = newParty.transform;
-            visitor.GetHeroSlot().Set(null);
-        }
-        List<PartySlot> unitSlots = visitor.GetUnitSlots();
-        for (int i = 0; i < unitSlots.Count; i++)
-        {
-            Unit unit = unitSlots[i].Get() as Unit;
-            if (unit)
-            {
-                newParty.GetUnitSlot(i).Set(unit);
-                unit.transform.parent = newParty.GetUnitSlot(i).Get().transform;
-                visitor.GetUnitSlot(i).Set(null);
-            }
-        }
+        PartyPiece2 newParty = Instantiate(prefabPartyPiece, pos, rot, transform);
+        Party party = Instantiate(prefabParty, newParty.transform);
+        party.Initialize(partyData);
 
-        newPartyPiece.Initialize(townPiece.pieceOwner.GetOwner(), newParty);
-        newPartyPiece.currentTile = fieldTile;
-        newPartyPiece.currentTile.occupantPiece = newPartyPiece;
-        partyPieces.Add(newPartyPiece);
+        newParty.Initialize(owner, party);
+        newParty.currentTile = fieldTile;
+        newParty.currentTile.occupantPiece = newParty;
+        Debug.Log("Party created: " + newParty);
+        return newParty;
     }
 
     public void RemoveParty(PartyPiece2 piece)

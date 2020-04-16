@@ -33,6 +33,6 @@ public class UI_TownInfo : MonoBehaviour, IShowableHideable
 
         //if (townPortrait) townPortrait.sprite = town.dbData.profilePicture;   //TODO town portrait
         if (txtTownName) txtTownName.text = town.town.townName;
-        if (garrisonInfo) garrisonInfo.RefreshInfo(town.town.garrison);
+        if (garrisonInfo) garrisonInfo.RefreshInfo(town);
     }
 }

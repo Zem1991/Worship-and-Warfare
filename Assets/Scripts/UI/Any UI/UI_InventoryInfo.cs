@@ -69,10 +69,11 @@ public class UI_InventoryInfo : AUI_PanelDragAndDrop
 
     public override bool DNDCanDragThis(AUI_DNDSlot_Front slotFront)
     {
-        FieldUI_InventorySlot fuiInvSlot = slotFront.slotBack as FieldUI_InventorySlot;
+        FieldUI_InventorySlot slotBack = slotFront.slotBack as FieldUI_InventorySlot;
 
         bool result = true;
-        if (!fuiInvSlot)
+        //if (!slotBack || !slotBack.invSlot)   REVERT THIS IF NO PROGRESS OCCURS
+        if (!slotBack)
         {
             result = false;
         }
