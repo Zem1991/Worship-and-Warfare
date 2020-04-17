@@ -15,7 +15,7 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
 
         PartySlot hero = Instantiate(prefabPartySlot, transform);
         hero.Initialize(this, PartyElementType.HERO);
-        this.heroSlot = hero;
+        heroSlot = hero;
 
         unitSlots = new List<PartySlot>();
         for (int i = 0; i < PartyConstants.MAX_UNITS; i++)
@@ -65,6 +65,13 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
                 unitSlots[i].Set(unit);
             }
         }
+    }
+
+    protected override AbstractSlot<AbstractPartyElement> CreateTempSlot(AbstractSlot<AbstractPartyElement> prefab, AbstractPartyElement item)
+    {
+        PartySlot temp = base.CreateTempSlot(prefab, item) as PartySlot;
+        temp.slotType = item.partyElementType;
+        return temp;
     }
 
     public override bool Add(AbstractPartyElement item)

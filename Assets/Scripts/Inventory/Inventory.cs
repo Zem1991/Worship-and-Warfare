@@ -98,6 +98,13 @@ public class Inventory : AbstractSlotContainer<InventorySlot, Artifact>
         AddBackpackSlot();
     }
 
+    protected override AbstractSlot<Artifact> CreateTempSlot(AbstractSlot<Artifact> prefab, Artifact item)
+    {
+        InventorySlot temp = base.CreateTempSlot(prefab, item) as InventorySlot;
+        temp.slotType = item.dbData.artifactType;
+        return temp;
+    }
+
     public override bool Add(Artifact item)
     {
         InventorySlot slot = null;

@@ -26,9 +26,7 @@ public abstract class AUI_DNDSlot_Front : MonoBehaviour, IBeginDragHandler, IDra
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (!slotBack.panelDND.DNDCanDragThis(this)) return;
-        //if (!CheckSlotFilled()) return;
-        slotBack.panelDND.DNDEndDrag();
+        slotBack.panelDND.DNDForceDrop();
     }
 
     public abstract bool CheckSlotFilled();

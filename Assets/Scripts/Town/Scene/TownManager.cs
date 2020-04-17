@@ -61,6 +61,9 @@ public class TownManager : AbstractSingleton<TownManager>, IShowableHideable
 
         TownSC.Instance.HideScene();
 
+        //TODO reset the DND panels?
+        //tradeScreen.fuiLeftParty.inventoryInfo.DNDForceDrop();
+
         townPiece.visitorPiece = null;
         GameManager.Instance.ChangeSchemes(GameScheme.FIELD);
 

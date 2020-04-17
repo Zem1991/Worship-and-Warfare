@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class AbstractSlotContainer<Slot, SlotObject> : MonoBehaviour where Slot : AbstractSlot<SlotObject> where SlotObject : MonoBehaviour
 {
-    protected AbstractSlot<SlotObject> CreateTempSlot(AbstractSlot<SlotObject> prefab, SlotObject item)
+    protected virtual AbstractSlot<SlotObject> CreateTempSlot(AbstractSlot<SlotObject> prefab, SlotObject item)
     {
         AbstractSlot<SlotObject> temp = Instantiate(prefab, transform);
         //temp.Initialize(this, item.dbData.artifactType, null);

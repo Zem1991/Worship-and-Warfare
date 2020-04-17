@@ -131,8 +131,8 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
     }
     public void TradeScreenHide()
     {
-        tradeScreen.fuiLeftParty.inventoryInfo.DNDEndDrag();
-        tradeScreen.fuiRightParty.inventoryInfo.DNDEndDrag();
+        tradeScreen.fuiLeftParty.inventoryInfo.DNDForceDrop();
+        tradeScreen.fuiRightParty.inventoryInfo.DNDForceDrop();
         tradeScreen.Hide();
         currentWindow = null;
         UIManager.Instance.PointerExit(tradeScreen);
@@ -145,7 +145,7 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
     }
     public void InventoryHide()
     {
-        inventory.inventoryInfo.DNDEndDrag();
+        inventory.inventoryInfo.DNDForceDrop();
         inventory.Hide();
         currentWindow = null;
         UIManager.Instance.PointerExit(inventory);
