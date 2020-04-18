@@ -20,12 +20,13 @@ public class UI_InventoryInfo : AUI_PanelDragAndDrop
     public RectTransform backpackSlotContainer;
     public List<FieldUI_InventorySlot_Holder> backpack = new List<FieldUI_InventorySlot_Holder>();
 
-    private IInventoryPanel inventoryPanel;
-    private PartyPiece2 partyPiece;
+    [Header("Dynamic references")]
+    public PartyPiece2 partyPiece;
+    public IInventoryRefresh inventoryRefresh;
 
     public void Start()
     {
-        inventoryPanel = GetComponentInParent<IInventoryPanel>();
+        inventoryRefresh = GetComponentInParent<IInventoryRefresh>();
     }
 
     public void RefreshInfo(PartyPiece2 partyPiece, bool refreshBackpackSlots)
@@ -89,21 +90,28 @@ public class UI_InventoryInfo : AUI_PanelDragAndDrop
         invSlot.inventory.RecalculateStats();
         base.DNDBeginDrag(slotFront);
 
-        inventoryPanel.CallUpdatePanel(partyPiece, false);
+        inventoryRefresh.InventoryRefresh(partyPiece, false);
     }
 
     public override void DNDDrop(AUI_DNDSlot_Front slotFrontDragged, AUI_DNDSlot targetSlot)
     {
+        bool differentSources = false;
+        UI_InventoryInfo sourceInvDND = null;
+
+        Inventory sourceInv = null;
+        Inventory targetInv = null;
+
         this.slotFrontDragged = slotFrontDragged;
         if (slotFrontDragged)
         {
+            sourceInvDND = slotFrontDragged.slotBack.panelDND as UI_InventoryInfo;
+
             FieldUI_InventorySlot sourceUISlot = slotFrontDragged.slotBack as FieldUI_InventorySlot;
             InventorySlot sourceInvSlot = sourceUISlot.invSlot;
-            Inventory sourceInv = sourceInvSlot.inventory;
+            sourceInv = sourceInvSlot.inventory;
 
             FieldUI_InventorySlot targetUISlot = targetSlot as FieldUI_InventorySlot;
             InventorySlot targetInvSlot;
-            Inventory targetInv = null;
 
             if (targetUISlot)
             {
@@ -113,11 +121,15 @@ public class UI_InventoryInfo : AUI_PanelDragAndDrop
             }
 
             sourceInvSlot.isBeingDragged = false;
-            sourceInv.RecalculateStats();
-            if (targetInv && sourceInv != targetInv) targetInv.RecalculateStats();
-        }
 
+            differentSources = targetInv && sourceInv != targetInv;
+        }
         base.DNDDrop(slotFrontDragged, targetSlot);
-        inventoryPanel.CallUpdatePanel(partyPiece, true);
+
+        if (sourceInv) sourceInv.RecalculateStats();
+        if (targetInv && differentSources) targetInv.RecalculateStats();
+
+        inventoryRefresh.InventoryRefresh(partyPiece, true);
+        if (differentSources) sourceInvDND.DNDForceDrop();
     }
 }

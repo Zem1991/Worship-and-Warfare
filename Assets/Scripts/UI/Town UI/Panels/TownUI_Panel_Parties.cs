@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TownUI_Panel_Parties : AbstractUIPanel
+public class TownUI_Panel_Parties : AbstractUIPanel, ITownPieceRefresh
 {
     [Header("Garrison")]
     public Text txtGarrison;
@@ -13,9 +13,14 @@ public class TownUI_Panel_Parties : AbstractUIPanel
     public Text txtVisitor;
     public UI_PartyInfo visitorInfo;
 
-    public void UpdatePanel(TownPiece2 town)
+    public void UpdatePanel(TownPiece2 townPiece)
     {
-        garrisonInfo.RefreshInfo(town);
-        visitorInfo.RefreshInfo(town.visitorPiece);
+        garrisonInfo.RefreshInfo(townPiece);
+        visitorInfo.RefreshInfo(townPiece.visitorPiece);
+    }
+
+    public void TownPieceRefresh(TownPiece2 townPiece)
+    {
+        UpdatePanel(townPiece);
     }
 }

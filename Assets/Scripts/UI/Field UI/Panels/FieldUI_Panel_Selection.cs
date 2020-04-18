@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FieldUI_Panel_Selection : AbstractUIPanel
+public class FieldUI_Panel_Selection : AbstractUIPanel, IPartyPieceRefresh
 {
     public Text txtSelectionTitle;
 
@@ -48,5 +48,10 @@ public class FieldUI_Panel_Selection : AbstractUIPanel
         pickupInfo.RefreshInfo(pickup, txtSelectionTitle);
         pickupInfo.Show();
         txtSelectionTitle.text = pickup.AFP2_GetPieceTitle();
+    }
+
+    public void PartyPieceRefresh(PartyPiece2 partyPiece)
+    {
+        throw new System.NotImplementedException();
     }
 }

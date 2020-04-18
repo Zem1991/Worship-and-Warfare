@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FieldUI_Panel_Inventory : AbstractUIPanel, IInventoryPanel
+public class FieldUI_Panel_Inventory : AbstractUIPanel, IInventoryRefresh
 {
     [Header("Hero info")]
     public UI_HeroInfo heroInfo;
@@ -21,7 +21,7 @@ public class FieldUI_Panel_Inventory : AbstractUIPanel, IInventoryPanel
         inventoryInfo.RefreshInfo(partyPiece, refreshBackpackSlots);
     }
 
-    public void CallUpdatePanel(PartyPiece2 partyPiece, bool refreshBackpackSlots)
+    public void InventoryRefresh(PartyPiece2 partyPiece, bool refreshBackpackSlots)
     {
         UpdatePanel(partyPiece, refreshBackpackSlots);
     }

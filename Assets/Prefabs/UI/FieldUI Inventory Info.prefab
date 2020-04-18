@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4779652210148740026}
   - component: {fileID: 4779652210148740027}
   m_Layer: 5
-  m_Name: Inventory Info
+  m_Name: FieldUI Inventory Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -228,9 +228,9 @@ RectTransform:
   m_Father: {fileID: 4779652210148740026}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 75}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -75}
   m_SizeDelta: {x: 200, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4779652210508233301
@@ -430,9 +430,9 @@ RectTransform:
   m_Father: {fileID: 4779652210148740026}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -75}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -225}
   m_SizeDelta: {x: 200, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4779652211141404459
@@ -780,21 +780,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 688969647334991039, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: slotName
-      value: Main hand
-      objectReference: {fileID: 0}
-    - target: {fileID: 5128229998536740089, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: InvSlot - Main hand
-      objectReference: {fileID: 0}
-    - target: {fileID: 6941197975831658332, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: slotName
-      value: mh
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
 --- !u!114 &3003267461407043573 stripped
@@ -941,21 +926,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 688969647334991039, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: slotName
-      value: Trinket 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5128229998536740089, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: InvSlot - Trinket 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6941197975831658332, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: slotName
-      value: t1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
@@ -1104,21 +1074,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 688969647334991039, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: slotName
-      value: Off hand
-      objectReference: {fileID: 0}
-    - target: {fileID: 5128229998536740089, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: InvSlot - Off hand
-      objectReference: {fileID: 0}
-    - target: {fileID: 6941197975831658332, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: slotName
-      value: oh
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
 --- !u!114 &7964226556993710337 stripped
@@ -1265,21 +1220,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 688969647334991039, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: slotName
-      value: Helmet
-      objectReference: {fileID: 0}
-    - target: {fileID: 5128229998536740089, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: InvSlot - Helmet
-      objectReference: {fileID: 0}
-    - target: {fileID: 6941197975831658332, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: slotName
-      value: hl
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
@@ -1428,21 +1368,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 688969647334991039, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: slotName
-      value: Trinket 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5128229998536740089, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: InvSlot - Trinket 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6941197975831658332, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: slotName
-      value: t2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
 --- !u!224 &396209425520224655 stripped
@@ -1589,21 +1514,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 688969647334991039, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: slotName
-      value: Trinket 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5128229998536740089, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: InvSlot - Trinket 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6941197975831658332, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: slotName
-      value: t3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
@@ -1752,21 +1662,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 688969647334991039, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: slotName
-      value: Armor
-      objectReference: {fileID: 0}
-    - target: {fileID: 5128229998536740089, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: InvSlot - Armor
-      objectReference: {fileID: 0}
-    - target: {fileID: 6941197975831658332, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: slotName
-      value: ar
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}
 --- !u!114 &7964226555933063573 stripped
@@ -1913,21 +1808,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 688969647334991039, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: slotName
-      value: Trinket 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5128229998536740089, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: m_Name
-      value: InvSlot - Trinket 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6941197975831658332, guid: aeac03812a2acdc4c8a6d627c646950f,
-        type: 3}
-      propertyPath: slotName
-      value: t4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac03812a2acdc4c8a6d627c646950f, type: 3}

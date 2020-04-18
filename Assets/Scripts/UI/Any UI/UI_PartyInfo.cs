@@ -16,6 +16,14 @@ public class UI_PartyInfo : AUI_PanelDragAndDrop
     public AbstractFieldPiece2 partySource;
     public TownPiece2 partySourceAsTown;
     public PartyPiece2 partySourceAsParty;
+    public ITownPieceRefresh townPieceRefresh;
+    public IPartyPieceRefresh partyPieceRefresh;
+
+    public void Start()
+    {
+        townPieceRefresh = GetComponentInParent<ITownPieceRefresh>();
+        partyPieceRefresh = GetComponentInParent<IPartyPieceRefresh>();
+    }
 
     public void RefreshInfo(AbstractFieldPiece2 partySource)
     {
@@ -54,11 +62,11 @@ public class UI_PartyInfo : AUI_PanelDragAndDrop
         }
         //return result;    not yet...
 
-        if (result)
+        if (result && slotBack.partySlot)
         {
             PartyElementType slotType = slotBack.partySlot.slotType;
-            if (canDragHero && slotType == PartyElementType.HERO) result = true;
-            else if (canDragUnits && slotType == PartyElementType.CREATURE) result = true;
+            if (!canDragHero && slotType == PartyElementType.HERO) result = false;
+            else if (!canDragUnits && slotType == PartyElementType.CREATURE) result = false;
         }
         return result;
     }
@@ -70,24 +78,34 @@ public class UI_PartyInfo : AUI_PanelDragAndDrop
         PartySlot partySlot = slotBack.partySlot;
         partySlot.isBeingDragged = true;
         base.DNDBeginDrag(slotFront);
+
+        //UI_PartyInfo sourcePartyDND = slotFront.slotBack.panelDND as UI_PartyInfo;
+        //if (sourcePartyDND) UIRefresh(sourcePartyDND);
+        ////if (partySourceAsTown) townPieceRefresh.TownPieceRefresh(partySourceAsTown);
+        ////if (partySourceAsParty) partyPieceRefresh.PartyPieceRefresh(partySourceAsParty);
+        UIRefresh();
     }
 
     public override void DNDDrop(AUI_DNDSlot_Front slotFrontDragged, AUI_DNDSlot targetSlot)
     {
+        bool differentSources = false;
+        UI_PartyInfo sourcePartyDND = null;
+
+        Party sourceParty = null;
+        Party targetParty = null;
+
         this.slotFrontDragged = slotFrontDragged;
         if (slotFrontDragged)
         {
-            UI_PartyInfo sourcePartyDND = slotFrontDragged.slotBack.panelDND as UI_PartyInfo;
+            sourcePartyDND = slotFrontDragged.slotBack.panelDND as UI_PartyInfo;
             PreventNoTargetParty(sourcePartyDND);
 
             TownUI_PartySlot sourceUISlot = slotFrontDragged.slotBack as TownUI_PartySlot;
             PartySlot sourcePartySlot = sourceUISlot.partySlot;
-            //Party sourceParty = sourcePartySlot.party;
+            sourceParty = sourcePartySlot.party;
 
             TownUI_PartySlot targetUISlot = targetSlot as TownUI_PartySlot;
             PartySlot targetPartySlot;
-            Party targetParty;
-            //Party targetParty = null;
 
             if (targetUISlot)
             {
@@ -98,12 +116,15 @@ public class UI_PartyInfo : AUI_PanelDragAndDrop
 
             sourcePartySlot.isBeingDragged = false;
             //sourceParty.RecalculateStats();
-            //if (targetParty && sourceParty != targetParty) targetParty.RecalculateStats();
 
+            differentSources = targetParty && sourceParty != targetParty;
+            //if (differentSources) targetParty.RecalculateStats();
             PreventEmptySourceParty(sourcePartyDND);
         }
-
         base.DNDDrop(slotFrontDragged, targetSlot);
+
+        UIRefresh();
+        if (differentSources) sourcePartyDND.DNDForceDrop();
     }
 
     private void PreventNoTargetParty(UI_PartyInfo sourcePartyDND)
@@ -155,6 +176,20 @@ public class UI_PartyInfo : AUI_PanelDragAndDrop
                 //partySourceAsTown.visitorPiece = null;
                 sourcePartyDND.RefreshInfo(null);
             }
+        }
+    }
+
+    //private void UIRefresh(UI_PartyInfo sourcePartyDND)
+    private void UIRefresh()
+    {
+        if (partySourceAsTown)
+        {
+            if (townPieceRefresh != null) townPieceRefresh.TownPieceRefresh(partySourceAsTown);
+        }
+        if (partySourceAsParty)
+        {
+            if (partyPieceRefresh != null) partyPieceRefresh.PartyPieceRefresh(partySourceAsParty);
+            //else if (sourcePartyDND.partySourceAsTown) sourcePartyDND.townPieceRefresh.TownPieceRefresh(sourcePartyDND.partySourceAsTown);
         }
     }
 }
