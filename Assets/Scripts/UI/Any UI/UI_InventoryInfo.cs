@@ -29,6 +29,16 @@ public class UI_InventoryInfo : AUI_PanelDragAndDrop
         inventoryRefresh = GetComponentInParent<IInventoryRefresh>();
     }
 
+    public void Update()
+    {
+        FieldUI_InventorySlot_Front slotFront = slotFrontDragged as FieldUI_InventorySlot_Front;
+        if (slotFront)
+        {
+            FieldUI_InventorySlot slotBack = slotFront.slotBack as FieldUI_InventorySlot;
+            slotBack.UpdateSlot(this, slotBack.invSlot);
+        }
+    }
+
     public void RefreshInfo(PartyPiece2 partyPiece, bool refreshBackpackSlots)
     {
         this.partyPiece = partyPiece;

@@ -63,7 +63,7 @@ public class TownUI_Panel_RecruitHero : AbstractUIPanel
         Dictionary<ResourceStats, int> costs = dbHero.heroClass.resourceStats.GetCosts(1);
 
         txtDescriptionAndCosts.text = dbHero.heroClass.GetDescriptionWithCosts();
-        btnRecruit.interactable = owner.resourceStats.CanAfford(costs);
+        btnRecruit.interactable = owner.currentResources.CanAfford(costs);
     }
 
     public void RecruitHero()
@@ -74,7 +74,7 @@ public class TownUI_Panel_RecruitHero : AbstractUIPanel
 
         Player owner = tm.townPiece.pieceOwner.GetOwner();
         Dictionary<ResourceStats, int> costs = selectedOption.dbHero.heroClass.resourceStats.GetCosts(1);
-        owner.resourceStats.Subtract(costs);
+        owner.currentResources.Subtract(costs);
 
         TownUI townUI = TownUI.Instance;
         townUI.CloseCurrentWindow();

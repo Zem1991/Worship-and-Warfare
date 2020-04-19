@@ -17,13 +17,10 @@ public class UI_UnitInfo : MonoBehaviour//, IShowableHideable
         if (txtUnitStack) txtUnitStack.text = "--";
     }
 
-    public void RefreshInfo(DB_Unit unit)
+    public void RefreshInfo(PartySlot slot)
     {
-        ClearInfo();
-        if (unit == null) return;
-
-        if (imgUnitPortrait) imgUnitPortrait.sprite = unit.profilePicture;
-        if (txtUnitName) txtUnitName.text = unit.nameSingular;
+        Unit unit = slot?.Get() as Unit;
+        RefreshInfo(unit);
     }
 
     public void RefreshInfo(Unit unit)

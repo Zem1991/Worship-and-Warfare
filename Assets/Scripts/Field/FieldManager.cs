@@ -56,17 +56,13 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
 
     public void NextTurnForAll()
     {
-        currentTurn++;
+        PlayerManager pm = PlayerManager.Instance;
 
-        PlayerManager.Instance.RefreshTurnForActivePlayers(currentTurn);
-        currentPlayer = PlayerManager.Instance.activePlayers[0];
+        currentTurn++;
+        pm.RefreshTurnForActivePlayers(currentTurn);
+        currentPlayer = pm.activePlayers[0];
 
         NextDayWeekMonth();
-
-        foreach (var item in pieceHandler.townPieces)
-        {
-            //item.ISTET_StartTurn(); TODO THIS
-        }
 
         foreach (var item in pieceHandler.partyPieces)
         {
@@ -105,7 +101,7 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
             case PickupType.RESOURCE:
                 ResourcePickupPiece2 resourcePickup = pickup as ResourcePickupPiece2;
                 Player owner = party.pieceOwner.GetOwner();
-                ResourceStats resources = owner.resourceStats;
+                ResourceStats resources = owner.currentResources;
                 long amount = resourcePickup.resourceAmount;
                 switch (resourcePickup.dbResource.resourceType)
                 {

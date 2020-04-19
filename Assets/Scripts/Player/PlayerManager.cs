@@ -94,6 +94,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         foreach (var pl in activePlayers)
         {
             pl.RefreshTurn(currentTurn);
+            if (currentTurn > 1) pl.ApplyDailyIncome();
         }
     }
 }

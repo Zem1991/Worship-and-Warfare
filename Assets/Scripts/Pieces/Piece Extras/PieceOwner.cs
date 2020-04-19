@@ -14,5 +14,11 @@ public class PieceOwner : MonoBehaviour
     public void SetOwner(Player player)
     {
         owner = player;
+
+        TownPiece2 thisAsTown = GetComponent<TownPiece2>();
+        PartyPiece2 thisAsParty = GetComponent<PartyPiece2>();
+
+        if (thisAsTown) player.townPieces.Add(thisAsTown);
+        else if (thisAsParty) player.partyPieces.Add(thisAsParty);
     }
 }

@@ -1266,6 +1266,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   draggableElement: {fileID: 0}
   slotFrontDragged: {fileID: 0}
+  heroInfo: {fileID: 2504841874390132447}
+  unitsInfos: {fileID: 8240605334540008900}
   heroSlot: {fileID: 8240605335901351353}
   unitSlots:
   - {fileID: 8240605335103810015}
@@ -1275,6 +1277,9 @@ MonoBehaviour:
   - {fileID: 8240605334355338275}
   canDragHero: 1
   canDragUnits: 1
+  partySource: {fileID: 0}
+  partySourceAsTown: {fileID: 0}
+  partySourceAsParty: {fileID: 0}
 --- !u!1 &8240605335173522213
 GameObject:
   m_ObjectHideFlags: 0

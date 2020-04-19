@@ -10,6 +10,9 @@ public class Town : MonoBehaviour
     public Party garrison;
     //public Party visitor; //not using this anymore
 
+    [Header("Stats")]
+    public ResourceStats dailyIncome;
+
     [Header("Buildings")]
     public TownBuilding townCenter;
     public TownBuilding tavern;
@@ -48,7 +51,7 @@ public class Town : MonoBehaviour
         if (owner)
         {
             Dictionary<ResourceStats, int> costs = dbTownBuilding.resourceStats.GetCosts(1);
-            owner.resourceStats.Subtract(costs);
+            owner.currentResources.Subtract(costs);
         }
 
         TownBuilding prefab = AllPrefabs.Instance.townBuilding;

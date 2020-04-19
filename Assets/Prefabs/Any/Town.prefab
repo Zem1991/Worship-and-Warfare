@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1316065205836614393}
   - component: {fileID: 1070375493909536636}
+  - component: {fileID: 1076127892191508009}
   m_Layer: 0
   m_Name: Town
   m_TagString: Untagged
@@ -44,4 +45,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   townName: 
+  garrison: {fileID: 0}
+  dailyIncome: {fileID: 1076127892191508009}
+  townCenter: {fileID: 0}
+  tavern: {fileID: 0}
+  temple: {fileID: 0}
+  castle: {fileID: 0}
+  mageGuild: {fileID: 0}
+  workshop: {fileID: 0}
   dbFaction: {fileID: 0}
+--- !u!114 &1076127892191508009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316065205836614395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70d83c1bcf2c2f14db7cca655f18e037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gold: 1000
+  ore: 0
+  ale: 0
+  crystals: 0
+  sulphur: 0

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class UI_PartyInfo : AUI_PanelDragAndDrop
 {
     [Header("Party Slots and Settings")]
+    public UI_HeroInfo heroInfo;
+    public UI_UnitsInfo unitsInfos;
     public TownUI_PartySlot heroSlot;
     public TownUI_PartySlot[] unitSlots;
     public bool canDragHero = true;
@@ -25,6 +27,16 @@ public class UI_PartyInfo : AUI_PanelDragAndDrop
         partyPieceRefresh = GetComponentInParent<IPartyPieceRefresh>();
     }
 
+    public void Update()
+    {
+        TownUI_PartySlot_Front slotFront = slotFrontDragged as TownUI_PartySlot_Front;
+        if (slotFront)
+        {
+            TownUI_PartySlot slotBack = slotFront.slotBack as TownUI_PartySlot;
+            slotBack.UpdateSlot(this, slotBack.partySlot);
+        }
+    }
+
     public void RefreshInfo(AbstractFieldPiece2 partySource)
     {
         this.partySource = partySource;
@@ -35,18 +47,21 @@ public class UI_PartyInfo : AUI_PanelDragAndDrop
         if (partySourceAsTown) party = partySourceAsTown.town.garrison;
         if (partySourceAsParty) party = partySourceAsParty.party;
 
-        PartySlot hero = null;
-        List<PartySlot> units = null;
+        PartySlot heroPartySlot = null;
+        List<PartySlot> unitsPartySlots = null;
         if (party)
         {
-            hero = party.GetHeroSlot();
-            units = party.GetUnitSlots();
+            heroPartySlot = party.GetHeroSlot();
+            unitsPartySlots = party.GetUnitSlots();
         }
 
-        heroSlot.UpdateSlot(this, hero);
+        heroInfo.RefreshInfo(heroPartySlot);
+        heroSlot.UpdateSlot(this, heroPartySlot);
+
+        unitsInfos.RefreshInfo(unitsPartySlots);
         for (int i = 0; i < PartyConstants.MAX_UNITS; i++)
         {
-            unitSlots[i].UpdateSlot(this, units?[i]);
+            unitSlots[i].UpdateSlot(this, unitsPartySlots?[i]);
         }
     }
 

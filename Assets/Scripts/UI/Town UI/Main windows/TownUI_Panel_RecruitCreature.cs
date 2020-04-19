@@ -56,8 +56,8 @@ public class TownUI_Panel_RecruitCreature : AbstractUIPanel
             costs.Add(option.dbUnit.resourceStats, option.amount);
         }
 
-        txtDescriptionAndCosts.text = owner.resourceStats.WrittenForm(costs);
-        btnRecruit.interactable = owner.resourceStats.CanAfford(costs);
+        txtDescriptionAndCosts.text = owner.currentResources.WrittenForm(costs);
+        btnRecruit.interactable = owner.currentResources.CanAfford(costs);
     }
 
     public void RecruitCreatures()

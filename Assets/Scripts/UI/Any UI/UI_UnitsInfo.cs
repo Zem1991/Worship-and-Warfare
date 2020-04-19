@@ -6,20 +6,7 @@ using UnityEngine.UI;
 
 public class UI_UnitsInfo : MonoBehaviour, IShowableHideable
 {
-    public UI_UnitInfo[] unitsInfo;
-
-    //public void Awake()
-    //{
-    //    if (unitsInfo == null)
-    //    {
-    //        unitsInfo = new UI_UnitInfo[PartyConstants.MAX_UNITS];
-    //        UI_UnitInfo[] foundComponents = GetComponentsInChildren<UI_UnitInfo>();
-    //        for (int i = 0; i < foundComponents.Length; i++)
-    //        {
-    //            unitsInfo[i] = foundComponents[i];
-    //        }
-    //    }
-    //}
+    public List<UI_UnitInfo> unitsInfo = new List<UI_UnitInfo>();
 
     public void Hide()
     {
@@ -31,12 +18,13 @@ public class UI_UnitsInfo : MonoBehaviour, IShowableHideable
         gameObject.SetActive(true);
     }
 
-    public void RefreshInfo(PartySlot[] slots)
+    public void RefreshInfo(List<PartySlot> slots)
     {
-        for (int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < PartyConstants.MAX_UNITS; i++)
         {
-            Unit unit = slots[i]?.Get() as Unit;
-            unitsInfo[i].RefreshInfo(unit);
+            PartySlot partySlot = null;
+            if (slots != null) partySlot = slots[i];
+            unitsInfo[i].RefreshInfo(partySlot);
         }
     }
 }

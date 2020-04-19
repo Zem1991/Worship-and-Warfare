@@ -23,14 +23,13 @@ public class ResourceStats : MonoBehaviour
         sulphur = resourceData.sulphur;
     }
 
-    public string WrittenForm(Dictionary<ResourceStats, int> costs)
+    private void IterateAndSum(Dictionary<ResourceStats, int> costs, out long goldCost, out long oreCost, out long aleCost, out long crystalsCost, out long sulphurCost)
     {
-        string result = "";
-        long goldCost = 0;
-        long oreCost = 0;
-        long aleCost = 0;
-        long crystalsCost = 0;
-        long sulphurCost = 0;
+        goldCost = 0;
+        oreCost = 0;
+        aleCost = 0;
+        crystalsCost = 0;
+        sulphurCost = 0;
         foreach (KeyValuePair<ResourceStats, int> cost in costs)
         {
             goldCost += cost.Key.gold * cost.Value;
@@ -39,7 +38,12 @@ public class ResourceStats : MonoBehaviour
             crystalsCost += cost.Key.crystals * cost.Value;
             sulphurCost += cost.Key.sulphur * cost.Value;
         }
+    }
 
+    public string WrittenForm(Dictionary<ResourceStats, int> costs)
+    {
+        string result = "";
+        IterateAndSum(costs, out long goldCost, out long oreCost, out long aleCost, out long crystalsCost, out long sulphurCost);
         if (goldCost > 0) result += goldCost + " gold, ";
         if (oreCost > 0) result += oreCost + " ore, ";
         if (aleCost > 0) result += aleCost + " ale, ";
@@ -60,19 +64,7 @@ public class ResourceStats : MonoBehaviour
 
     public bool CanAfford(Dictionary<ResourceStats, int> costs)
     {
-        long goldCost = 0;
-        long oreCost = 0;
-        long aleCost = 0;
-        long crystalsCost = 0;
-        long sulphurCost = 0;
-        foreach (KeyValuePair<ResourceStats, int> cost in costs)
-        {
-            goldCost += cost.Key.gold * cost.Value;
-            oreCost += cost.Key.ore * cost.Value;
-            aleCost += cost.Key.ale * cost.Value;
-            crystalsCost += cost.Key.crystals * cost.Value;
-            sulphurCost += cost.Key.sulphur * cost.Value;
-        }
+        IterateAndSum(costs, out long goldCost, out long oreCost, out long aleCost, out long crystalsCost, out long sulphurCost);
         if (gold < goldCost) return false;
         if (ore < oreCost) return false;
         if (ale < aleCost) return false;
@@ -81,22 +73,22 @@ public class ResourceStats : MonoBehaviour
         return true;
     }
 
+    public bool Add(Dictionary<ResourceStats, int> costs)
+    {
+        //if (!CanAfford(costs)) return false;
+        IterateAndSum(costs, out long goldCost, out long oreCost, out long aleCost, out long crystalsCost, out long sulphurCost);
+        gold += goldCost;
+        ore += oreCost;
+        ale += aleCost;
+        crystals += crystalsCost;
+        sulphur += sulphurCost;
+        return true;
+    }
+
     public bool Subtract(Dictionary<ResourceStats, int> costs)
     {
         if (!CanAfford(costs)) return false;
-        long goldCost = 0;
-        long oreCost = 0;
-        long aleCost = 0;
-        long crystalsCost = 0;
-        long sulphurCost = 0;
-        foreach (KeyValuePair<ResourceStats, int> cost in costs)
-        {
-            goldCost += cost.Key.gold * cost.Value;
-            oreCost += cost.Key.ore * cost.Value;
-            aleCost += cost.Key.ale * cost.Value;
-            crystalsCost += cost.Key.crystals * cost.Value;
-            sulphurCost += cost.Key.sulphur * cost.Value;
-        }
+        IterateAndSum(costs, out long goldCost, out long oreCost, out long aleCost, out long crystalsCost, out long sulphurCost);
         gold -= goldCost;
         ore -= oreCost;
         ale -= aleCost;

@@ -49,7 +49,7 @@ MonoBehaviour:
   id: 0
   dbColor: {fileID: 0}
   aiPersonality: {fileID: 0}
-  resourceStats: {fileID: 4175536999898076147}
+  currentResources: {fileID: 4175536999898076147}
   faction: {fileID: 0}
   townPieces: []
   partyPieces: []

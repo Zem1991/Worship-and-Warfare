@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public AIPersonality aiPersonality;
 
     [Header("Stats")]
-    public ResourceStats resourceStats;
+    public ResourceStats currentResources;
 
     [Header("Pieces")]
     public DBHandler_Faction faction;
@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
         this.id = id;
         this.dbColor = dbColor;
 
-        resourceStats.Initialize(data.resourceData);
+        currentResources.Initialize(data.resourceData);
 
         if (type == PlayerType.COMPUTER)
         {
@@ -58,5 +58,15 @@ public class Player : MonoBehaviour
     {
         this.currentTurn = currentTurn;
         currentTurnAvailable = true;
+    }
+
+    public void ApplyDailyIncome()
+    {
+        Dictionary<ResourceStats, int> mapTownIncome = new Dictionary<ResourceStats, int>();
+        foreach (TownPiece2 townPiece in townPieces)
+        {
+            mapTownIncome.Add(townPiece.town.dailyIncome, 1);
+        }
+        currentResources.Add(mapTownIncome);
     }
 }

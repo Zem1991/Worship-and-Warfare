@@ -19195,6 +19195,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   draggableElement: {fileID: 0}
   slotFrontDragged: {fileID: 0}
+  heroInfo: {fileID: 3190556911116468321}
+  unitsInfos: {fileID: 8996322983500700538}
   heroSlot: {fileID: 8996322982688803591}
   unitSlots:
   - {fileID: 8996322982930599777}

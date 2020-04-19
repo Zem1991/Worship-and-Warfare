@@ -75,7 +75,7 @@ public class TownUI_Panel_BuildStructure : AbstractUIPanel
             Dictionary<ResourceStats, int> costs = dbTownBuilding.resourceStats.GetCosts(1);
 
             txtDescriptionAndCosts.text =  dbTownBuilding.GetDescriptionWithCosts();
-            btnBuild.interactable = owner.resourceStats.CanAfford(costs);
+            btnBuild.interactable = owner.currentResources.CanAfford(costs);
         }
         else
         {
