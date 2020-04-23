@@ -77,11 +77,10 @@ public class CombatPieceStats : MonoBehaviour
             stackLost++;
             hitPoints_current += hitPoints_maximum;
         }
-        if (stackLost > stackStats.stack_current)
+        if (stackLost > stackStats.Get())
         {
-            stackLost = stackStats.stack_current;
+            stackLost = stackStats.Get();
         }
-        stackStats.stack_current -= stackLost;
-        return stackStats.stack_current <= 0;
+        return stackStats.Subtract(stackLost);
     }
 }

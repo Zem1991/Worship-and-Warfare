@@ -4044,7 +4044,7 @@ PrefabInstance:
     - target: {fileID: 4801331596284929651, guid: 90eef1a530e51054a8904edc6e71a938,
         type: 3}
       propertyPath: canDragUnits
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90eef1a530e51054a8904edc6e71a938, type: 3}
@@ -19205,7 +19205,7 @@ MonoBehaviour:
   - {fileID: 8996322983023215074}
   - {fileID: 8996322984490664605}
   canDragHero: 0
-  canDragUnits: 0
+  canDragUnits: 1
   partySource: {fileID: 0}
   partySourceAsTown: {fileID: 0}
   partySourceAsParty: {fileID: 0}

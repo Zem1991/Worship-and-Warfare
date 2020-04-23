@@ -30,6 +30,6 @@ public class UI_UnitInfo : MonoBehaviour//, IShowableHideable
 
         if (imgUnitPortrait) imgUnitPortrait.sprite = unit.dbData.profilePicture;
         if (txtUnitName) txtUnitName.text = unit.dbData.nameSingular;
-        if (txtUnitStack) txtUnitStack.text = unit.stackStats.stack_current + "/" + unit.stackStats.stack_maximum;
+        if (txtUnitStack) txtUnitStack.text = unit.stackStats.Get().ToString();// + "/" + unit.stackStats.stack_maximum;
     }
 }

@@ -433,8 +433,9 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
             if (asUnit)
             {
                 Unit unit = asUnit.unit;
-                unit.stackStats.stack_maximum = asUnit.stackStats.stack_current;
-                if (unit.stackStats.stack_maximum <= 0)
+                int amount = unit.stackStats.Get() - asUnit.stackStats.Get();
+                unit.stackStats.Subtract(amount);
+                if (unit.stackStats.Get() <= 0)
                 {
                     party.party.Remove(unit);
                     Destroy(unit.gameObject);

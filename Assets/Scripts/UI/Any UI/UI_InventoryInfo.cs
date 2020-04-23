@@ -39,6 +39,11 @@ public class UI_InventoryInfo : AUI_PanelDragAndDrop
         }
     }
 
+    public void RefreshInfo(bool refreshBackpackSlots)
+    {
+        RefreshInfo(partyPiece, refreshBackpackSlots);
+    }
+
     public void RefreshInfo(PartyPiece2 partyPiece, bool refreshBackpackSlots)
     {
         this.partyPiece = partyPiece;

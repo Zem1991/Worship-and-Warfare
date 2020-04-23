@@ -23,7 +23,7 @@ public static class AttackCalculation
         CombatantUnitPiece2 attackerAsUnit = attacker as CombatantUnitPiece2;
         if (attackerAsUnit)
         {
-            for (int i = 0; i < attackerAsUnit.stackStats.stack_current; i++)
+            for (int i = 0; i < attackerAsUnit.stackStats.Get(); i++)
                 result += Random.Range(attack.damage_minimum, attack.damage_maximum + 1);
         }
         else

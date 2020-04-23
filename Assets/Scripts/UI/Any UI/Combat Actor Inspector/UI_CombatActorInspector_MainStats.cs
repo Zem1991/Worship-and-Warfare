@@ -32,7 +32,8 @@ public class UI_CombatActorInspector_MainStats : MonoBehaviour
 
             imgPortrait.sprite = unit.unit.dbData.profilePicture;
             txtHealthPoints.text = unit.combatPieceStats.hitPoints_current + "/" + unit.combatPieceStats.hitPoints_maximum;
-            txtStackSize.text = unit.stackStats.stack_current + "/" + unit.stackStats.stack_maximum;
+            //txtStackSize.text = unit.stackStats.stack + "/" + unit.stackStats.stack_maximum;
+            txtStackSize.text = unit.stackStats.Get().ToString();
         }
     }
 }

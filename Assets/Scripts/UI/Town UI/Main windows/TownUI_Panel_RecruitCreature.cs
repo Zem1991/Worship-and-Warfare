@@ -78,7 +78,7 @@ public class TownUI_Panel_RecruitCreature : AbstractUIPanel
             Unit prefab = AllPrefabs.Instance.unit;
             Unit unit = Instantiate(prefab, party.transform);
             unit.Initialize(dbUnit, amount);
-            party.Add(unit);
+            party.MergeOrAdd(unit);
         }
     }
 }

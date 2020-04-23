@@ -35,4 +35,8 @@ public abstract class AUI_DNDSlot : MonoBehaviour, IDropHandler
         imgSlotFront.sprite = img;
         imgSlotFront.color = color;
     }
+
+    //public abstract void LeftClick();
+    public abstract void RightClick();
+    //public abstract void MiddleClick();
 }

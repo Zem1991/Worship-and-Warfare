@@ -37,6 +37,11 @@ public class UI_PartyInfo : AUI_PanelDragAndDrop
         }
     }
 
+    public void RefreshInfo()
+    {
+        RefreshInfo(partySource);
+    }
+
     public void RefreshInfo(AbstractFieldPiece2 partySource)
     {
         this.partySource = partySource;
@@ -126,7 +131,7 @@ public class UI_PartyInfo : AUI_PanelDragAndDrop
             {
                 targetPartySlot = targetUISlot.partySlot;
                 targetParty = targetPartySlot.party;
-                targetParty.Swap(sourcePartySlot, targetPartySlot);
+                targetParty.MergeOrSwap(sourcePartySlot, targetPartySlot);
             }
 
             sourcePartySlot.isBeingDragged = false;

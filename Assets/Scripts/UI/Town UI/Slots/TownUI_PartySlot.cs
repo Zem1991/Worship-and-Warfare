@@ -15,4 +15,13 @@ public class TownUI_PartySlot : AUI_DNDSlot
         AbstractPartyElement partyEl = partySlot?.Get();
         ChangeImage(partyEl?.GetProfileImage());
     }
+
+    public override void RightClick()
+    {
+        Party party = partySlot.party;
+        party.SplitHalfFast(partySlot);
+
+        UI_PartyInfo partyInfo = panelDND as UI_PartyInfo;
+        partyInfo.RefreshInfo();
+    }
 }

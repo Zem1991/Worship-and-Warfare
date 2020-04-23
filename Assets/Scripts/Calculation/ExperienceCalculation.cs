@@ -68,13 +68,15 @@ public static class ExperienceCalculation
 
     public static int UnitExperience(CombatantUnitPiece2 unit)
     {
-        int result = 0;
-        int stackDif = unit.unit.stackStats.stack_maximum - unit.stackStats.stack_current;
-        if (stackDif > 0)
-        {
-            result = unit.unit.dbData.experienceValue;
-            result *= stackDif;
-        }
-        return result;
+        //int result = 0;
+        //TODO combat stats instead of regular stats
+        //int stackDif = unit.unit.stackStats.stack_maximum - unit.stackStats.stack;
+        //if (stackDif > 0)
+        //{
+        //    result = unit.unit.dbData.experienceValue;
+        //    result *= stackDif;
+        //}
+        //return result;
+        return unit.unit.stackStats.Get() * unit.unit.dbData.experienceValue;
     }
 }

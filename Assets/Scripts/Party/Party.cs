@@ -150,6 +150,100 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
         return result;
     }
 
+    public bool MergeOrAdd(Unit unit)
+    {
+        bool mergeOk = false;
+        //Create an temporary PartySlot just to reuse the AddFromSlot function.
+        PartySlot prefab = AllPrefabs.Instance.partySlot;
+        PartySlot tempSlot = CreateTempSlot(prefab, unit) as PartySlot;
+        foreach (PartySlot unitSlot in unitSlots)
+        {
+            mergeOk = Merge(tempSlot, unitSlot);
+            if (mergeOk) break;
+        }
+        Destroy(tempSlot.gameObject);
+        bool result = mergeOk;
+        if (!result) result = Add(unit);
+        return result;
+    }
+
+    public bool MergeOrSwap(PartySlot sourceSlot, PartySlot toSlot)
+    {
+        bool mergeOk = Merge(sourceSlot, toSlot);
+        bool result = mergeOk;
+        if (!result) result = Swap(sourceSlot, toSlot);
+        return result;
+    }
+
+    public bool Merge(PartySlot sourceSlot, PartySlot targetSlot)
+    {
+        bool sameTypeSlots = sourceSlot.slotType == targetSlot.slotType;
+        if (!sameTypeSlots) return false;
+
+        //Merging slots should only work with creature slots.
+        if (sourceSlot.slotType != PartyElementType.CREATURE) return false;
+
+        Unit sourceObj = sourceSlot.Get() as Unit;
+        if (!sourceObj) return false;
+
+        Unit targetObj = targetSlot.Get() as Unit;
+        if (!targetObj) return false;
+
+        bool sameDBContent = sourceObj.dbData == targetObj.dbData;
+        if (!sameDBContent) return false;
+
+        //TODO Specific amount to merge? For now its throwing everything against the target slot.
+        int amount = sourceObj.stackStats.Get();
+        bool fullMerge = true;
+
+        //targetObj.stackStats.Add(amount, true, false);
+        targetObj.stackStats.Add(amount);
+        if (fullMerge) sourceSlot.Clear();
+        return true;
+    }
+
+    public bool Split(PartySlot sourceSlot, PartySlot targetSlot)
+    {
+        bool sameTypeSlots = sourceSlot.slotType == targetSlot.slotType;
+        if (!sameTypeSlots) return false;
+
+        //Splitting slots should only work with creature slots.
+        if (sourceSlot.slotType != PartyElementType.CREATURE) return false;
+
+        Unit sourceObj = sourceSlot.Get() as Unit;
+        if (!sourceObj) return false;
+
+        //The target slot should be empty.
+        if (targetSlot.Get()) return false;
+
+        //TODO Specific amount to split? For now its throwing half against the target slot.
+        int fullAmount = sourceObj.stackStats.Get();
+
+        //There should be at least 2 units in the stack for splitting.
+        if (fullAmount < 2) return false;
+
+        int amountDiv = fullAmount / 2;
+        //int amountMod = fullAmount % 2;
+
+        //targetObj.stackStats.Add(amountDiv, true, false);
+        Unit prefabUnit = AllPrefabs.Instance.unit;
+        Unit newUnit = Instantiate(prefabUnit, targetSlot.transform);
+        newUnit.Initialize(sourceObj.dbData, amountDiv);
+
+        sourceObj.stackStats.Subtract(amountDiv);
+        targetSlot.Set(newUnit);
+        return true;
+    }
+
+    public bool SplitHalfFast(PartySlot sourceSlot)
+    {
+        foreach (PartySlot slot in unitSlots)
+        {
+            if (Split(sourceSlot, slot)) return true;
+        }
+        return false;
+    }
+
     public void ClearParty()
     {
         if (heroSlot.Get()) Destroy(heroSlot.Get().gameObject);

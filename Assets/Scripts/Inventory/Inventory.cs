@@ -218,6 +218,30 @@ public class Inventory : AbstractSlotContainer<InventorySlot, Artifact>
         return result;
     }
 
+    public bool SwapTypeBased(InventorySlot fromSlot)
+    {
+        Artifact fromArtifact = fromSlot.Get();
+
+        //The slot must be filled for anything to work.
+        if (!fromArtifact) return false;
+
+        bool isFromBackpack = backpackItems.Contains(fromSlot);
+        if (isFromBackpack)
+        {
+            InventorySlot toSlot = GetEquipmentSlot(fromArtifact.dbData.artifactType);
+            SwapAux(fromSlot, toSlot);
+
+            //The backpack slot, if left empty, should be destroyed.
+            if (!fromSlot.Get()) RemoveBackpackSlot(fromSlot);
+        }
+        else
+        {
+            SendToBackpack(fromArtifact);
+            fromSlot.Clear();
+        }
+        return true;
+    }
+
     private void SwapAux(InventorySlot from, InventorySlot to)
     {
         Artifact fromItem = from.Get();
@@ -260,10 +284,10 @@ public class Inventory : AbstractSlotContainer<InventorySlot, Artifact>
 
     private bool SendToBackpack(Artifact item)
     {
+        bool result = false;
         //Create an temporary InventorySlot just to reuse the AddFromSlot function.
         InventorySlot prefab = AllPrefabs.Instance.inventorySlot;
         InventorySlot temp = CreateTempSlot(prefab, item) as InventorySlot;
-        bool result = false;
         foreach (InventorySlot slot in backpackItems)
         {
             if (!slot.Has())
@@ -273,9 +297,9 @@ public class Inventory : AbstractSlotContainer<InventorySlot, Artifact>
                 break;
             }
         }
+        Destroy(temp.gameObject);
         if (!result) Debug.LogError("Somehow the item was not added to the backpack!");
         else AddBackpackSlot();
-        Destroy(temp.gameObject);
         return result;
     }
 
@@ -330,11 +354,13 @@ public class Inventory : AbstractSlotContainer<InventorySlot, Artifact>
                 result = equipNeck;
                 break;
             case ArtifactType.RING:
-                if (id == 1) result = equipRing1;
+                //TODO smart selection when no id is provided
+                if (id <= 1) result = equipRing1;
                 if (id == 2) result = equipRing2;
                 break;
             case ArtifactType.TRINKET:
-                if (id == 1) result = equipTrinket1;
+                //TODO smart selection when no id is provided
+                if (id <= 1) result = equipTrinket1;
                 if (id == 2) result = equipTrinket2;
                 if (id == 3) result = equipTrinket3;
                 if (id == 4) result = equipTrinket4;

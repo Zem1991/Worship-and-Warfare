@@ -35,7 +35,7 @@ public class Unit : AbstractPartyElement
 
     public string GetName()
     {
-        if (stackStats.stack_current <= 1) return dbData.nameSingular;
+        if (stackStats.Get() <= 1) return dbData.nameSingular;
         return dbData.namePlural;
     }
 }

@@ -25,7 +25,7 @@ public class CombatantUnitPiece2 : AbstractCombatantPiece2
         uiBarRect.gameObject.SetActive(showUI);
         uiHealthBar.fillAmount = ((float)combatPieceStats.hitPoints_current) / combatPieceStats.hitPoints_maximum;
         uiStackRect.gameObject.SetActive(showUI);
-        uiStackSizeText.text = "" + stackStats.stack_current;
+        uiStackSizeText.text = "" + stackStats.Get();
     }
 
     public void Initialize(Unit unit, Player owner, int spawnId, bool defenderSide)
@@ -38,7 +38,7 @@ public class CombatantUnitPiece2 : AbstractCombatantPiece2
         name = "P" + owner.id + " - Stack of " + unit.GetName();
 
         stackStats = Instantiate(prefabSS, transform);
-        stackStats.Initialize(unit.stackStats.stack_maximum);
+        stackStats.Initialize(unit.stackStats.Get());
 
         IMP_ResetMovementPoints();
         SetAnimatorOverrideController(unit.dbData.animatorCombat);
@@ -55,7 +55,7 @@ public class CombatantUnitPiece2 : AbstractCombatantPiece2
 
     public override void Die()
     {
-        stackStats.stack_current = 0;
+        stackStats.Subtract(stackStats.Get());
         base.Die();
     }
 }

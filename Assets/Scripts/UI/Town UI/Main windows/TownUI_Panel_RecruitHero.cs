@@ -82,7 +82,7 @@ public class TownUI_Panel_RecruitHero : AbstractUIPanel
         Hero prefab = AllPrefabs.Instance.hero;
         Hero hero = Instantiate(prefab, party.GetHeroSlot().transform);
         hero.Initialize(selectedOption.dbHero, null, null);
-        party.GetHeroSlot().Set(hero);
+        party.Add(hero);
 
         btnRecruit.interactable = false;
         selectedOption = null;

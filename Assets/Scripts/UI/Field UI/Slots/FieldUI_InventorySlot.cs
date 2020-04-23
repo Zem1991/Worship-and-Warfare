@@ -19,4 +19,13 @@ public class FieldUI_InventorySlot : AUI_DNDSlot
         Artifact artifact = invSlot?.Get();
         ChangeImage(artifact?.dbData.image);
     }
+
+    public override void RightClick()
+    {
+        Inventory inv = invSlot.inventory;
+        inv.SwapTypeBased(invSlot);
+
+        UI_InventoryInfo invInfo = panelDND as UI_InventoryInfo;
+        invInfo.RefreshInfo(true);
+    }
 }
