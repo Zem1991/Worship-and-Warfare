@@ -117,7 +117,7 @@ public class PieceCombatActions2 : MonoBehaviour
         IEnumerator[] ienumerators =
         {
             AttackEnd(attack),
-            target.TakeDamage(damage)
+            target.ReceiveDamage(damage)
         };
         yield return ienumerators.Select(StartCoroutine).ToArray().GetEnumerator();
     }
@@ -135,7 +135,7 @@ public class PieceCombatActions2 : MonoBehaviour
         IEnumerator[] ienumerators =
         {
             attackEnd,
-            target.TakeDamage(damage)
+            target.ReceiveDamage(damage)
         };
         yield return ienumerators.Select(StartCoroutine).ToArray().GetEnumerator();
     }

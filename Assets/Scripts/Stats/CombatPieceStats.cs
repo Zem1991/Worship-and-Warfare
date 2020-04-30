@@ -27,7 +27,7 @@ public class CombatPieceStats : MonoBehaviour
     [Header("Mobility")]
     public int initiative;
     public int movementRange;
-    public CombatMovementType movementType;
+    public MovementType movementType;
 
     public void Initialize(CombatPieceStats combatPieceStats)
     {
@@ -61,13 +61,21 @@ public class CombatPieceStats : MonoBehaviour
         }
     }
 
-    public bool TakeDamage(int amount)
+    public bool ReceiveHealing(int amount)
+    {
+        hitPoints_current += amount;
+        hitPoints_current = Mathf.Clamp(hitPoints_current, 0, hitPoints_maximum);
+        return hitPoints_current >= hitPoints_maximum;
+    }
+
+    public bool ReceiveDamage(int amount)
     {
         hitPoints_current -= amount;
+        hitPoints_current = Mathf.Clamp(hitPoints_current, 0, hitPoints_maximum);
         return hitPoints_current <= 0;
     }
 
-    public bool TakeDamage(int amount, StackStats stackStats, out int stackLost)
+    public bool ReceiveDamage(int amount, StackStats stackStats, out int stackLost)
     {
         stackLost = amount / hitPoints_maximum;
         int hpLost = amount % hitPoints_maximum;

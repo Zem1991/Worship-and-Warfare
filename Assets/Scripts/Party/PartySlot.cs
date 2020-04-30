@@ -6,9 +6,9 @@ public class PartySlot : AbstractSlot<AbstractPartyElement>
 {
     [Header("Party data")]
     public Party party;
-    public PartyElementType slotType;
+    public UnitCategory slotType;
 
-    public void Initialize(Party party, PartyElementType slotType, int identification = 0)
+    public void Initialize(Party party, UnitCategory slotType, int identification = 0)
     {
         this.party = party;
         this.slotType = slotType;
@@ -16,10 +16,10 @@ public class PartySlot : AbstractSlot<AbstractPartyElement>
 
         switch (slotType)
         {
-            case PartyElementType.HERO:
+            case UnitCategory.HERO:
                 name = "Hero slot";
                 break;
-            case PartyElementType.CREATURE:
+            case UnitCategory.CREATURE:
                 name = "Creature slot, #" + identification;
                 break;
             //case PartyElementType.SIEGE_ENGINE:

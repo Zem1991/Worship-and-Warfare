@@ -84,9 +84,9 @@ public class UI_PartyInfo : AUI_PanelDragAndDrop
 
         if (result && slotBack.partySlot)
         {
-            PartyElementType slotType = slotBack.partySlot.slotType;
-            if (!canDragHero && slotType == PartyElementType.HERO) result = false;
-            else if (!canDragUnits && slotType == PartyElementType.CREATURE) result = false;
+            UnitCategory slotType = slotBack.partySlot.slotType;
+            if (!canDragHero && slotType == UnitCategory.HERO) result = false;
+            else if (!canDragUnits && slotType == UnitCategory.CREATURE) result = false;
         }
         return result;
     }

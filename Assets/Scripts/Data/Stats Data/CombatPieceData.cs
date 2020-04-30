@@ -21,5 +21,5 @@ public class CombatPieceData
     [Header("Mobility")]
     public int initiative;
     public int movementRange;
-    public CombatMovementType movementType;
+    public MovementType movementType;
 }

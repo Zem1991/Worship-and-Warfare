@@ -43,16 +43,16 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
         AbstractPartyElement ape = party.GetMostRelevant();
         if (ape)
         {
-            PartyElementType partyElementType = ape.partyElementType;
+            UnitCategory partyElementType = ape.partyElementType;
             switch (partyElementType)
             {
-                case PartyElementType.HERO:
+                case UnitCategory.HERO:
                     SetAnimatorOverrideController((ape as Hero).dbData.heroClass.animatorField);
                     break;
-                case PartyElementType.CREATURE:
+                case UnitCategory.CREATURE:
                     SetAnimatorOverrideController((ape as Unit).dbData.animatorField);
                     break;
-                case PartyElementType.SIEGE_ENGINE:
+                case UnitCategory.SUPPORT:
                     break;
             }
         }
@@ -100,18 +100,18 @@ public class PartyPiece2 : AbstractFieldPiece2, IStartTurnEndTurn, ICommandableP
     public override string AFP2_GetPieceTitle()
     {
         AbstractPartyElement ape = party.GetMostRelevant();
-        PartyElementType partyElementType = ape.partyElementType;
+        UnitCategory partyElementType = ape.partyElementType;
 
         string result = "Unknown party piece title";
         switch (partyElementType)
         {
-            case PartyElementType.HERO:
+            case UnitCategory.HERO:
                 result = (ape as Hero).dbData.heroName + "'s party";
                 break;
-            case PartyElementType.CREATURE:
+            case UnitCategory.CREATURE:
                 result = "Non-commissioned party";
                 break;
-            case PartyElementType.SIEGE_ENGINE:
+            case UnitCategory.SUPPORT:
                 break;
         }
         return result;

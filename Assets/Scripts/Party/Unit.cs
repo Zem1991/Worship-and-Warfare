@@ -13,7 +13,7 @@ public class Unit : AbstractPartyElement
 
     public void Initialize(DB_Unit dbData, int stack_maximum)
     {
-        partyElementType = PartyElementType.CREATURE;
+        partyElementType = UnitCategory.CREATURE;
 
         CombatPieceStats prefabCPS = AllPrefabs.Instance.combatPieceStats;
         StackStats prefabSS = AllPrefabs.Instance.stackStats;

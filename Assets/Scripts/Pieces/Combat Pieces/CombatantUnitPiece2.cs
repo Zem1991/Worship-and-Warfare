@@ -44,9 +44,9 @@ public class CombatantUnitPiece2 : AbstractCombatantPiece2
         SetAnimatorOverrideController(unit.dbData.animatorCombat);
     }
 
-    public override IEnumerator TakeDamage(int amount)
+    public override IEnumerator ReceiveDamage(int amount)
     {
-        bool defeated = combatPieceStats.TakeDamage(amount, stackStats, out int stackLost);
+        bool defeated = combatPieceStats.ReceiveDamage(amount, stackStats, out int stackLost);
         //string log = unit.GetName() + " took " + amount + " damage. " + stackLost + " units died.";
         //CombatManager.Instance.AddEntryToLog(log);
         if (defeated) yield return StartCoroutine(DamagedDead());

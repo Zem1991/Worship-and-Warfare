@@ -22,7 +22,7 @@ public class Hero : AbstractPartyElement
 
     public void Initialize(DB_Hero dbData, ExperienceData experienceData, InventoryData inventoryData)
     {
-        partyElementType = PartyElementType.HERO;
+        partyElementType = UnitCategory.HERO;
 
         CombatPieceStats prefabCPS = AllPrefabs.Instance.combatPieceStats;
         AttributeStats prefabAS = AllPrefabs.Instance.attributeStats;

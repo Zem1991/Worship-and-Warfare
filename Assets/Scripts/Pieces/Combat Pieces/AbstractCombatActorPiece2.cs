@@ -77,11 +77,16 @@ public abstract class AbstractCombatActorPiece2 : AbstractCombatPiece2, IStartTu
     }
 
     /*
-    *   BEGIN:      Take damage, become either hurt or dead
+    *   BEGIN:      Receive healing, receive damage, become either hurt or dead
     */
-    public virtual IEnumerator TakeDamage(int amount)
+    public virtual IEnumerator ReceiveHealing(int amount)
     {
-        bool defeated = combatPieceStats.TakeDamage(amount);
+        combatPieceStats.ReceiveHealing(amount);
+        yield return null;
+    }
+    public virtual IEnumerator ReceiveDamage(int amount)
+    {
+        bool defeated = combatPieceStats.ReceiveDamage(amount);
         if (defeated) yield return StartCoroutine(DamagedDead());
         else yield return StartCoroutine(DamagedHurt());
     }
@@ -110,7 +115,7 @@ public abstract class AbstractCombatActorPiece2 : AbstractCombatPiece2, IStartTu
         StartCoroutine(DamagedDead());
     }
     /*
-    *   END:        Take damage, become either hurt or dead
+    *   END:        Receive healing, receive damage, become either hurt or dead
     */
 
     public virtual void ISTET_StartTurn()

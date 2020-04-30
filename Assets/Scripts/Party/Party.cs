@@ -14,14 +14,14 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
         PartySlot prefabPartySlot = AllPrefabs.Instance.partySlot;
 
         PartySlot hero = Instantiate(prefabPartySlot, transform);
-        hero.Initialize(this, PartyElementType.HERO);
+        hero.Initialize(this, UnitCategory.HERO);
         heroSlot = hero;
 
         unitSlots = new List<PartySlot>();
         for (int i = 0; i < PartyConstants.MAX_UNITS; i++)
         {
             PartySlot unit = Instantiate(prefabPartySlot, transform);
-            unit.Initialize(this, PartyElementType.CREATURE, i);
+            unit.Initialize(this, UnitCategory.CREATURE, i);
             unitSlots.Add(unit);
         }
     }
@@ -79,13 +79,13 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
         PartySlot slot = null;
         switch (item.partyElementType)
         {
-            case PartyElementType.HERO:
+            case UnitCategory.HERO:
                 if (!heroSlot.Has())
                 {
                     slot = heroSlot;
                 }
                 break;
-            case PartyElementType.CREATURE:
+            case UnitCategory.CREATURE:
                 foreach (PartySlot unitSlot in unitSlots)
                 {
                     if (!unitSlot.Has())
@@ -95,7 +95,7 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
                     }
                 }
                 break;
-            case PartyElementType.SIEGE_ENGINE:
+            case UnitCategory.SUPPORT:
                 break;
             default:
                 break;
@@ -181,7 +181,7 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
         if (!sameTypeSlots) return false;
 
         //Merging slots should only work with creature slots.
-        if (sourceSlot.slotType != PartyElementType.CREATURE) return false;
+        if (sourceSlot.slotType != UnitCategory.CREATURE) return false;
 
         Unit sourceObj = sourceSlot.Get() as Unit;
         if (!sourceObj) return false;
@@ -208,7 +208,7 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
         if (!sameTypeSlots) return false;
 
         //Splitting slots should only work with creature slots.
-        if (sourceSlot.slotType != PartyElementType.CREATURE) return false;
+        if (sourceSlot.slotType != UnitCategory.CREATURE) return false;
 
         Unit sourceObj = sourceSlot.Get() as Unit;
         if (!sourceObj) return false;
