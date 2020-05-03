@@ -1,0 +1,1310 @@
+fileFormatVersion: 2
+guid: 1c0b370e8cf95dc42aade417abda4da6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5288215809875120788
+    second: Catapult_0
+  - first:
+      213: -1123465266431618709
+    second: Catapult_1
+  - first:
+      213: -6365212618491115632
+    second: Catapult_2
+  - first:
+      213: 5452287216832523476
+    second: Catapult_3
+  - first:
+      213: -6268823588876039917
+    second: Catapult_4
+  - first:
+      213: 9173706067233222214
+    second: Catapult_5
+  - first:
+      213: -7844990692434541845
+    second: Catapult_6
+  - first:
+      213: 2012827952104777168
+    second: Catapult_7
+  - first:
+      213: 3486982992985762798
+    second: Catapult_8
+  - first:
+      213: -4341027286037496405
+    second: Catapult_9
+  - first:
+      213: -6464974150969948840
+    second: Catapult_10
+  - first:
+      213: 1404390705185708353
+    second: Catapult_11
+  - first:
+      213: -7103136368032602232
+    second: Catapult_12
+  - first:
+      213: -6395492248609409088
+    second: Catapult_13
+  - first:
+      213: -2753385865225868029
+    second: Catapult_14
+  - first:
+      213: -1972006178023213138
+    second: Catapult_15
+  - first:
+      213: -7782054811215690893
+    second: Catapult_16
+  - first:
+      213: 337867907482127756
+    second: Catapult_17
+  - first:
+      213: 3927162386948058778
+    second: Catapult_18
+  - first:
+      213: 6668811061640074174
+    second: Catapult_19
+  - first:
+      213: 265948704362603915
+    second: Catapult_20
+  - first:
+      213: 830106466092021750
+    second: Catapult_21
+  - first:
+      213: 1930606499829722128
+    second: Catapult_22
+  - first:
+      213: 6990844528925802490
+    second: Catapult_23
+  - first:
+      213: -3481787308874582475
+    second: Catapult_24
+  - first:
+      213: 7955526504459062839
+    second: Catapult_25
+  - first:
+      213: 8548400068990769889
+    second: Catapult_26
+  - first:
+      213: 2089657721133741628
+    second: Catapult_27
+  - first:
+      213: 857639086867443569
+    second: Catapult_28
+  - first:
+      213: 6330933935989448147
+    second: Catapult_29
+  - first:
+      213: -1696246627756932911
+    second: Catapult_30
+  - first:
+      213: -1645137379303779096
+    second: Catapult_31
+  - first:
+      213: 8377546915685519851
+    second: Catapult_32
+  - first:
+      213: -840675497825757574
+    second: Catapult_33
+  - first:
+      213: -8649467950223316535
+    second: Catapult_34
+  - first:
+      213: -7827288642658674616
+    second: Catapult_35
+  - first:
+      213: 8541027318402866776
+    second: Catapult_36
+  - first:
+      213: 5251827740893730006
+    second: Catapult_37
+  - first:
+      213: 5539384899107035731
+    second: Catapult_38
+  - first:
+      213: 1897760926155423149
+    second: Catapult_39
+  - first:
+      213: 2604903237717880974
+    second: Catapult_40
+  - first:
+      213: -4003074823080225504
+    second: Catapult_41
+  - first:
+      213: -6319368428056981299
+    second: Catapult_42
+  - first:
+      213: -1126273048638730287
+    second: Catapult_43
+  - first:
+      213: -5570020338224542853
+    second: Catapult_44
+  - first:
+      213: -4285386764285373969
+    second: Catapult_45
+  - first:
+      213: -3572193178532060486
+    second: Catapult_46
+  - first:
+      213: 3545161726664398119
+    second: Catapult_47
+  - first:
+      213: 1781264577143976323
+    second: Catapult_48
+  - first:
+      213: -4757898513310826577
+    second: Catapult_49
+  - first:
+      213: -1230545339297229486
+    second: Catapult_50
+  - first:
+      213: 2490395140412157098
+    second: Catapult_51
+  - first:
+      213: 8816450729379596302
+    second: Catapult_52
+  - first:
+      213: -195560301303393830
+    second: Catapult_53
+  - first:
+      213: 6897983999563915756
+    second: Catapult_54
+  - first:
+      213: -4370442054197952675
+    second: Catapult_55
+  - first:
+      213: 9179001001657554087
+    second: Catapult_56
+  - first:
+      213: 4738398298248597746
+    second: Catapult_57
+  - first:
+      213: 6222055929948567363
+    second: Catapult_58
+  - first:
+      213: 617305972108538621
+    second: Catapult_59
+  - first:
+      213: -1101301447952519290
+    second: Catapult_60
+  - first:
+      213: -5324626113436722613
+    second: Catapult_61
+  - first:
+      213: 4827865613780696523
+    second: Catapult_62
+  - first:
+      213: 8570085522574864770
+    second: Catapult_63
+  - first:
+      213: 7727157708849407773
+    second: Catapult_64
+  - first:
+      213: 6162788182589730177
+    second: Catapult_65
+  - first:
+      213: -5339685075368453753
+    second: Catapult_66
+  - first:
+      213: -6909748790059434446
+    second: Catapult_67
+  - first:
+      213: 5335565925094434765
+    second: Catapult_68
+  - first:
+      213: 8882511732128136600
+    second: Catapult_69
+  - first:
+      213: 867328060707867923
+    second: Catapult_70
+  - first:
+      213: -411000127980365671
+    second: Catapult_71
+  - first:
+      213: 1539612186695223436
+    second: Catapult_72
+  - first:
+      213: -7284963748166027412
+    second: Catapult_73
+  - first:
+      213: -4232813647117051193
+    second: Catapult_74
+  - first:
+      213: -7981841618552017226
+    second: Catapult_75
+  - first:
+      213: 1061503182289715716
+    second: Catapult_76
+  - first:
+      213: -7508920269052956825
+    second: Catapult_77
+  - first:
+      213: -4304258062611517279
+    second: Catapult_78
+  - first:
+      213: 5530651385747663698
+    second: Catapult_79
+  - first:
+      213: 8003789976488215106
+    second: Catapult_80
+  - first:
+      213: -4859459578941595668
+    second: Catapult_81
+  - first:
+      213: -2393202611577234106
+    second: Catapult_82
+  - first:
+      213: 6999783392333357993
+    second: Catapult_83
+  - first:
+      213: 7528061301407543034
+    second: Catapult_84
+  - first:
+      213: 6221223340928679737
+    second: Catapult_85
+  - first:
+      213: -5851606150506636717
+    second: Catapult_86
+  - first:
+      213: -7936509330513742031
+    second: Catapult_87
+  - first:
+      213: 2414208390267717934
+    second: Catapult_88
+  - first:
+      213: 8771705382452092788
+    second: Catapult_89
+  - first:
+      213: -279019203411757007
+    second: Catapult_90
+  - first:
+      213: 7739315316361098325
+    second: Catapult_91
+  - first:
+      213: -5118121725685922277
+    second: Catapult_92
+  - first:
+      213: 858672153870222375
+    second: Catapult_93
+  - first:
+      213: -3547041801523120579
+    second: Catapult_94
+  - first:
+      213: -4199206707745441648
+    second: Catapult_95
+  - first:
+      213: -4648023659093128747
+    second: Catapult_96
+  - first:
+      213: 5975113681998786939
+    second: Catapult_97
+  - first:
+      213: -7865903242577054869
+    second: Catapult_98
+  - first:
+      213: -483165924023760973
+    second: Catapult_99
+  - first:
+      213: 8721908272527388516
+    second: Catapult_100
+  - first:
+      213: -8074257274098306497
+    second: Catapult_101
+  - first:
+      213: 2313103821260636340
+    second: Catapult_102
+  - first:
+      213: -6006627055962533679
+    second: Catapult_103
+  - first:
+      213: -2763264825116649090
+    second: Catapult_104
+  - first:
+      213: 9184162282932576528
+    second: Catapult_105
+  - first:
+      213: 7640052906883244492
+    second: Catapult_106
+  - first:
+      213: -1156091550725742651
+    second: Catapult_107
+  - first:
+      213: -8781070787667232520
+    second: Catapult_108
+  - first:
+      213: 8167750907395807782
+    second: Catapult_109
+  - first:
+      213: -3466307880371641037
+    second: Catapult_110
+  - first:
+      213: 6950757037523501292
+    second: Catapult_111
+  - first:
+      213: -1599211424102966130
+    second: Catapult_112
+  - first:
+      213: 2830612632504334827
+    second: Catapult_113
+  - first:
+      213: -3614135270140125165
+    second: Catapult_114
+  - first:
+      213: 8765094791957785767
+    second: Catapult_115
+  - first:
+      213: -6928469632137156647
+    second: Catapult_116
+  - first:
+      213: 7469204717676742937
+    second: Catapult_117
+  - first:
+      213: -6241180592284305817
+    second: Catapult_118
+  - first:
+      213: -6103804978513612923
+    second: Catapult_119
+  - first:
+      213: 7639623779346958706
+    second: Catapult_120
+  - first:
+      213: 9213076766262387257
+    second: Catapult_121
+  - first:
+      213: -3905925783958566069
+    second: Catapult_122
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Catapult_0
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 460
+        width: 116
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6f96bfcf129362499d09bbf695dca7e
+      internalID: 5288215809875120788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_1
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 461
+        width: 117
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1346794aa1a4234096be09ba15edcfe
+      internalID: -1123465266431618709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_2
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 463
+        width: 120
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c9cf6e68a33e494292e0091675707e9
+      internalID: -6365212618491115632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_3
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 463
+        width: 121
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2be41a6693289c94aa443190afe35835
+      internalID: 5452287216832523476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_4
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 463
+        width: 119
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2637e97de91ab6e40bd39f8a54ddc4c5
+      internalID: -6268823588876039917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_5
+      rect:
+        serializedVersion: 2
+        x: 803
+        y: 461
+        width: 118
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56246218798dd32449829b72f7647bd7
+      internalID: 9173706067233222214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_6
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 460
+        width: 117
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5300b2f1b83fb154eb156bee3ca5580a
+      internalID: -7844990692434541845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_7
+      rect:
+        serializedVersion: 2
+        x: 1115
+        y: 460
+        width: 117
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ecdaf6508492414daf283cac3dc40c4
+      internalID: 2012827952104777168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_8
+      rect:
+        serializedVersion: 2
+        x: 1276
+        y: 460
+        width: 117
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75c173abc7b5a0e4981b2eda025dbc31
+      internalID: 3486982992985762798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_9
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 321
+        width: 126
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ade5d3c694e20f4889ad7dc3f8a4c0f
+      internalID: -4341027286037496405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_10
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 326
+        width: 123
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff04ecc1c9b323d4a8f5200a4ce4df3e
+      internalID: -6464974150969948840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_11
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 321
+        width: 121
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39ed118ef12191e4cac5719829647533
+      internalID: 1404390705185708353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_12
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 318
+        width: 113
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ff6171dd61d9714da3ba5c9f0236735
+      internalID: -7103136368032602232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_13
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 321
+        width: 112
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a84aa1377a475c4a95766821c29bf4c
+      internalID: -6395492248609409088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_14
+      rect:
+        serializedVersion: 2
+        x: 807
+        y: 316
+        width: 114
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e429466b1cb364645a1d484f47fa469f
+      internalID: -2753385865225868029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 316
+        width: 114
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f54d6765025c444983254b25d5ec6e5
+      internalID: -1972006178023213138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_16
+      rect:
+        serializedVersion: 2
+        x: 1115
+        y: 316
+        width: 117
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98a6c4d28b570634eb365dd8936dce74
+      internalID: -7782054811215690893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_17
+      rect:
+        serializedVersion: 2
+        x: 1275
+        y: 316
+        width: 117
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89d71cd4d8ba4c44184aab7570af7e6d
+      internalID: 337867907482127756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_18
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 166
+        width: 116
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84414b7f99e5b69459a0985ac2bbfff5
+      internalID: 3927162386948058778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_19
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 166
+        width: 124
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89895fa66866ae946b968f9bfb6eedb9
+      internalID: 6668811061640074174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_20
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 166
+        width: 126
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec7dc38e4bab4a646acd0354e365b4fd
+      internalID: 265948704362603915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_21
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 166
+        width: 126
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ee0bc39d9d5b7847bbb56740c6638dc
+      internalID: 830106466092021750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_22
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 166
+        width: 120
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e1d02ddc8cdb0d41bbc65a4a761c004
+      internalID: 1930606499829722128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_23
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 166
+        width: 115
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 391aa5674e781c34499fe726ee5595e5
+      internalID: 6990844528925802490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_24
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 166
+        width: 115
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de2ae56a93543bc46b8c93c1ada393f5
+      internalID: -3481787308874582475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_25
+      rect:
+        serializedVersion: 2
+        x: 1119
+        y: 166
+        width: 116
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac369f22ae932e94d83df857f531ac8f
+      internalID: 7955526504459062839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_26
+      rect:
+        serializedVersion: 2
+        x: 1279
+        y: 166
+        width: 115
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93fde13a637e5bc4b8a4151ef3e6d811
+      internalID: 8548400068990769889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_27
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 14
+        width: 116
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e34608b2dd76b546b41c374588066eb
+      internalID: 2089657721133741628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_28
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 14
+        width: 116
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25c19f2568f78ba40818c3abc993345f
+      internalID: 857639086867443569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_29
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 14
+        width: 116
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a721616a588eab4ea2462e1fcf7161a
+      internalID: 6330933935989448147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_30
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 14
+        width: 116
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3751ede9dc030494798d3ed21084419a
+      internalID: -1696246627756932911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_31
+      rect:
+        serializedVersion: 2
+        x: 698
+        y: 38
+        width: 58
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e00ad3675f215d449be3da49be930d8
+      internalID: -1645137379303779096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_32
+      rect:
+        serializedVersion: 2
+        x: 1030
+        y: 76
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12bf5d84440e48848bee21188e326c48
+      internalID: 8377546915685519851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_33
+      rect:
+        serializedVersion: 2
+        x: 1059
+        y: 76
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 970e9552afba09c4082606b86ca84efb
+      internalID: -840675497825757574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_34
+      rect:
+        serializedVersion: 2
+        x: 1089
+        y: 77
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 938a47b41bf85af428bbf9f15166d7e3
+      internalID: -8649467950223316535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_35
+      rect:
+        serializedVersion: 2
+        x: 1119
+        y: 77
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29c4a0082be9b6e4a8c1bc109d423636
+      internalID: -7827288642658674616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_36
+      rect:
+        serializedVersion: 2
+        x: 1031
+        y: 45
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5c099fee38c076408bfcf4b5b2d273e
+      internalID: 8541027318402866776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_37
+      rect:
+        serializedVersion: 2
+        x: 1061
+        y: 45
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 261849709c42b584ab2fcc81c42dfe48
+      internalID: 5251827740893730006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_38
+      rect:
+        serializedVersion: 2
+        x: 1091
+        y: 45
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59a7507e90d720e4495cf7cff4ce5451
+      internalID: 5539384899107035731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Catapult_39
+      rect:
+        serializedVersion: 2
+        x: 1121
+        y: 45
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1df8fd589f74bb4dbddd4e617489ebb
+      internalID: 1897760926155423149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: cca0f4c70dc951f418fa48177beb6906
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
