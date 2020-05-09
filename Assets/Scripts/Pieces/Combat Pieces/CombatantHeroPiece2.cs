@@ -32,7 +32,7 @@ public class CombatantHeroPiece2 : AbstractCombatantPiece2
         partyElement = hero;
         name = "P" + owner.id + " - " + hero.dbData.heroName + ", " + hero.dbData.heroClass.className;
 
-        attributeStats.Initialize(hero.attributeStats);
+        attributeStats.Copy(hero.attributeStats);
 
         IMP_ResetMovementPoints();
         SetAnimatorOverrideController(hero.dbData.heroClass.animatorCombat);

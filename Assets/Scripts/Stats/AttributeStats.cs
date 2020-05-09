@@ -13,7 +13,7 @@ public class AttributeStats : MonoBehaviour
     public int atrMagic;
     public int atrTech;
 
-    public void Initialize(AttributeStats attributeStats)
+    public void Copy(AttributeStats attributeStats)
     {
         atrOffense = attributeStats.atrOffense;
         atrDefense = attributeStats.atrDefense;
