@@ -12,7 +12,7 @@ public class TownUI_Panel_RecruitHero_HeroOption : MonoBehaviour, IPointerClickH
 
     [Header("Dynamic reference")]
     public TownUI_Panel_RecruitHero parentPanel;
-    public DB_Hero dbHero;
+    public DB_HeroPerson dbHero;
 
     public void OnPointerClick(PointerEventData eventData)
     {

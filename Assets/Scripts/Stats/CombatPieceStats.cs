@@ -5,21 +5,6 @@ using UnityEngine;
 
 public class CombatPieceStats : MonoBehaviour
 {
-    [Header("Offense")]
-    public AttackStats attack_melee;
-    public AttackStats attack_ranged;
-
-    [Header("Defense")]
-    public int armor_physical;
-    public int armor_magical;
-
-    [Header("Combat actions settings")]
-    public bool canWait;
-    public bool canDefend;
-    public bool canRetaliate;
-    public bool canCounter;
-    public int retaliationsMax;
-
     [Header("Health")]
     public int hitPoints_current;
     public int hitPoints_maximum;
@@ -29,14 +14,28 @@ public class CombatPieceStats : MonoBehaviour
     public int movementRange;
     public MovementType movementType;
 
-    public void Initialize(CombatPieceStats combatPieceStats)
+    [Header("Offense")]
+    public AttackStats attack_melee;
+    public AttackStats attack_ranged;
+
+    [Header("Defense")]
+    public int armor_physical;
+    public int armor_magical;
+
+    [Header("Abilities")]
+    public DB_Ability ability1;
+    public DB_Ability ability2;
+    public DB_Ability ability3;
+
+    [Header("Combat actions settings")]
+    public bool canWait;
+    public bool canDefend;
+    public bool canRetaliate;
+    public bool canCounter;
+    public int retaliationsMax;
+
+    public void Clone(CombatPieceStats combatPieceStats)
     {
-        //ResourceStats prefabRS = AllPrefabs.Instance.resourceStats;
-        AttackStats prefabAS = AllPrefabs.Instance.attackStats;
-
-        armor_physical = combatPieceStats.armor_physical;
-        armor_magical = combatPieceStats.armor_magical;
-
         hitPoints_current = combatPieceStats.hitPoints_current;
         hitPoints_maximum = combatPieceStats.hitPoints_maximum;
 
@@ -44,21 +43,22 @@ public class CombatPieceStats : MonoBehaviour
         movementRange = combatPieceStats.movementRange;
         movementType = combatPieceStats.movementType;
 
-        //resourceStats = Instantiate(prefabRS, transform);
-        //resourceStats.Initialize(null);
-
-        attack_melee = Instantiate(prefabAS, transform);
-        attack_melee.Initialize(combatPieceStats.attack_melee);
+        attack_melee.Clone(combatPieceStats.attack_melee);
         attack_melee.isRanged = false;
-        attack_melee.name = "Melee attack stats";
-
-        if (combatPieceStats.attack_ranged)
+        attack_melee.name = "Melee attack";
+        if (combatPieceStats.attack_ranged) //TODO remove this later if everything get 2 attacks
         {
-            attack_ranged = Instantiate(prefabAS, transform);
-            attack_ranged.Initialize(combatPieceStats.attack_ranged);
+            attack_ranged.Clone(combatPieceStats.attack_ranged);
             attack_ranged.isRanged = true;
-            attack_melee.name = "Ranged attack stats";
+            attack_ranged.name = "Ranged attack";
         }
+
+        armor_physical = combatPieceStats.armor_physical;
+        armor_magical = combatPieceStats.armor_magical;
+
+        ability1 = combatPieceStats.ability1;
+        ability2 = combatPieceStats.ability2;
+        ability3 = combatPieceStats.ability3;
     }
 
     public bool ReceiveHealing(int amount)

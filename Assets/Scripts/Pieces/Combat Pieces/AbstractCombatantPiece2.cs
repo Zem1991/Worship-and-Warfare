@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(PieceMovement2))]
 public abstract class AbstractCombatantPiece2 : AbstractCombatActorPiece2, IMovablePiece
 {
+    [SerializeField] protected AbstractPartyElement partyElement;
     public PieceMovement2 pieceMovement { get; private set; }
 
     protected override void ManualAwake()
@@ -19,6 +20,11 @@ public abstract class AbstractCombatantPiece2 : AbstractCombatActorPiece2, IMova
         base.Initialize(owner, cps, spawnId, onDefenderSide);
 
         IMP_ResetMovementPoints();
+    }
+
+    public AbstractPartyElement GetPartyElement()
+    {
+        return partyElement;
     }
 
     protected override void AP2_UpdateAnimatorParameters()

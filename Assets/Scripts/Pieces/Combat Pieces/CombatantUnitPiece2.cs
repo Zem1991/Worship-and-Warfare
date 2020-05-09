@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class CombatantUnitPiece2 : AbstractCombatantPiece2
 {
-    [Header("Unit data")]
-    public Unit unit;
-
     [Header("UI references")]
     public RectTransform uiBarRect;
     public Image uiHealthBar;
@@ -32,16 +29,18 @@ public class CombatantUnitPiece2 : AbstractCombatantPiece2
     {
         Initialize(owner, unit.combatPieceStats, spawnId, defenderSide);
 
-        StackStats prefabSS = AllPrefabs.Instance.stackStats;
-
-        this.unit = unit;
+        partyElement = unit;
         name = "P" + owner.id + " - Stack of " + unit.GetName();
 
-        stackStats = Instantiate(prefabSS, transform);
         stackStats.Initialize(unit.stackStats.Get());
 
         IMP_ResetMovementPoints();
         SetAnimatorOverrideController(unit.dbData.animatorCombat);
+    }
+
+    public Unit GetUnit()
+    {
+        return partyElement as Unit;
     }
 
     public override IEnumerator ReceiveDamage(int amount)

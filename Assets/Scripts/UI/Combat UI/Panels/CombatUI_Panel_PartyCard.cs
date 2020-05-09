@@ -18,7 +18,7 @@ public class CombatUI_Panel_PartyCard : AbstractUIPanel
             return;
         }
 
-        Hero hero = hc.hero;
+        Hero hero = hc.GetHero();
         if (hero)
         {
             heroInfo.RefreshInfo(hero);

@@ -47,8 +47,8 @@ public class CombatUI_Panel_TurnSequence : AbstractUIPanel
             Sprite portrait = null;
             CombatantHeroPiece2 chp = forCutp as CombatantHeroPiece2;
             CombatantUnitPiece2 cup = forCutp as CombatantUnitPiece2;
-            if (chp) portrait = chp.hero.dbData.profilePicture;
-            if (cup) portrait = cup.unit.dbData.profilePicture;
+            if (chp) portrait = chp.GetHero().dbData.profilePicture;
+            if (cup) portrait = cup.GetUnit().dbData.profilePicture;
             if (portrait) newCUI.portrait.sprite = portrait;
 
             newCUI.combatPiece = forCutp;

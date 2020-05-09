@@ -84,7 +84,7 @@ public static class AttackCalculation
         CombatantHeroPiece2 defenderAsHero = defender as CombatantHeroPiece2;
         if (attackerAsUnit && defenderAsHero)
         {
-            int tierMath = 6 - Mathf.Clamp(attackerAsUnit.unit.dbData.tier, 1, 5);
+            int tierMath = 6 - Mathf.Clamp(attackerAsUnit.GetUnit().dbData.tier, 1, 5);
             result = 1F / tierMath;
             result = 1 - Mathf.Clamp01(result);
         }

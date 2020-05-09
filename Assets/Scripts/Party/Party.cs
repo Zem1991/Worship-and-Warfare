@@ -30,8 +30,8 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
     {
         Initialize();
 
-        AbstractDBContentHandler<DB_Hero> dbHeroes = DBHandler_Hero.Instance;
-        AbstractDBContentHandler<DB_Unit> dbUnits = DBHandler_Unit.Instance;
+        AbstractDBContentHandler<DB_HeroPerson> dbHeroes = DBHandler_HeroPerson.Instance;
+        AbstractDBContentHandler<DB_CombatUnit> dbCombatUnits = DBHandler_CombatUnit.Instance;
 
         Hero prefabHero = AllPrefabs.Instance.hero;
         Unit prefabUnit = AllPrefabs.Instance.unit;
@@ -41,7 +41,7 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
             HeroData heroData = partyData.hero;
 
             string heroId = heroData.id;
-            DB_Hero dbData = dbHeroes.Select(heroId);
+            DB_HeroPerson dbData = dbHeroes.Select(heroId);
 
             Hero actualHero = Instantiate(prefabHero, heroSlot.transform);
             actualHero.Initialize(dbData, heroData.experienceData, heroData.inventoryData);
@@ -58,7 +58,7 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
                 UnitData unitData = partyData.units[i];
 
                 string unitId = unitData.id;
-                DB_Unit dbData = dbUnits.Select(unitId);
+                DB_CombatUnit dbData = dbCombatUnits.Select(unitId);
 
                 Unit unit = Instantiate(prefabUnit, unitSlots[i].transform);
                 unit.Initialize(dbData, unitData.stackData.stack_maximum);

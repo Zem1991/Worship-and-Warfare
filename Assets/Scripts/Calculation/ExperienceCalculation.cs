@@ -61,7 +61,7 @@ public static class ExperienceCalculation
         if (hero.stateDead)
         {
             result = 150;
-            result += hero.hero.experienceStats.level * 50;
+            result += hero.GetHero().experienceStats.level * 50;
         }
         return result;
     }
@@ -77,6 +77,6 @@ public static class ExperienceCalculation
         //    result *= stackDif;
         //}
         //return result;
-        return unit.unit.stackStats.Get() * unit.unit.dbData.experienceValue;
+        return unit.GetUnit().stackStats.Get() * unit.GetUnit().dbData.experienceValue;
     }
 }

@@ -30,18 +30,6 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
     [Header("Projectile")]
     public Projectile projectile;
 
-    [Header("Stats - Combatant")]
-    public CombatPieceStats combatPieceStats;
-    public ResourceStats resourceStats;
-    public AttackStats attackStats;
-
-    [Header("Stats - Hero")]
-    public AttributeStats attributeStats;
-    public ExperienceStats experienceStats;
-
-    [Header("Stats - Unit")]
-    public StackStats stackStats;
-
     [Header("Field - Scene")]
     public FieldTile fieldTile;
     public TownPiece2 fieldTownPiece;

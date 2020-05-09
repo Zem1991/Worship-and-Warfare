@@ -16,7 +16,7 @@ public class AttackStats : MonoBehaviour
     [Header("References")]
     public DB_Animation animationProjectile;
 
-    public void Initialize(AttackStats attackStats)
+    public void Clone(AttackStats attackStats)
     {
         damage_minimum = attackStats.damage_minimum;
         damage_maximum = attackStats.damage_maximum;

@@ -18,29 +18,20 @@ public class Hero : AbstractPartyElement
     public Inventory inventory;
 
     [Header("Database reference")]
-    public DB_Hero dbData;
+    public DB_HeroPerson dbData;
 
-    public void Initialize(DB_Hero dbData, ExperienceData experienceData, InventoryData inventoryData)
+    public void Initialize(DB_HeroPerson dbData, ExperienceData experienceData, InventoryData inventoryData)
     {
         partyElementType = UnitCategory.HERO;
 
-        CombatPieceStats prefabCPS = AllPrefabs.Instance.combatPieceStats;
-        AttributeStats prefabAS = AllPrefabs.Instance.attributeStats;
-        ExperienceStats prefabES = AllPrefabs.Instance.experienceStats;
         Inventory prefabInventory = AllPrefabs.Instance.inventory;
 
         this.dbData = dbData;
         name = dbData.heroName;
 
-        combatPieceStats = Instantiate(prefabCPS, transform);
-        combatPieceStats.Initialize(dbData.heroClass.combatPieceStats);
-
-        experienceStats = Instantiate(prefabES, transform);
+        combatPieceStats.Clone(dbData.heroClass.combatPieceStats);
         experienceStats.Initialize(experienceData);
-
-        attributeStats = Instantiate(prefabAS, transform);
         attributeStats.name = "Attribute Stats";
-        levelUpAttributes = Instantiate(prefabAS, transform);
         levelUpAttributes.name = "LevelUp Atributes";
 
         inventory = Instantiate(prefabInventory, transform);

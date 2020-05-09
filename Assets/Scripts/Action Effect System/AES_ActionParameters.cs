@@ -16,5 +16,5 @@ public class AES_ActionParameters : MonoBehaviour
     public DamageType paramDmgType;
     public DamageElement paramDmgElement;
     public HealType paramHealType;
-    public DB_Unit paramCreature;
+    public DB_CombatUnit paramCreature;
 }

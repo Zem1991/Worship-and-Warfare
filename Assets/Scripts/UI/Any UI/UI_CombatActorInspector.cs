@@ -23,8 +23,8 @@ public class UI_CombatActorInspector : AbstractUIPanel, IShowableHideable
         CombatantUnitPiece2 unit = acap as CombatantUnitPiece2;
 
         string name = "Unknown piece";
-        if (hero) name = hero.hero.dbData.heroName;
-        else if (unit) name = unit.unit.dbData.nameSingular;
+        if (hero) name = hero.GetHero().dbData.heroName;
+        else if (unit) name = unit.GetUnit().dbData.unitNameSingular;
         txtName.text = name;
 
         main.RefreshInfo(acap);

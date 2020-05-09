@@ -26,16 +26,16 @@ public class TownUI_Panel_RecruitCreature : AbstractUIPanel
 
         TownManager tm = TownManager.Instance;
         Town town = tm.townPiece.town;
-        List<DB_Unit> dbUnits = town.dbFaction.factionTree.GetUnits();
+        List<DB_CombatUnit> dbUnits = town.dbFaction.factionTree.GetUnits();
 
         TownUI_Panel_RecruitCreature_CreatureOption prefab = AllPrefabs.Instance.tuiCreatureOption;
 
-        foreach (DB_Unit dbUnit in dbUnits)
+        foreach (DB_CombatUnit dbUnit in dbUnits)
         {
             TownUI_Panel_RecruitCreature_CreatureOption newTuiRcCo = Instantiate(prefab, creatureOptionsHolder);
             newTuiRcCo.parentPanel = this;
             newTuiRcCo.dbUnit = dbUnit;
-            newTuiRcCo.txtUnitName.text = dbUnit.nameSingular;
+            newTuiRcCo.txtUnitName.text = dbUnit.unitNameSingular;
             newTuiRcCo.unitImage.sprite = dbUnit.profilePicture;
             newTuiRcCo.txtAvailable.text = "" + 9999;       //dbUnit.nameSingular; //TODO add current available amount to recruit
             newTuiRcCo.inpAmount.text = "" + 0;
@@ -71,7 +71,7 @@ public class TownUI_Panel_RecruitCreature : AbstractUIPanel
 
         foreach (TownUI_Panel_RecruitCreature_CreatureOption option in creatureOptions)
         {
-            DB_Unit dbUnit = option.dbUnit;
+            DB_CombatUnit dbUnit = option.dbUnit;
             int amount = int.Parse(option.inpAmount.text);
             if (amount <= 0) continue;
 

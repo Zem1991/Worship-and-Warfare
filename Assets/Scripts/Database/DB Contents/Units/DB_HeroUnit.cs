@@ -3,28 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DB_HeroClass : AbstractDBContent
+public class DB_HeroUnit : DB_Unit
 {
+    [Header("Hero unit identification")]
     public string className;
-    public string classDescription;
+    //public string classDescription;
     public HeroClassType classType;
 
-    [Header("Stats")]
-    public ResourceStats resourceStats;
-    public CombatPieceStats combatPieceStats;
+    [Header("Hero stats")]
     public AttributeStats attributeStats;
-
-    [Header("Animations")]
-    public AnimatorOverrideController animatorField;
-    public AnimatorOverrideController animatorCombat;
-
-    [Header("References")]
-    public DB_Faction faction;
 
     public string GetDescriptionWithCosts()
     {
         Dictionary<ResourceStats, int> costs = new Dictionary<ResourceStats, int> { [resourceStats] = 1 };
-        return classDescription + "\n" + "Costs: " + resourceStats.WrittenForm(costs);
+        return "TODO: classDescription" + "\n" + "Costs: " + resourceStats.WrittenForm(costs);
     }
 
     public AttributeType GetPrimaryAttribute()

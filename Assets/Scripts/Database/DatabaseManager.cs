@@ -15,9 +15,10 @@ public class DatabaseManager : AbstractSingleton<DatabaseManager>
     [SerializeField] private DBHandler_Ability abilities;
     [SerializeField] private DBHandler_Faction factions;
     [SerializeField] private DBHandler_TownBuilding townBuildings;
-    [SerializeField] private DBHandler_HeroClass classes;
-    [SerializeField] private DBHandler_Hero heroes;
+    [SerializeField] private DBHandler_HeroPerson heroes;
     [SerializeField] private DBHandler_Unit units;
+    [SerializeField] private DBHandler_HeroUnit heroUnits;
+    [SerializeField] private DBHandler_CombatUnit combatUnits;
     [SerializeField] private DBHandler_Element elements;
     [SerializeField] private DBHandler_Status statuses;
     [SerializeField] private DBHandler_Animation animations;
@@ -37,9 +38,10 @@ public class DatabaseManager : AbstractSingleton<DatabaseManager>
         abilities = GetComponentInChildren<DBHandler_Ability>();
         factions = GetComponentInChildren<DBHandler_Faction>();
         townBuildings = GetComponentInChildren<DBHandler_TownBuilding>();
-        classes = GetComponentInChildren<DBHandler_HeroClass>();
-        heroes = GetComponentInChildren<DBHandler_Hero>();
+        heroes = GetComponentInChildren<DBHandler_HeroPerson>();
         units = GetComponentInChildren<DBHandler_Unit>();
+        heroUnits = GetComponentInChildren<DBHandler_HeroUnit>();
+        combatUnits = GetComponentInChildren<DBHandler_CombatUnit>();
         elements = GetComponentInChildren<DBHandler_Element>();
         statuses = GetComponentInChildren<DBHandler_Status>();
         animations = GetComponentInChildren<DBHandler_Animation>();

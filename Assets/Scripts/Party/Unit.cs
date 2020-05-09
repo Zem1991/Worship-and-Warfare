@@ -9,22 +9,16 @@ public class Unit : AbstractPartyElement
     public StackStats stackStats;
 
     [Header("Database reference")]
-    public DB_Unit dbData;
+    public DB_CombatUnit dbData;
 
-    public void Initialize(DB_Unit dbData, int stack_maximum)
+    public void Initialize(DB_CombatUnit dbData, int stack_maximum)
     {
         partyElementType = UnitCategory.CREATURE;
 
-        CombatPieceStats prefabCPS = AllPrefabs.Instance.combatPieceStats;
-        StackStats prefabSS = AllPrefabs.Instance.stackStats;
-
         this.dbData = dbData;
-        name = dbData.nameSingular;
+        name = dbData.unitNameSingular;
 
-        combatPieceStats = Instantiate(prefabCPS, transform);
-        combatPieceStats.Initialize(dbData.combatPieceStats);
-
-        stackStats = Instantiate(prefabSS, transform);
+        combatPieceStats.Clone(dbData.combatPieceStats);
         stackStats.Initialize(stack_maximum);
     }
 
@@ -35,7 +29,7 @@ public class Unit : AbstractPartyElement
 
     public string GetName()
     {
-        if (stackStats.Get() <= 1) return dbData.nameSingular;
-        return dbData.namePlural;
+        if (stackStats.Get() <= 1) return dbData.unitNameSingular;
+        return dbData.unitNamePlural;
     }
 }

@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class CombatantHeroPiece2 : AbstractCombatantPiece2
 {
-    [Header("Hero data")]
-    public Hero hero;
-
     [Header("UI references")]
     public RectTransform uiBarRect;
     public Image uiHealthBar;
@@ -32,16 +29,17 @@ public class CombatantHeroPiece2 : AbstractCombatantPiece2
     {
         Initialize(owner, hero.combatPieceStats, spawnId, defenderSide);
 
-        AttributeStats prefabAS = AllPrefabs.Instance.attributeStats;
-        //ExperienceStats prefabES = AllPrefabs.Instance.experienceStats;
-
-        this.hero = hero;
+        partyElement = hero;
         name = "P" + owner.id + " - " + hero.dbData.heroName + ", " + hero.dbData.heroClass.className;
 
-        attributeStats = Instantiate(prefabAS, transform);
         attributeStats.Initialize(hero.attributeStats);
 
         IMP_ResetMovementPoints();
         SetAnimatorOverrideController(hero.dbData.heroClass.animatorCombat);
+    }
+
+    public Hero GetHero()
+    {
+        return partyElement as Hero;
     }
 }

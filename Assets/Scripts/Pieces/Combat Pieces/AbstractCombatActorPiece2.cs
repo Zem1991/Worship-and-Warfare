@@ -40,15 +40,12 @@ public abstract class AbstractCombatActorPiece2 : AbstractCombatPiece2, IStartTu
     {
         ManualAwake();
 
-        CombatPieceStats prefabCPS = AllPrefabs.Instance.combatPieceStats;
-
         pieceOwner.SetOwner(owner);
         pieceController.SetController(owner);
         this.spawnId = spawnId;
         this.onDefenderSide = onDefenderSide;
 
-        combatPieceStats = Instantiate(prefabCPS, transform);
-        combatPieceStats.Initialize(cps);
+        combatPieceStats.Clone(cps);
 
         pieceCombatActions.canWait = combatPieceStats.canWait;
         pieceCombatActions.canDefend = combatPieceStats.canDefend;

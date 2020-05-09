@@ -14,7 +14,7 @@ public class TownUI_Panel_RecruitCreature_CreatureOption : MonoBehaviour
 
     [Header("Dynamic reference")]
     public TownUI_Panel_RecruitCreature parentPanel;
-    public DB_Unit dbUnit;
+    public DB_CombatUnit dbUnit;
     public int amount;
 
     public void CheckAmountRange()

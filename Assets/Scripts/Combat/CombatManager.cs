@@ -320,12 +320,14 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
      */
     public void Selection_Wait()
     {
-        CombatSceneInputs.Instance.executor.MakeSelectedPieceWait();
+        CombatSceneInputs csi = CombatSceneInputs.Instance;
+        if (csi.executor.canCommandSelectedPiece) CombatSceneInputs.Instance.executor.MakeSelectedPieceWait();
     }
 
     public void Selection_Defend()
     {
-        CombatSceneInputs.Instance.executor.MakeSelectedPieceDefend();
+        CombatSceneInputs csi = CombatSceneInputs.Instance;
+        if (csi.executor.canCommandSelectedPiece) CombatSceneInputs.Instance.executor.MakeSelectedPieceDefend();
     }
     /*
     * End: UI Bottom Center buttons
@@ -422,7 +424,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
             if (asHero)
             {
-                Hero hero = asHero.hero;
+                Hero hero = asHero.GetHero();
                 if (asHero.combatPieceStats.hitPoints_current <= 0)
                 {
                     party.party.Remove(hero);
@@ -432,7 +434,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
             if (asUnit)
             {
-                Unit unit = asUnit.unit;
+                Unit unit = asUnit.GetUnit();
                 int amount = unit.stackStats.Get() - asUnit.stackStats.Get();
                 unit.stackStats.Subtract(amount);
                 if (unit.stackStats.Get() <= 0)

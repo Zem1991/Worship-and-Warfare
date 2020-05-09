@@ -4,22 +4,17 @@ using UnityEngine;
 
 public class DB_Unit : AbstractDBContent
 {
-    public string nameSingular;
-    public string namePlural;
+    [Header("Unit identification")]
     public Sprite profilePicture;
 
-    [Header("Unit settings")]
-    public int tier;
-    public int experienceValue;
-
-    [Header("Stats")]
+    [Header("Unit stats")]
     public ResourceStats resourceStats;
     public CombatPieceStats combatPieceStats;
 
-    [Header("Animations")]
+    [Header("Unit animations")]
     public AnimatorOverrideController animatorField;
     public AnimatorOverrideController animatorCombat;
 
-    [Header("References")]
+    [Header("Unit references")]
     public DB_Faction faction;
 }

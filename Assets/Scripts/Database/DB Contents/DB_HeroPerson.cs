@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DB_Hero : AbstractDBContent
+public class DB_HeroPerson : AbstractDBContent
 {
     public string heroName;
     public Sprite profilePicture;
 
     [Header("References")]
-    public DB_HeroClass heroClass;
+    public DB_HeroUnit heroClass;
 }

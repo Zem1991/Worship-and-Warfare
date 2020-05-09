@@ -343,8 +343,9 @@ GameObject:
   - component: {fileID: -1768015997571773248}
   - component: {fileID: 1992955084037246452}
   - component: {fileID: 334233482100639713}
+  - component: {fileID: 8510369405369516683}
   m_Layer: 0
-  m_Name: Unit Piece
+  m_Name: Combat Unit Piece
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -389,10 +390,10 @@ MonoBehaviour:
   onDefenderSide: 0
   stateHurt: 0
   stateDead: 0
-  combatPieceStats: {fileID: 0}
+  combatPieceStats: {fileID: 8510369405369516683}
   animateMovementStart: 0
   animateMovementEnd: 0
-  unit: {fileID: 0}
+  partyElement: {fileID: 0}
   uiBarRect: {fileID: 6734687663200126650}
   uiHealthBar: {fileID: 6118970350500758784}
   uiStackRect: {fileID: 6190365414205256803}
@@ -475,6 +476,35 @@ MonoBehaviour:
   nextPos: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
+--- !u!114 &8510369405369516683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6036333515219936311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e85564141e09543bae1035a361a6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPoints_current: 0
+  hitPoints_maximum: 0
+  initiative: 0
+  movementRange: 0
+  movementType: 0
+  attack_melee: {fileID: 0}
+  attack_ranged: {fileID: 0}
+  armor_physical: 0
+  armor_magical: 0
+  ability1: {fileID: 0}
+  ability2: {fileID: 0}
+  ability3: {fileID: 0}
+  canWait: 0
+  canDefend: 0
+  canRetaliate: 0
+  canCounter: 0
+  retaliationsMax: 0
 --- !u!1 &6661559027028567187
 GameObject:
   m_ObjectHideFlags: 0

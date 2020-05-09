@@ -30,17 +30,17 @@ public class TownUI_Panel_RecruitHero : AbstractUIPanel
 
         TownManager tm = TownManager.Instance;
         Town town = tm.townPiece.town;
-        List<DB_HeroClass> dbClasses = town.dbFaction.factionTree.GetHeroClasses();
+        List<DB_HeroUnit> dbClasses = town.dbFaction.factionTree.GetHeroClasses();
 
         TownUI_Panel_RecruitHero_HeroOption prefab = AllPrefabs.Instance.tuiHeroOption;
 
-        foreach (DB_HeroClass dbClass in dbClasses)
+        foreach (DB_HeroUnit dbClass in dbClasses)
         {
-            List<DB_Hero> dbHeroes = town.dbFaction.factionTree.GetHeroes(dbClass);
+            List<DB_HeroPerson> dbHeroes = town.dbFaction.factionTree.GetHeroes(dbClass);
             if (dbHeroes.Count <= 0) continue;
 
             int index = Random.Range(0, dbHeroes.Count - 1);    //TODO better hero selection
-            DB_Hero dbHero = dbHeroes[index];
+            DB_HeroPerson dbHero = dbHeroes[index];
 
             TownUI_Panel_RecruitHero_HeroOption newTuiRcCo = Instantiate(prefab, heroOptionsHolder);
             newTuiRcCo.parentPanel = this;
@@ -59,7 +59,7 @@ public class TownUI_Panel_RecruitHero : AbstractUIPanel
         TownManager tm = TownManager.Instance;
         Player owner = tm.townPiece.pieceOwner.GetOwner();
 
-        DB_Hero dbHero = selectedOption.dbHero;
+        DB_HeroPerson dbHero = selectedOption.dbHero;
         Dictionary<ResourceStats, int> costs = dbHero.heroClass.resourceStats.GetCosts(1);
 
         txtDescriptionAndCosts.text = dbHero.heroClass.GetDescriptionWithCosts();

@@ -21,7 +21,7 @@ public class UI_CombatActorInspector_MainStats : MonoBehaviour
             txtManaPoints.gameObject.SetActive(true);
             txtStackSize.gameObject.SetActive(false);
 
-            imgPortrait.sprite = hero.hero.dbData.profilePicture;
+            imgPortrait.sprite = hero.GetHero().dbData.profilePicture;
             txtHealthPoints.text = hero.combatPieceStats.hitPoints_current + "/" + hero.combatPieceStats.hitPoints_maximum;
             txtManaPoints.text = "missing mana points";
         }
@@ -30,7 +30,7 @@ public class UI_CombatActorInspector_MainStats : MonoBehaviour
             txtManaPoints.gameObject.SetActive(false);
             txtStackSize.gameObject.SetActive(true);
 
-            imgPortrait.sprite = unit.unit.dbData.profilePicture;
+            imgPortrait.sprite = unit.GetUnit().dbData.profilePicture;
             txtHealthPoints.text = unit.combatPieceStats.hitPoints_current + "/" + unit.combatPieceStats.hitPoints_maximum;
             //txtStackSize.text = unit.stackStats.stack + "/" + unit.stackStats.stack_maximum;
             txtStackSize.text = unit.stackStats.Get().ToString();

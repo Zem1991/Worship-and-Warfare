@@ -23,7 +23,7 @@ public class AttributeStats : MonoBehaviour
         atrTech = attributeStats.atrTech;
     }
 
-    public static void RecalculateStats(AttributeStats attributeStats, AttributeStats levelUp, DB_HeroClass dbHeroClass, Inventory inventory)
+    public static void RecalculateStats(AttributeStats attributeStats, AttributeStats levelUp, DB_HeroUnit dbHeroClass, Inventory inventory)
     {
         attributeStats.atrOffense = levelUp.atrOffense +    dbHeroClass.attributeStats.atrOffense +     inventory.equipAttributeStats.atrOffense;
         attributeStats.atrDefense = levelUp.atrDefense +    dbHeroClass.attributeStats.atrDefense +     inventory.equipAttributeStats.atrDefense;

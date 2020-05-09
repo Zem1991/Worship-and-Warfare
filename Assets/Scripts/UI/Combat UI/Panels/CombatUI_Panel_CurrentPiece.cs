@@ -16,21 +16,51 @@ public class CombatUI_Panel_CurrentPiece : AbstractUIPanel
     {
         if (actp == null) return;
 
-        CombatantHeroPiece2 asHero = actp as CombatantHeroPiece2;
-        CombatantUnitPiece2 asUnit = actp as CombatantUnitPiece2;
+        unitPortrait.sprite = actp.GetPartyElement().GetProfileImage();
+        UpdateWait(actp, canCommandSelectedPiece);
+        UpdateDefend(actp, canCommandSelectedPiece);
+        UpdateAbility1(actp, canCommandSelectedPiece);
+        UpdateAbility2(actp, canCommandSelectedPiece);
+        UpdateAbility3(actp, canCommandSelectedPiece);
+    }
 
-        Sprite portrait = null;
-        if (asHero) portrait = asHero.hero.dbData.profilePicture;
-        else if (asUnit) portrait = asUnit.unit.dbData.profilePicture;
-        unitPortrait.sprite = portrait;
+    private void UpdateWait(AbstractCombatantPiece2 actp, bool canCommandSelectedPiece)
+    {
+        bool notInState = !actp.pieceCombatActions.stateWait;
+        bool canDoIt = actp.pieceCombatActions.canWait;
+        btnWait.interactable = canCommandSelectedPiece && notInState;
+        btnWait.gameObject.SetActive(canDoIt);
+    }
 
-        btnWait.interactable = !actp.pieceCombatActions.stateWait;
-        btnWait.gameObject.SetActive(canCommandSelectedPiece);
+    private void UpdateDefend(AbstractCombatantPiece2 actp, bool canCommandSelectedPiece)
+    {
+        bool notInState = !actp.pieceCombatActions.stateDefend;
+        bool canDoIt = actp.pieceCombatActions.canDefend;
+        btnDefend.interactable = canCommandSelectedPiece && notInState;
+        btnDefend.gameObject.SetActive(canDoIt);
+    }
 
-        btnDefend.gameObject.SetActive(canCommandSelectedPiece);
+    private void UpdateAbility1(AbstractCombatantPiece2 actp, bool canCommandSelectedPiece)
+    {
+        DB_Ability ability = actp.combatPieceStats.ability1;
+        bool canDoIt = actp.pieceCombatActions.canDefend;
+        btnAbility1.interactable = canCommandSelectedPiece && ability;
+        btnAbility1.gameObject.SetActive(canDoIt);
+    }
 
-        btnAbility1.gameObject.SetActive(false);
-        btnAbility2.gameObject.SetActive(false);
-        btnAbility3.gameObject.SetActive(false);
+    private void UpdateAbility2(AbstractCombatantPiece2 actp, bool canCommandSelectedPiece)
+    {
+        DB_Ability ability = actp.combatPieceStats.ability2;
+        bool canDoIt = actp.pieceCombatActions.canDefend;
+        btnAbility2.interactable = canCommandSelectedPiece && ability;
+        btnAbility2.gameObject.SetActive(canDoIt);
+    }
+
+    private void UpdateAbility3(AbstractCombatantPiece2 actp, bool canCommandSelectedPiece)
+    {
+        DB_Ability ability = actp.combatPieceStats.ability3;
+        bool canDoIt = actp.pieceCombatActions.canDefend;
+        btnAbility3.interactable = canCommandSelectedPiece && ability;
+        btnAbility3.gameObject.SetActive(canDoIt);
     }
 }
