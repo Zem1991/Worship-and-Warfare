@@ -13,21 +13,21 @@ public class FieldUI_Panel_TradeScreen_Party : MonoBehaviour, IInventoryRefresh,
     public UI_InventoryInfo inventoryInfo;
     public UI_PartyInfo partyInfo;
 
-    public void UpdatePanel(PartyPiece2 partyPiece, bool refreshBackpackSlots)
+    public void UpdatePanel(PartyPiece3 partyPiece, bool refreshBackpackSlots)
     {
-        Hero hero = partyPiece.party.GetHeroSlot().Get() as Hero;
+        HeroUnit hero = partyPiece.party.GetHeroSlot().Get() as HeroUnit;
         heroInfo.RefreshInfo(hero);
         attributeInfo.RefreshInfo(hero?.attributeStats);
         inventoryInfo.RefreshInfo(partyPiece, refreshBackpackSlots);
         partyInfo.RefreshInfo(partyPiece);
     }
 
-    public void InventoryRefresh(PartyPiece2 partyPiece, bool refreshBackpackSlots)
+    public void InventoryRefresh(PartyPiece3 partyPiece, bool refreshBackpackSlots)
     {
         UpdatePanel(partyPiece, refreshBackpackSlots);
     }
 
-    public void PartyPieceRefresh(PartyPiece2 partyPiece)
+    public void PartyPieceRefresh(PartyPiece3 partyPiece)
     {
         UpdatePanel(partyPiece, true);
     }

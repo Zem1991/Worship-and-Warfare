@@ -13,8 +13,8 @@ public class Projectile : MonoBehaviour
     [Header("Setup")]
     public Vector3 casterPos;
     public Vector3 targetPos;
-    public AbstractPiece2 casterPiece;
-    public AbstractPiece2 targetPiece;
+    public AbstractPiece3 casterPiece;
+    public AbstractPiece3 targetPiece;
     public bool inMove;
 
     [Header("Movement")]
@@ -44,7 +44,7 @@ public class Projectile : MonoBehaviour
     //    mainSpriteRenderer.flipX = flip;
     //}
 
-    public void SetupAndGo(AttackStats attack, AbstractPiece2 casterPiece, Vector3 targetPos)
+    public void SetupAndGo(AttackStats2 attack, AbstractPiece3 casterPiece, Vector3 targetPos)
     {
         casterPos = casterPiece.transform.position;
         this.targetPos = targetPos;
@@ -53,7 +53,7 @@ public class Projectile : MonoBehaviour
         SetAnimatorOverrideController(attack.animationProjectile.animationAnimator);
     }
 
-    public void SetupAndGo(AttackStats attack, AbstractPiece2 casterPiece, AbstractPiece2 targetPiece)
+    public void SetupAndGo(AttackStats2 attack, AbstractPiece3 casterPiece, AbstractPiece3 targetPiece)
     {
         this.targetPiece = targetPiece;
         SetupAndGo(attack, casterPiece, targetPiece.transform.position);

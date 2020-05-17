@@ -10,9 +10,6 @@ public class DB_HeroUnit : DB_Unit
     //public string classDescription;
     public HeroClassType classType;
 
-    [Header("Hero stats")]
-    public AttributeStats attributeStats;
-
     public string GetDescriptionWithCosts()
     {
         Dictionary<ResourceStats, int> costs = new Dictionary<ResourceStats, int> { [resourceStats] = 1 };

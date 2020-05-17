@@ -10,7 +10,7 @@ public class CombatUI_Panel_PartyCard : AbstractUIPanel
     public Image commandBar;
     public Image manaBar;
 
-    public void UpdatePanel(CombatantHeroPiece2 hc)
+    public void UpdatePanel(HeroUnitPiece3 hc)
     {
         if (!hc)
         {
@@ -18,7 +18,7 @@ public class CombatUI_Panel_PartyCard : AbstractUIPanel
             return;
         }
 
-        Hero hero = hc.GetHero();
+        HeroUnit hero = hc.GetHeroUnit();
         if (hero)
         {
             heroInfo.RefreshInfo(hero);

@@ -20,7 +20,7 @@ public class UI_PickupInfo : MonoBehaviour, IShowableHideable
         gameObject.SetActive(true);
     }
 
-    public void RefreshInfo(AbstractPickupPiece2 pickup, Text txtSelectionTitle)
+    public void RefreshInfo(PickupPiece3 pickup, Text txtSelectionTitle)
     {
         if (pickup != null)
         {
@@ -34,11 +34,9 @@ public class UI_PickupInfo : MonoBehaviour, IShowableHideable
                     Debug.LogWarning("Resource pickup is not supported");
                     break;
                 case PickupType.ARTIFACT:
-                    ArtifactPickupPiece2 artifactPickup = pickup as ArtifactPickupPiece2;
-
-                    portraitSprite = artifactPickup.dbArtifact.image;
-                    pickupName = artifactPickup.dbArtifact.artifactName;
-                    pickupDescription = artifactPickup.dbArtifact.artifactDescription;
+                    portraitSprite = pickup.dbArtifact.image;
+                    pickupName = pickup.dbArtifact.artifactName;
+                    pickupDescription = pickup.dbArtifact.artifactDescription;
                     break;
             }
 

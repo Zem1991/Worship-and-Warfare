@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class AES_Action_Heal : AES_Action
 {
-    public override bool Execute(AbstractPartyElement actionUser, List<AbstractTile> targetArea)
+    public override bool Execute(AbstractUnit actionUser, List<AbstractTile> targetArea)
     {
         //TODO do something with the actionUser
 
         foreach (AbstractTile tile in targetArea)
         {
-            AbstractCombatActorPiece2 combatActor = tile.occupantPiece as AbstractCombatActorPiece2;
+            CombatantPiece3 combatActor = tile.occupantPiece as CombatantPiece3;
             if (combatActor)
             {
                 int amount = parameters.paramFormula.EvaluateFormula();

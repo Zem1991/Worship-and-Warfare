@@ -68,7 +68,7 @@ public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideabl
         turnSequence.UpdatePanel();
         combatLogs.UpdatePanel(cm.GetLastLogs(5));
 
-        AbstractCombatantPiece2 actp = cm.currentPiece as AbstractCombatantPiece2;
+        CombatantPiece3 actp = cm.currentPiece as CombatantPiece3;
         bool canCommandSelectedPiece = ci.canCommandSelectedPiece;
 
         if (actp) UpdateWithSelection(actp, canCommandSelectedPiece);
@@ -77,7 +77,7 @@ public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideabl
         //Don't update windows, only the HUD panels!
     }
 
-    private void UpdateWithSelection(AbstractCombatantPiece2 actp, bool canCommandSelectedPiece)
+    private void UpdateWithSelection(CombatantPiece3 actp, bool canCommandSelectedPiece)
     {
         currentPiece.UpdatePanel(actp, canCommandSelectedPiece);
     }
@@ -121,7 +121,7 @@ public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideabl
         UIManager.Instance.PointerExit(combatActorInspector);
     }
 
-    public void CombatActorInspectorShow(AbstractCombatActorPiece2 acap)
+    public void CombatActorInspectorShow(CombatantPiece3 acap)
     {
         combatActorInspector.RefreshInfo(acap);
         combatActorInspector.Show();

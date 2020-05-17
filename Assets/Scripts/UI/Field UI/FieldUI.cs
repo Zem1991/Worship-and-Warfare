@@ -70,9 +70,9 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
         timers.UpdatePanel();
         minimap.UpdatePanel();
 
-        TownPiece2 town = fi.selectionPiece as TownPiece2;
-        PartyPiece2 party = fi.selectionPiece as PartyPiece2;
-        AbstractPickupPiece2 pickup = fi.selectionPiece as AbstractPickupPiece2;
+        TownPiece3 town = fi.selectionPiece as TownPiece3;
+        PartyPiece3 party = fi.selectionPiece as PartyPiece3;
+        PickupPiece3 pickup = fi.selectionPiece as PickupPiece3;
         bool canCommandSelectedPiece = fi.canCommandSelectedPiece;
 
         if (town) UpdateWithSelection(town, canCommandSelectedPiece);
@@ -83,7 +83,7 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
         //Don't update windows, only the HUD panels!
     }
 
-    private void UpdateWithSelection(TownPiece2 town, bool canCommandSelectedPiece)
+    private void UpdateWithSelection(TownPiece3 town, bool canCommandSelectedPiece)
     {
         selection.UpdatePanel(town);
         selection.Show();
@@ -92,7 +92,7 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
         else commands.UpdatePanel();
     }
 
-    private void UpdateWithSelection(PartyPiece2 party, bool canCommandSelectedPiece)
+    private void UpdateWithSelection(PartyPiece3 party, bool canCommandSelectedPiece)
     {
         selection.UpdatePanel(party);
         selection.Show();
@@ -101,7 +101,7 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
         else commands.UpdatePanel();
     }
 
-    private void UpdateWithSelection(AbstractPickupPiece2 pickup)
+    private void UpdateWithSelection(PickupPiece3 pickup)
     {
         selection.UpdatePanel(pickup);
         selection.Show();
@@ -137,7 +137,7 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
         currentWindow = null;
         UIManager.Instance.PointerExit(tradeScreen);
     }
-    public void TradeScreenShow(PartyPiece2 left, PartyPiece2 right)
+    public void TradeScreenShow(PartyPiece3 left, PartyPiece3 right)
     {
         tradeScreen.UpdatePanel(left, right);
         tradeScreen.Show();
@@ -150,9 +150,9 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
         currentWindow = null;
         UIManager.Instance.PointerExit(inventory);
     }
-    public void InventoryShow(PartyPiece2 selectionPiece)
+    public void InventoryShow(PartyPiece3 selectionPiece)
     {
-        inventory.UpdatePanel(selectionPiece as PartyPiece2, true);
+        inventory.UpdatePanel(selectionPiece as PartyPiece3, true);
         inventory.Show();
         currentWindow = inventory;
     }
@@ -165,7 +165,7 @@ public class FieldUI : AbstractSingleton<FieldUI>, IUIScheme, IShowableHideable
         currentWindow = null;
         UIManager.Instance.PointerExit(levelUp);
     }
-    public void LevelUpShow(Hero hero)
+    public void LevelUpShow(HeroUnit hero)
     {
         levelUp.Show();
         currentWindow = levelUp;

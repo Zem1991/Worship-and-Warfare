@@ -9,14 +9,12 @@ public class UI_CombatActorInspector_DefenseStats : MonoBehaviour
     public Text txtPhysArmor;
     public Text txtMagicArmor;
 
-    public void RefreshInfo(AbstractCombatActorPiece2 acap)
+    public void RefreshInfo(CombatantPiece3 acap)
     {
-        AbstractCombatantPiece2 combatant = acap as AbstractCombatantPiece2;
-
-        if (combatant)
+        if (acap)
         {
-            txtPhysArmor.text = "" + combatant.combatPieceStats.armor_physical;
-            txtMagicArmor.text = "" + combatant.combatPieceStats.armor_magical;
+            txtPhysArmor.text = "" + acap.defenseStats.armor_physical;
+            txtMagicArmor.text = "" + acap.defenseStats.armor_magical;
         }
     }
 }

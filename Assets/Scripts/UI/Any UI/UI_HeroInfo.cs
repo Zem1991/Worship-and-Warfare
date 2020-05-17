@@ -29,17 +29,17 @@ public class UI_HeroInfo : MonoBehaviour, IShowableHideable
 
     public void RefreshInfo(PartySlot slot)
     {
-        Hero hero = slot?.Get() as Hero;
+        HeroUnit hero = slot?.Get() as HeroUnit;
         RefreshInfo(hero);
     }
 
-    public void RefreshInfo(Hero hero)
+    public void RefreshInfo(HeroUnit hero)
     {
         ClearInfo();
         if (hero == null) return;
 
-        if (heroPortrait) heroPortrait.sprite = hero.dbData.profilePicture;
-        if (txtHeroName) txtHeroName.text = hero.dbData.heroName;
-        if (txtLevelAndClass) txtLevelAndClass.text = "Level " + hero.experienceStats.level + " " + hero.dbData.heroClass.className;
+        if (heroPortrait) heroPortrait.sprite = hero.dbHeroPerson.profilePicture;
+        if (txtHeroName) txtHeroName.text = hero.dbHeroPerson.heroName;
+        if (txtLevelAndClass) txtLevelAndClass.text = "Level " + hero.levelUpStats.level + " " + hero.dbHeroPerson.heroClass.className;
     }
 }

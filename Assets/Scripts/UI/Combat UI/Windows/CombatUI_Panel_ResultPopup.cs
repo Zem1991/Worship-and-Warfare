@@ -8,8 +8,8 @@ public class CombatUI_Panel_ResultPopup : AbstractUIPanel
     public Text txtMessage;
     public Button btnOk;
 
-    public void UpdatePanel(CombatantHeroPiece2 hc)
-    {
+    //public void UpdatePanel(HeroUnitPiece3 hc)
+    //{
 
-    }
+    //}
 }

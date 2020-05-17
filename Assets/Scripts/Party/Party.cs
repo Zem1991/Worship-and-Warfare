@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
+public class Party : AbstractSlotContainer<PartySlot, AbstractUnit>
 {
     [Header("Party slots")]
     [SerializeField] private PartySlot heroSlot;
@@ -14,14 +14,14 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
         PartySlot prefabPartySlot = AllPrefabs.Instance.partySlot;
 
         PartySlot hero = Instantiate(prefabPartySlot, transform);
-        hero.Initialize(this, UnitCategory.HERO);
+        hero.Initialize(this, UnitType.HERO);
         heroSlot = hero;
 
         unitSlots = new List<PartySlot>();
         for (int i = 0; i < PartyConstants.MAX_UNITS; i++)
         {
             PartySlot unit = Instantiate(prefabPartySlot, transform);
-            unit.Initialize(this, UnitCategory.CREATURE, i);
+            unit.Initialize(this, UnitType.CREATURE, i);
             unitSlots.Add(unit);
         }
     }
@@ -33,8 +33,8 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
         AbstractDBContentHandler<DB_HeroPerson> dbHeroes = DBHandler_HeroPerson.Instance;
         AbstractDBContentHandler<DB_CombatUnit> dbCombatUnits = DBHandler_CombatUnit.Instance;
 
-        Hero prefabHero = AllPrefabs.Instance.hero;
-        Unit prefabUnit = AllPrefabs.Instance.unit;
+        HeroUnit prefabHero = AllPrefabs.Instance.hero;
+        CombatUnit prefabUnit = AllPrefabs.Instance.unit;
 
         if (partyData.hero != null)
         {
@@ -43,8 +43,8 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
             string heroId = heroData.id;
             DB_HeroPerson dbData = dbHeroes.Select(heroId);
 
-            Hero actualHero = Instantiate(prefabHero, heroSlot.transform);
-            actualHero.Initialize(dbData, heroData.experienceData, heroData.inventoryData);
+            HeroUnit actualHero = Instantiate(prefabHero, heroSlot.transform);
+            actualHero.Initialize(dbData, heroData.levelUpData, heroData.inventoryData);
             heroSlot.Set(actualHero);
         }
 
@@ -60,32 +60,32 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
                 string unitId = unitData.id;
                 DB_CombatUnit dbData = dbCombatUnits.Select(unitId);
 
-                Unit unit = Instantiate(prefabUnit, unitSlots[i].transform);
+                CombatUnit unit = Instantiate(prefabUnit, unitSlots[i].transform);
                 unit.Initialize(dbData, unitData.stackData.stack_maximum);
                 unitSlots[i].Set(unit);
             }
         }
     }
 
-    protected override AbstractSlot<AbstractPartyElement> CreateTempSlot(AbstractSlot<AbstractPartyElement> prefab, AbstractPartyElement item)
+    protected override AbstractSlot<AbstractUnit> CreateTempSlot(AbstractSlot<AbstractUnit> prefab, AbstractUnit item)
     {
         PartySlot temp = base.CreateTempSlot(prefab, item) as PartySlot;
-        temp.slotType = item.partyElementType;
+        temp.slotType = item.GetDBUnit().unitType;
         return temp;
     }
 
-    public override bool Add(AbstractPartyElement item)
+    public override bool Add(AbstractUnit item)
     {
         PartySlot slot = null;
-        switch (item.partyElementType)
+        switch (item.GetDBUnit().unitType)
         {
-            case UnitCategory.HERO:
+            case UnitType.HERO:
                 if (!heroSlot.Has())
                 {
                     slot = heroSlot;
                 }
                 break;
-            case UnitCategory.CREATURE:
+            case UnitType.CREATURE:
                 foreach (PartySlot unitSlot in unitSlots)
                 {
                     if (!unitSlot.Has())
@@ -95,7 +95,7 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
                     }
                 }
                 break;
-            case UnitCategory.SUPPORT:
+            case UnitType.SUPPORT:
                 break;
             default:
                 break;
@@ -118,7 +118,7 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
         return result;
     }
 
-    public override bool Remove(AbstractPartyElement item)
+    public override bool Remove(AbstractUnit item)
     {
         foreach (PartySlot slot in unitSlots)
         {
@@ -131,7 +131,7 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
         return false;
     }
 
-    public override bool Swap(AbstractSlot<AbstractPartyElement> fromSlot, AbstractSlot<AbstractPartyElement> toSlot)
+    public override bool Swap(AbstractSlot<AbstractUnit> fromSlot, AbstractSlot<AbstractUnit> toSlot)
     {
         PartySlot fromSlotFix = fromSlot as PartySlot;
         PartySlot toSlotFix = toSlot as PartySlot;
@@ -142,7 +142,7 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
         if (sameTypeSlots)
         {
             //Here we just exchange items between slots.
-            AbstractPartyElement fromItem = fromSlot.Get();
+            AbstractUnit fromItem = fromSlot.Get();
             fromSlot.Set(toSlot.Get());
             toSlot.Set(fromItem);
             result = true;
@@ -150,7 +150,7 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
         return result;
     }
 
-    public bool MergeOrAdd(Unit unit)
+    public bool MergeOrAdd(CombatUnit unit)
     {
         bool mergeOk = false;
         //Create an temporary PartySlot just to reuse the AddFromSlot function.
@@ -181,23 +181,23 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
         if (!sameTypeSlots) return false;
 
         //Merging slots should only work with creature slots.
-        if (sourceSlot.slotType != UnitCategory.CREATURE) return false;
+        if (sourceSlot.slotType != UnitType.CREATURE) return false;
 
-        Unit sourceObj = sourceSlot.Get() as Unit;
+        CombatUnit sourceObj = sourceSlot.Get() as CombatUnit;
         if (!sourceObj) return false;
 
-        Unit targetObj = targetSlot.Get() as Unit;
+        CombatUnit targetObj = targetSlot.Get() as CombatUnit;
         if (!targetObj) return false;
 
-        bool sameDBContent = sourceObj.dbData == targetObj.dbData;
+        bool sameDBContent = sourceObj.GetDBCombatUnit() == targetObj.GetDBCombatUnit();
         if (!sameDBContent) return false;
 
         //TODO Specific amount to merge? For now its throwing everything against the target slot.
-        int amount = sourceObj.stackStats.Get();
+        int amount = sourceObj.GetStackHealthStats().GetStackSize();
         bool fullMerge = true;
 
         //targetObj.stackStats.Add(amount, true, false);
-        targetObj.stackStats.Add(amount);
+        targetObj.GetStackHealthStats().AddToStack(amount);
         if (fullMerge) sourceSlot.Clear();
         return true;
     }
@@ -208,16 +208,16 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
         if (!sameTypeSlots) return false;
 
         //Splitting slots should only work with creature slots.
-        if (sourceSlot.slotType != UnitCategory.CREATURE) return false;
+        if (sourceSlot.slotType != UnitType.CREATURE) return false;
 
-        Unit sourceObj = sourceSlot.Get() as Unit;
+        CombatUnit sourceObj = sourceSlot.Get() as CombatUnit;
         if (!sourceObj) return false;
 
         //The target slot should be empty.
         if (targetSlot.Get()) return false;
 
         //TODO Specific amount to split? For now its throwing half against the target slot.
-        int fullAmount = sourceObj.stackStats.Get();
+        int fullAmount = sourceObj.GetStackHealthStats().GetStackSize();
 
         //There should be at least 2 units in the stack for splitting.
         if (fullAmount < 2) return false;
@@ -226,11 +226,11 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
         //int amountMod = fullAmount % 2;
 
         //targetObj.stackStats.Add(amountDiv, true, false);
-        Unit prefabUnit = AllPrefabs.Instance.unit;
-        Unit newUnit = Instantiate(prefabUnit, targetSlot.transform);
-        newUnit.Initialize(sourceObj.dbData, amountDiv);
+        CombatUnit prefabUnit = AllPrefabs.Instance.unit;
+        CombatUnit newUnit = Instantiate(prefabUnit, targetSlot.transform);
+        newUnit.Initialize(sourceObj.GetDBCombatUnit(), amountDiv);
 
-        sourceObj.stackStats.Subtract(amountDiv);
+        sourceObj.GetStackHealthStats().SubtractFromStack(amountDiv);
         targetSlot.Set(newUnit);
         return true;
     }
@@ -258,15 +258,15 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractPartyElement>
         Debug.LogWarning("PARTY CLEARED!");
     }
 
-    public AbstractPartyElement GetMostRelevant()
+    public AbstractUnit GetMostRelevant()
     {
-        AbstractPartyElement result = heroSlot.Get();
+        AbstractUnit result = heroSlot.Get();
         if (!result)
         {
             //TODO Need to actually identify which unit in the party is the most relevant.
             foreach (PartySlot slot in unitSlots)
             {
-                result = slot.Get() as Unit;
+                result = slot.Get() as CombatUnit;
                 if (result) break;
             }
         }

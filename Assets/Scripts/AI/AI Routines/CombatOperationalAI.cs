@@ -6,7 +6,7 @@ using UnityEngine;
 public class CombatOperationalAI : AbstractAIRoutine
 {
     [Header("Readings")]
-    public AbstractCombatActorPiece2 currentUnit;
+    public CombatantPiece3 currentUnit;
 
     [Header("Skill calculations")]
     public int skillChance;
@@ -15,7 +15,7 @@ public class CombatOperationalAI : AbstractAIRoutine
 
     [Header("Attack calculations")]
     public int attackChance;
-    public AbstractCombatActorPiece2 attackTarget;
+    public CombatantPiece3 attackTarget;
     public PathfindResults attackTargetPathfind;
 
     [Header("Other calculations")]
@@ -49,7 +49,7 @@ public class CombatOperationalAI : AbstractAIRoutine
 
     private void ReadCurrentUnit()
     {
-        AbstractCombatActorPiece2 current = CombatManager.Instance.currentPiece;
+        CombatantPiece3 current = CombatManager.Instance.currentPiece;
         currentUnit = current.pieceOwner.GetOwner() == aiPersonality.player ? current : null;
     }
 
@@ -63,16 +63,16 @@ public class CombatOperationalAI : AbstractAIRoutine
         attackChance = 0;
         attackTarget = null;
 
-        Dictionary<AbstractCombatActorPiece2, PathfindResults> meleeTargets = new Dictionary<AbstractCombatActorPiece2, PathfindResults>();
-        Dictionary<AbstractCombatActorPiece2, PathfindResults> rangedTargets = new Dictionary<AbstractCombatActorPiece2, PathfindResults>();
-        bool isRangedViable = currentUnit.combatPieceStats.attack_ranged;
+        Dictionary<CombatantPiece3, PathfindResults> meleeTargets = new Dictionary<CombatantPiece3, PathfindResults>();
+        Dictionary<CombatantPiece3, PathfindResults> rangedTargets = new Dictionary<CombatantPiece3, PathfindResults>();
+        bool isRangedViable = currentUnit.offenseStats.attack_ranged;
 
         CombatPieceHandler cph = CombatManager.Instance.pieceHandler;
-        if (!cph.GetPieceList(aiPersonality.player, true, out List<AbstractCombatActorPiece2> unitList)) return;
+        if (!cph.GetPieceList(aiPersonality.player, true, out List<CombatantPiece3> unitList)) return;
 
         //Sort enemy pieces based on how accessible they are to be approached.
-        Dictionary<AbstractCombatActorPiece2, PathfindResults> mapUnitPath = new Dictionary<AbstractCombatActorPiece2, PathfindResults>();
-        foreach (AbstractCombatActorPiece2 unit in unitList)
+        Dictionary<CombatantPiece3, PathfindResults> mapUnitPath = new Dictionary<CombatantPiece3, PathfindResults>();
+        foreach (CombatantPiece3 unit in unitList)
         {
             if (!unit.currentTile)
             {

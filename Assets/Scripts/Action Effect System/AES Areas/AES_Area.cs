@@ -35,7 +35,7 @@ public class AES_Area : MonoBehaviour
     //public int numberOfSegments;
     //public int[] factorPerSegment;
 
-    public List<AbstractPartyElement> ScanArea()
+    public List<AbstractUnit> ScanArea()
     {
         return null;
     }

@@ -11,18 +11,18 @@ public class UI_CombatActorInspector_MainStats : MonoBehaviour
     public Text txtManaPoints;
     public Text txtStackSize;
 
-    public void RefreshInfo(AbstractCombatActorPiece2 acap)
+    public void RefreshInfo(CombatantPiece3 acap)
     {
-        CombatantHeroPiece2 hero = acap as CombatantHeroPiece2;
-        CombatantUnitPiece2 unit = acap as CombatantUnitPiece2;
+        HeroUnitPiece3 hero = acap as HeroUnitPiece3;
+        CombatUnitPiece3 unit = acap as CombatUnitPiece3;
 
         if (hero)
         {
             txtManaPoints.gameObject.SetActive(true);
             txtStackSize.gameObject.SetActive(false);
 
-            imgPortrait.sprite = hero.GetHero().dbData.profilePicture;
-            txtHealthPoints.text = hero.combatPieceStats.hitPoints_current + "/" + hero.combatPieceStats.hitPoints_maximum;
+            imgPortrait.sprite = hero.GetHeroUnit().dbHeroPerson.profilePicture;
+            txtHealthPoints.text = hero.healthStats.hitPoints_current + "/" + hero.healthStats.hitPoints_maximum;
             txtManaPoints.text = "missing mana points";
         }
         else if (unit)
@@ -30,10 +30,10 @@ public class UI_CombatActorInspector_MainStats : MonoBehaviour
             txtManaPoints.gameObject.SetActive(false);
             txtStackSize.gameObject.SetActive(true);
 
-            imgPortrait.sprite = unit.GetUnit().dbData.profilePicture;
-            txtHealthPoints.text = unit.combatPieceStats.hitPoints_current + "/" + unit.combatPieceStats.hitPoints_maximum;
+            imgPortrait.sprite = unit.GetCombatUnit().GetDBCombatUnit().profilePicture;
+            txtHealthPoints.text = unit.healthStats.hitPoints_current + "/" + unit.healthStats.hitPoints_maximum;
             //txtStackSize.text = unit.stackStats.stack + "/" + unit.stackStats.stack_maximum;
-            txtStackSize.text = unit.stackStats.Get().ToString();
+            txtStackSize.text = unit.GetStackHealthStats().GetStackSize().ToString();
         }
     }
 }

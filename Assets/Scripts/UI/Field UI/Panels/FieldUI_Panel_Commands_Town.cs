@@ -25,7 +25,7 @@ public class FieldUI_Panel_Commands_Town : AbstractUIPanel
         HideButtons();
     }
 
-    public void UpdatePanel(TownPiece2 tp)
+    public void UpdatePanel(TownPiece3 tp)
     {
         UpdatePanel();
         if (!tp) return;

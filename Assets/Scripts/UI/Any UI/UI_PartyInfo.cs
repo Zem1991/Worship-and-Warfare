@@ -15,9 +15,9 @@ public class UI_PartyInfo : AUI_PanelDragAndDrop
     public bool canDragUnits = true;
 
     [Header("Dynamic references")]
-    public AbstractFieldPiece2 partySource;
-    public TownPiece2 partySourceAsTown;
-    public PartyPiece2 partySourceAsParty;
+    public AbstractFieldPiece3 partySource;
+    public TownPiece3 partySourceAsTown;
+    public PartyPiece3 partySourceAsParty;
     public ITownPieceRefresh townPieceRefresh;
     public IPartyPieceRefresh partyPieceRefresh;
 
@@ -42,11 +42,11 @@ public class UI_PartyInfo : AUI_PanelDragAndDrop
         RefreshInfo(partySource);
     }
 
-    public void RefreshInfo(AbstractFieldPiece2 partySource)
+    public void RefreshInfo(AbstractFieldPiece3 partySource)
     {
         this.partySource = partySource;
-        partySourceAsTown = partySource as TownPiece2;
-        partySourceAsParty = partySource as PartyPiece2;
+        partySourceAsTown = partySource as TownPiece3;
+        partySourceAsParty = partySource as PartyPiece3;
 
         Party party = null;
         if (partySourceAsTown) party = partySourceAsTown.town.garrison;
@@ -84,9 +84,9 @@ public class UI_PartyInfo : AUI_PanelDragAndDrop
 
         if (result && slotBack.partySlot)
         {
-            UnitCategory slotType = slotBack.partySlot.slotType;
-            if (!canDragHero && slotType == UnitCategory.HERO) result = false;
-            else if (!canDragUnits && slotType == UnitCategory.CREATURE) result = false;
+            UnitType slotType = slotBack.partySlot.slotType;
+            if (!canDragHero && slotType == UnitType.HERO) result = false;
+            else if (!canDragUnits && slotType == UnitType.CREATURE) result = false;
         }
         return result;
     }
@@ -153,10 +153,10 @@ public class UI_PartyInfo : AUI_PanelDragAndDrop
         {
             FieldPieceHandler fph = FieldManager.Instance.pieceHandler;
 
-            TownPiece2 sourcePartySourceAsTown = sourcePartyDND.partySourceAsTown;
-            PartyPiece2 sourcePartySourceAsParty = sourcePartyDND.partySourceAsParty;
+            TownPiece3 sourcePartySourceAsTown = sourcePartyDND.partySourceAsTown;
+            PartyPiece3 sourcePartySourceAsParty = sourcePartyDND.partySourceAsParty;
 
-            PartyPiece2 newParty = null;
+            PartyPiece3 newParty = null;
             if (sourcePartySourceAsTown)
             {
                 Vector2Int mapPosition = sourcePartySourceAsTown.currentTile.posId;
@@ -178,8 +178,8 @@ public class UI_PartyInfo : AUI_PanelDragAndDrop
 
     private void PreventEmptySourceParty(UI_PartyInfo sourcePartyDND)
     {
-        TownPiece2 sourcePartySourceAsTown = sourcePartyDND.partySourceAsTown;
-        PartyPiece2 sourcePartySourceAsParty = sourcePartyDND.partySourceAsParty;
+        TownPiece3 sourcePartySourceAsTown = sourcePartyDND.partySourceAsTown;
+        PartyPiece3 sourcePartySourceAsParty = sourcePartyDND.partySourceAsParty;
 
         if (sourcePartySourceAsTown)
         {

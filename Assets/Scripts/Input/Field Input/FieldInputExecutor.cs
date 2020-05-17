@@ -7,12 +7,12 @@ public class FieldInputExecutor : AbstractInputExecutor<FieldInputInterpreter, F
 {
     [Header("Cursor data")]
     public FieldTile cursorTile;
-    public AbstractFieldPiece2 cursorPiece;
+    public AbstractFieldPiece3 cursorPiece;
     public Vector2Int cursorPos;
 
     [Header("Selection data")]
     public FieldTile selectionTile;
-    public AbstractFieldPiece2 selectionPiece;
+    public AbstractFieldPiece3 selectionPiece;
     public Vector2Int selectionPos;
 
     [Header("Interaction data")]
@@ -25,7 +25,7 @@ public class FieldInputExecutor : AbstractInputExecutor<FieldInputInterpreter, F
 
     private void ManageExtras()
     {
-        TownPiece2 town = FieldSceneInputs.Instance.executor.selectionPiece as TownPiece2;
+        TownPiece3 town = FieldSceneInputs.Instance.executor.selectionPiece as TownPiece3;
         if (town && interpreter.inventoryDown) FieldManager.Instance.Selection_EnterTown();
     }
 
@@ -96,7 +96,7 @@ public class FieldInputExecutor : AbstractInputExecutor<FieldInputInterpreter, F
             if (item.collider == null) continue;
 
             FieldTile t = item.collider.GetComponentInParent<FieldTile>();
-            AbstractFieldPiece2 p = item.collider.GetComponentInParent<AbstractFieldPiece2>();
+            AbstractFieldPiece3 p = item.collider.GetComponentInParent<AbstractFieldPiece3>();
             if (cursorTile == null && t) cursorTile = t;
             if (cursorPiece == null && p) cursorPiece = p;
         }
@@ -110,8 +110,8 @@ public class FieldInputExecutor : AbstractInputExecutor<FieldInputInterpreter, F
             selectionPiece = cursorPiece;
             selectionPos = cursorPos;
 
-            TownPiece2 tp = selectionPiece as TownPiece2;
-            PartyPiece2 pp = selectionPiece as PartyPiece2;
+            TownPiece3 tp = selectionPiece as TownPiece3;
+            PartyPiece3 pp = selectionPiece as PartyPiece3;
 
             if (tp) canCommandSelectedPiece = tp.pieceOwner.GetOwner() == PlayerManager.Instance.localPlayer;
             else if (pp) canCommandSelectedPiece = pp.pieceOwner.GetOwner() == PlayerManager.Instance.localPlayer;
@@ -130,10 +130,10 @@ public class FieldInputExecutor : AbstractInputExecutor<FieldInputInterpreter, F
         bool condition = selectionPiece && canCommandSelectedPiece;
         if (!condition) return;
 
-        PartyPiece2 pp = selectionPiece as PartyPiece2;
+        PartyPiece3 pp = selectionPiece as PartyPiece3;
         if (pp)
         {
-            if (pp.pieceMovement.stateMove)
+            if (pp.pieceMovement.stateMovement)
             {
                 pp.ICP_Stop();
             }

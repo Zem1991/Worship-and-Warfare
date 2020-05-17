@@ -20,37 +20,37 @@ public class FieldUI_Panel_Selection : AbstractUIPanel, IPartyPieceRefresh
         pickupInfo.Hide();
     }
 
-    public void UpdatePanel(TownPiece2 town)
+    public void UpdatePanel(TownPiece3 town)
     {
         HideInformations();
         if (!town) return;
 
         townInfo.RefreshInfo(town);
         townInfo.Show();
-        txtSelectionTitle.text = town.AFP2_GetPieceTitle();
+        txtSelectionTitle.text = town.AFP3_GetPieceTitle();
     }
 
-    public void UpdatePanel(PartyPiece2 party)
+    public void UpdatePanel(PartyPiece3 party)
     {
         HideInformations();
         if (!party) return;
 
         partyInfo.RefreshInfo(party);
         partyInfo.Show();
-        txtSelectionTitle.text = party.AFP2_GetPieceTitle();
+        txtSelectionTitle.text = party.AFP3_GetPieceTitle();
     }
 
-    public void UpdatePanel(AbstractPickupPiece2 pickup)
+    public void UpdatePanel(PickupPiece3 pickup)
     {
         HideInformations();
         if (!pickup) return;
 
         pickupInfo.RefreshInfo(pickup, txtSelectionTitle);
         pickupInfo.Show();
-        txtSelectionTitle.text = pickup.AFP2_GetPieceTitle();
+        txtSelectionTitle.text = pickup.AFP3_GetPieceTitle();
     }
 
-    public void PartyPieceRefresh(PartyPiece2 partyPiece)
+    public void PartyPieceRefresh(PartyPiece3 partyPiece)
     {
         throw new System.NotImplementedException();
     }

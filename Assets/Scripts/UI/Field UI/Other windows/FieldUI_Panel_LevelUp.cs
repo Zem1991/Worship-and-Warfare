@@ -21,19 +21,19 @@ public class FieldUI_Panel_LevelUp : AbstractUIPanel
     [Header("Current selections")]
     public FieldUI_Panel_LevelUp_AttributeOption fuiSelectedAtt;
 
-    private Hero hero;
+    private HeroUnit hero;
 
-    public void UpdatePanel(Hero hero)
+    public void UpdatePanel(HeroUnit hero)
     {
         DBHandler_Attribute dbAttributes = DBHandler_Attribute.Instance as DBHandler_Attribute;
         this.hero = hero;
 
-        int nextLevel = hero.experienceStats.level + 1;
+        int nextLevel = hero.levelUpStats.level + 1;
 
-        imgPortrait.sprite = hero.dbData.profilePicture;
-        txtAnnouncement.text = hero.dbData.heroName + " is now an level " + nextLevel + " " + hero.dbData.heroClass.className + "!";
+        imgPortrait.sprite = hero.dbHeroPerson.profilePicture;
+        txtAnnouncement.text = hero.dbHeroPerson.heroName + " is now an level " + nextLevel + " " + hero.dbHeroPerson.heroClass.className + "!";
 
-        AttributeType primaryAtt = hero.dbData.heroClass.GetPrimaryAttribute();
+        AttributeType primaryAtt = hero.dbHeroPerson.heroClass.GetPrimaryAttribute();
         DB_Attribute primaryDB = dbAttributes.SelectFromType(primaryAtt);
         fuiPrimaryAtt.SetAttribute(primaryDB);
 

@@ -12,10 +12,10 @@ public class FieldUI_Panel_TradeScreen : AbstractUIPanel
     [Header("Buttons")]
     public Button btnClose;
 
-    private PartyPiece2 partyLeft;
-    private PartyPiece2 partyRight;
+    private PartyPiece3 partyLeft;
+    private PartyPiece3 partyRight;
 
-    public void UpdatePanel(PartyPiece2 partyLeft, PartyPiece2 partyRight)
+    public void UpdatePanel(PartyPiece3 partyLeft, PartyPiece3 partyRight)
     {
         this.partyLeft = partyLeft;
         this.partyRight = partyRight;

@@ -19,17 +19,17 @@ public class UI_UnitInfo : MonoBehaviour//, IShowableHideable
 
     public void RefreshInfo(PartySlot slot)
     {
-        Unit unit = slot?.Get() as Unit;
+        CombatUnit unit = slot?.Get() as CombatUnit;
         RefreshInfo(unit);
     }
 
-    public void RefreshInfo(Unit unit)
+    public void RefreshInfo(CombatUnit unit)
     {
         ClearInfo();
         if (unit == null) return;
 
-        if (imgUnitPortrait) imgUnitPortrait.sprite = unit.dbData.profilePicture;
-        if (txtUnitName) txtUnitName.text = unit.dbData.unitNameSingular;
-        if (txtUnitStack) txtUnitStack.text = unit.stackStats.Get().ToString();// + "/" + unit.stackStats.stack_maximum;
+        if (imgUnitPortrait) imgUnitPortrait.sprite = unit.GetDBCombatUnit().profilePicture;
+        if (txtUnitName) txtUnitName.text = unit.GetDBCombatUnit().unitNameSingular;
+        if (txtUnitStack) txtUnitStack.text = unit.GetStackHealthStats().GetStackSize().ToString();// + "/" + unit.stackStats.stack_maximum;
     }
 }

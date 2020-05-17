@@ -51,14 +51,14 @@ public class FieldUI_Panel_Commands_Party : AbstractUIPanel
         txtManaPoints.text = "--";
     }
 
-    public void UpdatePanel(PartyPiece2 pp)
+    public void UpdatePanel(PartyPiece3 pp)
     {
         UpdatePanel();
         if (!pp) return;
 
         ShowButtons();
 
-        PieceMovement2 pm = pp.pieceMovement;
+        PieceMovement3 pm = pp.pieceMovement;
         txtMovePoints.text = pm.movementPointsCurrent + "/" + pm.movementPointsMax;
         //txtManaPoints.text = pm.movementPointsCurrent + "/" + pm.movementPointsMax;   //TODO MANA
 

@@ -9,11 +9,11 @@ public class AES_ActionFilters : MonoBehaviour
     public bool hasFilterUnitType;
 
     [Header("Filter details")]
-    public UnitCategory filterUnitCategory;
-    public UnitType filterUnitType;
-    public UnitSubtype filterUnitSubtype;
+    public UnitType filterUnitCategory;
+    public UnitComposition filterUnitType;
+    public UnitSubcomposition filterUnitSubtype;
 
-    public bool ApplyFilters(AbstractPartyElement target)
+    public bool ApplyFilters(AbstractUnit target)
     {
         return true;
     }

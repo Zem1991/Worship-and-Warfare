@@ -13,15 +13,15 @@ public class FieldUI_Panel_Inventory : AbstractUIPanel, IInventoryRefresh
     [Header("Buttons")]
     public Button btnClose;
 
-    public void UpdatePanel(PartyPiece2 partyPiece, bool refreshBackpackSlots)
+    public void UpdatePanel(PartyPiece3 partyPiece, bool refreshBackpackSlots)
     {
-        Hero hero = partyPiece.party.GetHeroSlot().Get() as Hero;
+        HeroUnit hero = partyPiece.party.GetHeroSlot().Get() as HeroUnit;
         heroInfo.RefreshInfo(hero);
         attributeInfo.RefreshInfo(hero?.attributeStats);
         inventoryInfo.RefreshInfo(partyPiece, refreshBackpackSlots);
     }
 
-    public void InventoryRefresh(PartyPiece2 partyPiece, bool refreshBackpackSlots)
+    public void InventoryRefresh(PartyPiece3 partyPiece, bool refreshBackpackSlots)
     {
         UpdatePanel(partyPiece, refreshBackpackSlots);
     }

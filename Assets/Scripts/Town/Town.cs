@@ -25,7 +25,7 @@ public class Town : MonoBehaviour
     [Header("Database reference")]
     public DB_Faction dbFaction;
 
-    public void Initialize(DB_Faction dbFaction, TownPiece2 townPiece, string townName = null)
+    public void Initialize(DB_Faction dbFaction, TownPiece3 townPiece, string townName = null)
     {
         string selectedName = townName != null ? townName : dbFaction.townNames[0];     //TODO get random name
 

@@ -13,13 +13,13 @@ public class TownUI_Panel_Parties : AbstractUIPanel, ITownPieceRefresh
     public Text txtVisitor;
     public UI_PartyInfo visitorInfo;
 
-    public void UpdatePanel(TownPiece2 townPiece)
+    public void UpdatePanel(TownPiece3 townPiece)
     {
         garrisonInfo.RefreshInfo(townPiece);
         visitorInfo.RefreshInfo(townPiece.visitorPiece);
     }
 
-    public void TownPieceRefresh(TownPiece2 townPiece)
+    public void TownPieceRefresh(TownPiece3 townPiece)
     {
         UpdatePanel(townPiece);
     }

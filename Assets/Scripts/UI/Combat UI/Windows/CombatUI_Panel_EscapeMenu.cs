@@ -9,8 +9,8 @@ public class CombatUI_Panel_EscapeMenu : AbstractUIPanel
     public Button btnResume;
     public Button btnSurrender;
 
-    public void UpdatePanel(CombatantHeroPiece2 hc)
-    {
+    //public void UpdatePanel(HeroUnitPiece3 hc)
+    //{
 
-    }
+    //}
 }

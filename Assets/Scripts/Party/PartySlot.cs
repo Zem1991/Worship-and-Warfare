@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PartySlot : AbstractSlot<AbstractPartyElement>
+public class PartySlot : AbstractSlot<AbstractUnit>
 {
     [Header("Party data")]
     public Party party;
-    public UnitCategory slotType;
+    public UnitType slotType;
 
-    public void Initialize(Party party, UnitCategory slotType, int identification = 0)
+    public void Initialize(Party party, UnitType slotType, int identification = 0)
     {
         this.party = party;
         this.slotType = slotType;
@@ -16,10 +16,10 @@ public class PartySlot : AbstractSlot<AbstractPartyElement>
 
         switch (slotType)
         {
-            case UnitCategory.HERO:
+            case UnitType.HERO:
                 name = "Hero slot";
                 break;
-            case UnitCategory.CREATURE:
+            case UnitType.CREATURE:
                 name = "Creature slot, #" + identification;
                 break;
             //case PartyElementType.SIEGE_ENGINE:

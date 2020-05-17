@@ -12,14 +12,12 @@ public class UI_CombatActorInspector_OffenseStats : MonoBehaviour
     public Text txtRangedDamage;
     public Text txtRangedRange;
 
-    public void RefreshInfo(AbstractCombatActorPiece2 acap)
+    public void RefreshInfo(CombatantPiece3 acap)
     {
-        AbstractCombatantPiece2 combatant = acap as AbstractCombatantPiece2;
-
-        if (combatant)
+        if (acap)
         {
-            AttackStats melee = combatant.combatPieceStats.attack_melee;
-            AttackStats ranged = combatant.combatPieceStats.attack_ranged;
+            AttackStats2 melee = acap.offenseStats.attack_melee;
+            AttackStats2 ranged = acap.offenseStats.attack_ranged;
 
             if (melee)
             {

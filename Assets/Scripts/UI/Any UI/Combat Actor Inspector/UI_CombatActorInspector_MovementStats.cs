@@ -10,19 +10,18 @@ public class UI_CombatActorInspector_MovementStats : MonoBehaviour
     public Text txtMovePoints;
     public Text txtMoveType;
 
-    public void RefreshInfo(AbstractCombatActorPiece2 acap)
+    public void RefreshInfo(CombatantPiece3 acap)
     {
-        AbstractCombatantPiece2 combatant = acap as AbstractCombatantPiece2;
+        txtInitiative.text = "" + acap.movementStats.initiative;
 
-        txtInitiative.text = "" + acap.combatPieceStats.initiative;
-
+        UnitPiece3 combatant = acap as UnitPiece3;
         if (combatant)
         {
             txtMovePoints.gameObject.SetActive(true);
             txtMoveType.gameObject.SetActive(true);
 
-            txtMovePoints.text = "" + combatant.combatPieceStats.movementRange;// + "/" + hero.combatPieceStats.hitPoints_maximum;
-            txtMoveType.text = "" + combatant.combatPieceStats.movementType;
+            txtMovePoints.text = "" + combatant.movementStats.movementRange;// + "/" + hero.combatPieceStats.hitPoints_maximum;
+            txtMoveType.text = "" + combatant.movementStats.movementType;
         }
         else
         {

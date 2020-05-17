@@ -12,5 +12,5 @@ public class DB_Artifact : AbstractDBContent
     public string artifactDescription;
 
     [Header("Stats")]
-    public AttributeStats attributeStats;
+    public AttributeStats2 attributeStats;
 }

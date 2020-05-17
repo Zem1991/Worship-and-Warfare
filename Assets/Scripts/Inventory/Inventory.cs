@@ -7,12 +7,12 @@ using UnityEngine;
 public class Inventory : AbstractSlotContainer<InventorySlot, Artifact>
 {
     [Header("Static references")]
-    public AttributeStats equipAttributeStats;
+    public AttributeStats2 equipAttributeStats;
     public Transform equipmentSlotHolder;
     public Transform backpackSlotHolder;
 
     [Header("Dynamic references")]
-    public Hero hero;
+    public HeroUnit hero;
 
     [Header("Equipment slots")]
     [SerializeField] private InventorySlot equipMainHand;
@@ -31,7 +31,7 @@ public class Inventory : AbstractSlotContainer<InventorySlot, Artifact>
     [Header("Backpack slots")]
     [SerializeField] private List<InventorySlot> backpackItems;
 
-    public void Initialize(Hero hero, InventoryData inventoryData)
+    public void Initialize(HeroUnit hero, InventoryData inventoryData)
     {
         this.hero = hero;
 
@@ -264,20 +264,20 @@ public class Inventory : AbstractSlotContainer<InventorySlot, Artifact>
             Artifact artifact = invSlot.Get();
             if (!artifact || invSlot.isBeingDragged) continue;
 
-            atrOffense += artifact.dbData.attributeStats.atrOffense;
-            atrDefense += artifact.dbData.attributeStats.atrDefense;
-            atrSupport += artifact.dbData.attributeStats.atrSupport;
-            atrCommand += artifact.dbData.attributeStats.atrCommand;
-            atrMagic += artifact.dbData.attributeStats.atrMagic;
-            atrTech += artifact.dbData.attributeStats.atrTech;
+            atrOffense += artifact.dbData.attributeStats.attributes.offense;
+            atrDefense += artifact.dbData.attributeStats.attributes.defense;
+            atrSupport += artifact.dbData.attributeStats.attributes.support;
+            atrCommand += artifact.dbData.attributeStats.attributes.command;
+            atrMagic += artifact.dbData.attributeStats.attributes.magic;
+            atrTech += artifact.dbData.attributeStats.attributes.tech;
         }
 
-        equipAttributeStats.atrOffense = atrOffense;
-        equipAttributeStats.atrDefense = atrDefense;
-        equipAttributeStats.atrSupport = atrSupport;
-        equipAttributeStats.atrCommand = atrCommand;
-        equipAttributeStats.atrMagic = atrMagic;
-        equipAttributeStats.atrTech = atrTech;
+        equipAttributeStats.attributes.offense = atrOffense;
+        equipAttributeStats.attributes.defense = atrDefense;
+        equipAttributeStats.attributes.support = atrSupport;
+        equipAttributeStats.attributes.command = atrCommand;
+        equipAttributeStats.attributes.magic = atrMagic;
+        equipAttributeStats.attributes.tech = atrTech;
 
         hero.RecalculateStats();
     }

@@ -7,12 +7,12 @@ public class CombatInputExecutor : AbstractInputExecutor<CombatInputInterpreter,
 {
     [Header("Cursor data")]
     public CombatTile cursorTile;
-    public AbstractCombatPiece2 cursorPiece;
+    public AbstractCombatPiece3 cursorPiece;
     public Vector2Int cursorPos;
 
     [Header("Selection data")]
     public CombatTile selectionTile;
-    public AbstractCombatPiece2 selectionPiece;
+    public AbstractCombatPiece3 selectionPiece;
     public Vector2Int selectionPos;
 
     [Header("Interaction data")]
@@ -91,7 +91,7 @@ public class CombatInputExecutor : AbstractInputExecutor<CombatInputInterpreter,
             if (item.collider == null) continue;
 
             CombatTile t = item.collider.GetComponentInParent<CombatTile>();
-            AbstractCombatPiece2 p = item.collider.GetComponentInParent<AbstractCombatPiece2>();
+            AbstractCombatPiece3 p = item.collider.GetComponentInParent<AbstractCombatPiece3>();
             if (cursorTile == null && t) cursorTile = t;
             if (cursorPiece == null && p) cursorPiece = p;
         }
@@ -105,7 +105,7 @@ public class CombatInputExecutor : AbstractInputExecutor<CombatInputInterpreter,
             selectionPiece = cursorPiece;
             selectionPos = cursorPos;
 
-            AbstractCombatantPiece2 actp = selectionPiece as AbstractCombatantPiece2;
+            CombatantPiece3 actp = selectionPiece as CombatantPiece3;
             if (actp)
             {
                 canCommandSelectedPiece = actp.pieceOwner.GetOwner() == PlayerManager.Instance.localPlayer;
@@ -128,10 +128,11 @@ public class CombatInputExecutor : AbstractInputExecutor<CombatInputInterpreter,
         bool condition = selectionPiece && canCommandSelectedPiece;
         if (!condition) return;
 
-        AbstractCombatantPiece2 actp = selectionPiece as AbstractCombatantPiece2;
+        CombatantPiece3 actp = selectionPiece as CombatantPiece3;
         if (actp)
         {
-            if (actp.pieceMovement.stateMove)
+            //if (actp.pieceMovement.stateMove)
+            if (!actp.ICP_IsIdle())
             {
                 actp.ICP_Stop();
             }
@@ -146,8 +147,10 @@ public class CombatInputExecutor : AbstractInputExecutor<CombatInputInterpreter,
 
     public void MakeSelectedPieceWait()
     {
-        AbstractCombatantPiece2 actp = selectionPiece as AbstractCombatantPiece2;
-        if (selectionPiece && canCommandSelectedPiece && actp && !actp.pieceCombatActions.stateWait)
+        CombatantPiece3 actp = selectionPiece as CombatantPiece3;
+        if (!actp) return;
+
+        if (selectionPiece && canCommandSelectedPiece && !actp.pieceCombatActions.stateWait)
         {
             StartCoroutine(actp.pieceCombatActions.Wait());
         }
@@ -155,8 +158,10 @@ public class CombatInputExecutor : AbstractInputExecutor<CombatInputInterpreter,
 
     public void MakeSelectedPieceDefend()
     {
-        AbstractCombatActorPiece2 actp = selectionPiece as AbstractCombatActorPiece2;
-        if (selectionPiece && canCommandSelectedPiece && actp)
+        CombatantPiece3 actp = selectionPiece as CombatantPiece3;
+        if (!actp) return;
+
+        if (selectionPiece && canCommandSelectedPiece && !actp.pieceCombatActions.stateDefend)
         {
             StartCoroutine(actp.pieceCombatActions.Defend());
         }
@@ -171,7 +176,7 @@ public class CombatInputExecutor : AbstractInputExecutor<CombatInputInterpreter,
     {
         if (interpreter.endTurnDown)
         {
-            AbstractCombatActorPiece2 acp = CombatManager.Instance.currentPiece;
+            CombatantPiece3 acp = CombatManager.Instance.currentPiece;
             PlayerManager pm = PlayerManager.Instance;
             if (acp.pieceOwner.GetOwner() == pm.localPlayer) acp.ISTET_EndTurn();
         }

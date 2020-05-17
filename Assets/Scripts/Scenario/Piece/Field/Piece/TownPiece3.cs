@@ -1,0 +1,48 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[RequireComponent(typeof(PieceOwner3))]
+[RequireComponent(typeof(PieceController3))]
+public class TownPiece3 : AbstractFieldPiece3, IFlaggablePiece
+{
+    [Header("Self references")]
+    public SpriteRenderer flagSpriteRenderer;
+
+    [Header("Player references")]
+    public PieceOwner3 pieceOwner;
+    public PieceController3 pieceController;
+
+    [Header("Town references")]
+    public Town town;
+    public PartyPiece3 visitorPiece;
+
+    public void Initialize(Player owner, Town town)
+    {
+        pieceOwner.SetOwner(owner);
+        pieceController.SetController(owner);
+
+        this.town = town;
+
+        name = "Town: " + town.townName;
+
+        SetMainSprite(town.dbFaction.townFieldSprite, SpriteOrderConstants.PIECE);
+        IFP_SetFlagSprite(owner.dbColor.imgFlag);
+    }
+
+    protected override void AP3_UpdateAnimatorParameters()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override string AFP3_GetPieceTitle()
+    {
+        return town.townName;
+    }
+
+    public void IFP_SetFlagSprite(Sprite sprite)
+    {
+        flagSpriteRenderer.sprite = sprite;
+        flagSpriteRenderer.sortingOrder = SpriteOrderConstants.FLAG;
+    }
+}

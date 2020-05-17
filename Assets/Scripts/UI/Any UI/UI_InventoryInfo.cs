@@ -21,7 +21,7 @@ public class UI_InventoryInfo : AUI_PanelDragAndDrop
     public List<FieldUI_InventorySlot_Holder> backpack = new List<FieldUI_InventorySlot_Holder>();
 
     [Header("Dynamic references")]
-    public PartyPiece2 partyPiece;
+    public PartyPiece3 partyPiece;
     public IInventoryRefresh inventoryRefresh;
 
     public void Start()
@@ -44,7 +44,7 @@ public class UI_InventoryInfo : AUI_PanelDragAndDrop
         RefreshInfo(partyPiece, refreshBackpackSlots);
     }
 
-    public void RefreshInfo(PartyPiece2 partyPiece, bool refreshBackpackSlots)
+    public void RefreshInfo(PartyPiece3 partyPiece, bool refreshBackpackSlots)
     {
         this.partyPiece = partyPiece;
         RefreshEquipmentInfo(partyPiece);
@@ -52,9 +52,9 @@ public class UI_InventoryInfo : AUI_PanelDragAndDrop
         //hero.RecalculateStats();
     }
 
-    private void RefreshEquipmentInfo(PartyPiece2 partyPiece)
+    private void RefreshEquipmentInfo(PartyPiece3 partyPiece)
     {
-        Hero hero = partyPiece.party.GetHeroSlot().Get() as Hero;
+        HeroUnit hero = partyPiece.party.GetHeroSlot().Get() as HeroUnit;
         Inventory inv = hero.inventory;
         mainHand.slot.UpdateSlot(this, inv.GetEquipmentSlot(ArtifactType.MAIN_HAND));
         offHand.slot.UpdateSlot(this, inv.GetEquipmentSlot(ArtifactType.OFF_HAND));
@@ -66,13 +66,13 @@ public class UI_InventoryInfo : AUI_PanelDragAndDrop
         trinket4.slot.UpdateSlot(this, inv.GetEquipmentSlot(ArtifactType.TRINKET, 4));
     }
 
-    private void RefreshBackpackInfo(PartyPiece2 partyPiece)
+    private void RefreshBackpackInfo(PartyPiece3 partyPiece)
     {
         //ClearBackpackSlots();
         foreach (FieldUI_InventorySlot_Holder item in backpack) Destroy(item.gameObject);
         backpack.Clear();
 
-        Hero hero = partyPiece.party.GetHeroSlot().Get() as Hero;
+        HeroUnit hero = partyPiece.party.GetHeroSlot().Get() as HeroUnit;
         Inventory inv = hero.inventory;
         foreach (InventorySlot backpackSlot in inv.GetBackpackSlots(true))
         {

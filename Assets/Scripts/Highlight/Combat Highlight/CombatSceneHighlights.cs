@@ -21,9 +21,9 @@ public class CombatSceneHighlights : AbstractSingleton<CombatSceneHighlights>, I
 
     [Header("Highlighted pieces")]
     [SerializeField] private CombatTile cursorTile;
-    [SerializeField] private AbstractCombatPiece2 selectionPiece;
-    [SerializeField] private AbstractCombatantPiece2 movePiece;
-    [SerializeField] private AbstractCombatantPiece2 targetPiece;
+    [SerializeField] private AbstractCombatPiece3 selectionPiece;
+    [SerializeField] private CombatantPiece3 movePiece;
+    [SerializeField] private CombatantPiece3 targetPiece;
     [SerializeField] private bool movePiecePathChange;
     [SerializeField] private bool movePieceMoving;
 
@@ -62,7 +62,7 @@ public class CombatSceneHighlights : AbstractSingleton<CombatSceneHighlights>, I
 
     private void SelectionHighlight()
     {
-        AbstractCombatPiece2 piece = CombatSceneInputs.Instance.executor.selectionPiece;
+        AbstractCombatPiece3 piece = CombatSceneInputs.Instance.executor.selectionPiece;
         GameObject gObject = piece ? piece.gameObject : null;
         selectionPiece = piece;
         selectionHighlight = SceneHighlightHelper.ObjectHighlight(gObject, selectionHighlight, cursorAndSelectionHolder, "Selection", selectionSprite);
@@ -71,7 +71,7 @@ public class CombatSceneHighlights : AbstractSingleton<CombatSceneHighlights>, I
     private void MoveHighlights()
     {
         CombatInputExecutor cie = CombatSceneInputs.Instance.executor;
-        AbstractCombatantPiece2 actp = cie.selectionPiece as AbstractCombatantPiece2;
+        CombatUnitPiece3 actp = cie.selectionPiece as CombatUnitPiece3;
 
         bool currentMoving = movePiece && !movePiece.ICP_IsIdle();
         bool currentNotSelected = movePiece != actp;
@@ -117,18 +117,18 @@ public class CombatSceneHighlights : AbstractSingleton<CombatSceneHighlights>, I
         movePathHighlights.Clear();
     }
 
-    private void CreateMoveAreaHighlights(AbstractCombatantPiece2 actp)
+    private void CreateMoveAreaHighlights(CombatUnitPiece3 actp)
     {
         Debug.Log("CombatSceneHighlights - CreateMoveAreaHighlights()");
-        PieceMovement2 pm2 = actp.pieceMovement;
+        PieceMovement3 pm2 = actp.pieceMovement;
         moveAreaHighlights = SceneHighlightHelper.MoveAreaHighlights(actp.currentTile, moveAreaHolder, moveAreaSprite,
             pm2.movementPointsCurrent, Pathfinder.OctoHeuristic, true, false, false);
     }
 
-    private void CreateMovePathHighlights(AbstractCombatantPiece2 actp)
+    private void CreateMovePathHighlights(CombatUnitPiece3 actp)
     {
         Debug.Log("CombatSceneHighlights - CreateMovePathHighlights()");
-        PieceMovement2 pm2 = actp.pieceMovement;
+        PieceMovement3 pm2 = actp.pieceMovement;
         movePathHighlights = SceneHighlightHelper.MovePathHighlights(actp.currentTile, movePathHolder, movePathArrowSprites, movePathMarkerSprites,
             pm2.movementPointsCurrent, pm2.GetPath());
     }
@@ -136,10 +136,10 @@ public class CombatSceneHighlights : AbstractSingleton<CombatSceneHighlights>, I
     private void ActionHighlights()
     {
         CombatInputExecutor cie = CombatSceneInputs.Instance.executor;
-        AbstractCombatantPiece2 actp = cie.selectionPiece as AbstractCombatantPiece2;
+        CombatUnitPiece3 actp = cie.selectionPiece as CombatUnitPiece3;
         if (!actp) return;
 
-        AbstractCombatantPiece2 target = actp.targetPiece as AbstractCombatantPiece2;
+        CombatUnitPiece3 target = actp.targetPiece as CombatUnitPiece3;
 
         bool targetChanged = target != targetPiece;
 

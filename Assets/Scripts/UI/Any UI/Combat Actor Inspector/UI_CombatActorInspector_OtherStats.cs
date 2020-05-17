@@ -10,26 +10,24 @@ public class UI_CombatActorInspector_OtherStats : MonoBehaviour
     public Text txtFaction;
     public Text txtTier;
 
-    public void RefreshInfo(AbstractCombatActorPiece2 acap)
+    public void RefreshInfo(CombatantPiece3 acap)
     {
-        AbstractCombatantPiece2 combatant = acap as AbstractCombatantPiece2;
-
-        if (combatant)
+        if (acap)
         {
             txtMorale.text = "morale missing";
 
-            CombatantHeroPiece2 hero = acap as CombatantHeroPiece2;
-            CombatantUnitPiece2 unit = acap as CombatantUnitPiece2;
+            HeroUnitPiece3 hero = acap as HeroUnitPiece3;
+            CombatUnitPiece3 unit = acap as CombatUnitPiece3;
 
             if (hero)
             {
-                txtFaction.text = hero.GetHero().dbData.heroClass.faction.factionName;
+                txtFaction.text = hero.GetHeroUnit().dbHeroPerson.heroClass.faction.factionName;
                 txtTier.text = "Hero";
             }
             else if (unit)
             {
-                txtFaction.text = unit.GetUnit().dbData.faction.factionName;
-                txtTier.text = "Tier " + unit.GetUnit().dbData.tier;
+                txtFaction.text = unit.GetCombatUnit().GetDBCombatUnit().faction.factionName;
+                txtTier.text = "Tier " + unit.GetCombatUnit().GetDBCombatUnit().tier;
             }
         }
     }

@@ -15,14 +15,14 @@ public class FieldUI_Panel_Commands : AbstractUIPanel
         partyCommands.Hide();
     }
 
-    public void UpdatePanel(TownPiece2 tp)
+    public void UpdatePanel(TownPiece3 tp)
     {
         partyCommands.Hide();
         townCommands.UpdatePanel(tp);
         townCommands.Show();
     }
 
-    public void UpdatePanel(PartyPiece2 pp)
+    public void UpdatePanel(PartyPiece3 pp)
     {
         townCommands.Hide();
         partyCommands.UpdatePanel(pp);

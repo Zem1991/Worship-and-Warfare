@@ -21,7 +21,7 @@ public class CombatUI_Panel_TurnSequence : AbstractUIPanel
         tsItems.Clear();
     }
 
-    public void CreateTurnSequence(List<AbstractCombatActorPiece2> turnSequence, List<AbstractCombatActorPiece2> waitSequence)
+    public void CreateTurnSequence(List<CombatantPiece3> turnSequence, List<CombatantPiece3> waitSequence)
     {
         DestroyTurnSequence();
 
@@ -37,18 +37,18 @@ public class CombatUI_Panel_TurnSequence : AbstractUIPanel
         Destroy(cuiTSI.gameObject);
     }
 
-    private void ProcessSequence(CombatUI_TurnSequenceItem prefab, List<AbstractCombatActorPiece2> list)
+    private void ProcessSequence(CombatUI_TurnSequenceItem prefab, List<CombatantPiece3> list)
     {
-        foreach (AbstractCombatActorPiece2 forCutp in list)
+        foreach (CombatantPiece3 forCutp in list)
         {
             CombatUI_TurnSequenceItem newCUI = Instantiate(prefab, sequenceBar.transform);
             newCUI.border.color = forCutp.pieceOwner.GetOwner().dbColor.mainColor;
 
             Sprite portrait = null;
-            CombatantHeroPiece2 chp = forCutp as CombatantHeroPiece2;
-            CombatantUnitPiece2 cup = forCutp as CombatantUnitPiece2;
-            if (chp) portrait = chp.GetHero().dbData.profilePicture;
-            if (cup) portrait = cup.GetUnit().dbData.profilePicture;
+            HeroUnitPiece3 chp = forCutp as HeroUnitPiece3;
+            CombatUnitPiece3 cup = forCutp as CombatUnitPiece3;
+            if (chp) portrait = chp.GetHeroUnit().AU_GetProfileImage();
+            if (cup) portrait = cup.GetCombatUnit().AU_GetProfileImage();
             if (portrait) newCUI.portrait.sprite = portrait;
 
             newCUI.combatPiece = forCutp;

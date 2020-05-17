@@ -23,16 +23,16 @@ public class UI_AttributeInfo : MonoBehaviour, IShowableHideable
         gameObject.SetActive(true);
     }
 
-    public void RefreshInfo(AttributeStats attributeStats)
+    public void RefreshInfo(AttributeStats2 attributeStats)
     {
         if (attributeStats != null)
         {
-            txtOffense.text = attributeStats.atrOffense.ToString();
-            txtDefense.text = attributeStats.atrDefense.ToString();
-            txtSupport.text = attributeStats.atrSupport.ToString();
-            txtCommand.text = attributeStats.atrCommand.ToString();
-            txtMagic.text = attributeStats.atrMagic.ToString();
-            txtTech.text = attributeStats.atrTech.ToString();
+            txtOffense.text = attributeStats.attributes.offense.ToString();
+            txtDefense.text = attributeStats.attributes.defense.ToString();
+            txtSupport.text = attributeStats.attributes.support.ToString();
+            txtCommand.text = attributeStats.attributes.command.ToString();
+            txtMagic.text = attributeStats.attributes.magic.ToString();
+            txtTech.text = attributeStats.attributes.tech.ToString();
         }
         else
         {

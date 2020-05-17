@@ -87,7 +87,7 @@ public class TownUI_Panel_BuildStructure : AbstractUIPanel
     public void BuildStructure()
     {
         TownManager tm = TownManager.Instance;
-        TownPiece2 tp = tm.townPiece;
+        TownPiece3 tp = tm.townPiece;
         Town town = tp.town;
         Player owner = tp.pieceOwner.GetOwner();
 

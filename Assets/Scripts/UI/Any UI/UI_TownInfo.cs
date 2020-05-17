@@ -26,7 +26,7 @@ public class UI_TownInfo : MonoBehaviour, IShowableHideable
         if (txtTownName) txtTownName.text = "--";
     }
 
-    public void RefreshInfo(TownPiece2 town)
+    public void RefreshInfo(TownPiece3 town)
     {
         ClearInfo();
         if (town == null) return;

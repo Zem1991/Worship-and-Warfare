@@ -17,14 +17,14 @@ public class UI_CombatActorInspector : AbstractUIPanel, IShowableHideable
     public UI_CombatActorInspector_MovementStats movement;
     public UI_CombatActorInspector_OtherStats other;
 
-    public void RefreshInfo(AbstractCombatActorPiece2 acap)
+    public void RefreshInfo(CombatantPiece3 acap)
     {
-        CombatantHeroPiece2 hero = acap as CombatantHeroPiece2;
-        CombatantUnitPiece2 unit = acap as CombatantUnitPiece2;
+        HeroUnitPiece3 hero = acap as HeroUnitPiece3;
+        CombatUnitPiece3 unit = acap as CombatUnitPiece3;
 
         string name = "Unknown piece";
-        if (hero) name = hero.GetHero().dbData.heroName;
-        else if (unit) name = unit.GetUnit().dbData.unitNameSingular;
+        if (hero) name = hero.GetHeroUnit().dbHeroPerson.heroName;
+        else if (unit) name = unit.GetCombatUnit().GetDBCombatUnit().unitNameSingular;
         txtName.text = name;
 
         main.RefreshInfo(acap);

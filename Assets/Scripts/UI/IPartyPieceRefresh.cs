@@ -1,4 +1,4 @@
 ﻿public interface IPartyPieceRefresh
 {
-    void PartyPieceRefresh(PartyPiece2 partyPiece);
+    void PartyPieceRefresh(PartyPiece3 partyPiece);
 }

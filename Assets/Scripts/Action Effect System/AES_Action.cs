@@ -8,5 +8,5 @@ public abstract class AES_Action : MonoBehaviour        //TODO make an AES_Spell
     public AES_ActionParameters parameters;
     public AES_ActionFilters filters;
 
-    public abstract bool Execute(AbstractPartyElement actionUser, List<AbstractTile> targetArea);
+    public abstract bool Execute(AbstractUnit actionUser, List<AbstractTile> targetArea);
 }
