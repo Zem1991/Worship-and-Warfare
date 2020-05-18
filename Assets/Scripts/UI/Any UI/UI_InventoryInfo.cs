@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class UI_InventoryInfo : AUI_PanelDragAndDrop
 {
-    [Header("Inventory Slots")]
+    [Header("Object components")]
     public FieldUI_InventorySlot_Holder mainHand;
     public FieldUI_InventorySlot_Holder offHand;
     public FieldUI_InventorySlot_Holder head;

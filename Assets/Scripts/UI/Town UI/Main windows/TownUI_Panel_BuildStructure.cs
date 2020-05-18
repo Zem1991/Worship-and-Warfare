@@ -72,7 +72,7 @@ public class TownUI_Panel_BuildStructure : AbstractUIPanel
             Player owner = tm.townPiece.pieceOwner.GetOwner();
 
             DB_TownBuilding dbTownBuilding = selectedOption.dbTownBuilding;
-            Dictionary<ResourceStats, int> costs = dbTownBuilding.resourceStats.GetCosts(1);
+            Dictionary<ResourceStats2, int> costs = dbTownBuilding.resourceStats.GetCosts(1);
 
             txtDescriptionAndCosts.text =  dbTownBuilding.GetDescriptionWithCosts();
             btnBuild.interactable = owner.currentResources.CanAfford(costs);

@@ -342,9 +342,7 @@ GameObject:
   - component: {fileID: 8516396809573870807}
   - component: {fileID: -1768015997571773248}
   - component: {fileID: 1992955084037246452}
-  - component: {fileID: 334233482100639713}
-  - component: {fileID: 8510369405369516683}
-  - component: {fileID: 4841789147639212751}
+  - component: {fileID: -5209333186639248112}
   m_Layer: 0
   m_Name: Combat Unit Piece
   m_TagString: Untagged
@@ -364,8 +362,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6661559028364459254}
-  - {fileID: 2314756059071516870}
-  - {fileID: 5103881085917767884}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -378,30 +374,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 6036333515219936311}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68e6236272799a04fbf9f6edbb63e355, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f5bc2e178400fa4d9b1a974e93319ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 8000300208481011906}
+  mainSpriteRenderer: {fileID: 6661559027028567189}
+  pathDepartureTile: {fileID: 0}
+  pathPreviousTile: {fileID: 0}
   currentTile: {fileID: 0}
   pathNextTile: {fileID: 0}
-  pathTargetTile: {fileID: 0}
+  pathArrivalTile: {fileID: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
   targetTile: {fileID: 0}
   targetPiece: {fileID: 0}
-  pieceOwner: {fileID: 0}
-  pieceController: {fileID: 0}
-  pieceCombatActions: {fileID: 0}
+  targetAction: {fileID: 0}
+  flagSpriteRenderer: {fileID: 6947077651222597337}
+  pieceOwner: {fileID: 8516396809573870807}
+  pieceController: {fileID: -1768015997571773248}
+  pieceCombatActions: {fileID: 1992955084037246452}
+  settingsStats: {fileID: 0}
+  healthStats: {fileID: 0}
+  movementStats: {fileID: 0}
+  attributeStats: {fileID: 0}
+  offenseStats: {fileID: 0}
+  defenseStats: {fileID: 0}
+  abilityStats: {fileID: 0}
   spawnId: 0
   onDefenderSide: 0
   stateHurt: 0
   stateDead: 0
-  combatPieceStats: {fileID: 8510369405369516683}
-  animateMovementStart: 0
-  animateMovementEnd: 0
-  partyElement: {fileID: 0}
-  uiBarRect: {fileID: 6734687663200126650}
-  uiHealthBar: {fileID: 6118970350500758784}
-  uiStackRect: {fileID: 6190365414205256803}
-  uiStackSizeText: {fileID: 3230601344201870513}
-  stackStats: {fileID: 4841789147639212751}
+  pieceMovement: {fileID: -5209333186639248112}
+  abstractUnit: {fileID: 0}
+  uiBarRect: {fileID: 0}
+  uiHealthBar: {fileID: 0}
+  uiStackRect: {fileID: 0}
+  uiStackSizeText: {fileID: 0}
 --- !u!114 &8516396809573870807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,7 +461,7 @@ MonoBehaviour:
   rangedAttackEnd: 0
   retaliations: 0
   projectile: {fileID: 0}
---- !u!114 &334233482100639713
+--- !u!114 &-5209333186639248112
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -463,64 +470,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 6036333515219936311}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 092dbb15e6e8f4d438f62bfeed5b2ace, type: 3}
+  m_Script: {fileID: 11500000, guid: 42668cfc148156542a12fb5b252360eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canMove: 0
-  stateMove: 0
-  movementStart: 0
-  movementGoing: 0
-  movementEnd: 0
+  stateMovement: 0
+  stateMovementStart: 0
+  stateMovementGoing: 0
+  stateMovementEnd: 0
   movementPointsCurrent: 0
   movementPointsMax: 0
-  pathTotalCost: 0
   inActualMovement: 0
   stopWasCalled: 0
   nextPos: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
---- !u!114 &8510369405369516683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6036333515219936311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68e85564141e09543bae1035a361a6b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitPoints_current: 0
-  hitPoints_maximum: 0
-  initiative: 0
-  movementRange: 0
-  movementType: 0
-  attack_melee: {fileID: 1415265729182577121}
-  attack_ranged: {fileID: 1966862626788277253}
-  armor_physical: 0
-  armor_magical: 0
-  ability1: {fileID: 0}
-  ability2: {fileID: 0}
-  ability3: {fileID: 0}
-  canWait: 0
-  canDefend: 0
-  canRetaliate: 0
-  canCounter: 0
-  retaliationsMax: 0
---- !u!114 &4841789147639212751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6036333515219936311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ee18c823a50b1341b19806f8f87a911, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stack: 0
+  pathTotalCost: 0
 --- !u!1 &6661559027028567187
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,101 +815,3 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!1 &8585615411641726904
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5103881085917767884}
-  - component: {fileID: 1966862626788277253}
-  m_Layer: 0
-  m_Name: Ranged Attack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5103881085917767884
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8585615411641726904}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 6036333515219936308}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1966862626788277253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8585615411641726904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8def3c9275569934ab0eef9345b2e42e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage_minimum: 0
-  damage_maximum: 0
-  isRanged: 0
-  range_effective: 0
-  range_maximum: 0
-  animationProjectile: {fileID: 0}
---- !u!1 &8942360031042390187
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2314756059071516870}
-  - component: {fileID: 1415265729182577121}
-  m_Layer: 0
-  m_Name: Melee Attack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2314756059071516870
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8942360031042390187}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 6036333515219936308}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1415265729182577121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8942360031042390187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8def3c9275569934ab0eef9345b2e42e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage_minimum: 0
-  damage_maximum: 0
-  isRanged: 0
-  range_effective: 0
-  range_maximum: 0
-  animationProjectile: {fileID: 0}

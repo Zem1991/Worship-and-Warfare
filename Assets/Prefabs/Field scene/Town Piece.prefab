@@ -43,18 +43,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 97644446141563328}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 962660f10078b5944a0097f37439c3e8, type: 3}
+  m_Script: {fileID: 11500000, guid: 7bfc191fe45af3041859346e9a0db385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 8783493710078818538}
+  mainSpriteRenderer: {fileID: 8713905358634262241}
+  pathDepartureTile: {fileID: 0}
+  pathPreviousTile: {fileID: 0}
   currentTile: {fileID: 0}
   pathNextTile: {fileID: 0}
-  pathTargetTile: {fileID: 0}
+  pathArrivalTile: {fileID: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
   targetTile: {fileID: 0}
   targetPiece: {fileID: 0}
-  pieceOwner: {fileID: 0}
-  pieceController: {fileID: 0}
-  visitor: {fileID: 0}
-  garrison: {fileID: 0}
+  targetAction: {fileID: 0}
+  flagSpriteRenderer: {fileID: 5378089544773171441}
+  pieceOwner: {fileID: 4083601644110934268}
+  pieceController: {fileID: 7983332842710136766}
+  town: {fileID: 0}
+  visitorPiece: {fileID: 0}
 --- !u!114 &4083601644110934268
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,8 +10,8 @@ public class Town : MonoBehaviour
     public Party garrison;
     //public Party visitor; //not using this anymore
 
-    [Header("Stats")]
-    public ResourceStats dailyIncome;
+    [Header("Object components")]
+    public ResourceStats2 dailyIncome;
 
     [Header("Buildings")]
     public TownBuilding townCenter;
@@ -50,7 +50,7 @@ public class Town : MonoBehaviour
     {
         if (owner)
         {
-            Dictionary<ResourceStats, int> costs = dbTownBuilding.resourceStats.GetCosts(1);
+            Dictionary<ResourceStats2, int> costs = dbTownBuilding.resourceStats.GetCosts(1);
             owner.currentResources.Subtract(costs);
         }
 

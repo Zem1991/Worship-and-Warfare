@@ -6,13 +6,13 @@ using UnityEngine.UI;
 
 public class TownUI_Panel_RecruitCreature_CreatureOption : MonoBehaviour
 {
-    [Header("Static reference")]
+    [Header("Object components")]
     public Text txtUnitName;
     public Image unitImage;
     public Text txtAvailable;
     public InputField inpAmount;
 
-    [Header("Dynamic reference")]
+    [Header("Other references")]
     public TownUI_Panel_RecruitCreature parentPanel;
     public DB_CombatUnit dbUnit;
     public int amount;

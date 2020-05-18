@@ -7,10 +7,10 @@ using UnityEngine;
 [RequireComponent(typeof(PieceMovement3))]
 public class PartyPiece3 : AbstractFieldPiece3, IFlaggablePiece, IStartTurnEndTurn, ICommandablePiece, IMovablePiece
 {
-    [Header("Self references")]
+    [Header("Object components")]
     public SpriteRenderer flagSpriteRenderer;
 
-    [Header("Extra references")]
+    [Header("Object components")]
     public PieceOwner3 pieceOwner;
     public PieceController3 pieceController;
     public PieceMovement3 pieceMovement;

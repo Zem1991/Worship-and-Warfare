@@ -18,9 +18,6 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
     public HeroUnit hero;
     public CombatUnit unit;
 
-    [Header("Pickup")]
-    public PickupPiece3 pickupPiece;
-
     [Header("Inventory")]
     public Inventory inventory;
     public InventorySlot inventorySlot;
@@ -29,12 +26,13 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
     [Header("Projectile")]
     public Projectile projectile;
 
-    [Header("Field - Scene")]
+    [Header("Field scene")]
     public FieldTile fieldTile;
     public TownPiece3 fieldTownPiece;
     public PartyPiece3 fieldPartyPiece;
+    public PickupPiece3 pickupPiece;
 
-    [Header("Combat - Scene")]
+    [Header("Combat scene")]
     public CombatTile combatTile;
     public HeroUnitPiece3 combatHeroPiece;
     public CombatUnitPiece3 combatUnitPiece;

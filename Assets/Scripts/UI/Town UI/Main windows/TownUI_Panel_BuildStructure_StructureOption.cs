@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 public class TownUI_Panel_BuildStructure_StructureOption : MonoBehaviour, IPointerClickHandler
 {
-    [Header("Static reference")]
+    [Header("Object components")]
     public Text txtBuildingName;
     public Image buildingImage;
     public Image highlightImage;
 
-    [Header("Dynamic reference")]
+    [Header("Other references")]
     public TownUI_Panel_BuildStructure parentPanel;
     public DB_TownBuilding dbTownBuilding;
     public TownBuilding townBuilding;

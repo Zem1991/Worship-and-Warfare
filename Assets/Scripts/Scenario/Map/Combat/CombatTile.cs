@@ -5,11 +5,11 @@ using ZemDirections;
 
 public class CombatTile : AbstractTile
 {
+    [Header("Object components")]
+    public SpriteRenderer landRenderer;
+
     [Header("Database References")]
     public DB_Tileset db_tileset_battleground;
-
-    [Header("Renderers")]
-    public SpriteRenderer landRenderer;
 
     [Header("Dead pieces")]
     public List<CombatantPiece3> deadPieces = new List<CombatantPiece3>();

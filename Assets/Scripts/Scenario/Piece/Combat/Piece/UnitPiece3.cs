@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(PieceMovement3))]
 public class UnitPiece3 : CombatantPiece3, IMovablePiece
 {
-    [Header("More piece references")]
+    [Header("Object components")]
     public PieceMovement3 pieceMovement;
 
     [Header("Unit references")]
@@ -14,7 +14,7 @@ public class UnitPiece3 : CombatantPiece3, IMovablePiece
     public override void Initialize(Player owner, int spawnId, bool onDefenderSide, AbstractUnit abstractUnit)
     {
         this.abstractUnit = abstractUnit;
-        Initialize(owner, spawnId, onDefenderSide, abstractUnit);
+        base.Initialize(owner, spawnId, onDefenderSide, abstractUnit);
 
         //GetStackHealthStats().Initialize(unit.GetStackHealthStats().GetStackSize());  todo this for CombatUnits ?
         SetAnimatorOverrideController(abstractUnit.GetDBUnit().animatorCombat);

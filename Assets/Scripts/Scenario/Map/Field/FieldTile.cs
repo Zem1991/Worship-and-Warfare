@@ -17,7 +17,7 @@ public class FieldTile : AbstractTile
     public string featureId;
     public string roadId;
 
-    [Header("Renderers")]
+    [Header("Object components")]
     public SpriteRenderer landRenderer;
     public SpriteRenderer waterRenderer;
     public SpriteRenderer featureRenderer;

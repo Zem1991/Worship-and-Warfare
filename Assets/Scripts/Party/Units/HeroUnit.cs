@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(LevelUpStats2))]
 public class HeroUnit : AbstractUnit
 {
+    [Header("Object components")]
+    public LevelUpStats2 levelUpStats;
+
     [Header("Hero parameters")]
     public int levelUps;
-
-    [Header("Stats")]
-    public LevelUpStats2 levelUpStats;
 
     [Header("Inventory")]
     public Inventory inventory;

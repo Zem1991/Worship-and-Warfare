@@ -49,10 +49,10 @@ public class TownUI_Panel_RecruitCreature : AbstractUIPanel
         TownManager tm = TownManager.Instance;
         Player owner = tm.townPiece.pieceOwner.GetOwner();
 
-        Dictionary<ResourceStats, int> costs = new Dictionary<ResourceStats, int>();
+        Dictionary<ResourceStats2, int> costs = new Dictionary<ResourceStats2, int>();
         foreach (TownUI_Panel_RecruitCreature_CreatureOption option in creatureOptions)
         {
-            ResourceStats optionCosts = option.dbUnit.resourceStats;
+            ResourceStats2 optionCosts = option.dbUnit.resourceStats;
             costs.Add(option.dbUnit.resourceStats, option.amount);
         }
 

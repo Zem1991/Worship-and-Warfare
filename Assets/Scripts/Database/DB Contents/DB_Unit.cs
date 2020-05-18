@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ResourceStats2))]
+[RequireComponent(typeof(SettingsStats2))]
+[RequireComponent(typeof(HealthStats2))]
+[RequireComponent(typeof(MovementStats2))]
+[RequireComponent(typeof(AttributeStats2))]
+[RequireComponent(typeof(OffenseStats2))]
+[RequireComponent(typeof(DefenseStats2))]
+[RequireComponent(typeof(AbilityStats2))]
 public class DB_Unit : AbstractDBContent
 {
     [Header("Unit identification")]
@@ -9,7 +17,7 @@ public class DB_Unit : AbstractDBContent
     public UnitType unitType;
 
     [Header("Unit stats")]
-    public ResourceStats resourceStats;
+    public ResourceStats2 resourceStats;
     public SettingsStats2 settingsStats;
     public HealthStats2 healthStats;
     public MovementStats2 movementStats;

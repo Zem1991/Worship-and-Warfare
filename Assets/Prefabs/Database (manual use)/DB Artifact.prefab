@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7763124464079871160
+--- !u!1 &3473269758858798752
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7763124464079871162}
-  - component: {fileID: 7763124464079871161}
-  - component: {fileID: 16716442489971224}
+  - component: {fileID: 3473269758858798767}
+  - component: {fileID: 3473269758858798766}
+  - component: {fileID: 3473269758858798765}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Centaur's Axe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7763124464079871162
+--- !u!4 &3473269758858798767
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7763124464079871160}
+  m_GameObject: {fileID: 3473269758858798752}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,43 +32,41 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7763124464079871161
+--- !u!114 &3473269758858798766
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7763124464079871160}
+  m_GameObject: {fileID: 3473269758858798752}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 064cd1b5f76421544b4df59081f97d09, type: 3}
+  m_Script: {fileID: 11500000, guid: 45dfe7c95a000ff4f80fb5e2b8e4a369, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerName: 
-  type: 0
-  id: 0
-  dbColor: {fileID: 0}
-  aiPersonality: {fileID: 0}
-  currentResources: {fileID: 16716442489971224}
-  faction: {fileID: 0}
-  townPieces: []
-  partyPieces: []
-  currentTurn: 0
-  currentTurnAvailable: 0
---- !u!114 &16716442489971224
+  id: 
+  artifactName: Artifact Name
+  artifactType: 1
+  artifactRarity: 0
+  image: {fileID: 0}
+  artifactDescription: Artifact Description
+  attributeStats: {fileID: 3473269758858798765}
+--- !u!114 &3473269758858798765
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7763124464079871160}
+  m_GameObject: {fileID: 3473269758858798752}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74807676fdd32154dbdc70e9345174e6, type: 3}
+  m_Script: {fileID: 11500000, guid: a83e485ba7bcdd143b5c4d4cc0fa46d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gold: 0
-  ore: 0
-  ale: 0
-  crystals: 0
-  sulphur: 0
+  attributes:
+    offense: 0
+    defense: 0
+    support: 0
+    command: 0
+    magic: 0
+    tech: 0

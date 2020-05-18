@@ -132,12 +132,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7244132929809245277}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9d8aab70b4cfea479d9332c860ea0f5, type: 3}
+  m_Script: {fileID: 11500000, guid: a83e485ba7bcdd143b5c4d4cc0fa46d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atrOffense: 0
-  atrDefense: 0
-  atrSupport: 0
-  atrCommand: 0
-  atrMagic: 0
-  atrTech: 0
+  attributes:
+    offense: 0
+    defense: 0
+    support: 0
+    command: 0
+    magic: 0
+    tech: 0

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UI_HeroInfo : MonoBehaviour, IShowableHideable
 {
+    [Header("Object components")]
     public Image heroPortrait;
     public Text txtHeroName;
     public Text txtLevelAndClass;

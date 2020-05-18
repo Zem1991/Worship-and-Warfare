@@ -12,7 +12,7 @@ public class DB_HeroUnit : DB_Unit
 
     public string GetDescriptionWithCosts()
     {
-        Dictionary<ResourceStats, int> costs = new Dictionary<ResourceStats, int> { [resourceStats] = 1 };
+        Dictionary<ResourceStats2, int> costs = new Dictionary<ResourceStats2, int> { [resourceStats] = 1 };
         return "TODO: classDescription" + "\n" + "Costs: " + resourceStats.WrittenForm(costs);
     }
 

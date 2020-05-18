@@ -11,7 +11,7 @@ public class DB_TownBuilding : AbstractDBContent
     public Rect rect;
 
     [Header("Stats")]
-    public ResourceStats resourceStats;
+    public ResourceStats2 resourceStats;
 
     //[Header("Animations")]
     //public AnimatorOverrideController animator;
@@ -21,7 +21,7 @@ public class DB_TownBuilding : AbstractDBContent
 
     public string GetDescriptionWithCosts()
     {
-        Dictionary<ResourceStats, int> costs = new Dictionary<ResourceStats, int> { [resourceStats] = 1 };
+        Dictionary<ResourceStats2, int> costs = new Dictionary<ResourceStats2, int> { [resourceStats] = 1 };
         return buildingDescription + "\n" + "Costs: " + resourceStats.WrittenForm(costs);
     }
 }

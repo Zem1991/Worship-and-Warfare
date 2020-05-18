@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 public class TownUI_Building : MonoBehaviour, IPointerClickHandler
 {
-    [Header("Static reference")]
+    [Header("Object components")]
     public Image image;
 
-    [Header("Dynamic reference")]
+    [Header("Other references")]
     public TownBuilding townBuilding;
 
     private RectTransform rectTransform;

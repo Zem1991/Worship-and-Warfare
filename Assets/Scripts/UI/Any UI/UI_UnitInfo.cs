@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UI_UnitInfo : MonoBehaviour//, IShowableHideable
 {
+    [Header("Object components")]
     public Image imgUnitPortrait;
     public Text txtUnitName;
     public Text txtUnitStack;

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Inventory : AbstractSlotContainer<InventorySlot, Artifact>
 {
-    [Header("Static references")]
+    [Header("Object components")]
     public AttributeStats2 equipAttributeStats;
     public Transform equipmentSlotHolder;
     public Transform backpackSlotHolder;

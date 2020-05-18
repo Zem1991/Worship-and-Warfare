@@ -12,8 +12,8 @@ public class Player : MonoBehaviour
     public DB_Color dbColor;
     public AIPersonality aiPersonality;
 
-    [Header("Stats")]
-    public ResourceStats currentResources;
+    [Header("Object components")]
+    public ResourceStats2 currentResources;
 
     [Header("Pieces")]
     public DBHandler_Faction faction;
@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
 
     public void ApplyDailyIncome()
     {
-        Dictionary<ResourceStats, int> mapTownIncome = new Dictionary<ResourceStats, int>();
+        Dictionary<ResourceStats2, int> mapTownIncome = new Dictionary<ResourceStats2, int>();
         foreach (TownPiece3 townPiece in townPieces)
         {
             mapTownIncome.Add(townPiece.town.dailyIncome, 1);

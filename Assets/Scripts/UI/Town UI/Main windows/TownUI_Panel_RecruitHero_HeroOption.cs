@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class TownUI_Panel_RecruitHero_HeroOption : MonoBehaviour, IPointerClickHandler
 {
-    [Header("Static reference")]
+    [Header("Object components")]
     public Text txtHeroName;
     public Image heroImage;
 
-    [Header("Dynamic reference")]
+    [Header("Other references")]
     public TownUI_Panel_RecruitHero parentPanel;
     public DB_HeroPerson dbHero;
 

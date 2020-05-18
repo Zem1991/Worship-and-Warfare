@@ -6,11 +6,13 @@ using UnityEngine.UI;
 
 public class UI_PartyInfo : AUI_PanelDragAndDrop
 {
-    [Header("Party Slots and Settings")]
+    [Header("Object components")]
     public UI_HeroInfo heroInfo;
     public UI_UnitsInfo unitsInfos;
     public TownUI_PartySlot heroSlot;
     public TownUI_PartySlot[] unitSlots;
+
+    [Header("Party Slots and Settings")]
     public bool canDragHero = true;
     public bool canDragUnits = true;
 

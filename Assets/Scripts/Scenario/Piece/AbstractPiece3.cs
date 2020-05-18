@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class AbstractPiece3 : MonoBehaviour
 {
-    [Header("Self references")]
+    [Header("Object components")]
     public Animator animator;
     public SpriteRenderer mainSpriteRenderer;
 

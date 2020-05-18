@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 4234026010174413057}
   - component: {fileID: 230652444916705340}
   - component: {fileID: 6148207125245554558}
-  - component: {fileID: 6034068522181495844}
+  - component: {fileID: 2936367999383306712}
   m_Layer: 0
   m_Name: Party Piece
   m_TagString: Untagged
@@ -123,17 +123,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 4234026010174413056}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38930c432d31b3143828a1e19ebf5d74, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f7e1fa6cb83eb242b7a7cd3279a8878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainSpriteRenderer: {fileID: 4861264040132838945}
+  animator: {fileID: 4791148151704330282}
+  pathDepartureTile: {fileID: 0}
+  pathPreviousTile: {fileID: 0}
   currentTile: {fileID: 0}
   pathNextTile: {fileID: 0}
-  pathTargetTile: {fileID: 0}
+  pathArrivalTile: {fileID: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
   targetTile: {fileID: 0}
   targetPiece: {fileID: 0}
-  pieceOwner: {fileID: 0}
-  pieceController: {fileID: 0}
-  pieceMovement: {fileID: 0}
+  targetAction: {fileID: 0}
+  flagSpriteRenderer: {fileID: 8158940122927685681}
+  pieceOwner: {fileID: 230652444916705340}
+  pieceController: {fileID: 6148207125245554558}
+  pieceMovement: {fileID: 2936367999383306712}
   party: {fileID: 0}
   anim_movement: 0
   anim_directionX: 0
@@ -164,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
---- !u!114 &6034068522181495844
+--- !u!114 &2936367999383306712
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -173,22 +180,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 4234026010174413056}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 092dbb15e6e8f4d438f62bfeed5b2ace, type: 3}
+  m_Script: {fileID: 11500000, guid: 42668cfc148156542a12fb5b252360eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canMove: 0
-  stateMove: 0
-  movementStart: 0
-  movementGoing: 0
-  movementEnd: 0
+  stateMovement: 0
+  stateMovementStart: 0
+  stateMovementGoing: 0
+  stateMovementEnd: 0
   movementPointsCurrent: 0
   movementPointsMax: 0
-  pathTotalCost: 0
   inActualMovement: 0
   stopWasCalled: 0
   nextPos: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
+  pathTotalCost: 0
 --- !u!1 &4861264038503043649
 GameObject:
   m_ObjectHideFlags: 0

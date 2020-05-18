@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceStats : MonoBehaviour
+public class ResourceStats2 : MonoBehaviour
 {
     [Header("Costs")]
     public long gold;
@@ -23,14 +23,14 @@ public class ResourceStats : MonoBehaviour
         sulphur = resourceData.sulphur;
     }
 
-    private void IterateAndSum(Dictionary<ResourceStats, int> costs, out long goldCost, out long oreCost, out long aleCost, out long crystalsCost, out long sulphurCost)
+    private void IterateAndSum(Dictionary<ResourceStats2, int> costs, out long goldCost, out long oreCost, out long aleCost, out long crystalsCost, out long sulphurCost)
     {
         goldCost = 0;
         oreCost = 0;
         aleCost = 0;
         crystalsCost = 0;
         sulphurCost = 0;
-        foreach (KeyValuePair<ResourceStats, int> cost in costs)
+        foreach (KeyValuePair<ResourceStats2, int> cost in costs)
         {
             goldCost += cost.Key.gold * cost.Value;
             oreCost += cost.Key.ore * cost.Value;
@@ -40,7 +40,7 @@ public class ResourceStats : MonoBehaviour
         }
     }
 
-    public string WrittenForm(Dictionary<ResourceStats, int> costs)
+    public string WrittenForm(Dictionary<ResourceStats2, int> costs)
     {
         string result = "";
         IterateAndSum(costs, out long goldCost, out long oreCost, out long aleCost, out long crystalsCost, out long sulphurCost);
@@ -56,13 +56,13 @@ public class ResourceStats : MonoBehaviour
         return result;
     }
 
-    public Dictionary<ResourceStats, int> GetCosts(int amount)
+    public Dictionary<ResourceStats2, int> GetCosts(int amount)
     {
-        Dictionary<ResourceStats, int> result = new Dictionary<ResourceStats, int> { [this] = amount };
+        Dictionary<ResourceStats2, int> result = new Dictionary<ResourceStats2, int> { [this] = amount };
         return result;
     }
 
-    public bool CanAfford(Dictionary<ResourceStats, int> costs)
+    public bool CanAfford(Dictionary<ResourceStats2, int> costs)
     {
         IterateAndSum(costs, out long goldCost, out long oreCost, out long aleCost, out long crystalsCost, out long sulphurCost);
         if (gold < goldCost) return false;
@@ -73,7 +73,7 @@ public class ResourceStats : MonoBehaviour
         return true;
     }
 
-    public bool Add(Dictionary<ResourceStats, int> costs)
+    public bool Add(Dictionary<ResourceStats2, int> costs)
     {
         //if (!CanAfford(costs)) return false;
         IterateAndSum(costs, out long goldCost, out long oreCost, out long aleCost, out long crystalsCost, out long sulphurCost);
@@ -85,7 +85,7 @@ public class ResourceStats : MonoBehaviour
         return true;
     }
 
-    public bool Subtract(Dictionary<ResourceStats, int> costs)
+    public bool Subtract(Dictionary<ResourceStats2, int> costs)
     {
         if (!CanAfford(costs)) return false;
         IterateAndSum(costs, out long goldCost, out long oreCost, out long aleCost, out long crystalsCost, out long sulphurCost);

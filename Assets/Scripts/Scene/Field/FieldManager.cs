@@ -100,7 +100,7 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         {
             case PickupType.RESOURCE:
                 Player owner = party.pieceOwner.GetOwner();
-                ResourceStats resources = owner.currentResources;
+                ResourceStats2 resources = owner.currentResources;
                 long amount = pickup.resourceAmount;
                 switch (pickup.dbResource.resourceType)
                 {

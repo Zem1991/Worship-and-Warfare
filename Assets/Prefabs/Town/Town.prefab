@@ -63,10 +63,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1316065205836614395}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70d83c1bcf2c2f14db7cca655f18e037, type: 3}
+  m_Script: {fileID: 11500000, guid: 74807676fdd32154dbdc70e9345174e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gold: 1000
+  gold: 0
   ore: 0
   ale: 0
   crystals: 0

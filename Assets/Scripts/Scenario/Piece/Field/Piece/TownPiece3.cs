@@ -6,10 +6,10 @@ using UnityEngine;
 [RequireComponent(typeof(PieceController3))]
 public class TownPiece3 : AbstractFieldPiece3, IFlaggablePiece
 {
-    [Header("Self references")]
+    [Header("Object components")]
     public SpriteRenderer flagSpriteRenderer;
 
-    [Header("Player references")]
+    [Header("Object components")]
     public PieceOwner3 pieceOwner;
     public PieceController3 pieceController;
 
@@ -32,7 +32,7 @@ public class TownPiece3 : AbstractFieldPiece3, IFlaggablePiece
 
     protected override void AP3_UpdateAnimatorParameters()
     {
-        throw new System.NotImplementedException();
+        //TODO: throw new System.NotImplementedException();
     }
 
     public override string AFP3_GetPieceTitle()
