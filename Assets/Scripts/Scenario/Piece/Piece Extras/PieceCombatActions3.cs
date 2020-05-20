@@ -75,7 +75,7 @@ public class PieceCombatActions3 : MonoBehaviour
     public IEnumerator Attack(CombatantPiece3 target)
     {
         AttackStats2 attack = EvaluateRangedAttack(target) ? piece.offenseStats.attack_ranged : piece.offenseStats.attack_melee;
-        if (attack.attackType == AttackType.RANGED)     //TODO: change this to a switch?
+        if (attack.IsRanged())
         {
             stateAttack = true;
             yield return StartCoroutine(AttackRanged(attack, target));
@@ -141,10 +141,10 @@ public class PieceCombatActions3 : MonoBehaviour
     }
     private IEnumerator AttackStart(AttackStats2 attack)
     {
-        if (attack.attackType == AttackType.RANGED) rangedAttackStart = true;
+        if (attack.IsRanged()) rangedAttackStart = true;
         else meleeAttackStart = true;
 
-        string stateName = attack.GetAttackAnimatorStateName() + " start";
+        string stateName = attack.GetAnimatorStateName() + " start";
         yield return StartCoroutine(piece.WaitForAnimationStartAndEnd(stateName));
 
         rangedAttackStart = false;
@@ -152,10 +152,10 @@ public class PieceCombatActions3 : MonoBehaviour
     }
     private IEnumerator AttackEnd(AttackStats2 attack)
     {
-        if (attack.attackType == AttackType.RANGED) rangedAttackEnd = true;
+        if (attack.IsRanged()) rangedAttackEnd = true;
         else meleeAttackEnd = true;
 
-        string stateName = attack.GetAttackAnimatorStateName() + " end";
+        string stateName = attack.GetAnimatorStateName() + " end";
         yield return StartCoroutine(piece.WaitForAnimationStartAndEnd(stateName));
 
         rangedAttackEnd = false;

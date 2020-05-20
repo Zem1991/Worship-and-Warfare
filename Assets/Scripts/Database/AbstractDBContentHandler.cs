@@ -36,14 +36,17 @@ public abstract class AbstractDBContentHandler<T> : AbstractSingleton<AbstractDB
 
     private bool Validate(T item)
     {
-        bool correctType = item.GetType() == typeof(T);
+        Type itemType = item.GetType();
+        Type handlerType = typeof(T);
+
+        bool correctType = itemType == handlerType || itemType.IsSubclassOf(handlerType);
         if (correctType && VerifyContent(item))
         {
             return true;
         }
         else
         {
-            Debug.LogWarning("Content is not valid! " + item);
+            Debug.LogWarning(GetType() + ": Content is not valid! " + item);
             return false;
         }
     }

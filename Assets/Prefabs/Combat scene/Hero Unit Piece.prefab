@@ -150,9 +150,9 @@ MonoBehaviour:
   stateDead: 0
   pieceMovement: {fileID: 4202918246079486295}
   abstractUnit: {fileID: 0}
-  uiBarRect: {fileID: 0}
-  uiHealthBar: {fileID: 0}
-  uiManaBar: {fileID: 0}
+  uiBarRect: {fileID: 8370928988176161857}
+  uiHealthBar: {fileID: 7012704643545074942}
+  uiManaBar: {fileID: 7515529746338158738}
 --- !u!114 &-6617870719839402278
 MonoBehaviour:
   m_ObjectHideFlags: 0

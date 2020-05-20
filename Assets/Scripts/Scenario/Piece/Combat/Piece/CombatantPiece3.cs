@@ -58,8 +58,6 @@ public class CombatantPiece3 : AbstractCombatPiece3, IFlaggablePiece, IStartTurn
 
     public virtual void Initialize(Player owner, int spawnId, bool onDefenderSide, AbstractUnit abstractUnit)
     {
-        Initialize(owner, spawnId, onDefenderSide);
-
         settingsStats = Instantiate(abstractUnit.settingsStats, transform);
         healthStats = Instantiate(abstractUnit.healthStats, transform);
         movementStats = Instantiate(abstractUnit.movementStats, transform);
@@ -67,6 +65,8 @@ public class CombatantPiece3 : AbstractCombatPiece3, IFlaggablePiece, IStartTurn
         offenseStats = Instantiate(abstractUnit.offenseStats, transform);
         defenseStats = Instantiate(abstractUnit.defenseStats, transform);
         abilityStats = Instantiate(abstractUnit.abilityStats, transform);
+
+        Initialize(owner, spawnId, onDefenderSide);
     }
 
     protected override void AP3_UpdateAnimatorParameters()

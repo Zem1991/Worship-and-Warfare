@@ -5,13 +5,15 @@ using UnityEngine.UI;
 
 public class HeroUnitPiece3 : UnitPiece3
 {
-    [Header("UI references")]
+    [Header("UI components")]
     public RectTransform uiBarRect;
     public Image uiHealthBar;
     public Image uiManaBar;
 
-    protected void Update()
+    protected override void Update()
     {
+        base.Update();
+
         bool showUI = !stateDead && ICP_IsIdle();
         uiBarRect.gameObject.SetActive(showUI);
         uiHealthBar.fillAmount = ((float)healthStats.hitPoints_current) / healthStats.hitPoints_maximum;

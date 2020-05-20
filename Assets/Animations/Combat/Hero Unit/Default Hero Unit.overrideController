@@ -6,7 +6,7 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Default Hero Class
+  m_Name: Default Hero Unit
   m_Controller: {fileID: 9100000, guid: 0d6d443a90fc70f47a27039e491b8a9f, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: ed48199e969bed945b4353ccbd2bdbe3, type: 2}

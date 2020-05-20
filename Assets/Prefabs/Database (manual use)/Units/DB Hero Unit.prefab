@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b8bee8f19658b34c9689c6111b04d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackType: 0
+  attackType: 1
   damage_minimum: 0
   damage_maximum: 0
   range_effective: 0
@@ -261,8 +261,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b0a04b6baa564e42bd0babc8d339f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack_melee: {fileID: 0}
-  attack_ranged: {fileID: 0}
+  attack_melee: {fileID: 7968190528464001522}
+  attack_ranged: {fileID: 7968190527358082474}
 --- !u!114 &5633273982083387625
 MonoBehaviour:
   m_ObjectHideFlags: 0

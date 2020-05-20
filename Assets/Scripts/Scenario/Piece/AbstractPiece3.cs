@@ -22,7 +22,7 @@ public abstract class AbstractPiece3 : MonoBehaviour
     public AES_Action targetAction;
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         AP3_UpdateAnimatorParameters();
     }
@@ -46,6 +46,7 @@ public abstract class AbstractPiece3 : MonoBehaviour
 
     public IEnumerator WaitForAnimationStartAndEnd(string animationName)
     {
+        Debug.Log(GetType() + " " + name + " is now waiting for animation '" + animationName + "' to start and finish.");
         AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
         while (!state.IsName(animationName))
         {

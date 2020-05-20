@@ -405,10 +405,10 @@ MonoBehaviour:
   stateDead: 0
   pieceMovement: {fileID: -5209333186639248112}
   abstractUnit: {fileID: 0}
-  uiBarRect: {fileID: 0}
-  uiHealthBar: {fileID: 0}
-  uiStackRect: {fileID: 0}
-  uiStackSizeText: {fileID: 0}
+  uiBarRect: {fileID: 6734687663200126650}
+  uiHealthBar: {fileID: 6118970350500758784}
+  uiStackRect: {fileID: 6190365414205256803}
+  uiStackSizeText: {fileID: 3230601344201870513}
 --- !u!114 &8516396809573870807
 MonoBehaviour:
   m_ObjectHideFlags: 0

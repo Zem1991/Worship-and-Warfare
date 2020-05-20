@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CombatUnitPiece3 : UnitPiece3
 {
-    [Header("UI references")]
+    [Header("UI components")]
     public RectTransform uiBarRect;
     public Image uiHealthBar;
     public RectTransform uiStackRect;
@@ -13,8 +13,10 @@ public class CombatUnitPiece3 : UnitPiece3
 
     //TODO stack size at battle start?
 
-    protected void Update()
+    protected override void Update()
     {
+        base.Update();
+
         bool showUI = !stateDead && ICP_IsIdle();
         uiBarRect.gameObject.SetActive(showUI);
         uiHealthBar.fillAmount = ((float)healthStats.hitPoints_current) / healthStats.hitPoints_maximum;

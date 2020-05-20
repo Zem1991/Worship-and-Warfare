@@ -23,8 +23,8 @@ public class AttackStats2 : MonoBehaviour
         return attackType == AttackType.RANGED;
     }
 
-    public string GetAttackAnimatorStateName()
+    public string GetAnimatorStateName()
     {
-        throw new NotImplementedException();
+        return attackType.GetAnimatorStateName();
     }
 }
