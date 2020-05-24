@@ -5977,7 +5977,7 @@ GameObject:
   - component: {fileID: 1067524447}
   - component: {fileID: 1067524446}
   m_Layer: 5
-  m_Name: Sulphur Counter
+  m_Name: Sulfur Counter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10024,7 +10024,7 @@ GameObject:
   - component: {fileID: 1676848042}
   - component: {fileID: 1676848041}
   m_Layer: 5
-  m_Name: Txt Sulphur
+  m_Name: Txt Sulfur
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

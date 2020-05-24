@@ -343,6 +343,13 @@ GameObject:
   - component: {fileID: -1768015997571773248}
   - component: {fileID: 1992955084037246452}
   - component: {fileID: -5209333186639248112}
+  - component: {fileID: 3471655627216139495}
+  - component: {fileID: 3575137935134599503}
+  - component: {fileID: 4353865259088613636}
+  - component: {fileID: 7461851743874941033}
+  - component: {fileID: 4337162273343400104}
+  - component: {fileID: 3659796615192814425}
+  - component: {fileID: 4010307031207331851}
   m_Layer: 0
   m_Name: Combat Unit Piece
   m_TagString: Untagged
@@ -392,13 +399,13 @@ MonoBehaviour:
   pieceOwner: {fileID: 8516396809573870807}
   pieceController: {fileID: -1768015997571773248}
   pieceCombatActions: {fileID: 1992955084037246452}
-  settingsStats: {fileID: 0}
-  healthStats: {fileID: 0}
-  movementStats: {fileID: 0}
-  attributeStats: {fileID: 0}
-  offenseStats: {fileID: 0}
-  defenseStats: {fileID: 0}
-  abilityStats: {fileID: 0}
+  settingsStats: {fileID: 3471655627216139495}
+  healthStats: {fileID: 3575137935134599503}
+  movementStats: {fileID: 4353865259088613636}
+  attributeStats: {fileID: 7461851743874941033}
+  offenseStats: {fileID: 4337162273343400104}
+  defenseStats: {fileID: 3659796615192814425}
+  abilityStats: {fileID: 4010307031207331851}
   spawnId: 0
   onDefenderSide: 0
   stateHurt: 0
@@ -485,6 +492,116 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
   pathTotalCost: 0
+--- !u!114 &3471655627216139495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6036333515219936311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7af83eae984d8e468ffb0cbf896e174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canWait: 1
+  canDefend: 1
+  canRetaliate: 1
+  canCounter: 0
+  retaliationsMax: 1
+--- !u!114 &3575137935134599503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6036333515219936311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ea7418770599714e9078acb261b9ff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPoints_current: 0
+  hitPoints_maximum: 0
+  stackSize: 0
+  previousStackSize: 0
+--- !u!114 &4353865259088613636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6036333515219936311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38e67b29d8ba4a04b86fbd208499ab1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initiative: 0
+  movementRange: 0
+  movementType: 0
+--- !u!114 &7461851743874941033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6036333515219936311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a83e485ba7bcdd143b5c4d4cc0fa46d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attributes:
+    offense: 0
+    defense: 0
+    support: 0
+    command: 0
+    magic: 0
+    tech: 0
+--- !u!114 &4337162273343400104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6036333515219936311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b0a04b6baa564e42bd0babc8d339f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack_melee: {fileID: 0}
+  attack_ranged: {fileID: 0}
+--- !u!114 &3659796615192814425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6036333515219936311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f74c10482f7fa8a4087d7fb4ba440bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armor_physical: 0
+  armor_magical: 0
+--- !u!114 &4010307031207331851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6036333515219936311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8a5744353efb2143a4fd34cb544fb2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ability1: {fileID: 0}
+  ability2: {fileID: 0}
+  ability3: {fileID: 0}
 --- !u!1 &6661559027028567187
 GameObject:
   m_ObjectHideFlags: 0

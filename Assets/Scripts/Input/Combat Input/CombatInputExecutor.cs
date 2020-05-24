@@ -155,7 +155,6 @@ public class CombatInputExecutor : AbstractInputExecutor<CombatInputInterpreter,
             StartCoroutine(actp.pieceCombatActions.Wait());
         }
     }
-
     public void MakeSelectedPieceDefend()
     {
         CombatantPiece3 actp = selectionPiece as CombatantPiece3;
@@ -164,6 +163,18 @@ public class CombatInputExecutor : AbstractInputExecutor<CombatInputInterpreter,
         if (selectionPiece && canCommandSelectedPiece && !actp.pieceCombatActions.stateDefend)
         {
             StartCoroutine(actp.pieceCombatActions.Defend());
+        }
+    }
+    public void MakeSelectedPieceUseAbility(int abilityId)
+    {
+        CombatantPiece3 actp = selectionPiece as CombatantPiece3;
+        if (!actp) return;
+
+        if (selectionPiece && canCommandSelectedPiece && !actp.pieceCombatActions.stateDefend)
+        {
+            DB_Ability ability = actp.abilityStats.GetFromId(abilityId);
+            List<AbstractTile> targetArea = new List<AbstractTile> { actp.currentTile };    //TODO: is casting against self!
+            StartCoroutine(actp.pieceCombatActions.Ability(abilityId, ability, targetArea));     
         }
     }
 

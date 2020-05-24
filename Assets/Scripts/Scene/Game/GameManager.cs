@@ -145,13 +145,15 @@ public class GameManager : AbstractSingleton<GameManager>
                 StartCoroutine(SceneLoader.Instance.LoadScene_Town());
 
         timeElapsed = TimeSpan.Zero;
-        ChangeSchemes(GameScheme.FIELD);
+        //ChangeSchemes(GameScheme.FIELD);
 
         ScenarioManager.Instance.StartScenario(scenarioFileData);
         scenarioBooted = true;
 
         FieldManager.Instance.currentTurn = 0;
         FieldManager.Instance.NextTurnForAll();
+
+        ChangeSchemes(GameScheme.FIELD);
         scenarioStarted = true;
     }
 }

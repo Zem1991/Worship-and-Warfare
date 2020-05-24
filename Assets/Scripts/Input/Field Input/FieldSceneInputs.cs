@@ -39,6 +39,6 @@ public class FieldSceneInputs : AbstractSingleton<FieldSceneInputs>, IShowableHi
 
     public CameraController GetCameraController()
     {
-        return executor.cameraController;
+        return executor.GetCameraController();
     }
 }

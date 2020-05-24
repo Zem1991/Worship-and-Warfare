@@ -9,7 +9,7 @@ public class FieldUI_Panel_Resources : AbstractUIPanel
     public Text txtOre;
     public Text txtAle;
     public Text txtCrystals;
-    public Text txtSulphur;
+    public Text txtSulfur;
 
     public void UpdatePanel(Player player)
     {
@@ -17,6 +17,6 @@ public class FieldUI_Panel_Resources : AbstractUIPanel
         txtOre.text = "" + player.currentResources.ore;
         txtAle.text = "" + player.currentResources.ale;
         txtCrystals.text = "" + player.currentResources.crystals;
-        txtSulphur.text = "" + player.currentResources.sulphur;
+        txtSulfur.text = "" + player.currentResources.sulfur;
     }
 }

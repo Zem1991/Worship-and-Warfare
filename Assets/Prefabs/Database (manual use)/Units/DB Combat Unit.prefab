@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd0bf20103dbedb47b554856908a56ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: Prefab Combat Unit
+  id: DB Combat Unit
   profilePicture: {fileID: 0}
   unitType: 0
   resourceStats: {fileID: 213570831495507022}
@@ -67,8 +67,8 @@ MonoBehaviour:
   animatorField: {fileID: 22100000, guid: 6e1ef4cba0109c54f8afd22be7a1f7d5, type: 2}
   animatorCombat: {fileID: 22100000, guid: b17903f123e36f5408544550990eff5e, type: 2}
   faction: {fileID: 0}
-  unitNameSingular: Prefab Combat Unit
-  unitNamePlural: Prefab Combat Units
+  unitNameSingular: DB Combat Unit
+  unitNamePlural: DB Combat Units
   tier: 1
   experienceValue: 10
 --- !u!114 &213570831495507022
@@ -87,7 +87,7 @@ MonoBehaviour:
   ore: 0
   ale: 0
   crystals: 0
-  sulphur: 0
+  sulfur: 0
 --- !u!114 &1001761857374812662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,6 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackType: 1
+  canUseRanged: 1
   damage_minimum: 0
   damage_maximum: 0
   range_effective: 0
@@ -291,6 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackType: 0
+  canUseRanged: 1
   damage_minimum: 0
   damage_maximum: 0
   range_effective: 0

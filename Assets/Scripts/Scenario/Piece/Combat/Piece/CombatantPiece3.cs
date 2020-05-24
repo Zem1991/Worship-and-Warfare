@@ -5,6 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(PieceOwner3))]
 [RequireComponent(typeof(PieceController3))]
 [RequireComponent(typeof(PieceCombatActions3))]
+[RequireComponent(typeof(SettingsStats2))]
+[RequireComponent(typeof(HealthStats2))]
+[RequireComponent(typeof(MovementStats2))]
+[RequireComponent(typeof(AttributeStats2))]
+[RequireComponent(typeof(OffenseStats2))]
+[RequireComponent(typeof(DefenseStats2))]
+[RequireComponent(typeof(AbilityStats2))]
 public class CombatantPiece3 : AbstractCombatPiece3, IFlaggablePiece, IStartTurnEndTurn, ICommandablePiece
 {
     [Header("Object components")]
@@ -15,7 +22,7 @@ public class CombatantPiece3 : AbstractCombatPiece3, IFlaggablePiece, IStartTurn
     public PieceController3 pieceController;
     public PieceCombatActions3 pieceCombatActions;
 
-    [Header("Stats references")]
+    [Header("Object components")]
     public SettingsStats2 settingsStats;
     public HealthStats2 healthStats;
     public MovementStats2 movementStats;
@@ -56,19 +63,6 @@ public class CombatantPiece3 : AbstractCombatPiece3, IFlaggablePiece, IStartTurn
         IFP_SetFlagSprite(owner.dbColor.imgFlag);
     }
 
-    public virtual void Initialize(Player owner, int spawnId, bool onDefenderSide, AbstractUnit abstractUnit)
-    {
-        settingsStats = Instantiate(abstractUnit.settingsStats, transform);
-        healthStats = Instantiate(abstractUnit.healthStats, transform);
-        movementStats = Instantiate(abstractUnit.movementStats, transform);
-        attributeStats = Instantiate(abstractUnit.attributeStats, transform);
-        offenseStats = Instantiate(abstractUnit.offenseStats, transform);
-        defenseStats = Instantiate(abstractUnit.defenseStats, transform);
-        abilityStats = Instantiate(abstractUnit.abilityStats, transform);
-
-        Initialize(owner, spawnId, onDefenderSide);
-    }
-
     protected override void AP3_UpdateAnimatorParameters()
     {
         animator.SetBool("Hurt", stateHurt);
@@ -79,6 +73,15 @@ public class CombatantPiece3 : AbstractCombatPiece3, IFlaggablePiece, IStartTurn
 
         animator.SetBool("Ranged attack start", pieceCombatActions.rangedAttackStart);
         animator.SetBool("Ranged attack end", pieceCombatActions.rangedAttackEnd);
+
+        animator.SetBool("Ability 1 start", pieceCombatActions.ability1Start);
+        animator.SetBool("Ability 1 end", pieceCombatActions.ability1End);
+
+        animator.SetBool("Ability 2 start", pieceCombatActions.ability2Start);
+        animator.SetBool("Ability 2 end", pieceCombatActions.ability2End);
+
+        animator.SetBool("Ability 3 start", pieceCombatActions.ability3Start);
+        animator.SetBool("Ability 3 end", pieceCombatActions.ability3End);
     }
 
     //public override string AFP3_GetPieceTitle()

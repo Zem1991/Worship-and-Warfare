@@ -146,6 +146,8 @@ public class CombatMap : AbstractMap<CombatTile>
 
     public void AddRandomObstacles(DB_Tileset tileset)
     {
+        if (tileset.combatObstacles.Count <= 0) return;
+
         DoodadPiece3 prefab = AllPrefabs.Instance.combatDoodad;
         System.Random rand = new System.Random();
         List<CombatTile> values = Enumerable.ToList(tiles.Values);
@@ -161,7 +163,8 @@ public class CombatMap : AbstractMap<CombatTile>
             if (cTile.posId.x >= maxTilesX - 2) continue;
             if (cTile.GetBlockedNeighbours().Count > 0) continue;
 
-            DB_CombatObstacle dbObstacle = tileset.combatObstacles[rand.Next(tileset.combatObstacles.Count)];
+            int aux = rand.Next(tileset.combatObstacles.Count);
+            DB_CombatObstacle dbObstacle = tileset.combatObstacles[aux];
 
             DoodadPiece3 obstacle = Instantiate(prefab, cTile.transform);
             obstacle.SetMainSprite(dbObstacle.imgObstacle, SpriteOrderConstants.OBSTACLE);

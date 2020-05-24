@@ -1,0 +1,1586 @@
+{
+  "scenarioData": {
+    "name": "Cold Divide",
+    "author": "Zem",
+    "width": 20,
+    "height": 20
+  },
+  "players": [
+    {
+      "name": "Human",
+      "colorId": "Red",
+      "playerType": "Human",
+      "resourceData": {
+        "gold": 1000,
+        "ore": 10,
+        "ale": 10,
+        "crystals": 10,
+        "sulfur": 10
+      }
+    },
+    {
+      "name": "Computer",
+      "colorId": "Blue",
+      "playerType": "Computer",
+      "resourceData": {
+        "gold": 1000,
+        "ore": 10,
+        "ale": 10,
+        "crystals": 10,
+        "sulfur": 10
+      }
+    }
+  ],
+  "map": {
+    "tiles": [
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "waterId": "Water"
+      },
+      {
+        "waterId": "Water"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "waterId": "Water"
+      },
+      {
+        "waterId": "Water"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "waterId": "Water"
+      },
+      {
+        "waterId": "Water"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "waterId": "Water"
+      },
+      {
+        "waterId": "Water"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Trees"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Snowfield",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      },
+      {
+        "lowerLandId": "Taiga",
+        "featureId": "Mountains"
+      }
+    ]
+  },
+  "towns": [
+    {
+      "mapPosition": [
+        5,
+        5
+      ],
+      "ownerId": 1,
+      "factionId": "Default",
+      "townName": "Red Town",
+      "townBuildings": [
+        {
+          "townBuildingId": "Village Hall (DF)"
+        }
+      ]
+    },
+    {
+      "mapPosition": [
+        14,
+        14
+      ],
+      "ownerId": 2,
+      "factionId": "Default",
+      "townName": "Blue Town",
+      "townBuildings": [
+        {
+          "townBuildingId": "Village Hall (DF)"
+        }
+      ]
+    }
+  ],
+  "parties": [
+    {
+      "mapPosition": [
+        5,
+        6
+      ],
+      "ownerId": 1,
+      "hero": {
+        "id": "Christian",
+        "inventoryData": {}
+      },
+      "units": [
+        {
+          "id": "Pikeman",
+          "stackData": {
+            "stack_maximum": 35
+          }
+        },
+        {
+          "id": "Archer",
+          "stackData": {
+            "stack_maximum": 30
+          }
+        },
+        {
+          "id": "Monk",
+          "stackData": {
+            "stack_maximum": 20
+          }
+        },
+        {
+          "id": "Cavalry",
+          "stackData": {
+            "stack_maximum": 12
+          }
+        }
+      ]
+    },
+    {
+      "mapPosition": [
+        5,//14,
+        7//13
+      ],
+      "ownerId": 2,
+      "hero": {
+        "id": "Christian",
+        "inventoryData": {}
+      },
+      "units": [
+        {
+          "id": "Pikeman",
+          "stackData": {
+            "stack_maximum": 10
+          }
+        },
+        {
+          "id": "Pikeman",
+          "stackData": {
+            "stack_maximum": 10
+          }
+        }
+      ]
+    }
+  ]
+}

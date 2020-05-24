@@ -8,6 +8,7 @@ public class AES_Formula : MonoBehaviour
 
     public int EvaluateFormula()
     {
-        return 15;  //TODO THIS LATER
+        //TODO make my own formula parser
+        return int.Parse(formula);
     }
 }

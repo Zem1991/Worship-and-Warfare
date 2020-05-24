@@ -12830,7 +12830,7 @@ MonoBehaviour:
   txtOre: {fileID: 1650451847}
   txtAle: {fileID: 277699960}
   txtCrystals: {fileID: 152445726}
-  txtSulphur: {fileID: 2055894464}
+  txtSulfur: {fileID: 2055894464}
 --- !u!1 &1407443220
 GameObject:
   m_ObjectHideFlags: 0
@@ -18311,7 +18311,7 @@ GameObject:
   - component: {fileID: 1975561921}
   - component: {fileID: 1975561920}
   m_Layer: 5
-  m_Name: Sulphur Counter
+  m_Name: Sulfur Counter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18449,7 +18449,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2dfbaa91b770d847832eeb9084b1640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraController: {fileID: 0}
   cursorTile: {fileID: 0}
   cursorPiece: {fileID: 0}
   cursorPos: {x: 0, y: 0}
@@ -18682,7 +18681,7 @@ GameObject:
   - component: {fileID: 2055894465}
   - component: {fileID: 2055894464}
   m_Layer: 5
-  m_Name: Txt Sulphur
+  m_Name: Txt Sulfur
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

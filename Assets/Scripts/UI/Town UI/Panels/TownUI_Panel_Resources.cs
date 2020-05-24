@@ -17,6 +17,6 @@ public class TownUI_Panel_Resources : AbstractUIPanel
         txtOre.text = "" + player.currentResources.ore;
         txtAle.text = "" + player.currentResources.ale;
         txtCrystals.text = "" + player.currentResources.crystals;
-        txtSulphur.text = "" + player.currentResources.sulphur;
+        txtSulphur.text = "" + player.currentResources.sulfur;
     }
 }

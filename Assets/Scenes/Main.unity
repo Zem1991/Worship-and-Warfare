@@ -423,6 +423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e2ec1a3eb3edbe47918eb4a9e219eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TEST_SCENARIO_NAME: Cold Divide
 --- !u!1 &1006712547
 GameObject:
   m_ObjectHideFlags: 0

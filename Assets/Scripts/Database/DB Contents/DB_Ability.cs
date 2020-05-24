@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class DB_Ability : AbstractDBContent
 {
+    [Header("Ability identification")]
     public new string name;
     public Sprite sprite;
 
-    [Header("Action")]
+    [Header("Action identification")]
     public AES_Action action;
 }

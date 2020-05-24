@@ -71,7 +71,7 @@ public class CombatSceneHighlights : AbstractSingleton<CombatSceneHighlights>, I
     private void MoveHighlights()
     {
         CombatInputExecutor cie = CombatSceneInputs.Instance.executor;
-        CombatUnitPiece3 actp = cie.selectionPiece as CombatUnitPiece3;
+        UnitPiece3 actp = cie.selectionPiece as UnitPiece3;
 
         bool currentMoving = movePiece && !movePiece.ICP_IsIdle();
         bool currentNotSelected = movePiece != actp;
@@ -117,7 +117,7 @@ public class CombatSceneHighlights : AbstractSingleton<CombatSceneHighlights>, I
         movePathHighlights.Clear();
     }
 
-    private void CreateMoveAreaHighlights(CombatUnitPiece3 actp)
+    private void CreateMoveAreaHighlights(UnitPiece3 actp)
     {
         Debug.Log("CombatSceneHighlights - CreateMoveAreaHighlights()");
         PieceMovement3 pm2 = actp.pieceMovement;
@@ -125,7 +125,7 @@ public class CombatSceneHighlights : AbstractSingleton<CombatSceneHighlights>, I
             pm2.movementPointsCurrent, Pathfinder.OctoHeuristic, true, false, false);
     }
 
-    private void CreateMovePathHighlights(CombatUnitPiece3 actp)
+    private void CreateMovePathHighlights(UnitPiece3 actp)
     {
         Debug.Log("CombatSceneHighlights - CreateMovePathHighlights()");
         PieceMovement3 pm2 = actp.pieceMovement;
@@ -136,10 +136,10 @@ public class CombatSceneHighlights : AbstractSingleton<CombatSceneHighlights>, I
     private void ActionHighlights()
     {
         CombatInputExecutor cie = CombatSceneInputs.Instance.executor;
-        CombatUnitPiece3 actp = cie.selectionPiece as CombatUnitPiece3;
+        UnitPiece3 actp = cie.selectionPiece as UnitPiece3;
         if (!actp) return;
 
-        CombatUnitPiece3 target = actp.targetPiece as CombatUnitPiece3;
+        UnitPiece3 target = actp.targetPiece as UnitPiece3;
 
         bool targetChanged = target != targetPiece;
 

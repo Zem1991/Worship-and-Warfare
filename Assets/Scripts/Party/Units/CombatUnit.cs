@@ -6,10 +6,10 @@ public class CombatUnit : AbstractUnit
 {
     public void Initialize(DB_CombatUnit dbCombatUnit, int stack_maximum)
     {
-        name = dbCombatUnit.unitNameSingular;
         Initialize(dbCombatUnit);
+        name = dbCombatUnit.unitNameSingular;
 
-        GetStackHealthStats().Initialize(stack_maximum);
+        GetStackHealthStats().CopyFrom(dbCombatUnit.healthStats);
     }
 
     public DB_CombatUnit GetDBCombatUnit()

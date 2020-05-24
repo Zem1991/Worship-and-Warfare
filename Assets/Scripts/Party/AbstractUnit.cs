@@ -2,12 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SettingsStats2))]
+[RequireComponent(typeof(HealthStats2))]
+[RequireComponent(typeof(MovementStats2))]
+[RequireComponent(typeof(AttributeStats2))]
+[RequireComponent(typeof(OffenseStats2))]
+[RequireComponent(typeof(DefenseStats2))]
+[RequireComponent(typeof(AbilityStats2))]
 public abstract class AbstractUnit : MonoBehaviour
 {
     [Header("Database references")]
     [SerializeField] protected DB_Unit dbUnit;
 
-    [Header("Unit stats")]
+    [Header("Object components")]
     public SettingsStats2 settingsStats;
     public HealthStats2 healthStats;
     public MovementStats2 movementStats;
@@ -20,13 +27,13 @@ public abstract class AbstractUnit : MonoBehaviour
     {
         this.dbUnit = dbUnit;
 
-        settingsStats = Instantiate(dbUnit.settingsStats, transform);
-        healthStats = Instantiate(dbUnit.healthStats, transform);
-        movementStats = Instantiate(dbUnit.movementStats, transform);
-        attributeStats = Instantiate(dbUnit.attributeStats, transform);
-        offenseStats = Instantiate(dbUnit.offenseStats, transform);
-        defenseStats = Instantiate(dbUnit.defenseStats, transform);
-        abilityStats = Instantiate(dbUnit.abilityStats, transform);
+        settingsStats.CopyFrom(dbUnit.settingsStats);
+        healthStats.CopyFrom(dbUnit.healthStats);
+        movementStats.CopyFrom(dbUnit.movementStats);
+        attributeStats.CopyFrom(dbUnit.attributeStats);
+        offenseStats.CopyFrom(dbUnit.offenseStats);
+        defenseStats.CopyFrom(dbUnit.defenseStats);
+        abilityStats.CopyFrom(dbUnit.abilityStats);
     }
 
     public DB_Unit GetDBUnit()

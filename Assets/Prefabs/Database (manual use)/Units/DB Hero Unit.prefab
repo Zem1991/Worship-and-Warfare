@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackType: 0
+  canUseRanged: 1
   damage_minimum: 0
   damage_maximum: 0
   range_effective: 0
@@ -93,6 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackType: 1
+  canUseRanged: 1
   damage_minimum: 0
   damage_maximum: 0
   range_effective: 0
@@ -151,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4631cf7fddea526478aac2544ff31100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: Prefab Hero Unit
+  id: DB Hero Unit
   profilePicture: {fileID: 0}
   unitType: 1
   resourceStats: {fileID: 6618201411332604168}
@@ -165,7 +167,7 @@ MonoBehaviour:
   animatorField: {fileID: 22100000, guid: 6e1ef4cba0109c54f8afd22be7a1f7d5, type: 2}
   animatorCombat: {fileID: 22100000, guid: f6c787254bbe5094f87725f24314bd04, type: 2}
   faction: {fileID: 0}
-  className: Prefab Hero Unit
+  className: DB Hero Unit
   classType: 0
 --- !u!114 &6618201411332604168
 MonoBehaviour:
@@ -183,7 +185,7 @@ MonoBehaviour:
   ore: 0
   ale: 0
   crystals: 0
-  sulphur: 0
+  sulfur: 0
 --- !u!114 &8398208752061966433
 MonoBehaviour:
   m_ObjectHideFlags: 0

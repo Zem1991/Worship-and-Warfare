@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -19,8 +20,15 @@ public class PieceCombatActions3 : MonoBehaviour
     public bool stateDefend;
     public bool stateAttack;
     public bool stateRetaliation;
+    public bool stateAbility;
 
     [Header("Actions")]
+    public bool ability1Start;
+    public bool ability1End;
+    public bool ability2Start;
+    public bool ability2End;
+    public bool ability3Start;
+    public bool ability3End;
     public bool meleeAttackStart;
     public bool meleeAttackEnd;
     public bool rangedAttackStart;
@@ -40,7 +48,8 @@ public class PieceCombatActions3 : MonoBehaviour
     public bool IsIdle()
     {
         return !stateAttack
-            && !stateRetaliation;
+            && !stateRetaliation
+            && !stateAbility;
     }
 
     /*
@@ -50,14 +59,14 @@ public class PieceCombatActions3 : MonoBehaviour
     {
         stateWait = true;
         CombatManager.Instance.AddUnitToWaitSequence(piece);
-        piece.ISTET_EndTurn();
         yield return true;
+        piece.ISTET_EndTurn();
     }
     public IEnumerator Defend()
     {
         stateDefend = true;
-        piece.ISTET_EndTurn();
         yield return true;
+        piece.ISTET_EndTurn();
     }
     /*
     *   END:        Wait and Defend
@@ -114,7 +123,7 @@ public class PieceCombatActions3 : MonoBehaviour
         yield return StartCoroutine(AttackStart(attack));
         int damage = CalculateDamage(attack, target);
 
-        IEnumerator[] ienumerators =
+        List<IEnumerator> ienumerators = new List<IEnumerator>
         {
             AttackEnd(attack),
             target.ReceiveDamage(damage)
@@ -132,7 +141,7 @@ public class PieceCombatActions3 : MonoBehaviour
 
         int damage = CalculateDamage(attack, target);
 
-        IEnumerator[] ienumerators =
+        List<IEnumerator> ienumerators = new List<IEnumerator>
         {
             attackEnd,
             target.ReceiveDamage(damage)
@@ -168,20 +177,17 @@ public class PieceCombatActions3 : MonoBehaviour
         HeroUnitPiece3 defenderHero = cph.GetHero(target.pieceOwner.GetOwner());
         return AttackCalculation.FullDamageCalculation(attack, piece, target, attackerHero, defenderHero);
     }
-    private void SpawnProjectile(AttackStats2 attack, CombatantPiece3 target)
-    {
-        Projectile prefab = AllPrefabs.Instance.projectile;
-        projectile = Instantiate(prefab, transform);
-        projectile.SetupAndGo(attack, piece, target);
-    }
     public bool EvaluateMeleeAttack(CombatantPiece3 targetPiece)
     {
-        bool condition = piece.offenseStats.attack_melee && piece.currentTile.IsNeighbour(targetPiece.currentTile);
+        bool condition = piece.offenseStats.attack_melee 
+            && piece.currentTile.IsNeighbour(targetPiece.currentTile);
         return condition;
     }
     public bool EvaluateRangedAttack(CombatantPiece3 targetPiece)
     {
-        bool condition = piece.offenseStats.attack_ranged && !piece.currentTile.IsNeighbour(targetPiece.currentTile);
+        bool condition = piece.offenseStats.attack_ranged
+            && piece.offenseStats.attack_ranged.canUseRanged
+            && !piece.currentTile.IsNeighbour(targetPiece.currentTile);
         return condition;
     }
     /*
@@ -212,4 +218,76 @@ public class PieceCombatActions3 : MonoBehaviour
     /*
     *   END:        Counter and Retaliation
     */
+
+    /*
+    *   BEGIN:      Ability
+    */
+    public IEnumerator Ability(int abilityId, DB_Ability ability, List<AbstractTile> targetArea, PathfindResults attackTargetPathfind)
+    {
+        ////TODO: does the ability require movement towards the target?
+        //UnitPiece3 pieceAsUnit = piece as UnitPiece3;
+        //if (pieceAsUnit) pieceAsUnit.pieceMovement.SetPath(attackTargetPathfind, pieceAsUnit.targetTile);
+        yield return StartCoroutine(Ability(abilityId, ability, targetArea));
+    }
+    public IEnumerator Ability(int abilityId, DB_Ability ability, List<AbstractTile> targetArea)
+    {
+        stateAbility = true;
+
+        yield return StartCoroutine(AbilityStart(abilityId));
+        //TODO: does the ability spawns an projectile?
+        //SpawnProjectile(attack, target);
+
+        IEnumerator abilityEnd = AbilityEnd(abilityId);
+        StartCoroutine(abilityEnd);
+        yield return null;      //TODO: see this line? This prevents the animator from not entering the next State, but makes it run for one single frame. I need to investigate if the way im trying to wait for multiple coroutines is correct;
+                                //TODO: this and another method for Attack does mostly the same things, I may be able to put it all in a single method to encompass all cases.
+        //TODO: does the ability spawns an projectile?
+        //yield return StartCoroutine(projectile.MakeTrajectory());
+
+        List<IEnumerator> ienumerators = new List<IEnumerator>
+        {
+            abilityEnd,
+            ability.action.Execute(piece, targetArea)
+        };
+        yield return ienumerators.Select(StartCoroutine).ToArray().GetEnumerator();
+
+        stateAbility = false;
+        piece.ISTET_EndTurn();
+    }
+    private IEnumerator AbilityStart(int abilityId)
+    {
+        if (abilityId == 1) ability1Start = true;
+        if (abilityId == 2) ability2Start = true;
+        if (abilityId == 3) ability3Start = true;
+
+        string stateName = "Ability " + abilityId + " start";
+        yield return StartCoroutine(piece.WaitForAnimationStartAndEnd(stateName));
+
+        ability1Start = false;
+        ability2Start = false;
+        ability3Start = false;
+    }
+    private IEnumerator AbilityEnd(int abilityId)
+    {
+        if (abilityId == 1) ability1End = true;
+        if (abilityId == 2) ability2End = true;
+        if (abilityId == 3) ability3End = true;
+
+        string stateName = "Ability " + abilityId + " end";
+        yield return StartCoroutine(piece.WaitForAnimationStartAndEnd(stateName));
+
+        ability1End = false;
+        ability2End = false;
+        ability3End = false;
+    }
+    /*
+    *   END:      Ability
+    */
+
+    private void SpawnProjectile(AttackStats2 attack, CombatantPiece3 target)
+    {
+        Projectile prefab = AllPrefabs.Instance.projectile;
+        projectile = Instantiate(prefab, transform);
+        projectile.SetupAndGo(attack, piece, target);
+    }
 }

@@ -4,5 +4,5 @@
     ORE,
     ALE,
     CRYSTALS,
-    SULPHUR
+    SULFUR
 }

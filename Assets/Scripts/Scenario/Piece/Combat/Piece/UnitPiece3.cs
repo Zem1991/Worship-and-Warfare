@@ -11,10 +11,20 @@ public class UnitPiece3 : CombatantPiece3, IMovablePiece
     [Header("Unit references")]
     public AbstractUnit abstractUnit;
 
-    public override void Initialize(Player owner, int spawnId, bool onDefenderSide, AbstractUnit abstractUnit)
+    public void Initialize(Player owner, int spawnId, bool onDefenderSide, AbstractUnit abstractUnit)
     {
+        Initialize(owner, spawnId, onDefenderSide);
+
         this.abstractUnit = abstractUnit;
-        base.Initialize(owner, spawnId, onDefenderSide, abstractUnit);
+        name = abstractUnit.AU_GetUnitName() + " [" + spawnId + "]";
+
+        settingsStats.CopyFrom(abstractUnit.settingsStats);
+        healthStats.CopyFrom(abstractUnit.healthStats);
+        movementStats.CopyFrom(abstractUnit.movementStats);
+        attributeStats.CopyFrom(abstractUnit.attributeStats);
+        offenseStats.CopyFrom(abstractUnit.offenseStats);
+        defenseStats.CopyFrom(abstractUnit.defenseStats);
+        abilityStats.CopyFrom(abstractUnit.abilityStats);
 
         //GetStackHealthStats().Initialize(unit.GetStackHealthStats().GetStackSize());  todo this for CombatUnits ?
         SetAnimatorOverrideController(abstractUnit.GetDBUnit().animatorCombat);
@@ -24,8 +34,6 @@ public class UnitPiece3 : CombatantPiece3, IMovablePiece
 
     protected override void AP3_UpdateAnimatorParameters()
     {
-        name = abstractUnit.AU_GetUnitName();      //TODO update this at every turn?
-
         base.AP3_UpdateAnimatorParameters();
 
         animator.SetBool("Movement start", pieceMovement.stateMovementStart);

@@ -323,11 +323,15 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         CombatSceneInputs csi = CombatSceneInputs.Instance;
         if (csi.executor.canCommandSelectedPiece) CombatSceneInputs.Instance.executor.MakeSelectedPieceWait();
     }
-
     public void Selection_Defend()
     {
         CombatSceneInputs csi = CombatSceneInputs.Instance;
         if (csi.executor.canCommandSelectedPiece) CombatSceneInputs.Instance.executor.MakeSelectedPieceDefend();
+    }
+    public void Selection_Ability(int id)
+    {
+        CombatSceneInputs csi = CombatSceneInputs.Instance;
+        if (csi.executor.canCommandSelectedPiece) CombatSceneInputs.Instance.executor.MakeSelectedPieceUseAbility(id);
     }
     /*
     * End: UI Bottom Center buttons
@@ -436,8 +440,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
             {
                 CombatUnit unit = asUnit.GetCombatUnit();
                 int amount = unit.GetStackHealthStats().GetStackSize(); //TPDP: - asUnit.stackStats.Get();
-                unit.GetStackHealthStats().SubtractFromStack(amount);
-                if (unit.GetStackHealthStats().GetStackSize() <= 0)
+                if (unit.GetStackHealthStats().SubtractFromStack(amount))
                 {
                     party.party.Remove(unit);
                     Destroy(unit.gameObject);

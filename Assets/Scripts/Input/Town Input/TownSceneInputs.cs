@@ -39,6 +39,6 @@ public class TownSceneInputs : AbstractSingleton<TownSceneInputs>, IShowableHide
 
     public CameraController GetCameraController()
     {
-        return executor.cameraController;
+        return executor.GetCameraController();
     }
 }

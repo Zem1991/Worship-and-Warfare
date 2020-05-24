@@ -74,10 +74,7 @@ public class CombatOperationalAI : AbstractAIRoutine
         Dictionary<CombatantPiece3, PathfindResults> mapUnitPath = new Dictionary<CombatantPiece3, PathfindResults>();
         foreach (CombatantPiece3 unit in unitList)
         {
-            if (!unit.currentTile)
-            {
-                Debug.Log("!!!");
-            }
+            if (unit.stateDead) continue;
 
             Pathfinder.FindPath(currentUnit.currentTile, unit.currentTile,
                 Pathfinder.HexHeuristic, true, false, false,

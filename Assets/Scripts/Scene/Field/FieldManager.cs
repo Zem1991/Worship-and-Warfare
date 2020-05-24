@@ -60,14 +60,15 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
 
         currentTurn++;
         pm.RefreshTurnForActivePlayers(currentTurn);
-        currentPlayer = pm.activePlayers[0];
 
         NextDayWeekMonth();
-
         foreach (var item in pieceHandler.partyPieces)
         {
             item.ISTET_StartTurn();
         }
+
+        currentPlayer = pm.activePlayers[0];
+        StartTurnForCurrentPlayer();
     }
 
     public void PartyInteraction(PartyPiece3 party, TownPiece3 town)
@@ -116,8 +117,8 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
                     case ResourceType.CRYSTALS:
                         resources.crystals += amount;
                         break;
-                    case ResourceType.SULPHUR:
-                        resources.sulphur += amount;
+                    case ResourceType.SULFUR:
+                        resources.sulfur += amount;
                         break;
                     default:
                         Debug.LogError("Resource not found: " + pickup.dbResource.resourceType);
@@ -179,7 +180,7 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
     public void EndTurn()
     {
         FieldUI.Instance.timers.LockButtons();
-        StartCoroutine(EndTurnForCurrentPlayer());
+        StartCoroutine(NextPlayerTurn());
     }
     /*
      * End: UI Top Right buttons
@@ -231,21 +232,34 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         day = (weekDayDif % 7) + 1;
     }
 
-    private IEnumerator EndTurnForCurrentPlayer()
+    private IEnumerator NextPlayerTurn()
     {
-        PlayerManager pm = PlayerManager.Instance;
-
         List<PartyPiece3> playerFieldPieces = pieceHandler.GetPlayerPieces(currentPlayer);
         yield return StartCoroutine(pieceHandler.YieldForIdlePieces(playerFieldPieces));
 
+        PlayerManager pm = PlayerManager.Instance;
         Player next = pm.EndTurnForPlayer(currentPlayer);
-        if (!next) NextTurnForAll();
-        else currentPlayer = next;
+        if (next)
+        {
+            currentPlayer = next;
+            StartTurnForCurrentPlayer();
+        }
+        else
+        {
+            NextTurnForAll();
+        }
+    }
 
+    private void StartTurnForCurrentPlayer()
+    {
+        PlayerManager pm = PlayerManager.Instance;
         if (currentPlayer == pm.localPlayer)
         {
             FieldUI.Instance.timers.UnlockButtons();
             FieldSceneHighlights.Instance.Refresh();
+
+            Vector3 position = currentPlayer.GetStartingPosition();
+            FieldSceneInputs.Instance.GetCameraController().PlaceCamera(position);
         }
         else if (currentPlayer.type == PlayerType.COMPUTER)
         {

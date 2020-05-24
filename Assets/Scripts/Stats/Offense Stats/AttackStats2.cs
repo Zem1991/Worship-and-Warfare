@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class AttackStats2 : MonoBehaviour
 {
-    public AttackType attackType;
+    public AttackType attackType; 
+    public bool canUseRanged = true;
 
     [Header("Damage")]
     public int damage_minimum;

@@ -8,5 +8,5 @@ public class ResourceData
     public long ore;
     public long ale;
     public long crystals;
-    public long sulphur;
+    public long sulfur;
 }

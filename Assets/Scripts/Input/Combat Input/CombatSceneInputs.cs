@@ -39,6 +39,6 @@ public class CombatSceneInputs : AbstractSingleton<CombatSceneInputs>, IShowable
 
     public CameraController GetCameraController()
     {
-        return executor.cameraController;
+        return executor.GetCameraController();
     }
 }

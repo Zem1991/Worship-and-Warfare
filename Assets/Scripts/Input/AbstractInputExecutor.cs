@@ -7,7 +7,7 @@ public abstract class AbstractInputExecutor<T, U> : MonoBehaviour where T : Abst
     protected InputManager im;
     protected T interpreter;
 
-    public CameraController cameraController;
+    protected CameraController cameraController;
 
     public virtual void Awake()
     {
@@ -17,7 +17,7 @@ public abstract class AbstractInputExecutor<T, U> : MonoBehaviour where T : Abst
         cameraController = GetComponentInChildren<CameraController>();
     }
 
-    public CameraController CameraController()
+    public CameraController GetCameraController()
     {
         return cameraController;
     }

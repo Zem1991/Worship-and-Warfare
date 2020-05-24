@@ -46,7 +46,7 @@ public class HeroUnit : AbstractUnit
 
     public void RecalculateStats()
     {
-        AttributeStats2.RecalculateStats(attributeStats, levelUpStats, dbHeroPerson.heroClass, inventory);
+        attributeStats.RecalculateStats(levelUpStats, dbHeroPerson.heroClass, inventory);
     }
 
     public void RecalculateExperience(int amountToAdd = 0)

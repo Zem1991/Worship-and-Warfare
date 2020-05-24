@@ -426,7 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5262a99b958b01743b5b4ca9f24cfecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scenarioName: Test Scenario 01
+  scenarioName: 
   scenarioBooted: 0
   scenarioStarted: 0
   gameSpeed: 0

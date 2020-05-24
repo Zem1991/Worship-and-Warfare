@@ -10,7 +10,7 @@ public class ResourceStats2 : MonoBehaviour
     public long ore;
     public long ale;
     public long crystals;
-    public long sulphur;
+    public long sulfur;
 
     public void Initialize(ResourceData resourceData)
     {
@@ -20,23 +20,23 @@ public class ResourceStats2 : MonoBehaviour
         ore = resourceData.ore;
         ale = resourceData.ale;
         crystals = resourceData.crystals;
-        sulphur = resourceData.sulphur;
+        sulfur = resourceData.sulfur;
     }
 
-    private void IterateAndSum(Dictionary<ResourceStats2, int> costs, out long goldCost, out long oreCost, out long aleCost, out long crystalsCost, out long sulphurCost)
+    private void IterateAndSum(Dictionary<ResourceStats2, int> costs, out long goldCost, out long oreCost, out long aleCost, out long crystalsCost, out long sulfurCost)
     {
         goldCost = 0;
         oreCost = 0;
         aleCost = 0;
         crystalsCost = 0;
-        sulphurCost = 0;
+        sulfurCost = 0;
         foreach (KeyValuePair<ResourceStats2, int> cost in costs)
         {
             goldCost += cost.Key.gold * cost.Value;
             oreCost += cost.Key.ore * cost.Value;
             aleCost += cost.Key.ale * cost.Value;
             crystalsCost += cost.Key.crystals * cost.Value;
-            sulphurCost += cost.Key.sulphur * cost.Value;
+            sulfurCost += cost.Key.sulfur * cost.Value;
         }
     }
 
@@ -64,36 +64,36 @@ public class ResourceStats2 : MonoBehaviour
 
     public bool CanAfford(Dictionary<ResourceStats2, int> costs)
     {
-        IterateAndSum(costs, out long goldCost, out long oreCost, out long aleCost, out long crystalsCost, out long sulphurCost);
+        IterateAndSum(costs, out long goldCost, out long oreCost, out long aleCost, out long crystalsCost, out long sulfurCost);
         if (gold < goldCost) return false;
         if (ore < oreCost) return false;
         if (ale < aleCost) return false;
         if (crystals < crystalsCost) return false;
-        if (sulphur < sulphurCost) return false;
+        if (sulfur < sulfurCost) return false;
         return true;
     }
 
     public bool Add(Dictionary<ResourceStats2, int> costs)
     {
         //if (!CanAfford(costs)) return false;
-        IterateAndSum(costs, out long goldCost, out long oreCost, out long aleCost, out long crystalsCost, out long sulphurCost);
+        IterateAndSum(costs, out long goldCost, out long oreCost, out long aleCost, out long crystalsCost, out long sulfurCost);
         gold += goldCost;
         ore += oreCost;
         ale += aleCost;
         crystals += crystalsCost;
-        sulphur += sulphurCost;
+        sulfur += sulfurCost;
         return true;
     }
 
     public bool Subtract(Dictionary<ResourceStats2, int> costs)
     {
         if (!CanAfford(costs)) return false;
-        IterateAndSum(costs, out long goldCost, out long oreCost, out long aleCost, out long crystalsCost, out long sulphurCost);
+        IterateAndSum(costs, out long goldCost, out long oreCost, out long aleCost, out long crystalsCost, out long sulfurCost);
         gold -= goldCost;
         ore -= oreCost;
         ale -= aleCost;
         crystals -= crystalsCost;
-        sulphur -= sulphurCost;
+        sulfur -= sulfurCost;
         return true;
     }
 }

@@ -29,41 +29,45 @@ public class CombatUI_Panel_CurrentPiece : AbstractUIPanel
 
     private void UpdateWait(CombatantPiece3 actp, bool canCommandSelectedPiece)
     {
-        bool notInState = !actp.pieceCombatActions.stateWait;
         bool canDoIt = actp.pieceCombatActions.canWait;
-        btnWait.interactable = canCommandSelectedPiece && notInState;
-        btnWait.gameObject.SetActive(canDoIt);
+        bool notInState = !actp.pieceCombatActions.stateWait;
+        btnWait.interactable = canCommandSelectedPiece && canDoIt && notInState;
     }
 
     private void UpdateDefend(CombatantPiece3 actp, bool canCommandSelectedPiece)
     {
-        bool notInState = !actp.pieceCombatActions.stateDefend;
         bool canDoIt = actp.pieceCombatActions.canDefend;
-        btnDefend.interactable = canCommandSelectedPiece && notInState;
-        btnDefend.gameObject.SetActive(canDoIt);
+        bool notInState = !actp.pieceCombatActions.stateDefend;
+        btnDefend.interactable = canCommandSelectedPiece && canDoIt && notInState;
     }
 
     private void UpdateAbility1(CombatantPiece3 actp, bool canCommandSelectedPiece)
     {
+        bool canDoIt = true;    //TODO: can use abilities?
         DB_Ability ability = actp.abilityStats.ability1;
-        bool canDoIt = actp.pieceCombatActions.canDefend;
-        btnAbility1.interactable = canCommandSelectedPiece && ability;
-        btnAbility1.gameObject.SetActive(canDoIt);
+        btnAbility1.interactable = canCommandSelectedPiece && canDoIt && ability;
+
+        //TODO: better button icon thing
+        btnAbility1.image.sprite = ability ? ability.sprite : null;
     }
 
     private void UpdateAbility2(CombatantPiece3 actp, bool canCommandSelectedPiece)
     {
+        bool canDoIt = true;    //TODO: can use abilities?
         DB_Ability ability = actp.abilityStats.ability2;
-        bool canDoIt = actp.pieceCombatActions.canDefend;
-        btnAbility2.interactable = canCommandSelectedPiece && ability;
-        btnAbility2.gameObject.SetActive(canDoIt);
+        btnAbility2.interactable = canCommandSelectedPiece && canDoIt && ability;
+
+        //TODO: better button icon thing
+        btnAbility2.image.sprite = ability ? ability.sprite : null;
     }
 
     private void UpdateAbility3(CombatantPiece3 actp, bool canCommandSelectedPiece)
     {
+        bool canDoIt = true;    //TODO: can use abilities?
         DB_Ability ability = actp.abilityStats.ability3;
-        bool canDoIt = actp.pieceCombatActions.canDefend;
-        btnAbility3.interactable = canCommandSelectedPiece && ability;
-        btnAbility3.gameObject.SetActive(canDoIt);
+        btnAbility3.interactable = canCommandSelectedPiece && canDoIt && ability;
+
+        //TODO: better button icon thing
+        btnAbility3.image.sprite = ability ? ability.sprite : null;
     }
 }

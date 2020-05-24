@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
     public int currentTurn;
     public bool currentTurnAvailable;
 
+    //private Vector3 startingPosition;
+
     public void Initialize(PlayerData data, int id, DB_Color dbColor)
     {
         playerName = data.name;
@@ -68,5 +70,16 @@ public class Player : MonoBehaviour
             mapTownIncome.Add(townPiece.town.dailyIncome, 1);
         }
         currentResources.Add(mapTownIncome);
+    }
+
+    public Vector3 GetStartingPosition()
+    {
+        AbstractPiece3 piece = null;
+        if (partyPieces.Count > 0) piece = partyPieces[0];
+        else if (townPieces.Count > 0) piece = townPieces[0];
+
+        Vector3 result = Vector3.zero;
+        if (piece) result = piece.currentTile.transform.position;
+        return result;      //TODO: Use the startingPosition vector3
     }
 }

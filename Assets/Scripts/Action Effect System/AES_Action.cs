@@ -5,8 +5,8 @@ using UnityEngine;
 public abstract class AES_Action : MonoBehaviour        //TODO make an AES_SpellAction derived from this, to handle the mana costs
 {
     [Header("Self references")]
-    public AES_ActionParameters parameters;
     public AES_ActionFilters filters;
+    public AES_ActionParameters parameters;
 
-    public abstract bool Execute(AbstractUnit actionUser, List<AbstractTile> targetArea);
+    public abstract IEnumerator Execute(CombatantPiece3 actionUser, List<AbstractTile> targetArea);
 }

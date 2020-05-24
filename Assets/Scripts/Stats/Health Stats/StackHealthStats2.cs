@@ -8,10 +8,16 @@ public class StackHealthStats2 : HealthStats2
     [SerializeField] private int stackSize;
     [SerializeField] private int previousStackSize;
 
-    public void Initialize(int stackSize)
+    public override void CopyFrom(HealthStats2 healthStats)
     {
-        this.stackSize = stackSize;
-        previousStackSize = stackSize;
+        base.CopyFrom(healthStats);
+
+        StackHealthStats2 other = healthStats as StackHealthStats2;
+        if (other)
+        {
+            stackSize = other.stackSize;
+            previousStackSize = stackSize;
+        }
     }
 
     //public void Add(int amount, bool increaseMaximum, bool overflow)
@@ -29,7 +35,7 @@ public class StackHealthStats2 : HealthStats2
         previousStackSize = stackSize;
         stackSize = Mathf.Clamp(stackSize, 0, stackSize - amount);
         //if (decreaseMaximum) stack_maximum = Mathf.Clamp(stack_maximum, 0, stack_maximum - amount);
-        return stackSize > 0;
+        return stackSize <= 0;
     }
 
     public int GetStackSize()
