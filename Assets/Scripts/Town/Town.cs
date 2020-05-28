@@ -84,4 +84,9 @@ public class Town : MonoBehaviour
         }
         return newTB;
     }
+
+    public TownDefenseStruct GetTownDefenses()
+    {
+        throw new NotImplementedException();
+    }
 }

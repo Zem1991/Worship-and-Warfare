@@ -41,44 +41,47 @@ public class CombatPieceHandler : MonoBehaviour
         defenderPieces = new List<CombatantPiece3>();
     }
 
-    public void Create(PartyPiece3 attackerParty, PartyPiece3 defenderParty)
+    public void Create(Player attackerPlayer, Party attackerParty, Player defenderPlayer, Party defenderParty, TownDefenseStruct defenderDefenses)
     {
+        //TODO use the defenderDefenses parameter
+
         Remove();
+
         HeroUnitPiece3 prefabHero = AllPrefabs.Instance.combatHeroPiece;
         CombatUnitPiece3 prefabUnit = AllPrefabs.Instance.combatUnitPiece;
 
         int spawnId = 0;
-        if (attackerParty.party.GetHeroSlot() != null)
+        if (attackerParty.GetHeroSlot() != null)
         {
-            HeroUnit hero = attackerParty.party.GetHeroSlot().Get() as HeroUnit;
+            HeroUnit hero = attackerParty.GetHeroSlot().Get() as HeroUnit;
             if (hero)
             {
                 attackerHero = Instantiate(prefabHero, transform);
-                attackerHero.Initialize(attackerParty.pieceOwner.GetOwner(), spawnId, false, hero);
+                attackerHero.Initialize(attackerPlayer, spawnId, false, hero);
                 attackerPieces.Add(attackerHero);
             }
         }
 
         spawnId = 1;
-        if (defenderParty.party.GetHeroSlot() != null)
+        if (defenderParty.GetHeroSlot() != null)
         {
-            HeroUnit hero = defenderParty.party.GetHeroSlot().Get() as HeroUnit;
+            HeroUnit hero = defenderParty.GetHeroSlot().Get() as HeroUnit;
             if (hero)
             {
                 defenderHero = Instantiate(prefabHero, transform);
-                defenderHero.Initialize(defenderParty.pieceOwner.GetOwner(), spawnId, true, hero);
+                defenderHero.Initialize(defenderPlayer, spawnId, true, hero);
                 defenderPieces.Add(defenderHero);
             }
         }
 
         spawnId = 2;
-        foreach (var unitSlot in attackerParty.party.GetUnitSlots())
+        foreach (var unitSlot in attackerParty.GetUnitSlots())
         {
             CombatUnit unit = unitSlot.Get() as CombatUnit;
             if (unit)
             {
                 CombatUnitPiece3 uc = Instantiate(prefabUnit, transform);
-                uc.Initialize(attackerParty.pieceOwner.GetOwner(), spawnId, false, unit);
+                uc.Initialize(attackerPlayer, spawnId, false, unit);
                 attackerUnits.Add(uc);
                 attackerPieces.Add(uc);
             }
@@ -86,13 +89,13 @@ public class CombatPieceHandler : MonoBehaviour
         }
 
         spawnId = 3;
-        foreach (var unitSlot in defenderParty.party.GetUnitSlots())
+        foreach (var unitSlot in defenderParty.GetUnitSlots())
         {
             CombatUnit unit = unitSlot.Get() as CombatUnit;
             if (unit)
             {
                 CombatUnitPiece3 uc = Instantiate(prefabUnit, transform);
-                uc.Initialize(defenderParty.pieceOwner.GetOwner(), spawnId, true, unit);
+                uc.Initialize(defenderPlayer, spawnId, true, unit);
                 defenderUnits.Add(uc);
                 defenderPieces.Add(uc);
             }

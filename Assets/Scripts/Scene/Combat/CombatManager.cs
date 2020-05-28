@@ -24,9 +24,10 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
     [Header("Teams")]
     public Player attackerPlayer;
-    public PartyPiece3 attackerParty;
+    public PartyPiece3 attackerPartyPiece;
     public Player defenderPlayer;
-    public PartyPiece3 defenderParty;
+    public PartyPiece3 defenderPartyPiece;
+    public TownPiece3 defenderTownPiece;
 
     [Header("Battlefield")]
     public DB_Tileset tileset;
@@ -57,25 +58,63 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         combatLog.Clear();
     }
 
-    public void BootCombat(PartyPiece3 attackerParty, PartyPiece3 defenderParty, DB_Tileset tileset)
+    public void BootCombat(PartyPiece3 attackerPartyPiece, PartyPiece3 defenderPartyPiece, DB_Tileset tileset)
     {
+        //TODO: put these 2 lines somewhere else?
         pieceHandler.Remove();
         result = CombatResult.NOT_FINISHED;
 
-        attackerPlayer = attackerParty.pieceOwner.GetOwner();
-        this.attackerParty = attackerParty;
-        defenderPlayer = defenderParty.pieceOwner.GetOwner();
-        this.defenderParty = defenderParty;
+        this.attackerPartyPiece = attackerPartyPiece;
+        this.defenderPartyPiece = defenderPartyPiece;
+        defenderTownPiece = null;
+
+        Player attackerPlayer = attackerPartyPiece.pieceOwner.GetOwner();
+        Party attackerParty = attackerPartyPiece.party;
+        Player defenderPlayer = defenderPartyPiece.pieceOwner.GetOwner();
+        Party defenderParty = defenderPartyPiece.party;
+        TownDefenseStruct defenderDefenses = new TownDefenseStruct();       //TODO: simplify these two BootCombat methods
+
+        BootMap(tileset);
+        BootPieces(attackerPlayer, attackerParty, defenderPlayer, defenderParty, defenderDefenses);
+        NextTurn();
+        combatStarted = true;
+    }
+
+    public void BootCombat(PartyPiece3 attackerPartyPiece, TownPiece3 defenderTownPiece, DB_Tileset tileset)
+    {
+        //TODO: put these 2 lines somewhere else?
+        pieceHandler.Remove();
+        result = CombatResult.NOT_FINISHED;
+
+        this.attackerPartyPiece = attackerPartyPiece;
+        defenderPartyPiece = null;
+        this.defenderTownPiece = defenderTownPiece;
+
+        Player attackerPlayer = attackerPartyPiece.pieceOwner.GetOwner();
+        Party attackerParty = attackerPartyPiece.party;
+        Player defenderPlayer = defenderTownPiece.pieceOwner.GetOwner();
+        Party defenderParty = defenderTownPiece.town.garrison;
+        TownDefenseStruct defenderDefenses = defenderTownPiece.town.GetTownDefenses();  //TODO: simplify these two BootCombat methods
+
+        BootMap(tileset);
+        BootPieces(attackerPlayer, attackerParty, defenderPlayer, defenderParty, defenderDefenses);
+        NextTurn();
+        combatStarted = true;
+    }
+
+    private void BootMap(DB_Tileset tileset)
+    {
         this.tileset = tileset;
 
         Debug.LogWarning("No tile data for combat map!");
         mapHandler.BuildMap(MAP_SIZE, tileset);
         mapHandler.AddRandomObstacles(tileset);
-        pieceHandler.Create(attackerParty, defenderParty);
-        pieceHandler.InitialPositions(mapHandler.map);
+    }
 
-        combatStarted = true;
-        NextTurn();
+    private void BootPieces(Player attackerPlayer, Party attackerParty, Player defenderPlayer, Party defenderParty, TownDefenseStruct defenderDefenses)
+    {
+        pieceHandler.Create(attackerPlayer, attackerParty, defenderPlayer, defenderParty, defenderDefenses);
+        pieceHandler.InitialPositions(mapHandler.map);
     }
 
     public bool IsCombatRunning()
@@ -242,7 +281,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     {
         CombatUI.Instance.ResultPopupHide();
         TerminateCombat();
-        ReturnFromCombat(result, attackerParty, defenderParty);
+        ReturnFromCombat(result, attackerPartyPiece, defenderPartyPiece);
     }
 
     public List<string> GetLastLogs(int entries)
@@ -307,7 +346,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         CombatUI.Instance.EscapeMenuHide();
 
         TerminateCombat();
-        BootCombat(attackerParty, defenderParty, tileset);
+        BootCombat(attackerPartyPiece, defenderPartyPiece, tileset);
 
         GameManager.Instance.PauseUnpause();
     }
@@ -410,12 +449,12 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         if (result != CombatResult.DEFENDER_WON)
         {
             attackerExperience = ExperienceCalculation.FullExperienceCalculation(pieceHandler.defenderPieces);
-            ApplyCombatResults(attackerParty, pieceHandler.attackerPieces);
+            ApplyCombatResults(attackerPartyPiece, pieceHandler.attackerPieces);
         }
         if (result != CombatResult.ATTACKER_WON)
         {
             defenderExperience = ExperienceCalculation.FullExperienceCalculation(pieceHandler.attackerPieces);
-            ApplyCombatResults(defenderParty, pieceHandler.defenderPieces);
+            ApplyCombatResults(defenderPartyPiece, pieceHandler.defenderPieces);
         }
     }
 

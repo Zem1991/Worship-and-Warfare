@@ -73,14 +73,24 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
 
     public void PartyInteraction(PartyPiece3 party, TownPiece3 town)
     {
-        if (party.pieceOwner.GetOwner() == town.pieceOwner.GetOwner())
+
+        bool canEnter = false;
+
+        if (party.pieceOwner.GetOwner() != town.pieceOwner.GetOwner())
         {
-            StartCoroutine(GoToTown(party, town));
+            if (town.town.garrison.GetMostRelevant())
+            {
+                StartCoroutine(GoToCombat(party, town));
+            }
+            else
+            {
+                Player player = party.pieceOwner.GetOwner();
+                town.pieceOwner.SetOwner(player);
+            }
         }
-        else
-        {
-            //StartCoroutine(GoToCombat(party, target));    //TODO TOWN SIEGE
-        }
+
+        if (party.pieceOwner.GetOwner() == town.pieceOwner.GetOwner()) canEnter = true;
+        if (canEnter) StartCoroutine(GoToTown(party, town));
     }
 
     public void PartyInteraction(PartyPiece3 party, PartyPiece3 defender)
@@ -293,6 +303,20 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
     private IEnumerator GoToCombat(PartyPiece3 attacker, PartyPiece3 defender)
     {
         List<PartyPiece3> pieces = new List<PartyPiece3> { attacker, defender };
+        yield return
+            StartCoroutine(pieceHandler.YieldForIdlePieces(pieces));
+
+        FieldTile fieldTile = defender.currentTile as FieldTile;
+
+        FieldSC.Instance.HideScene();
+        GameManager.Instance.ChangeSchemes(GameScheme.COMBAT);
+        CombatManager.Instance.BootCombat(attacker, defender, fieldTile.db_tileset_lowerLand);
+        CombatSC.Instance.ShowScene();
+    }
+
+    private IEnumerator GoToCombat(PartyPiece3 attacker, TownPiece3 defender)
+    {
+        List<PartyPiece3> pieces = new List<PartyPiece3> { attacker };
         yield return
             StartCoroutine(pieceHandler.YieldForIdlePieces(pieces));
 
