@@ -9,7 +9,7 @@ public class TownUI : AbstractSingleton<TownUI>, IUIScheme, IShowableHideable
     [Header("Town components")]
     public Image background;
     public RectTransform buildingsHolder;
-    public List<TownUI_Building> tuiBuildings = new List<TownUI_Building>();
+    public List<TownUI_Structure> tuiBuildings = new List<TownUI_Structure>();
 
     [Header("Panels")]
     public TownUI_Panel_CoreButtons coreButtons;
@@ -96,42 +96,42 @@ public class TownUI : AbstractSingleton<TownUI>, IUIScheme, IShowableHideable
 
     public void DestroyTown()
     {
-        DestroyTownBuildings();
+        DestroyTownStructures();
     }
 
     public void CreateTown()
     {
         TownManager tm = TownManager.Instance;
 
-        List<TownBuilding> townBuildings = tm.townPiece.town.GetBuildings();
+        List<AbstractTownStructure> townStructures = tm.townPiece.town.GetStructures();
         //PartyPiece2 visitor = tm.townPiece.visitor;
         //PartyPiece2 garrison = tm.townPiece.garrison;
 
-        CreateTownBuildings(townBuildings);
+        CreateTownStructure(townStructures);
         //CreateVisitorParty(visitor);
         //CreateGarrisonParty(visitor);
     }
 
-    private void DestroyTownBuildings()
+    private void DestroyTownStructures()
     {
-        foreach (TownUI_Building item in tuiBuildings) Destroy(item.gameObject);
+        foreach (TownUI_Structure item in tuiBuildings) Destroy(item.gameObject);
         tuiBuildings.Clear();
     }
 
-    private void CreateTownBuildings(List<TownBuilding> townBuildings)
+    private void CreateTownStructure(List<AbstractTownStructure> townStructures)
     {
-        DestroyTownBuildings();
+        DestroyTownStructures();
 
-        foreach (TownBuilding bldg in townBuildings)
+        foreach (AbstractTownStructure bldg in townStructures)
         {
-            CreateTownBuilding(bldg);
+            CreateTownStructure(bldg);
         }
     }
 
-    public void CreateTownBuilding(TownBuilding townBuilding)
+    public void CreateTownStructure(AbstractTownStructure townBuilding)
     {
-        TownUI_Building prefab = AllPrefabs.Instance.tuiBuilding;
-        TownUI_Building newTUI = Instantiate(prefab, buildingsHolder.transform);
+        TownUI_Structure prefab = AllPrefabs.Instance.tuiBuilding;
+        TownUI_Structure newTUI = Instantiate(prefab, buildingsHolder.transform);
         newTUI.Initialize(townBuilding);
         tuiBuildings.Add(newTUI);
     }

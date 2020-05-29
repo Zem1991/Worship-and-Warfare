@@ -9,7 +9,7 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractUnit>
     [SerializeField] private PartySlot heroSlot;
     [SerializeField] private List<PartySlot> unitSlots;
 
-    public void Initialize()
+    public void Initialize(PartyCompositionData partyData)
     {
         PartySlot prefabPartySlot = AllPrefabs.Instance.partySlot;
 
@@ -24,11 +24,8 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractUnit>
             unit.Initialize(this, UnitType.CREATURE, i);
             unitSlots.Add(unit);
         }
-    }
 
-    public void Initialize(PartyData partyData)
-    {
-        Initialize();
+        if (partyData == null) return;
 
         AbstractDBContentHandler<DB_HeroPerson> dbHeroes = DBHandler_HeroPerson.Instance;
         AbstractDBContentHandler<DB_CombatUnit> dbCombatUnits = DBHandler_CombatUnit.Instance;
@@ -38,7 +35,7 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractUnit>
 
         if (partyData.hero != null)
         {
-            HeroData heroData = partyData.hero;
+            HeroUnitData heroData = partyData.hero;
 
             string heroId = heroData.id;
             DB_HeroPerson dbData = dbHeroes.Select(heroId);
@@ -55,7 +52,7 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractUnit>
 
             for (int i = 0; i < totalUnits; i++)
             {
-                UnitData unitData = partyData.units[i];
+                CombatUnitData unitData = partyData.units[i];
 
                 string unitId = unitData.id;
                 DB_CombatUnit dbData = dbCombatUnits.Select(unitId);
@@ -286,5 +283,16 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractUnit>
     public List<PartySlot> GetUnitSlots()
     {
         return unitSlots;
+    }
+
+    public bool GiveExperiencePoints(int amount)
+    {
+        HeroUnit hero = GetHeroSlot().Get() as HeroUnit;
+        if (hero)
+        {
+            hero.RecalculateExperience(amount);
+            return hero.levelUps > 0;
+        }
+        return false;
     }
 }

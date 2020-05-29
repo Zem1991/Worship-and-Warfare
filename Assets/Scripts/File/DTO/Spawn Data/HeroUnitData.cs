@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitData
+public class HeroUnitData
 {
     public string id;
-    public StackData stackData;
+    public LevelUpData levelUpData;
+    public InventoryData inventoryData;
 }

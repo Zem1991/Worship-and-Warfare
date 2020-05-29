@@ -44,6 +44,11 @@ public class HeroUnit : AbstractUnit
         return dbHeroPerson.profilePicture;
     }
 
+    public DB_HeroUnit GetDBHeroUnit()
+    {
+        return dbUnit as DB_HeroUnit;
+    }
+
     public void RecalculateStats()
     {
         attributeStats.RecalculateStats(levelUpStats, dbHeroPerson.heroClass, inventory);

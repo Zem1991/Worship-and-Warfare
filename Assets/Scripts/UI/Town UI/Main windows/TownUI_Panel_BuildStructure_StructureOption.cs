@@ -13,8 +13,8 @@ public class TownUI_Panel_BuildStructure_StructureOption : MonoBehaviour, IPoint
 
     [Header("Other references")]
     public TownUI_Panel_BuildStructure parentPanel;
-    public DB_TownBuilding dbTownBuilding;
-    public TownBuilding townBuilding;
+    public DB_TownStructure dbTownStructure;
+    public AbstractTownStructure townStructure;
 
     public void OnPointerClick(PointerEventData eventData)
     {

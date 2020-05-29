@@ -64,7 +64,7 @@ public class TownUI_Panel_RecruitCreature : AbstractUIPanel
     {
         TownManager tm = TownManager.Instance;
         Town town = tm.townPiece.town;
-        Party party = town.garrison;
+        Party party = town.GetGarrison();
 
         TownUI townUI = TownUI.Instance;
         townUI.CloseCurrentWindow();

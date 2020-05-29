@@ -32,17 +32,17 @@ public class TownUI_Panel_BuildStructure : AbstractUIPanel
 
         TownManager tm = TownManager.Instance;
         Town town = tm.townPiece.town;
-        List<DB_TownBuilding> dbBuildings = town.dbFaction.factionTree.GetBuildings();
-        List<TownBuilding> townBuildings = town.GetBuildings();     //TODO use an per building approach to better handler certain building types
+        List<DB_TownStructure> dbBuildings = town.dbFaction.factionTree.GetBuildings();
+        List<AbstractTownStructure> townBuildings = town.GetStructures();     //TODO use an per building approach to better handler certain building types
 
         TownUI_Panel_BuildStructure_StructureOption prefab = AllPrefabs.Instance.tuiStructureOption;
 
-        foreach (DB_TownBuilding dbBldg in dbBuildings)
+        foreach (DB_TownStructure dbStruc in dbBuildings)
         {
-            TownBuilding foundTownBuilding = null;
-            foreach (TownBuilding item in townBuildings)
+            AbstractTownStructure foundTownBuilding = null;
+            foreach (AbstractTownStructure item in townBuildings)
             {
-                if (item.dbTownBuilding == dbBldg)
+                if (item.dbTownStructure == dbStruc)
                 {
                     foundTownBuilding = item;
                     break;
@@ -53,10 +53,10 @@ public class TownUI_Panel_BuildStructure : AbstractUIPanel
 
             TownUI_Panel_BuildStructure_StructureOption newTuiBsSo = Instantiate(prefab, structureOptionsHolder);
             newTuiBsSo.parentPanel = this;
-            newTuiBsSo.dbTownBuilding = dbBldg;
-            newTuiBsSo.townBuilding = foundTownBuilding;
-            newTuiBsSo.txtBuildingName.text = dbBldg.townBuildingName;
-            newTuiBsSo.buildingImage.sprite = dbBldg.buildingImage;
+            newTuiBsSo.dbTownStructure = dbStruc;
+            newTuiBsSo.townStructure = foundTownBuilding;
+            newTuiBsSo.txtBuildingName.text = dbStruc.structureName;
+            newTuiBsSo.buildingImage.sprite = dbStruc.structureImage;
             newTuiBsSo.highlightImage.color = highlightColor;
 
             structureOptions.Add(newTuiBsSo);
@@ -66,12 +66,12 @@ public class TownUI_Panel_BuildStructure : AbstractUIPanel
     public void SelectOption(TownUI_Panel_BuildStructure_StructureOption selectedOption)
     {
         this.selectedOption = selectedOption;
-        if (!selectedOption.townBuilding)
+        if (!selectedOption.townStructure)
         {
             TownManager tm = TownManager.Instance;
             Player owner = tm.townPiece.pieceOwner.GetOwner();
 
-            DB_TownBuilding dbTownBuilding = selectedOption.dbTownBuilding;
+            DB_TownStructure dbTownBuilding = selectedOption.dbTownStructure;
             Dictionary<ResourceStats2, int> costs = dbTownBuilding.resourceStats.GetCosts(1);
 
             txtDescriptionAndCosts.text =  dbTownBuilding.GetDescriptionWithCosts();
@@ -94,8 +94,8 @@ public class TownUI_Panel_BuildStructure : AbstractUIPanel
         TownUI townUI = TownUI.Instance;
         townUI.CloseCurrentWindow();
 
-        TownBuilding newTB = town.BuildStructure(selectedOption.dbTownBuilding, owner);
-        townUI.CreateTownBuilding(newTB);
+        AbstractTownStructure newTB = town.BuildStructure(selectedOption.dbTownStructure, owner);
+        townUI.CreateTownStructure(newTB);
 
         btnBuild.interactable = false;
         selectedOption = null;

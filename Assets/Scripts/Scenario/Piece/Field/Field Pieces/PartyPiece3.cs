@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(PieceOwner3))]
 [RequireComponent(typeof(PieceController3))]
 [RequireComponent(typeof(PieceMovement3))]
-public class PartyPiece3 : AbstractFieldPiece3, IFlaggablePiece, IStartTurnEndTurn, ICommandablePiece, IMovablePiece
+public class PartyPiece3 : AbstractFieldPiece3, IFlaggablePiece, IStartTurnEndTurn, ICommandablePiece, IMovablePiece, IPieceForCombat
 {
     [Header("Object components")]
     public SpriteRenderer flagSpriteRenderer;
@@ -15,20 +15,18 @@ public class PartyPiece3 : AbstractFieldPiece3, IFlaggablePiece, IStartTurnEndTu
     public PieceController3 pieceController;
     public PieceMovement3 pieceMovement;
 
-    [Header("Party references")]
-    public Party party;
+    [Header("Object components")]
+    [SerializeField] private Party party;
 
     [Header("Animator parameters")]
     public bool anim_movement;
     public float anim_directionX;
     public float anim_directionZ = -1;
 
-    public void Initialize(Player owner, Party party)
+    public void Initialize(Player owner)
     {
         pieceOwner.SetOwner(owner);
         pieceController.SetController(owner);
-
-        this.party = party;
         name = "P" + owner.id + " Party";
 
         AbstractUnit ape = party.GetMostRelevant();
@@ -180,14 +178,18 @@ public class PartyPiece3 : AbstractFieldPiece3, IFlaggablePiece, IStartTurnEndTu
         pieceMovement.ResetMovementPoints(movementPointsMax);
     }
 
-    public bool GiveExperiencePoints(int amount)
+    public Player IPFC_GetPlayerForCombat()
     {
-        HeroUnit hero = party.GetHeroSlot().Get() as HeroUnit;
-        if (hero)
-        {
-            hero.RecalculateExperience(amount);
-            return hero.levelUps > 0;
-        }
-        return false;
+        return pieceOwner.GetOwner();
+    }
+
+    public Party IPFC_GetPartyForCombat()
+    {
+        return party;
+    }
+
+    public Town IPFC_GetPTownForCombat()
+    {
+        return null;
     }
 }

@@ -7,8 +7,9 @@ public class Town : MonoBehaviour
 {
     [Header("Town data")]
     public string townName;
-    public Party garrison;
-    //public Party visitor; //not using this anymore
+
+    [Header("Object components")]
+    [SerializeField] private Party garrison;
 
     [Header("Object components")]
     public ResourceStats2 dailyIncome;
@@ -20,23 +21,35 @@ public class Town : MonoBehaviour
     public TownBuilding castle;
     public TownBuilding mageGuild;
     public TownBuilding workshop;
-    //public List<TownBuilding> buildings;
+
+    [Header("Defenses")]
+    public TownDefense wall;
+    public TownDefense gatehouse;
+    public TownDefense tower;
+    public TownDefense moat;
 
     [Header("Database reference")]
     public DB_Faction dbFaction;
 
-    public void Initialize(DB_Faction dbFaction, TownPiece3 townPiece, string townName = null)
+    public void Initialize(DB_Faction dbFaction, TownData townData)
     {
-        string selectedName = townName != null ? townName : dbFaction.townNames[0];     //TODO get random name
+        string selectedName = townData.townName != null ? townName : dbFaction.townNames[0];     //TODO get random name
 
         this.dbFaction = dbFaction;
-        this.townName = selectedName;
+        townName = selectedName;
         name = townName;
+
+        garrison.Initialize(townData.garrison);
     }
 
-    public List<TownBuilding> GetBuildings()
+    public Party GetGarrison()
     {
-        List<TownBuilding> result = new List<TownBuilding>();
+        return garrison;
+    }
+
+    public List<AbstractTownStructure> GetStructures()
+    {
+        List<AbstractTownStructure> result = new List<AbstractTownStructure>();
         if (townCenter) result.Add(townCenter);
         if (tavern) result.Add(tavern);
         if (temple) result.Add(temple);
@@ -46,19 +59,27 @@ public class Town : MonoBehaviour
         return result;
     }
 
-    public TownBuilding BuildStructure(DB_TownBuilding dbTownBuilding, Player owner)
+    public AbstractTownStructure BuildStructure(DB_TownStructure dbTownStructure, Player owner)
     {
         if (owner)
         {
-            Dictionary<ResourceStats2, int> costs = dbTownBuilding.resourceStats.GetCosts(1);
+            Dictionary<ResourceStats2, int> costs = dbTownStructure.resourceStats.GetCosts(1);
             owner.currentResources.Subtract(costs);
         }
 
+        DB_TownBuilding dbTownBuilding = dbTownStructure as DB_TownBuilding;
+        //TODO BUILD DEFENSE METHOD CALL
+        if (dbTownBuilding) return BuildBuilding(dbTownBuilding);
+        return null;
+    }
+
+    private TownBuilding BuildBuilding(DB_TownBuilding dbTownBuilding)
+    {
         TownBuilding prefab = AllPrefabs.Instance.townBuilding;
         TownBuilding newTB = Instantiate(prefab, transform);
         newTB.Initialize(dbTownBuilding);
 
-        switch (dbTownBuilding.townBuildingType)
+        switch (dbTownBuilding.buildingType)
         {
             case TownBuildingType.TOWN_CENTER:
                 townCenter = newTB;
@@ -83,10 +104,5 @@ public class Town : MonoBehaviour
                 break;
         }
         return newTB;
-    }
-
-    public TownDefenseStruct GetTownDefenses()
-    {
-        throw new NotImplementedException();
     }
 }

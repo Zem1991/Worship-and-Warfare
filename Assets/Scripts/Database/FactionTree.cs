@@ -4,20 +4,29 @@ using UnityEngine;
 
 public class FactionTree : MonoBehaviour
 {
-    [Header("Buildings")]
-    public DB_TownBuilding villageHall;
-    public DB_TownBuilding tavern;
-    public DB_TownBuilding temple;
-    public DB_TownBuilding castle;
-    public DB_TownBuilding mageGuild;
-    public DB_TownBuilding workshop;
+    [Header("Town buildings")]
+    public DB_TownStructure villageHall;
+    public DB_TownStructure tavern;
+    public DB_TownStructure temple;
+    public DB_TownStructure castle;
+    public DB_TownStructure mageGuild;
+    public DB_TownStructure workshop;
 
-    [Header("Hero classes")]
+    [Header("Town defenses")]
+    public DB_TownStructure wall;
+    public DB_TownStructure gatehouse;
+    public DB_TownStructure tower;
+    //public DB_TownStructure moat;
+    //public DB_TownStructure wallFortified;
+    //public DB_TownStructure gatehouseFortified;
+    //public DB_TownStructure towerFortified;
+
+    [Header("Hero units")]
     public DB_HeroUnit heroClassMight;
     public DB_HeroUnit heroClassMagic;
     public DB_HeroUnit heroClassTech;
 
-    [Header("Units")]
+    [Header("Combat units")]
     public DB_CombatUnit unitTier1;
     public DB_CombatUnit unitTier2;
     public DB_CombatUnit unitTier3;
@@ -26,9 +35,9 @@ public class FactionTree : MonoBehaviour
     public DB_CombatUnit unitTier6;
     public DB_CombatUnit unitTier7;
 
-    public List<DB_TownBuilding> GetBuildings()
+    public List<DB_TownStructure> GetBuildings()
     {
-        List<DB_TownBuilding> result = new List<DB_TownBuilding>();
+        List<DB_TownStructure> result = new List<DB_TownStructure>();
         if (villageHall) result.Add(villageHall);
         if (tavern) result.Add(tavern);
         if (temple) result.Add(temple);

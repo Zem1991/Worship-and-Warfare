@@ -70,7 +70,7 @@ public class TownUI_Panel_RecruitHero : AbstractUIPanel
     {
         TownManager tm = TownManager.Instance;
         Town town = tm.townPiece.town;
-        Party party = town.garrison;
+        Party party = town.GetGarrison();
 
         Player owner = tm.townPiece.pieceOwner.GetOwner();
         Dictionary<ResourceStats2, int> costs = selectedOption.dbHero.heroClass.resourceStats.GetCosts(1);

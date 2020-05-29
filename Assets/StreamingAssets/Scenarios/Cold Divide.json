@@ -1496,6 +1496,22 @@
         5
       ],
       "ownerId": 1,
+      "garrison": {
+        "units": [
+          {
+            "id": "Pikeman",
+            "stackData": {
+              "stack_maximum": 35
+            }
+          },
+          {
+            "id": "Archer",
+            "stackData": {
+              "stack_maximum": 30
+            }
+          }
+        ]
+      },
       "factionId": "Default",
       "townName": "Red Town",
       "townBuildings": [
@@ -1510,6 +1526,22 @@
         14
       ],
       "ownerId": 2,
+      "garrison": {
+        "units": [
+          {
+            "id": "Pikeman",
+            "stackData": {
+              "stack_maximum": 35
+            }
+          },
+          {
+            "id": "Archer",
+            "stackData": {
+              "stack_maximum": 30
+            }
+          }
+        ]
+      },
       "factionId": "Default",
       "townName": "Blue Town",
       "townBuildings": [
@@ -1526,61 +1558,77 @@
         6
       ],
       "ownerId": 1,
-      "hero": {
-        "id": "Christian",
-        "inventoryData": {}
-      },
-      "units": [
-        {
-          "id": "Pikeman",
-          "stackData": {
-            "stack_maximum": 35
-          }
+      "composition": {
+        "hero": {
+          "id": "Christian",
+          "inventoryData": {}
         },
-        {
-          "id": "Archer",
-          "stackData": {
-            "stack_maximum": 30
+        "units": [
+          {
+            "id": "Pikeman",
+            "stackData": {
+              "stack_maximum": 35
+            }
+          },
+          {
+            "id": "Archer",
+            "stackData": {
+              "stack_maximum": 30
+            }
+          },
+          {
+            "id": "Monk",
+            "stackData": {
+              "stack_maximum": 20
+            }
+          },
+          {
+            "id": "Cavalry",
+            "stackData": {
+              "stack_maximum": 12
+            }
           }
-        },
-        {
-          "id": "Monk",
-          "stackData": {
-            "stack_maximum": 20
-          }
-        },
-        {
-          "id": "Cavalry",
-          "stackData": {
-            "stack_maximum": 12
-          }
-        }
-      ]
+        ]
+      }
     },
     {
       "mapPosition": [
-        5,//14,
-        7//13
+        5, //14,
+        7 //13
       ],
       "ownerId": 2,
-      "hero": {
-        "id": "Christian",
-        "inventoryData": {}
-      },
-      "units": [
-        {
-          "id": "Pikeman",
-          "stackData": {
-            "stack_maximum": 10
-          }
+      "composition": {
+        "hero": {
+          "id": "Christian",
+          "inventoryData": {}
         },
-        {
-          "id": "Pikeman",
-          "stackData": {
-            "stack_maximum": 10
+        "units": [
+          {
+            "id": "Pikeman",
+            "stackData": {
+              "stack_maximum": 35
+            }
+          },
+          {
+            "id": "Archer",
+            "stackData": {
+              "stack_maximum": 30
+            }
+          },
+          {
+            "id": "Monk",
+            "stackData": {
+              "stack_maximum": 20
+            }
+          },
+          {
+            "id": "Cavalry",
+            "stackData": {
+              "stack_maximum": 12
+            }
           }
-        }
-      ]
+        ]
+      }
     }
   ]
 }

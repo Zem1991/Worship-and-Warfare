@@ -6,6 +6,5 @@ public class PartyData
 {
     public int[] mapPosition;
     public int ownerId;
-    public HeroData hero;
-    public UnitData[] units;
+    public PartyCompositionData composition;
 }

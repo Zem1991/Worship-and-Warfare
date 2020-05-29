@@ -41,9 +41,9 @@ public class CombatPieceHandler : MonoBehaviour
         defenderPieces = new List<CombatantPiece3>();
     }
 
-    public void Create(Player attackerPlayer, Party attackerParty, Player defenderPlayer, Party defenderParty, TownDefenseStruct defenderDefenses)
+    public void Create(Player attackerPlayer, Party attackerParty, Player defenderPlayer, Party defenderParty, Town defenderTown)
     {
-        //TODO use the defenderDefenses parameter
+        //TODO use the defenderTown parameter
 
         Remove();
 

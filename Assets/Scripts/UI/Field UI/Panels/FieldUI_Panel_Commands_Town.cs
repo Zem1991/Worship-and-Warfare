@@ -32,7 +32,7 @@ public class FieldUI_Panel_Commands_Town : AbstractUIPanel
 
         ShowButtons();
 
-        if (tp.town.garrison.GetMostRelevant())
+        if (tp.IPFC_GetPartyForCombat().GetMostRelevant())
         {
             btnEjectGarrison.interactable = true;
         }

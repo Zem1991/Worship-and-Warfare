@@ -44,9 +44,13 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         pieceHandler.CreateAll(towns, parties, pickups);
     }
 
-    public void RemoveParty(PartyPiece3 piece)
+    public void RemoveParty(IPieceForCombat piece)
     {
-        pieceHandler.RemoveParty(piece);
+        PartyPiece3 asParty = piece as PartyPiece3;
+        TownPiece3 asTown = piece as TownPiece3;
+
+        if (asParty) pieceHandler.RemovePartyPiece(asParty);
+        if (asTown) asTown.IPFC_GetPartyForCombat().ClearParty();
     }
 
     public void RemovePickup(PickupPiece3 pickup)
@@ -78,7 +82,7 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
 
         if (party.pieceOwner.GetOwner() != town.pieceOwner.GetOwner())
         {
-            if (town.town.garrison.GetMostRelevant())
+            if (town.IPFC_GetPartyForCombat().GetMostRelevant())
             {
                 StartCoroutine(GoToCombat(party, town));
             }
@@ -140,7 +144,7 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
                 Artifact prefab = AllPrefabs.Instance.artifact;
                 Artifact artifact = Instantiate(prefab, transform);
                 artifact.Initialize(artifactPickup.dbArtifact);
-                HeroUnit hero = party.party.GetHeroSlot().Get() as HeroUnit;
+                HeroUnit hero = party.IPFC_GetPartyForCombat().GetHeroSlot().Get() as HeroUnit;
                 hero.inventory.Add(artifact);
                 break;
             default:

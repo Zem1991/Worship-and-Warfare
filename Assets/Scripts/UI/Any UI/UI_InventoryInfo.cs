@@ -54,7 +54,7 @@ public class UI_InventoryInfo : AUI_PanelDragAndDrop
 
     private void RefreshEquipmentInfo(PartyPiece3 partyPiece)
     {
-        HeroUnit hero = partyPiece.party.GetHeroSlot().Get() as HeroUnit;
+        HeroUnit hero = partyPiece.IPFC_GetPartyForCombat().GetHeroSlot().Get() as HeroUnit;
         Inventory inv = hero.inventory;
         mainHand.slot.UpdateSlot(this, inv.GetEquipmentSlot(ArtifactType.MAIN_HAND));
         offHand.slot.UpdateSlot(this, inv.GetEquipmentSlot(ArtifactType.OFF_HAND));
@@ -72,7 +72,7 @@ public class UI_InventoryInfo : AUI_PanelDragAndDrop
         foreach (FieldUI_InventorySlot_Holder item in backpack) Destroy(item.gameObject);
         backpack.Clear();
 
-        HeroUnit hero = partyPiece.party.GetHeroSlot().Get() as HeroUnit;
+        HeroUnit hero = partyPiece.IPFC_GetPartyForCombat().GetHeroSlot().Get() as HeroUnit;
         Inventory inv = hero.inventory;
         foreach (InventorySlot backpackSlot in inv.GetBackpackSlots(true))
         {

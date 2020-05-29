@@ -38,7 +38,7 @@ public class FieldPieceHandler : MonoBehaviour
         if (towns == null) return;
 
         AbstractDBContentHandler<DB_Faction> dbFactions = DBHandler_Faction.Instance;
-        AbstractDBContentHandler<DB_TownBuilding> dbTownBuildings = DBHandler_TownBuilding.Instance;
+        AbstractDBContentHandler<DB_TownStructure> dbTownBuildings = DBHandler_TownStructure.Instance;
 
         PlayerManager pm = PlayerManager.Instance;
         FieldManager fm = FieldManager.Instance;
@@ -46,9 +46,8 @@ public class FieldPieceHandler : MonoBehaviour
 
         TownPiece3 prefabTownPiece = AllPrefabs.Instance.fieldTownPiece;
         Town prefabTown = AllPrefabs.Instance.town;
-        Party prefabParty = AllPrefabs.Instance.party;
 
-        foreach (var townData in towns)
+        foreach (TownData townData in towns)
         {
             int posX = townData.mapPosition[0];
             int posY = townData.mapPosition[1];
@@ -67,17 +66,12 @@ public class FieldPieceHandler : MonoBehaviour
             townPieces.Add(newTownPiece);
 
             Town town = Instantiate(prefabTown, newTownPiece.transform);
-            town.Initialize(dbFaction, newTownPiece, townData.townName);
-
-            Party garrisonParty = Instantiate(prefabParty, town.transform);
-            garrisonParty.Initialize();
-            garrisonParty.name = "Garrison";
-            town.garrison = garrisonParty;
+            town.Initialize(dbFaction, townData);
 
             foreach (var townBuildingData in townData.townBuildings)
             {
                 string townBuildingId = townBuildingData.townBuildingId;
-                DB_TownBuilding dbTownBuilding = dbTownBuildings.Select(townBuildingId);
+                DB_TownStructure dbTownBuilding = dbTownBuildings.Select(townBuildingId);
                 town.BuildStructure(dbTownBuilding, null);
             }
 
@@ -144,7 +138,6 @@ public class FieldPieceHandler : MonoBehaviour
     {
         FieldMap fieldMap = FieldManager.Instance.mapHandler.map;
         PartyPiece3 prefabPartyPiece = AllPrefabs.Instance.fieldPartyPiece;
-        Party prefabParty = AllPrefabs.Instance.party;
 
         int posX = mapPosition.x;
         int posY = mapPosition.y;
@@ -155,17 +148,16 @@ public class FieldPieceHandler : MonoBehaviour
         Quaternion rot = Quaternion.identity;
 
         PartyPiece3 newParty = Instantiate(prefabPartyPiece, pos, rot, transform);
-        Party party = Instantiate(prefabParty, newParty.transform);
-        party.Initialize(partyData);
+        newParty.IPFC_GetPartyForCombat().Initialize(partyData.composition);
 
-        newParty.Initialize(owner, party);
+        newParty.Initialize(owner);
         newParty.currentTile = fieldTile;
         newParty.currentTile.occupantPiece = newParty;
         Debug.Log("Party created: " + newParty);
         return newParty;
     }
 
-    public void RemoveParty(PartyPiece3 piece)
+    public void RemovePartyPiece(PartyPiece3 piece)
     {
         partyPieces.Remove(piece);
         piece.currentTile.occupantPiece = null;

@@ -17,7 +17,7 @@ public class UI_PartyInfo : AUI_PanelDragAndDrop
     public bool canDragUnits = true;
 
     [Header("Dynamic references")]
-    public AbstractFieldPiece3 partySource;
+    public IPieceForCombat partySource;
     public TownPiece3 partySourceAsTown;
     public PartyPiece3 partySourceAsParty;
     public ITownPieceRefresh townPieceRefresh;
@@ -44,15 +44,15 @@ public class UI_PartyInfo : AUI_PanelDragAndDrop
         RefreshInfo(partySource);
     }
 
-    public void RefreshInfo(AbstractFieldPiece3 partySource)
+    public void RefreshInfo(IPieceForCombat partySource)
     {
         this.partySource = partySource;
         partySourceAsTown = partySource as TownPiece3;
         partySourceAsParty = partySource as PartyPiece3;
 
         Party party = null;
-        if (partySourceAsTown) party = partySourceAsTown.town.garrison;
-        if (partySourceAsParty) party = partySourceAsParty.party;
+        if (partySourceAsTown) party = partySourceAsTown.IPFC_GetPartyForCombat();
+        if (partySourceAsParty) party = partySourceAsParty.IPFC_GetPartyForCombat();
 
         PartySlot heroPartySlot = null;
         List<PartySlot> unitsPartySlots = null;
@@ -151,7 +151,7 @@ public class UI_PartyInfo : AUI_PanelDragAndDrop
 
     private void PreventNoTargetParty(UI_PartyInfo sourcePartyDND)
     {
-        if (!partySource)
+        if (partySource == null)
         {
             FieldPieceHandler fph = FieldManager.Instance.pieceHandler;
 
@@ -185,14 +185,14 @@ public class UI_PartyInfo : AUI_PanelDragAndDrop
 
         if (sourcePartySourceAsTown)
         {
-            if (!sourcePartySourceAsTown.town.garrison.GetMostRelevant())
+            if (!sourcePartySourceAsTown.IPFC_GetPartyForCombat().GetMostRelevant())
             {
                 //Town garrison parties can be left empty inside their towns.
             }
         }
         else if (sourcePartySourceAsParty)
         {
-            if (!sourcePartySourceAsParty.party.GetMostRelevant())
+            if (!sourcePartySourceAsParty.IPFC_GetPartyForCombat().GetMostRelevant())
             {
                 FieldManager.Instance.RemoveParty(sourcePartySourceAsParty);
                 //partySourceAsTown.visitorPiece = null;

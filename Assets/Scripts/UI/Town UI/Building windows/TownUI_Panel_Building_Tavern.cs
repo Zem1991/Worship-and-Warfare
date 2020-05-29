@@ -10,8 +10,8 @@ public class TownUI_Panel_Building_Tavern : TownUI_Panel_Building
     {
         Town town = TownManager.Instance.townPiece.town;
         TownBuilding building = town.tavern;
-        buildingImage.sprite = building.dbTownBuilding.buildingImage;
-        buildingName.text = building.dbTownBuilding.townBuildingName;
-        buildingDescription.text = building.dbTownBuilding.buildingDescription;
+        buildingImage.sprite = building.dbTownStructure.structureImage;
+        buildingName.text = building.dbTownStructure.structureName;
+        buildingDescription.text = building.dbTownStructure.structureDescription;
     }
 }

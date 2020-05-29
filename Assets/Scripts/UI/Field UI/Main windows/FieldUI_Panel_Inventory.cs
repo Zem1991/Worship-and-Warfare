@@ -15,7 +15,7 @@ public class FieldUI_Panel_Inventory : AbstractUIPanel, IInventoryRefresh
 
     public void UpdatePanel(PartyPiece3 partyPiece, bool refreshBackpackSlots)
     {
-        HeroUnit hero = partyPiece.party.GetHeroSlot().Get() as HeroUnit;
+        HeroUnit hero = partyPiece.IPFC_GetPartyForCombat().GetHeroSlot().Get() as HeroUnit;
         heroInfo.RefreshInfo(hero);
         attributeInfo.RefreshInfo(hero?.attributeStats);
         inventoryInfo.RefreshInfo(partyPiece, refreshBackpackSlots);

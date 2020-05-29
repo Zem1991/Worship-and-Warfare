@@ -181,6 +181,6 @@ public class CombatOperationalAI : AbstractAIRoutine
                 break;
         }
 
-        StartCoroutine(coroutine);
+        StartCoroutine(coroutine);  //TODO can end having no coroutine to perform!
     }
 }

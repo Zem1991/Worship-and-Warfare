@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(PieceOwner3))]
 [RequireComponent(typeof(PieceController3))]
-public class TownPiece3 : AbstractFieldPiece3, IFlaggablePiece
+public class TownPiece3 : AbstractFieldPiece3, IFlaggablePiece, IPieceForCombat
 {
     [Header("Object components")]
     public SpriteRenderer flagSpriteRenderer;
@@ -23,8 +23,7 @@ public class TownPiece3 : AbstractFieldPiece3, IFlaggablePiece
         pieceController.SetController(owner);
 
         this.town = town;
-
-        name = "Town: " + town.townName;
+        name = "Town Piece: " + town.townName;
 
         SetMainSprite(town.dbFaction.townFieldSprite, SpriteOrderConstants.PIECE);
         IFP_SetFlagSprite(owner.dbColor.imgFlag);
@@ -44,5 +43,20 @@ public class TownPiece3 : AbstractFieldPiece3, IFlaggablePiece
     {
         flagSpriteRenderer.sprite = sprite;
         flagSpriteRenderer.sortingOrder = SpriteOrderConstants.FLAG;
+    }
+
+    public Player IPFC_GetPlayerForCombat()
+    {
+        return pieceOwner.GetOwner();
+    }
+
+    public Party IPFC_GetPartyForCombat()
+    {
+        return town.GetGarrison();
+    }
+
+    public Town IPFC_GetPTownForCombat()
+    {
+        return town;
     }
 }

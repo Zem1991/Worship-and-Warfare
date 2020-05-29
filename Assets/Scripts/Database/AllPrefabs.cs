@@ -13,7 +13,7 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
     public TownBuilding townBuilding;
 
     [Header("Party")]
-    public Party party;
+    //public Party party;
     public PartySlot partySlot;
     public HeroUnit hero;
     public CombatUnit unit;
@@ -49,7 +49,7 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
     public CombatUI_TurnSequenceItem cuiTurnSequenceItem;
 
     [Header("Town UI")]
-    public TownUI_Building tuiBuilding;
+    public TownUI_Structure tuiBuilding;
     public TownUI_Panel_BuildStructure_StructureOption tuiStructureOption;
     public TownUI_Panel_RecruitHero_HeroOption tuiHeroOption;
     public TownUI_Panel_RecruitCreature_CreatureOption tuiCreatureOption;
