@@ -9,6 +9,7 @@ public class CombatMap : AbstractMap<CombatTile>
     [Header("Common Tiles")]
     public List<CombatTile> attackerStartTiles;
     public List<CombatTile> defenderStartTiles;
+    public List<CombatTile> defenderWallTiles;
 
     public override void Remove()
     {
@@ -148,7 +149,7 @@ public class CombatMap : AbstractMap<CombatTile>
     {
         if (tileset.combatObstacles.Count <= 0) return;
 
-        DoodadPiece3 prefab = AllPrefabs.Instance.combatDoodad;
+        DoodadPiece3 prefab = AllPrefabs.Instance.doodadPiece;
         System.Random rand = new System.Random();
         List<CombatTile> values = Enumerable.ToList(tiles.Values);
 
@@ -171,5 +172,32 @@ public class CombatMap : AbstractMap<CombatTile>
             obstacle.currentTile = cTile;
             cTile.obstaclePiece = obstacle;
         }
+    }
+
+    public List<CombatTile> GetWallTiles()
+    {
+        int width = mapSize.x;
+        int maxY = mapSize.y - 1;
+        List<CombatTile> result = new List<CombatTile>();
+        for (int i = 0; i < mapSize.y; i++)
+        {
+            if (i == mapSize.y / 2) continue;
+
+            int maxCol = width;
+            //float colPosAdjust = 0;
+            bool oddCol = i % 2 == 1;
+            if (oddCol)
+            {
+                maxCol++;
+                //colPosAdjust = -0.5F;
+            }
+
+            int wallPosX = 2;   //TODO MATH STUFF
+            int posX = maxCol - wallPosX;
+
+            Vector2Int tileId = new Vector2Int(posX, i);
+            result.Add(tiles[tileId]);
+        }
+        return result;
     }
 }

@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SettingsStats2))]
+[RequireComponent(typeof(HealthStats2))]
+[RequireComponent(typeof(OffenseStats2))]
+[RequireComponent(typeof(DefenseStats2))]
 public class DB_TownDefense : DB_TownStructure
 {
     [Header("Defense identification")]

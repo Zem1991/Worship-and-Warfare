@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ResourceStats2))]
 public class DB_TownStructure : AbstractDBContent
 {
     [Header("Database references")]

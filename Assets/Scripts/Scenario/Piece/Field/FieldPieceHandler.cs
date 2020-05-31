@@ -44,7 +44,7 @@ public class FieldPieceHandler : MonoBehaviour
         FieldManager fm = FieldManager.Instance;
         FieldMap fieldMap = fm.mapHandler.map;
 
-        TownPiece3 prefabTownPiece = AllPrefabs.Instance.fieldTownPiece;
+        TownPiece3 prefabTownPiece = AllPrefabs.Instance.townPiece;
         Town prefabTown = AllPrefabs.Instance.town;
 
         foreach (TownData townData in towns)
@@ -137,7 +137,7 @@ public class FieldPieceHandler : MonoBehaviour
     public PartyPiece3 CreateParty(Vector2Int mapPosition, PartyData partyData, Player owner)
     {
         FieldMap fieldMap = FieldManager.Instance.mapHandler.map;
-        PartyPiece3 prefabPartyPiece = AllPrefabs.Instance.fieldPartyPiece;
+        PartyPiece3 prefabPartyPiece = AllPrefabs.Instance.partyPiece;
 
         int posX = mapPosition.x;
         int posY = mapPosition.y;

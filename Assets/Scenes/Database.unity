@@ -418,11 +418,58 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 129251384}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: id
+      value: Temple (DF)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: townBuildingName
+      value: Temple
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: townBuildingType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: buildingImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 3b7fba506c6aa5b4da1f26a6a7396225,
+        type: 3}
     - target: {fileID: 1971070591947633640, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
         type: 3}
       propertyPath: m_Name
       value: Temple (DF)
       objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: id
+      value: Temple (DF)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: structureName
+      value: Temple
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: buildingType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: structureDescription
+      value: Temple
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: rect.x
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: faction
+      value: 
+      objectReference: {fileID: 928834134}
     - target: {fileID: 1971070591947633639, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -478,27 +525,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+    - target: {fileID: 1971070591947633637, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
         type: 3}
-      propertyPath: id
-      value: Temple (DF)
+      propertyPath: gold
+      value: 700
       objectReference: {fileID: 0}
-    - target: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
-        type: 3}
-      propertyPath: townBuildingName
-      value: Temple
-      objectReference: {fileID: 0}
-    - target: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
-        type: 3}
-      propertyPath: townBuildingType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
-        type: 3}
-      propertyPath: buildingImage
-      value: 
-      objectReference: {fileID: 21300000, guid: 3b7fba506c6aa5b4da1f26a6a7396225,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b, type: 3}
 --- !u!4 &93357021 stripped
@@ -507,18 +538,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 93357020}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &93357022 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
-    type: 3}
-  m_PrefabInstance: {fileID: 93357020}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e0d2e873359f3044924eec61a82e9b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &120274622
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,6 +780,126 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 173924436}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &189570834
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 848778803}
+    m_Modifications:
+    - target: {fileID: 1971070591947633640, guid: c2e199aae34d83c48ad3f083308dbd78,
+        type: 3}
+      propertyPath: m_Name
+      value: Wall (DF)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2960679598276668532, guid: c2e199aae34d83c48ad3f083308dbd78,
+        type: 3}
+      propertyPath: id
+      value: Wall (DF)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2960679598276668532, guid: c2e199aae34d83c48ad3f083308dbd78,
+        type: 3}
+      propertyPath: structureName
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 2960679598276668532, guid: c2e199aae34d83c48ad3f083308dbd78,
+        type: 3}
+      propertyPath: faction
+      value: 
+      objectReference: {fileID: 928834134}
+    - target: {fileID: 2960679598276668532, guid: c2e199aae34d83c48ad3f083308dbd78,
+        type: 3}
+      propertyPath: animatorCombat
+      value: 
+      objectReference: {fileID: 22100000, guid: e70105d17f3ebae48b5ceab2f99b0425,
+        type: 2}
+    - target: {fileID: -7521083091725052502, guid: c2e199aae34d83c48ad3f083308dbd78,
+        type: 3}
+      propertyPath: hitPoints_current
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -7521083091725052502, guid: c2e199aae34d83c48ad3f083308dbd78,
+        type: 3}
+      propertyPath: hitPoints_maximum
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -516537555230173896, guid: c2e199aae34d83c48ad3f083308dbd78,
+        type: 3}
+      propertyPath: canWait
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -516537555230173896, guid: c2e199aae34d83c48ad3f083308dbd78,
+        type: 3}
+      propertyPath: canDefend
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -516537555230173896, guid: c2e199aae34d83c48ad3f083308dbd78,
+        type: 3}
+      propertyPath: canRetaliate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -516537555230173896, guid: c2e199aae34d83c48ad3f083308dbd78,
+        type: 3}
+      propertyPath: retaliationsMax
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1971070591947633639, guid: c2e199aae34d83c48ad3f083308dbd78,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1971070591947633639, guid: c2e199aae34d83c48ad3f083308dbd78,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1971070591947633639, guid: c2e199aae34d83c48ad3f083308dbd78,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1971070591947633639, guid: c2e199aae34d83c48ad3f083308dbd78,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1971070591947633639, guid: c2e199aae34d83c48ad3f083308dbd78,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1971070591947633639, guid: c2e199aae34d83c48ad3f083308dbd78,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1971070591947633639, guid: c2e199aae34d83c48ad3f083308dbd78,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1971070591947633639, guid: c2e199aae34d83c48ad3f083308dbd78,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1971070591947633639, guid: c2e199aae34d83c48ad3f083308dbd78,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1971070591947633639, guid: c2e199aae34d83c48ad3f083308dbd78,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1971070591947633639, guid: c2e199aae34d83c48ad3f083308dbd78,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c2e199aae34d83c48ad3f083308dbd78, type: 3}
 --- !u!1001 &214710716
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1124,11 +1263,63 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 129251384}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: townBuildingName
+      value: Tavern
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: id
+      value: Tavern (DF)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: townBuildingType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: buildingImage
+      value: 
+      objectReference: {fileID: 21300000, guid: fbfde68be51380f43a3c5ee89649d185,
+        type: 3}
     - target: {fileID: 1971070591947633640, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
         type: 3}
       propertyPath: m_Name
       value: Tavern (DF)
       objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: id
+      value: Tavern (DF)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: structureName
+      value: Tavern
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: buildingType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: structureDescription
+      value: Tavern
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: rect.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: rect.y
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: faction
+      value: 
+      objectReference: {fileID: 928834134}
     - target: {fileID: 1971070591947633639, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1184,27 +1375,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+    - target: {fileID: 1971070591947633637, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
         type: 3}
-      propertyPath: townBuildingName
-      value: Tavern
+      propertyPath: gold
+      value: 700
       objectReference: {fileID: 0}
-    - target: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
-        type: 3}
-      propertyPath: id
-      value: Tavern (DF)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
-        type: 3}
-      propertyPath: townBuildingType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
-        type: 3}
-      propertyPath: buildingImage
-      value: 
-      objectReference: {fileID: 21300000, guid: fbfde68be51380f43a3c5ee89649d185,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b, type: 3}
 --- !u!4 &325152767 stripped
@@ -1213,18 +1388,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 325152766}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &325152768 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
-    type: 3}
-  m_PrefabInstance: {fileID: 325152766}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e0d2e873359f3044924eec61a82e9b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &356909970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,11 +1487,63 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 129251384}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: id
+      value: Mage Guild (DF)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: townBuildingName
+      value: Mage Guild
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: townBuildingType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: buildingImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 71cc4de108b1c1443acd7afe5b5d460b,
+        type: 3}
     - target: {fileID: 1971070591947633640, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
         type: 3}
       propertyPath: m_Name
       value: Mage Guild (DF)
       objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: id
+      value: Mage Guild (DF)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: structureName
+      value: Mage Guild
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: buildingType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: structureDescription
+      value: Mage Guild
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: rect.x
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: rect.y
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: faction
+      value: 
+      objectReference: {fileID: 928834134}
     - target: {fileID: 1971070591947633639, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1384,27 +1599,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+    - target: {fileID: 1971070591947633637, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
         type: 3}
-      propertyPath: id
-      value: Mage Guild (DF)
+      propertyPath: gold
+      value: 1200
       objectReference: {fileID: 0}
-    - target: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+    - target: {fileID: 1971070591947633637, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
         type: 3}
-      propertyPath: townBuildingName
-      value: Mage Guild
+      propertyPath: crystals
+      value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
-        type: 3}
-      propertyPath: townBuildingType
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
-        type: 3}
-      propertyPath: buildingImage
-      value: 
-      objectReference: {fileID: 21300000, guid: 71cc4de108b1c1443acd7afe5b5d460b,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b, type: 3}
 --- !u!4 &436990337 stripped
@@ -1413,18 +1617,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 436990336}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &436990338 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
-    type: 3}
-  m_PrefabInstance: {fileID: 436990336}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e0d2e873359f3044924eec61a82e9b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &441683125
 GameObject:
   m_ObjectHideFlags: 0
@@ -1476,8 +1668,10 @@ MonoBehaviour:
     type: 3}
   partySlot: {fileID: 5746358022123851709, guid: ddcbb449ee8944646b4cc125b37f3923,
     type: 3}
-  hero: {fileID: 8507488037947193599, guid: 96895e799d8318f409f080a41f243636, type: 3}
-  unit: {fileID: 1485436908184088651, guid: a9ff8d2df2ae55046a37b63525e48252, type: 3}
+  heroUnit: {fileID: 8507488037947193599, guid: 96895e799d8318f409f080a41f243636,
+    type: 3}
+  combatUnit: {fileID: 1485436908184088651, guid: a9ff8d2df2ae55046a37b63525e48252,
+    type: 3}
   inventory: {fileID: 7244132929809245279, guid: 09fe24764bfc2d74da5c9b4cdc116d1b,
     type: 3}
   inventorySlot: {fileID: 2256691961838049280, guid: 7ad00ff2241a22142a14d6921d90dbbb,
@@ -1487,19 +1681,20 @@ MonoBehaviour:
     type: 3}
   fieldTile: {fileID: 8671262855878196691, guid: 9c74900f3a4946947894798d230e9005,
     type: 3}
-  fieldTownPiece: {fileID: 97644446141563329, guid: 4b932b9804efd43498ff9e8d58dcfed3,
-    type: 3}
-  fieldPartyPiece: {fileID: 4234026010174413057, guid: 401bec5f5077fe847911abfceccfb46c,
+  townPiece: {fileID: 97644446141563329, guid: 4b932b9804efd43498ff9e8d58dcfed3, type: 3}
+  partyPiece: {fileID: 4234026010174413057, guid: 401bec5f5077fe847911abfceccfb46c,
     type: 3}
   pickupPiece: {fileID: -4379598809724792539, guid: 9636c308433c1254fb7a32629bf6e787,
     type: 3}
   combatTile: {fileID: 9123833009311177861, guid: 605b8679fefa758409107b55da35c471,
     type: 3}
-  combatHeroPiece: {fileID: 1999095044441610844, guid: f567798ced8827241949ba9a84b35a76,
+  doodadPiece: {fileID: 3493729476602318274, guid: 2811319c6d07d9e4683e073ab140d481,
+    type: 3}
+  heroUnitPiece: {fileID: 1999095044441610844, guid: f567798ced8827241949ba9a84b35a76,
     type: 3}
   combatUnitPiece: {fileID: 6036333515219936309, guid: ad7735426d24fa44d822fe6499eaae6d,
     type: 3}
-  combatDoodad: {fileID: 3493729476602318274, guid: 2811319c6d07d9e4683e073ab140d481,
+  wallPiece: {fileID: 2552996330113332429, guid: dd4167b0bdcd47b4bbf58f9e6a17033f,
     type: 3}
   highlight: {fileID: 6205666536738310281, guid: 5b702608e16dadd4bbc44d29595780b2,
     type: 3}
@@ -2338,18 +2533,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1971070592279445935}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &742978121 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1971070592279445935}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e0d2e873359f3044924eec61a82e9b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &805997493
 GameObject:
   m_ObjectHideFlags: 0
@@ -2477,7 +2660,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1515205818}
   m_Father: {fileID: 1369911653}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2681,13 +2865,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf2b7bb2943d3d447b286a2cab14b91c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  villageHall: {fileID: 742978121}
-  tavern: {fileID: 325152768}
-  temple: {fileID: 93357022}
-  castle: {fileID: 1506164098}
-  mageGuild: {fileID: 436990338}
-  workshop: {fileID: 1944856529}
+  villageHall: {fileID: 0}
+  tavern: {fileID: 0}
+  temple: {fileID: 0}
+  castle: {fileID: 0}
+  mageGuild: {fileID: 0}
+  workshop: {fileID: 0}
   wall: {fileID: 0}
+  gatehouse: {fileID: 0}
+  tower: {fileID: 0}
   heroClassMight: {fileID: 1476942290}
   heroClassMagic: {fileID: 1467057120}
   heroClassTech: {fileID: 0}
@@ -4197,11 +4383,53 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 129251384}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: id
+      value: Castle (DF)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: townBuildingName
+      value: Castle
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: townBuildingType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: buildingImage
+      value: 
+      objectReference: {fileID: 21300000, guid: cddd29724bb05e443a46feb34b9e6ea0,
+        type: 3}
     - target: {fileID: 1971070591947633640, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
         type: 3}
       propertyPath: m_Name
       value: Castle (DF)
       objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: id
+      value: Castle (DF)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: structureName
+      value: Castle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: buildingType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: structureDescription
+      value: Castle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: faction
+      value: 
+      objectReference: {fileID: 928834134}
     - target: {fileID: 1971070591947633639, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4257,27 +4485,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+    - target: {fileID: 1971070591947633637, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
         type: 3}
-      propertyPath: id
-      value: Castle (DF)
+      propertyPath: gold
+      value: 5000
       objectReference: {fileID: 0}
-    - target: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+    - target: {fileID: 1971070591947633637, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
         type: 3}
-      propertyPath: townBuildingName
-      value: Castle
+      propertyPath: ore
+      value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+    - target: {fileID: 1971070591947633637, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
         type: 3}
-      propertyPath: townBuildingType
-      value: 3
+      propertyPath: ale
+      value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
-        type: 3}
-      propertyPath: buildingImage
-      value: 
-      objectReference: {fileID: 21300000, guid: cddd29724bb05e443a46feb34b9e6ea0,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b, type: 3}
 --- !u!4 &1506164097 stripped
@@ -4286,18 +4508,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1506164096}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1506164098 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+--- !u!4 &1515205818 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1971070591947633639, guid: c2e199aae34d83c48ad3f083308dbd78,
     type: 3}
-  m_PrefabInstance: {fileID: 1506164096}
+  m_PrefabInstance: {fileID: 189570834}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e0d2e873359f3044924eec61a82e9b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1532252776
 GameObject:
   m_ObjectHideFlags: 0
@@ -5360,11 +5576,63 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 129251384}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: id
+      value: Workshop (DF)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: townBuildingName
+      value: Workshop
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: townBuildingType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: buildingImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 3a21838b8c97d1246bc6ace843b4b705,
+        type: 3}
     - target: {fileID: 1971070591947633640, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
         type: 3}
       propertyPath: m_Name
       value: Workshop (DF)
       objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: id
+      value: Workshop (DF)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: structureName
+      value: Workshop
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: buildingType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: structureDescription
+      value: Workshop
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: rect.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: rect.y
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: faction
+      value: 
+      objectReference: {fileID: 928834134}
     - target: {fileID: 1971070591947633639, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5420,27 +5688,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+    - target: {fileID: 1971070591947633637, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
         type: 3}
-      propertyPath: id
-      value: Workshop (DF)
+      propertyPath: gold
+      value: 1200
       objectReference: {fileID: 0}
-    - target: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+    - target: {fileID: 1971070591947633637, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
         type: 3}
-      propertyPath: townBuildingName
-      value: Workshop
-      objectReference: {fileID: 0}
-    - target: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
-        type: 3}
-      propertyPath: townBuildingType
+      propertyPath: sulfur
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
-        type: 3}
-      propertyPath: buildingImage
-      value: 
-      objectReference: {fileID: 21300000, guid: 3a21838b8c97d1246bc6ace843b4b705,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b, type: 3}
 --- !u!4 &1944856528 stripped
@@ -5449,18 +5706,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1944856527}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1944856529 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1944856527}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e0d2e873359f3044924eec61a82e9b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1957607056
 GameObject:
   m_ObjectHideFlags: 0
@@ -5750,11 +5995,48 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 129251384}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: faction
+      value: 
+      objectReference: {fileID: 928834134}
+    - target: {fileID: 0}
+      propertyPath: id
+      value: Village Hall (DF)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: townBuildingName
+      value: Village Hall
+      objectReference: {fileID: 0}
     - target: {fileID: 1971070591947633640, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
         type: 3}
       propertyPath: m_Name
       value: Village Hall (DF)
       objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: id
+      value: Village Hall (DF)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: structureName
+      value: Village Hall
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: structureDescription
+      value: Village Hall
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: rect.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181715249269017647, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+        type: 3}
+      propertyPath: faction
+      value: 
+      objectReference: {fileID: 928834134}
     - target: {fileID: 1971070591947633639, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5810,20 +6092,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
+    - target: {fileID: 1971070591947633637, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
         type: 3}
-      propertyPath: faction
-      value: 
-      objectReference: {fileID: 928834134}
-    - target: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
-        type: 3}
-      propertyPath: id
-      value: Village Hall (DF)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1971070591947633638, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b,
-        type: 3}
-      propertyPath: townBuildingName
-      value: Village Hall
+      propertyPath: gold
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f0b4e3f2f0ae5a4796b8aed2f55d12b, type: 3}

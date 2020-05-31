@@ -15,8 +15,8 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
     [Header("Party")]
     //public Party party;
     public PartySlot partySlot;
-    public HeroUnit hero;
-    public CombatUnit unit;
+    public HeroUnit heroUnit;
+    public CombatUnit combatUnit;
 
     [Header("Inventory")]
     public Inventory inventory;
@@ -28,15 +28,16 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
 
     [Header("Field scene")]
     public FieldTile fieldTile;
-    public TownPiece3 fieldTownPiece;
-    public PartyPiece3 fieldPartyPiece;
+    public TownPiece3 townPiece;
+    public PartyPiece3 partyPiece;
     public PickupPiece3 pickupPiece;
 
     [Header("Combat scene")]
     public CombatTile combatTile;
-    public HeroUnitPiece3 combatHeroPiece;
+    public DoodadPiece3 doodadPiece;
+    public HeroUnitPiece3 heroUnitPiece;
     public CombatUnitPiece3 combatUnitPiece;
-    public DoodadPiece3 combatDoodad;
+    public WallPiece3 wallPiece;
 
     [Header("Highlight")]
     public Highlight highlight;

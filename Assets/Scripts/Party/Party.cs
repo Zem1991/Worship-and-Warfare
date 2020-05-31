@@ -30,8 +30,8 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractUnit>
         AbstractDBContentHandler<DB_HeroPerson> dbHeroes = DBHandler_HeroPerson.Instance;
         AbstractDBContentHandler<DB_CombatUnit> dbCombatUnits = DBHandler_CombatUnit.Instance;
 
-        HeroUnit prefabHero = AllPrefabs.Instance.hero;
-        CombatUnit prefabUnit = AllPrefabs.Instance.unit;
+        HeroUnit prefabHero = AllPrefabs.Instance.heroUnit;
+        CombatUnit prefabUnit = AllPrefabs.Instance.combatUnit;
 
         if (partyData.hero != null)
         {
@@ -223,7 +223,7 @@ public class Party : AbstractSlotContainer<PartySlot, AbstractUnit>
         //int amountMod = fullAmount % 2;
 
         //targetObj.stackStats.Add(amountDiv, true, false);
-        CombatUnit prefabUnit = AllPrefabs.Instance.unit;
+        CombatUnit prefabUnit = AllPrefabs.Instance.combatUnit;
         CombatUnit newUnit = Instantiate(prefabUnit, targetSlot.transform);
         newUnit.Initialize(sourceObj.GetDBCombatUnit(), amountDiv);
 

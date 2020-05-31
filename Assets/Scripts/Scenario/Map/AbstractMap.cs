@@ -59,34 +59,4 @@ public abstract class AbstractMap<T> : MonoBehaviour where T : AbstractTile
         Debug.Log("AreaLine finish");
         return GetTiles(coordinates);
     }
-
-    //public List<T> AreaLine(Vector3 startPos, Vector3 endPos)
-    //{
-    //    Debug.Log("AreaLine start");
-    //    Vector3 centerFix = new Vector3(0.5F, 0, 0.5F);
-
-    //    Vector3 direction = (endPos + centerFix) - (startPos + centerFix);
-    //    float maxDistance = direction.magnitude;
-    //    Debug.Log(startPos + centerFix);
-    //    Debug.Log(endPos + centerFix);
-    //    Debug.Log(direction);
-    //    Debug.Log(maxDistance);
-    //    RaycastHit[] hits = Physics.RaycastAll(startPos + centerFix, direction, maxDistance);
-
-    //    List<Vector2Int> coordinates = new List<Vector2Int>();
-    //    foreach (var item in hits)
-    //    {
-    //        GameObject gobj = item.collider.gameObject;
-    //        AbstractTile tile = gobj.GetComponent<AbstractTile>();
-    //        if (!tile) tile = gobj.GetComponentInParent<AbstractTile>();
-    //        if (!tile) continue;
-
-    //        Vector2Int pos = tile.posId;
-    //        if (coordinates.Contains(pos)) continue;
-
-    //        coordinates.Add(pos);
-    //    }
-    //    Debug.Log("AreaLine finish");
-    //    return GetTiles(coordinates);
-    //}
 }

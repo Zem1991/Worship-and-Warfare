@@ -1,0 +1,144 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1971070591947633640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1971070591947633639}
+  - component: {fileID: 2960679598276668532}
+  - component: {fileID: 5296681921146914239}
+  - component: {fileID: -516537555230173896}
+  - component: {fileID: -7521083091725052502}
+  - component: {fileID: 7713843162478784718}
+  - component: {fileID: -6940774560325833719}
+  m_Layer: 0
+  m_Name: DB Town Defense
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1971070591947633639
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971070591947633640}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2960679598276668532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971070591947633640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7269eec85603e440b5fb215b5f3a1aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: DB Town Defense
+  faction: {fileID: 0}
+  structureName: 
+  structureImage: {fileID: 0}
+  structureDescription: 
+  rect:
+    serializedVersion: 2
+    x: 400
+    y: 200
+    width: 200
+    height: 200
+  resourceStats: {fileID: 5296681921146914239}
+  defenseType: 0
+  settingsStats: {fileID: -516537555230173896}
+  healthStats: {fileID: -7521083091725052502}
+  offenseStats: {fileID: 7713843162478784718}
+  defenseStats: {fileID: -6940774560325833719}
+  animatorCombat: {fileID: 0}
+--- !u!114 &5296681921146914239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971070591947633640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74807676fdd32154dbdc70e9345174e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gold: 0
+  ore: 0
+  ale: 0
+  crystals: 0
+  sulfur: 0
+--- !u!114 &-516537555230173896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971070591947633640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7af83eae984d8e468ffb0cbf896e174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canWait: 1
+  canDefend: 1
+  canRetaliate: 1
+  canCounter: 0
+  retaliationsMax: 1
+--- !u!114 &-7521083091725052502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971070591947633640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b70040dab75c14044b040a45aded5cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPoints_current: 0
+  hitPoints_maximum: 0
+--- !u!114 &7713843162478784718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971070591947633640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b0a04b6baa564e42bd0babc8d339f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack_melee: {fileID: 0}
+  attack_ranged: {fileID: 0}
+--- !u!114 &-6940774560325833719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971070591947633640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f74c10482f7fa8a4087d7fb4ba440bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armor_physical: 0
+  armor_magical: 0

@@ -9,5 +9,5 @@ AnimatorOverrideController:
   m_Name: Arrow
   m_Controller: {fileID: 9100000, guid: 10e4ce4036addb047a5ba1ec7c1ee074, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: 94ff6730fee0bd64dba97d8e68b7ae5a, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 7cad6378a70f56742becf034dee746f9, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: 94ff6730fee0bd64dba97d8e68b7ae5a, type: 2}

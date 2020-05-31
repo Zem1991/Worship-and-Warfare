@@ -75,7 +75,7 @@ public class TownUI_Panel_RecruitCreature : AbstractUIPanel
             int amount = int.Parse(option.inpAmount.text);
             if (amount <= 0) continue;
 
-            CombatUnit prefab = AllPrefabs.Instance.unit;
+            CombatUnit prefab = AllPrefabs.Instance.combatUnit;
             CombatUnit unit = Instantiate(prefab, party.transform);
             unit.Initialize(dbUnit, amount);
             party.MergeOrAdd(unit);

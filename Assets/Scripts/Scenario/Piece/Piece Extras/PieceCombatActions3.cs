@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[RequireComponent(typeof(CombatantPiece3))]
 public class PieceCombatActions3 : MonoBehaviour
 {
     private CombatantPiece3 piece;

@@ -43,13 +43,15 @@ public class CombatPieceHandler : MonoBehaviour
 
     public void Create(Player attackerPlayer, Party attackerParty, Player defenderPlayer, Party defenderParty, Town defenderTown)
     {
-        //TODO use the defenderTown parameter
-
         Remove();
 
-        HeroUnitPiece3 prefabHero = AllPrefabs.Instance.combatHeroPiece;
-        CombatUnitPiece3 prefabUnit = AllPrefabs.Instance.combatUnitPiece;
+        CombatMap map = CombatManager.Instance.mapHandler.map;
 
+        HeroUnitPiece3 prefabHero = AllPrefabs.Instance.heroUnitPiece;
+        CombatUnitPiece3 prefabUnit = AllPrefabs.Instance.combatUnitPiece;
+        WallPiece3 prefabWall = AllPrefabs.Instance.wallPiece;
+
+        //Attacker hero unit
         int spawnId = 0;
         if (attackerParty.GetHeroSlot() != null)
         {
@@ -62,6 +64,7 @@ public class CombatPieceHandler : MonoBehaviour
             }
         }
 
+        //Defender hero unit
         spawnId = 1;
         if (defenderParty.GetHeroSlot() != null)
         {
@@ -74,7 +77,8 @@ public class CombatPieceHandler : MonoBehaviour
             }
         }
 
-        spawnId = 2;
+        //Attacker combat units
+        spawnId = 10;
         foreach (var unitSlot in attackerParty.GetUnitSlots())
         {
             CombatUnit unit = unitSlot.Get() as CombatUnit;
@@ -88,7 +92,8 @@ public class CombatPieceHandler : MonoBehaviour
             spawnId += 2;
         }
 
-        spawnId = 3;
+        //Defender combat units
+        spawnId = 11;
         foreach (var unitSlot in defenderParty.GetUnitSlots())
         {
             CombatUnit unit = unitSlot.Get() as CombatUnit;
@@ -101,10 +106,36 @@ public class CombatPieceHandler : MonoBehaviour
             }
             spawnId += 2;
         }
+
+        ////Attacker support units ?
+        //spawnId = 100;
+
+        ////Defender support units ?
+        //spawnId = 101;
+
+        //Defender town defenses
+        if (defenderTown)
+        {
+            if (defenderTown.wall)
+            {
+                spawnId = 1000;
+                List<CombatTile> wallTiles = map.GetWallTiles();
+
+                foreach (CombatTile wall in wallTiles)
+                {
+                    WallPiece3 newWall = Instantiate(prefabWall, transform);
+                    newWall.Initialize(defenderPlayer, spawnId, true);
+                    spawnId++;
+                }
+            }
+
+            //TODO: all other possible town defenses
+        }
     }
 
-    public void InitialPositions(CombatMap map)
+    public void InitialPositions()
     {
+        CombatMap map = CombatManager.Instance.mapHandler.map;
         InitialPosition(attackerPieces, map.attackerStartTiles);
         InitialPosition(defenderPieces, map.defenderStartTiles);
     }

@@ -90,7 +90,7 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     private void BootPieces(Player attackerPlayer, Party attackerParty, Player defenderPlayer, Party defenderParty, Town defenderTown)
     {
         pieceHandler.Create(attackerPlayer, attackerParty, defenderPlayer, defenderParty, defenderTown);
-        pieceHandler.InitialPositions(mapHandler.map);
+        pieceHandler.InitialPositions();
     }
 
     public bool IsCombatRunning()
