@@ -62,8 +62,8 @@ public class CombatUI : AbstractSingleton<CombatUI>, IUIScheme, IShowableHideabl
         CombatInputExecutor ci = CombatSceneInputs.Instance.executor;
 
         coreButtons.UpdatePanel();
-        attackerParty.UpdatePanel(cm.pieceHandler.attackerHero);
-        defenderParty.UpdatePanel(cm.pieceHandler.defenderHero);
+        attackerParty.UpdatePanel(cm.pieceHandler.attackerHeroUnit);
+        defenderParty.UpdatePanel(cm.pieceHandler.defenderHeroUnit);
         timers.UpdatePanel();
         turnSequence.UpdatePanel();
         combatLogs.UpdatePanel(cm.GetLastLogs(5));

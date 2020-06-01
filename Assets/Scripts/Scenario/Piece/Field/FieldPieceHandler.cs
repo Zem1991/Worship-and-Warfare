@@ -53,7 +53,7 @@ public class FieldPieceHandler : MonoBehaviour
             int posY = townData.mapPosition[1];
 
             Vector2Int tileId = new Vector2Int(posX, posY);
-            FieldTile fieldTile = fieldMap.tiles[tileId];
+            FieldTile fieldTile = fieldMap.GetTile(tileId);
             Vector3 pos = fieldTile.transform.position;
             Quaternion rot = Quaternion.identity;
 
@@ -72,8 +72,11 @@ public class FieldPieceHandler : MonoBehaviour
             {
                 string townBuildingId = townBuildingData.townBuildingId;
                 DB_TownStructure dbTownBuilding = dbTownBuildings.Select(townBuildingId);
-                town.BuildStructure(dbTownBuilding, null);
+                town.BuildStructure(dbTownBuilding);
             }
+
+            //TODO: giving walls to all towns because actual required stuff is not done yet
+            town.BuildStructure(dbTownBuildings.Select("Wall (DF)"));
 
             newTownPiece.currentTile = fieldTile;
             newTownPiece.currentTile.occupantPiece = newTownPiece;
@@ -114,7 +117,7 @@ public class FieldPieceHandler : MonoBehaviour
             int posY = pData.mapPosition[1];
 
             Vector2Int tileId = new Vector2Int(posX, posY);
-            FieldTile fieldTile = fieldMap.tiles[tileId];
+            FieldTile fieldTile = fieldMap.GetTile(tileId);
             Vector3 pos = fieldTile.transform.position;
             Quaternion rot = Quaternion.identity;
 
@@ -143,7 +146,7 @@ public class FieldPieceHandler : MonoBehaviour
         int posY = mapPosition.y;
 
         Vector2Int tileId = new Vector2Int(posX, posY);
-        FieldTile fieldTile = fieldMap.tiles[tileId];
+        FieldTile fieldTile = fieldMap.GetTile(tileId);
         Vector3 pos = fieldTile.transform.position;
         Quaternion rot = Quaternion.identity;
 

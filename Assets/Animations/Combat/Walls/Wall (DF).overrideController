@@ -9,5 +9,5 @@ AnimatorOverrideController:
   m_Name: Wall (DF)
   m_Controller: {fileID: 9100000, guid: d9dcdcc62ef65394f9703b659350d160, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: dfc2cfc0ed007ed4f9f72c6d87423752, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 4c5c892bd3575484d802352c420ccd2b, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: 5cee8383167f355498c97aeb854fb1b7, type: 2}

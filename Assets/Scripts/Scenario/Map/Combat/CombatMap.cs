@@ -6,47 +6,20 @@ using UnityEngine;
 
 public class CombatMap : AbstractMap<CombatTile>
 {
-    [Header("Common Tiles")]
-    public List<CombatTile> attackerStartTiles;
-    public List<CombatTile> defenderStartTiles;
-    public List<CombatTile> defenderWallTiles;
-
-    public override void Remove()
-    {
-        base.Remove();
-
-        if (attackerStartTiles != null)
-        {
-            foreach (var item in attackerStartTiles)
-            {
-                Destroy(item.gameObject);
-            }
-        }
-        attackerStartTiles = new List<CombatTile>();
-
-        if (defenderStartTiles != null)
-        {
-            foreach (var item in defenderStartTiles)
-            {
-                Destroy(item.gameObject);
-            }
-        }
-        defenderStartTiles = new List<CombatTile>();
-    }
-
     public override void Create(Vector2Int size)
     {
         Remove();
-        mapSize = size;
+
+        base.size = size;
         CombatTile prefabTile = AllPrefabs.Instance.combatTile;
 
         prefabTile.groundMovementCost = 100;    //TODO GET MOVEMENT COSTS LATER
         prefabTile.allowGroundMovement = true;  //TODO GET MOVEMENT TYPES LATER
 
-        int width = mapSize.x;
+        int width = base.size.x;
         //int height = mapSize.y;
         //int maxX = mapSize.x - 1;
-        int maxY = mapSize.y - 1;
+        int maxY = base.size.y - 1;
 
         Vector3 startPos = new Vector3();
         startPos.x = 0; // (width - 1) / -2F;
@@ -78,7 +51,7 @@ public class CombatMap : AbstractMap<CombatTile>
 
                 Vector2Int tileId = new Vector2Int(col, row);
                 CombatTile newTile = Instantiate(prefabTile, pos, rot, transform);
-                tiles.Add(tileId, newTile);
+                AddTile(tileId, newTile);
 
                 newTile.id = current;
                 newTile.posId = tileId;
@@ -126,11 +99,6 @@ public class CombatMap : AbstractMap<CombatTile>
                     previousRowReference = firstOfCurrentRow;
                     previousRowReferenceLeft = firstOfCurrentRow.l as CombatTile;
                 }
-
-                //Set attacker's start tiles
-                if (col == 0) attackerStartTiles.Add(newTile);
-                //Set defender's start tiles
-                if (col == lastCol) defenderStartTiles.Add(newTile);
             }
         }
     }
@@ -138,7 +106,7 @@ public class CombatMap : AbstractMap<CombatTile>
     public void ApplyTileset(DB_Tileset tileset)
     {
         Sprite s = tileset.image;
-        foreach (var tile in tiles.Values)
+        foreach (var tile in GetAllTiles())
         {
             tile.db_tileset_battleground = tileset;
             tile.ChangeLandSprite(s);
@@ -151,13 +119,13 @@ public class CombatMap : AbstractMap<CombatTile>
 
         DoodadPiece3 prefab = AllPrefabs.Instance.doodadPiece;
         System.Random rand = new System.Random();
-        List<CombatTile> values = Enumerable.ToList(tiles.Values);
+        List<CombatTile> values = GetAllTiles();
 
         int obstaclesToMake = UnityEngine.Random.Range(0, 20);
         for (int i = 0; i < obstaclesToMake; i++)
         {
             CombatTile cTile = values[rand.Next(values.Count)];
-            int maxTilesX = mapSize.x - 1;
+            int maxTilesX = size.x - 1;
             if (cTile.posId.y % 2 == 1) maxTilesX++;
 
             if (cTile.posId.x <= 2) continue;
@@ -174,14 +142,38 @@ public class CombatMap : AbstractMap<CombatTile>
         }
     }
 
+    public List<CombatTile> GetAttackerSpawnTiles()
+    {
+        List<CombatTile> result = new List<CombatTile>();
+        for (int y = 0; y < size.y; y++)
+        {
+            List<CombatTile> list = GetTiles(y);
+            CombatTile tile = list[0];
+            result.Add(tile);
+        }
+        return result;
+    }
+
+    public List<CombatTile> GetDefenderSpawnTiles()
+    {
+        List<CombatTile> result = new List<CombatTile>();
+        for (int y = 0; y < size.y; y++)
+        {
+            List<CombatTile> list = GetTiles(y);
+            CombatTile tile = list[list.Count - 1];
+            result.Add(tile);
+        }
+        return result;
+    }
+
     public List<CombatTile> GetWallTiles()
     {
-        int width = mapSize.x;
-        int maxY = mapSize.y - 1;
-        List<CombatTile> result = new List<CombatTile>();
-        for (int i = 0; i < mapSize.y; i++)
+        int width = size.x;
+        int maxY = size.y - 1;
+        List<Vector2Int> ids = new List<Vector2Int>();
+        for (int i = 0; i < size.y; i++)
         {
-            if (i == mapSize.y / 2) continue;
+            if (i == size.y / 2) continue;
 
             int maxCol = width;
             //float colPosAdjust = 0;
@@ -196,8 +188,9 @@ public class CombatMap : AbstractMap<CombatTile>
             int posX = maxCol - wallPosX;
 
             Vector2Int tileId = new Vector2Int(posX, i);
-            result.Add(tiles[tileId]);
+            ids.Add(tileId);
         }
+        List<CombatTile> result = GetTiles(ids);
         return result;
     }
 }

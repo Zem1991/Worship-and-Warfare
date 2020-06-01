@@ -6,39 +6,43 @@ using UnityEngine;
 public class CombatPieceHandler : MonoBehaviour
 {
     [Header("Attacker")]
-    public HeroUnitPiece3 attackerHero;
-    public List<CombatUnitPiece3> attackerUnits;
+    public HeroUnitPiece3 attackerHeroUnit;
+    public List<CombatUnitPiece3> attackerCombatUnits;
     public List<CombatantPiece3> attackerPieces;
 
     [Header("Defender")]
-    public HeroUnitPiece3 defenderHero;
-    public List<CombatUnitPiece3> defenderUnits;
+    public HeroUnitPiece3 defenderHeroUnit;
+    public List<CombatUnitPiece3> defenderCombatUnits;
     public List<CombatantPiece3> defenderPieces;
+    public List<WallPiece3> defenderWalls;
 
     public void Remove()
     {
-        if (attackerHero) Destroy(attackerHero.gameObject);
-        if (defenderHero) Destroy(defenderHero.gameObject);
+        if (attackerHeroUnit) Destroy(attackerHeroUnit.gameObject);
 
-        if (attackerUnits != null)
+        if (attackerCombatUnits != null)
         {
-            foreach (var item in attackerUnits)
-            {
-                Destroy(item.gameObject);
-            }
+            foreach (var item in attackerCombatUnits) Destroy(item.gameObject);
         }
-        attackerUnits = new List<CombatUnitPiece3>();
+        attackerCombatUnits = new List<CombatUnitPiece3>();
+
         attackerPieces = new List<CombatantPiece3>();
 
-        if (defenderUnits != null)
+        if (defenderHeroUnit) Destroy(defenderHeroUnit.gameObject);
+
+        if (defenderCombatUnits != null)
         {
-            foreach (var item in defenderUnits)
-            {
-                Destroy(item.gameObject);
-            }
+            foreach (var item in defenderCombatUnits) Destroy(item.gameObject);
         }
-        defenderUnits = new List<CombatUnitPiece3>();
+        defenderCombatUnits = new List<CombatUnitPiece3>();
+
         defenderPieces = new List<CombatantPiece3>();
+
+        if (defenderWalls != null)
+        {
+            foreach (var item in defenderWalls) Destroy(item.gameObject);
+        }
+        defenderWalls = new List<WallPiece3>();
     }
 
     public void Create(Player attackerPlayer, Party attackerParty, Player defenderPlayer, Party defenderParty, Town defenderTown)
@@ -58,9 +62,9 @@ public class CombatPieceHandler : MonoBehaviour
             HeroUnit hero = attackerParty.GetHeroSlot().Get() as HeroUnit;
             if (hero)
             {
-                attackerHero = Instantiate(prefabHero, transform);
-                attackerHero.Initialize(attackerPlayer, spawnId, false, hero);
-                attackerPieces.Add(attackerHero);
+                attackerHeroUnit = Instantiate(prefabHero, transform);
+                attackerHeroUnit.Initialize(attackerPlayer, spawnId, false, hero);
+                attackerPieces.Add(attackerHeroUnit);
             }
         }
 
@@ -71,9 +75,9 @@ public class CombatPieceHandler : MonoBehaviour
             HeroUnit hero = defenderParty.GetHeroSlot().Get() as HeroUnit;
             if (hero)
             {
-                defenderHero = Instantiate(prefabHero, transform);
-                defenderHero.Initialize(defenderPlayer, spawnId, true, hero);
-                defenderPieces.Add(defenderHero);
+                defenderHeroUnit = Instantiate(prefabHero, transform);
+                defenderHeroUnit.Initialize(defenderPlayer, spawnId, true, hero);
+                defenderPieces.Add(defenderHeroUnit);
             }
         }
 
@@ -86,7 +90,7 @@ public class CombatPieceHandler : MonoBehaviour
             {
                 CombatUnitPiece3 uc = Instantiate(prefabUnit, transform);
                 uc.Initialize(attackerPlayer, spawnId, false, unit);
-                attackerUnits.Add(uc);
+                attackerCombatUnits.Add(uc);
                 attackerPieces.Add(uc);
             }
             spawnId += 2;
@@ -101,7 +105,7 @@ public class CombatPieceHandler : MonoBehaviour
             {
                 CombatUnitPiece3 uc = Instantiate(prefabUnit, transform);
                 uc.Initialize(defenderPlayer, spawnId, true, unit);
-                defenderUnits.Add(uc);
+                defenderCombatUnits.Add(uc);
                 defenderPieces.Add(uc);
             }
             spawnId += 2;
@@ -116,16 +120,19 @@ public class CombatPieceHandler : MonoBehaviour
         //Defender town defenses
         if (defenderTown)
         {
+            TownDefense wall = defenderTown.wall;
             if (defenderTown.wall)
             {
                 spawnId = 1000;
                 List<CombatTile> wallTiles = map.GetWallTiles();
 
-                foreach (CombatTile wall in wallTiles)
+                foreach (CombatTile wallTile in wallTiles)
                 {
                     WallPiece3 newWall = Instantiate(prefabWall, transform);
-                    newWall.Initialize(defenderPlayer, spawnId, true);
+                    newWall.Initialize(defenderPlayer, spawnId, wall.GetDBTownDefense());
                     spawnId++;
+
+                    defenderWalls.Add(newWall);
                 }
             }
 
@@ -136,11 +143,12 @@ public class CombatPieceHandler : MonoBehaviour
     public void InitialPositions()
     {
         CombatMap map = CombatManager.Instance.mapHandler.map;
-        InitialPosition(attackerPieces, map.attackerStartTiles);
-        InitialPosition(defenderPieces, map.defenderStartTiles);
+        PartyInitialPositions(attackerPieces, map.GetAttackerSpawnTiles());
+        PartyInitialPositions(defenderPieces, map.GetDefenderSpawnTiles());
+        WallInitialPositions(defenderWalls, map.GetWallTiles());
     }
 
-    private void InitialPosition(List<CombatantPiece3> combatants, List<CombatTile> tiles)
+    private void PartyInitialPositions(List<CombatantPiece3> combatants, List<CombatTile> tiles)
     {
         int middle = tiles.Count / 2;
         for (int i = 0; i < combatants.Count; i++)
@@ -157,6 +165,21 @@ public class CombatPieceHandler : MonoBehaviour
         }
     }
 
+    private void WallInitialPositions(List<WallPiece3> walls, List<CombatTile> tiles)
+    {
+        if (walls.Count != tiles.Count)
+            Debug.LogError("Number of Wall Pieces is different from the number of Tiles.");
+
+        for (int i = 0; i < walls.Count; i++)
+        {
+            WallPiece3 wall = walls[i];
+            CombatTile tile = tiles[i];
+            wall.transform.position = tile.transform.position;
+            wall.currentTile = tile;
+            tile.occupantPiece = wall;
+        }
+    }
+
     public bool Pathfind(UnitPiece3 piece, CombatTile targetTile,
         bool needGroundAccess = true, bool needWaterAccess = false, bool needLavaAccess = false)
     {
@@ -170,8 +193,8 @@ public class CombatPieceHandler : MonoBehaviour
     public HeroUnitPiece3 GetHero(Player player)
     {
         CombatManager cm = CombatManager.Instance;
-        if (player == cm.attackerPlayer) return attackerHero;
-        if (player == cm.defenderPlayer) return defenderHero;
+        if (player == cm.attackerPlayer) return attackerHeroUnit;
+        if (player == cm.defenderPlayer) return defenderHeroUnit;
         return null;
     }
 

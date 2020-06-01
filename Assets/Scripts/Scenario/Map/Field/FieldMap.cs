@@ -7,23 +7,23 @@ public class FieldMap : AbstractMap<FieldTile>
     public override void Create(Vector2Int size)
     {
         Remove();
-        mapSize = size;
+        base.size = size;
         FieldTile prefabTile = AllPrefabs.Instance.fieldTile;
 
-        int maxX = mapSize.x - 1;
-        int maxY = mapSize.y - 1;
+        int maxX = base.size.x - 1;
+        int maxY = base.size.y - 1;
         int current = 0;
         int rowIdFix = 0;
         for (int row = maxY; row >= 0; row--)
         {
-            for (int col = 0; col < mapSize.x; col++)
+            for (int col = 0; col < base.size.x; col++)
             {
                 Vector3 pos = new Vector3(col, 0, row);
                 Quaternion rot = Quaternion.identity;
 
                 Vector2Int tileId = new Vector2Int(col, rowIdFix);
                 FieldTile tile = Instantiate(prefabTile, pos, rot, transform);
-                tiles.Add(tileId, tile);
+                AddTile(tileId, tile);
 
                 tile.id = current;
                 tile.posId = tileId;
@@ -35,28 +35,28 @@ public class FieldMap : AbstractMap<FieldTile>
                 if (col > 0)
                 {
                     neighbourId = new Vector2Int(col - 1, rowIdFix);
-                    neighbour = tiles[neighbourId];
+                    neighbour = GetTile(neighbourId);
                     tile.l = neighbour;
                     neighbour.r = tile;
                 }
                 if (row < maxY)
                 {
                     neighbourId = new Vector2Int(col, rowIdFix - 1);
-                    neighbour = tiles[neighbourId];
+                    neighbour = GetTile(neighbourId);
                     tile.f = neighbour;
                     neighbour.b = tile;
                 }
                 if (col > 0 && row < maxY)
                 {
                     neighbourId = new Vector2Int(col - 1, rowIdFix - 1);
-                    neighbour = tiles[neighbourId];
+                    neighbour = GetTile(neighbourId);
                     tile.fl = neighbour;
                     neighbour.br = tile;
                 }
                 if (col < maxX && row < maxY)
                 {
                     neighbourId = new Vector2Int(col + 1, rowIdFix - 1);
-                    neighbour = tiles[neighbourId];
+                    neighbour = GetTile(neighbourId);
                     tile.fr = neighbour;
                     neighbour.bl = tile;
                 }
@@ -70,7 +70,7 @@ public class FieldMap : AbstractMap<FieldTile>
         AbstractDBContentHandler<DB_Tileset> dbTilesets = DBHandler_Tileset.Instance;
 
         int current = 0;
-        foreach (var tile in tiles.Values)
+        foreach (var tile in GetAllTiles())
         {
             TileData tileData = mapData.tiles[current];
             tile.lowerLandId = tileData.lowerLandId;

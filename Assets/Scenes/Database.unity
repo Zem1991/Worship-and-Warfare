@@ -1666,6 +1666,8 @@ MonoBehaviour:
   town: {fileID: 1070375493909536636, guid: 1d5ca11de529d634697ef054d25dc892, type: 3}
   townBuilding: {fileID: -3659351163518971290, guid: b5a04a796b4f14945803755952c263b5,
     type: 3}
+  townDefense: {fileID: 357417571240117861, guid: 99ed376f8be2ed14ca8579cb46ad1b71,
+    type: 3}
   partySlot: {fileID: 5746358022123851709, guid: ddcbb449ee8944646b4cc125b37f3923,
     type: 3}
   heroUnit: {fileID: 8507488037947193599, guid: 96895e799d8318f409f080a41f243636,

@@ -1593,10 +1593,10 @@
     },
     {
       "mapPosition": [
-        5, //14,
-        7 //13
+        14,
+        13
       ],
-      "ownerId": 2,
+      "ownerId": 1,//2,
       "composition": {
         "hero": {
           "id": "Christian",

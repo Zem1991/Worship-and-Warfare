@@ -33,7 +33,7 @@ public class Town : MonoBehaviour
 
     public void Initialize(DB_Faction dbFaction, TownData townData)
     {
-        string selectedName = townData.townName != null ? townName : dbFaction.townNames[0];     //TODO get random name
+        string selectedName = townData.townName != null ? townData.townName : dbFaction.townNames[0];     //TODO get random name
 
         this.dbFaction = dbFaction;
         townName = selectedName;
@@ -59,17 +59,18 @@ public class Town : MonoBehaviour
         return result;
     }
 
-    public AbstractTownStructure BuildStructure(DB_TownStructure dbTownStructure, Player owner)
+    public AbstractTownStructure BuildStructure(DB_TownStructure dbTownStructure, Player whoPaysForIt = null)
     {
-        if (owner)
+        if (whoPaysForIt)
         {
             Dictionary<ResourceStats2, int> costs = dbTownStructure.resourceStats.GetCosts(1);
-            owner.currentResources.Subtract(costs);
+            whoPaysForIt.currentResources.Subtract(costs);
         }
 
         DB_TownBuilding dbTownBuilding = dbTownStructure as DB_TownBuilding;
-        //TODO BUILD DEFENSE METHOD CALL
+        DB_TownDefense dbTownDefense = dbTownStructure as DB_TownDefense;
         if (dbTownBuilding) return BuildBuilding(dbTownBuilding);
+        if (dbTownDefense) return BuildDefense(dbTownDefense);
         return null;
     }
 
@@ -104,5 +105,32 @@ public class Town : MonoBehaviour
                 break;
         }
         return newTB;
+    }
+
+    private TownDefense BuildDefense(DB_TownDefense dbTownDefense)
+    {
+        TownDefense prefab = AllPrefabs.Instance.townDefense;
+        TownDefense newTD = Instantiate(prefab, transform);
+        newTD.Initialize(dbTownDefense);
+
+        switch (dbTownDefense.defenseType)
+        {
+            case TownDefenseType.WALL:
+                wall = newTD;
+                break;
+            case TownDefenseType.GATEHOUSE:
+                //TODO!
+                break;
+            case TownDefenseType.TOWER:
+                //TODO!
+                break;
+            case TownDefenseType.MOAT:
+                //TODO!
+                break;
+            default:
+                Debug.LogWarning("Unknown defense type!");
+                break;
+        }
+        return newTD;
     }
 }

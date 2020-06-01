@@ -21,7 +21,7 @@ public class OffenseStats2 : MonoBehaviour
 
     public void CopyFrom(OffenseStats2 offenseStats)
     {
-        attack_melee = Instantiate(offenseStats.attack_melee, transform);
-        attack_ranged = Instantiate(offenseStats.attack_ranged, transform);
+        if (offenseStats.attack_melee) attack_melee = Instantiate(offenseStats.attack_melee, transform);
+        if (offenseStats.attack_ranged) attack_ranged = Instantiate(offenseStats.attack_ranged, transform);
     }
 }

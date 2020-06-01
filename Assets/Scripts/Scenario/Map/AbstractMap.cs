@@ -1,35 +1,71 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class AbstractMap<T> : MonoBehaviour where T : AbstractTile
 {
-    [Header("Data")]
-    public Vector2Int mapSize;
-    public Dictionary<Vector2Int, T> tiles;
+    [Header("Map data")]
+    [SerializeField] protected Vector2Int size;
+    [SerializeField] private Dictionary<Vector2Int, T> mapIdToTiles;
+    [SerializeField] private Dictionary<int, List<T>> mapYcoordsToTiles;
 
-    public virtual void Remove()
+    public void Remove()
     {
-        if (tiles != null)
+        if (mapIdToTiles != null)
         {
-            foreach (var item in tiles.Values)
+            foreach (var item in mapIdToTiles.Values)
             {
                 Destroy(item.gameObject);
             }
         }
-        tiles = new Dictionary<Vector2Int, T>();
+        mapIdToTiles = new Dictionary<Vector2Int, T>();
+        mapYcoordsToTiles = new Dictionary<int, List<T>>();
     }
 
     public abstract void Create(Vector2Int size);
+
+    public Vector2Int GetSize()
+    {
+        return size;
+    }
+
+    public void AddTile(Vector2Int id, T tile)
+    {
+        mapIdToTiles.Add(id, tile);
+
+        mapYcoordsToTiles.TryGetValue(id.y, out List<T> list);
+        if (list == null)
+        {
+            list = new List<T>();
+            mapYcoordsToTiles.Add(id.y, list);
+        }
+        list.Add(tile);
+    }
+
+    public List<T> GetAllTiles()
+    {
+        return Enumerable.ToList(mapIdToTiles.Values);
+    }
+
+    public T GetTile(Vector2Int id)
+    {
+        return mapIdToTiles[id];
+    }
 
     public List<T> GetTiles(List<Vector2Int> ids)
     {
         List<T> result = new List<T>();
         foreach (Vector2Int id in ids)
         {
-            result.Add(tiles[id]);
+            result.Add(mapIdToTiles[id]);
         }
         return result;
+    }
+
+    public List<T> GetTiles(int yCoord)
+    {
+        return mapYcoordsToTiles[yCoord];
     }
 
     public List<T> AreaLine(T startTile, T endTile)
