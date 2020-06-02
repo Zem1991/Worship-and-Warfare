@@ -42,7 +42,7 @@ public class CombatUI_Panel_TurnSequence : AbstractUIPanel
         foreach (CombatantPiece3 forCutp in list)
         {
             CombatUI_TurnSequenceItem newCUI = Instantiate(prefab, sequenceBar.transform);
-            newCUI.border.color = forCutp.pieceOwner.GetOwner().dbColor.mainColor;
+            newCUI.border.color = forCutp.pieceOwner.Get().dbColor.mainColor;
 
             Sprite portrait = null;
             HeroUnitPiece3 chp = forCutp as HeroUnitPiece3;

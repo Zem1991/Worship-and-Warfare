@@ -168,29 +168,16 @@ public class CombatMap : AbstractMap<CombatTile>
 
     public List<CombatTile> GetWallTiles()
     {
-        int width = size.x;
-        int maxY = size.y - 1;
-        List<Vector2Int> ids = new List<Vector2Int>();
-        for (int i = 0; i < size.y; i++)
+        List<CombatTile> result = new List<CombatTile>();
+        int total = size.y;
+        for (int y = 0; y < total; y++)
         {
-            if (i == size.y / 2) continue;
+            if (y == total / 2) continue;
 
-            int maxCol = width;
-            //float colPosAdjust = 0;
-            bool oddCol = i % 2 == 1;
-            if (oddCol)
-            {
-                maxCol++;
-                //colPosAdjust = -0.5F;
-            }
-
-            int wallPosX = 2;   //TODO MATH STUFF
-            int posX = maxCol - wallPosX;
-
-            Vector2Int tileId = new Vector2Int(posX, i);
-            ids.Add(tileId);
+            List<CombatTile> list = GetTiles(y);
+            CombatTile tile = list[list.Count - 4];
+            result.Add(tile);
         }
-        List<CombatTile> result = GetTiles(ids);
         return result;
     }
 }

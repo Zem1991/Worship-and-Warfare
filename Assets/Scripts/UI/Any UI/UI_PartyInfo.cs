@@ -163,14 +163,14 @@ public class UI_PartyInfo : AUI_PanelDragAndDrop
             {
                 Vector2Int mapPosition = sourcePartySourceAsTown.currentTile.posId;
                 mapPosition.y++;
-                newParty = fph.CreateParty(mapPosition, new PartyData(), sourcePartySourceAsTown.pieceOwner.GetOwner());
+                newParty = fph.CreateParty(mapPosition, new PartyData(), sourcePartySourceAsTown.pieceOwner.Get());
                 //partySourceAsTown.visitorPiece = newParty;
                 sourcePartySourceAsTown.visitorPiece = newParty;
             }
             else if (sourcePartySourceAsParty)
             {
                 Vector2Int mapPosition = sourcePartySourceAsTown.currentTile.posId; //TODO use partySourceAsTown last tile or get any empty tile around it, insead of partySourceAsTown.currentTile
-                newParty = fph.CreateParty(mapPosition, new PartyData(), sourcePartySourceAsParty.pieceOwner.GetOwner());
+                newParty = fph.CreateParty(mapPosition, new PartyData(), sourcePartySourceAsParty.pieceOwner.Get());
             }
 
             fph.partyPieces.Add(newParty);

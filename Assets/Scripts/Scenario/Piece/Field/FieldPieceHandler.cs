@@ -213,7 +213,7 @@ public class FieldPieceHandler : MonoBehaviour
         List<PartyPiece3> result = new List<PartyPiece3>();
         foreach (var item in partyPieces)
         {
-            if (item.pieceOwner.GetOwner() == player) result.Add(item);
+            if (item.pieceOwner.Get() == player) result.Add(item);
         }
         return result;
     }

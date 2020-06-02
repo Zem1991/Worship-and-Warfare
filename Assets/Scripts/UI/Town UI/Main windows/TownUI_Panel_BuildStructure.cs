@@ -69,7 +69,7 @@ public class TownUI_Panel_BuildStructure : AbstractUIPanel
         if (!selectedOption.townStructure)
         {
             TownManager tm = TownManager.Instance;
-            Player owner = tm.townPiece.pieceOwner.GetOwner();
+            Player owner = tm.townPiece.pieceOwner.Get();
 
             DB_TownStructure dbTownBuilding = selectedOption.dbTownStructure;
             Dictionary<ResourceStats2, int> costs = dbTownBuilding.resourceStats.GetCosts(1);
@@ -89,7 +89,7 @@ public class TownUI_Panel_BuildStructure : AbstractUIPanel
         TownManager tm = TownManager.Instance;
         TownPiece3 tp = tm.townPiece;
         Town town = tp.town;
-        Player owner = tp.pieceOwner.GetOwner();
+        Player owner = tp.pieceOwner.Get();
 
         TownUI townUI = TownUI.Instance;
         townUI.CloseCurrentWindow();

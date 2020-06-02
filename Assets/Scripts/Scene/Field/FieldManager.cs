@@ -53,6 +53,13 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         if (asTown) asTown.IPFC_GetPartyForCombat().ClearParty();
     }
 
+    public void ChangeTownOwner(TownPiece3 town, Player player)
+    {
+        town.pieceOwner.Set(player);
+        town.pieceController.Set(player);
+        town.IFP_SetFlagSprite(player.dbColor.imgFlag);
+    }
+
     public void RemovePickup(PickupPiece3 pickup)
     {
         pieceHandler.RemovePickup(pickup);
@@ -75,46 +82,44 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
         StartTurnForCurrentPlayer();
     }
 
-    public void PartyInteraction(PartyPiece3 party, TownPiece3 town)
+    public IEnumerator PartyInteraction(PartyPiece3 party, TownPiece3 town)
     {
-
-        bool canEnter = false;
-
-        if (party.pieceOwner.GetOwner() != town.pieceOwner.GetOwner())
+        if (party.pieceOwner.Get() != town.pieceOwner.Get())
         {
             if (town.IPFC_GetPartyForCombat().GetMostRelevant())
             {
-                StartCoroutine(GoToCombat(party, town));
+                yield return
+                    StartCoroutine(GoToCombat(party, town));
             }
             else
             {
-                Player player = party.pieceOwner.GetOwner();
-                town.pieceOwner.SetOwner(player);
+                Player player = party.pieceOwner.Get();
+                ChangeTownOwner(town, player);
             }
         }
 
-        if (party.pieceOwner.GetOwner() == town.pieceOwner.GetOwner()) canEnter = true;
+        bool canEnter = party.pieceOwner.Get() == town.pieceOwner.Get();
         if (canEnter) StartCoroutine(GoToTown(party, town));
     }
 
-    public void PartyInteraction(PartyPiece3 party, PartyPiece3 defender)
+    public IEnumerator PartyInteraction(PartyPiece3 party, PartyPiece3 defender)
     {
-        if (party.pieceOwner.GetOwner() == defender.pieceOwner.GetOwner())
+        if (party.pieceOwner.Get() == defender.pieceOwner.Get())
         {
             TradeScreen(party, defender);
         }
         else
         {
-            StartCoroutine(GoToCombat(party, defender));
+            yield return StartCoroutine(GoToCombat(party, defender));
         }
     }
 
-    public void PartyInteraction(PartyPiece3 party, PickupPiece3 pickup)
+    public IEnumerator PartyInteraction(PartyPiece3 party, PickupPiece3 pickup)
     {
         switch (pickup.pickupType)
         {
             case PickupType.RESOURCE:
-                Player owner = party.pieceOwner.GetOwner();
+                Player owner = party.pieceOwner.Get();
                 ResourceStats2 resources = owner.currentResources;
                 long amount = pickup.resourceAmount;
                 switch (pickup.dbResource.resourceType)
@@ -151,6 +156,7 @@ public class FieldManager : AbstractSingleton<FieldManager>, IShowableHideable
                 break;
         }
         RemovePickup(pickup);
+        yield return null;
     }
 
     /*

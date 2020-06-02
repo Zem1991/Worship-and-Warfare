@@ -140,11 +140,16 @@ public class CombatPieceHandler : MonoBehaviour
         }
     }
 
-    public void InitialPositions()
+    public void InitialUnitPositions()
     {
         CombatMap map = CombatManager.Instance.mapHandler.map;
         PartyInitialPositions(attackerPieces, map.GetAttackerSpawnTiles());
         PartyInitialPositions(defenderPieces, map.GetDefenderSpawnTiles());
+    }
+
+    public void InitialTownDefensePositions()
+    {
+        CombatMap map = CombatManager.Instance.mapHandler.map;
         WallInitialPositions(defenderWalls, map.GetWallTiles());
     }
 

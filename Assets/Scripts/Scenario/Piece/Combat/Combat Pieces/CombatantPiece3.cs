@@ -46,8 +46,8 @@ public class CombatantPiece3 : AbstractCombatPiece3, IFlaggablePiece, IStartTurn
 
     public virtual void Initialize(Player owner, int spawnId, bool onDefenderSide)
     {
-        pieceOwner.SetOwner(owner);
-        pieceController.SetController(owner);
+        pieceOwner.Set(owner);
+        pieceController.Set(owner);
 
         this.spawnId = spawnId;
         this.onDefenderSide = onDefenderSide;
@@ -83,26 +83,6 @@ public class CombatantPiece3 : AbstractCombatPiece3, IFlaggablePiece, IStartTurn
         animator.SetBool("Ability 3 start", pieceCombatActions.ability3Start);
         animator.SetBool("Ability 3 end", pieceCombatActions.ability3End);
     }
-
-    //public override string AFP3_GetPieceTitle()
-    //{
-    //    AbstractUnit ape = party.GetMostRelevant();
-    //    UnitType partyElementType = ape.unitType;
-
-    //    string result = "Unknown party piece title";
-    //    switch (partyElementType)
-    //    {
-    //        case UnitType.HERO:
-    //            result = (ape as HeroUnit).dbData.heroName + "'s party";
-    //            break;
-    //        case UnitType.CREATURE:
-    //            result = "Non-commissioned party";
-    //            break;
-    //        case UnitType.SUPPORT:
-    //            break;
-    //    }
-    //    return result;
-    //}
 
     public void IFP_SetFlagSprite(Sprite sprite)
     {
@@ -158,7 +138,7 @@ public class CombatantPiece3 : AbstractCombatPiece3, IFlaggablePiece, IStartTurn
     public virtual IEnumerator ICP_InteractWithTargetPiece(AbstractPiece3 targetPiece)
     {
         CombatantPiece3 targetCombatPiece = targetPiece as CombatantPiece3;
-        if (pieceOwner.GetOwner() != targetCombatPiece.pieceOwner.GetOwner())
+        if (pieceOwner.Get() != targetCombatPiece.pieceOwner.Get())
         {
             yield return
                 StartCoroutine(pieceCombatActions.Attack(targetCombatPiece));

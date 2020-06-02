@@ -1593,10 +1593,49 @@
     },
     {
       "mapPosition": [
+        5,
+        8
+      ],
+      "ownerId": 2,
+      "composition": {
+        "hero": {
+          "id": "Christian",
+          "inventoryData": {}
+        },
+        "units": [
+          {
+            "id": "Pikeman",
+            "stackData": {
+              "stack_maximum": 35
+            }
+          },
+          {
+            "id": "Archer",
+            "stackData": {
+              "stack_maximum": 30
+            }
+          },
+          {
+            "id": "Monk",
+            "stackData": {
+              "stack_maximum": 20
+            }
+          },
+          {
+            "id": "Cavalry",
+            "stackData": {
+              "stack_maximum": 12
+            }
+          }
+        ]
+      }
+    },
+    {
+      "mapPosition": [
         14,
         13
       ],
-      "ownerId": 1,//2,
+      "ownerId": 1, //2,
       "composition": {
         "hero": {
           "id": "Christian",

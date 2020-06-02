@@ -113,8 +113,8 @@ public class FieldInputExecutor : AbstractInputExecutor<FieldInputInterpreter, F
             TownPiece3 tp = selectionPiece as TownPiece3;
             PartyPiece3 pp = selectionPiece as PartyPiece3;
 
-            if (tp) canCommandSelectedPiece = tp.pieceOwner.GetOwner() == PlayerManager.Instance.localPlayer;
-            else if (pp) canCommandSelectedPiece = pp.pieceOwner.GetOwner() == PlayerManager.Instance.localPlayer;
+            if (tp) canCommandSelectedPiece = tp.pieceOwner.Get() == PlayerManager.Instance.localPlayer;
+            else if (pp) canCommandSelectedPiece = pp.pieceOwner.Get() == PlayerManager.Instance.localPlayer;
             else canCommandSelectedPiece = false;
         }
     }

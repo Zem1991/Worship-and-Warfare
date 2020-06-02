@@ -63,12 +63,12 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         pieceHandler.Remove();
         result = CombatResult.NOT_FINISHED;
 
+        attackerPlayer = attackerPiece.IPFC_GetPlayerForCombat();
         this.attackerPiece = attackerPiece;
+        defenderPlayer = defenderPiece.IPFC_GetPlayerForCombat();
         this.defenderPiece = defenderPiece;
 
-        Player attackerPlayer = attackerPiece.IPFC_GetPlayerForCombat();
         Party attackerParty = attackerPiece.IPFC_GetPartyForCombat();
-        Player defenderPlayer = defenderPiece.IPFC_GetPlayerForCombat();
         Party defenderParty = defenderPiece.IPFC_GetPartyForCombat();
         Town defenderTown = defenderPiece.IPFC_GetPTownForCombat();
 
@@ -90,7 +90,8 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
     private void BootPieces(Player attackerPlayer, Party attackerParty, Player defenderPlayer, Party defenderParty, Town defenderTown)
     {
         pieceHandler.Create(attackerPlayer, attackerParty, defenderPlayer, defenderParty, defenderTown);
-        pieceHandler.InitialPositions();
+        pieceHandler.InitialUnitPositions();
+        if (defenderTown) pieceHandler.InitialTownDefensePositions();
     }
 
     public bool IsCombatRunning()
@@ -118,13 +119,13 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
 
             //csi.executor.selectionHighlight.transform.position = currentPiece.transform.position;
 
-            csi.executor.canCommandSelectedPiece = currentPiece.pieceOwner.GetOwner() == PlayerManager.Instance.localPlayer;
+            csi.executor.canCommandSelectedPiece = currentPiece.pieceOwner.Get() == PlayerManager.Instance.localPlayer;
 
             list.RemoveAt(0);
             CombatUI.Instance.turnSequence.RemoveFirstFromTurnSequence();
             CombatSceneHighlights.Instance.Refresh();
 
-            Player owner = currentPiece.pieceOwner.GetOwner();
+            Player owner = currentPiece.pieceOwner.Get();
             if (owner.type == PlayerType.COMPUTER)
             {
                 owner.aiPersonality.CombatRoutine();
@@ -394,6 +395,9 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
                 break;
         }
         FieldManager.Instance.RemoveParty(defeated);
+
+        TownPiece3 defeatedAsTown = defeated as TownPiece3;
+        if (defeatedAsTown) FieldManager.Instance.ChangeTownOwner(defeatedAsTown, attacker.IPFC_GetPlayerForCombat());
 
         //TODO move this apply experience/levelup thing to the FieldManager
         bool hasLevelUp = victor.IPFC_GetPartyForCombat().GiveExperiencePoints(expBounty);

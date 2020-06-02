@@ -6,12 +6,12 @@ public class PieceController3 : MonoBehaviour
 {
     [SerializeField] private Player controller;
 
-    public Player GetController()
+    public Player Get()
     {
         return controller;
     }
 
-    public void SetController(Player player)
+    public void Set(Player player)
     {
         controller = player;
     }

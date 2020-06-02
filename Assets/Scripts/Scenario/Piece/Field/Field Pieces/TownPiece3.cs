@@ -19,8 +19,8 @@ public class TownPiece3 : AbstractFieldPiece3, IFlaggablePiece, IPieceForCombat
 
     public void Initialize(Player owner, Town town)
     {
-        pieceOwner.SetOwner(owner);
-        pieceController.SetController(owner);
+        pieceOwner.Set(owner);
+        pieceController.Set(owner);
 
         this.town = town;
         name = "Town Piece: " + town.townName;
@@ -47,7 +47,7 @@ public class TownPiece3 : AbstractFieldPiece3, IFlaggablePiece, IPieceForCombat
 
     public Player IPFC_GetPlayerForCombat()
     {
-        return pieceOwner.GetOwner();
+        return pieceOwner.Get();
     }
 
     public Party IPFC_GetPartyForCombat()

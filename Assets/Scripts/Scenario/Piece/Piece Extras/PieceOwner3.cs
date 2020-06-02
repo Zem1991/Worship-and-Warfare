@@ -6,12 +6,12 @@ public class PieceOwner3 : MonoBehaviour
 {
     [SerializeField] private Player owner;
 
-    public Player GetOwner()
+    public Player Get()
     {
         return owner;
     }
 
-    public void SetOwner(Player player)
+    public void Set(Player player)
     {
         TownPiece3 thisAsTown = GetComponent<TownPiece3>();
         PartyPiece3 thisAsParty = GetComponent<PartyPiece3>();

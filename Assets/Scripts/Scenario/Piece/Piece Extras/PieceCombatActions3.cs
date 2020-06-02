@@ -172,8 +172,8 @@ public class PieceCombatActions3 : MonoBehaviour
     private int CalculateDamage(AttackStats2 attack, CombatantPiece3 target)
     {
         CombatPieceHandler cph = CombatManager.Instance.pieceHandler;
-        HeroUnitPiece3 attackerHero = cph.GetHero(piece.pieceOwner.GetOwner());
-        HeroUnitPiece3 defenderHero = cph.GetHero(target.pieceOwner.GetOwner());
+        HeroUnitPiece3 attackerHero = cph.GetHero(piece.pieceOwner.Get());
+        HeroUnitPiece3 defenderHero = cph.GetHero(target.pieceOwner.Get());
         return AttackCalculation.FullDamageCalculation(attack, piece, target, attackerHero, defenderHero);
     }
     public bool EvaluateMeleeAttack(CombatantPiece3 targetPiece)

@@ -108,7 +108,7 @@ public class CombatInputExecutor : AbstractInputExecutor<CombatInputInterpreter,
             CombatantPiece3 actp = selectionPiece as CombatantPiece3;
             if (actp)
             {
-                canCommandSelectedPiece = actp.pieceOwner.GetOwner() == PlayerManager.Instance.localPlayer;
+                canCommandSelectedPiece = actp.pieceOwner.Get() == PlayerManager.Instance.localPlayer;
             }
             else
             {
@@ -189,7 +189,7 @@ public class CombatInputExecutor : AbstractInputExecutor<CombatInputInterpreter,
         {
             CombatantPiece3 acp = CombatManager.Instance.currentPiece;
             PlayerManager pm = PlayerManager.Instance;
-            if (acp.pieceOwner.GetOwner() == pm.localPlayer) acp.ISTET_EndTurn();
+            if (acp.pieceOwner.Get() == pm.localPlayer) acp.ISTET_EndTurn();
         }
     }
 }

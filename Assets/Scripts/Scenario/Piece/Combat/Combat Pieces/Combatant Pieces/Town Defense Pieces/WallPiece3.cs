@@ -17,4 +17,9 @@ public class WallPiece3 : TownDefensePiece3
         uiBarRect.gameObject.SetActive(showUI);
         uiHealthBar.fillAmount = ((float)healthStats.hitPoints_current) / healthStats.hitPoints_maximum;
     }
+
+    protected override void AP3_UpdateAnimatorParameters()
+    {
+        //TODO: something later?
+    }
 }

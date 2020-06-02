@@ -25,8 +25,8 @@ public class PartyPiece3 : AbstractFieldPiece3, IFlaggablePiece, IStartTurnEndTu
 
     public void Initialize(Player owner)
     {
-        pieceOwner.SetOwner(owner);
-        pieceController.SetController(owner);
+        pieceOwner.Set(owner);
+        pieceController.Set(owner);
         name = "P" + owner.id + " Party";
 
         AbstractUnit ape = party.GetMostRelevant();
@@ -140,6 +140,8 @@ public class PartyPiece3 : AbstractFieldPiece3, IFlaggablePiece, IStartTurnEndTu
 
     public virtual IEnumerator ICP_InteractWithTargetPiece(AbstractPiece3 targetPiece)
     {
+        IEnumerator coroutine = null;
+
         //TODO consider making an PieceFieldActions2 class to handle each interaction.
         bool neighbours = currentTile.IsNeighbour(targetPiece.currentTile);
         if (neighbours && pathArrivalTile == targetPiece.currentTile)
@@ -151,23 +153,24 @@ public class PartyPiece3 : AbstractFieldPiece3, IFlaggablePiece, IStartTurnEndTu
             if (targetTown)
             {
                 //yield return StartCoroutine(FieldManager.Instance.PartiesAreInteracting(this, targetParty));
-                FieldManager.Instance.PartyInteraction(this, targetTown);
+                coroutine = FieldManager.Instance.PartyInteraction(this, targetTown);
             }
             else if (targetParty)
             {
                 //yield return StartCoroutine(FieldManager.Instance.PartiesAreInteracting(this, targetParty));
-                FieldManager.Instance.PartyInteraction(this, targetParty);
+                coroutine = FieldManager.Instance.PartyInteraction(this, targetParty);
             }
             else if (targetPickup)
             {
                 //yield return StartCoroutine(FieldManager.Instance.PartyFoundPickup(this, targetPickup));
-                FieldManager.Instance.PartyInteraction(this, targetPickup);
+                coroutine = FieldManager.Instance.PartyInteraction(this, targetPickup);
             }
         }
         else
         {
-            yield return StartCoroutine(ICP_InteractWithTargetTile(targetPiece.currentTile, false));
+            coroutine = ICP_InteractWithTargetTile(targetPiece.currentTile, false);
         }
+        yield return coroutine;
     }
 
     public void IMP_ResetMovementPoints()
@@ -180,7 +183,7 @@ public class PartyPiece3 : AbstractFieldPiece3, IFlaggablePiece, IStartTurnEndTu
 
     public Player IPFC_GetPlayerForCombat()
     {
-        return pieceOwner.GetOwner();
+        return pieceOwner.Get();
     }
 
     public Party IPFC_GetPartyForCombat()
