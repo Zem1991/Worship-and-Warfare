@@ -117,16 +117,14 @@ public class CombatantPiece3 : AbstractCombatPiece3, IFlaggablePiece, IStartTurn
         throw new System.NotImplementedException();
     }
 
-    public virtual void ICP_InteractWith(AbstractTile tile)
+    public void ICP_InteractWith(AbstractTile tile)
     {
         if (!tile) return;
         targetTile = tile;
-        targetPiece = tile?.occupantPiece;
+        targetPiece = tile.occupantPiece;
 
-        if (tile.occupantPiece) StartCoroutine(ICP_InteractWithTargetPiece(tile.occupantPiece));
+        if (targetPiece) StartCoroutine(ICP_InteractWithTargetPiece(targetPiece));
         else StartCoroutine(ICP_InteractWithTargetTile(tile, false));
-        //if (tile.occupantPiece) ICP_InteractWithTargetPiece(tile.occupantPiece);
-        //else ICP_InteractWithTargetTile(tile, false);
     }
 
     public virtual IEnumerator ICP_InteractWithTargetTile(AbstractTile targetTile, bool endTurnWhenDone)

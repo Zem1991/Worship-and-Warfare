@@ -41,8 +41,6 @@ public static class ExperienceCalculation
 
     public static int FullExperienceCalculation(List<CombatantPiece3> pieces)
     {
-        //TODO allow experience gain from forcibly winning or losing combat
-
         int result = 0;
         foreach (var item in pieces)
         {
@@ -60,6 +58,7 @@ public static class ExperienceCalculation
         int result = 0;
         if (hero.stateDead)
         {
+            //TODO: function to get proper HeroUnit exp value
             result = 150;
             result += hero.GetHeroUnit().levelUpStats.level * 50;
         }
@@ -68,17 +67,10 @@ public static class ExperienceCalculation
 
     public static int UnitExperience(CombatUnitPiece3 unit)
     {
-        //int result = 0;
-        //TODO: combat stats instead of regular stats
-        //int stackDif = unit.unit.stackStats.stack_maximum - unit.stackStats.stack;
-        //if (stackDif > 0)
-        //{
-        //    result = unit.unit.dbData.experienceValue;
-        //    result *= stackDif;
-        //}
-        //return result;
-
-        //TODO: function to get CombatantUnit exp value
-        return unit.GetCombatUnit().GetStackHealthStats().GetStackSize() * unit.GetCombatUnit().GetDBCombatUnit().experienceValue;
+        //TODO: function to get proper CombatUnit exp value
+        CombatUnit combatUnit = unit.GetCombatUnit();
+        int stackSize = combatUnit.GetStackHealthStats().GetStackSize();
+        int xpPerUnit = combatUnit.GetDBCombatUnit().experienceValue;
+        return stackSize * xpPerUnit;
     }
 }

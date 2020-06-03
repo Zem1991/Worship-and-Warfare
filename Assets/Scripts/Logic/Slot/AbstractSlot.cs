@@ -20,7 +20,7 @@ public abstract class AbstractSlot<SlotObject> : MonoBehaviour where SlotObject 
 
     public void Clear()
     {
-        slotObj = null;
+        Set(null);
     }
 
     public SlotObject Get()

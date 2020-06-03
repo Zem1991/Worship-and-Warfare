@@ -65,15 +65,15 @@ public class UnitPiece3 : CombatantPiece3, IMovablePiece
         pieceMovement.Stop();
     }
 
-    public override void ICP_InteractWith(AbstractTile tile)
-    {
-        if (!tile) return;
-        targetTile = tile;
-        targetPiece = tile?.occupantPiece;
+    //public override void ICP_InteractWith(AbstractTile tile)
+    //{
+    //    if (!tile) return;
+    //    targetTile = tile;
+    //    targetPiece = tile?.occupantPiece;
 
-        if (tile.occupantPiece) StartCoroutine(ICP_InteractWithTargetPiece(tile.occupantPiece));
-        else StartCoroutine(ICP_InteractWithTargetTile(tile, true));
-    }
+    //    if (tile.occupantPiece) StartCoroutine(ICP_InteractWithTargetPiece(tile.occupantPiece));
+    //    else StartCoroutine(ICP_InteractWithTargetTile(tile, true));
+    //}
 
     public override IEnumerator ICP_InteractWithTargetTile(AbstractTile targetTile, bool endTurnWhenDone)
     {

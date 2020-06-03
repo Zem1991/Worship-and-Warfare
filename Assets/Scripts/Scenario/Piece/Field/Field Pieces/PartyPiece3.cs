@@ -125,9 +125,9 @@ public class PartyPiece3 : AbstractFieldPiece3, IFlaggablePiece, IStartTurnEndTu
     {
         if (!tile) return;
         targetTile = tile;
-        targetPiece = tile?.occupantPiece;
+        targetPiece = tile.occupantPiece;
 
-        if (targetPiece) StartCoroutine(ICP_InteractWithTargetPiece(tile.occupantPiece));
+        if (targetPiece) StartCoroutine(ICP_InteractWithTargetPiece(targetPiece));
         else StartCoroutine(ICP_InteractWithTargetTile(tile, false));
     }
 
@@ -170,7 +170,7 @@ public class PartyPiece3 : AbstractFieldPiece3, IFlaggablePiece, IStartTurnEndTu
         {
             coroutine = ICP_InteractWithTargetTile(targetPiece.currentTile, false);
         }
-        yield return coroutine;
+        yield return StartCoroutine(coroutine);
     }
 
     public void IMP_ResetMovementPoints()

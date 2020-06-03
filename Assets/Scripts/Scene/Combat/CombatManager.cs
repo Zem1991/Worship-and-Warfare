@@ -432,16 +432,16 @@ public class CombatManager : AbstractSingleton<CombatManager>, IShowableHideable
         if (result != CombatResult.DEFENDER_WON)
         {
             attackerExperience = ExperienceCalculation.FullExperienceCalculation(pieceHandler.defenderPieces);
-            ApplyCombatResults(attackerPiece.IPFC_GetPartyForCombat(), pieceHandler.attackerPieces);
+            RemoveDeadUnitsFromParty(defenderPiece.IPFC_GetPartyForCombat(), pieceHandler.defenderPieces);
         }
-        if (result != CombatResult.ATTACKER_WON)
+        else if (result != CombatResult.ATTACKER_WON)
         {
             defenderExperience = ExperienceCalculation.FullExperienceCalculation(pieceHandler.attackerPieces);
-            ApplyCombatResults(defenderPiece.IPFC_GetPartyForCombat(), pieceHandler.defenderPieces);
+            RemoveDeadUnitsFromParty(attackerPiece.IPFC_GetPartyForCombat(), pieceHandler.attackerPieces);
         }
     }
 
-    private void ApplyCombatResults(Party party, List<CombatantPiece3> pieces)
+    private void RemoveDeadUnitsFromParty(Party party, List<CombatantPiece3> pieces)
     {
         foreach (var piece in pieces)
         {

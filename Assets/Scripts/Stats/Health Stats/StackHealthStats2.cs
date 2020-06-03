@@ -56,15 +56,9 @@ public class StackHealthStats2 : HealthStats2
         int stackLost = amount / hitPoints_maximum;
         int hpLost = amount % hitPoints_maximum;
         hitPoints_current -= hpLost;
-        if (hitPoints_current <= 0)
-        {
-            stackLost++;
-            hitPoints_current += hitPoints_maximum;
-        }
-        if (stackLost > stackSize)
-        {
-            stackLost = stackSize;
-        }
-        return SubtractFromStack(stackLost);
+        if (hitPoints_current <= 0) stackLost++;
+        bool nothingLeft = SubtractFromStack(stackLost);
+        if (!nothingLeft) hitPoints_current += hitPoints_maximum;
+        return nothingLeft;
     }
 }

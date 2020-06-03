@@ -23,12 +23,13 @@ public class PieceMovement3 : MonoBehaviour
     [Header("Current parameters")]
     [SerializeField] private bool inActualMovement;
     [SerializeField] private bool stopWasCalled;
+    [SerializeField] private int remainingSteps;
     [SerializeField] private Vector3 nextPos;
     [SerializeField] private Vector3 direction;
     [SerializeField] private Vector3 velocity;
+    [SerializeField] private AbstractPiece3 interactionTarget;
 
     [Header("Path references")]
-    
     [SerializeField] private int pathTotalCost;
     [SerializeField] private List<PathNode> path = new List<PathNode>();
 
@@ -109,11 +110,11 @@ public class PieceMovement3 : MonoBehaviour
 
     public void SetPath(PathfindResults pathfindResults, AbstractTile targetTile)
     {
-        piece.pathArrivalTile = targetTile;
-
         path = pathfindResults.path;
         pathTotalCost = Mathf.CeilToInt(pathfindResults.pathTotalCost);
         //Debug.Log("PIECE " + name + " got a new path with size " + pathCost);
+
+        piece.pathArrivalTile = targetTile;
 
         if (path != null && path.Count > 0)
         {
@@ -166,6 +167,8 @@ public class PieceMovement3 : MonoBehaviour
                 yield return StartCoroutine(MovementGoing());
                 //if (animateMovementEnd) yield return StartCoroutine(MovementEnd());       //TODO THIS LATER
                 stateMovement = false;
+
+                yield return DoInteraction();
             }
         }
     }
@@ -203,10 +206,7 @@ public class PieceMovement3 : MonoBehaviour
     */
     private IEnumerator ActualMovement()
     {
-        ICommandablePiece commandablePiece = piece as ICommandablePiece;
-        bool doInteract = false;
-        AbstractPiece3 interactionTarget = null;
-
+        interactionTarget = null;
         inActualMovement = true;
         while (inActualMovement)
         {
@@ -216,33 +216,37 @@ public class PieceMovement3 : MonoBehaviour
             if (piece.pathNextTile && currentPos == nextPos)
             {
                 //Doing this may seem redundant, but it actually fixes some floating point issues that can cause movement overshooting.
-                //Moving to the bottom edge or left edge of the grid without this fix may cause the piece to be read as over a tile with coordinate equal to -1.
+                //Moving to the bottom edge or left edge of the grid without this fix may also cause the piece to be read as over a tile with coordinate equal to -1.
                 transform.position = nextPos;
 
-                //Clears the target references when we move over it, ending the path.
                 if (piece.pathNextTile == piece.pathArrivalTile)
                 {
+                    //Clears the target references when we move over it, ending the path.
                     piece.pathArrivalTile = null;
-                    piece.targetTile = null;
-                    piece.targetPiece = null;
+
+                    //TODO: make those 2 variables null after handling all movement?
+                    //piece.targetTile = null;
+                    //piece.targetPiece = null;
                 }
 
                 piece.currentTile.occupantPiece = null;
                 piece.pathNextTile.occupantPiece = piece;
                 piece.currentTile = piece.pathNextTile;
                 piece.pathNextTile = null;
+
+                remainingSteps--;
             }
 
             if (!piece.pathNextTile)
             {
                 if (!stopWasCalled &&
-                    path.Count > 0 &&
                     CanDoNextStep())
                 {
+                    remainingSteps = path.Count;
                     PathNode pNode = path[0];
-                    movementPointsCurrent -= pNode.moveCost;
                     path.RemoveAt(0);
 
+                    movementPointsCurrent -= pNode.moveCost;
                     piece.pathNextTile = pNode.tile;
                     OctoDirXZ dirToLook = piece.currentTile.GetNeighbourDirection(piece.pathNextTile);
                     LookAtDirection(dirToLook);
@@ -254,13 +258,14 @@ public class PieceMovement3 : MonoBehaviour
                 }
             }
 
-            if (piece.pathNextTile && piece.pathNextTile.occupantPiece)
+            AbstractPiece3 interactionTargetCheck = piece.pathNextTile?.occupantPiece;
+            if (piece.pathNextTile && interactionTargetCheck)
             {
                 doStop = true;
-                doInteract = true;
-                interactionTarget = piece.pathNextTile.occupantPiece;
+                interactionTarget = interactionTargetCheck;
 
                 //Doing this here prevents that a piece walks over the spot of another removed piece.
+                //TODO: I may want to have this happening later
                 piece.pathNextTile = null;
             }
 
@@ -286,15 +291,18 @@ public class PieceMovement3 : MonoBehaviour
                 transform.Translate(frameVelocity, Space.World);
             }
 
+            //This is here just to let other stuff happen.
             yield return null;
         }
-
-        //If the piece has a way to interact with other pieces, make it happen here.
-        if (doInteract && interactionTarget)
+    }
+    private IEnumerator DoInteraction()
+    {
+        if (interactionTarget)
         {
+            //If the piece has a way to interact with other pieces, make it happen here.
+            ICommandablePiece commandablePiece = piece as ICommandablePiece;
             yield return
                 StartCoroutine(commandablePiece.ICP_InteractWithTargetPiece(interactionTarget));
-            //commandablePiece.ICP_InteractWithTargetPiece(interactionTarget);
         }
     }
     /*
