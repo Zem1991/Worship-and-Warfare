@@ -28,26 +28,26 @@ public class DatabaseManager : AbstractSingleton<DatabaseManager>
 
     public override void Awake()
     {
-        attributes = GetComponentInChildren<DBHandler_Attribute>();
-        resources = GetComponentInChildren<DBHandler_Resource>();
-        colors = GetComponentInChildren<DBHandler_Color>();
-        artifacts = GetComponentInChildren<DBHandler_Artifact>();
-        spells = GetComponentInChildren<DBHandler_Spell>();
-        techs = GetComponentInChildren<DBHandler_Tech>();
-        skills = GetComponentInChildren<DBHandler_Skill>();
-        abilities = GetComponentInChildren<DBHandler_Ability>();
-        factions = GetComponentInChildren<DBHandler_Faction>();
-        townBuildings = GetComponentInChildren<DBHandler_TownBuilding>();
-        heroes = GetComponentInChildren<DBHandler_HeroPerson>();
-        units = GetComponentInChildren<DBHandler_Unit>();
-        heroUnits = GetComponentInChildren<DBHandler_HeroUnit>();
-        combatUnits = GetComponentInChildren<DBHandler_CombatUnit>();
-        elements = GetComponentInChildren<DBHandler_Element>();
-        statuses = GetComponentInChildren<DBHandler_Status>();
-        animations = GetComponentInChildren<DBHandler_Animation>();
-        tilesets = GetComponentInChildren<DBHandler_Tileset>();
-        battlegrounds = GetComponentInChildren<DBHandler_Battleground>();
-        combatObstacles = GetComponentInChildren<DBHandler_CombatObstacle>();
+        //attributes = GetComponentInChildren<DBHandler_Attribute>();
+        //resources = GetComponentInChildren<DBHandler_Resource>();
+        //colors = GetComponentInChildren<DBHandler_Color>();
+        //artifacts = GetComponentInChildren<DBHandler_Artifact>();
+        //spells = GetComponentInChildren<DBHandler_Spell>();
+        //techs = GetComponentInChildren<DBHandler_Tech>();
+        //skills = GetComponentInChildren<DBHandler_Skill>();
+        //abilities = GetComponentInChildren<DBHandler_Ability>();
+        //factions = GetComponentInChildren<DBHandler_Faction>();
+        //townBuildings = GetComponentInChildren<DBHandler_TownBuilding>();
+        //heroes = GetComponentInChildren<DBHandler_HeroPerson>();
+        //units = GetComponentInChildren<DBHandler_Unit>();
+        //heroUnits = GetComponentInChildren<DBHandler_HeroUnit>();
+        //combatUnits = GetComponentInChildren<DBHandler_CombatUnit>();
+        //elements = GetComponentInChildren<DBHandler_Element>();
+        //statuses = GetComponentInChildren<DBHandler_Status>();
+        //animations = GetComponentInChildren<DBHandler_Animation>();
+        //tilesets = GetComponentInChildren<DBHandler_Tileset>();
+        //battlegrounds = GetComponentInChildren<DBHandler_Battleground>();
+        //combatObstacles = GetComponentInChildren<DBHandler_CombatObstacle>();
 
         base.Awake();
     }

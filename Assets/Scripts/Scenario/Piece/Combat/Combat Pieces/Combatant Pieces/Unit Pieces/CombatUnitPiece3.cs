@@ -21,7 +21,7 @@ public class CombatUnitPiece3 : UnitPiece3
         uiBarRect.gameObject.SetActive(showUI);
         uiHealthBar.fillAmount = ((float)healthStats.hitPoints_current) / healthStats.hitPoints_maximum;
         uiStackRect.gameObject.SetActive(showUI);
-        uiStackSizeText.text = "" + GetCombatUnit().GetStackHealthStats().GetStackSize();
+        uiStackSizeText.text = "" + GetStackHealthStats().GetStackSize();
     }
 
     public CombatUnit GetCombatUnit()

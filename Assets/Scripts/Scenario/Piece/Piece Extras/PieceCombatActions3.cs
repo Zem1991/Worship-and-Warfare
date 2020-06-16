@@ -82,7 +82,7 @@ public class PieceCombatActions3 : MonoBehaviour
     }
     public IEnumerator Attack(CombatantPiece3 target)
     {
-        AttackStats2 attack = EvaluateRangedAttack(target) ? piece.offenseStats.attack_ranged : piece.offenseStats.attack_melee;
+        AttackStats2 attack = EvaluateRangedAttack(target) ? piece.offenseStats.GetRangedAttack() : piece.offenseStats.GetMeleeAttack();
         if (attack.IsRanged())
         {
             stateAttack = true;
@@ -178,15 +178,20 @@ public class PieceCombatActions3 : MonoBehaviour
     }
     public bool EvaluateMeleeAttack(CombatantPiece3 targetPiece)
     {
-        bool condition = piece.offenseStats.attack_melee 
-            && piece.currentTile.IsNeighbour(targetPiece.currentTile);
-        return condition;
+        bool hasMelee = piece.offenseStats.GetMeleeAttack();
+        if (!hasMelee) return false;
+
+        bool isNeighbour = piece.currentTile.IsNeighbour(targetPiece.currentTile);
+        return isNeighbour;
     }
     public bool EvaluateRangedAttack(CombatantPiece3 targetPiece)
     {
-        bool condition = piece.offenseStats.attack_ranged
-            && piece.offenseStats.attack_ranged.canUseRanged
-            && !piece.currentTile.IsNeighbour(targetPiece.currentTile);
+        bool hasRanged = piece.offenseStats.GetRangedAttack();
+        if (!hasRanged) return false;
+
+        bool isNeighbour = piece.currentTile.IsNeighbour(targetPiece.currentTile);
+        bool rangedAtMelee = piece.offenseStats.useRangedAtMeleeRange;
+        bool condition = !isNeighbour || (isNeighbour && rangedAtMelee);
         return condition;
     }
     /*
@@ -198,7 +203,7 @@ public class PieceCombatActions3 : MonoBehaviour
     */
     public IEnumerator Retaliate(CombatantPiece3 target)
     {
-        AttackStats2 attack = piece.offenseStats.attack_melee;
+        AttackStats2 attack = piece.offenseStats.GetMeleeAttack();
 
         stateRetaliation = true;
         retaliations--;

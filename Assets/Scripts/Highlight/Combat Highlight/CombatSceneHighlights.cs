@@ -105,21 +105,21 @@ public class CombatSceneHighlights : AbstractSingleton<CombatSceneHighlights>, I
 
     private void RemoveMoveAreaHighlights()
     {
-        Debug.Log("CombatSceneHighlights - RemoveMoveAreaHighlights()");
+        //Debug.Log("CombatSceneHighlights - RemoveMoveAreaHighlights()");
         foreach (var item in moveAreaHighlights) Destroy(item.gameObject);
         moveAreaHighlights.Clear();
     }
 
     private void RemoveMovePathHighlights()
     {
-        Debug.Log("CombatSceneHighlights - RemoveMovePathHighlights()");
+        //Debug.Log("CombatSceneHighlights - RemoveMovePathHighlights()");
         foreach (var item in movePathHighlights) Destroy(item.gameObject);
         movePathHighlights.Clear();
     }
 
     private void CreateMoveAreaHighlights(UnitPiece3 actp)
     {
-        Debug.Log("CombatSceneHighlights - CreateMoveAreaHighlights()");
+        //Debug.Log("CombatSceneHighlights - CreateMoveAreaHighlights()");
         PieceMovement3 pm2 = actp.pieceMovement;
         moveAreaHighlights = SceneHighlightHelper.MoveAreaHighlights(actp.currentTile, moveAreaHolder, moveAreaSprite,
             pm2.movementPointsCurrent, Pathfinder.OctoHeuristic, true, false, false);
@@ -127,7 +127,7 @@ public class CombatSceneHighlights : AbstractSingleton<CombatSceneHighlights>, I
 
     private void CreateMovePathHighlights(UnitPiece3 actp)
     {
-        Debug.Log("CombatSceneHighlights - CreateMovePathHighlights()");
+        //Debug.Log("CombatSceneHighlights - CreateMovePathHighlights()");
         PieceMovement3 pm2 = actp.pieceMovement;
         movePathHighlights = SceneHighlightHelper.MovePathHighlights(actp.currentTile, movePathHolder, movePathArrowSprites, movePathMarkerSprites,
             pm2.movementPointsCurrent, pm2.GetPath());

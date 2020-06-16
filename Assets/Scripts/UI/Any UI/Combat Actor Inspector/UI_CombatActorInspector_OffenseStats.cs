@@ -16,8 +16,8 @@ public class UI_CombatActorInspector_OffenseStats : MonoBehaviour
     {
         if (acap)
         {
-            AttackStats2 melee = acap.offenseStats.attack_melee;
-            AttackStats2 ranged = acap.offenseStats.attack_ranged;
+            AttackStats2 melee = acap.offenseStats.GetMeleeAttack();
+            AttackStats2 ranged = acap.offenseStats.GetRangedAttack();
 
             if (melee)
             {

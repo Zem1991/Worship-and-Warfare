@@ -27,6 +27,9 @@ public class AllPrefabs : AbstractSingleton<AllPrefabs>
     [Header("Projectile")]
     public Projectile projectile;
 
+    [Header("Stats")]
+    public AttackStats2 attackStats;
+
     [Header("Field scene")]
     public FieldTile fieldTile;
     public TownPiece3 townPiece;

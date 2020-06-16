@@ -135,8 +135,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 10, y: 10}
-  m_SizeDelta: {x: -40, y: 5}
+  m_AnchoredPosition: {x: 12.5, y: 10}
+  m_SizeDelta: {x: -45, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5298824964292449748
 CanvasRenderer:
@@ -289,8 +289,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -30, y: 7.5}
-  m_SizeDelta: {x: -80, y: 10}
+  m_AnchoredPosition: {x: -27.5, y: 7.5}
+  m_SizeDelta: {x: -75, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2493546742499412348
 CanvasRenderer:
@@ -462,6 +462,13 @@ MonoBehaviour:
   stateDefend: 0
   stateAttack: 0
   stateRetaliation: 0
+  stateAbility: 0
+  ability1Start: 0
+  ability1End: 0
+  ability2Start: 0
+  ability2End: 0
+  ability3Start: 0
+  ability3End: 0
   meleeAttackStart: 0
   meleeAttackEnd: 0
   rangedAttackStart: 0
@@ -488,9 +495,11 @@ MonoBehaviour:
   movementPointsMax: 0
   inActualMovement: 0
   stopWasCalled: 0
+  remainingSteps: 0
   nextPos: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
+  interactionTarget: {fileID: 0}
   pathTotalCost: 0
 --- !u!114 &3471655627216139495
 MonoBehaviour:
@@ -571,8 +580,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b0a04b6baa564e42bd0babc8d339f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack_melee: {fileID: 0}
-  attack_ranged: {fileID: 0}
+  meleeAttack: {fileID: 0}
+  rangedAttack: {fileID: 0}
+  useRangedAtMeleeRange: 0
 --- !u!114 &3659796615192814425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -846,9 +856,9 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 8
+    m_FontSize: 10
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4

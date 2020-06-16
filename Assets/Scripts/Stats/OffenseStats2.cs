@@ -5,23 +5,39 @@ using UnityEngine;
 
 public class OffenseStats2 : MonoBehaviour
 {
-    public AttackStats2 attack_melee;
-    public AttackStats2 attack_ranged;
+    //public AttackStats2 attack_melee;
+    //public AttackStats2 attack_ranged;
 
-    //public void Initialize(AttackStats2 melee, AttackStats2 ranged)
-    //{
-    //    if (attack_melee) Destroy(attack_melee.gameObject);
-    //    attack_melee = Instantiate(melee);
-    //    attack_melee.transform.parent = transform;
+    [Header("Attacks")]
+    [SerializeField] private AttackStats2 meleeAttack;
+    [SerializeField] private AttackStats2 rangedAttack;
 
-    //    if (attack_ranged) Destroy(attack_ranged.gameObject);
-    //    attack_ranged = Instantiate(ranged);
-    //    attack_ranged.transform.parent = transform;
-    //}
+    [Header("Settings")]
+    public bool useRangedAtMeleeRange = false;
+    //public bool canUseRanged = true;        //TODO: remove this later?
 
     public void CopyFrom(OffenseStats2 offenseStats)
     {
-        if (offenseStats.attack_melee) attack_melee = Instantiate(offenseStats.attack_melee, transform);
-        if (offenseStats.attack_ranged) attack_ranged = Instantiate(offenseStats.attack_ranged, transform);
+        AttackStats2[] listAttack = offenseStats.GetComponentsInChildren<AttackStats2>();
+        if (listAttack.Length > 2) Debug.LogWarning("More than 2 attacks were found.");
+
+        foreach (AttackStats2 attack in listAttack)
+        {
+            AttackStats2 copy = Instantiate(attack, transform);
+            //listAttack.Add(copy);
+
+            if (!meleeAttack && copy.attackType == AttackType.MELEE) meleeAttack = copy;
+            if (!rangedAttack && copy.attackType == AttackType.RANGED) rangedAttack = copy;
+        }
+    }
+
+    public AttackStats2 GetMeleeAttack()
+    {
+        return meleeAttack;
+    }
+
+    public AttackStats2 GetRangedAttack()
+    {
+        return rangedAttack;
     }
 }

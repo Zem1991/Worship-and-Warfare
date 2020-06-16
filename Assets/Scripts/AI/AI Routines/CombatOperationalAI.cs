@@ -65,7 +65,7 @@ public class CombatOperationalAI : AbstractAIRoutine
 
         Dictionary<CombatantPiece3, PathfindResults> meleeTargets = new Dictionary<CombatantPiece3, PathfindResults>();
         Dictionary<CombatantPiece3, PathfindResults> rangedTargets = new Dictionary<CombatantPiece3, PathfindResults>();
-        bool isRangedViable = currentUnit.offenseStats.attack_ranged;
+        bool isRangedViable = currentUnit.offenseStats.GetRangedAttack();
 
         CombatPieceHandler cph = CombatManager.Instance.pieceHandler;
         if (!cph.GetPieceList(aiPersonality.player, true, out List<CombatantPiece3> unitList)) return;

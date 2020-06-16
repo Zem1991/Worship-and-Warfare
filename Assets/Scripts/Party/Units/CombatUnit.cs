@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class CombatUnit : AbstractUnit
 {
-    public void Initialize(DB_CombatUnit dbCombatUnit, int stack_maximum)
+    public void Initialize(DB_CombatUnit dbCombatUnit, int stackSize)
     {
         Initialize(dbCombatUnit);
         name = dbCombatUnit.unitNameSingular;
 
-        GetStackHealthStats().CopyFrom(dbCombatUnit.healthStats);
+        StackHealthStats2 shs = GetStackHealthStats();
+        shs.CopyFrom(dbCombatUnit.healthStats);
+        shs.SetStackSize(stackSize);
     }
 
     public DB_CombatUnit GetDBCombatUnit()

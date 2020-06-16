@@ -38,9 +38,20 @@ public class StackHealthStats2 : HealthStats2
         return stackSize <= 0;
     }
 
+    public void ClearStackSize()
+    {
+        SetStackSize(0);
+    }
+
     public int GetStackSize()
     {
         return stackSize;
+    }
+
+    public void SetStackSize(int stackSize)
+    {
+        previousStackSize = this.stackSize;
+        this.stackSize = stackSize;
     }
 
     public override bool ReceiveHealing(int amount)
@@ -56,9 +67,13 @@ public class StackHealthStats2 : HealthStats2
         int stackLost = amount / hitPoints_maximum;
         int hpLost = amount % hitPoints_maximum;
         hitPoints_current -= hpLost;
-        if (hitPoints_current <= 0) stackLost++;
+        if (hitPoints_current <= 0)
+        {
+            hitPoints_current += hitPoints_maximum;
+            stackLost++;
+        }
         bool nothingLeft = SubtractFromStack(stackLost);
-        if (!nothingLeft) hitPoints_current += hitPoints_maximum;
+        if (nothingLeft) hitPoints_current = 0;
         return nothingLeft;
     }
 }

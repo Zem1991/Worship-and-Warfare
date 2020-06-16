@@ -70,7 +70,7 @@ public abstract class AbstractMap<T> : MonoBehaviour where T : AbstractTile
 
     public List<T> AreaLine(T startTile, T endTile)
     {
-        Debug.Log("AreaLine start");
+        //Debug.Log("AreaLine start");
         Vector3 startPos = startTile.transform.position;
         Vector3 endPos = endTile.transform.position;
 
@@ -82,8 +82,8 @@ public abstract class AbstractMap<T> : MonoBehaviour where T : AbstractTile
         float totalDif = difZ + difX + 1;
         float t = 1F / totalDif;
 
-        Debug.Log("totalDif = " + totalDif);
-        Debug.Log("t = " + t);
+        //Debug.Log("totalDif = " + totalDif);
+        //Debug.Log("t = " + t);
 
         List<Vector2Int> coordinates = new List<Vector2Int>();
         for (int i = 0; i < totalDif; i++)
@@ -92,7 +92,7 @@ public abstract class AbstractMap<T> : MonoBehaviour where T : AbstractTile
             Vector2Int vectorInt = new Vector2Int(Mathf.RoundToInt(vector.x), Mathf.RoundToInt(vector.z));
             coordinates.Add(vectorInt);
         }
-        Debug.Log("AreaLine finish");
+        //Debug.Log("AreaLine finish");
         return GetTiles(coordinates);
     }
 }

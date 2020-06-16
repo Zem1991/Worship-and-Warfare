@@ -17,7 +17,7 @@ public class HeroUnitPiece3 : UnitPiece3
         bool showUI = !stateDead && ICP_IsIdle();
         uiBarRect.gameObject.SetActive(showUI);
         uiHealthBar.fillAmount = ((float)healthStats.hitPoints_current) / healthStats.hitPoints_maximum;
-        uiManaBar.fillAmount = 0.8F;
+        uiManaBar.fillAmount = 0.8F;    //TODO: MANA POINTS!
     }
 
     public HeroUnit GetHeroUnit()
