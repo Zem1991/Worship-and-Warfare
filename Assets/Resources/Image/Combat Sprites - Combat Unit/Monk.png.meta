@@ -477,7 +477,7 @@ TextureImporter:
       213: 8890860573869833083
     second: Monk_157
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -494,9 +494,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -505,12 +508,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -528,11 +531,17 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -542,8 +551,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -553,7 +564,35 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -2205,9 +2244,87 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      Monk_0: 750404815526784723
+      Monk_1: -2275245218698274464
+      Monk_10: -6629375874795945723
+      Monk_11: 5626278992205502758
+      Monk_12: 2747991858778337584
+      Monk_13: -2068795306739931368
+      Monk_14: 7660387871045622440
+      Monk_15: 358654986794600862
+      Monk_16: 1859906094060776746
+      Monk_17: 3386252815122143076
+      Monk_18: -8301447591535175902
+      Monk_19: 6033647419131637180
+      Monk_2: -5676282652424588897
+      Monk_20: 9192457827141112861
+      Monk_21: 7883509503044399641
+      Monk_22: 4534469452179858364
+      Monk_23: 8520687622136072174
+      Monk_24: 266641082193135624
+      Monk_25: 7041996122519213345
+      Monk_26: 4460118262421526632
+      Monk_27: 2791187211002300021
+      Monk_28: -6014638837942316827
+      Monk_29: -4500415659171474181
+      Monk_3: -5951778593060131696
+      Monk_30: -5511671166281510291
+      Monk_31: -7791274561446026090
+      Monk_32: -5709024629890610762
+      Monk_33: 7672182827230516150
+      Monk_34: -4498813297520049537
+      Monk_35: 8679285672079304156
+      Monk_36: 3614574916653043465
+      Monk_37: -2204495352562222415
+      Monk_38: -4795850040106156324
+      Monk_39: 458215506987961414
+      Monk_4: -7317502917220135935
+      Monk_40: -4516053847197472486
+      Monk_41: -3959907013057992704
+      Monk_42: -5899405706191545258
+      Monk_43: 7483814659730095898
+      Monk_44: 8563397207258756768
+      Monk_45: -3684407510084703014
+      Monk_46: -1784483272904334508
+      Monk_47: -9153996928586987698
+      Monk_48: -5678363850626270556
+      Monk_49: -8537282236899145437
+      Monk_5: -8132729258817636099
+      Monk_50: 1344003059281912217
+      Monk_51: 2149371188441412430
+      Monk_52: 3723717721627340495
+      Monk_53: -703632843628841808
+      Monk_54: 6086394105315303751
+      Monk_55: 3682065446844668087
+      Monk_56: -6192733843135284813
+      Monk_57: 826922608054099483
+      Monk_58: -2297339049895595932
+      Monk_59: -4885295523953962149
+      Monk_6: 8144882561560292784
+      Monk_60: -8316877442044186897
+      Monk_61: -4728146739335153679
+      Monk_62: 417839431562241002
+      Monk_63: -1282974541539981167
+      Monk_64: -2735189225344727984
+      Monk_65: 720635129424958134
+      Monk_66: -246669587670619498
+      Monk_67: 444642298919189240
+      Monk_68: -1898299295964829162
+      Monk_69: -7097917949843660003
+      Monk_7: 3496351834822047204
+      Monk_70: -2846463741751301954
+      Monk_71: -7061206795206010530
+      Monk_72: -8446658731936820613
+      Monk_73: 3593918723805081065
+      Monk_74: -6954088392641767110
+      Monk_75: 1492433052077812367
+      Monk_76: -8545102044264809239
+      Monk_77: 2099255468701380693
+      Monk_8: -794843099020601835
+      Monk_9: -5082115233973500320
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

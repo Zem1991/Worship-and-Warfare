@@ -417,7 +417,7 @@ TextureImporter:
       213: 3523757242642843274
     second: Default Unit_137
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -434,9 +434,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -445,12 +448,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -468,11 +471,17 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -482,8 +491,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -493,7 +504,35 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -1662,9 +1701,64 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      Default Unit_0: -8394129049926109768
+      Default Unit_1: 8432767468198186153
+      Default Unit_10: 5972743234370228882
+      Default Unit_11: -3300715016805702441
+      Default Unit_12: 6974878659771176921
+      Default Unit_13: 5437199055860149410
+      Default Unit_14: -4052253085781338873
+      Default Unit_15: -112489777869114011
+      Default Unit_16: -2551029793035682997
+      Default Unit_17: 1623601204583015263
+      Default Unit_18: -6292694293272840511
+      Default Unit_19: 7739398631826880110
+      Default Unit_2: 5135915106470113589
+      Default Unit_20: 4782181874782435535
+      Default Unit_21: 3519234279365139646
+      Default Unit_22: 8764744234333767694
+      Default Unit_23: -8932329148379826225
+      Default Unit_24: 1176537137297812483
+      Default Unit_25: -178913698894100674
+      Default Unit_26: -8060089961989736644
+      Default Unit_27: 2021780020097994563
+      Default Unit_28: 2385336909474418571
+      Default Unit_29: 7521553772203719195
+      Default Unit_3: -5733999216051014600
+      Default Unit_30: -2955397209618419017
+      Default Unit_31: 7533084230331718628
+      Default Unit_32: -6077267326273987418
+      Default Unit_33: -1503522530576141067
+      Default Unit_34: 8775993345025241352
+      Default Unit_35: -8533513904141157292
+      Default Unit_36: 2631680575161191830
+      Default Unit_37: 1082651353982366093
+      Default Unit_38: -8387981066966998983
+      Default Unit_39: 5194348306568919205
+      Default Unit_4: 4493954937603011277
+      Default Unit_40: 2582003561223813820
+      Default Unit_41: -7481882732768784280
+      Default Unit_42: -2966603044236462983
+      Default Unit_43: 6267701375841486237
+      Default Unit_44: -5679723650595004610
+      Default Unit_45: -1926508601988473583
+      Default Unit_46: 2781260666381666098
+      Default Unit_47: 3671487321822079281
+      Default Unit_48: -883847431698418127
+      Default Unit_49: 9186357109758495391
+      Default Unit_5: -2576856572841323256
+      Default Unit_50: 1738950301050175782
+      Default Unit_51: -787343328918346974
+      Default Unit_52: 5134583650679079309
+      Default Unit_53: 2024117976078753549
+      Default Unit_54: -1438015037745346108
+      Default Unit_6: 2853098208813607861
+      Default Unit_7: 7519017192877189461
+      Default Unit_8: -8202082680052228409
+      Default Unit_9: 6466710578179460704
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

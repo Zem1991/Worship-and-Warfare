@@ -486,7 +486,7 @@ TextureImporter:
       213: 2213197382822820313
     second: Cavalry_160
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -503,9 +503,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -514,12 +517,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -537,11 +540,17 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -551,8 +560,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -562,7 +573,35 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -2109,9 +2148,82 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      Cavalry_0: -6504473842130613247
+      Cavalry_1: 1887771600451619798
+      Cavalry_10: -2842474871702475406
+      Cavalry_11: -7659334850104857246
+      Cavalry_12: -8419258182173267950
+      Cavalry_13: -937261146765537743
+      Cavalry_14: 5907741633221324524
+      Cavalry_15: -1394286328634985881
+      Cavalry_16: 6746444294305591583
+      Cavalry_17: 5569640294350274996
+      Cavalry_18: -2318658795649849800
+      Cavalry_19: -5720427371499769169
+      Cavalry_2: -462996444129558409
+      Cavalry_20: 2557794902894530601
+      Cavalry_21: -8746421357086464641
+      Cavalry_22: 4594341842685850613
+      Cavalry_23: -7216384618407832524
+      Cavalry_24: 5233445936668430003
+      Cavalry_25: 7001483569988708631
+      Cavalry_26: 204244425477812253
+      Cavalry_27: -4576021041385757379
+      Cavalry_28: -177807392808333973
+      Cavalry_29: -3260437702518997216
+      Cavalry_3: -3450385899053184982
+      Cavalry_30: -3595643549528700022
+      Cavalry_31: 2437035088712767222
+      Cavalry_32: -7280210904517380007
+      Cavalry_33: -7853989904296197547
+      Cavalry_34: 1637034533364299274
+      Cavalry_35: 1420104438205967012
+      Cavalry_36: 3061539234025360856
+      Cavalry_37: 2441556033745505966
+      Cavalry_38: -734660363203735650
+      Cavalry_39: -8418250048478017771
+      Cavalry_4: 7127130476188326257
+      Cavalry_40: -8924185190856342854
+      Cavalry_41: 7852917095221188759
+      Cavalry_42: -1965020498087020934
+      Cavalry_43: -7729248246188152706
+      Cavalry_44: -3457603442546650371
+      Cavalry_45: -8634367208575981123
+      Cavalry_46: 6063836136467712299
+      Cavalry_47: 1306268494843287398
+      Cavalry_48: 8587292922636100231
+      Cavalry_49: 1132833008079695003
+      Cavalry_5: -3188470222291890179
+      Cavalry_50: 3313758037549272133
+      Cavalry_51: -4195116239079535248
+      Cavalry_52: -2047289791830119582
+      Cavalry_53: 9173414854046179845
+      Cavalry_54: 3884007918250944935
+      Cavalry_55: 7563036677903234248
+      Cavalry_56: -1525747842604131026
+      Cavalry_57: 502049841226925162
+      Cavalry_58: 4190310493665535561
+      Cavalry_59: -6167370051162869817
+      Cavalry_6: 7366481029100805028
+      Cavalry_60: -591119367018396806
+      Cavalry_61: -7730832545086225315
+      Cavalry_62: 7813754720166971544
+      Cavalry_63: 3198276440193354087
+      Cavalry_64: -2406357500518555012
+      Cavalry_65: 8216572056975506638
+      Cavalry_66: -1875082233178415084
+      Cavalry_67: -771106479881656275
+      Cavalry_68: 2961855311342722646
+      Cavalry_69: 1916119183926529181
+      Cavalry_7: -8307630414386516731
+      Cavalry_70: 4632259130004648382
+      Cavalry_71: -8309824229101064720
+      Cavalry_72: -6076131292287537699
+      Cavalry_8: -2292067419523509629
+      Cavalry_9: -4926452022286151859
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

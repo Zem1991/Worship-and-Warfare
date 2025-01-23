@@ -276,7 +276,7 @@ TextureImporter:
       213: -7008941637949454802
     second: Archer_90
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -293,9 +293,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -304,12 +307,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -327,11 +330,17 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -341,8 +350,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -352,7 +363,35 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -2277,9 +2316,100 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      Archer_0: -7132172409892320828
+      Archer_1: -1353735933490891112
+      Archer_10: 8249779470359433977
+      Archer_11: -1962031107855546696
+      Archer_12: -9041807797270712669
+      Archer_13: 1747913851310489417
+      Archer_14: -8185391877506459701
+      Archer_15: -2650744301020191532
+      Archer_16: -3491436940040637017
+      Archer_17: 737703663463909888
+      Archer_18: 1138581748509411818
+      Archer_19: 6586155937423818303
+      Archer_2: 3001767060249510921
+      Archer_20: 8009077841664831659
+      Archer_21: -3538350284264479481
+      Archer_22: 7628983629375039337
+      Archer_23: -5971151869562673699
+      Archer_24: -7252216144125549621
+      Archer_25: -3239827517386730994
+      Archer_26: -7000998780855177912
+      Archer_27: 4974585343492711331
+      Archer_28: -3846518608479097937
+      Archer_29: 4557645022326242426
+      Archer_3: -2936497657700248757
+      Archer_30: 7023020952865225556
+      Archer_31: 7188338922220243952
+      Archer_32: 5810893230690756336
+      Archer_33: -974982828150314320
+      Archer_34: 1648995814239754866
+      Archer_35: -6773332133559497501
+      Archer_36: -6406475812940037373
+      Archer_37: -831034980683400404
+      Archer_38: 4706408571880953610
+      Archer_39: 2507926002511818775
+      Archer_4: 818616984480399886
+      Archer_40: -5561081503392899682
+      Archer_41: -6658925714778641832
+      Archer_42: 4987308344126289578
+      Archer_43: -2309302278628930799
+      Archer_44: -5938886292679005284
+      Archer_45: -5632558480353415302
+      Archer_46: 8285793340310895079
+      Archer_47: -5574892827587305999
+      Archer_48: 2727244525004801755
+      Archer_49: -9178085699852703378
+      Archer_5: -3506536579647068688
+      Archer_50: 6517412418285932028
+      Archer_51: -6363745783416740174
+      Archer_52: 7207943461883000607
+      Archer_53: -7842966496701673447
+      Archer_54: -7496578106510736855
+      Archer_55: 7373893106507137603
+      Archer_56: 2677105474008719561
+      Archer_57: 8167009325714835159
+      Archer_58: -1201827876199940216
+      Archer_59: 3662490532564934435
+      Archer_6: 7243941689720402736
+      Archer_60: 7829758640622273135
+      Archer_61: -2485814907079751562
+      Archer_62: 5846177069153783481
+      Archer_63: 5177155292046633791
+      Archer_64: -4309774119132842737
+      Archer_65: 5773179363221400670
+      Archer_66: -4297469713852643599
+      Archer_67: 2255055312572520863
+      Archer_68: -2123010957204524105
+      Archer_69: -8719097199058081604
+      Archer_7: -5511490489121558247
+      Archer_70: -1127169030985701158
+      Archer_71: 5413666252136033321
+      Archer_72: 8767895969115206988
+      Archer_73: -5251535999995879089
+      Archer_74: 1793018466703627780
+      Archer_75: -6846826397465205415
+      Archer_76: -7649581531398615740
+      Archer_77: -6706924471835111775
+      Archer_78: 7416230020014882546
+      Archer_79: 3916485902555024770
+      Archer_8: -6542253794372221699
+      Archer_80: -7543984831181461513
+      Archer_81: 337281451527755359
+      Archer_82: 1127094175811953200
+      Archer_83: -2612503939776626445
+      Archer_84: 5860605644752713761
+      Archer_85: 9178922064163035466
+      Archer_86: 1498963136922981384
+      Archer_87: 4276890841499259658
+      Archer_88: 5122802144900346022
+      Archer_89: 6987352726152255238
+      Archer_9: 8994285840009083728
+      Archer_90: -7008941637949454802
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

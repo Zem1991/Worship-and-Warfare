@@ -372,7 +372,7 @@ TextureImporter:
       213: -3905925783958566069
     second: Catapult_122
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -389,9 +389,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -400,12 +403,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -423,11 +426,17 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -437,8 +446,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -448,7 +459,35 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -1302,9 +1341,49 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      Catapult_0: 5288215809875120788
+      Catapult_1: -1123465266431618709
+      Catapult_10: -6464974150969948840
+      Catapult_11: 1404390705185708353
+      Catapult_12: -7103136368032602232
+      Catapult_13: -6395492248609409088
+      Catapult_14: -2753385865225868029
+      Catapult_15: -1972006178023213138
+      Catapult_16: -7782054811215690893
+      Catapult_17: 337867907482127756
+      Catapult_18: 3927162386948058778
+      Catapult_19: 6668811061640074174
+      Catapult_2: -6365212618491115632
+      Catapult_20: 265948704362603915
+      Catapult_21: 830106466092021750
+      Catapult_22: 1930606499829722128
+      Catapult_23: 6990844528925802490
+      Catapult_24: -3481787308874582475
+      Catapult_25: 7955526504459062839
+      Catapult_26: 8548400068990769889
+      Catapult_27: 2089657721133741628
+      Catapult_28: 857639086867443569
+      Catapult_29: 6330933935989448147
+      Catapult_3: 5452287216832523476
+      Catapult_30: -1696246627756932911
+      Catapult_31: -1645137379303779096
+      Catapult_32: 8377546915685519851
+      Catapult_33: -840675497825757574
+      Catapult_34: -8649467950223316535
+      Catapult_35: -7827288642658674616
+      Catapult_36: 8541027318402866776
+      Catapult_37: 5251827740893730006
+      Catapult_38: 5539384899107035731
+      Catapult_39: 1897760926155423149
+      Catapult_4: -6268823588876039917
+      Catapult_5: 9173706067233222214
+      Catapult_6: -7844990692434541845
+      Catapult_7: 2012827952104777168
+      Catapult_8: 3486982992985762798
+      Catapult_9: -4341027286037496405
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

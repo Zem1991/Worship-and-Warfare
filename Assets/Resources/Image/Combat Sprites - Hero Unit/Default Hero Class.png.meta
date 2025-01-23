@@ -1761,7 +1761,7 @@ TextureImporter:
       213: -6807734520089828393
     second: Default Hero Class_165
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -1778,9 +1778,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1790,11 +1793,11 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 1
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -1812,11 +1815,17 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -1826,8 +1835,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -1837,7 +1848,35 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -5337,9 +5376,175 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      Default Hero Class_0: 9015386053879165526
+      Default Hero Class_1: 4478479273738756938
+      Default Hero Class_10: 7808566505081234298
+      Default Hero Class_100: -7388371469281680053
+      Default Hero Class_101: 2571022129938210872
+      Default Hero Class_102: 3493734171621469720
+      Default Hero Class_103: 5243185522009715161
+      Default Hero Class_104: 2328214204318867325
+      Default Hero Class_105: -2358127177501272415
+      Default Hero Class_106: -8986495967371082674
+      Default Hero Class_107: -5398649082182691444
+      Default Hero Class_108: -5578323322461162169
+      Default Hero Class_109: -4454566887736325889
+      Default Hero Class_11: -3354420624315820471
+      Default Hero Class_110: -8708069705542133117
+      Default Hero Class_111: -8052370870590150631
+      Default Hero Class_112: 3835692448076804264
+      Default Hero Class_113: 2220716788448848273
+      Default Hero Class_114: -1233934722781103767
+      Default Hero Class_115: 6817333399360062948
+      Default Hero Class_116: -5802119202590164430
+      Default Hero Class_117: 7192534688135003739
+      Default Hero Class_118: 6296121767749197187
+      Default Hero Class_119: 6382800601577753456
+      Default Hero Class_12: 4630093929651609746
+      Default Hero Class_120: 5726991780359825815
+      Default Hero Class_121: -6214262595721447988
+      Default Hero Class_122: 8676864567841027346
+      Default Hero Class_123: -1124835202177639072
+      Default Hero Class_124: -238722634088875630
+      Default Hero Class_125: 2959615486342368489
+      Default Hero Class_126: 3483210740716059261
+      Default Hero Class_127: -9157290503945437618
+      Default Hero Class_128: -6334300680378624972
+      Default Hero Class_129: 2004275805956808133
+      Default Hero Class_13: 4857881411220784928
+      Default Hero Class_130: -7205236484168549707
+      Default Hero Class_131: -3834452049387220595
+      Default Hero Class_132: -1408242132788089341
+      Default Hero Class_133: 3698625762855386726
+      Default Hero Class_134: 4111183668508390229
+      Default Hero Class_135: -7823438531112455342
+      Default Hero Class_136: -9104105241862521511
+      Default Hero Class_137: 3426650863540462006
+      Default Hero Class_138: 3018813631773464321
+      Default Hero Class_139: -6604860747125440977
+      Default Hero Class_14: -4028765145604868785
+      Default Hero Class_140: 4325344985675191892
+      Default Hero Class_141: -1101690105669774626
+      Default Hero Class_142: 3009964854237514232
+      Default Hero Class_143: -559703121915455035
+      Default Hero Class_144: -7374574954099630585
+      Default Hero Class_145: 5605446717824607183
+      Default Hero Class_146: 5368484957667478256
+      Default Hero Class_147: -649276759865399099
+      Default Hero Class_148: -6868550862706567541
+      Default Hero Class_149: 2731400709774958156
+      Default Hero Class_15: -8149200117577433272
+      Default Hero Class_150: -2317317630183558270
+      Default Hero Class_151: 8436767813733626997
+      Default Hero Class_152: 6577083356511988413
+      Default Hero Class_153: 1455532360407785249
+      Default Hero Class_154: -4196571254866935853
+      Default Hero Class_155: 4394373093803727313
+      Default Hero Class_156: -5485058528551937346
+      Default Hero Class_157: 5500860882912809279
+      Default Hero Class_158: -155371771479426578
+      Default Hero Class_159: -9055650426297578467
+      Default Hero Class_16: -402825646639803879
+      Default Hero Class_160: -6682094944105373441
+      Default Hero Class_161: 7621071778519916875
+      Default Hero Class_162: 4264834749395462653
+      Default Hero Class_163: 1026628059041240135
+      Default Hero Class_164: -5781777626922970964
+      Default Hero Class_165: -6807734520089828393
+      Default Hero Class_17: -3079261638937094410
+      Default Hero Class_18: 5753850990078525955
+      Default Hero Class_19: 1011864213709127552
+      Default Hero Class_2: 6672029298494823349
+      Default Hero Class_20: -220563993708727334
+      Default Hero Class_21: 3435039831672110714
+      Default Hero Class_22: -5772281603592464645
+      Default Hero Class_23: -6696105474958982132
+      Default Hero Class_24: -1519096847334347900
+      Default Hero Class_25: 255299321129736982
+      Default Hero Class_26: -8506416932819830311
+      Default Hero Class_27: -1054291484260366090
+      Default Hero Class_28: 8262369459961393861
+      Default Hero Class_29: -735392591905711077
+      Default Hero Class_3: -7369356220066370525
+      Default Hero Class_30: -2002379794895244168
+      Default Hero Class_31: 2048302708339593182
+      Default Hero Class_32: 6102144321047101614
+      Default Hero Class_33: 8913851195462238991
+      Default Hero Class_34: 3451234869242184696
+      Default Hero Class_35: -1131628081544650735
+      Default Hero Class_36: 2873558906654166784
+      Default Hero Class_37: -7119386187893550294
+      Default Hero Class_38: -1817495426589425138
+      Default Hero Class_39: 4143909569358523510
+      Default Hero Class_4: 7582398332728089473
+      Default Hero Class_40: 7431662799202444480
+      Default Hero Class_41: 4525755359470153691
+      Default Hero Class_42: 8588509862065201732
+      Default Hero Class_43: 1925820016614814123
+      Default Hero Class_44: 7053887472106936884
+      Default Hero Class_45: -8931904357840661888
+      Default Hero Class_46: 5514225383646292474
+      Default Hero Class_47: 1638997240070369093
+      Default Hero Class_48: -4975642356023486520
+      Default Hero Class_49: 554534066769433663
+      Default Hero Class_5: -6233413195831103462
+      Default Hero Class_50: 7956209886372833999
+      Default Hero Class_51: -8349269224883021902
+      Default Hero Class_52: -469903893002223197
+      Default Hero Class_53: 6022881807187233385
+      Default Hero Class_54: 8594021766378822518
+      Default Hero Class_55: -547446499976251845
+      Default Hero Class_56: -7162514243163217006
+      Default Hero Class_57: -8366994477600957213
+      Default Hero Class_58: -6609415918537655948
+      Default Hero Class_59: 6295277235178626790
+      Default Hero Class_6: -7995619608892915151
+      Default Hero Class_60: -5126729959906691218
+      Default Hero Class_61: -8002015379248867540
+      Default Hero Class_62: -4965709181173511733
+      Default Hero Class_63: -694576173448223002
+      Default Hero Class_64: -1895132238696637947
+      Default Hero Class_65: -530680197400937470
+      Default Hero Class_66: -6877139704554213110
+      Default Hero Class_67: 8934977297741033262
+      Default Hero Class_68: 4548084345966495576
+      Default Hero Class_69: 5103483178253271493
+      Default Hero Class_7: -3436751296973950474
+      Default Hero Class_70: 7312994300276457035
+      Default Hero Class_71: 1288930392860818190
+      Default Hero Class_72: -4258891143154361200
+      Default Hero Class_73: -2803795868663219270
+      Default Hero Class_74: -6610266091955380197
+      Default Hero Class_75: 7587002077671306358
+      Default Hero Class_76: -2591846684729294360
+      Default Hero Class_77: 497871062082450460
+      Default Hero Class_78: 8990594426215498443
+      Default Hero Class_79: -4056527347208217458
+      Default Hero Class_8: 5031620684713874969
+      Default Hero Class_80: 2239793135108198935
+      Default Hero Class_81: -6750811486606233870
+      Default Hero Class_82: -1395771644050804517
+      Default Hero Class_83: 5529191509857882120
+      Default Hero Class_84: 7745949851656480021
+      Default Hero Class_85: -7750549940772280135
+      Default Hero Class_86: 7436780592077414745
+      Default Hero Class_87: -7100731328367950522
+      Default Hero Class_88: 1677575124806427865
+      Default Hero Class_89: -3779913099317970565
+      Default Hero Class_9: -3601336242384358651
+      Default Hero Class_90: 8441483356541251461
+      Default Hero Class_91: 4423714629636251967
+      Default Hero Class_92: 4900181379527716421
+      Default Hero Class_93: -2036473477522280337
+      Default Hero Class_94: 3573469775681142276
+      Default Hero Class_95: -529100304184376429
+      Default Hero Class_96: 4012075139464807988
+      Default Hero Class_97: -2126269753945972823
+      Default Hero Class_98: -3808347320929180890
+      Default Hero Class_99: 845221213462137151
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
